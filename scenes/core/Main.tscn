@@ -3,9 +3,13 @@
 [ext_resource type="Script" path="res://scripts/core/main.gd" id="1_main"]
 [ext_resource type="PackedScene" path="res://scenes/player/Player.tscn" id="2_player"]
 [ext_resource type="PackedScene" path="res://scenes/ui/InteractionPrompt.tscn" id="3_prompt"]
+[ext_resource type="Script" path="res://scripts/lighting/day_night_test_tint.gd" id="4_tint"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_main")
+
+[node name="DayNightTint" type="CanvasModulate" parent="."]
+script = ExtResource("4_tint")
 
 [node name="World" type="Node2D" parent="."]
 y_sort_enabled = true

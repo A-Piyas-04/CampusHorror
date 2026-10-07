@@ -1,6 +1,18 @@
 [gd_scene format=3]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_player"]
+[ext_resource type="Script" path="res://scripts/lighting/lantern_test_light.gd" id="2_lantern"]
+
+[sub_resource type="Gradient" id="Gradient_lantern"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_lantern"]
+gradient = SubResource("Gradient_lantern")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_footprint"]
 size = Vector2(28, 12)
@@ -35,3 +47,13 @@ position = Vector2(0, -6)
 shape = SubResource("CircleShape2D_interaction")
 
 [node name="Camera" type="Camera2D" parent="."]
+
+[node name="Lantern" type="PointLight2D" parent="."]
+position = Vector2(0, -16)
+color = Color(1, 0.85, 0.6, 1)
+range_item_cull_mask = 3
+shadow_enabled = true
+shadow_filter = 1
+texture = SubResource("GradientTexture2D_lantern")
+texture_scale = 2.0
+script = ExtResource("2_lantern")

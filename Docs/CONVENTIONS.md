@@ -32,6 +32,7 @@ Game code must read input **only through these action names**, never through raw
 | `interact` | Use / talk / pick up the nearest interactable | `E` | Bottom face button (A / Cross) |
 | `lantern` | Reserved for the lantern | `F` | Left face button (X / Square) |
 | `pause` | Open/close the pause menu | `Escape` | Start / Menu |
+| `debug_toggle_night` | TEMPORARY (Milestone F): flip the test day/night tint. Remove with the test tint. | `F2` | — |
 
 Rules:
 
@@ -229,7 +230,7 @@ Notes. None of these were changed.
 - `config/features` in `project.godot` still lists `"Forward Plus"` from project creation. It's a Project Manager label; the active method is `gl_compatibility`, confirmed by the engine log.
 - `rendering_device/driver.windows = "d3d12"` only applies to the Forward+/Mobile renderers and is unused under Compatibility.
 - If a mobile export is ever made, the `.mobile` override would switch to the Mobile renderer. Revisit once the target platform is decided.
-- Final renderer choice stays tied to the lighting test (Milestone F) and the target platform.
+- Final renderer choice stays tied to the lighting test (Milestone F) and the target platform. Milestone F: `CanvasModulate` tint, a shadow-casting `PointLight2D` and a `LightOccluder2D` all work under Compatibility with no errors (see section 10).
 
 ## 8. Zones, doors and spawn markers — Proposed
 
@@ -257,6 +258,18 @@ Introduced in Milestone D. Waiting for the user's approval.
 | Pickup | Instance `scenes/components/Pickup.tscn` (`class_name Pickup`) inside `Objects`, origin on the ground. Set `pickup_id` (globally unique) and optionally `prompt_text`. It uses the standard `Interactable`; no extra interaction code. |
 | Removing an interactable at runtime | Just free it. The Player drops a target that leaves the tree, so the prompt hides by itself. |
 | Scope of GameState | Add a field only when a milestone needs it. Disk saving is a separate service (Milestone E); GameState itself does no file I/O. |
+
+## 10. 2D lighting — Proposed
+
+Proven in Milestone F under the Compatibility renderer. Waiting for the user's approval. Colours, radii and all lighting behaviour (day/night timing, lantern mechanics) stay **Undecided**.
+
+| Rule | Detail |
+|---|---|
+| One world tint, owned by Main | The single `CanvasModulate` for the world is a child of `Main`, not of a zone, so it survives zone swaps. Zones never contain a `CanvasModulate` (Godot allows only one per canvas). |
+| UI is never tinted | UI lives on `CanvasLayer`s (section 3); verified that the night tint doesn't darken them. Don't put UI in the world canvas. |
+| Occluders cover the base | A `LightOccluder2D` on an object covers its ground footprint (same area as its collision base), not its whole sprite. |
+| Light masks | Light mask 1 (default) = lit **and** shadowed: ground, low props, characters. Light mask 2 = lit but **not** shadowed: the upright body of tall objects (pillars, trees, walls with height), so an object isn't blacked out by its own base shadow. Lights use `range_item_cull_mask` = 3 (layers 1 + 2) and `shadow_item_cull_mask` = 1. |
+| Lights on characters | A light carried by a character is a child of its root, positioned relative to the feet origin (section 4), so it follows without code. |
 
 ---
 
@@ -301,3 +314,4 @@ To re-run: open `scenes/tests/Milestone0Test.tscn` and press F6 (Run Current Sce
 | 2026-10-07 | Core conventions (sections 1–5) approved as Confirmed baseline; input actions and physics layer names registered; Milestone 0 test scene passed. Undecided items listed explicitly. |
 | 2026-10-07 | Milestone C: zone layout updated (zone root also Y-sorted); zone/player Y-sort merge and section 8 (zones, doors, spawn markers) added as Proposed. |
 | 2026-10-07 | Milestone D: section 9 (GameState and persistent pickups) added as Proposed. |
+| 2026-10-07 | Milestone F: section 10 (2D lighting) added as Proposed; temporary `debug_toggle_night` action listed in section 1; Compatibility lighting result noted in section 7. |
