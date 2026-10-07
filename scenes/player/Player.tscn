@@ -1,0 +1,25 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/player/player.gd" id="1_player"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_footprint"]
+size = Vector2(28, 12)
+
+[node name="Player" type="CharacterBody2D"]
+collision_layer = 2
+motion_mode = 1
+script = ExtResource("1_player")
+
+[node name="Body" type="Polygon2D" parent="."]
+color = Color(0.25, 0.45, 0.95, 1)
+polygon = PackedVector2Array(-16, -64, 16, -64, 16, 0, -16, 0)
+
+[node name="FeetMarker" type="Polygon2D" parent="."]
+color = Color(1, 0.15, 0.15, 1)
+polygon = PackedVector2Array(0, -5, 5, 0, 0, 5, -5, 0)
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2(0, -6)
+shape = SubResource("RectangleShape2D_footprint")
+
+[node name="Camera" type="Camera2D" parent="."]
