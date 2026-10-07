@@ -1,0 +1,12 @@
+{
+  "args_summary": "create_scene(scene_path=res://scenes/tests/MCPCheck.tscn)",
+  "files": [
+    {
+      "kind": "created",
+      "path": "res://scenes/tests/MCPCheck.tscn"
+    }
+  ],
+  "id": "000001",
+  "timestamp": 1791370971.0,
+  "tool": "create_scene"
+}

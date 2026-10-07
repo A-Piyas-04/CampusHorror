@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://cbvbjwmwc758i"]
+
+[node name="MCPCheck" type="Node2D" unique_id=323610321]
+
+[node name="TestRect" type="ColorRect" parent="." unique_id=256176888]
+offset_left = 376.0
+offset_top = 224.0
+offset_right = 776.0
+offset_bottom = 424.0
+color = Color(0.9, 0.1, 0.1, 1)

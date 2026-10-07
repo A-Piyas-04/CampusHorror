@@ -1,0 +1,9 @@
+{
+    "mcpServers": {
+      "godot": {
+        "type": "stdio",
+        "command": "cmd",
+        "args": ["/c", "npx", "-y", "godot-mcp-server"]
+      }
+    }
+  }
