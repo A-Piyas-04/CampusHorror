@@ -245,6 +245,19 @@ Introduced in Milestone C. Waiting for the user's approval.
 | Arrival spot | Put the destination spawn marker outside the arrival door's interaction range (more than 56 px from the door origin with the current shapes), so the player doesn't arrive with a door prompt already showing. |
 | Transition | Main swaps zones at the end of the frame: the old zone is removed from the tree and freed, the new one is added to `World`, its doors are connected, and the Player is moved with `Player.teleport()`, which also resets the camera smoothing and the interaction target. If the zone or spawn doesn't exist, Main logs an error and keeps the current zone. |
 
+## 9. GameState and persistent pickups — Proposed
+
+Introduced in Milestone D. Waiting for the user's approval.
+
+| Rule | Detail |
+|---|---|
+| Single source of truth | State that must survive a zone reload lives only in the `GameState` autoload (`scripts/core/game_state.gd`), never in zone scenes or on the Player. Zones are freed on every change, so anything stored on their nodes is lost. |
+| Keyed by stable ID | GameState stores stable IDs (section 5), never node names, node paths or object references. |
+| Objects restore themselves | A persistent object asks GameState for its own ID in `_ready()` and applies its state there (a collected pickup frees itself). Main and Zone don't know about object state. |
+| Pickup | Instance `scenes/components/Pickup.tscn` (`class_name Pickup`) inside `Objects`, origin on the ground. Set `pickup_id` (globally unique) and optionally `prompt_text`. It uses the standard `Interactable`; no extra interaction code. |
+| Removing an interactable at runtime | Just free it. The Player drops a target that leaves the tree, so the prompt hides by itself. |
+| Scope of GameState | Add a field only when a milestone needs it. Disk saving is a separate service (Milestone E); GameState itself does no file I/O. |
+
 ---
 
 ## Still undecided
@@ -287,3 +300,4 @@ To re-run: open `scenes/tests/Milestone0Test.tscn` and press F6 (Run Current Sce
 | 2026-10-07 | Initial Milestone 0 conventions drafted (all Proposed). |
 | 2026-10-07 | Core conventions (sections 1–5) approved as Confirmed baseline; input actions and physics layer names registered; Milestone 0 test scene passed. Undecided items listed explicitly. |
 | 2026-10-07 | Milestone C: zone layout updated (zone root also Y-sorted); zone/player Y-sort merge and section 8 (zones, doors, spawn markers) added as Proposed. |
+| 2026-10-07 | Milestone D: section 9 (GameState and persistent pickups) added as Proposed. |

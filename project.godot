@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 MCPRuntime="*uid://c40iebabcftlv"
+GameState="*res://scripts/core/game_state.gd"
 
 [display]
 

@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" path="res://scenes/components/SpawnMarker.tscn" id="2_spawn"]
 [ext_resource type="PackedScene" path="res://scenes/components/Door.tscn" id="3_door"]
 [ext_resource type="PackedScene" path="res://scenes/tests/InteractionTestBox.tscn" id="4_test_box"]
+[ext_resource type="PackedScene" path="res://scenes/components/Pickup.tscn" id="5_pickup"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wall_horizontal"]
 size = Vector2(880, 40)
@@ -89,6 +90,11 @@ shape = SubResource("RectangleShape2D_pillar")
 
 [node name="InteractionTestBox" parent="Objects" instance=ExtResource("4_test_box")]
 position = Vector2(-200, 100)
+
+[node name="TestPickup01" parent="Objects" instance=ExtResource("5_pickup")]
+position = Vector2(120, 200)
+pickup_id = "test_pickup_01"
+prompt_text = "Press E to pick up"
 
 [node name="DoorToZoneB" parent="Objects" instance=ExtResource("3_door")]
 position = Vector2(-250, -300)

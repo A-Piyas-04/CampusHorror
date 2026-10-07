@@ -50,5 +50,14 @@ func _update_interaction_target() -> void:
 
 
 func _set_interaction_target(target: Interactable) -> void:
+	if is_instance_valid(_interaction_target):
+		_interaction_target.tree_exiting.disconnect(_on_interaction_target_tree_exiting)
 	_interaction_target = target
+	if target != null:
+		target.tree_exiting.connect(_on_interaction_target_tree_exiting)
 	interaction_target_changed.emit(target)
+
+
+## A freed target (e.g. a collected pickup) would otherwise keep the prompt visible.
+func _on_interaction_target_tree_exiting() -> void:
+	_set_interaction_target(null)
