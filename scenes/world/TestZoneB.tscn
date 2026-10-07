@@ -1,0 +1,85 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/world/zone.gd" id="1_zone"]
+[ext_resource type="PackedScene" path="res://scenes/components/SpawnMarker.tscn" id="2_spawn"]
+[ext_resource type="PackedScene" path="res://scenes/components/Door.tscn" id="3_door"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wall_horizontal"]
+size = Vector2(680, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wall_vertical"]
+size = Vector2(40, 500)
+
+[node name="TestZoneB" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_zone")
+zone_id = "test_zone_b"
+
+[node name="Ground" type="Polygon2D" parent="."]
+z_index = -10
+color = Color(0.2, 0.22, 0.3, 1)
+polygon = PackedVector2Array(-300, -250, 300, -250, 300, 250, -300, 250)
+
+[node name="Objects" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="WallNorth" type="StaticBody2D" parent="Objects"]
+position = Vector2(0, -250)
+collision_mask = 0
+
+[node name="Body" type="Polygon2D" parent="Objects/WallNorth"]
+color = Color(0.45, 0.45, 0.5, 1)
+polygon = PackedVector2Array(-340, -40, 340, -40, 340, 0, -340, 0)
+
+[node name="Collision" type="CollisionShape2D" parent="Objects/WallNorth"]
+position = Vector2(0, -20)
+shape = SubResource("RectangleShape2D_wall_horizontal")
+
+[node name="WallSouth" type="StaticBody2D" parent="Objects"]
+position = Vector2(0, 290)
+collision_mask = 0
+
+[node name="Body" type="Polygon2D" parent="Objects/WallSouth"]
+color = Color(0.45, 0.45, 0.5, 1)
+polygon = PackedVector2Array(-340, -40, 340, -40, 340, 0, -340, 0)
+
+[node name="Collision" type="CollisionShape2D" parent="Objects/WallSouth"]
+position = Vector2(0, -20)
+shape = SubResource("RectangleShape2D_wall_horizontal")
+
+[node name="WallWest" type="StaticBody2D" parent="Objects"]
+position = Vector2(-320, 250)
+collision_mask = 0
+
+[node name="Body" type="Polygon2D" parent="Objects/WallWest"]
+color = Color(0.45, 0.45, 0.5, 1)
+polygon = PackedVector2Array(-20, -500, 20, -500, 20, 0, -20, 0)
+
+[node name="Collision" type="CollisionShape2D" parent="Objects/WallWest"]
+position = Vector2(0, -250)
+shape = SubResource("RectangleShape2D_wall_vertical")
+
+[node name="WallEast" type="StaticBody2D" parent="Objects"]
+position = Vector2(320, 250)
+collision_mask = 0
+
+[node name="Body" type="Polygon2D" parent="Objects/WallEast"]
+color = Color(0.45, 0.45, 0.5, 1)
+polygon = PackedVector2Array(-20, -500, 20, -500, 20, 0, -20, 0)
+
+[node name="Collision" type="CollisionShape2D" parent="Objects/WallEast"]
+position = Vector2(0, -250)
+shape = SubResource("RectangleShape2D_wall_vertical")
+
+[node name="SpawnCenter" parent="Objects" instance=ExtResource("2_spawn")]
+spawn_id = "center"
+
+[node name="DoorToZoneA" parent="Objects" instance=ExtResource("3_door")]
+position = Vector2(0, 250)
+destination_zone_id = "test_zone_a"
+destination_spawn_id = "by_north_door"
+prompt_text = "Press E to return to Test Zone A"
+
+[node name="SpawnBySouthDoor" parent="Objects" instance=ExtResource("2_spawn")]
+position = Vector2(0, 170)
+spawn_id = "by_south_door"

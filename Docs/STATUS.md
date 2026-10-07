@@ -8,7 +8,9 @@ Environment and Cursor ↔ Godot MCP connection are **verified**. Milestone 0 co
 
 Milestone A is **verified through the MCP**: `scenes/core/Main.tscn` is the main scene and owns one placeholder `Player` (4-direction movement, `Camera2D`) inside a temporary walled test room. Movement, diagonal normalization, wall collision and camera follow passed with 0 errors / 0 warnings. A manual play-test with a real keyboard/gamepad is still pending.
 
-Milestone B is **verified through the MCP**: a reusable `Interactable` component (`scenes/components/Interactable.tscn`), a player interaction sensor, an on-screen prompt, and one placeholder `InteractionTestBox` in the test room. Prompt show/hide, in-range-only triggering and the temporary result (colour toggle + Output message) passed with 0 errors / 0 warnings. No other gameplay (dialogue, inventory, pickups, doors, zones, enemies, state, saving) exists.
+Milestone B is **verified through the MCP**: a reusable `Interactable` component (`scenes/components/Interactable.tscn`), a player interaction sensor, an on-screen prompt, and one placeholder `InteractionTestBox` in the test room. Prompt show/hide, in-range-only triggering and the temporary result (colour toggle + Output message) passed with 0 errors / 0 warnings.
+
+Milestone C is **verified through the MCP**: two placeholder zones (`TestZoneA`, `TestZoneB`), reusable `Door` and `SpawnMarker` components, and a minimal zone registry + swap in `Main`. A → B and B → A travel, correct spawn markers, one surviving Player instance over 4 round trips, prompts, camera and wall collision passed with 0 errors / 0 warnings. No dialogue, inventory, pickups, enemies, GameState or saving exists.
 
 ## Environment — Verified
 
@@ -32,6 +34,7 @@ Milestone B is **verified through the MCP**: a reusable `Interactable` component
 | 2026-10-07 | Display / renderer settings | Unchanged |
 | 2026-10-07 | Milestone A test: `Main.tscn` run through MCP (as a specific scene and as the main scene) | **Pass: all checks below, 0 errors / 0 warnings** |
 | 2026-10-07 | Milestone B test: `Main.tscn` run through MCP | **Pass: all checks below, 0 errors / 0 warnings.** A first run was discarded because the game window was also being played by hand at the same time; the clean re-run is what is recorded. |
+| 2026-10-07 | Milestone C test: `Main.tscn` run through MCP | **Pass: all checks below, 0 errors / 0 warnings.** |
 
 Milestone 0 automated checks:
 
@@ -71,6 +74,20 @@ Milestone B checks (player spawns at (0, 200); test box at (−250, 200); sensor
 | Leaving range (x = −125): prompt hidden; `E` press → count stays 1 | Pass (screenshot) |
 | Re-entering range: prompt visible again; `interact` action → count 2, box back to purple, second `[INTERACT]` line | Pass |
 
+Milestone C checks (Player instance ID recorded at start: `30953965084`). Some approaches used a test-only `set_global_position` to stand near a door; walking and wall stops were also tested directly.
+
+| Check | Result |
+|---|---|
+| Start: `World` children = `TestZoneA`, `Player`; player at `start` marker (0, 150); `[ZONE] Entered 'test_zone_a' at spawn 'start'.` | Pass |
+| Walking up to the A → B door: stopped by Zone A north wall at y = −288 (wall face −300 + 12 px footprint); prompt "Press E to enter Test Zone B" | Pass (screenshot) |
+| `E` at the door → `World` children = `TestZoneB`, `Player`; player at (0, 170) = `by_south_door` (not `center`, which is first in the tree); same instance ID; prompt hidden; camera centre (0, 170) | Pass (screenshot) |
+| Walking down in Zone B: stopped by south wall at y = 249.9 (wall face 250); prompt "Press E to return to Test Zone A"; camera follows | Pass (screenshot) |
+| `interact` at the B → A door → `TestZoneA` loaded; player at (−250, −220) = `by_north_door` (not `start`); same instance ID | Pass (screenshot) |
+| 3 more A → B → A round trips (8 transitions total): each `[ZONE]` line names the correct zone and spawn | Pass |
+| After repeated transitions: exactly one `CharacterBody2D` (`/root/Main/World/Player`), same instance ID `30953965084`; `World` has exactly one zone + Player; nodes 43 / objects 1629 / orphans 0, identical to after the first round trip (old zones are freed) | Pass |
+| Milestone B regression in reloaded Zone A: test box base stops player at y = 112; prompt "Press E to interact"; `E` → use count 1, box turns yellow; camera centre = player | Pass (screenshot) |
+| Y-sort across Main/zone: player hidden behind the Zone B door when standing just above its base; drawn in front of the Zone A test box when below it | Pass (screenshots) |
+
 ## Milestones
 
 | Milestone | Status |
@@ -79,7 +96,7 @@ Milestone B checks (player spawns at (0, 200); test box at (−250, 200); sensor
 | 0. Project conventions | **Verified** (automated). Conventions Confirmed in `Docs/CONVENTIONS.md`; input actions + layer names registered; test scene passes. Manual real-device input check pending. |
 | A. Main, placeholder player, movement, camera | **Verified** (automated, via MCP). Manual real-device play-test pending. |
 | B. Interaction | **Verified** (automated, via MCP). Manual play-test pending. |
-| C. Zones, doors, spawn markers | Not started |
+| C. Zones, doors, spawn markers | **Verified** (automated, via MCP). Manual play-test pending; new conventions in `Docs/CONVENTIONS.md` §3 and §8 are Proposed. |
 | D. GameState + persistent pickup | Not started |
 | E. SaveService | Not started |
 | F. Lighting test | Not started |
@@ -90,9 +107,11 @@ Milestone B checks (player spawns at (0, 200); test box at (−250, 200); sensor
 
 1. Open `scenes/tests/Milestone0Test.tscn`, press F6, and press W/A/S/D, the arrow keys, E, F and Escape (and a gamepad, if available). Each should appear in the top-left "Actions pressed" readout. If a real device doesn't register, see the device note in `Docs/CONVENTIONS.md` §1.
 2. Watch the pose cycle (every 2 s) and confirm the draw order looks right to you.
-3. Press F5 (runs `Main.tscn`). Walk with WASD, the arrow keys and a gamepad (stick + D-pad); check the feel of the speed (200 px/s, adjustable as `move_speed` on the Player in the Inspector), that walls and the orange pillar block you, that you can walk behind/in front of the pillar, and that the camera follows.
-4. Open the hand-written scenes (`Main.tscn`, `Player.tscn`, `Interactable.tscn`, `InteractionPrompt.tscn`, `InteractionTestBox.tscn`) in the editor once and save them (Ctrl+S) so Godot writes their `uid` headers (they load fine either way).
-5. Milestone B: press F5, walk to the purple box left of the spawn. Check the prompt appears/disappears at a distance that feels right, E (and the gamepad's bottom face button) toggles the box colour and prints `[INTERACT] …` in Output, and nothing happens when pressing E away from the box. The prompt text says "E" even when using a gamepad (placeholder text).
+3. Press F5 (runs `Main.tscn`, starting in Test Zone A). Walk with WASD, the arrow keys and a gamepad (stick + D-pad); check the feel of the speed (200 px/s, adjustable as `move_speed` on the Player in the Inspector), that walls and the orange pillar block you, that you can walk behind/in front of the pillar, and that the camera follows.
+4. Open the hand-written scenes (`Main.tscn`, `Player.tscn`, `Interactable.tscn`, `InteractionPrompt.tscn`, `InteractionTestBox.tscn`, `Door.tscn`, `SpawnMarker.tscn`, `TestZoneA.tscn`, `TestZoneB.tscn`) in the editor once and save them (Ctrl+S) so Godot writes their `uid` headers (they load fine either way).
+5. Milestone B: walk to the purple box in Zone A. Check the prompt appears/disappears at a distance that feels right, E (and the gamepad's bottom face button) toggles the box colour and prints `[INTERACT] …` in Output, and nothing happens when pressing E away from the box. The prompt text says "E" even when using a gamepad (placeholder text).
+6. Milestone C: in Zone A walk to the brown door on the north wall (upper left) and press E → Zone B (blue-grey floor), arriving just above its south-wall door. Press E at that door → back to Zone A, arriving just below the north door. Repeat a few times; check the change feels acceptable (it is an instant cut, no fade), the Output shows matching `[ZONE] …` lines, and nothing is left over from the previous zone. Open `TestZoneA.tscn`/`TestZoneB.tscn` and check the doors' and markers' Inspector fields.
+7. Review the Proposed conventions in `Docs/CONVENTIONS.md` §3 (zone/player Y-sort) and §8 (zones, doors, spawn markers) and confirm or change them.
 
 ## Project contents
 
@@ -103,26 +122,29 @@ Milestone B checks (player spawns at (0, 200); test box at (−250, 200); sensor
 - `scenes/core/Main.tscn`: main scene. Tree:
 
   ```text
-  Main (Node2D)
-  ├── World (Node2D, y_sort_enabled)          world container
-  │   ├── TestRoom (Node2D, y_sort_enabled)   TEMPORARY test room, replaced by zones in Milestone C
-  │   │   ├── Ground, GroundStripe (Polygon2D, z_index -10)
-  │   │   ├── WallNorth / WallSouth / WallWest / WallEast (StaticBody2D, layer 1, mask 0; room interior x −800..800, y −600..600)
-  │   │   ├── Pillar (StaticBody2D, layer 1, mask 0; collision on its 80×40 base only)
-  │   │   └── InteractionTestBox (instance of scenes/tests/InteractionTestBox.tscn, at (−250, 200))
-  │   └── Player (instance of Player.tscn, spawned at (0, 200))
+  Main (Node2D, scripts/core/main.gd)
+  ├── World (Node2D, y_sort_enabled)          world container; the current zone is added here at runtime
+  │   └── Player (instance of Player.tscn)    the one persistent player
   └── UI (Node)
       └── InteractionPrompt (instance of scenes/ui/InteractionPrompt.tscn, CanvasLayer 10)
   ```
 
   Connection in `Main.tscn`: `World/Player.interaction_target_changed` → `UI/InteractionPrompt._on_player_interaction_target_changed`.
 
+- `scripts/core/main.gd`: owns zone switching. `ZONE_SCENES` (`zone_id` → scene path) is the whole zone registry. Exported `start_zone_id` (`test_zone_a`) / `start_spawn_id` (`start`). `change_zone(zone_id, spawn_id)` validates the zone and spawn before touching anything, removes + frees the old zone, adds the new one as `World`'s first child, connects its doors' `travel_requested`, calls `Player.teleport(marker.global_position)` and prints `[ZONE] Entered '<zone>' at spawn '<spawn>'.` Door requests are applied deferred (end of frame).
+- `scenes/world/TestZoneA.tscn` (`zone_id` `test_zone_a`): green 800×600 room (interior x −400..400, y −300..300), walls, orange pillar at (200, 0), `InteractionTestBox` at (−200, 100), `DoorToZoneB` at (−250, −300) on the north wall → `test_zone_b` / `by_south_door`, spawns `start` (0, 150) and `by_north_door` (−250, −220).
+- `scenes/world/TestZoneB.tscn` (`zone_id` `test_zone_b`): blue-grey 600×500 room (interior x −300..300, y −250..250), walls, spawns `center` (0, 0) and `by_south_door` (0, 170), `DoorToZoneA` at (0, 250) on the south wall → `test_zone_a` / `by_north_door`.
+- `scripts/world/zone.gd` (`class_name Zone`): exported `zone_id`; `find_spawn_marker(spawn_id)`, `get_spawn_markers()`, `get_doors()`; reports empty/duplicate `spawn_id`s as errors on `_ready`.
+- `scenes/components/Door.tscn` + `scripts/components/door.gd` (`class_name Door`, `Node2D`): brown 48×64 placeholder `Body` + `Interactable` child. Exported `destination_zone_id`, `destination_spawn_id`, `prompt_text` (copied into its Interactable if not empty). On `interacted` it emits `travel_requested(destination_zone_id, destination_spawn_id)`; it has no other logic.
+- `scenes/components/SpawnMarker.tscn` + `scripts/components/spawn_marker.gd` (`class_name SpawnMarker`, `Marker2D`): exported `spawn_id`; its position is the arrival feet position. Editor-only gizmo, invisible in game.
+
 - `scenes/player/Player.tscn`: reusable placeholder player. Root `Player` (`CharacterBody2D`, layer 2 / mask 1, Floating, origin = feet), `Body` (blue 32×64 `Polygon2D` above the origin), `FeetMarker` (red dot at origin), `Collision` (28×12 footprint, bottom at y = 0), `InteractionArea` (`Area2D`, layer none / mask 3 `interactable`, monitorable off; circle radius 24 centred on the footprint at (0, −6)), `Camera` (`Camera2D`, at origin, defaults).
-- `scripts/player/player.gd` (`class_name Player`): exported `move_speed` (200 px/s); `Input.get_vector` on the four `move_*` actions → `velocity` → `move_and_slide()`. Each physics frame it picks the nearest `Interactable` overlapping `InteractionArea` and emits `interaction_target_changed(target)` (null when none) only when the target changes. On the `interact` action (in `_unhandled_input`) it calls `target.interact(self)` if a target is in range.
+- `scripts/player/player.gd` (`class_name Player`): exported `move_speed` (200 px/s); `Input.get_vector` on the four `move_*` actions → `velocity` → `move_and_slide()`. Each physics frame it picks the nearest `Interactable` overlapping `InteractionArea` and emits `interaction_target_changed(target)` (null when none) only when the target changes. On the `interact` action (in `_unhandled_input`) it calls `target.interact(self)` if a target is in range. `teleport(position)` moves the feet instantly, zeroes velocity, clears the interaction target (hides the prompt) and resets camera smoothing.
 - `scenes/components/Interactable.tscn` + `scripts/components/interactable.gd` (`class_name Interactable`, `Area2D`): reusable interaction component. Layer 3 `interactable`, mask none, monitoring off (passive). Exported `prompt_text` (default "Press E to interact"); signal `interacted(interactor)`; method `interact(interactor)`. Default range shape: circle radius 32 at the component's origin. Usage: instance it as a child of any object (origin at the object's ground point), set `prompt_text`, and connect `interacted` to the object's own script. To change the range for one object, enable "Editable Children" on the instance and resize its `Collision`.
 - `scenes/ui/InteractionPrompt.tscn` + `scripts/ui/interaction_prompt.gd`: `CanvasLayer` (layer 10) with a bottom-centre `Label`; shows the target's `prompt_text`, hides when the target is null.
-- `scenes/tests/InteractionTestBox.tscn` + `interaction_test_box.gd`: TEMPORARY placeholder interactable (purple 48×48 box, `StaticBody2D` layer 1 with 48×16 base collision, child `Interactable`). On `interacted` it toggles purple ↔ yellow and prints `[INTERACT] InteractionTestBox used by <name> (count N)`. Delete it (and its instance in `Main.tscn`) when real interactables exist.
-- No dialogue, inventory, pickups, doors, zones, enemies, GameState, saving or managers yet.
+- `scenes/tests/InteractionTestBox.tscn` + `interaction_test_box.gd`: TEMPORARY placeholder interactable (purple 48×48 box, `StaticBody2D` layer 1 with 48×16 base collision, child `Interactable`). On `interacted` it toggles purple ↔ yellow and prints `[INTERACT] InteractionTestBox used by <name> (count N)`. Now placed in `TestZoneA`; its state resets whenever Zone A is reloaded (no persistence yet). Delete it when real interactables exist.
+- The Milestone A/B `TestRoom` in `Main.tscn` was removed; the test zones replace it.
+- No dialogue, inventory, pickups, enemies, GameState, saving or managers yet.
 
 ## Still undecided
 
@@ -134,7 +156,11 @@ Final base resolution, tile size, art style (pixel vs stylized/vector vs rendere
 - Input events registered by the MCP tool use device `16` (keyboard) / `0` (first gamepad) instead of the editor's "All Devices". Synthetic input works; real-device check pending.
 - `addons/godot_mcp/cache/undo/stack.json` and `entry_000001/` were committed before `addons/godot_mcp/cache/` was added to `.gitignore`, so Git still tracks them and shows them as modified. Untracking them needs `git rm -r --cached addons/godot_mcp/cache` (not done).
 - The docs folder is `Docs/` (capital D) while the blueprint refers to `docs/`. Windows treats them as the same; on case-sensitive systems paths must match `Docs/`.
-- Y-sort between Main's player and zone objects (listed as Undecided in `Docs/CONVENTIONS.md`): Milestone A uses a Y-sorted `World` holding both the Y-sorted test room and the Player, and the test showed the player sorting correctly against the room's pillar. This is a working setup, not yet a confirmed convention; finalize it with the zone system in Milestone C.
+- Y-sort between Main's player and zone objects: implemented and verified in Milestone C (Y-sorted `World` → Y-sorted zone root → Y-sorted `Objects`). Recorded as **Proposed** in `Docs/CONVENTIONS.md` §3, waiting for approval.
+- The Zone B door sits on the south wall, so a player standing right at it is drawn completely behind the door body. That is correct Y-sorting for the placeholder shapes; real south-facing doors will need art designed for it.
+- Zone changes are an instant cut (no fade). Zones are `load()`ed on demand each time (cached by Godot's resource cache after the first load). Object state inside a zone (e.g. the test box colour) resets on every reload, by design until GameState (Milestone D).
+- If a future interactable is freed while the player stands in its range (not just on zone change), the player's target is only cleared by `teleport()`. Milestone D pickups will need the player to drop a freed target too.
+- MCP testing: tool calls sent in parallel are not guaranteed to run in order. A "press → wait → release" sequence must be sent as separate, sequential calls.
 - Tall vertical placeholder walls (`WallWest`/`WallEast`) have their origin at the bottom of the whole wall, so they Y-sort in front of the player along their full length (visible only as a 2 px overlap where the 32 px body is wider than the 28 px footprint). Harmless for the test room; real walls will come from tiles.
 - MCP `validate_script` reports a generic parse error (code 43, no details) for `player.gd`. This is a false positive of its isolated parser with `class_name` scripts: the editor shows 0 errors and the script runs correctly.
 - Camera zoom/smoothing/limits/offset are left at defaults; final tuning remains Undecided.
@@ -144,4 +170,4 @@ Final base resolution, tile size, art style (pixel vs stylized/vector vs rendere
 
 ## Next task
 
-Do the manual checks above (Milestone B play-test), review the diff and commit Milestone B. Then start Milestone C (Zones, doors, spawn markers).
+Do the manual checks above (Milestone C play-test, review the Proposed conventions), review the diff and commit Milestone C. Then start Milestone D (GameState + persistent pickup).

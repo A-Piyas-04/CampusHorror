@@ -10,6 +10,7 @@ signal interaction_target_changed(target: Interactable)
 var _interaction_target: Interactable
 
 @onready var _interaction_area: Area2D = $InteractionArea
+@onready var _camera: Camera2D = $Camera
 
 
 func _physics_process(_delta: float) -> void:
@@ -25,6 +26,14 @@ func _unhandled_input(event: InputEvent) -> void:
 		get_viewport().set_input_as_handled()
 
 
+## Places the player's feet at `target_position` instantly (zone changes, spawns).
+func teleport(target_position: Vector2) -> void:
+	global_position = target_position
+	velocity = Vector2.ZERO
+	_set_interaction_target(null)
+	_camera.reset_smoothing()
+
+
 func _update_interaction_target() -> void:
 	var nearest: Interactable = null
 	var nearest_distance := INF
@@ -37,5 +46,9 @@ func _update_interaction_target() -> void:
 			nearest = interactable
 			nearest_distance = distance
 	if nearest != _interaction_target:
-		_interaction_target = nearest
-		interaction_target_changed.emit(nearest)
+		_set_interaction_target(nearest)
+
+
+func _set_interaction_target(target: Interactable) -> void:
+	_interaction_target = target
+	interaction_target_changed.emit(target)

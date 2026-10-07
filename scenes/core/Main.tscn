@@ -1,101 +1,16 @@
 [gd_scene format=3]
 
-[ext_resource type="PackedScene" path="res://scenes/player/Player.tscn" id="1_player"]
-[ext_resource type="PackedScene" path="res://scenes/tests/InteractionTestBox.tscn" id="2_test_box"]
+[ext_resource type="Script" path="res://scripts/core/main.gd" id="1_main"]
+[ext_resource type="PackedScene" path="res://scenes/player/Player.tscn" id="2_player"]
 [ext_resource type="PackedScene" path="res://scenes/ui/InteractionPrompt.tscn" id="3_prompt"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_wall_horizontal"]
-size = Vector2(1680, 40)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_wall_vertical"]
-size = Vector2(40, 1200)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_pillar"]
-size = Vector2(80, 40)
-
 [node name="Main" type="Node2D"]
+script = ExtResource("1_main")
 
 [node name="World" type="Node2D" parent="."]
 y_sort_enabled = true
 
-[node name="TestRoom" type="Node2D" parent="World"]
-y_sort_enabled = true
-
-[node name="Ground" type="Polygon2D" parent="World/TestRoom"]
-z_index = -10
-color = Color(0.18, 0.27, 0.2, 1)
-polygon = PackedVector2Array(-800, -600, 800, -600, 800, 600, -800, 600)
-
-[node name="GroundStripe" type="Polygon2D" parent="World/TestRoom"]
-z_index = -10
-color = Color(0.22, 0.32, 0.24, 1)
-polygon = PackedVector2Array(-800, -40, 800, -40, 800, 40, -800, 40)
-
-[node name="WallNorth" type="StaticBody2D" parent="World/TestRoom"]
-position = Vector2(0, -600)
-collision_mask = 0
-
-[node name="Body" type="Polygon2D" parent="World/TestRoom/WallNorth"]
-color = Color(0.55, 0.55, 0.58, 1)
-polygon = PackedVector2Array(-840, -40, 840, -40, 840, 0, -840, 0)
-
-[node name="Collision" type="CollisionShape2D" parent="World/TestRoom/WallNorth"]
-position = Vector2(0, -20)
-shape = SubResource("RectangleShape2D_wall_horizontal")
-
-[node name="WallSouth" type="StaticBody2D" parent="World/TestRoom"]
-position = Vector2(0, 640)
-collision_mask = 0
-
-[node name="Body" type="Polygon2D" parent="World/TestRoom/WallSouth"]
-color = Color(0.55, 0.55, 0.58, 1)
-polygon = PackedVector2Array(-840, -40, 840, -40, 840, 0, -840, 0)
-
-[node name="Collision" type="CollisionShape2D" parent="World/TestRoom/WallSouth"]
-position = Vector2(0, -20)
-shape = SubResource("RectangleShape2D_wall_horizontal")
-
-[node name="WallWest" type="StaticBody2D" parent="World/TestRoom"]
-position = Vector2(-820, 600)
-collision_mask = 0
-
-[node name="Body" type="Polygon2D" parent="World/TestRoom/WallWest"]
-color = Color(0.55, 0.55, 0.58, 1)
-polygon = PackedVector2Array(-20, -1200, 20, -1200, 20, 0, -20, 0)
-
-[node name="Collision" type="CollisionShape2D" parent="World/TestRoom/WallWest"]
-position = Vector2(0, -600)
-shape = SubResource("RectangleShape2D_wall_vertical")
-
-[node name="WallEast" type="StaticBody2D" parent="World/TestRoom"]
-position = Vector2(820, 600)
-collision_mask = 0
-
-[node name="Body" type="Polygon2D" parent="World/TestRoom/WallEast"]
-color = Color(0.55, 0.55, 0.58, 1)
-polygon = PackedVector2Array(-20, -1200, 20, -1200, 20, 0, -20, 0)
-
-[node name="Collision" type="CollisionShape2D" parent="World/TestRoom/WallEast"]
-position = Vector2(0, -600)
-shape = SubResource("RectangleShape2D_wall_vertical")
-
-[node name="Pillar" type="StaticBody2D" parent="World/TestRoom"]
-position = Vector2(300, 0)
-collision_mask = 0
-
-[node name="Body" type="Polygon2D" parent="World/TestRoom/Pillar"]
-color = Color(0.9, 0.55, 0.15, 1)
-polygon = PackedVector2Array(-40, -120, 40, -120, 40, 0, -40, 0)
-
-[node name="Collision" type="CollisionShape2D" parent="World/TestRoom/Pillar"]
-position = Vector2(0, -20)
-shape = SubResource("RectangleShape2D_pillar")
-
-[node name="InteractionTestBox" parent="World/TestRoom" instance=ExtResource("2_test_box")]
-position = Vector2(-250, 200)
-
-[node name="Player" parent="World" instance=ExtResource("1_player")]
-position = Vector2(0, 200)
+[node name="Player" parent="World" instance=ExtResource("2_player")]
 
 [node name="UI" type="Node" parent="."]
 

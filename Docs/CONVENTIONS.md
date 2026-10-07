@@ -101,19 +101,19 @@ How it works:
 - `CanvasModulate` and lights affect world canvas items only. UI on its own `CanvasLayer` is not darkened at night.
 - Use `z_index` only for the bands above. Don't use ad-hoc values like `z_index = 3` on a single prop to fix a sorting problem; fix its origin instead.
 
-Planned zone layout. This is a convention for future scenes; no zones exist yet:
+Zone layout (the two test zones use placeholder `Polygon2D` ground instead of TileMapLayers):
 
 ```text
-Zone (Node2D)
+Zone (Node2D, zone.gd)             y_sort_enabled = true
 ├── Ground (TileMapLayer)          z_index -10
 ├── GroundDetail (TileMapLayer)    z_index -10, drawn after Ground
 ├── Objects (Node2D)               y_sort_enabled = true
 │   ├── Walls (TileMapLayer)       y_sort_enabled = true
-│   └── … props, spawn markers …
+│   └── … props, doors, spawn markers …
 └── Overhead (Node2D)              z_index 10
 ```
 
-How a zone's `Objects` merges with the persistent player owned by Main is **Undecided**. It is decided and tested in Milestone A/C.
+Merging zone objects with Main's persistent player — **Proposed** (implemented and verified in Milestone C): Main's `World` container is Y-sorted and holds the loaded zone and the `Player` as siblings. The zone root **and** its `Objects` node are both `y_sort_enabled`, so Godot's nested Y-sort sorts every child of `Objects` together with the Player. Verified: the player draws behind the Zone B door (its feet are higher on screen) and in front of the Zone A test box. Any node between `World` and a sorted object must also have `y_sort_enabled = true`, or that branch is drawn as one block.
 
 ## 4. Character origin convention — Confirmed
 
@@ -231,6 +231,20 @@ Notes. None of these were changed.
 - If a mobile export is ever made, the `.mobile` override would switch to the Mobile renderer. Revisit once the target platform is decided.
 - Final renderer choice stays tied to the lighting test (Milestone F) and the target platform.
 
+## 8. Zones, doors and spawn markers — Proposed
+
+Introduced in Milestone C. Waiting for the user's approval.
+
+| Rule | Detail |
+|---|---|
+| Zone scene | Lives in `scenes/world/`. Root is a `Node2D` with `scripts/world/zone.gd` (`class_name Zone`) and an exported `zone_id`, laid out as in section 3. |
+| No player in zones | Zones never contain a Player, camera or UI. Main owns one persistent Player and moves it on arrival. |
+| Zone registry | Every reachable zone is listed in `ZONE_SCENES` in `scripts/core/main.gd` (`zone_id` → scene path). The key must equal the zone root's `zone_id`; Main refuses to load a mismatch. |
+| Spawn marker | Instance `scenes/components/SpawnMarker.tscn` (`Marker2D`, `class_name SpawnMarker`) inside `Objects`. Its position is the player's **feet** position on arrival. Set `spawn_id` (unique within the zone; the zone reports empty/duplicate IDs as errors). |
+| Door | Instance `scenes/components/Door.tscn` (`class_name Door`) inside `Objects`, origin on the ground where the player stands to use it. Set `destination_zone_id`, `destination_spawn_id` and optionally `prompt_text`. Doors use the standard `Interactable`; they have no collision of their own (the wall behind them blocks). |
+| Arrival spot | Put the destination spawn marker outside the arrival door's interaction range (more than 56 px from the door origin with the current shapes), so the player doesn't arrive with a door prompt already showing. |
+| Transition | Main swaps zones at the end of the frame: the old zone is removed from the tree and freed, the new one is added to `World`, its doors are connected, and the Player is moved with `Player.teleport()`, which also resets the camera smoothing and the interaction target. If the zone or spawn doesn't exist, Main logs an error and keeps the current zone. |
+
 ---
 
 ## Still undecided
@@ -245,7 +259,7 @@ These are intentionally **not** finalized and must not be treated as settled by 
 - Final camera tuning (zoom, smoothing, limits, offset)
 - Final target platform
 - Mechanic-specific controls (lantern behaviour, any extra actions) and mechanic-specific collision rules (enemy blocking, hazards, damage)
-- How zone `Objects` and Main's persistent player share one Y-sort (Milestone A/C)
+- Zone transition presentation (fade, loading screen) and whether zones are preloaded or cached. Currently an instant swap with `load()` on demand.
 
 ## Verification
 
@@ -272,3 +286,4 @@ To re-run: open `scenes/tests/Milestone0Test.tscn` and press F6 (Run Current Sce
 |---|---|
 | 2026-10-07 | Initial Milestone 0 conventions drafted (all Proposed). |
 | 2026-10-07 | Core conventions (sections 1–5) approved as Confirmed baseline; input actions and physics layer names registered; Milestone 0 test scene passed. Undecided items listed explicitly. |
+| 2026-10-07 | Milestone C: zone layout updated (zone root also Y-sorted); zone/player Y-sort merge and section 8 (zones, doors, spawn markers) added as Proposed. |
