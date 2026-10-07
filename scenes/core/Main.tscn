@@ -1,6 +1,8 @@
 [gd_scene format=3]
 
 [ext_resource type="PackedScene" path="res://scenes/player/Player.tscn" id="1_player"]
+[ext_resource type="PackedScene" path="res://scenes/tests/InteractionTestBox.tscn" id="2_test_box"]
+[ext_resource type="PackedScene" path="res://scenes/ui/InteractionPrompt.tscn" id="3_prompt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wall_horizontal"]
 size = Vector2(1680, 40)
@@ -89,5 +91,14 @@ polygon = PackedVector2Array(-40, -120, 40, -120, 40, 0, -40, 0)
 position = Vector2(0, -20)
 shape = SubResource("RectangleShape2D_pillar")
 
+[node name="InteractionTestBox" parent="World/TestRoom" instance=ExtResource("2_test_box")]
+position = Vector2(-250, 200)
+
 [node name="Player" parent="World" instance=ExtResource("1_player")]
 position = Vector2(0, 200)
+
+[node name="UI" type="Node" parent="."]
+
+[node name="InteractionPrompt" parent="UI" instance=ExtResource("3_prompt")]
+
+[connection signal="interaction_target_changed" from="World/Player" to="UI/InteractionPrompt" method="_on_player_interaction_target_changed"]

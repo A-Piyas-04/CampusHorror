@@ -1,0 +1,24 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scenes/tests/interaction_test_box.gd" id="1_box"]
+[ext_resource type="PackedScene" path="res://scenes/components/Interactable.tscn" id="2_interactable"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_base"]
+size = Vector2(48, 16)
+
+[node name="InteractionTestBox" type="StaticBody2D"]
+collision_mask = 0
+script = ExtResource("1_box")
+
+[node name="Body" type="Polygon2D" parent="."]
+color = Color(0.6, 0.3, 0.8, 1)
+polygon = PackedVector2Array(-24, -48, 24, -48, 24, 0, -24, 0)
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_base")
+
+[node name="Interactable" parent="." instance=ExtResource("2_interactable")]
+prompt_text = "Press E to interact"
+
+[connection signal="interacted" from="Interactable" to="." method="_on_interactable_interacted"]

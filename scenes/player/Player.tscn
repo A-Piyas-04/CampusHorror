@@ -5,6 +5,9 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_footprint"]
 size = Vector2(28, 12)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_interaction"]
+radius = 24.0
+
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
 motion_mode = 1
@@ -21,5 +24,14 @@ polygon = PackedVector2Array(0, -5, 5, 0, 0, 5, -5, 0)
 [node name="Collision" type="CollisionShape2D" parent="."]
 position = Vector2(0, -6)
 shape = SubResource("RectangleShape2D_footprint")
+
+[node name="InteractionArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+monitorable = false
+
+[node name="Collision" type="CollisionShape2D" parent="InteractionArea"]
+position = Vector2(0, -6)
+shape = SubResource("CircleShape2D_interaction")
 
 [node name="Camera" type="Camera2D" parent="."]

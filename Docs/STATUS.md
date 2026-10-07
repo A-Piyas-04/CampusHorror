@@ -6,7 +6,9 @@ Last updated: 7 October 2026
 
 Environment and Cursor ↔ Godot MCP connection are **verified**. Milestone 0 conventions are **Confirmed**, registered in `project.godot`, and **verified** by an automated test scene (6/6 checks, 0 errors, 0 warnings).
 
-Milestone A is **verified through the MCP**: `scenes/core/Main.tscn` is the main scene and owns one placeholder `Player` (4-direction movement, `Camera2D`) inside a temporary walled test room. Movement, diagonal normalization, wall collision and camera follow passed with 0 errors / 0 warnings. A manual play-test with a real keyboard/gamepad is still pending. No other gameplay (interaction, zones, enemies, state, saving) exists.
+Milestone A is **verified through the MCP**: `scenes/core/Main.tscn` is the main scene and owns one placeholder `Player` (4-direction movement, `Camera2D`) inside a temporary walled test room. Movement, diagonal normalization, wall collision and camera follow passed with 0 errors / 0 warnings. A manual play-test with a real keyboard/gamepad is still pending.
+
+Milestone B is **verified through the MCP**: a reusable `Interactable` component (`scenes/components/Interactable.tscn`), a player interaction sensor, an on-screen prompt, and one placeholder `InteractionTestBox` in the test room. Prompt show/hide, in-range-only triggering and the temporary result (colour toggle + Output message) passed with 0 errors / 0 warnings. No other gameplay (dialogue, inventory, pickups, doors, zones, enemies, state, saving) exists.
 
 ## Environment — Verified
 
@@ -29,6 +31,7 @@ Milestone A is **verified through the MCP**: `scenes/core/Main.tscn` is the main
 | 2026-10-07 | Main scene setting | Set to `res://scenes/core/Main.tscn` (Milestone A) |
 | 2026-10-07 | Display / renderer settings | Unchanged |
 | 2026-10-07 | Milestone A test: `Main.tscn` run through MCP (as a specific scene and as the main scene) | **Pass: all checks below, 0 errors / 0 warnings** |
+| 2026-10-07 | Milestone B test: `Main.tscn` run through MCP | **Pass: all checks below, 0 errors / 0 warnings.** A first run was discarded because the game window was also being played by hand at the same time; the clean re-run is what is recorded. |
 
 Milestone 0 automated checks:
 
@@ -56,6 +59,18 @@ Milestone A checks (synthetic input through MCP; `move_speed` = 200):
 | Exactly one `CharacterBody2D` in the running tree (`/root/Main/World/Player`); root children are only `MCPRuntime` and `Main` | Pass |
 | Player layer 2 / mask 1, `motion_mode` Floating; walls/pillar layer 1 / mask 0 | Pass |
 
+Milestone B checks (player spawns at (0, 200); test box at (−250, 200); sensor radius 24 + interactable radius 32 → in range when the sensor centre is within 56 px of the box origin):
+
+| Check | Result |
+|---|---|
+| Layers: `Player/InteractionArea` layer 0 / mask 4 (layer 3), monitoring on, monitorable off; `Interactable` layer 4 (layer 3) / mask 0, monitoring off, monitorable on | Pass |
+| At spawn (250 px away): prompt hidden, no overlapping areas; `interact` action press → use count stays 0 | Pass |
+| Approaching, still out of range (x = −140, 110 px away): prompt hidden, no overlap | Pass |
+| At the box (x = −212, stopped by the box's 48 × 16 base collision): sensor overlaps `InteractionTestBox/Interactable`; prompt visible with text "Press E to interact" | Pass (screenshot) |
+| `E` key press + release in range → exactly one use (count 1), box purple → yellow, `[INTERACT] InteractionTestBox used by Player (count 1)` printed | Pass (screenshot) |
+| Leaving range (x = −125): prompt hidden; `E` press → count stays 1 | Pass (screenshot) |
+| Re-entering range: prompt visible again; `interact` action → count 2, box back to purple, second `[INTERACT]` line | Pass |
+
 ## Milestones
 
 | Milestone | Status |
@@ -63,7 +78,7 @@ Milestone A checks (synthetic input through MCP; `move_speed` = 200):
 | Environment / MCP setup | **Verified** |
 | 0. Project conventions | **Verified** (automated). Conventions Confirmed in `Docs/CONVENTIONS.md`; input actions + layer names registered; test scene passes. Manual real-device input check pending. |
 | A. Main, placeholder player, movement, camera | **Verified** (automated, via MCP). Manual real-device play-test pending. |
-| B. Interaction | Not started |
+| B. Interaction | **Verified** (automated, via MCP). Manual play-test pending. |
 | C. Zones, doors, spawn markers | Not started |
 | D. GameState + persistent pickup | Not started |
 | E. SaveService | Not started |
@@ -76,7 +91,8 @@ Milestone A checks (synthetic input through MCP; `move_speed` = 200):
 1. Open `scenes/tests/Milestone0Test.tscn`, press F6, and press W/A/S/D, the arrow keys, E, F and Escape (and a gamepad, if available). Each should appear in the top-left "Actions pressed" readout. If a real device doesn't register, see the device note in `Docs/CONVENTIONS.md` §1.
 2. Watch the pose cycle (every 2 s) and confirm the draw order looks right to you.
 3. Press F5 (runs `Main.tscn`). Walk with WASD, the arrow keys and a gamepad (stick + D-pad); check the feel of the speed (200 px/s, adjustable as `move_speed` on the Player in the Inspector), that walls and the orange pillar block you, that you can walk behind/in front of the pillar, and that the camera follows.
-4. Open `Main.tscn` and `Player.tscn` in the editor once and save them (Ctrl+S) so Godot writes their `uid` headers (the files were hand-written without them; they load fine either way).
+4. Open the hand-written scenes (`Main.tscn`, `Player.tscn`, `Interactable.tscn`, `InteractionPrompt.tscn`, `InteractionTestBox.tscn`) in the editor once and save them (Ctrl+S) so Godot writes their `uid` headers (they load fine either way).
+5. Milestone B: press F5, walk to the purple box left of the spawn. Check the prompt appears/disappears at a distance that feels right, E (and the gamepad's bottom face button) toggles the box colour and prints `[INTERACT] …` in Output, and nothing happens when pressing E away from the box. The prompt text says "E" even when using a gamepad (placeholder text).
 
 ## Project contents
 
@@ -88,17 +104,25 @@ Milestone A checks (synthetic input through MCP; `move_speed` = 200):
 
   ```text
   Main (Node2D)
-  └── World (Node2D, y_sort_enabled)          world container
-      ├── TestRoom (Node2D, y_sort_enabled)   TEMPORARY test room, replaced by zones in Milestone C
-      │   ├── Ground, GroundStripe (Polygon2D, z_index -10)
-      │   ├── WallNorth / WallSouth / WallWest / WallEast (StaticBody2D, layer 1, mask 0; room interior x −800..800, y −600..600)
-      │   └── Pillar (StaticBody2D, layer 1, mask 0; collision on its 80×40 base only)
-      └── Player (instance of Player.tscn, spawned at (0, 200))
+  ├── World (Node2D, y_sort_enabled)          world container
+  │   ├── TestRoom (Node2D, y_sort_enabled)   TEMPORARY test room, replaced by zones in Milestone C
+  │   │   ├── Ground, GroundStripe (Polygon2D, z_index -10)
+  │   │   ├── WallNorth / WallSouth / WallWest / WallEast (StaticBody2D, layer 1, mask 0; room interior x −800..800, y −600..600)
+  │   │   ├── Pillar (StaticBody2D, layer 1, mask 0; collision on its 80×40 base only)
+  │   │   └── InteractionTestBox (instance of scenes/tests/InteractionTestBox.tscn, at (−250, 200))
+  │   └── Player (instance of Player.tscn, spawned at (0, 200))
+  └── UI (Node)
+      └── InteractionPrompt (instance of scenes/ui/InteractionPrompt.tscn, CanvasLayer 10)
   ```
 
-- `scenes/player/Player.tscn`: reusable placeholder player. Root `Player` (`CharacterBody2D`, layer 2 / mask 1, Floating, origin = feet), `Body` (blue 32×64 `Polygon2D` above the origin), `FeetMarker` (red dot at origin), `Collision` (28×12 footprint, bottom at y = 0), `Camera` (`Camera2D`, at origin, defaults).
-- `scripts/player/player.gd` (`class_name Player`): exported `move_speed` (200 px/s); `Input.get_vector` on the four `move_*` actions → `velocity` → `move_and_slide()`. Nothing else.
-- No interaction, zones, doors, enemies, GameState, saving, UI or managers yet.
+  Connection in `Main.tscn`: `World/Player.interaction_target_changed` → `UI/InteractionPrompt._on_player_interaction_target_changed`.
+
+- `scenes/player/Player.tscn`: reusable placeholder player. Root `Player` (`CharacterBody2D`, layer 2 / mask 1, Floating, origin = feet), `Body` (blue 32×64 `Polygon2D` above the origin), `FeetMarker` (red dot at origin), `Collision` (28×12 footprint, bottom at y = 0), `InteractionArea` (`Area2D`, layer none / mask 3 `interactable`, monitorable off; circle radius 24 centred on the footprint at (0, −6)), `Camera` (`Camera2D`, at origin, defaults).
+- `scripts/player/player.gd` (`class_name Player`): exported `move_speed` (200 px/s); `Input.get_vector` on the four `move_*` actions → `velocity` → `move_and_slide()`. Each physics frame it picks the nearest `Interactable` overlapping `InteractionArea` and emits `interaction_target_changed(target)` (null when none) only when the target changes. On the `interact` action (in `_unhandled_input`) it calls `target.interact(self)` if a target is in range.
+- `scenes/components/Interactable.tscn` + `scripts/components/interactable.gd` (`class_name Interactable`, `Area2D`): reusable interaction component. Layer 3 `interactable`, mask none, monitoring off (passive). Exported `prompt_text` (default "Press E to interact"); signal `interacted(interactor)`; method `interact(interactor)`. Default range shape: circle radius 32 at the component's origin. Usage: instance it as a child of any object (origin at the object's ground point), set `prompt_text`, and connect `interacted` to the object's own script. To change the range for one object, enable "Editable Children" on the instance and resize its `Collision`.
+- `scenes/ui/InteractionPrompt.tscn` + `scripts/ui/interaction_prompt.gd`: `CanvasLayer` (layer 10) with a bottom-centre `Label`; shows the target's `prompt_text`, hides when the target is null.
+- `scenes/tests/InteractionTestBox.tscn` + `interaction_test_box.gd`: TEMPORARY placeholder interactable (purple 48×48 box, `StaticBody2D` layer 1 with 48×16 base collision, child `Interactable`). On `interacted` it toggles purple ↔ yellow and prints `[INTERACT] InteractionTestBox used by <name> (count N)`. Delete it (and its instance in `Main.tscn`) when real interactables exist.
+- No dialogue, inventory, pickups, doors, zones, enemies, GameState, saving or managers yet.
 
 ## Still undecided
 
@@ -115,6 +139,9 @@ Final base resolution, tile size, art style (pixel vs stylized/vector vs rendere
 - MCP `validate_script` reports a generic parse error (code 43, no details) for `player.gd`. This is a false positive of its isolated parser with `class_name` scripts: the editor shows 0 errors and the script runs correctly.
 - Camera zoom/smoothing/limits/offset are left at defaults; final tuning remains Undecided.
 
+- Interaction prompt text is a plain string per object, so "Press E to interact" doesn't adapt to gamepad or rebinding. Input-aware prompts are not built (out of scope).
+- MCP synthetic input and real input both reach the running game. If the game window is played by hand during an MCP test run, results are mixed and must be discarded.
+
 ## Next task
 
-Do the manual checks above (real keyboard/gamepad, feel of speed, F5), review the diff and commit Milestone A. Then start Milestone B (Interaction).
+Do the manual checks above (Milestone B play-test), review the diff and commit Milestone B. Then start Milestone C (Zones, doors, spawn markers).
