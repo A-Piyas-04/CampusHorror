@@ -1,0 +1,94 @@
+[gd_scene format=3 uid="uid://coacrnhulb3y4"]
+
+[ext_resource type="Script" uid="uid://bfvndhfbwdem8" path="res://scenes/tests/milestone_0_test.gd" id="1_m0test"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wall"]
+size = Vector2(40, 220)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_prop"]
+size = Vector2(60, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_character"]
+size = Vector2(28, 12)
+
+[node name="Milestone0Test" type="Node2D" unique_id=709742637]
+script = ExtResource("1_m0test")
+
+[node name="Ground" type="Polygon2D" parent="." unique_id=1628846011]
+z_index = -10
+color = Color(0.18, 0.27, 0.2, 1)
+polygon = PackedVector2Array(0, 0, 1152, 0, 1152, 648, 0, 648)
+
+[node name="Objects" type="Node2D" parent="." unique_id=270594787]
+y_sort_enabled = true
+
+[node name="Wall" type="StaticBody2D" parent="Objects" unique_id=482641816]
+position = Vector2(880, 440)
+collision_mask = 0
+
+[node name="Body" type="Polygon2D" parent="Objects/Wall" unique_id=1253378018]
+color = Color(0.55, 0.55, 0.58, 1)
+polygon = PackedVector2Array(-20, -220, 20, -220, 20, 0, -20, 0)
+
+[node name="Collision" type="CollisionShape2D" parent="Objects/Wall" unique_id=1114340247]
+position = Vector2(0, -110)
+shape = SubResource("RectangleShape2D_wall")
+
+[node name="Prop" type="StaticBody2D" parent="Objects" unique_id=480314690]
+position = Vector2(330, 360)
+collision_mask = 0
+
+[node name="Body" type="Polygon2D" parent="Objects/Prop" unique_id=24531785]
+color = Color(0.9, 0.55, 0.15, 1)
+polygon = PackedVector2Array(-30, -120, 30, -120, 30, 0, -30, 0)
+
+[node name="Collision" type="CollisionShape2D" parent="Objects/Prop" unique_id=1090900840]
+position = Vector2(0, -10)
+shape = SubResource("RectangleShape2D_prop")
+
+[node name="TestCharacter" type="CharacterBody2D" parent="Objects" unique_id=866785538]
+position = Vector2(760, 330)
+collision_layer = 2
+motion_mode = 1
+
+[node name="Body" type="Polygon2D" parent="Objects/TestCharacter" unique_id=1104251216]
+color = Color(0.25, 0.45, 0.95, 1)
+polygon = PackedVector2Array(-16, -64, 16, -64, 16, 0, -16, 0)
+
+[node name="FeetMarker" type="Polygon2D" parent="Objects/TestCharacter" unique_id=1163355689]
+color = Color(1, 0.15, 0.15, 1)
+polygon = PackedVector2Array(0, -5, 5, 0, 0, 5, -5, 0)
+
+[node name="Collision" type="CollisionShape2D" parent="Objects/TestCharacter" unique_id=1649548662]
+position = Vector2(0, -6)
+shape = SubResource("RectangleShape2D_character")
+
+[node name="Overhead" type="Node2D" parent="." unique_id=1799520216]
+z_index = 10
+
+[node name="Canopy" type="Polygon2D" parent="Overhead" unique_id=1856171854]
+position = Vector2(560, 150)
+color = Color(0.1, 0.4, 0.18, 0.8)
+polygon = PackedVector2Array(0, 0, 200, 0, 200, 130, 0, 130)
+
+[node name="DebugUI" type="CanvasLayer" parent="." unique_id=394868540]
+layer = 10
+
+[node name="InfoLabel" type="Label" parent="DebugUI" unique_id=1169571349]
+offset_left = 16.0
+offset_top = 12.0
+offset_right = 760.0
+offset_bottom = 38.0
+text = "Milestone 0 test - red dot = feet origin. Poses cycle every 2 s."
+
+[node name="InputLabel" type="Label" parent="DebugUI" unique_id=1973617545]
+offset_left = 16.0
+offset_top = 40.0
+offset_right = 760.0
+offset_bottom = 66.0
+text = "Actions pressed: (none)"
+
+[node name="TourTimer" type="Timer" parent="." unique_id=169922078]
+wait_time = 2.0
+
+[connection signal="timeout" from="TourTimer" to="." method="_on_tour_timer_timeout"]
