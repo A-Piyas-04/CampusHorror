@@ -33,6 +33,8 @@ Game code must read input **only through these action names**, never through raw
 | `lantern` | Reserved for the lantern | `F` | Left face button (X / Square) |
 | `pause` | Open/close the pause menu | `Escape` | Start / Menu |
 | `debug_toggle_night` | TEMPORARY (Milestone F): flip the test day/night tint. Remove with the test tint. | `F2` | — |
+| `debug_save` | TEMPORARY (Milestone E): write the save file. Remove when a save UI exists. | `F6` | — |
+| `debug_load` | TEMPORARY (Milestone E): load the save file. Remove when a save UI exists. | `F9` | — |
 
 Rules:
 
@@ -271,6 +273,21 @@ Proven in Milestone F under the Compatibility renderer. Waiting for the user's a
 | Light masks | Light mask 1 (default) = lit **and** shadowed: ground, low props, characters. Light mask 2 = lit but **not** shadowed: the upright body of tall objects (pillars, trees, walls with height), so an object isn't blacked out by its own base shadow. Lights use `range_item_cull_mask` = 3 (layers 1 + 2) and `shadow_item_cull_mask` = 1. |
 | Lights on characters | A light carried by a character is a child of its root, positioned relative to the feet origin (section 4), so it follows without code. |
 
+## 11. Save and load — Proposed
+
+Introduced in Milestone E. Waiting for the user's approval. Save UI, slots, autosave and checkpoint rules stay **Undecided**.
+
+| Rule | Detail |
+|---|---|
+| One owner of file I/O | Only the `SaveService` autoload (`scripts/core/save_service.gd`) reads or writes save files. GameState, Main and objects never touch disk. |
+| What a save contains | Only state that already lives in GameState plus where the player is: `save_version`, `zone_id`, `player_position` (global **feet** position, section 4) and GameState's data. Add a field only when a milestone needs it. |
+| Stable IDs only | Saves reference zones, objects and items by stable ID (section 5). Never save node names, NodePaths or instance IDs. |
+| Format | Human-readable JSON in `user://`, tab-indented, keys in insertion order. Positions are `{ "x": …, "y": … }` objects. |
+| Versioning | `save_version` is a whole number, currently `1`. Bump it whenever a field's meaning or shape changes. A file with a different version is refused with a clear error (no migrations yet). |
+| Validate, then apply | Load checks the entire file first. Any missing, mistyped or unknown value → one clear `[SAVE] Can't load …` error, return false, nothing changed. A missing file is not an error. |
+| Restore order | Restore GameState **before** the zone is instantiated, so persistent objects restore themselves in `_ready()` (section 9). Then Main swaps the zone and teleports the existing Player. |
+| Doors vs loads | Entering through a Door always uses the destination spawn marker. Only loading a save uses the saved feet position (`Main.enter_zone_at_position()`). |
+
 ---
 
 ## Still undecided
@@ -315,3 +332,4 @@ To re-run: open `scenes/tests/Milestone0Test.tscn` and press F6 (Run Current Sce
 | 2026-10-07 | Milestone C: zone layout updated (zone root also Y-sorted); zone/player Y-sort merge and section 8 (zones, doors, spawn markers) added as Proposed. |
 | 2026-10-07 | Milestone D: section 9 (GameState and persistent pickups) added as Proposed. |
 | 2026-10-07 | Milestone F: section 10 (2D lighting) added as Proposed; temporary `debug_toggle_night` action listed in section 1; Compatibility lighting result noted in section 7. |
+| 2026-10-08 | Milestone E: section 11 (save and load) added as Proposed; temporary `debug_save` / `debug_load` actions listed in section 1. |

@@ -1,6 +1,6 @@
 # Project status
 
-Last updated: 7 October 2026
+Last updated: 8 October 2026
 
 ## Summary
 
@@ -14,7 +14,7 @@ Milestone C is **verified through the MCP**: two placeholder zones (`TestZoneA`,
 
 Milestone D is **verified through the MCP**: a minimal in-memory `GameState` autoload (one set of collected IDs), a reusable `Pickup` component that uses the existing `Interactable`, and one placeholder pickup `test_pickup_01` in Test Zone A. Collecting records the ID and removes the pickup; after leaving Zone A and returning it stays gone. One Player, zone transitions and interaction still work; 0 errors / 0 warnings. Nothing is written to disk.
 
-Milestone E (SaveService) has **not been implemented**: as of the Milestone F work there is no save/load code, commit or branch in the repository. Milestone F was built without it; save/load regression checks could not be run.
+Milestone E is **verified through the MCP** (implemented on 8 October 2026, after Milestone F): a `SaveService` autoload writes one versioned JSON save (`user://save.json`) with the current zone ID, the player's feet position and the collected IDs, and loads it back into the same persistent Player. Temporary developer keys: F6 save, F9 load. Save → stop → restart → load restored the zone, exact position and collected pickup; doors still use their spawn markers afterwards. Missing, malformed, unsupported-version and invalid saves are reported and change nothing. 0 errors / 0 warnings in the normal flow.
 
 Milestone F is **verified through the MCP** (rendering proof only, Compatibility renderer unchanged): a temporary `CanvasModulate` day/night tint in `Main` (toggled with a temporary F2 debug action), a temporary `PointLight2D` lantern inside the Player (toggled by the `lantern` action), and a `LightOccluder2D` on the Zone A pillar base. Day and night states, the light following the player, the toggle, ground shadows behind the pillar, an undarkened UI prompt, and movement/collision/interaction/zones all passed with 0 errors / 0 warnings. No lantern mechanics, day/night timing or gameplay effects exist.
 
@@ -42,6 +42,7 @@ Milestone F is **verified through the MCP** (rendering proof only, Compatibility
 | 2026-10-07 | Milestone B test: `Main.tscn` run through MCP | **Pass: all checks below, 0 errors / 0 warnings.** A first run was discarded because the game window was also being played by hand at the same time; the clean re-run is what is recorded. |
 | 2026-10-07 | Milestone C test: `Main.tscn` run through MCP | **Pass: all checks below, 0 errors / 0 warnings.** |
 | 2026-10-07 | Milestone D test: `Main.tscn` run through MCP | **Pass: all checks below, 0 errors / 0 warnings.** |
+| 2026-10-08 | Milestone E save/load test: `Main.tscn` run 3 times through MCP (save, restart, load; failure cases in a separate run) | **Pass: all checks below, 0 errors / 0 warnings in the normal flow; 3 intended errors in the failure-case run.** |
 | 2026-10-07 | Milestone F lighting test: `Main.tscn` run through MCP (renderer still `gl_compatibility`) | **Pass: all checks below, 0 errors / 0 warnings.** A first run showed the pillar's own body darkened by its base shadow; fixed with the light-mask split (see `Docs/CONVENTIONS.md` §10) and fully re-run. |
 
 Milestone 0 automated checks:
@@ -127,8 +128,25 @@ Milestone F checks (screenshots in `addons/godot_mcp/cache/screenshots/mf_*.png`
 | Movement/collision: holding `move_up` from (−250, −220) stopped at y = −287.9 (north wall face −300 + 12 px footprint), velocity 0 | Pass |
 | `debug_toggle_night` action → back to day (white) | Pass |
 | `World` = one zone + `Player`; nodes 47 (44 + `DayNightTint`, `Lantern`, `Occluder`), orphans 0 | Pass |
-| Save/load regression | **Not run**: Milestone E doesn't exist |
+| Save/load regression | Not run at the time (Milestone E didn't exist yet); covered by the Milestone E checks below |
 | Errors / warnings | 0 / 0 |
+
+Milestone E checks (3 runs of `Main.tscn`; no save file existed beforehand). Approaches used `Player.teleport()`; the saved position itself came from walking into a wall.
+
+| Check | Result |
+|---|---|
+| `/root` children: `MCPRuntime`, `GameState`, `SaveService`, `Main`; 0 errors at startup | Pass |
+| Load with no save file → `[SAVE] No save file at '…'; nothing loaded.`, returns false, no crash, nothing changed | Pass |
+| Run 1: collect `test_pickup_01` with `E`; Zone A door with `E` → Zone B; holding `move_left` stopped the player at the west wall (−285.92, −100) | Pass |
+| `F6` → save file written with `save_version` 1, `zone_id` `test_zone_b`, `player_position` (−285.924011230469, −100.0), `collected_ids` `["test_pickup_01"]`; 0 errors | Pass |
+| Stop the game; run 2 starts fresh: Zone A at `start` (0, 150), pickup present, GameState empty | Pass |
+| `F9` → `[SAVE] Loaded 'test_zone_b' at (-285.924, -100.0) with 1 collected id(s).`; `World` = `TestZoneB` + `Player`; feet at exactly (−285.924, −100); camera centred on the player; GameState `["test_pickup_01"]` | Pass (screenshot) |
+| Same Player instance before and after load (instance ID unchanged within the run); exactly one Player | Pass |
+| Door rule after load: Zone B door with `E` → Zone A at the `by_north_door` marker (−250, −220), not the saved position; `TestPickup01` absent | Pass |
+| Loading again from Zone A → back in Zone B at the saved position; nodes 39, orphans 0 | Pass |
+| Run 2 errors / warnings | 0 / 0 |
+| Run 3 (failure handling; these errors are expected): truncated JSON → `malformed JSON …`; `save_version` 2 → `unsupported save_version 2 (this build reads version 1)`; `zone_id` "nowhere" → `'zone_id' "nowhere" is not a known zone`; each ends with `Nothing was changed.`, returns false; Zone A, player (0, 150) and empty GameState untouched afterwards | Pass (3 intended errors) |
+| Restored the good save, `debug_load` then `debug_save` actions → loaded and re-saved identically; file now lists `save_version` first; 0 errors after the failure tests | Pass |
 
 ## Milestones
 
@@ -140,7 +158,7 @@ Milestone F checks (screenshots in `addons/godot_mcp/cache/screenshots/mf_*.png`
 | B. Interaction | **Verified** (automated, via MCP). Manual play-test pending. |
 | C. Zones, doors, spawn markers | **Verified** (automated, via MCP). Manual play-test pending; new conventions in `Docs/CONVENTIONS.md` §3 and §8 are Proposed. |
 | D. GameState + persistent pickup | **Verified** (automated, via MCP). In-memory only. Manual play-test pending; new convention in `Docs/CONVENTIONS.md` §9 is Proposed. |
-| E. SaveService | **Not started** (no save/load code exists, despite being reported complete) |
+| E. SaveService | **Verified** (automated, via MCP). One JSON save, version 1; temporary F6/F9 keys. Manual play-test pending; new convention in `Docs/CONVENTIONS.md` §11 is Proposed. |
 | F. Lighting test | **Verified** (automated, via MCP). Rendering proof only; temporary tint/lantern scripts. Manual visual check pending; new convention in `Docs/CONVENTIONS.md` §10 is Proposed. |
 | G. Custom art sample | Not started |
 | H. Desktop export | Not started |
@@ -154,21 +172,32 @@ Milestone F checks (screenshots in `addons/godot_mcp/cache/screenshots/mf_*.png`
 5. Milestone B: walk to the purple box in Zone A. Check the prompt appears/disappears at a distance that feels right, E (and the gamepad's bottom face button) toggles the box colour and prints `[INTERACT] …` in Output, and nothing happens when pressing E away from the box. The prompt text says "E" even when using a gamepad (placeholder text).
 6. Milestone C: in Zone A walk to the brown door on the north wall (upper left) and press E → Zone B (blue-grey floor), arriving just above its south-wall door. Press E at that door → back to Zone A, arriving just below the north door. Repeat a few times; check the change feels acceptable (it is an instant cut, no fade), the Output shows matching `[ZONE] …` lines, and nothing is left over from the previous zone. Open `TestZoneA.tscn`/`TestZoneB.tscn` and check the doors' and markers' Inspector fields.
 7. Review the Proposed conventions in `Docs/CONVENTIONS.md` §3 (zone/player Y-sort) and §8 (zones, doors, spawn markers) and confirm or change them.
-8. Milestone D: press F5, walk right of the start position to the small yellow diamond, check the "Press E to pick up" prompt and press E. It should vanish, the prompt should disappear immediately, and Output should show `[PICKUP] Collected 'test_pickup_01'.` Go through the north door to Zone B and back; the diamond must not reappear. Stop and restart the game: it **does** reappear (in-memory only, by design until Milestone E). Open `TestZoneA.tscn`, select `Objects/TestPickup01` and check `Pickup Id` / `Prompt Text` in the Inspector; open and save `Pickup.tscn` once (Ctrl+S) so Godot writes its `uid` header. Check Project Settings → Globals → Autoload lists `GameState`.
+8. Milestone D: press F5, walk right of the start position to the small yellow diamond, check the "Press E to pick up" prompt and press E. It should vanish, the prompt should disappear immediately, and Output should show `[PICKUP] Collected 'test_pickup_01'.` Go through the north door to Zone B and back; the diamond must not reappear. Stop and restart the game without loading: it **does** reappear (a fresh start doesn't load the save automatically). Open `TestZoneA.tscn`, select `Objects/TestPickup01` and check `Pickup Id` / `Prompt Text` in the Inspector; open and save `Pickup.tscn` once (Ctrl+S) so Godot writes its `uid` header. Check Project Settings → Globals → Autoload lists `GameState`.
 9. Review the Proposed convention in `Docs/CONVENTIONS.md` §9 (GameState and persistent pickups).
 10. Milestone F: press F5 and click into the game window. Press **F2** to switch day ↔ night and **F** (or the gamepad's left face button) to switch the lantern on/off. At night walk around: the warm light should follow you smoothly; walk to the left of the orange pillar and check its shadow falls on the floor to the right while the pillar itself stays lit; stand by the yellow pickup and check the "Press E to pick up" prompt stays bright white. Judge whether the night colour, lantern radius (~256 px) and warmth are acceptable as placeholders; they are exported on `Main/DayNightTint` (`night_color`) and `Player/Lantern` (`color`, `texture_scale`, `energy`). Go through both doors at night. Also check F2 doesn't trigger anything in the editor while the game window is focused.
 11. Review the Proposed convention in `Docs/CONVENTIONS.md` §10 (lighting) and the temporary `debug_toggle_night` action in §1.
-12. Decide what to do about Milestone E (SaveService), which was reported complete but isn't in the repository.
+12. Milestone E: press F5 and click into the game window. Collect the yellow diamond, walk somewhere recognizable (e.g. into a corner of Zone B), press **F6**; Output shows `[SAVE] Saved …` with the file path. Open that file (`%APPDATA%\Godot\app_userdata\CampusHorror\save.json`) and check it's readable. Stop and restart (you start in Zone A with the diamond back), press **F9**: you should appear in the saved spot, and the diamond must stay gone when you walk back to Zone A through the door (arriving at the door, not the saved spot). Also try F9 after deleting the file (message, no crash) and after breaking the JSON by hand (clear error, nothing changes). The machine already has a save from the MCP test (Zone B west wall, pickup collected); delete it if you want a clean start.
+13. Review the Proposed convention in `Docs/CONVENTIONS.md` §11 (save/load) and the temporary `debug_save` / `debug_load` actions in §1.
 
 ## Project contents
 
 - `scenes/tests/MCPCheck.tscn`: temporary MCP test scene. Not the main scene; safe to delete later.
 - `scenes/tests/Milestone0Test.tscn` + `milestone_0_test.gd`: Milestone 0 conventions test (placeholder shapes; character moved by the test, not by player input). Not the main scene.
 - `addons/godot_mcp/`: MCP editor add-on (registers the `MCPRuntime` autoload used for runtime inspection/screenshots).
-- `project.godot`: 7 input actions + 1 TEMPORARY debug action (`debug_toggle_night`, F2) and 5 named 2D physics layers registered; main scene = `res://scenes/core/Main.tscn`; autoloads `MCPRuntime` (MCP add-on) and `GameState`. Renderer unchanged (`gl_compatibility`).
+- `project.godot`: 7 input actions + 3 TEMPORARY debug actions (`debug_toggle_night` F2, `debug_save` F6, `debug_load` F9) and 5 named 2D physics layers registered; main scene = `res://scenes/core/Main.tscn`; autoloads `MCPRuntime` (MCP add-on), `GameState`, `SaveService`. Renderer unchanged (`gl_compatibility`).
+- `scripts/core/save_service.gd` (autoload `SaveService`, no `class_name`): the only code that touches the save file. `SAVE_PATH` = `user://save.json` (on this machine `C:/Users/ACER/AppData/Roaming/Godot/app_userdata/CampusHorror/save.json`), `SAVE_VERSION` = 1. `save_game() -> bool` reads the zone ID and feet position from `Main` and the collected IDs from `GameState`, writes tab-indented JSON. `load_game() -> bool` validates the whole file (JSON object, whole-number `save_version` equal to 1, known `zone_id`, numeric `player_position.x/y`, array of non-empty string `collected_ids`), then `GameState.restore_collected_ids()` and `Main.enter_zone_at_position()`. Any problem → `push_error("[SAVE] Can't load …: <reason>. Nothing was changed.")`, returns false. No file → prints a note, returns false. `has_save()`. TEMPORARY: `debug_save` / `debug_load` actions call save/load from `_unhandled_input`. Save format:
+
+  ```json
+  {
+  	"save_version": 1,
+  	"zone_id": "test_zone_b",
+  	"player_position": { "x": -285.924011230469, "y": -100.0 },
+  	"collected_ids": ["test_pickup_01"]
+  }
+  ```
 - `scripts/lighting/day_night_test_tint.gd` (TEMPORARY, on `Main/DayNightTint`, `CanvasModulate`): exported `day_color` (white), `night_color` (0.1, 0.11, 0.2), `is_night` (default false; setter applies the colour). `debug_toggle_night` flips it and prints `[LIGHTING] Day/Night tint.` No clock, no transitions.
 - `scripts/lighting/lantern_test_light.gd` (TEMPORARY, on `Player/Lantern`, `PointLight2D`): the `lantern` action flips `enabled` and prints `[LIGHTING] Lantern on/off.` Nothing else.
-- `scripts/core/game_state.gd` (autoload `GameState`, no `class_name` so it doesn't clash with the autoload name): in-memory only. `_collected_ids: Dictionary[String, bool]` used as a set. `mark_collected(id)` (empty id → error), `is_collected(id)`, `get_collected_ids()`. Resets when the game restarts; no disk I/O.
+- `scripts/core/game_state.gd` (autoload `GameState`, no `class_name` so it doesn't clash with the autoload name): in-memory only. `_collected_ids: Dictionary[String, bool]` used as a set. `mark_collected(id)` (empty id → error), `is_collected(id)`, `get_collected_ids()`, `restore_collected_ids(ids)` (replaces the whole set; used by loading). Starts empty on every launch; no disk I/O (SaveService does that).
 - `scenes/components/Pickup.tscn` + `scripts/components/pickup.gd` (`class_name Pickup`, `Node2D`): yellow 20×24 diamond `Body` above the origin + `Interactable` child, no collision. Exported `pickup_id` (stable ID, set in the Inspector) and `prompt_text`. `_ready`: empty id → error; already collected in GameState → `queue_free()` before the player can see or reach it. On `interacted`: `GameState.mark_collected(pickup_id)`, prints `[PICKUP] Collected '<id>'.`, `queue_free()`.
 - `scenes/core/Main.tscn`: main scene. Tree:
 
@@ -183,7 +212,7 @@ Milestone F checks (screenshots in `addons/godot_mcp/cache/screenshots/mf_*.png`
 
   Connection in `Main.tscn`: `World/Player.interaction_target_changed` → `UI/InteractionPrompt._on_player_interaction_target_changed`.
 
-- `scripts/core/main.gd`: owns zone switching. `ZONE_SCENES` (`zone_id` → scene path) is the whole zone registry. Exported `start_zone_id` (`test_zone_a`) / `start_spawn_id` (`start`). `change_zone(zone_id, spawn_id)` validates the zone and spawn before touching anything, removes + frees the old zone, adds the new one as `World`'s first child, connects its doors' `travel_requested`, calls `Player.teleport(marker.global_position)` and prints `[ZONE] Entered '<zone>' at spawn '<spawn>'.` Door requests are applied deferred (end of frame).
+- `scripts/core/main.gd` (`class_name Main`, added in Milestone E so SaveService can type it): owns zone switching. `ZONE_SCENES` (`zone_id` → scene path) is the whole zone registry. Exported `start_zone_id` (`test_zone_a`) / `start_spawn_id` (`start`). `change_zone(zone_id, spawn_id)` validates the zone and spawn before touching anything, removes + frees the old zone, adds the new one as `World`'s first child, connects its doors' `travel_requested`, calls `Player.teleport(marker.global_position)` and prints `[ZONE] Entered '<zone>' at spawn '<spawn>'.` Door requests are applied deferred (end of frame) and always use `change_zone()`. `enter_zone_at_position(zone_id, feet_position) -> bool` does the same swap but teleports to a saved global feet position (used only by loading; prints `[ZONE] Entered '<zone>' at position (x, y).`). Also `has_zone()`, `get_current_zone_id()`, `get_player_feet_position()`. The game always starts fresh at `start_zone_id`/`start_spawn_id`; it never loads automatically.
 - `scenes/world/TestZoneA.tscn` (`zone_id` `test_zone_a`): green 800×600 room (interior x −400..400, y −300..300), walls, orange pillar at (200, 0) (`Body` light mask 2; `Occluder` = `LightOccluder2D` covering the 80×40 base), `InteractionTestBox` at (−200, 100), TEMPORARY `TestPickup01` (`pickup_id` `test_pickup_01`, prompt "Press E to pick up") at (120, 200), `DoorToZoneB` at (−250, −300) on the north wall → `test_zone_b` / `by_south_door`, spawns `start` (0, 150) and `by_north_door` (−250, −220).
 - `scenes/world/TestZoneB.tscn` (`zone_id` `test_zone_b`): blue-grey 600×500 room (interior x −300..300, y −250..250), walls, spawns `center` (0, 0) and `by_south_door` (0, 170), `DoorToZoneA` at (0, 250) on the south wall → `test_zone_a` / `by_north_door`.
 - `scripts/world/zone.gd` (`class_name Zone`): exported `zone_id`; `find_spawn_marker(spawn_id)`, `get_spawn_markers()`, `get_doors()`; reports empty/duplicate `spawn_id`s as errors on `_ready`.
@@ -196,7 +225,7 @@ Milestone F checks (screenshots in `addons/godot_mcp/cache/screenshots/mf_*.png`
 - `scenes/ui/InteractionPrompt.tscn` + `scripts/ui/interaction_prompt.gd`: `CanvasLayer` (layer 10) with a bottom-centre `Label`; shows the target's `prompt_text`, hides when the target is null.
 - `scenes/tests/InteractionTestBox.tscn` + `interaction_test_box.gd`: TEMPORARY placeholder interactable (purple 48×48 box, `StaticBody2D` layer 1 with 48×16 base collision, child `Interactable`). On `interacted` it toggles purple ↔ yellow and prints `[INTERACT] InteractionTestBox used by <name> (count N)`. Now placed in `TestZoneA`; its state resets whenever Zone A is reloaded (no persistence yet). Delete it when real interactables exist.
 - The Milestone A/B `TestRoom` in `Main.tscn` was removed; the test zones replace it.
-- No dialogue, inventory, inventory UI, enemies, story flags, puzzle state, saving or other managers yet.
+- No dialogue, inventory, inventory UI, enemies, story flags, puzzle state, save UI, save slots, autosave or other managers yet.
 
 ## Still undecided
 
@@ -211,7 +240,9 @@ Final base resolution, tile size, art style (pixel vs stylized/vector vs rendere
 - Y-sort between Main's player and zone objects: implemented and verified in Milestone C (Y-sorted `World` → Y-sorted zone root → Y-sorted `Objects`). Recorded as **Proposed** in `Docs/CONVENTIONS.md` §3, waiting for approval.
 - The Zone B door sits on the south wall, so a player standing right at it is drawn completely behind the door body. That is correct Y-sorting for the placeholder shapes; real south-facing doors will need art designed for it.
 - Zone changes are an instant cut (no fade). Zones are `load()`ed on demand each time (cached by Godot's resource cache after the first load). Only objects that check `GameState` keep their state across reloads (currently just pickups); the test box colour still resets, by design.
-- GameState is in memory only: quitting/restarting the game resets it and the test pickup reappears. Save/load is Milestone E.
+- Save/load: the game never loads on start; a fresh launch begins in Zone A with an empty GameState until F9 is pressed. Saves are written in place (no temp file + rename), so a crash mid-write could leave a broken file; loading would then refuse it safely. Only zone, feet position and collected IDs are saved; anything else (test box colour, lantern on/off, day/night tint) resets on load. Saving is allowed anywhere, any time (no checkpoint rules decided).
+- Save JSON error messages report Godot's JSON parser line number as-is.
+- `validate_script` gives a generic code-43 result for `main.gd` and code 36 for `save_service.gd`; the editor shows 0 errors and both run correctly (same isolated-parser issue as `player.gd`).
 - `test_pickup_01` doesn't follow the `<zone_id>_<object>` persistent-ID pattern from `Docs/CONVENTIONS.md` §5; it's a clearly temporary test ID. Real pickups must follow the pattern.
 - Duplicate `pickup_id`s are not detected yet. Two pickups sharing an ID would both disappear when one is collected.
 - MCP `validate_script` reports the same generic code-43 false positive for `pickup.gd` as for `player.gd`; the game runs it without errors.
@@ -228,8 +259,9 @@ Final base resolution, tile size, art style (pixel vs stylized/vector vs rendere
 - Lighting: shadows are cast from base footprints in flat 2D, so they're a ground-plane approximation (a tall pillar casts the same shadow as a low box with the same base). Good enough for the proof; final look depends on the art style.
 - Compatibility renderer: no limitation was hit with one light and one occluder. The project has Compatibility caps `rendering/limits/opengl/max_lights_per_object` = 8 and `max_renderable_lights` = 32 (defaults); whether and how they constrain 2D lights wasn't tested. Revisit when a zone needs many lights.
 - `debug_toggle_night` (F2) and both `scripts/lighting/*_test_*.gd` scripts are temporary and should be removed or replaced when real day/night and lantern behaviour are designed.
-- Milestone E (SaveService) was reported complete but is not in the repository (no code, commit or branch as of Milestone F).
+- `debug_save` (F6) / `debug_load` (F9) and their handler in `SaveService._unhandled_input` are temporary until a save UI exists.
+- Milestone order: E was implemented after F (on 8 October 2026). F's lighting state is deliberately not saved.
 
 ## Next task
 
-Do the Milestone F manual checks above (item 10), review `Docs/CONVENTIONS.md` §10 and the temporary F2 action, review the diff and commit Milestone F. Resolve the missing Milestone E (implement SaveService or locate the existing work) before Milestone G.
+Do the Milestone E manual checks above (item 12), review `Docs/CONVENTIONS.md` §11 and the temporary F6/F9 actions, review the diff and commit Milestone E. Then Milestone G (custom art sample).
