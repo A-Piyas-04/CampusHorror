@@ -288,6 +288,20 @@ Introduced in Milestone E. Waiting for the user's approval. Save UI, slots, auto
 | Restore order | Restore GameState **before** the zone is instantiated, so persistent objects restore themselves in `_ready()` (section 9). Then Main swaps the zone and teleports the existing Player. |
 | Doors vs loads | Entering through a Door always uses the destination spawn marker. Only loading a save uses the saved feet position (`Main.enter_zone_at_position()`). |
 
+## 12. Map blockout pieces — Proposed
+
+Introduced in Milestone G Part 1. Waiting for the user's approval. These are for blockouts; final art may replace them.
+
+| Rule | Detail |
+|---|---|
+| Building / wall / fence / hedge | Instance `scenes/world/blockout/BlockoutBlock.tscn` (`class_name BlockoutBlock`, `@tool`, `StaticBody2D` layer 1 / mask 0). Origin = centre of the footprint's front (south) edge. Set `footprint_size`, `wall_height`, colours, `arch_count`, `casts_shadow` in the Inspector. Collision and the `LightOccluder2D` are generated from the footprint (internal children, not saved). The body uses light mask 2 (§10). |
+| Long blocks | A block Y-sorts by its front edge. Split long north–south masses into sections when something must sort between them. |
+| Trees | Instance `scenes/props/PalmTree.tscn` / `Tree.tscn`: origin at the trunk base, small trunk collision, canopy in the same node (Y-sorted, not Overhead). |
+| Ground surfaces | Plain `Polygon2D` (and `Line2D` markings) under the zone's `Ground` (z −10), one node per surface so vertices can be edited. |
+| Grouping | Related pieces share a parent `Node2D` with `y_sort_enabled` (a court, a building section, a tree row) so the group can be moved as one. |
+| Overhead | Roofs/arches the player walks under stay under the zone's `Overhead` (z 10), positioned to match their building; move both together. |
+| Real-map layout | Recorded in `Docs/CAMPUS_MAP.md` with an accuracy label per element. |
+
 ---
 
 ## Still undecided
@@ -333,3 +347,4 @@ To re-run: open `scenes/tests/Milestone0Test.tscn` and press F6 (Run Current Sce
 | 2026-10-07 | Milestone D: section 9 (GameState and persistent pickups) added as Proposed. |
 | 2026-10-07 | Milestone F: section 10 (2D lighting) added as Proposed; temporary `debug_toggle_night` action listed in section 1; Compatibility lighting result noted in section 7. |
 | 2026-10-08 | Milestone E: section 11 (save and load) added as Proposed; temporary `debug_save` / `debug_load` actions listed in section 1. |
+| 2026-10-08 | Milestone G Part 1: section 12 (map blockout pieces) added as Proposed. |

@@ -5,6 +5,8 @@ extends Node2D
 const ZONE_SCENES: Dictionary[String, String] = {
 	"test_zone_a": "res://scenes/world/TestZoneA.tscn",
 	"test_zone_b": "res://scenes/world/TestZoneB.tscn",
+	"main_gate_exterior": "res://scenes/world/MainGateExterior.tscn",
+	"cds_veranda": "res://scenes/world/CdsVeranda.tscn",
 }
 
 @export var start_zone_id: String = "test_zone_a"

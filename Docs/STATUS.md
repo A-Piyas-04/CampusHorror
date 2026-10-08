@@ -18,6 +18,8 @@ Milestone E is **verified through the MCP** (implemented on 8 October 2026, afte
 
 Milestone F is **verified through the MCP** (rendering proof only, Compatibility renderer unchanged): a temporary `CanvasModulate` day/night tint in `Main` (toggled with a temporary F2 debug action), a temporary `PointLight2D` lantern inside the Player (toggled by the `lantern` action), and a `LightOccluder2D` on the Zone A pillar base. Day and night states, the light following the player, the toggle, ground shadows behind the pillar, an undarkened UI prompt, and movement/collision/interaction/zones all passed with 0 errors / 0 warnings. No lantern mechanics, day/night timing or gameplay effects exist.
 
+Milestone G Part 1 (real campus map **blockout** + visual direction) is **verified through the MCP**: the game now starts in `main_gate_exterior`, an editable placeholder blockout of the real Main Gate area (gate, central field, paths, sports courts, CDS exterior, vegetation, south wall and road), connected by a door to `cds_veranda`, the covered CDS walkway with placeholder fronts for the three future CDS rooms. It reuses the existing Player, zones/doors/spawns, GameState, SaveService and lighting without changes. Layout and sizes are **approximate** and need the user's review (`Docs/CAMPUS_MAP.md`); visual direction is recorded in `Docs/ART_STYLE.md`. Navigation, the CDS round trip, camera, save/load, lighting and Y-sort passed with 0 errors / 0 warnings. **No final art exists**; this is not the art sample.
+
 ## Environment — Verified
 
 | Item | Value | Evidence |
@@ -44,6 +46,7 @@ Milestone F is **verified through the MCP** (rendering proof only, Compatibility
 | 2026-10-07 | Milestone D test: `Main.tscn` run through MCP | **Pass: all checks below, 0 errors / 0 warnings.** |
 | 2026-10-08 | Milestone E save/load test: `Main.tscn` run 3 times through MCP (save, restart, load; failure cases in a separate run) | **Pass: all checks below, 0 errors / 0 warnings in the normal flow; 3 intended errors in the failure-case run.** |
 | 2026-10-07 | Milestone F lighting test: `Main.tscn` run through MCP (renderer still `gl_compatibility`) | **Pass: all checks below, 0 errors / 0 warnings.** A first run showed the pillar's own body darkened by its base shadow; fixed with the light-mask split (see `Docs/CONVENTIONS.md` §10) and fully re-run. |
+| 2026-10-08 | Milestone G Part 1 blockout test: `Main.tscn` run 3 times through MCP (full test run; two short re-runs after a veranda label fix) | **Pass: all checks below, 0 errors / 0 warnings in every run.** |
 
 Milestone 0 automated checks:
 
@@ -148,6 +151,24 @@ Milestone E checks (3 runs of `Main.tscn`; no save file existed beforehand). App
 | Run 3 (failure handling; these errors are expected): truncated JSON → `malformed JSON …`; `save_version` 2 → `unsupported save_version 2 (this build reads version 1)`; `zone_id` "nowhere" → `'zone_id' "nowhere" is not a known zone`; each ends with `Nothing was changed.`, returns false; Zone A, player (0, 150) and empty GameState untouched afterwards | Pass (3 intended errors) |
 | Restored the good save, `debug_load` then `debug_save` actions → loaded and re-saved identically; file now lists `save_version` first; 0 errors after the failure tests | Pass |
 
+Milestone G Part 1 checks (Player instance ID recorded: `32514246182`; screenshots in `addons/godot_mcp/cache/screenshots/`, not tracked by Git; overview: `screenshot_20260.png`). Approaches used `Player.teleport()`; stops were reached by holding a move action; doors used synthetic `E` key presses.
+
+| Check | Result |
+|---|---|
+| Startup: `[ZONE] Entered 'main_gate_exterior' at spawn 'main_gate_entry'.`; `World` = `MainGateExterior` + `Player`; `/root` = `MCPRuntime`, `GameState`, `SaveService`, `Main`; 0 errors | Pass (screenshot) |
+| Gate: `move_down` from (−1390, 1300) in the gate passage stopped at y = 1389.9 (closed gate leaves at 1390); player drawn behind the see-through gate leaves; lantern light passes between the piers | Pass (screenshot) |
+| CDS wall: `move_right` from (1400, −700) stopped at x = 1466.0 (veranda face 1480 − 14) | Pass (screenshot) |
+| Court fence: `move_down` inside the futsal court stopped at y = 1144.0 (south fence 1150 − 6); player drawn behind the fence | Pass (screenshot) |
+| At `outside_cds_entrance` (1380, −200): prompt hidden. Walking right stopped at x = 1465.9 by the door: prompt "Press E to enter the CDS veranda" | Pass (screenshot) |
+| `E` → `World` = `CdsVeranda` + `Player`; player at `inside_cds_entry` (0, −50); same instance ID | Pass (screenshot) |
+| Veranda: `move_left` stopped at x = −115.9 (parapet face −130 + 14); prompt "Press E to go out to the field"; the overhead roof edge covers the player | Pass (screenshot) |
+| `E` → `MainGateExterior` at `outside_cds_entrance` (1380, −200); same instance ID; camera screen centre (1380, −200) | Pass |
+| Save/load: save at (300, 200) in the exterior → go to the veranda → `F9` → `main_gate_exterior` at (300, 200). Save at (50, 400) in the veranda → load from the exterior → `cds_veranda` at (50, 400). Save in `test_zone_a` at `start` → load from the exterior → `TestZoneA` at (0, 150) | Pass |
+| Lighting: `F2` → `is_night` true, tint (0.1, 0.11, 0.2); lantern pool follows the player and lights the CDS roof without cutting it off at the building edge (light mask 2); `F` → lantern `enabled` false; night tint persists in `cds_veranda`; prompt Label drawn white (modulate 1,1,1,1) at night; `debug_toggle_night` → day | Pass (screenshots) |
+| Y-sort: player north of a palm (y −20 vs trunk y 0) drawn behind the trunk; south of it (y 40) drawn in front; tree south of the player at CDS drawn over the player | Pass (screenshots) |
+| After about 12 zone changes and loads: `World` = one zone + `Player`; nodes 329, orphans 0; 145 fps | Pass |
+| Errors / warnings in all 3 runs | 0 / 0 |
+
 ## Milestones
 
 | Milestone | Status |
@@ -160,7 +181,8 @@ Milestone E checks (3 runs of `Main.tscn`; no save file existed beforehand). App
 | D. GameState + persistent pickup | **Verified** (automated, via MCP). In-memory only. Manual play-test pending; new convention in `Docs/CONVENTIONS.md` §9 is Proposed. |
 | E. SaveService | **Verified** (automated, via MCP). One JSON save, version 1; temporary F6/F9 keys. Manual play-test pending; new convention in `Docs/CONVENTIONS.md` §11 is Proposed. |
 | F. Lighting test | **Verified** (automated, via MCP). Rendering proof only; temporary tint/lantern scripts. Manual visual check pending; new convention in `Docs/CONVENTIONS.md` §10 is Proposed. |
-| G. Custom art sample | Not started |
+| G Part 1. Real campus blockout (Main Gate area) + visual direction | **Verified** (automated, via MCP) as a **blockout only**. Layout approximate, pending the user's map review (`Docs/CAMPUS_MAP.md`). New convention in `Docs/CONVENTIONS.md` §12 is Proposed. |
+| G. Custom art sample / final campus art | Not started |
 | H. Desktop export | Not started |
 
 ### Manual checks for the user
@@ -178,6 +200,10 @@ Milestone E checks (3 runs of `Main.tscn`; no save file existed beforehand). App
 11. Review the Proposed convention in `Docs/CONVENTIONS.md` §10 (lighting) and the temporary `debug_toggle_night` action in §1.
 12. Milestone E: press F5 and click into the game window. Collect the yellow diamond, walk somewhere recognizable (e.g. into a corner of Zone B), press **F6**; Output shows `[SAVE] Saved …` with the file path. Open that file (`%APPDATA%\Godot\app_userdata\CampusHorror\save.json`) and check it's readable. Stop and restart (you start in Zone A with the diamond back), press **F9**: you should appear in the saved spot, and the diamond must stay gone when you walk back to Zone A through the door (arriving at the door, not the saved spot). Also try F9 after deleting the file (message, no crash) and after breaking the JSON by hand (clear error, nothing changes). The machine already has a save from the MCP test (Zone B west wall, pickup collected); delete it if you want a clean start.
 13. Review the Proposed convention in `Docs/CONVENTIONS.md` §11 (save/load) and the temporary `debug_save` / `debug_load` actions in §1.
+14. Since Milestone G Part 1 the game starts at the Main Gate, and the test zones are no longer reachable by walking. For checks 3–12, temporarily set `Start Zone Id` = `test_zone_a` and `Start Spawn Id` = `start` on the `Main` node in the Inspector (don't save, or set them back to `main_gate_exterior` / `main_gate_entry`). The existing save file on this machine now points to `test_zone_a` (0, 150) from the MCP test; F9 still works with it.
+15. Milestone G Part 1 map review: press F5 and walk the area: north up the palm path from the gate, around the field, past the courts, to the CDS forecourt on the east side. Press E at the brown door on CDS, walk the veranda, and go back out. Compare everything with the real campus and with the "Needs the user's campus knowledge" list in `Docs/CAMPUS_MAP.md` (section F). Fix what's wrong directly in `scenes/world/MainGateExterior.tscn` / `CdsVeranda.tscn` (see "How to edit the map in Godot" in that doc) or list corrections for the next task.
+16. Open `MainGateExterior.tscn` in the editor once and save it (Ctrl+S). The same applies to `CdsVeranda.tscn`, `BlockoutBlock.tscn`, `PalmTree.tscn` and `Tree.tscn`; saving writes their `uid` headers. Select a CDS block and change `Footprint Size` / `Wall Height` to confirm the shape and collision preview update live.
+17. Review `Docs/ART_STYLE.md` and the Proposed convention in `Docs/CONVENTIONS.md` §12 (map blockout pieces).
 
 ## Project contents
 
@@ -212,8 +238,12 @@ Milestone E checks (3 runs of `Main.tscn`; no save file existed beforehand). App
 
   Connection in `Main.tscn`: `World/Player.interaction_target_changed` → `UI/InteractionPrompt._on_player_interaction_target_changed`.
 
-- `scripts/core/main.gd` (`class_name Main`, added in Milestone E so SaveService can type it): owns zone switching. `ZONE_SCENES` (`zone_id` → scene path) is the whole zone registry. Exported `start_zone_id` (`test_zone_a`) / `start_spawn_id` (`start`). `change_zone(zone_id, spawn_id)` validates the zone and spawn before touching anything, removes + frees the old zone, adds the new one as `World`'s first child, connects its doors' `travel_requested`, calls `Player.teleport(marker.global_position)` and prints `[ZONE] Entered '<zone>' at spawn '<spawn>'.` Door requests are applied deferred (end of frame) and always use `change_zone()`. `enter_zone_at_position(zone_id, feet_position) -> bool` does the same swap but teleports to a saved global feet position (used only by loading; prints `[ZONE] Entered '<zone>' at position (x, y).`). Also `has_zone()`, `get_current_zone_id()`, `get_player_feet_position()`. The game always starts fresh at `start_zone_id`/`start_spawn_id`; it never loads automatically.
+- `scripts/core/main.gd` (`class_name Main`, added in Milestone E so SaveService can type it): owns zone switching. `ZONE_SCENES` (`zone_id` → scene path) is the whole zone registry. Exported `start_zone_id` / `start_spawn_id` (script defaults `test_zone_a` / `start`; `Main.tscn` sets `main_gate_exterior` / `main_gate_entry` since Milestone G Part 1). `change_zone(zone_id, spawn_id)` validates the zone and spawn before touching anything, removes + frees the old zone, adds the new one as `World`'s first child, connects its doors' `travel_requested`, calls `Player.teleport(marker.global_position)` and prints `[ZONE] Entered '<zone>' at spawn '<spawn>'.` Door requests are applied deferred (end of frame) and always use `change_zone()`. `enter_zone_at_position(zone_id, feet_position) -> bool` does the same swap but teleports to a saved global feet position (used only by loading; prints `[ZONE] Entered '<zone>' at position (x, y).`). Also `has_zone()`, `get_current_zone_id()`, `get_player_feet_position()`. The game always starts fresh at `start_zone_id`/`start_spawn_id`; it never loads automatically.
 - `scenes/world/TestZoneA.tscn` (`zone_id` `test_zone_a`): green 800×600 room (interior x −400..400, y −300..300), walls, orange pillar at (200, 0) (`Body` light mask 2; `Occluder` = `LightOccluder2D` covering the 80×40 base), `InteractionTestBox` at (−200, 100), TEMPORARY `TestPickup01` (`pickup_id` `test_pickup_01`, prompt "Press E to pick up") at (120, 200), `DoorToZoneB` at (−250, −300) on the north wall → `test_zone_b` / `by_south_door`, spawns `start` (0, 150) and `by_north_door` (−250, −220).
+- `scenes/world/MainGateExterior.tscn` (`zone_id` `main_gate_exterior`, Milestone G Part 1): real-campus blockout of the Main Gate area. `Ground` (field, paths, road, sidewalk), `Objects/SportsCourts` (futsal and tennis courts with fences), `Objects/Buildings/MainGateLandmark` and `CDSExterior` (sections `Canteen`, `TableTennis`, `IndoorBasketball`), `Objects/Boundary` (south wall, prototype edges), `Objects/Vegetation` (27 palms, 15 trees), `Objects/Transitions/DoorCdsMainEntry` → `cds_veranda` / `inside_cds_entry`, spawns `main_gate_entry` (−1390, 960) and `outside_cds_entrance` (1380, −200), `Overhead` (gate roof/arch, pavilion canopy, CDS entrance canopy). Full layout and accuracy in `Docs/CAMPUS_MAP.md`.
+- `scenes/world/CdsVeranda.tscn` (`zone_id` `cds_veranda`): covered walkway (x −150..120, y −850..850), CDS building mass to the east, end walls, west parapet + 10 arcade columns, non-interactive `FutureFronts` (canteen, table tennis, indoor basketball), `DoorCdsExitToField` → `main_gate_exterior` / `outside_cds_entrance`, spawn `inside_cds_entry` (0, −50), `Overhead/VerandaRoofEdge`.
+- `scenes/world/blockout/BlockoutBlock.tscn` + `scripts/world/blockout_block.gd` (`@tool`, `class_name BlockoutBlock`, `StaticBody2D` layer 1 / mask 0, light mask 2): faux-3D placeholder block. Exports `footprint_size`, `wall_height`, `wall_color`, `roof_color`, `arch_count`, `arch_color`, `casts_shadow`. Draws the roof above the footprint plus the front face (with optional pointed arches); creates its collision rectangle and `LightOccluder2D` from the footprint as internal (unsaved) children, so they update in the editor.
+- `scenes/props/PalmTree.tscn`, `scenes/props/Tree.tscn`: placeholder vegetation (`StaticBody2D`, trunk-base origin, small circle collision, trunk + canopy `Polygon2D`s on light mask 2, no occluder).
 - `scenes/world/TestZoneB.tscn` (`zone_id` `test_zone_b`): blue-grey 600×500 room (interior x −300..300, y −250..250), walls, spawns `center` (0, 0) and `by_south_door` (0, 170), `DoorToZoneA` at (0, 250) on the south wall → `test_zone_a` / `by_north_door`.
 - `scripts/world/zone.gd` (`class_name Zone`): exported `zone_id`; `find_spawn_marker(spawn_id)`, `get_spawn_markers()`, `get_doors()`; reports empty/duplicate `spawn_id`s as errors on `_ready`.
 - `scenes/components/Door.tscn` + `scripts/components/door.gd` (`class_name Door`, `Node2D`): brown 48×64 placeholder `Body` + `Interactable` child. Exported `destination_zone_id`, `destination_spawn_id`, `prompt_text` (copied into its Interactable if not empty). On `interacted` it emits `travel_requested(destination_zone_id, destination_spawn_id)`; it has no other logic.
@@ -261,7 +291,14 @@ Final base resolution, tile size, art style (pixel vs stylized/vector vs rendere
 - `debug_toggle_night` (F2) and both `scripts/lighting/*_test_*.gd` scripts are temporary and should be removed or replaced when real day/night and lantern behaviour are designed.
 - `debug_save` (F6) / `debug_load` (F9) and their handler in `SaveService._unhandled_input` are temporary until a save UI exists.
 - Milestone order: E was implemented after F (on 8 October 2026). F's lighting state is deliberately not saved.
+- Milestone G Part 1: no annotated / hand-drawn map was found in `Docs/map-reference/area1/`; the layout follows the aerial photo `whole view.png`. `field+cds.jpg` is actually a WebP file (it imports fine in Godot).
+- Milestone G Part 1: west-facing doors (the CDS door, the veranda exit) are drawn as upright placeholder doors standing in front of the wall, and the player overlaps them when standing at them. The top-down angle only shows south faces, so final art needs a decided way to show side-facing entrances.
+- Milestone G Part 1: like the test-room walls, long north–south blocks (CDS veranda frontage, prototype edges, veranda parapet) Y-sort by their south end, so the player's 32 px body overlaps them by 2 px when touching their west/east face.
+- Milestone G Part 1: overhead pieces live under the zone's `Overhead` node, not inside the building they belong to (convention §3). Moving the gate means moving `Overhead/MainGateOverhead` too.
+- Milestone G Part 1: in the veranda the roof edge hides most of the arcade columns; this is expected for a roof seen from above but makes the arcade hard to read in the blockout.
+- Milestone G Part 1: `MainGateExterior` has 27 `BlockoutBlock`s, each with an occluder. 13 cast shadows (gate piers, pavilion and columns, CDS sections, south wall); fences, hedges and gate leaves have `casts_shadow` off. Trees and palms have no occluders. There were no performance problems (145 fps), and no light limit was hit with one lantern.
+- `Docs/map-reference/` images sit inside the Godot project, so Godot imports them (`.import` files, `.godot/imported` cache). Add a `.gdignore` file to that folder if they shouldn't be imported.
 
 ## Next task
 
-Do the Milestone E manual checks above (item 12), review `Docs/CONVENTIONS.md` §11 and the temporary F6/F9 actions, review the diff and commit Milestone E. Then Milestone G (custom art sample).
+Review the Milestone G Part 1 blockout against the real campus (manual check 15) and correct the layout. Decide the open art questions in `Docs/ART_STYLE.md` with a small art test (one CDS section, one palm, one path tile) before producing final assets. Also review the diff and commit Milestone G Part 1 (Milestone E is already committed as `6f28b7e`).

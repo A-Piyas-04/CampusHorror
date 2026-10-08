@@ -1,0 +1,713 @@
+Read the following project documentation completely before making any changes:
+
+- Docs/CONVENTIONS.md
+- Docs/STATUS.md
+- Docs/CAMPUS_MAP.md, if it already exists
+- Docs/ART_STYLE.md, if it already exists
+- the current Main / zone / Player / interaction / save-load / lighting implementation
+
+Milestones 0 through F are complete.
+
+We are now beginning:
+
+MILESTONE G — PART 1
+REAL CAMPUS MAP BLOCKOUT + VISUAL DIRECTION
+
+This is an important transition from technical placeholder test zones into the
+first real playable area based on the actual campus.
+
+Do NOT treat this as final art production.
+Do NOT expand beyond the explicitly defined prototype area.
+
+======================================================================
+1. CORE OBJECTIVE
+======================================================================
+
+Create the first real, manually editable campus blockout for the Main Gate area.
+
+The blockout must establish:
+
+- recognizable real-world spatial relationships,
+- correct major landmarks,
+- useful walking space,
+- an editable modular scene structure,
+- the first real building entrance / interior transition,
+- a foundation that can later receive polished 2.5D artwork without rebuilding
+  the gameplay architecture.
+
+The game remains technically 2D.
+
+However, the intended final presentation is NOT flat diagram-like 2D.
+
+The planned visual direction is:
+
+- 2D gameplay and physics,
+- slightly angled top-down presentation,
+- faux-3D / 2.5D-looking assets,
+- visible building and wall height,
+- volumetric-looking trees and props,
+- stylized shadows and depth,
+- recognizable real campus architecture,
+- red-brick institutional architecture as an important visual identity.
+
+Do not implement final polished art in this task.
+
+======================================================================
+2. REFERENCE AUTHORITY
+======================================================================
+
+The user has supplied:
+
+A. An annotated / hand-drawn campus-area map.
+B. A satellite / aerial reference.
+C. Photographs of the actual Main Gate, central field, CDS building,
+   sports courts and surrounding campus architecture.
+D. Strong personal knowledge of the real campus layout.
+
+Use the references according to these rules:
+
+1. The annotated map/sketch is the PRIMARY reference for:
+   - relative positions,
+   - adjacency,
+   - broad shapes,
+   - roads/path relationships,
+   - location of the central field,
+   - CDS placement,
+   - sports-court placement,
+   - Main Gate approach.
+
+2. The photographs are the PRIMARY reference for:
+   - architectural appearance,
+   - red-brick visual identity,
+   - arches,
+   - covered veranda character,
+   - trees/palms,
+   - court appearance,
+   - gate massing,
+   - field/environment character.
+
+3. Do NOT infer exact real-world dimensions from photographs.
+
+4. Do NOT claim architectural accuracy where measurements are unavailable.
+
+5. Where proportions cannot be determined confidently:
+   - use a reasonable editable approximation,
+   - document it as approximate,
+   - expose the structure so the user can manually resize/reposition it later.
+
+6. The user's manual review is authoritative.
+   The blockout must be easy for the user to adjust in the Godot editor.
+
+======================================================================
+3. PROTOTYPE AREA
+======================================================================
+
+AREA:
+Main Gate area
+
+The first prototype should cover ONLY this portion of the campus.
+
+The approximate real-world composition is:
+
+- Main Gate at the lower / entrance side of the playable campus section.
+- A large central grass field occupying most of the open area.
+- Pedestrian paths / circulation routes around or beside the field.
+- Sports courts positioned near the Main Gate / lower side of the field.
+- CDS building positioned on the right / eastern side of the field.
+- Vegetation, including palms/trees, around paths and field edges.
+- Campus boundary / road relationships may be represented where useful for
+  recognizability, but the entire campus is NOT being constructed.
+
+The layout should visually read as the same place even while using blockout art.
+
+======================================================================
+4. CDS BUILDING INFORMATION
+======================================================================
+
+CDS = Central Departmental Shop.
+
+The CDS complex contains three important functional sections:
+
+1. Upper side:
+   Canteen
+
+2. Middle:
+   Table-tennis room
+
+3. Lower side:
+   Indoor basketball court
+
+There is also a covered exterior circulation area / veranda / hallway running
+along parts of the building while still being underneath the building roof.
+
+For THIS prototype:
+
+IMPLEMENT:
+- CDS exterior massing,
+- recognizable facade direction,
+- exterior collision footprint,
+- one usable entrance,
+- one covered veranda / hallway area,
+- basic placeholder representations of the three future room entrance/frontage
+  areas if useful for spatial understanding.
+
+DO NOT IMPLEMENT:
+- full canteen interior,
+- table-tennis gameplay/interior,
+- indoor basketball gameplay/interior,
+- room-specific mechanics,
+- NPCs,
+- story events.
+
+Those areas are future expansion points.
+
+======================================================================
+5. INITIAL ZONE STRUCTURE
+======================================================================
+
+Use the existing Milestone C zone-transition architecture.
+
+Proposed first real zones:
+
+1. main_gate_exterior
+
+Contains:
+- Main Gate landmark / entrance-side representation,
+- large central field,
+- surrounding paths,
+- sports court strip,
+- vegetation placeholders,
+- CDS exterior,
+- CDS entrance approach,
+- other immediately necessary exterior blockout geometry.
+
+2. cds_veranda
+
+Contains:
+- covered CDS veranda / hallway,
+- entrance/exit back to main_gate_exterior,
+- placeholder fronts / doors indicating future access to:
+  - canteen,
+  - table-tennis room,
+  - indoor basketball area.
+
+These future room doors do not need functional destinations yet unless a
+non-functional placeholder clearly improves the blockout.
+
+Do NOT divide the exterior into many zones prematurely.
+
+The first goal is a coherent playable Main Gate exterior.
+
+======================================================================
+6. PROVISIONAL STABLE IDS
+======================================================================
+
+Use stable IDs consistent with Docs/CONVENTIONS.md.
+
+Proposed zone IDs:
+
+- main_gate_exterior
+- cds_veranda
+
+Proposed spawn IDs where appropriate:
+
+- main_gate_entry
+- outside_cds_entrance
+- inside_cds_entry
+- cds_exit_spawn
+
+Proposed door IDs / transition identities:
+
+- cds_main_entry
+- cds_exit_to_field
+
+Potential future CDS entrance IDs may be documented but NOT implemented as
+functional zones yet:
+
+- cds_canteen_entry
+- cds_table_tennis_entry
+- cds_indoor_basketball_entry
+
+Do not create story-specific IDs.
+
+If the current architecture uses slightly different field/property naming,
+adapt these to the existing convention instead of duplicating systems.
+
+======================================================================
+7. CAMPUS_MAP DOCUMENTATION
+======================================================================
+
+Create or update:
+
+Docs/CAMPUS_MAP.md
+
+It should include:
+
+A. Prototype scope
+   - Main Gate prototype boundary
+   - what is included
+   - what is explicitly excluded
+
+B. Zone registry
+   For each zone:
+   - zone_id
+   - human-readable name
+   - purpose
+   - main contents
+   - connection points
+   - implementation status
+
+C. Spawn registry
+   - spawn_id
+   - owning zone
+   - purpose / location description
+
+D. Door / transition registry
+   - source zone
+   - door / transition ID
+   - destination zone
+   - destination spawn
+
+E. Area relationships
+   Document the spatial relationship between:
+   - Main Gate
+   - central field
+   - sports courts
+   - CDS
+   - CDS veranda
+   - main paths
+   - vegetation / boundary landmarks
+
+F. Accuracy status
+   Clearly distinguish:
+   - known from user reference,
+   - approximate blockout,
+   - undecided,
+   - manually adjustable later.
+
+Do not invent campus names, buildings or areas not supplied by the user.
+
+======================================================================
+8. ART_STYLE DOCUMENTATION
+======================================================================
+
+Create or update:
+
+Docs/ART_STYLE.md
+
+Record the current visual direction.
+
+The user has explicitly clarified that the map should NOT look like a flat
+colored diagram.
+
+Record the following as the current project direction:
+
+- engine/gameplay remains 2D,
+- world presentation should look 3-dimensional,
+- slightly angled top-down viewpoint,
+- 2.5D / faux-3D visual language,
+- recognizable real-campus proportions and landmarks,
+- visible wall/building height,
+- red-brick architecture,
+- architectural arches where appropriate,
+- volumetric-looking vegetation,
+- consistent light/shadow direction,
+- manually editable modular composition.
+
+Also record:
+
+NOT YET DECIDED:
+- exact asset resolution,
+- final tile size,
+- exact camera angle,
+- exact pixels-per-unit / scale,
+- final shadow softness,
+- exact stylization amount,
+- final character style,
+- Blender-rendered vs illustrated/vector asset pipeline,
+- final texture filtering.
+
+Do not lock these prematurely.
+
+======================================================================
+9. EDITABILITY IS A HARD REQUIREMENT
+======================================================================
+
+The user must be able to manually customize this map later inside Godot.
+
+Therefore:
+
+DO:
+- use separate nodes / reusable scenes,
+- use editable positions/sizes,
+- use modular props,
+- expose useful Inspector parameters,
+- organize related map elements under clearly named parents,
+- keep paths, fields, courts, building masses and vegetation separable,
+- use scene instances for reusable objects where appropriate.
+
+DO NOT:
+- bake the whole map into a single image,
+- bake all collision into one opaque object,
+- hard-code large amounts of map geometry in scripts unnecessarily,
+- generate one giant procedural map that is difficult to edit,
+- hide important layout values inside code.
+
+A user should be able to open the zone in Godot and visually:
+- move a tree,
+- reposition a wall,
+- resize part of a path,
+- shift the CDS footprint,
+- adjust the field boundary,
+- move a court,
+- change an entrance,
+without rewriting gameplay systems.
+
+======================================================================
+10. BLOCKOUT CONSTRUCTION
+======================================================================
+
+Create an editable blockout of the actual area.
+
+Use clean placeholder geometry.
+
+Suggested visual distinctions:
+
+FIELD
+- green placeholder surface
+
+PATHS / WALKWAYS
+- light/red-brown or neutral paving placeholder
+
+ROADS / EXTERNAL VEHICULAR AREA
+- distinct darker neutral placeholder if included
+
+CDS
+- dark red / brick-toned building mass placeholder
+
+COVERED VERANDA
+- distinct floor area visibly associated with CDS
+
+SPORTS COURTS
+- clearly separated court surfaces / markings
+
+MAIN GATE
+- simplified but recognizable landmark massing
+
+TREES / PALMS
+- reusable simple placeholder props
+
+BOUNDARY ELEMENTS
+- only where necessary for navigation or recognizability
+
+Do not spend time polishing these placeholders.
+
+Their job is to prove scale, navigation and layout.
+
+======================================================================
+11. CDS BLOCKOUT REQUIREMENTS
+======================================================================
+
+The CDS blockout should communicate its real structure even before final art.
+
+Represent, where practical:
+
+- overall exterior mass,
+- covered frontage/veranda,
+- main entrance used by this prototype,
+- upper-side future canteen section,
+- middle future table-tennis section,
+- lower future indoor-basketball section.
+
+The interior-room sections do NOT need to be playable yet.
+
+Keep those sections modular so future room scenes/entrances can be added
+without rebuilding the CDS exterior.
+
+======================================================================
+12. MAIN GATE LANDMARK
+======================================================================
+
+Create a simplified editable landmark representation of the Main Gate.
+
+The supplied reference shows:
+
+- prominent red-brick architectural mass,
+- tall gateway opening,
+- white/light-colored layered pointed arch treatment,
+- covered side structure,
+- columns,
+- landscaped area around the frontage.
+
+For this blockout:
+- capture the approximate silhouette / massing only,
+- do not attempt final architectural detail,
+- keep it modular enough to replace later with a polished 2.5D asset.
+
+The Main Gate should act as a recognizable navigation landmark.
+
+======================================================================
+13. SPORTS / FIELD AREA
+======================================================================
+
+The central field is one of the dominant landmarks.
+
+Preserve:
+
+- large open grass area,
+- strong visual openness,
+- approximate relationship to CDS,
+- approximate relationship to Main Gate and courts.
+
+The sports-court strip should be represented separately from the main field.
+
+The references show outdoor court surfaces beside the field.
+Use modular placeholder court geometry.
+
+Do not implement sports gameplay.
+
+======================================================================
+14. VEGETATION
+======================================================================
+
+Use a small number of reusable placeholder tree / palm scenes if needed.
+
+The reference images show vegetation strongly contributing to the campus identity,
+especially:
+
+- tree-lined paths,
+- palms,
+- landscaped zones,
+- greenery close to brick buildings.
+
+Do NOT individually model every tree now.
+
+Represent only enough vegetation to:
+- establish path edges,
+- help navigation,
+- suggest the visual rhythm of the real campus.
+
+======================================================================
+15. EXISTING SYSTEMS MUST BE REUSED
+======================================================================
+
+Do NOT rebuild systems already completed in earlier milestones.
+
+Reuse:
+
+- persistent Player,
+- movement,
+- Camera2D,
+- collision conventions,
+- interaction system,
+- zone-transition system,
+- stable IDs,
+- GameState,
+- SaveService,
+- lighting proof.
+
+Do not duplicate these systems.
+
+The real map should plug into the existing architecture.
+
+======================================================================
+16. DO NOT ADD NEW GAME MECHANICS
+======================================================================
+
+Explicitly out of scope:
+
+- enemies
+- combat
+- stealth
+- NPCs
+- puzzles
+- dialogue
+- quests
+- story triggers
+- clue systems
+- journal
+- final inventory system
+- lantern gameplay rules
+- stamina
+- running mechanics
+- sports gameplay
+- canteen mechanics
+- table-tennis mechanics
+- basketball mechanics
+- underwater mechanics
+- underground mechanics
+- procedural generation
+- seamless streaming
+
+If any of these appear necessary to proceed, STOP and report why instead of
+implementing them.
+
+======================================================================
+17. MANUAL MAP REVIEW SUPPORT
+======================================================================
+
+Because the user knows the campus accurately, the blockout should make manual
+comparison easy.
+
+Organize nodes so the user can inspect major map groups separately.
+
+Prefer a hierarchy similar to:
+
+MainGateExterior
+├── Ground
+├── Field
+├── Paths
+├── Roads
+├── SportsCourts
+├── Buildings
+│   ├── MainGateLandmark
+│   └── CDSExterior
+├── Vegetation
+├── Interactables
+├── SpawnMarkers
+├── Transitions
+└── Overhead
+
+This is an example hierarchy, not a requirement to violate existing project
+conventions.
+
+Use the project's established Y-sort / overhead rules.
+
+======================================================================
+18. TESTING / ACCEPTANCE CRITERIA
+======================================================================
+
+After implementation, verify through Godot MCP.
+
+Required tests:
+
+A. Startup
+- Main loads correctly.
+- first real exterior zone loads.
+- exactly one Player exists.
+
+B. Navigation
+- player can move around Main Gate exterior.
+- player cannot walk through blocked building/wall geometry.
+- field, courts, paths and CDS remain navigable as intended.
+
+C. CDS transition
+- player approaches CDS entrance.
+- existing interaction prompt appears.
+- transition to cds_veranda succeeds.
+- correct destination spawn is used.
+- returning to exterior succeeds.
+- same Player instance persists.
+
+D. Camera
+- Camera2D follows correctly.
+- no obvious camera break occurs during zone transition.
+
+E. Persistence
+- existing GameState remains functional.
+- existing save/load system remains functional.
+- loading a saved position in the new real zone works where compatible with
+  the current save architecture.
+
+F. Lighting
+- Milestone F lighting still works.
+- day/night visual test does not break in the new zones.
+- player-attached test light still follows Player.
+- UI remains unaffected as previously designed.
+
+G. Rendering/order
+- feet-origin Y-sort still works.
+- building/prop ordering follows conventions.
+- overhead elements can cover the player where intended.
+
+H. Errors
+- inspect Godot Output and Debugger.
+- target: 0 errors.
+- explain any warning rather than hiding it.
+
+======================================================================
+19. DO NOT HIDE APPROXIMATIONS
+======================================================================
+
+At the end, explicitly identify:
+
+- dimensions that are approximate,
+- positions inferred from the supplied references,
+- areas whose exact geometry requires user correction,
+- architectural details postponed until final asset production,
+- anything that needs the user's campus knowledge to verify.
+
+Do not present estimates as measured facts.
+
+======================================================================
+20. STATUS UPDATE
+======================================================================
+
+Update Docs/STATUS.md.
+
+Record:
+
+- Milestone G Part 1 status,
+- real-campus blockout status,
+- zones implemented,
+- documentation created,
+- systems verified,
+- remaining manual map checks,
+- visual-style decisions still pending,
+- next recommended task.
+
+Do NOT mark final campus art as complete.
+
+======================================================================
+21. VERSION CONTROL
+======================================================================
+
+Do not commit automatically.
+
+Do not modify unrelated files.
+
+Do not reformat large existing files unnecessarily.
+
+Preserve manually placed scene objects.
+
+Do not replace user-edited layout with generated geometry without explicit
+instruction.
+
+======================================================================
+22. FINAL REPORT
+======================================================================
+
+When finished, provide a structured report containing:
+
+1. Files created
+2. Files modified
+3. CAMPUS_MAP.md summary
+4. ART_STYLE.md summary
+5. main_gate_exterior scene tree
+6. cds_veranda scene tree
+7. stable IDs introduced
+8. zone/door/spawn connections
+9. blockout dimensions / major proportions used
+10. which values were measured vs approximated
+11. how manual editing is supported
+12. reused existing systems
+13. MCP test results
+14. navigation test results
+15. CDS transition test
+16. save/load regression test
+17. lighting regression test
+18. errors/warnings
+19. items requiring user visual review
+20. git diff summary
+
+IMPORTANT:
+
+Before editing, inspect the current project architecture and state a concise
+implementation plan.
+
+Do not silently redesign existing architecture.
+
+The purpose of this task is NOT to make the area beautiful yet.
+
+The purpose is to create a technically correct, recognizable, editable,
+real-campus blockout that becomes the foundation for final 2.5D asset production.

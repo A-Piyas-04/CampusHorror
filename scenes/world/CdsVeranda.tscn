@@ -1,0 +1,201 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/world/zone.gd" id="1_zone"]
+[ext_resource type="PackedScene" path="res://scenes/components/SpawnMarker.tscn" id="2_spawn"]
+[ext_resource type="PackedScene" path="res://scenes/components/Door.tscn" id="3_door"]
+[ext_resource type="PackedScene" path="res://scenes/world/blockout/BlockoutBlock.tscn" id="4_block"]
+
+[node name="CdsVeranda" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_zone")
+zone_id = "cds_veranda"
+
+[node name="Ground" type="Node2D" parent="."]
+z_index = -10
+
+[node name="GroundFill" type="Polygon2D" parent="Ground"]
+color = Color(0.24, 0.42, 0.2, 1)
+polygon = PackedVector2Array(-1000, -1400, 1100, -1400, 1100, 1400, -1000, 1400)
+
+[node name="VerandaFloor" type="Polygon2D" parent="Ground"]
+color = Color(0.6, 0.42, 0.36, 1)
+polygon = PackedVector2Array(-150, -850, 120, -850, 120, 850, -150, 850)
+
+[node name="CanteenTableTennisDivider" type="Line2D" parent="Ground/VerandaFloor"]
+points = PackedVector2Array(-150, -300, 120, -300)
+width = 3.0
+default_color = Color(0.45, 0.3, 0.26, 1)
+
+[node name="TableTennisBasketballDivider" type="Line2D" parent="Ground/VerandaFloor"]
+points = PackedVector2Array(-150, 150, 120, 150)
+width = 3.0
+default_color = Color(0.45, 0.3, 0.26, 1)
+
+[node name="Objects" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Walls" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="CdsBuilding" parent="Objects/Walls" instance=ExtResource("4_block")]
+position = Vector2(360, 850)
+footprint_size = Vector2(480, 1700)
+wall_height = 200.0
+
+[node name="NorthEnd" parent="Objects/Walls" instance=ExtResource("4_block")]
+position = Vector2(225, -850)
+footprint_size = Vector2(750, 40)
+wall_height = 200.0
+
+[node name="SouthEnd" parent="Objects/Walls" instance=ExtResource("4_block")]
+position = Vector2(225, 890)
+footprint_size = Vector2(750, 40)
+wall_height = 200.0
+arch_count = 3
+
+[node name="WestParapet" parent="Objects/Walls" instance=ExtResource("4_block")]
+position = Vector2(-140, 850)
+footprint_size = Vector2(20, 1700)
+wall_height = 30.0
+wall_color = Color(0.7, 0.36, 0.26, 1)
+roof_color = Color(0.58, 0.32, 0.24, 1)
+
+[node name="Arcade" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="Column01" parent="Objects/Arcade" instance=ExtResource("4_block")]
+position = Vector2(-140, -765)
+footprint_size = Vector2(24, 24)
+wall_height = 150.0
+wall_color = Color(0.7, 0.36, 0.26, 1)
+
+[node name="Column02" parent="Objects/Arcade" instance=ExtResource("4_block")]
+position = Vector2(-140, -595)
+footprint_size = Vector2(24, 24)
+wall_height = 150.0
+wall_color = Color(0.7, 0.36, 0.26, 1)
+
+[node name="Column03" parent="Objects/Arcade" instance=ExtResource("4_block")]
+position = Vector2(-140, -425)
+footprint_size = Vector2(24, 24)
+wall_height = 150.0
+wall_color = Color(0.7, 0.36, 0.26, 1)
+
+[node name="Column04" parent="Objects/Arcade" instance=ExtResource("4_block")]
+position = Vector2(-140, -255)
+footprint_size = Vector2(24, 24)
+wall_height = 150.0
+wall_color = Color(0.7, 0.36, 0.26, 1)
+
+[node name="Column05" parent="Objects/Arcade" instance=ExtResource("4_block")]
+position = Vector2(-140, -85)
+footprint_size = Vector2(24, 24)
+wall_height = 150.0
+wall_color = Color(0.7, 0.36, 0.26, 1)
+
+[node name="Column06" parent="Objects/Arcade" instance=ExtResource("4_block")]
+position = Vector2(-140, 85)
+footprint_size = Vector2(24, 24)
+wall_height = 150.0
+wall_color = Color(0.7, 0.36, 0.26, 1)
+
+[node name="Column07" parent="Objects/Arcade" instance=ExtResource("4_block")]
+position = Vector2(-140, 255)
+footprint_size = Vector2(24, 24)
+wall_height = 150.0
+wall_color = Color(0.7, 0.36, 0.26, 1)
+
+[node name="Column08" parent="Objects/Arcade" instance=ExtResource("4_block")]
+position = Vector2(-140, 425)
+footprint_size = Vector2(24, 24)
+wall_height = 150.0
+wall_color = Color(0.7, 0.36, 0.26, 1)
+
+[node name="Column09" parent="Objects/Arcade" instance=ExtResource("4_block")]
+position = Vector2(-140, 595)
+footprint_size = Vector2(24, 24)
+wall_height = 150.0
+wall_color = Color(0.7, 0.36, 0.26, 1)
+
+[node name="Column10" parent="Objects/Arcade" instance=ExtResource("4_block")]
+position = Vector2(-140, 765)
+footprint_size = Vector2(24, 24)
+wall_height = 150.0
+wall_color = Color(0.7, 0.36, 0.26, 1)
+
+[node name="FutureFronts" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="CanteenFront" type="Node2D" parent="Objects/FutureFronts"]
+position = Vector2(100, -575)
+
+[node name="Body" type="Polygon2D" parent="Objects/FutureFronts/CanteenFront"]
+color = Color(0.55, 0.35, 0.15, 1)
+polygon = PackedVector2Array(-22, 0, -22, -50, -12, -64, 0, -70, 12, -64, 22, -50, 22, 0)
+
+[node name="Label" type="Label" parent="Objects/FutureFronts/CanteenFront"]
+offset_left = -190.0
+offset_top = -70.0
+offset_right = -30.0
+offset_bottom = -20.0
+theme_override_font_sizes/font_size = 16
+text = "Canteen
+(future)"
+horizontal_alignment = 2
+
+[node name="TableTennisFront" type="Node2D" parent="Objects/FutureFronts"]
+position = Vector2(100, -220)
+
+[node name="Body" type="Polygon2D" parent="Objects/FutureFronts/TableTennisFront"]
+color = Color(0.3, 0.35, 0.5, 1)
+polygon = PackedVector2Array(-22, 0, -22, -50, -12, -64, 0, -70, 12, -64, 22, -50, 22, 0)
+
+[node name="Label" type="Label" parent="Objects/FutureFronts/TableTennisFront"]
+offset_left = -190.0
+offset_top = -70.0
+offset_right = -30.0
+offset_bottom = -20.0
+theme_override_font_sizes/font_size = 16
+text = "Table tennis
+(future)"
+horizontal_alignment = 2
+
+[node name="IndoorBasketballFront" type="Node2D" parent="Objects/FutureFronts"]
+position = Vector2(100, 500)
+
+[node name="Body" type="Polygon2D" parent="Objects/FutureFronts/IndoorBasketballFront"]
+color = Color(0.5, 0.25, 0.25, 1)
+polygon = PackedVector2Array(-22, 0, -22, -50, -12, -64, 0, -70, 12, -64, 22, -50, 22, 0)
+
+[node name="Label" type="Label" parent="Objects/FutureFronts/IndoorBasketballFront"]
+offset_left = -190.0
+offset_top = -70.0
+offset_right = -30.0
+offset_bottom = -20.0
+theme_override_font_sizes/font_size = 16
+text = "Indoor basketball
+(future)"
+horizontal_alignment = 2
+
+[node name="Transitions" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="DoorCdsExitToField" parent="Objects/Transitions" instance=ExtResource("3_door")]
+position = Vector2(-90, -50)
+destination_zone_id = "main_gate_exterior"
+destination_spawn_id = "outside_cds_entrance"
+prompt_text = "Press E to go out to the field"
+
+[node name="SpawnMarkers" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="SpawnInsideCdsEntry" parent="Objects/SpawnMarkers" instance=ExtResource("2_spawn")]
+position = Vector2(0, -50)
+spawn_id = "inside_cds_entry"
+
+[node name="Overhead" type="Node2D" parent="."]
+z_index = 10
+
+[node name="VerandaRoofEdge" type="Polygon2D" parent="Overhead"]
+color = Color(0.62, 0.3, 0.22, 0.9)
+polygon = PackedVector2Array(-170, -1000, -110, -1000, -110, 700, -170, 700)

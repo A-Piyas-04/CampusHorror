@@ -1,0 +1,586 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/world/zone.gd" id="1_zone"]
+[ext_resource type="PackedScene" path="res://scenes/components/SpawnMarker.tscn" id="2_spawn"]
+[ext_resource type="PackedScene" path="res://scenes/components/Door.tscn" id="3_door"]
+[ext_resource type="PackedScene" path="res://scenes/world/blockout/BlockoutBlock.tscn" id="4_block"]
+[ext_resource type="PackedScene" path="res://scenes/props/PalmTree.tscn" id="5_palm"]
+[ext_resource type="PackedScene" path="res://scenes/props/Tree.tscn" id="6_tree"]
+
+[node name="MainGateExterior" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_zone")
+zone_id = "main_gate_exterior"
+
+[node name="Ground" type="Node2D" parent="."]
+z_index = -10
+
+[node name="GroundFill" type="Polygon2D" parent="Ground"]
+color = Color(0.24, 0.42, 0.2, 1)
+polygon = PackedVector2Array(-2400, -1800, 3000, -1800, 3000, 1950, -2400, 1950)
+
+[node name="Roads" type="Node2D" parent="Ground"]
+
+[node name="Sidewalk" type="Polygon2D" parent="Ground/Roads"]
+color = Color(0.55, 0.52, 0.48, 1)
+polygon = PackedVector2Array(-2400, 1400, 3000, 1400, 3000, 1460, -2400, 1460)
+
+[node name="MainRoad" type="Polygon2D" parent="Ground/Roads"]
+color = Color(0.24, 0.24, 0.26, 1)
+polygon = PackedVector2Array(-2400, 1460, 3000, 1460, 3000, 1800, -2400, 1800)
+
+[node name="LaneMarking" type="Line2D" parent="Ground/Roads/MainRoad"]
+points = PackedVector2Array(-2400, 1630, 3000, 1630)
+width = 4.0
+default_color = Color(0.85, 0.85, 0.8, 0.6)
+
+[node name="Field" type="Polygon2D" parent="Ground"]
+color = Color(0.33, 0.6, 0.25, 1)
+polygon = PackedVector2Array(-1200, -800, 1200, -800, 1200, 700, -1200, 700)
+
+[node name="Outline" type="Line2D" parent="Ground/Field"]
+points = PackedVector2Array(-1160, -760, 1160, -760, 1160, 660, -1160, 660)
+closed = true
+width = 4.0
+default_color = Color(0.92, 0.95, 0.9, 0.7)
+
+[node name="HalfwayLine" type="Line2D" parent="Ground/Field"]
+points = PackedVector2Array(0, -760, 0, 660)
+width = 4.0
+default_color = Color(0.92, 0.95, 0.9, 0.7)
+
+[node name="CentreCircle" type="Line2D" parent="Ground/Field"]
+position = Vector2(0, -50)
+points = PackedVector2Array(0, -120, 45.9, -110.9, 84.9, -84.9, 110.9, -45.9, 120, 0, 110.9, 45.9, 84.9, 84.9, 45.9, 110.9, 0, 120, -45.9, 110.9, -84.9, 84.9, -110.9, 45.9, -120, 0, -110.9, -45.9, -84.9, -84.9, -45.9, -110.9)
+closed = true
+width = 4.0
+default_color = Color(0.92, 0.95, 0.9, 0.7)
+
+[node name="Paths" type="Node2D" parent="Ground"]
+
+[node name="WestPalmPath" type="Polygon2D" parent="Ground/Paths"]
+color = Color(0.72, 0.5, 0.42, 1)
+polygon = PackedVector2Array(-1450, -1080, -1330, -1080, -1330, 1400, -1450, 1400)
+
+[node name="NorthPath" type="Polygon2D" parent="Ground/Paths"]
+color = Color(0.72, 0.5, 0.42, 1)
+polygon = PackedVector2Array(-1450, -1080, 1360, -1080, 1360, -960, -1450, -960)
+
+[node name="EastPath" type="Polygon2D" parent="Ground/Paths"]
+color = Color(0.72, 0.5, 0.42, 1)
+polygon = PackedVector2Array(1260, -1080, 1360, -1080, 1360, 800, 1260, 800)
+
+[node name="SouthPath" type="Polygon2D" parent="Ground/Paths"]
+color = Color(0.72, 0.5, 0.42, 1)
+polygon = PackedVector2Array(-1450, 720, 1360, 720, 1360, 800, -1450, 800)
+
+[node name="GatePlaza" type="Polygon2D" parent="Ground/Paths"]
+color = Color(0.72, 0.5, 0.42, 1)
+polygon = PackedVector2Array(-1560, 1120, -1220, 1120, -1220, 1240, -1560, 1240)
+
+[node name="CdsForecourt" type="Polygon2D" parent="Ground/Paths"]
+color = Color(0.66, 0.45, 0.38, 1)
+polygon = PackedVector2Array(1360, -330, 1480, -330, 1480, -110, 1360, -110)
+
+[node name="Objects" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="SportsCourts" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="FutsalCourt" type="Node2D" parent="Objects/SportsCourts"]
+y_sort_enabled = true
+position = Vector2(-200, 1000)
+
+[node name="Apron" type="Polygon2D" parent="Objects/SportsCourts/FutsalCourt"]
+z_index = -10
+color = Color(0.62, 0.62, 0.6, 1)
+polygon = PackedVector2Array(-300, -150, 300, -150, 300, 150, -300, 150)
+
+[node name="Surface" type="Polygon2D" parent="Objects/SportsCourts/FutsalCourt"]
+z_index = -10
+color = Color(0.36, 0.62, 0.66, 1)
+polygon = PackedVector2Array(-260, -120, 260, -120, 260, 120, -260, 120)
+
+[node name="Outline" type="Line2D" parent="Objects/SportsCourts/FutsalCourt/Surface"]
+points = PackedVector2Array(-260, -120, 260, -120, 260, 120, -260, 120)
+closed = true
+width = 3.0
+default_color = Color(0.95, 0.95, 0.95, 0.8)
+
+[node name="CentreLine" type="Line2D" parent="Objects/SportsCourts/FutsalCourt/Surface"]
+points = PackedVector2Array(0, -120, 0, 120)
+width = 3.0
+default_color = Color(0.95, 0.95, 0.95, 0.8)
+
+[node name="CentreCircle" type="Line2D" parent="Objects/SportsCourts/FutsalCourt/Surface"]
+points = PackedVector2Array(0, -40, 20, -34.6, 34.6, -20, 40, 0, 34.6, 20, 20, 34.6, 0, 40, -20, 34.6, -34.6, 20, -40, 0, -34.6, -20, -20, -34.6)
+closed = true
+width = 3.0
+default_color = Color(0.9, 0.45, 0.35, 0.9)
+
+[node name="FenceNorthWest" parent="Objects/SportsCourts/FutsalCourt" instance=ExtResource("4_block")]
+position = Vector2(-175, -150)
+footprint_size = Vector2(250, 6)
+wall_height = 70.0
+wall_color = Color(0.3, 0.33, 0.32, 0.45)
+roof_color = Color(0.3, 0.33, 0.32, 0.6)
+casts_shadow = false
+
+[node name="FenceNorthEast" parent="Objects/SportsCourts/FutsalCourt" instance=ExtResource("4_block")]
+position = Vector2(175, -150)
+footprint_size = Vector2(250, 6)
+wall_height = 70.0
+wall_color = Color(0.3, 0.33, 0.32, 0.45)
+roof_color = Color(0.3, 0.33, 0.32, 0.6)
+casts_shadow = false
+
+[node name="FenceSouth" parent="Objects/SportsCourts/FutsalCourt" instance=ExtResource("4_block")]
+position = Vector2(0, 150)
+footprint_size = Vector2(600, 6)
+wall_height = 70.0
+wall_color = Color(0.3, 0.33, 0.32, 0.45)
+roof_color = Color(0.3, 0.33, 0.32, 0.6)
+casts_shadow = false
+
+[node name="FenceWest" parent="Objects/SportsCourts/FutsalCourt" instance=ExtResource("4_block")]
+position = Vector2(-297, 150)
+footprint_size = Vector2(6, 300)
+wall_height = 70.0
+wall_color = Color(0.3, 0.33, 0.32, 0.45)
+roof_color = Color(0.3, 0.33, 0.32, 0.6)
+casts_shadow = false
+
+[node name="FenceEast" parent="Objects/SportsCourts/FutsalCourt" instance=ExtResource("4_block")]
+position = Vector2(297, 150)
+footprint_size = Vector2(6, 300)
+wall_height = 70.0
+wall_color = Color(0.3, 0.33, 0.32, 0.45)
+roof_color = Color(0.3, 0.33, 0.32, 0.6)
+casts_shadow = false
+
+[node name="TennisCourt" type="Node2D" parent="Objects/SportsCourts"]
+y_sort_enabled = true
+position = Vector2(550, 1000)
+
+[node name="Apron" type="Polygon2D" parent="Objects/SportsCourts/TennisCourt"]
+z_index = -10
+color = Color(0.62, 0.62, 0.6, 1)
+polygon = PackedVector2Array(-300, -150, 300, -150, 300, 150, -300, 150)
+
+[node name="Surface" type="Polygon2D" parent="Objects/SportsCourts/TennisCourt"]
+z_index = -10
+color = Color(0.3, 0.55, 0.5, 1)
+polygon = PackedVector2Array(-250, -130, 250, -130, 250, 130, -250, 130)
+
+[node name="Outline" type="Line2D" parent="Objects/SportsCourts/TennisCourt/Surface"]
+points = PackedVector2Array(-250, -130, 250, -130, 250, 130, -250, 130)
+closed = true
+width = 3.0
+default_color = Color(0.95, 0.95, 0.95, 0.8)
+
+[node name="Net" type="Line2D" parent="Objects/SportsCourts/TennisCourt/Surface"]
+points = PackedVector2Array(0, -140, 0, 140)
+width = 4.0
+default_color = Color(0.15, 0.15, 0.15, 0.9)
+
+[node name="FenceNorthWest" parent="Objects/SportsCourts/TennisCourt" instance=ExtResource("4_block")]
+position = Vector2(-175, -150)
+footprint_size = Vector2(250, 6)
+wall_height = 70.0
+wall_color = Color(0.3, 0.33, 0.32, 0.45)
+roof_color = Color(0.3, 0.33, 0.32, 0.6)
+casts_shadow = false
+
+[node name="FenceNorthEast" parent="Objects/SportsCourts/TennisCourt" instance=ExtResource("4_block")]
+position = Vector2(175, -150)
+footprint_size = Vector2(250, 6)
+wall_height = 70.0
+wall_color = Color(0.3, 0.33, 0.32, 0.45)
+roof_color = Color(0.3, 0.33, 0.32, 0.6)
+casts_shadow = false
+
+[node name="FenceSouth" parent="Objects/SportsCourts/TennisCourt" instance=ExtResource("4_block")]
+position = Vector2(0, 150)
+footprint_size = Vector2(600, 6)
+wall_height = 70.0
+wall_color = Color(0.3, 0.33, 0.32, 0.45)
+roof_color = Color(0.3, 0.33, 0.32, 0.6)
+casts_shadow = false
+
+[node name="FenceWest" parent="Objects/SportsCourts/TennisCourt" instance=ExtResource("4_block")]
+position = Vector2(-297, 150)
+footprint_size = Vector2(6, 300)
+wall_height = 70.0
+wall_color = Color(0.3, 0.33, 0.32, 0.45)
+roof_color = Color(0.3, 0.33, 0.32, 0.6)
+casts_shadow = false
+
+[node name="FenceEast" parent="Objects/SportsCourts/TennisCourt" instance=ExtResource("4_block")]
+position = Vector2(297, 150)
+footprint_size = Vector2(6, 300)
+wall_height = 70.0
+wall_color = Color(0.3, 0.33, 0.32, 0.45)
+roof_color = Color(0.3, 0.33, 0.32, 0.6)
+casts_shadow = false
+
+[node name="Buildings" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="MainGateLandmark" type="Node2D" parent="Objects/Buildings"]
+y_sort_enabled = true
+position = Vector2(-1390, 1400)
+
+[node name="PierWest" parent="Objects/Buildings/MainGateLandmark" instance=ExtResource("4_block")]
+position = Vector2(-100, 0)
+footprint_size = Vector2(80, 160)
+wall_height = 220.0
+
+[node name="PierEast" parent="Objects/Buildings/MainGateLandmark" instance=ExtResource("4_block")]
+position = Vector2(100, 0)
+footprint_size = Vector2(80, 160)
+wall_height = 220.0
+
+[node name="GateLeaves" parent="Objects/Buildings/MainGateLandmark" instance=ExtResource("4_block")]
+footprint_size = Vector2(120, 10)
+wall_height = 90.0
+wall_color = Color(0.15, 0.25, 0.2, 0.85)
+roof_color = Color(0.15, 0.25, 0.2, 0.85)
+casts_shadow = false
+
+[node name="SidePavilion" parent="Objects/Buildings/MainGateLandmark" instance=ExtResource("4_block")]
+position = Vector2(-250, 0)
+footprint_size = Vector2(220, 140)
+wall_height = 140.0
+arch_count = 2
+
+[node name="PavilionColumn1" parent="Objects/Buildings/MainGateLandmark" instance=ExtResource("4_block")]
+position = Vector2(-340, 70)
+footprint_size = Vector2(16, 16)
+wall_height = 140.0
+wall_color = Color(0.92, 0.92, 0.9, 1)
+roof_color = Color(0.92, 0.92, 0.9, 1)
+
+[node name="PavilionColumn2" parent="Objects/Buildings/MainGateLandmark" instance=ExtResource("4_block")]
+position = Vector2(-250, 70)
+footprint_size = Vector2(16, 16)
+wall_height = 140.0
+wall_color = Color(0.92, 0.92, 0.9, 1)
+roof_color = Color(0.92, 0.92, 0.9, 1)
+
+[node name="PavilionColumn3" parent="Objects/Buildings/MainGateLandmark" instance=ExtResource("4_block")]
+position = Vector2(-160, 70)
+footprint_size = Vector2(16, 16)
+wall_height = 140.0
+wall_color = Color(0.92, 0.92, 0.9, 1)
+roof_color = Color(0.92, 0.92, 0.9, 1)
+
+[node name="CDSExterior" type="Node2D" parent="Objects/Buildings"]
+y_sort_enabled = true
+position = Vector2(1775, 0)
+
+[node name="Canteen" type="Node2D" parent="Objects/Buildings/CDSExterior"]
+y_sort_enabled = true
+position = Vector2(0, -450)
+
+[node name="Mass" parent="Objects/Buildings/CDSExterior/Canteen" instance=ExtResource("4_block")]
+footprint_size = Vector2(450, 550)
+wall_height = 110.0
+
+[node name="Label" type="Label" parent="Objects/Buildings/CDSExterior/Canteen/Mass"]
+offset_left = -200.0
+offset_top = -420.0
+offset_right = 200.0
+offset_bottom = -380.0
+theme_override_colors/font_color = Color(1, 1, 1, 0.85)
+theme_override_font_sizes/font_size = 24
+text = "CDS: CANTEEN (future)"
+horizontal_alignment = 1
+
+[node name="Veranda" parent="Objects/Buildings/CDSExterior/Canteen" instance=ExtResource("4_block")]
+position = Vector2(-260, 0)
+footprint_size = Vector2(70, 550)
+wall_height = 80.0
+wall_color = Color(0.7, 0.36, 0.26, 1)
+roof_color = Color(0.52, 0.47, 0.42, 1)
+
+[node name="TableTennis" type="Node2D" parent="Objects/Buildings/CDSExterior"]
+y_sort_enabled = true
+
+[node name="Mass" parent="Objects/Buildings/CDSExterior/TableTennis" instance=ExtResource("4_block")]
+footprint_size = Vector2(450, 450)
+wall_height = 110.0
+
+[node name="Label" type="Label" parent="Objects/Buildings/CDSExterior/TableTennis/Mass"]
+offset_left = -200.0
+offset_top = -360.0
+offset_right = 200.0
+offset_bottom = -320.0
+theme_override_colors/font_color = Color(1, 1, 1, 0.85)
+theme_override_font_sizes/font_size = 24
+text = "CDS: TABLE TENNIS (future)"
+horizontal_alignment = 1
+
+[node name="Veranda" parent="Objects/Buildings/CDSExterior/TableTennis" instance=ExtResource("4_block")]
+position = Vector2(-260, 0)
+footprint_size = Vector2(70, 450)
+wall_height = 80.0
+wall_color = Color(0.7, 0.36, 0.26, 1)
+roof_color = Color(0.52, 0.47, 0.42, 1)
+
+[node name="IndoorBasketball" type="Node2D" parent="Objects/Buildings/CDSExterior"]
+y_sort_enabled = true
+position = Vector2(0, 700)
+
+[node name="Mass" parent="Objects/Buildings/CDSExterior/IndoorBasketball" instance=ExtResource("4_block")]
+footprint_size = Vector2(450, 700)
+wall_height = 170.0
+arch_count = 5
+
+[node name="Label" type="Label" parent="Objects/Buildings/CDSExterior/IndoorBasketball/Mass"]
+offset_left = -200.0
+offset_top = -560.0
+offset_right = 200.0
+offset_bottom = -520.0
+theme_override_colors/font_color = Color(1, 1, 1, 0.85)
+theme_override_font_sizes/font_size = 24
+text = "CDS: INDOOR BASKETBALL (future)"
+horizontal_alignment = 1
+
+[node name="Veranda" parent="Objects/Buildings/CDSExterior/IndoorBasketball" instance=ExtResource("4_block")]
+position = Vector2(-260, 0)
+footprint_size = Vector2(70, 700)
+wall_height = 80.0
+wall_color = Color(0.7, 0.36, 0.26, 1)
+roof_color = Color(0.52, 0.47, 0.42, 1)
+arch_count = 1
+
+[node name="Boundary" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="SouthWall" parent="Objects/Boundary" instance=ExtResource("4_block")]
+position = Vector2(500, 1400)
+footprint_size = Vector2(3500, 24)
+wall_height = 70.0
+wall_color = Color(0.6, 0.3, 0.22, 1)
+roof_color = Color(0.5, 0.26, 0.2, 1)
+
+[node name="PrototypeEdgeWest" parent="Objects/Boundary" instance=ExtResource("4_block")]
+position = Vector2(-1715, 1260)
+footprint_size = Vector2(30, 2610)
+wall_height = 40.0
+wall_color = Color(0.14, 0.3, 0.14, 1)
+roof_color = Color(0.18, 0.36, 0.17, 1)
+casts_shadow = false
+
+[node name="PrototypeEdgeNorth" parent="Objects/Boundary" instance=ExtResource("4_block")]
+position = Vector2(275, -1350)
+footprint_size = Vector2(4010, 30)
+wall_height = 40.0
+wall_color = Color(0.14, 0.3, 0.14, 1)
+roof_color = Color(0.18, 0.36, 0.17, 1)
+casts_shadow = false
+
+[node name="PrototypeEdgeEast" parent="Objects/Boundary" instance=ExtResource("4_block")]
+position = Vector2(2265, 1376)
+footprint_size = Vector2(30, 2726)
+wall_height = 40.0
+wall_color = Color(0.14, 0.3, 0.14, 1)
+roof_color = Color(0.18, 0.36, 0.17, 1)
+casts_shadow = false
+
+[node name="Vegetation" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="WestPathPalms" type="Node2D" parent="Objects/Vegetation"]
+y_sort_enabled = true
+
+[node name="PalmW01" parent="Objects/Vegetation/WestPathPalms" instance=ExtResource("5_palm")]
+position = Vector2(-1485, -1040)
+
+[node name="PalmW02" parent="Objects/Vegetation/WestPathPalms" instance=ExtResource("5_palm")]
+position = Vector2(-1485, -780)
+
+[node name="PalmW03" parent="Objects/Vegetation/WestPathPalms" instance=ExtResource("5_palm")]
+position = Vector2(-1485, -520)
+
+[node name="PalmW04" parent="Objects/Vegetation/WestPathPalms" instance=ExtResource("5_palm")]
+position = Vector2(-1485, -260)
+
+[node name="PalmW05" parent="Objects/Vegetation/WestPathPalms" instance=ExtResource("5_palm")]
+position = Vector2(-1485, 0)
+
+[node name="PalmW06" parent="Objects/Vegetation/WestPathPalms" instance=ExtResource("5_palm")]
+position = Vector2(-1485, 260)
+
+[node name="PalmW07" parent="Objects/Vegetation/WestPathPalms" instance=ExtResource("5_palm")]
+position = Vector2(-1485, 520)
+
+[node name="PalmW08" parent="Objects/Vegetation/WestPathPalms" instance=ExtResource("5_palm")]
+position = Vector2(-1485, 780)
+
+[node name="PalmW09" parent="Objects/Vegetation/WestPathPalms" instance=ExtResource("5_palm")]
+position = Vector2(-1485, 1040)
+
+[node name="PalmE01" parent="Objects/Vegetation/WestPathPalms" instance=ExtResource("5_palm")]
+position = Vector2(-1295, -1040)
+
+[node name="PalmE02" parent="Objects/Vegetation/WestPathPalms" instance=ExtResource("5_palm")]
+position = Vector2(-1295, -780)
+
+[node name="PalmE03" parent="Objects/Vegetation/WestPathPalms" instance=ExtResource("5_palm")]
+position = Vector2(-1295, -520)
+
+[node name="PalmE04" parent="Objects/Vegetation/WestPathPalms" instance=ExtResource("5_palm")]
+position = Vector2(-1295, -260)
+
+[node name="PalmE05" parent="Objects/Vegetation/WestPathPalms" instance=ExtResource("5_palm")]
+position = Vector2(-1295, 0)
+
+[node name="PalmE06" parent="Objects/Vegetation/WestPathPalms" instance=ExtResource("5_palm")]
+position = Vector2(-1295, 260)
+
+[node name="PalmE07" parent="Objects/Vegetation/WestPathPalms" instance=ExtResource("5_palm")]
+position = Vector2(-1295, 520)
+
+[node name="PalmE08" parent="Objects/Vegetation/WestPathPalms" instance=ExtResource("5_palm")]
+position = Vector2(-1295, 780)
+
+[node name="PalmE09" parent="Objects/Vegetation/WestPathPalms" instance=ExtResource("5_palm")]
+position = Vector2(-1295, 1040)
+
+[node name="NorthPathPalms" type="Node2D" parent="Objects/Vegetation"]
+y_sort_enabled = true
+
+[node name="Palm01" parent="Objects/Vegetation/NorthPathPalms" instance=ExtResource("5_palm")]
+position = Vector2(-1200, -1115)
+
+[node name="Palm02" parent="Objects/Vegetation/NorthPathPalms" instance=ExtResource("5_palm")]
+position = Vector2(-900, -1115)
+
+[node name="Palm03" parent="Objects/Vegetation/NorthPathPalms" instance=ExtResource("5_palm")]
+position = Vector2(-600, -1115)
+
+[node name="Palm04" parent="Objects/Vegetation/NorthPathPalms" instance=ExtResource("5_palm")]
+position = Vector2(-300, -1115)
+
+[node name="Palm05" parent="Objects/Vegetation/NorthPathPalms" instance=ExtResource("5_palm")]
+position = Vector2(0, -1115)
+
+[node name="Palm06" parent="Objects/Vegetation/NorthPathPalms" instance=ExtResource("5_palm")]
+position = Vector2(300, -1115)
+
+[node name="Palm07" parent="Objects/Vegetation/NorthPathPalms" instance=ExtResource("5_palm")]
+position = Vector2(600, -1115)
+
+[node name="Palm08" parent="Objects/Vegetation/NorthPathPalms" instance=ExtResource("5_palm")]
+position = Vector2(900, -1115)
+
+[node name="Palm09" parent="Objects/Vegetation/NorthPathPalms" instance=ExtResource("5_palm")]
+position = Vector2(1200, -1115)
+
+[node name="CdsTrees" type="Node2D" parent="Objects/Vegetation"]
+y_sort_enabled = true
+
+[node name="Tree01" parent="Objects/Vegetation/CdsTrees" instance=ExtResource("6_tree")]
+position = Vector2(1420, -800)
+
+[node name="Tree02" parent="Objects/Vegetation/CdsTrees" instance=ExtResource("6_tree")]
+position = Vector2(1420, -600)
+
+[node name="Tree03" parent="Objects/Vegetation/CdsTrees" instance=ExtResource("6_tree")]
+position = Vector2(1420, 200)
+
+[node name="Tree04" parent="Objects/Vegetation/CdsTrees" instance=ExtResource("6_tree")]
+position = Vector2(1420, 450)
+
+[node name="SouthTreeRow" type="Node2D" parent="Objects/Vegetation"]
+y_sort_enabled = true
+
+[node name="Tree01" parent="Objects/Vegetation/SouthTreeRow" instance=ExtResource("6_tree")]
+position = Vector2(-1100, 1310)
+
+[node name="Tree02" parent="Objects/Vegetation/SouthTreeRow" instance=ExtResource("6_tree")]
+position = Vector2(-800, 1310)
+
+[node name="Tree03" parent="Objects/Vegetation/SouthTreeRow" instance=ExtResource("6_tree")]
+position = Vector2(-500, 1310)
+
+[node name="Tree04" parent="Objects/Vegetation/SouthTreeRow" instance=ExtResource("6_tree")]
+position = Vector2(-200, 1310)
+
+[node name="Tree05" parent="Objects/Vegetation/SouthTreeRow" instance=ExtResource("6_tree")]
+position = Vector2(100, 1310)
+
+[node name="Tree06" parent="Objects/Vegetation/SouthTreeRow" instance=ExtResource("6_tree")]
+position = Vector2(400, 1310)
+
+[node name="Tree07" parent="Objects/Vegetation/SouthTreeRow" instance=ExtResource("6_tree")]
+position = Vector2(700, 1310)
+
+[node name="Tree08" parent="Objects/Vegetation/SouthTreeRow" instance=ExtResource("6_tree")]
+position = Vector2(1000, 1310)
+
+[node name="Tree09" parent="Objects/Vegetation/SouthTreeRow" instance=ExtResource("6_tree")]
+position = Vector2(1300, 1310)
+
+[node name="GateTrees" type="Node2D" parent="Objects/Vegetation"]
+y_sort_enabled = true
+
+[node name="Tree01" parent="Objects/Vegetation/GateTrees" instance=ExtResource("6_tree")]
+position = Vector2(-1600, 1080)
+
+[node name="Tree02" parent="Objects/Vegetation/GateTrees" instance=ExtResource("6_tree")]
+position = Vector2(-1180, 1080)
+
+[node name="Transitions" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="DoorCdsMainEntry" parent="Objects/Transitions" instance=ExtResource("3_door")]
+position = Vector2(1452, -200)
+destination_zone_id = "cds_veranda"
+destination_spawn_id = "inside_cds_entry"
+prompt_text = "Press E to enter the CDS veranda"
+
+[node name="SpawnMarkers" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="SpawnMainGateEntry" parent="Objects/SpawnMarkers" instance=ExtResource("2_spawn")]
+position = Vector2(-1390, 960)
+spawn_id = "main_gate_entry"
+
+[node name="SpawnOutsideCdsEntrance" parent="Objects/SpawnMarkers" instance=ExtResource("2_spawn")]
+position = Vector2(1380, -200)
+spawn_id = "outside_cds_entrance"
+
+[node name="Overhead" type="Node2D" parent="."]
+z_index = 10
+
+[node name="MainGateOverhead" type="Node2D" parent="Overhead"]
+position = Vector2(-1390, 1400)
+
+[node name="GateRoof" type="Polygon2D" parent="Overhead/MainGateOverhead"]
+color = Color(0.88, 0.87, 0.84, 1)
+polygon = PackedVector2Array(-150, -395, 150, -395, 150, -220, -150, -220)
+
+[node name="Label" type="Label" parent="Overhead/MainGateOverhead/GateRoof"]
+offset_left = -120.0
+offset_top = -330.0
+offset_right = 120.0
+offset_bottom = -290.0
+theme_override_colors/font_color = Color(0.3, 0.15, 0.1, 1)
+theme_override_font_sizes/font_size = 28
+text = "MAIN GATE"
+horizontal_alignment = 1
+
+[node name="ArchFace" type="Polygon2D" parent="Overhead/MainGateOverhead"]
+color = Color(0.93, 0.92, 0.9, 1)
+polygon = PackedVector2Array(-60, -220, 60, -220, 60, -110, 45, -145, 25, -168, 0, -182, -25, -168, -45, -145, -60, -110)
+
+[node name="PavilionCanopy" type="Polygon2D" parent="Overhead/MainGateOverhead"]
+color = Color(0.2, 0.35, 0.28, 1)
+polygon = PackedVector2Array(-360, -160, -140, -160, -140, -60, -360, -60)
+
+[node name="CdsEntranceCanopy" type="Polygon2D" parent="Overhead"]
+color = Color(0.52, 0.47, 0.42, 0.9)
+polygon = PackedVector2Array(1400, -380, 1480, -380, 1480, -268, 1400, -268)

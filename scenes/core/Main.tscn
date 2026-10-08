@@ -7,6 +7,8 @@
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_main")
+start_zone_id = "main_gate_exterior"
+start_spawn_id = "main_gate_entry"
 
 [node name="DayNightTint" type="CanvasModulate" parent="."]
 script = ExtResource("4_tint")

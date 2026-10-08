@@ -1,0 +1,8 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/world/blockout_block.gd" id="1_block"]
+
+[node name="BlockoutBlock" type="StaticBody2D"]
+light_mask = 2
+collision_mask = 0
+script = ExtResource("1_block")
