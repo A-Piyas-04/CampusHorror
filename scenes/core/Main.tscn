@@ -1,25 +1,26 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://bd3wdat08us3"]
 
-[ext_resource type="Script" path="res://scripts/core/main.gd" id="1_main"]
+[ext_resource type="Script" uid="uid://xpqahlqtnle8" path="res://scripts/core/main.gd" id="1_main"]
 [ext_resource type="PackedScene" path="res://scenes/player/Player.tscn" id="2_player"]
 [ext_resource type="PackedScene" path="res://scenes/ui/InteractionPrompt.tscn" id="3_prompt"]
-[ext_resource type="Script" path="res://scripts/lighting/day_night_test_tint.gd" id="4_tint"]
+[ext_resource type="Script" uid="uid://ch0fxoqfv7kye" path="res://scripts/lighting/day_night_test_tint.gd" id="4_tint"]
 
-[node name="Main" type="Node2D"]
+[node name="Main" type="Node2D" unique_id=2145005953]
 script = ExtResource("1_main")
 start_zone_id = "main_gate_exterior"
 start_spawn_id = "main_gate_entry"
 
-[node name="DayNightTint" type="CanvasModulate" parent="."]
+[node name="DayNightTint" type="CanvasModulate" parent="." unique_id=1901959482]
 script = ExtResource("4_tint")
 
-[node name="World" type="Node2D" parent="."]
+[node name="World" type="Node2D" parent="." unique_id=1923860430]
 y_sort_enabled = true
 
-[node name="Player" parent="World" instance=ExtResource("2_player")]
+[node name="Player" parent="World" unique_id=688198151 instance=ExtResource("2_player")]
+position = Vector2(103, 107)
 
-[node name="UI" type="Node" parent="."]
+[node name="UI" type="Node" parent="." unique_id=1856723563]
 
-[node name="InteractionPrompt" parent="UI" instance=ExtResource("3_prompt")]
+[node name="InteractionPrompt" parent="UI" unique_id=1921180136 instance=ExtResource("3_prompt")]
 
 [connection signal="interaction_target_changed" from="World/Player" to="UI/InteractionPrompt" method="_on_player_interaction_target_changed"]

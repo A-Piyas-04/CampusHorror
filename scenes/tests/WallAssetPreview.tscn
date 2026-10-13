@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://uydwtl1ei0by"]
+[gd_scene format=3 uid="uid://uydwtl1ei0by"]
 
-[ext_resource type="Texture2D" uid="uid://btmqh82pos0mc" path="res://assets/sprites/architecture/red_brick_wall_angle_test.png" id="1_wall"]
+[ext_resource type="Texture2D" uid="uid://cb7xlyc1cis65" path="res://assets/sprites/architecture/red_brick_wall_grid_test.png" id="1_r4ynu"]
 
 [node name="WallAssetPreview" type="Node2D" unique_id=150665534]
 editor_description = "TEMPORARY Milestone G asset-integration test. Not part of the game; safe to delete."
@@ -8,6 +8,7 @@ editor_description = "TEMPORARY Milestone G asset-integration test. Not part of 
 [node name="Ground" type="Polygon2D" parent="." unique_id=3685650]
 editor_description = "TEMPORARY neutral ground for the wall asset preview."
 z_index = -10
+position = Vector2(-554, -64)
 color = Color(0.42, 0.42, 0.39, 1)
 polygon = PackedVector2Array(-800, -500, 800, -500, 800, 500, -800, 500)
 
@@ -20,8 +21,9 @@ polygon = PackedVector2Array(-16, -64, 16, -64, 16, 0, -16, 0)
 [node name="RedBrickWall" type="Sprite2D" parent="." unique_id=2135963591]
 editor_description = "TEMPORARY wall asset preview. Origin = centre of the wall's ground footprint (Blender origin, z = 0). Offset (0, -206.4) texture px moves that point (texture px 384, 565.4) onto the node origin. Scale 0.142537 = 32 px/m game scale / 224.5 px/m render scale."
 texture_filter = 4
-scale = Vector2(0.142537, 0.142537)
-texture = ExtResource("1_wall")
+position = Vector2(135, 23)
+scale = Vector2(0.143, 0.143)
+texture = ExtResource("1_r4ynu")
 offset = Vector2(0, -206.4)
 
 [node name="FootprintGuide" type="Line2D" parent="RedBrickWall" unique_id=1862562939]
