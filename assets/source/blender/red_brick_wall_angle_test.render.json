@@ -1,0 +1,157 @@
+{
+  "asset": "red_brick_wall_angle_test",
+  "purpose": "Preview render of the red_brick_wall_test geometry (visual-direction review, not final)",
+  "generator": "assets/source/blender/scripts/red_brick_wall_test.py",
+  "arguments": [
+    "--preview",
+    "red_brick_wall_angle_test",
+    "--azimuth",
+    "-20",
+    "--no-ground-shadow"
+  ],
+  "blender_version": "5.2.2 LTS",
+  "random_seed": 20261013,
+  "outputs": {
+    "blend": null,
+    "png": "assets/sprites/architecture/red_brick_wall_angle_test.png",
+    "record": "assets/source/blender/red_brick_wall_angle_test.render.json"
+  },
+  "wall": {
+    "object": "RedBrickWall",
+    "origin": "centre of footprint on the ground (z = 0); front face towards -Y",
+    "design_size_m": {
+      "length_x": 3.0,
+      "thickness_y": 0.3,
+      "height_z": 2.4
+    },
+    "evaluated_bounds_m": {
+      "x": 3.0,
+      "y": 0.3819,
+      "z": 2.3999
+    },
+    "brick_mm": [
+      240.0,
+      110.0,
+      70.0
+    ],
+    "joint_mm": 10.0,
+    "joint_recess_mm": 10.0,
+    "courses": 28,
+    "bond": "running (half) bond, front and back skins",
+    "plinth": "3 courses projecting 20 mm",
+    "oversail_course_projection_mm": 25.0,
+    "coping": "35 rowlock units, 40 mm overhang each side",
+    "modeled_bricks": 735,
+    "bevel": "modifier, 4 mm, 2 segments, harden normals",
+    "evaluated_faces": 39906
+  },
+  "camera": {
+    "type": "ORTHO",
+    "elevation_deg": 40.0,
+    "azimuth_deg": -20.0,
+    "rotation_euler_deg": [
+      50.0,
+      0.0,
+      -20.0
+    ],
+    "location_m": [
+      -5.5809,
+      -15.3335,
+      14.8921
+    ],
+    "ortho_scale_m": 3.4209,
+    "sensor_fit": "HORIZONTAL",
+    "content_extent_m": [
+      2.949,
+      2.7276
+    ],
+    "margin_m_each_side": 0.2359,
+    "pixels_per_metre_on_screen": 224.5
+  },
+  "lighting": {
+    "sun_elevation_deg": 55.0,
+    "sun_azimuth_deg_from_front": -35.0,
+    "sun_direction_to_light": [
+      -0.329,
+      -0.4698,
+      0.8192
+    ],
+    "sun_strength": 3.2,
+    "sun_angle_deg": 3.0,
+    "fill_lights_linked_to_wall_only": [
+      {
+        "name": "SkyFill",
+        "elevation_deg": 70.0,
+        "azimuth_deg_from_front": 20.0,
+        "strength": 0.8,
+        "angle_deg": 90.0,
+        "color": [
+          0.75,
+          0.85,
+          1.0
+        ]
+      },
+      {
+        "name": "GroundBounce",
+        "elevation_deg": -25.0,
+        "azimuth_deg_from_front": 10.0,
+        "strength": 0.35,
+        "angle_deg": 90.0,
+        "color": [
+          1.0,
+          0.8,
+          0.65
+        ]
+      }
+    ],
+    "world_light": "none (strength 0)",
+    "ground": "none (no shadow catcher; no cast shadow baked into the PNG)"
+  },
+  "render": {
+    "engine": "CYCLES",
+    "device": "GPU (OPTIX: NVIDIA GeForce RTX 3050 Laptop GPU)",
+    "samples": 256,
+    "adaptive_sampling": true,
+    "denoiser": "compositor OIDN on colour only (albedo + normal guides); raw render alpha kept",
+    "max_bounces": 6,
+    "film_transparent": true,
+    "filter_size_px": 1.5,
+    "view_transform": "Standard",
+    "output_format": "PNG RGBA 8-bit",
+    "resolution_px": [
+      768,
+      718
+    ],
+    "render_seconds": 3.9
+  },
+  "verification": {
+    "png_signature_ok": true,
+    "size_px": [
+      768,
+      718
+    ],
+    "bit_depth": 8,
+    "png_color_type": 6,
+    "is_rgba": true,
+    "file_bytes": 659098,
+    "opaque_pixels": 301985,
+    "partially_transparent_pixels": 4945,
+    "fully_transparent_pixels": 244494,
+    "content_bbox_px_top_left_origin": [
+      53,
+      53,
+      714,
+      662
+    ],
+    "margins_px": {
+      "left": 53,
+      "right": 53,
+      "top": 53,
+      "bottom": 55
+    },
+    "max_alpha_on_image_border": 0.0,
+    "passed": true,
+    "minimum_margin_required_px": 16
+  },
+  "total_seconds": 4.2
+}
