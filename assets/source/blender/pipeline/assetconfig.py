@@ -64,6 +64,9 @@ def load(asset_id_or_path):
     render.setdefault("elevation_deg", C.CAMERA_ELEVATION_DEG)
     render.setdefault("azimuth_deg", C.CAMERA_AZIMUTH_DEG)
     render.setdefault("tile_bleed_px", C.TILE_BLEED_PX)
+    ppm = render.get("px_per_m")
+    if ppm is not None and not (isinstance(ppm, (int, float)) and ppm > 0):
+        raise ConfigError("render.px_per_m must be a positive number (fixed render scale; omit to use width_px)")
 
     godot = cfg.setdefault("godot", {})
     if not isinstance(godot.get("scene_name"), str) or not SCENE_RE.match(godot["scene_name"]):
@@ -81,10 +84,15 @@ def load(asset_id_or_path):
     col.setdefault("depth_mode", "projected")
     col.setdefault("layer", C.WORLD_COLLISION_LAYER)
     col.setdefault("mask", 0)
-    if col["source"] not in ("design_footprint", "rect_m"):
-        raise ConfigError("collision.source must be 'design_footprint' or 'rect_m'")
+    if col["source"] not in ("design_footprint", "rect_m", "rects_m"):
+        raise ConfigError("collision.source must be 'design_footprint', 'rect_m' or 'rects_m'")
     if col["source"] == "rect_m" and len(col.get("rect_m", [])) != 4:
         raise ConfigError("collision.rect_m must be [x_min, x_max, y_min, y_max] in metres")
+    if col["source"] == "rects_m":
+        rects = col.get("rects_m")
+        if not isinstance(rects, dict) or not rects or any(
+                not SCENE_RE.match(n) or len(r) != 4 for n, r in rects.items()):
+            raise ConfigError("collision.rects_m must map PascalCase names to [x_min, x_max, y_min, y_max] in metres")
     if col["depth_mode"] not in ("projected", "top_down"):
         raise ConfigError("collision.depth_mode must be 'projected' or 'top_down'")
 

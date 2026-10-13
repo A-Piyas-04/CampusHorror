@@ -1,0 +1,397 @@
+{
+  "pipeline": "campus_asset_pipeline",
+  "pipeline_version": 1,
+  "asset": "red_brick_arch_doorway_3m",
+  "category": "architecture",
+  "description": "3.0 m red-brick wall module with a walk-through pointed-arch doorway (1.40 m clear, open to the ground) under a raised parapet. Ends are identical to red_brick_wall_3m, so it joins a wall run at 96 game px spacing. Proportions approximate (CDS arcade style), not surveyed.",
+  "config": "assets/source/blender/configs/red_brick_arch_doorway_3m.json",
+  "generator": "assets/source/blender/generators/red_brick_arch_doorway.py",
+  "generator_params": {
+    "length": 3.0,
+    "thickness": 0.3,
+    "height": 2.4,
+    "brick_length": 0.24,
+    "brick_height": 0.07,
+    "brick_depth": 0.11,
+    "joint": 0.01,
+    "joint_recess": 0.01,
+    "plinth_courses": 3,
+    "plinth_projection": 0.02,
+    "oversail_projection": 0.025,
+    "body_courses": 28,
+    "coping_projection": 0.04,
+    "coping_units": 35,
+    "bevel_width": 0.004,
+    "opening_width": 1.4,
+    "springing_courses": 20,
+    "ring_depth": 0.235,
+    "ring_proud": 0.012,
+    "jamb_widths": [
+      0.11,
+      0.175
+    ],
+    "parapet_half_width": 1.0,
+    "parapet_courses": 12,
+    "interior_seed": 101
+  },
+  "random_seed": 20261013,
+  "blender_version": "5.2.2 LTS",
+  "outputs": {
+    "blend": "assets/source/blender/architecture/red_brick_arch_doorway_3m.blend",
+    "record": "assets/source/blender/architecture/red_brick_arch_doorway_3m.render.json",
+    "png": "assets/sprites/architecture/red_brick_arch_doorway_3m.png",
+    "scene": "scenes/props/architecture/RedBrickArchDoorway3m.tscn",
+    "preview": "scenes/tests/asset_previews/RedBrickArchDoorway3mPreview.tscn"
+  },
+  "origin": "ground-footprint origin at z = 0 (Blender world origin); front faces -Y",
+  "footprint_m": {
+    "x_min": -1.5,
+    "x_max": 1.5,
+    "y_min": -0.15,
+    "y_max": 0.15
+  },
+  "model": {
+    "design_size_m": {
+      "length_x": 3.0,
+      "thickness_y": 0.3,
+      "height_at_ends_z": 2.4,
+      "height_at_parapet_z": 3.36
+    },
+    "opening_m": {
+      "clear_width": 1.4,
+      "springing_z": 1.6,
+      "apex_clear_height_z": 2.8124,
+      "ring_apex_z": 3.0776,
+      "open_to_ground": true
+    },
+    "arch": "equilateral pointed arch (radius = clear span), radial voussoirs through the full wall depth, 37 pieces incl. keystone, 12 mm proud",
+    "seam": "identical to red_brick_wall_3m (same seed and RNG order) for |x| >= 1.0 m; bricks inside are clipped around the opening and recoloured from interior_seed",
+    "connection_points_m": {
+      "west_end_x": -1.5,
+      "east_end_x": 1.5,
+      "note": "place in a RedBrickWall3m run at 3.0 m (96 game px) spacing"
+    },
+    "modeled_boxes_and_pieces": 676,
+    "jamb_bricks": 40,
+    "materials": [
+      "BrickRed",
+      "Mortar"
+    ],
+    "reference": "Docs/map-reference/area1/cds-building*.png (style only; dimensions approximate)",
+    "objects": [
+      {
+        "object": "RedBrickArchDoorway",
+        "evaluated_bounds_m": {
+          "x": 3.0,
+          "y": 0.3819,
+          "z": 3.36
+        },
+        "evaluated_faces": 31052
+      }
+    ]
+  },
+  "camera": {
+    "type": "ORTHO",
+    "elevation_deg": 40.0,
+    "azimuth_deg": 0.0,
+    "rotation_euler_deg": [
+      50.0,
+      0.0,
+      0.0
+    ],
+    "location_m": [
+      0.0,
+      -16.2596,
+      15.3234
+    ],
+    "ortho_scale_m": 3.48,
+    "sensor_fit": "HORIZONTAL",
+    "content_extent_m": [
+      3.0,
+      2.8182
+    ],
+    "margin_m_each_side": 0.24,
+    "pixels_per_metre_on_screen": 220.689655
+  },
+  "lighting": {
+    "sun_elevation_deg": 55.0,
+    "sun_azimuth_deg_from_front": -35.0,
+    "sun_direction_to_light": [
+      -0.329,
+      -0.4698,
+      0.8192
+    ],
+    "sun_strength": 3.2,
+    "sun_angle_deg": 3.0,
+    "fill_lights_linked_to_asset_only": [
+      {
+        "name": "SkyFill",
+        "elevation_deg": 70.0,
+        "azimuth_deg_from_front": 20.0,
+        "strength": 0.8,
+        "angle_deg": 90.0,
+        "color": [
+          0.75,
+          0.85,
+          1.0
+        ]
+      },
+      {
+        "name": "GroundBounce",
+        "elevation_deg": -25.0,
+        "azimuth_deg_from_front": 10.0,
+        "strength": 0.35,
+        "angle_deg": 90.0,
+        "color": [
+          1.0,
+          0.8,
+          0.65
+        ]
+      }
+    ],
+    "world_light": "none (strength 0)",
+    "ground": "none (no shadow catcher; no cast shadow baked into the PNG)"
+  },
+  "render": {
+    "engine": "CYCLES",
+    "device": "GPU (OPTIX: NVIDIA GeForce RTX 3050 Laptop GPU)",
+    "samples": 256,
+    "adaptive_sampling": true,
+    "denoiser": "compositor OIDN on colour only (albedo + normal guides); raw render alpha kept",
+    "max_bounces": 6,
+    "film_transparent": true,
+    "filter_size_px": 1.5,
+    "view_transform": "Standard",
+    "output_format": "PNG RGBA 8-bit",
+    "resolution_px": [
+      768,
+      728
+    ],
+    "render_seconds": 3.7
+  },
+  "projection": {
+    "note": "texture px, top-left origin: x = W/2 + (p.right - cx)*ppm, y = H/2 - (p.up - cy)*ppm",
+    "image_px": [
+      768,
+      728
+    ],
+    "px_per_m": 220.689655,
+    "right": [
+      1.0,
+      0.0,
+      0.0
+    ],
+    "up": [
+      0.0,
+      0.6427876353263855,
+      0.7660444378852844
+    ],
+    "center_m": [
+      0.0,
+      1.286954641342163
+    ],
+    "origin_px": [
+      384.0,
+      648.0175757984507
+    ],
+    "footprint_corners_px": [
+      [
+        52.96551750000003,
+        669.2960630202176
+      ],
+      [
+        715.0344825,
+        669.2960630202176
+      ],
+      [
+        715.0344825,
+        626.7390885766838
+      ],
+      [
+        52.96551750000003,
+        626.7390885766838
+      ]
+    ],
+    "design_bounds_bbox_px": [
+      36,
+      53.02968547977406,
+      732,
+      674.970325941143
+    ]
+  },
+  "tiling": {
+    "axis": "x",
+    "period_m": 3.0,
+    "period_px": 662.0689649999999,
+    "footprint_end_columns_px": [
+      52.96551750000003,
+      715.0344825
+    ],
+    "bleed_px": 16,
+    "kept_columns_px": [
+      36,
+      732
+    ],
+    "note": "rendered between camera-visible neighbour copies at +-period; columns outside kept_columns are cleared by the pipeline (a manual re-render of the .blend is not cut)"
+  },
+  "total_seconds": 4.7,
+  "blender_run": {
+    "exit_code": 0,
+    "seconds": 5.7,
+    "problem_lines": [
+      "00:00.610  cycles           | WARNING HIPEW initialization failed: Error opening HIP dynamic library"
+    ]
+  },
+  "verification": {
+    "png": {
+      "bit_depth": 8,
+      "png_color_type": 6,
+      "interlace": 0,
+      "file_bytes": 515090,
+      "size_px": [
+        768,
+        728
+      ],
+      "opaque_pixels": 258406,
+      "partially_transparent_pixels": 6053,
+      "fully_transparent_pixels": 294645,
+      "content_bbox_px": [
+        36,
+        52,
+        731,
+        673
+      ],
+      "margins_px": {
+        "left": 36,
+        "right": 36,
+        "top": 52,
+        "bottom": 54
+      },
+      "max_alpha_on_image_border": 0.0
+    },
+    "bbox_deviation_px": [
+      0,
+      -1.03,
+      0,
+      -0.97
+    ],
+    "minimum_margin_required_px": 16,
+    "tiling": {
+      "solid_rows": 448,
+      "fringe_px_at_ends": 0,
+      "end_match_mean_rgb_diff": 1.077,
+      "end_match_max_rgb_diff": 11,
+      "shift_px": 662
+    },
+    "passed": true
+  },
+  "godot": {
+    "scene": "scenes/props/architecture/RedBrickArchDoorway3m.tscn",
+    "scene_name": "RedBrickArchDoorway3m",
+    "scene_semantic_sha256": "49efa7498e4c52d651093feb9b430d27824d2bd8c46933c37f17c34c58268f30",
+    "sprite_offset_adjust_px": [
+      0.0,
+      0.0
+    ],
+    "layout": {
+      "render_px_per_m": 220.689655,
+      "game_px_per_m": 32.0,
+      "sprite_scale": 0.14500000011328126,
+      "sprite_offset_px": [
+        -384.0,
+        -648.0175757984507
+      ],
+      "origin_px": [
+        384.0,
+        648.0175757984507
+      ],
+      "sprite_rect_game_px": [
+        -55.6800000435,
+        -93.9625485641836,
+        111.360000087,
+        105.56000008246876
+      ],
+      "footprint_game_px": [
+        [
+          -48.0,
+          3.085380649566656
+        ],
+        [
+          48.0,
+          3.085380649566656
+        ],
+        [
+          48.0,
+          -3.085380649566656
+        ],
+        [
+          -48.0,
+          -3.085380649566656
+        ]
+      ],
+      "ground_depth_factor": 0.6427876353263855
+    },
+    "collision": {
+      "source": "rects_m",
+      "depth_mode": "projected",
+      "layer": 1,
+      "mask": 0,
+      "shapes": [
+        {
+          "node": "CollisionWestJamb",
+          "resource_id": "RectangleShape2D_WestJamb",
+          "center": [
+            -35.2,
+            -0.0
+          ],
+          "size": [
+            25.6,
+            6.170761299133301
+          ],
+          "metres": [
+            -1.5,
+            -0.7,
+            -0.15,
+            0.15
+          ]
+        },
+        {
+          "node": "CollisionEastJamb",
+          "resource_id": "RectangleShape2D_EastJamb",
+          "center": [
+            35.2,
+            -0.0
+          ],
+          "size": [
+            25.6,
+            6.170761299133301
+          ],
+          "metres": [
+            0.7,
+            1.5,
+            -0.15,
+            0.15
+          ]
+        }
+      ]
+    },
+    "preview_scene": "scenes/tests/asset_previews/RedBrickArchDoorway3mPreview.tscn"
+  },
+  "godot_import": {
+    "exit_code": 0,
+    "problem_lines": [
+      "WARNING: Detected another project.godot at res://addons/godot_mcp/cache/undo/entry_000003/files. The folder will be ignored.",
+      "WARNING: UID duplicate detected between res://scenes/tests/MCPCheck.tscn and res://addons/godot_mcp/cache/undo/entry_000002/files/scenes/tests/MCPCheck.tscn."
+    ]
+  },
+  "godot_check": {
+    "scene": {
+      "exit_code": 0,
+      "problem_lines": []
+    },
+    "preview": {
+      "exit_code": 0,
+      "problem_lines": []
+    }
+  }
+}

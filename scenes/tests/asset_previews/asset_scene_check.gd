@@ -74,19 +74,27 @@ func _check(scene_path: String, record: Dictionary) -> void:
 	_expect(absf(length_game - length_want) < TOLERANCE, "footprint length %.3f game px == %.3f" % [length_game, length_want])
 
 	var col: Variant = godot["collision"]
-	var shape_node := root.get_node_or_null("Body/Collision") as CollisionShape2D
+	var body := root.get_node_or_null("Body") as StaticBody2D
 	if col == null:
-		_expect(root.get_node_or_null("Body") == null, "no collision body when collision is disabled")
-	elif shape_node == null or not (shape_node.shape is RectangleShape2D):
-		_fail("Body/Collision with RectangleShape2D missing")
+		_expect(body == null, "no collision body when collision is disabled")
+	elif body == null:
+		_fail("Body (StaticBody2D) missing")
 	else:
-		var body := root.get_node("Body") as StaticBody2D
-		var size := (shape_node.shape as RectangleShape2D).size
-		_expect(size.distance_to(Vector2(col["size"][0], col["size"][1])) < TOLERANCE, "collision size %s" % size)
-		_expect(shape_node.position.distance_to(Vector2(col["center"][0], col["center"][1])) < TOLERANCE,
-			"collision centre %s" % shape_node.position)
 		_expect(body.collision_layer == int(col["layer"]) and body.collision_mask == int(col["mask"]),
 			"collision layer %d / mask %d" % [body.collision_layer, body.collision_mask])
+		var shapes: Array = col.get("shapes", [{"node": "Collision", "size": col["size"], "center": col["center"]}])
+		_expect(body.get_child_count() == shapes.size(),
+			"Body has %d collision shape(s), record %d" % [body.get_child_count(), shapes.size()])
+		for want: Dictionary in shapes:
+			var shape_node := body.get_node_or_null(NodePath(want["node"])) as CollisionShape2D
+			if shape_node == null or not (shape_node.shape is RectangleShape2D):
+				_fail("Body/%s with RectangleShape2D missing" % want["node"])
+				continue
+			var size := (shape_node.shape as RectangleShape2D).size
+			_expect(size.distance_to(Vector2(want["size"][0], want["size"][1])) < TOLERANCE,
+				"%s size %s" % [want["node"], size])
+			_expect(shape_node.position.distance_to(Vector2(want["center"][0], want["center"][1])) < TOLERANCE,
+				"%s centre %s" % [want["node"], shape_node.position])
 
 	print("[ASSETCHECK] %s: sprite %.2f x %.2f game px, scale %.6f, origin %s, footprint %s" % [
 		root.name, tex_size.x * sprite.scale.x, tex_size.y * sprite.scale.y, sprite.scale.x, origin_game,

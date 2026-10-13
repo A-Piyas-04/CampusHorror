@@ -1,0 +1,30 @@
+{
+  "asset_id": "red_brick_arch_doorway_3m",
+  "category": "architecture",
+  "generator": "red_brick_arch_doorway",
+  "description": "3.0 m red-brick wall module with a walk-through pointed-arch doorway (1.40 m clear, open to the ground) under a raised parapet. Ends are identical to red_brick_wall_3m, so it joins a wall run at 96 game px spacing. Proportions approximate (CDS arcade style), not surveyed.",
+  "seed": 20261013,
+  "generator_params": {},
+  "render": {
+    "px_per_m": 220.689655,
+    "samples": 256,
+    "elevation_deg": 40.0,
+    "azimuth_deg": 0.0
+  },
+  "godot": {
+    "scene_name": "RedBrickArchDoorway3m",
+    "z_index": 0,
+    "sprite_offset_adjust_px": [0.0, 0.0],
+    "preview_scene": true,
+    "preview_tile_x": true
+  },
+  "collision": {
+    "enabled": true,
+    "source": "rects_m",
+    "rects_m": {
+      "WestJamb": [-1.5, -0.7, -0.15, 0.15],
+      "EastJamb": [0.7, 1.5, -0.15, 0.15]
+    },
+    "depth_mode": "projected"
+  }
+}

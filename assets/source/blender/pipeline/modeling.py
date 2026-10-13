@@ -10,9 +10,21 @@ class BoxBuilder:
     def __init__(self, rand_attribute="brick_rand"):
         self.bm = bmesh.new()
         self.rand_layer = self.bm.faces.layers.float.new(rand_attribute)
+        self.no_bevel_layer = None
         self.box_count = 0
 
-    def add(self, x0, x1, y0, y1, z0, z1, rand=0.0, material_index=0):
+    def _faces(self, faces, rand, material_index, bevel):
+        if not bevel and self.no_bevel_layer is None:
+            self.no_bevel_layer = self.bm.faces.layers.int.new("no_bevel")
+        for f in faces:
+            face = self.bm.faces.new(f)
+            face[self.rand_layer] = rand
+            face.material_index = material_index
+            if not bevel:
+                face[self.no_bevel_layer] = 1
+        self.box_count += 1
+
+    def add(self, x0, x1, y0, y1, z0, z1, rand=0.0, material_index=0, bevel=True):
         v = [self.bm.verts.new(c) for c in (
             (x0, y0, z0), (x1, y0, z0), (x1, y1, z0), (x0, y1, z0),
             (x0, y0, z1), (x1, y0, z1), (x1, y1, z1), (x0, y1, z1),
@@ -25,20 +37,33 @@ class BoxBuilder:
             (v[1], v[2], v[6], v[5]),  # +X
             (v[3], v[0], v[4], v[7]),  # -X
         )
-        for f in faces:
-            face = self.bm.faces.new(f)
-            face[self.rand_layer] = rand
-            face.material_index = material_index
-        self.box_count += 1
+        self._faces(faces, rand, material_index, bevel)
+
+    def add_prism_xz(self, poly_xz, y0, y1, rand=0.0, material_index=0, bevel=True):
+        """Convex polygon in the XZ plane (front view), extruded from y0 (front) to y1 (back).
+        Used for wedge-shaped pieces: arch voussoirs and bricks cut along an arch."""
+        pts = list(poly_xz)
+        area = sum(a[0] * b[1] - b[0] * a[1] for a, b in zip(pts, pts[1:] + pts[:1]))
+        if area < 0:
+            pts.reverse()  # counter-clockwise seen from the front (x right, z up)
+        front = [self.bm.verts.new((x, y0, z)) for x, z in pts]
+        back = [self.bm.verts.new((x, y1, z)) for x, z in pts]
+        n = len(pts)
+        faces = [tuple(front), tuple(reversed(back))]
+        faces += [(front[i], back[i], back[(i + 1) % n], front[(i + 1) % n]) for i in range(n)]
+        self._faces(faces, rand, material_index, bevel)
 
     def to_mesh(self, name, flush_x=None):
         """Writes the mesh. Every edge gets bevel weight 1 (use Bevel limit "WEIGHT"), except
-        edges lying entirely on one of the `flush_x` planes: module ends that must meet flush."""
+        edges lying entirely on one of the `flush_x` planes (module ends that must meet flush)
+        and edges of pieces added with bevel=False."""
         weight = self.bm.edges.layers.float.new("bevel_weight_edge")
         for edge in self.bm.edges:
             on_end = flush_x is not None and any(
                 all(abs(v.co.x - x) < 1e-6 for v in edge.verts) for x in flush_x)
-            edge[weight] = 0.0 if on_end else 1.0
+            flat = self.no_bevel_layer is not None and any(
+                f[self.no_bevel_layer] for f in edge.link_faces)
+            edge[weight] = 0.0 if on_end or flat else 1.0
         mesh = bpy.data.meshes.new(name)
         self.bm.normal_update()
         self.bm.to_mesh(mesh)

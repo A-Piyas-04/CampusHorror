@@ -1,0 +1,409 @@
+{
+  "pipeline": "campus_asset_pipeline",
+  "pipeline_version": 1,
+  "asset": "red_brick_arch_window_3m",
+  "category": "architecture",
+  "description": "3.0 m red-brick wall module with a see-through pointed-arch window (0.80 m clear, sill at 0.80 m) with a brick sill and a dark steel grille. Same height as red_brick_wall_3m and identical ends, so it joins a wall run at 96 game px spacing. Proportions approximate; the grille is a design choice.",
+  "config": "assets/source/blender/configs/red_brick_arch_window_3m.json",
+  "generator": "assets/source/blender/generators/red_brick_arch_window.py",
+  "generator_params": {
+    "length": 3.0,
+    "thickness": 0.3,
+    "height": 2.4,
+    "brick_length": 0.24,
+    "brick_height": 0.07,
+    "brick_depth": 0.11,
+    "joint": 0.01,
+    "joint_recess": 0.01,
+    "plinth_courses": 3,
+    "plinth_projection": 0.02,
+    "oversail_projection": 0.025,
+    "body_courses": 28,
+    "coping_projection": 0.04,
+    "coping_units": 35,
+    "bevel_width": 0.004,
+    "opening_width": 0.8,
+    "sill_courses": 10,
+    "springing_courses": 16,
+    "ring_depth": 0.115,
+    "ring_proud": 0.012,
+    "jamb_widths": [
+      0.11,
+      0.175
+    ],
+    "sill_projection": 0.04,
+    "sill_overhang": 0.1,
+    "sill_units": 12,
+    "middle_half_width": 1.0,
+    "grille_bar_xs": [
+      -0.3,
+      -0.15,
+      0.0,
+      0.15,
+      0.3
+    ],
+    "grille_bar_size": 0.018,
+    "grille_flat_zs": [
+      1.04,
+      1.52
+    ],
+    "grille_flat_height": 0.04,
+    "grille_flat_thickness": 0.008,
+    "grille_inset": 0.06,
+    "interior_seed": 202
+  },
+  "random_seed": 20261013,
+  "blender_version": "5.2.2 LTS",
+  "outputs": {
+    "blend": "assets/source/blender/architecture/red_brick_arch_window_3m.blend",
+    "record": "assets/source/blender/architecture/red_brick_arch_window_3m.render.json",
+    "png": "assets/sprites/architecture/red_brick_arch_window_3m.png",
+    "scene": "scenes/props/architecture/RedBrickArchWindow3m.tscn",
+    "preview": "scenes/tests/asset_previews/RedBrickArchWindow3mPreview.tscn"
+  },
+  "origin": "ground-footprint origin at z = 0 (Blender world origin); front faces -Y",
+  "footprint_m": {
+    "x_min": -1.5,
+    "x_max": 1.5,
+    "y_min": -0.15,
+    "y_max": 0.15
+  },
+  "model": {
+    "design_size_m": {
+      "length_x": 3.0,
+      "thickness_y": 0.3,
+      "height_z": 2.4
+    },
+    "window_m": {
+      "clear_width": 0.8,
+      "sill_top_z": 0.8,
+      "springing_z": 1.28,
+      "apex_clear_height_z": 1.9728,
+      "ring_apex_z": 2.1029,
+      "see_through": true
+    },
+    "arch": "equilateral pointed arch (radius = clear span), radial voussoirs through the full wall depth, 21 pieces incl. keystone, 12 mm proud",
+    "grille": "5 square bars 18 mm and 2 flats, 60 mm behind the front face, ends built into sill, jambs and ring (design choice, not from a reference)",
+    "seam": "identical to red_brick_wall_3m (same seed and RNG order) for |x| >= 1.0 m; bricks inside are clipped around the window and recoloured from interior_seed",
+    "connection_points_m": {
+      "west_end_x": -1.5,
+      "east_end_x": 1.5,
+      "note": "place in a RedBrickWall3m run at 3.0 m (96 game px) spacing"
+    },
+    "modeled_boxes_and_pieces": 749,
+    "jamb_bricks": 12,
+    "materials": [
+      "BrickRed",
+      "Mortar",
+      "PaintedSteel"
+    ],
+    "reference": "Docs/map-reference/area1/cds-building*.png (arch style only; dimensions approximate)",
+    "objects": [
+      {
+        "object": "RedBrickArchWindow",
+        "evaluated_bounds_m": {
+          "x": 3.0,
+          "y": 0.3818,
+          "z": 2.4
+        },
+        "evaluated_faces": 37006
+      }
+    ]
+  },
+  "camera": {
+    "type": "ORTHO",
+    "elevation_deg": 40.0,
+    "azimuth_deg": 0.0,
+    "rotation_euler_deg": [
+      50.0,
+      0.0,
+      0.0
+    ],
+    "location_m": [
+      0.0,
+      -16.0233,
+      14.6451
+    ],
+    "ortho_scale_m": 3.48,
+    "sensor_fit": "HORIZONTAL",
+    "content_extent_m": [
+      3.0,
+      2.0828
+    ],
+    "margin_m_each_side": 0.24,
+    "pixels_per_metre_on_screen": 220.689655
+  },
+  "lighting": {
+    "sun_elevation_deg": 55.0,
+    "sun_azimuth_deg_from_front": -35.0,
+    "sun_direction_to_light": [
+      -0.329,
+      -0.4698,
+      0.8192
+    ],
+    "sun_strength": 3.2,
+    "sun_angle_deg": 3.0,
+    "fill_lights_linked_to_asset_only": [
+      {
+        "name": "SkyFill",
+        "elevation_deg": 70.0,
+        "azimuth_deg_from_front": 20.0,
+        "strength": 0.8,
+        "angle_deg": 90.0,
+        "color": [
+          0.75,
+          0.85,
+          1.0
+        ]
+      },
+      {
+        "name": "GroundBounce",
+        "elevation_deg": -25.0,
+        "azimuth_deg_from_front": 10.0,
+        "strength": 0.35,
+        "angle_deg": 90.0,
+        "color": [
+          1.0,
+          0.8,
+          0.65
+        ]
+      }
+    ],
+    "world_light": "none (strength 0)",
+    "ground": "none (no shadow catcher; no cast shadow baked into the PNG)"
+  },
+  "render": {
+    "engine": "CYCLES",
+    "device": "GPU (OPTIX: NVIDIA GeForce RTX 3050 Laptop GPU)",
+    "samples": 256,
+    "adaptive_sampling": true,
+    "denoiser": "compositor OIDN on colour only (albedo + normal guides); raw render alpha kept",
+    "max_bounces": 6,
+    "film_transparent": true,
+    "filter_size_px": 1.5,
+    "view_transform": "Standard",
+    "output_format": "PNG RGBA 8-bit",
+    "resolution_px": [
+      768,
+      566
+    ],
+    "render_seconds": 3.8
+  },
+  "projection": {
+    "note": "texture px, top-left origin: x = W/2 + (p.right - cx)*ppm, y = H/2 - (p.up - cy)*ppm",
+    "image_px": [
+      768,
+      566
+    ],
+    "px_per_m": 220.689655,
+    "right": [
+      1.0,
+      0.0,
+      0.0
+    ],
+    "up": [
+      0.0,
+      0.6427876353263855,
+      0.7660444378852844
+    ],
+    "center_m": [
+      0.0,
+      0.9192533493041992
+    ],
+    "origin_px": [
+      384.0,
+      485.8697045155382
+    ],
+    "footprint_corners_px": [
+      [
+        52.96551750000003,
+        507.14819173730507
+      ],
+      [
+        715.0344825,
+        507.14819173730507
+      ],
+      [
+        715.0344825,
+        464.5912172937713
+      ],
+      [
+        52.96551750000003,
+        464.5912172937713
+      ]
+    ],
+    "design_bounds_bbox_px": [
+      36,
+      53.177539742437176,
+      732,
+      512.8224546582305
+    ]
+  },
+  "tiling": {
+    "axis": "x",
+    "period_m": 3.0,
+    "period_px": 662.0689649999999,
+    "footprint_end_columns_px": [
+      52.96551750000003,
+      715.0344825
+    ],
+    "bleed_px": 16,
+    "kept_columns_px": [
+      36,
+      732
+    ],
+    "note": "rendered between camera-visible neighbour copies at +-period; columns outside kept_columns are cleared by the pipeline (a manual re-render of the .blend is not cut)"
+  },
+  "total_seconds": 4.6,
+  "blender_run": {
+    "exit_code": 0,
+    "seconds": 5.5,
+    "problem_lines": [
+      "00:00.547  cycles           | WARNING HIPEW initialization failed: Error opening HIP dynamic library"
+    ]
+  },
+  "verification": {
+    "png": {
+      "bit_depth": 8,
+      "png_color_type": 6,
+      "interlace": 0,
+      "file_bytes": 559186,
+      "size_px": [
+        768,
+        566
+      ],
+      "opaque_pixels": 296509,
+      "partially_transparent_pixels": 7900,
+      "fully_transparent_pixels": 130279,
+      "content_bbox_px": [
+        36,
+        52,
+        731,
+        510
+      ],
+      "margins_px": {
+        "left": 36,
+        "right": 36,
+        "top": 52,
+        "bottom": 55
+      },
+      "max_alpha_on_image_border": 0.0
+    },
+    "bbox_deviation_px": [
+      0,
+      -1.18,
+      0,
+      -1.82
+    ],
+    "minimum_margin_required_px": 16,
+    "tiling": {
+      "solid_rows": 448,
+      "fringe_px_at_ends": 0,
+      "end_match_mean_rgb_diff": 1.067,
+      "end_match_max_rgb_diff": 11,
+      "shift_px": 662
+    },
+    "passed": true
+  },
+  "godot": {
+    "scene": "scenes/props/architecture/RedBrickArchWindow3m.tscn",
+    "scene_name": "RedBrickArchWindow3m",
+    "scene_semantic_sha256": "67918104caf1d95146b6d283de8b59a664c4a365ade21cbe96c3394edda0b8f9",
+    "sprite_offset_adjust_px": [
+      0.0,
+      0.0
+    ],
+    "layout": {
+      "render_px_per_m": 220.689655,
+      "game_px_per_m": 32.0,
+      "sprite_scale": 0.14500000011328126,
+      "sprite_offset_px": [
+        -384.0,
+        -485.8697045155382
+      ],
+      "origin_px": [
+        384.0,
+        485.8697045155382
+      ],
+      "sprite_rect_game_px": [
+        -55.6800000435,
+        -70.45110720979298,
+        111.360000087,
+        82.0700000641172
+      ],
+      "footprint_game_px": [
+        [
+          -48.0,
+          3.0853806495666474
+        ],
+        [
+          48.0,
+          3.0853806495666474
+        ],
+        [
+          48.0,
+          -3.085380649566656
+        ],
+        [
+          -48.0,
+          -3.085380649566656
+        ]
+      ],
+      "ground_depth_factor": 0.6427876353263855
+    },
+    "collision": {
+      "source": "design_footprint",
+      "depth_mode": "projected",
+      "layer": 1,
+      "mask": 0,
+      "shapes": [
+        {
+          "node": "Collision",
+          "resource_id": "RectangleShape2D_footprint",
+          "center": [
+            0.0,
+            -0.0
+          ],
+          "size": [
+            96.0,
+            6.170761299133301
+          ],
+          "metres": [
+            -1.5,
+            1.5,
+            -0.15,
+            0.15
+          ]
+        }
+      ],
+      "center": [
+        0.0,
+        -0.0
+      ],
+      "size": [
+        96.0,
+        6.170761299133301
+      ],
+      "metres": [
+        -1.5,
+        1.5,
+        -0.15,
+        0.15
+      ]
+    },
+    "preview_scene": "scenes/tests/asset_previews/RedBrickArchWindow3mPreview.tscn"
+  },
+  "godot_import": {
+    "already_imported": true
+  },
+  "godot_check": {
+    "scene": {
+      "exit_code": 0,
+      "problem_lines": []
+    },
+    "preview": {
+      "exit_code": 0,
+      "problem_lines": []
+    }
+  }
+}

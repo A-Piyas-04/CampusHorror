@@ -95,7 +95,8 @@ def main():
 
     lighting_info = rig.setup_lighting(scene, rig_coll, asset_coll)
     camera_info, projection = rig.setup_camera(
-        scene, rig_coll, bounds, render_cfg["elevation_deg"], render_cfg["azimuth_deg"], render_cfg["width_px"])
+        scene, rig_coll, bounds, render_cfg["elevation_deg"], render_cfg["azimuth_deg"], render_cfg["width_px"],
+        render_cfg.get("px_per_m"))
     render_info = rig.setup_render(scene, samples, opts["cpu"])
 
     for p in (out["blend"], out["png"], out["record"]):

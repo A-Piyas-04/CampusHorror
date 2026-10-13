@@ -1,0 +1,26 @@
+{
+  "asset_id": "red_brick_arch_window_3m",
+  "category": "architecture",
+  "generator": "red_brick_arch_window",
+  "description": "3.0 m red-brick wall module with a see-through pointed-arch window (0.80 m clear, sill at 0.80 m) with a brick sill and a dark steel grille. Same height as red_brick_wall_3m and identical ends, so it joins a wall run at 96 game px spacing. Proportions approximate; the grille is a design choice.",
+  "seed": 20261013,
+  "generator_params": {},
+  "render": {
+    "px_per_m": 220.689655,
+    "samples": 256,
+    "elevation_deg": 40.0,
+    "azimuth_deg": 0.0
+  },
+  "godot": {
+    "scene_name": "RedBrickArchWindow3m",
+    "z_index": 0,
+    "sprite_offset_adjust_px": [0.0, 0.0],
+    "preview_scene": true,
+    "preview_tile_x": true
+  },
+  "collision": {
+    "enabled": true,
+    "source": "design_footprint",
+    "depth_mode": "projected"
+  }
+}

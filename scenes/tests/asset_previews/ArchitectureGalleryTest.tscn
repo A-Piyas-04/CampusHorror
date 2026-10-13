@@ -1,0 +1,66 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scenes/tests/asset_previews/architecture_gallery_test.gd" id="1_script"]
+[ext_resource type="PackedScene" path="res://scenes/props/architecture/RedBrickWall3m.tscn" id="2_wall"]
+[ext_resource type="PackedScene" path="res://scenes/props/architecture/RedBrickArchDoorway3m.tscn" id="3_doorway"]
+[ext_resource type="PackedScene" path="res://scenes/props/architecture/RedBrickArchWindow3m.tscn" id="4_window"]
+[ext_resource type="PackedScene" path="res://scenes/props/architecture/RedBrickVerandaPier.tscn" id="5_pier"]
+
+[node name="ArchitectureGalleryTest" type="Node2D"]
+editor_description = "TEMPORARY Milestone G gallery: the first architecture batch beside RedBrickWall3m at gameplay scale (camera zoom 1, 32 px = 1 m). Run: Wall | Doorway | Wall | Window | Wall, origins 96 px apart (3.0 m modules); piers centred on joins and free ends. The script sweeps a player footprint across the run and prints [GALLERY] results. Not part of the game; safe to delete."
+y_sort_enabled = true
+script = ExtResource("1_script")
+
+[node name="Ground" type="Polygon2D" parent="."]
+editor_description = "TEMPORARY neutral ground."
+z_index = -10
+color = Color(0.42, 0.42, 0.39, 1)
+polygon = PackedVector2Array(-700, -400, 700, -400, 700, 300, -700, 300)
+
+[node name="Objects" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="WallWest" parent="Objects" instance=ExtResource("2_wall")]
+position = Vector2(-192, 0)
+
+[node name="Doorway" parent="Objects" instance=ExtResource("3_doorway")]
+position = Vector2(-96, 0)
+
+[node name="WallMiddle" parent="Objects" instance=ExtResource("2_wall")]
+
+[node name="Window" parent="Objects" instance=ExtResource("4_window")]
+position = Vector2(96, 0)
+
+[node name="WallEast" parent="Objects" instance=ExtResource("2_wall")]
+position = Vector2(192, 0)
+
+[node name="PierWestEnd" parent="Objects" instance=ExtResource("5_pier")]
+position = Vector2(-240, 0)
+
+[node name="PierDoorwayWest" parent="Objects" instance=ExtResource("5_pier")]
+position = Vector2(-144, 0)
+
+[node name="PierDoorwayEast" parent="Objects" instance=ExtResource("5_pier")]
+position = Vector2(-48, 0)
+
+[node name="PierEastEnd" parent="Objects" instance=ExtResource("5_pier")]
+position = Vector2(240, 0)
+
+[node name="PierStandalone" parent="Objects" instance=ExtResource("5_pier")]
+position = Vector2(330, 60)
+
+[node name="ScaleReferenceInDoorway" type="Polygon2D" parent="Objects"]
+editor_description = "Blue 32x64 player-sized reference (2 m), feet just south of the doorway line."
+position = Vector2(-96, 4)
+color = Color(0.2, 0.35, 0.8, 0.55)
+polygon = PackedVector2Array(-16, -64, 16, -64, 16, 0, -16, 0)
+
+[node name="ScaleReferenceByWindow" type="Polygon2D" parent="Objects"]
+editor_description = "Blue 32x64 player-sized reference (2 m) in front of the window module."
+position = Vector2(130, 24)
+color = Color(0.2, 0.35, 0.8, 0.55)
+polygon = PackedVector2Array(-16, -64, 16, -64, 16, 0, -16, 0)
+
+[node name="Camera" type="Camera2D" parent="."]
+editor_description = "TEMPORARY camera at gameplay zoom 1 (same as Player/Camera)."
+position = Vector2(40, -40)

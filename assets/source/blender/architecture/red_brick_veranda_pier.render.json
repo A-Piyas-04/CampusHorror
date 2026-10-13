@@ -1,0 +1,342 @@
+{
+  "pipeline": "campus_asset_pipeline",
+  "pipeline_version": 1,
+  "asset": "red_brick_veranda_pier",
+  "category": "architecture",
+  "description": "Square red-brick veranda pier, 0.49 x 0.49 m, 2.80 m with rowlock cap. Same bricks, plinth and coping heights as red_brick_wall_3m; stands centred on a wall-module join or free end. Proportions approximate (CDS arcade piers), not surveyed.",
+  "config": "assets/source/blender/configs/red_brick_veranda_pier.json",
+  "generator": "assets/source/blender/generators/red_brick_pier.py",
+  "generator_params": {
+    "brick_length": 0.24,
+    "brick_height": 0.07,
+    "brick_depth": 0.11,
+    "joint": 0.01,
+    "joint_recess": 0.01,
+    "plinth_courses": 3,
+    "plinth_projection": 0.02,
+    "oversail_projection": 0.025,
+    "bevel_width": 0.004,
+    "body_courses": 33,
+    "cap_projection": 0.04,
+    "cap_height": 0.16,
+    "cap_units": 7
+  },
+  "random_seed": 20261013,
+  "blender_version": "5.2.2 LTS",
+  "outputs": {
+    "blend": "assets/source/blender/architecture/red_brick_veranda_pier.blend",
+    "record": "assets/source/blender/architecture/red_brick_veranda_pier.render.json",
+    "png": "assets/sprites/architecture/red_brick_veranda_pier.png",
+    "scene": "scenes/props/architecture/RedBrickVerandaPier.tscn",
+    "preview": "scenes/tests/asset_previews/RedBrickVerandaPierPreview.tscn"
+  },
+  "origin": "ground-footprint origin at z = 0 (Blender world origin); front faces -Y",
+  "footprint_m": {
+    "x_min": -0.245,
+    "x_max": 0.245,
+    "y_min": -0.245,
+    "y_max": 0.245
+  },
+  "model": {
+    "design_size_m": {
+      "width_x": 0.49,
+      "depth_y": 0.49,
+      "height_z": 2.8
+    },
+    "bond": "square pier, two brick lengths per face; courses alternate direction (bonded corners)",
+    "modeled_brick_boxes": 205,
+    "materials": [
+      "BrickRed",
+      "Mortar"
+    ],
+    "connection_point": "origin = footprint centre; stand it centred on a RedBrickWall3m join or free end (x = k * 96 game px in a run); it is 0.49 m deep vs the wall's 0.30 m",
+    "reference": "Docs/map-reference/area1/cds-building*.png (piers between arches; dimensions approximate)",
+    "objects": [
+      {
+        "object": "RedBrickPier",
+        "evaluated_bounds_m": {
+          "x": 0.5588,
+          "y": 0.5712,
+          "z": 2.7996
+        },
+        "evaluated_faces": 11286
+      }
+    ]
+  },
+  "camera": {
+    "type": "ORTHO",
+    "elevation_deg": 40.0,
+    "azimuth_deg": 0.0,
+    "rotation_euler_deg": [
+      50.0,
+      0.0,
+      0.0
+    ],
+    "location_m": [
+      0.0,
+      -16.1775,
+      14.9745
+    ],
+    "ortho_scale_m": 0.969688,
+    "sensor_fit": "HORIZONTAL",
+    "content_extent_m": [
+      0.57,
+      2.5113
+    ],
+    "margin_m_each_side": 0.2009,
+    "pixels_per_metre_on_screen": 220.689655
+  },
+  "lighting": {
+    "sun_elevation_deg": 55.0,
+    "sun_azimuth_deg_from_front": -35.0,
+    "sun_direction_to_light": [
+      -0.329,
+      -0.4698,
+      0.8192
+    ],
+    "sun_strength": 3.2,
+    "sun_angle_deg": 3.0,
+    "fill_lights_linked_to_asset_only": [
+      {
+        "name": "SkyFill",
+        "elevation_deg": 70.0,
+        "azimuth_deg_from_front": 20.0,
+        "strength": 0.8,
+        "angle_deg": 90.0,
+        "color": [
+          0.75,
+          0.85,
+          1.0
+        ]
+      },
+      {
+        "name": "GroundBounce",
+        "elevation_deg": -25.0,
+        "azimuth_deg_from_front": 10.0,
+        "strength": 0.35,
+        "angle_deg": 90.0,
+        "color": [
+          1.0,
+          0.8,
+          0.65
+        ]
+      }
+    ],
+    "world_light": "none (strength 0)",
+    "ground": "none (no shadow catcher; no cast shadow baked into the PNG)"
+  },
+  "render": {
+    "engine": "CYCLES",
+    "device": "GPU (OPTIX: NVIDIA GeForce RTX 3050 Laptop GPU)",
+    "samples": 256,
+    "adaptive_sampling": true,
+    "denoiser": "compositor OIDN on colour only (albedo + normal guides); raw render alpha kept",
+    "max_bounces": 6,
+    "film_transparent": true,
+    "filter_size_px": 1.5,
+    "view_transform": "Standard",
+    "output_format": "PNG RGBA 8-bit",
+    "resolution_px": [
+      214,
+      642
+    ],
+    "render_seconds": 1.8
+  },
+  "projection": {
+    "note": "texture px, top-left origin: x = W/2 + (p.right - cx)*ppm, y = H/2 - (p.up - cy)*ppm",
+    "image_px": [
+      214,
+      642
+    ],
+    "px_per_m": 220.689655,
+    "right": [
+      1.0,
+      0.0,
+      0.0
+    ],
+    "up": [
+      0.0,
+      0.6427876353263855,
+      0.7660444378852844
+    ],
+    "center_m": [
+      0.0,
+      1.0724622011184692
+    ],
+    "origin_px": [
+      107.0,
+      557.6813131653755
+    ],
+    "footprint_corners_px": [
+      [
+        52.931034525,
+        592.4361756275948
+      ],
+      [
+        161.068965475,
+        592.4361756275948
+      ],
+      [
+        161.068965475,
+        522.9264507031563
+      ],
+      [
+        52.931034525,
+        522.9264507031563
+      ]
+    ],
+    "design_bounds_bbox_px": [
+      44.10344911424772,
+      43.88956442025221,
+      169.89655088575228,
+      598.110438379414
+    ]
+  },
+  "tiling": null,
+  "total_seconds": 2.0,
+  "blender_run": {
+    "exit_code": 0,
+    "seconds": 2.9,
+    "problem_lines": [
+      "00:00.594  cycles           | WARNING HIPEW initialization failed: Error opening HIP dynamic library"
+    ]
+  },
+  "verification": {
+    "png": {
+      "bit_depth": 8,
+      "png_color_type": 6,
+      "interlace": 0,
+      "file_bytes": 138753,
+      "size_px": [
+        214,
+        642
+      ],
+      "opaque_pixels": 60752,
+      "partially_transparent_pixels": 2944,
+      "fully_transparent_pixels": 73692,
+      "content_bbox_px": [
+        44,
+        43,
+        169,
+        596
+      ],
+      "margins_px": {
+        "left": 44,
+        "right": 44,
+        "top": 43,
+        "bottom": 45
+      },
+      "max_alpha_on_image_border": 0.0
+    },
+    "bbox_deviation_px": [
+      -0.1,
+      -0.89,
+      0.1,
+      -1.11
+    ],
+    "minimum_margin_required_px": 16,
+    "tiling": null,
+    "passed": true
+  },
+  "godot": {
+    "scene": "scenes/props/architecture/RedBrickVerandaPier.tscn",
+    "scene_name": "RedBrickVerandaPier",
+    "scene_semantic_sha256": "ddfb46e3208486565b1f963604a2701e97cbf0ee76c6edc93111e0577b9c0d0b",
+    "sprite_offset_adjust_px": [
+      0.0,
+      0.0
+    ],
+    "layout": {
+      "render_px_per_m": 220.689655,
+      "game_px_per_m": 32.0,
+      "sprite_scale": 0.14500000011328126,
+      "sprite_offset_px": [
+        -107.0,
+        -557.6813131653755
+      ],
+      "origin_px": [
+        107.0,
+        557.6813131653755
+      ],
+      "sprite_rect_game_px": [
+        -15.515000012121096,
+        -80.86379047215429,
+        31.03000002424219,
+        93.09000007272657
+      ],
+      "footprint_game_px": [
+        [
+          -7.840000000000001,
+          5.039455060958875
+        ],
+        [
+          7.840000000000001,
+          5.039455060958875
+        ],
+        [
+          7.840000000000001,
+          -5.039455060958858
+        ],
+        [
+          -7.840000000000001,
+          -5.039455060958858
+        ]
+      ],
+      "ground_depth_factor": 0.6427876353263855
+    },
+    "collision": {
+      "source": "design_footprint",
+      "depth_mode": "projected",
+      "layer": 1,
+      "mask": 0,
+      "shapes": [
+        {
+          "node": "Collision",
+          "resource_id": "RectangleShape2D_footprint",
+          "center": [
+            0.0,
+            -0.0
+          ],
+          "size": [
+            15.68,
+            10.078910121917724
+          ],
+          "metres": [
+            -0.245,
+            0.245,
+            -0.245,
+            0.245
+          ]
+        }
+      ],
+      "center": [
+        0.0,
+        -0.0
+      ],
+      "size": [
+        15.68,
+        10.078910121917724
+      ],
+      "metres": [
+        -0.245,
+        0.245,
+        -0.245,
+        0.245
+      ]
+    },
+    "preview_scene": "scenes/tests/asset_previews/RedBrickVerandaPierPreview.tscn"
+  },
+  "godot_import": {
+    "already_imported": true
+  },
+  "godot_check": {
+    "scene": {
+      "exit_code": 0,
+      "problem_lines": []
+    },
+    "preview": {
+      "exit_code": 0,
+      "problem_lines": []
+    }
+  }
+}

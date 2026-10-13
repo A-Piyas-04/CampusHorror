@@ -81,8 +81,11 @@ def setup_lighting(scene, rig_collection, asset_collection):
     }
 
 
-def setup_camera(scene, collection, bounds_points, elevation, azimuth, width_px):
+def setup_camera(scene, collection, bounds_points, elevation, azimuth, width_px, px_per_m=None):
     """Orthographic camera framing `bounds_points` with the shared margin.
+
+    With `px_per_m` the render scale is fixed instead of `width_px`: the width becomes the
+    framed extent at that scale, so assets of different sizes share one texel density.
 
     Returns (camera_info, projection). `projection` maps a world point to texture
     pixels (top-left origin): x = W/2 + (p.right - cx) * ppm, y = H/2 - (p.up - cy) * ppm.
@@ -108,6 +111,9 @@ def setup_camera(scene, collection, bounds_points, elevation, azimuth, width_px)
     cx, cy = (max(xs) + min(xs)) / 2.0, (max(ys) + min(ys)) / 2.0
     margin = C.FRAME_MARGIN_FRACTION * max(w, h)
     frame_w, frame_h = w + 2 * margin, h + 2 * margin
+    if px_per_m:
+        width_px = int(round(frame_w * px_per_m))
+        frame_w = width_px / px_per_m
 
     cam.location = right * cx + up * cy + forward * (min(fs) - 20.0)
     cam_data.ortho_scale = frame_w

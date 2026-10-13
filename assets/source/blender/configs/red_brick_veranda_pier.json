@@ -1,0 +1,26 @@
+{
+  "asset_id": "red_brick_veranda_pier",
+  "category": "architecture",
+  "generator": "red_brick_pier",
+  "description": "Square red-brick veranda pier, 0.49 x 0.49 m, 2.80 m with rowlock cap. Same bricks, plinth and coping heights as red_brick_wall_3m; stands centred on a wall-module join or free end. Proportions approximate (CDS arcade piers), not surveyed.",
+  "seed": 20261013,
+  "generator_params": {},
+  "render": {
+    "px_per_m": 220.689655,
+    "samples": 256,
+    "elevation_deg": 40.0,
+    "azimuth_deg": 0.0
+  },
+  "godot": {
+    "scene_name": "RedBrickVerandaPier",
+    "z_index": 0,
+    "sprite_offset_adjust_px": [0.0, 0.0],
+    "preview_scene": true,
+    "preview_tile_x": false
+  },
+  "collision": {
+    "enabled": true,
+    "source": "design_footprint",
+    "depth_mode": "projected"
+  }
+}

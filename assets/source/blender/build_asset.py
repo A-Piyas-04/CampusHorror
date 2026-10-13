@@ -183,9 +183,14 @@ def check_tiling(png_path, tiling, rep):
     end_l, end_r = tiling["footprint_end_columns_px"]
     bleed = tiling["bleed_px"]
     period = tiling["period_px"]
-    # Rows that are solid wall across the whole module (skips the silhouette's top/bottom edges).
+    # Rows that are solid wall across both end strips (skips the silhouette's top/bottom edges).
+    # Only the ends are sampled, so a module with an opening in its middle (doorway) still has rows.
     lo, hi = math.floor(end_l - bleed / 2), math.ceil(end_r + bleed / 2)
-    solid = [r for r in rows if all(r[x * 4 + 3] == 255 for x in range(lo, hi, 4))]
+    strip = math.ceil(bleed / 2 + period / 6)
+    sampled = list(range(lo, lo + strip, 4)) + list(range(hi - strip, hi, 4)) + [hi - 1]
+    ok = [all(r[x * 4 + 3] == 255 for x in sampled) for r in rows]
+    # Rows next to a non-solid row are silhouette edges (coping joints), not part of a join.
+    solid = [r for y, r in enumerate(rows) if 0 < y < len(rows) - 1 and ok[y - 1] and ok[y] and ok[y + 1]]
     rep.check(len(solid) >= 10, f"{len(solid)} solid wall rows found for the join checks")
     edge_cols = list(range(lo, math.ceil(end_l + bleed / 2))) + list(range(math.floor(end_r - bleed / 2), hi))
     fringe = sum(1 for r in solid for x in edge_cols if r[x * 4 + 3] != 255)

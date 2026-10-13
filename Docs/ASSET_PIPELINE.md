@@ -2,7 +2,7 @@
 
 Snapshot: 13 October 2026 • Milestone G Part 2
 
-Turns a Python asset generator into a validated transparent sprite plus a reusable Godot scene. Validated on one asset only: the red-brick wall (`red_brick_wall_3m`). The first version regenerated the approved `red_brick_wall_grid_test` render pixel-for-pixel. The current version is a seamless tiling module (see "Seamless horizontal modules"), so its bricks differ from that test. The wall is a **pipeline proof**, not approval of final artwork. Camera, light and scale values are the approved test values; `Docs/ART_STYLE.md` still lists the exact angle, resolution and world scale as undecided.
+Turns a Python asset generator into a validated transparent sprite plus a reusable Godot scene. Validated on the red-brick wall (`red_brick_wall_3m`) and the first architecture batch (doorway, window, pier; see "First architecture batch"). The first version regenerated the approved `red_brick_wall_grid_test` render pixel-for-pixel. The current version is a seamless tiling module (see "Seamless horizontal modules"), so its bricks differ from that test. The wall is a **pipeline proof**, not approval of final artwork. Camera, light and scale values are the approved test values; `Docs/ART_STYLE.md` still lists the exact angle, resolution and world scale as undecided.
 
 ## One command
 
@@ -33,6 +33,7 @@ assets/source/blender/
 ├── build_asset.py              host command (the only entry point you need)
 ├── configs/<asset_id>.json     one config per asset: generator, seed, params, Godot + collision settings
 ├── generators/<family>.py      modeling + materials only (no camera/light/render/export code)
+├── generators/brick_openings.py  helpers shared by the doorway and window generators (not a generator)
 ├── pipeline/                   shared code
 │   ├── conventions.py          camera 40°/0°, sun, fills, margins, 32 game px/m, thresholds, exe paths
 │   ├── assetconfig.py          config loading, output naming, protected files, ownership checks
@@ -56,7 +57,7 @@ Output paths are derived only from `asset_id`, `category` and `godot.scene_name`
 ## Coordinate and scale conventions
 
 - Blender: metres, Z up, the visible front faces −Y, **asset origin = ground-footprint origin at z = 0** (for the wall: centre of the footprint).
-- Camera: orthographic, elevation 40°, azimuth 0°, frames the generator's `bounds_points_m` plus an 8 % margin, width 768 px → the render scale (px/m) follows from the asset size (wall: 220.69 px/m). No ground plane, no shadow catcher, **no baked ground shadow**.
+- Camera: orthographic, elevation 40°, azimuth 0°, frames the generator's `bounds_points_m` plus an 8 % margin, width 768 px → the render scale (px/m) follows from the asset size (wall: 220.69 px/m). With `"render": {"px_per_m": 220.689655}` in a config the scale is fixed instead and the image width follows from the asset size; the batch assets use this so every module has the wall's texel density. No ground plane, no shadow catcher, **no baked ground shadow**.
 - Projection (stored in the record): texture px `x = W/2 + (p·right − cx)·ppm`, `y = H/2 − (p·up − cy)·ppm`.
 - Godot: `Sprite2D` with `centered = false`, `offset = −origin_px`, uniform `scale = 32 / render px-per-metre`. The scene root's origin is exactly the Blender origin, so Y-sorting uses the ground footprint (Docs/CONVENTIONS.md §3–4). The root transform stays identity; place instances by moving the root.
 - Ground depth on screen is foreshortened by the camera (`sin 40° = 0.643`): a 0.30 m deep footprint is 6.17 game px tall, 3.0 m long is 96 game px.
@@ -68,6 +69,7 @@ RedBrickWall3m (Node2D)        metadata asset_id / generated_by; origin = footpr
 ├── Sprite (Sprite2D)          light mask 2 (§10), texture filter linear + mipmaps
 └── Body (StaticBody2D)        only if collision is enabled; layer 1 "world", mask 0
     └── Collision (CollisionShape2D, RectangleShape2D)
+                               with collision.rects_m: one Collision<Name> per rectangle instead
 ```
 
 ## Seamless horizontal modules (tiling)
@@ -78,7 +80,7 @@ The shared pipeline then:
 
 1. Renders the module between camera-visible copies of itself at ±period. The ends get the shadows, occlusion and bounce of a continuous run, so no lit end face is rendered.
 2. Keeps `tile_bleed_px` (default 16) texels of that neighbour continuation past each footprint end, and clears everything else to transparent (`kept_columns_px` in the record). Two modules placed one period apart overlap only in the bleed, with matching pixels. At the join, each sprite is fully opaque, so mipmapped and linear sampling show no alpha fringe or background.
-3. Validates the join: no non-opaque pixel in solid wall rows from `bleed/2` outside to inside each end; the bleed past one end matches the texels inside the other end (mean RGB difference ≤ 3); nothing outside the kept columns.
+3. Validates the join: no non-opaque pixel in solid wall rows from `bleed/2` outside to inside each end; the bleed past one end matches the texels inside the other end (mean RGB difference ≤ 3); nothing outside the kept columns. "Solid rows" are rows that are opaque across both end strips (`bleed/2` + one sixth of the period at each end) and whose neighbour rows are too, so a module with an opening in its middle (the doorway) is checked the same way and silhouette edge rows are skipped.
 
 Placement is unchanged: same scale, same origin, instances exactly one footprint length apart (96 px for the wall). Don't move sprites to hide joins.
 
@@ -92,7 +94,7 @@ Collision is never derived from the sprite's alpha. It is off unless the config 
 "collision": { "enabled": true, "source": "design_footprint", "depth_mode": "projected" }
 ```
 
-- `source`: `design_footprint` (the generator's declared ground footprint) or `rect_m` with `"rect_m": [x_min, x_max, y_min, y_max]` in metres.
+- `source`: `design_footprint` (the generator's declared ground footprint), `rect_m` with `"rect_m": [x_min, x_max, y_min, y_max]` in metres, or `rects_m` with named rectangles, e.g. the doorway's `"rects_m": {"WestJamb": [-1.5, -0.7, -0.15, 0.15], "EastJamb": [0.7, 1.5, -0.15, 0.15]}` → nodes `Body/CollisionWestJamb` and `Body/CollisionEastJamb`, nothing across the opening.
 - `depth_mode`: `projected` (matches the drawn footprint, ×0.643) or `top_down` (metres × 32 unchanged).
 - Rectangles only, and only for azimuth 0. `--no-collision` skips the stage for one run.
 
@@ -144,6 +146,24 @@ python assets/source/blender/build_asset.py --all --steps validate,scene,preview
 ```
 
 Each asset is about 6 s of Blender (RTX 3050, OptiX, 256 samples) plus about 3 s of Godot checks.
+
+## First architecture batch (13 October 2026)
+
+```powershell
+python assets/source/blender/build_asset.py red_brick_arch_doorway_3m red_brick_arch_window_3m red_brick_veranda_pier
+```
+
+| Asset (config) | Generator | Scene | Size | Collision |
+|---|---|---|---|---|
+| `red_brick_arch_doorway_3m` | `red_brick_arch_doorway` | `RedBrickArchDoorway3m` | 3.0 × 0.30 m; 2.40 m at the ends, 3.36 m parapet; opening 1.40 m clear, apex 2.81 m, open to the ground | `rects_m`: two jambs (25.6 px each), 44.8 px opening free |
+| `red_brick_arch_window_3m` | `red_brick_arch_window` | `RedBrickArchWindow3m` | 3.0 × 0.30 × 2.40 m; window 0.80 m clear, sill 0.80 m, apex 2.05 m, steel grille | full footprint |
+| `red_brick_veranda_pier` | `red_brick_pier` | `RedBrickVerandaPier` | 0.49 × 0.49 × 2.80 m | full footprint (15.7 × 10.1 px) |
+
+- All three use the wall's camera, lights, bricks, mortar and bevel (`_brick_material`, `_mortar_material`, `DEFAULT_PARAMS` imported from `red_brick_wall.py`) and `render.px_per_m` 220.689655, so the sprite scale is 0.145 like the wall.
+- **Joining the wall.** The doorway and window are 3.0 m wall modules: they lay their courses and coping with the wall generator's own code, the wall's seed (20261013) and the same RNG order, so for |x| ≥ 1.0 m they are brick-for-brick the wall. Only bricks inside |x| < 1.0 m are clipped around the opening (wedge pieces follow the arch) and recoloured from `interior_seed`. Place them in a `RedBrickWall3m` run at 96 px spacing, like another wall module. Measured on the PNGs at the join columns (±8 px at both ends) against `red_brick_wall_3m.png`: window mean RGB difference 0.80, doorway 2.19 (it sits 0.148 px off the wall's pixel grid; resampling alone gives 1.00), brightness offset under 1/255.
+- **Pier.** Origin at the footprint centre; stand it centred on a wall join or free end (x = k · 96 px in a run). It covers the join and the free-end bleed. Its origin Y equals the wall's, so give it a later tree position than the walls to draw on top.
+- `generators/brick_openings.py`: clipping wrapper for the wall's course code, equilateral pointed arch (radius = clear span) with radial voussoirs and keystone, jamb returns, mortar core per course. `BoxBuilder.add_prism_xz` builds the wedge pieces; `bevel=False` pieces (the mortar strips) get no bevel.
+- Gallery (TEMPORARY): `scenes/tests/asset_previews/ArchitectureGalleryTest.tscn` (zoom 1) with `architecture_gallery_test.gd`, which sweeps the player's 28 × 12 px footprint across the run and prints `[GALLERY]` results (doorway passes, wall / window / pier / jamb block).
 
 ## What still needs eyes
 
