@@ -1,0 +1,36 @@
+[gd_scene load_steps=2 format=3 uid="uid://uydwtl1ei0by"]
+
+[ext_resource type="Texture2D" uid="uid://btmqh82pos0mc" path="res://assets/sprites/architecture/red_brick_wall_angle_test.png" id="1_wall"]
+
+[node name="WallAssetPreview" type="Node2D" unique_id=150665534]
+editor_description = "TEMPORARY Milestone G asset-integration test. Not part of the game; safe to delete."
+
+[node name="Ground" type="Polygon2D" parent="." unique_id=3685650]
+editor_description = "TEMPORARY neutral ground for the wall asset preview."
+z_index = -10
+color = Color(0.42, 0.42, 0.39, 1)
+polygon = PackedVector2Array(-800, -500, 800, -500, 800, 500, -800, 500)
+
+[node name="ScaleReference" type="Polygon2D" parent="." unique_id=47447035]
+editor_description = "TEMPORARY player-sized reference (32x64 px, feet at origin) matching the Player placeholder body."
+position = Vector2(-90, 0)
+color = Color(0.2, 0.35, 0.8, 1)
+polygon = PackedVector2Array(-16, -64, 16, -64, 16, 0, -16, 0)
+
+[node name="RedBrickWall" type="Sprite2D" parent="." unique_id=2135963591]
+editor_description = "TEMPORARY wall asset preview. Origin = centre of the wall's ground footprint (Blender origin, z = 0). Offset (0, -206.4) texture px moves that point (texture px 384, 565.4) onto the node origin. Scale 0.142537 = 32 px/m game scale / 224.5 px/m render scale."
+texture_filter = 4
+scale = Vector2(0.142537, 0.142537)
+texture = ExtResource("1_wall")
+offset = Vector2(0, -206.4)
+
+[node name="FootprintGuide" type="Line2D" parent="RedBrickWall" unique_id=1862562939]
+editor_description = "TEMPORARY debug outline of the 3.0 x 0.3 m footprint projected through the Blender camera, in texture pixels relative to the origin. Not collision."
+points = PackedVector2Array(-304.9, 94.4, 328, -53.7, 304.9, -94.4, -328, 53.7)
+closed = true
+width = 7.0
+default_color = Color(1, 0.2, 0.2, 0.8)
+
+[node name="Camera" type="Camera2D" parent="." unique_id=1014044131]
+editor_description = "TEMPORARY preview camera at zoom 1 (same as Player/Camera)."
+position = Vector2(0, -20)
