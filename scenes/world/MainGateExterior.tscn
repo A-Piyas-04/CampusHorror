@@ -15,6 +15,12 @@
 [ext_resource type="PackedScene" path="res://scenes/props/landmarks/MainGateTower.tscn" id="13_gate_tower"]
 [ext_resource type="PackedScene" path="res://scenes/props/landmarks/MainGateLeaves.tscn" id="14_gate_leaves"]
 [ext_resource type="PackedScene" path="res://scenes/props/landmarks/MainGatePavilion.tscn" id="15_gate_pavilion"]
+[ext_resource type="PackedScene" path="res://scenes/props/landmarks/CdsCanteen.tscn" id="16_cds_canteen"]
+[ext_resource type="PackedScene" path="res://scenes/props/landmarks/CdsTableTennis.tscn" id="17_cds_table_tennis"]
+[ext_resource type="PackedScene" path="res://scenes/props/landmarks/CdsIndoorBasketball.tscn" id="18_cds_hall"]
+[ext_resource type="PackedScene" path="res://scenes/props/street_furniture/FlagPoleBangladesh.tscn" id="19_flag_bd"]
+[ext_resource type="PackedScene" path="res://scenes/props/street_furniture/FlagPoleWhite.tscn" id="20_flag_white"]
+[ext_resource type="PackedScene" path="res://scenes/props/street_furniture/LampPost.tscn" id="21_lamp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_south_wall_run"]
 size = Vector2(3552, 10.07891)
@@ -30,6 +36,33 @@ polygon = PackedVector2Array(-360, -140, -172, -140, -172, -131.6, -76.16, -131.
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_main_gate_east"]
 polygon = PackedVector2Array(76.16, -131.6, 140, -131.6, 140, 0, 76.16, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cds_canteen_mass"]
+size = Vector2(450, 550)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cds_canteen_veranda"]
+size = Vector2(70, 550)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_cds_canteen"]
+polygon = PackedVector2Array(-295, -550, 225, -550, 225, 0, -295, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cds_table_tennis_mass"]
+size = Vector2(450, 450)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cds_table_tennis_veranda"]
+size = Vector2(70, 450)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_cds_table_tennis"]
+polygon = PackedVector2Array(-295, -450, 225, -450, 225, 0, -295, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cds_hall_mass"]
+size = Vector2(450, 700)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cds_hall_veranda"]
+size = Vector2(70, 700)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_cds_hall"]
+polygon = PackedVector2Array(-295, -700, 225, -700, 225, 0, -295, 0)
 
 [node name="MainGateExterior" type="Node2D"]
 y_sort_enabled = true
@@ -391,7 +424,7 @@ position = Vector2(0, -440)
 spawn_id = "main_gate_entry"
 
 [node name="CDSExterior" type="Node2D" parent="Objects/Buildings"]
-editor_description = "Logical landmark root: move this node to move the whole CDS block (all sections, entrance forecourt, door, spawn and canopy)."
+editor_description = "Logical landmark root: move this node to move the whole CDS block (all sections, entrance forecourt, door, spawn, flagpoles and lamp). Production art since Milestone G Batch 4: each section node instances its generated CDS prop at (0, 0) (sprites only, no collision) and owns a Collision body (Mass + Veranda rectangles, exactly the former blockout footprints) and a ShadowOccluder. Long sections are sliced into Y-sorted layers inside the prop scenes; CdsCanteen fades its north slice when the player is behind it. Source: assets/source/blender/configs/cds_*.json."
 y_sort_enabled = true
 position = Vector2(1775, 0)
 
@@ -399,56 +432,76 @@ position = Vector2(1775, 0)
 y_sort_enabled = true
 position = Vector2(0, -450)
 
-[node name="Mass" parent="Objects/Buildings/CDSExterior/Canteen" instance=ExtResource("4_block")]
-footprint_size = Vector2(450, 550)
-wall_height = 110.0
+[node name="CdsCanteen" parent="Objects/Buildings/CDSExterior/Canteen" instance=ExtResource("16_cds_canteen")]
 
-[node name="Label" type="Label" parent="Objects/Buildings/CDSExterior/Canteen/Mass"]
-offset_left = -200.0
-offset_top = -420.0
-offset_right = 200.0
-offset_bottom = -380.0
-theme_override_colors/font_color = Color(1, 1, 1, 0.85)
-theme_override_font_sizes/font_size = 24
-text = "CDS: CANTEEN (future)"
-horizontal_alignment = 1
+[node name="Collision" type="StaticBody2D" parent="Objects/Buildings/CDSExterior/Canteen"]
+collision_mask = 0
 
-[node name="Veranda" parent="Objects/Buildings/CDSExterior/Canteen" instance=ExtResource("4_block")]
-position = Vector2(-260, 0)
-footprint_size = Vector2(70, 550)
-wall_height = 80.0
-wall_color = Color(0.7, 0.36, 0.26, 1)
-roof_color = Color(0.52, 0.47, 0.42, 1)
+[node name="Mass" type="CollisionShape2D" parent="Objects/Buildings/CDSExterior/Canteen/Collision"]
+position = Vector2(0, -275)
+shape = SubResource("RectangleShape2D_cds_canteen_mass")
+
+[node name="Veranda" type="CollisionShape2D" parent="Objects/Buildings/CDSExterior/Canteen/Collision"]
+position = Vector2(-260, -275)
+shape = SubResource("RectangleShape2D_cds_canteen_veranda")
+
+[node name="ShadowOccluder" type="LightOccluder2D" parent="Objects/Buildings/CDSExterior/Canteen"]
+occluder = SubResource("OccluderPolygon2D_cds_canteen")
+
+[node name="ContactShadowWest" parent="Objects/Buildings/CDSExterior/Canteen" instance=ExtResource("10_shadow")]
+position = Vector2(-295, -275)
+scale = Vector2(0.7, 8.6)
+
+[node name="ContactShadowEast" parent="Objects/Buildings/CDSExterior/Canteen" instance=ExtResource("10_shadow")]
+position = Vector2(225, -275)
+scale = Vector2(0.7, 8.6)
+
+[node name="FlagPoleBangladesh" parent="Objects/Buildings/CDSExterior/Canteen" instance=ExtResource("19_flag_bd")]
+position = Vector2(-349, -32)
+
+[node name="ContactShadow" parent="Objects/Buildings/CDSExterior/Canteen/FlagPoleBangladesh" instance=ExtResource("10_shadow")]
+scale = Vector2(0.35, 0.16)
+
+[node name="FlagPoleWhite" parent="Objects/Buildings/CDSExterior/Canteen" instance=ExtResource("20_flag_white")]
+position = Vector2(-349, -66)
+
+[node name="ContactShadow" parent="Objects/Buildings/CDSExterior/Canteen/FlagPoleWhite" instance=ExtResource("10_shadow")]
+scale = Vector2(0.35, 0.16)
 
 [node name="TableTennis" type="Node2D" parent="Objects/Buildings/CDSExterior"]
 y_sort_enabled = true
 
-[node name="Mass" parent="Objects/Buildings/CDSExterior/TableTennis" instance=ExtResource("4_block")]
-footprint_size = Vector2(450, 450)
-wall_height = 110.0
+[node name="CdsTableTennis" parent="Objects/Buildings/CDSExterior/TableTennis" instance=ExtResource("17_cds_table_tennis")]
 
-[node name="Label" type="Label" parent="Objects/Buildings/CDSExterior/TableTennis/Mass"]
-offset_left = -200.0
-offset_top = -360.0
-offset_right = 200.0
-offset_bottom = -320.0
-theme_override_colors/font_color = Color(1, 1, 1, 0.85)
-theme_override_font_sizes/font_size = 24
-text = "CDS: TABLE TENNIS (future)"
-horizontal_alignment = 1
+[node name="Collision" type="StaticBody2D" parent="Objects/Buildings/CDSExterior/TableTennis"]
+collision_mask = 0
 
-[node name="Veranda" parent="Objects/Buildings/CDSExterior/TableTennis" instance=ExtResource("4_block")]
-position = Vector2(-260, 0)
-footprint_size = Vector2(70, 450)
-wall_height = 80.0
-wall_color = Color(0.7, 0.36, 0.26, 1)
-roof_color = Color(0.52, 0.47, 0.42, 1)
+[node name="Mass" type="CollisionShape2D" parent="Objects/Buildings/CDSExterior/TableTennis/Collision"]
+position = Vector2(0, -225)
+shape = SubResource("RectangleShape2D_cds_table_tennis_mass")
 
-[node name="Forecourt" type="Polygon2D" parent="Objects/Buildings/CDSExterior/TableTennis" groups=["blockout_placeholder"]]
-editor_description = "BLOCKOUT PLACEHOLDER: CDS entrance forecourt paving, moves with CDS. Replace with production art."
+[node name="Veranda" type="CollisionShape2D" parent="Objects/Buildings/CDSExterior/TableTennis/Collision"]
+position = Vector2(-260, -225)
+shape = SubResource("RectangleShape2D_cds_table_tennis_veranda")
+
+[node name="ShadowOccluder" type="LightOccluder2D" parent="Objects/Buildings/CDSExterior/TableTennis"]
+occluder = SubResource("OccluderPolygon2D_cds_table_tennis")
+
+[node name="Forecourt" type="Polygon2D" parent="Objects/Buildings/CDSExterior/TableTennis"]
+editor_description = "CDS entrance forecourt paving (red paved walkway texture, aligned to the world 64 px grid: texture_offset = this node's global position mod 64). Moves with CDS; if CDSExterior moves, update texture_offset."
 z_index = -9
-color = Color(0.66, 0.45, 0.38, 1)
+texture_repeat = 2
+texture = ExtResource("8_walkway")
+texture_offset = Vector2(47, 0)
 polygon = PackedVector2Array(-415, -330, -295, -330, -295, -110, -415, -110)
+
+[node name="ContactShadowWest" parent="Objects/Buildings/CDSExterior/TableTennis" instance=ExtResource("10_shadow")]
+position = Vector2(-295, -225)
+scale = Vector2(0.7, 7)
+
+[node name="ContactShadowEast" parent="Objects/Buildings/CDSExterior/TableTennis" instance=ExtResource("10_shadow")]
+position = Vector2(225, -225)
+scale = Vector2(0.7, 7)
 
 [node name="DoorCdsMainEntry" parent="Objects/Buildings/CDSExterior/TableTennis" instance=ExtResource("3_door")]
 position = Vector2(-323, -200)
@@ -460,40 +513,43 @@ prompt_text = "Press E to enter the CDS veranda"
 position = Vector2(-395, -200)
 spawn_id = "outside_cds_entrance"
 
-[node name="Overhead" type="Node2D" parent="Objects/Buildings/CDSExterior/TableTennis" groups=["blockout_placeholder"]]
-editor_description = "BLOCKOUT PLACEHOLDER: CDS entrance canopy drawn over the player (z_index 10). Replace with production art."
-z_index = 10
+[node name="LampForecourt" parent="Objects/Buildings/CDSExterior/TableTennis" instance=ExtResource("21_lamp")]
+position = Vector2(-419, -326)
 
-[node name="EntranceCanopy" type="Polygon2D" parent="Objects/Buildings/CDSExterior/TableTennis/Overhead"]
-color = Color(0.52, 0.47, 0.42, 0.9)
-polygon = PackedVector2Array(-375, -380, -295, -380, -295, -268, -375, -268)
+[node name="ContactShadow" parent="Objects/Buildings/CDSExterior/TableTennis/LampForecourt" instance=ExtResource("10_shadow")]
+scale = Vector2(0.4, 0.18)
 
 [node name="IndoorBasketball" type="Node2D" parent="Objects/Buildings/CDSExterior"]
 y_sort_enabled = true
 position = Vector2(0, 700)
 
-[node name="Mass" parent="Objects/Buildings/CDSExterior/IndoorBasketball" instance=ExtResource("4_block")]
-footprint_size = Vector2(450, 700)
-wall_height = 170.0
-arch_count = 5
+[node name="CdsIndoorBasketball" parent="Objects/Buildings/CDSExterior/IndoorBasketball" instance=ExtResource("18_cds_hall")]
 
-[node name="Label" type="Label" parent="Objects/Buildings/CDSExterior/IndoorBasketball/Mass"]
-offset_left = -200.0
-offset_top = -560.0
-offset_right = 200.0
-offset_bottom = -520.0
-theme_override_colors/font_color = Color(1, 1, 1, 0.85)
-theme_override_font_sizes/font_size = 24
-text = "CDS: INDOOR BASKETBALL (future)"
-horizontal_alignment = 1
+[node name="Collision" type="StaticBody2D" parent="Objects/Buildings/CDSExterior/IndoorBasketball"]
+collision_mask = 0
 
-[node name="Veranda" parent="Objects/Buildings/CDSExterior/IndoorBasketball" instance=ExtResource("4_block")]
-position = Vector2(-260, 0)
-footprint_size = Vector2(70, 700)
-wall_height = 80.0
-wall_color = Color(0.7, 0.36, 0.26, 1)
-roof_color = Color(0.52, 0.47, 0.42, 1)
-arch_count = 1
+[node name="Mass" type="CollisionShape2D" parent="Objects/Buildings/CDSExterior/IndoorBasketball/Collision"]
+position = Vector2(0, -350)
+shape = SubResource("RectangleShape2D_cds_hall_mass")
+
+[node name="Veranda" type="CollisionShape2D" parent="Objects/Buildings/CDSExterior/IndoorBasketball/Collision"]
+position = Vector2(-260, -350)
+shape = SubResource("RectangleShape2D_cds_hall_veranda")
+
+[node name="ShadowOccluder" type="LightOccluder2D" parent="Objects/Buildings/CDSExterior/IndoorBasketball"]
+occluder = SubResource("OccluderPolygon2D_cds_hall")
+
+[node name="ContactShadowWest" parent="Objects/Buildings/CDSExterior/IndoorBasketball" instance=ExtResource("10_shadow")]
+position = Vector2(-295, -350)
+scale = Vector2(0.7, 11)
+
+[node name="ContactShadowEast" parent="Objects/Buildings/CDSExterior/IndoorBasketball" instance=ExtResource("10_shadow")]
+position = Vector2(225, -350)
+scale = Vector2(0.7, 11)
+
+[node name="ContactShadowSouth" parent="Objects/Buildings/CDSExterior/IndoorBasketball" instance=ExtResource("10_shadow")]
+position = Vector2(-35, 0)
+scale = Vector2(8.6, 0.7)
 
 [node name="Boundary" type="Node2D" parent="Objects"]
 y_sort_enabled = true

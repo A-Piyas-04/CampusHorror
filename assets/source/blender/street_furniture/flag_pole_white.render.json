@@ -1,0 +1,369 @@
+{
+  "pipeline": "campus_asset_pipeline",
+  "pipeline_version": 1,
+  "asset": "flag_pole_white",
+  "category": "street_furniture",
+  "description": "6 m flagpole with a plain white flag (the emblem in the photo is not reproduced) on a 0.5 x 0.5 m concrete base, as on the CDS canteen lawn (Docs/map-reference/area1/cds-building.png). Collision = the base.",
+  "config": "assets/source/blender/configs/flag_pole_white.json",
+  "generator": "assets/source/blender/generators/flag_pole.py",
+  "generator_params": {
+    "flag": "white",
+    "height": 6.0,
+    "flag_length": 1.5,
+    "flag_height": 0.9,
+    "base_half": 0.25,
+    "base_height": 0.25,
+    "wave_amplitude": 0.06
+  },
+  "random_seed": 20261014,
+  "blender_version": "5.2.2 LTS",
+  "outputs": {
+    "blend": "assets/source/blender/street_furniture/flag_pole_white.blend",
+    "record": "assets/source/blender/street_furniture/flag_pole_white.render.json",
+    "png": "assets/sprites/street_furniture/flag_pole_white.png",
+    "scene": "scenes/props/street_furniture/FlagPoleWhite.tscn",
+    "preview": "scenes/tests/asset_previews/FlagPoleWhitePreview.tscn"
+  },
+  "origin": "ground-footprint origin at z = 0 (Blender world origin); front faces -Y",
+  "footprint_m": {
+    "x_min": -0.25,
+    "x_max": 0.25,
+    "y_min": -0.25,
+    "y_max": 0.25
+  },
+  "model": {
+    "design_size_m": {
+      "pole_height": 6.0,
+      "flag": [
+        1.5,
+        0.9
+      ],
+      "base": [
+        0.5,
+        0.5,
+        0.25
+      ]
+    },
+    "flag": "white",
+    "materials": [
+      "FlagPoleBaseConcrete",
+      "FlagPolePaint",
+      "FlagBangladesh or FlagWhite"
+    ],
+    "reference": "Docs/map-reference/area1/cds-building.png (two flagpoles on the canteen lawn); dimensions estimated",
+    "objects": [
+      {
+        "object": "FlagPoleBase",
+        "evaluated_bounds_m": {
+          "x": 0.5,
+          "y": 0.5,
+          "z": 0.25
+        },
+        "evaluated_faces": 6
+      },
+      {
+        "object": "FlagPolePole",
+        "evaluated_bounds_m": {
+          "x": 0.1,
+          "y": 0.1,
+          "z": 5.85
+        },
+        "evaluated_faces": 109
+      },
+      {
+        "object": "FlagCloth",
+        "evaluated_bounds_m": {
+          "x": 1.5,
+          "y": 0.0825,
+          "z": 0.95
+        },
+        "evaluated_faces": 192
+      }
+    ]
+  },
+  "camera": {
+    "type": "ORTHO",
+    "elevation_deg": 40.0,
+    "azimuth_deg": 0.0,
+    "rotation_euler_deg": [
+      50.0,
+      0.0,
+      0.0
+    ],
+    "location_m": [
+      0.645,
+      -16.8709,
+      17.1086
+    ],
+    "ortho_scale_m": 2.564688,
+    "sensor_fit": "HORIZONTAL",
+    "content_extent_m": [
+      1.79,
+      4.8445
+    ],
+    "margin_m_each_side": 0.3876,
+    "pixels_per_metre_on_screen": 220.689655
+  },
+  "lighting": {
+    "sun_elevation_deg": 55.0,
+    "sun_azimuth_deg_from_front": -35.0,
+    "sun_direction_to_light": [
+      -0.329,
+      -0.4698,
+      0.8192
+    ],
+    "sun_strength": 3.2,
+    "sun_angle_deg": 3.0,
+    "fill_lights_linked_to_asset_only": [
+      {
+        "name": "SkyFill",
+        "elevation_deg": 70.0,
+        "azimuth_deg_from_front": 20.0,
+        "strength": 0.8,
+        "angle_deg": 90.0,
+        "color": [
+          0.75,
+          0.85,
+          1.0
+        ]
+      },
+      {
+        "name": "GroundBounce",
+        "elevation_deg": -25.0,
+        "azimuth_deg_from_front": 10.0,
+        "strength": 0.35,
+        "angle_deg": 90.0,
+        "color": [
+          1.0,
+          0.8,
+          0.65
+        ]
+      }
+    ],
+    "world_light": "none (strength 0)",
+    "ground": "none (no shadow catcher; no cast shadow baked into the PNG)"
+  },
+  "render": {
+    "engine": "CYCLES",
+    "device": "GPU (OPTIX: NVIDIA GeForce RTX 3050 Laptop GPU)",
+    "samples": 256,
+    "adaptive_sampling": true,
+    "denoiser": "compositor OIDN on colour only (albedo + normal guides); raw render alpha kept",
+    "max_bounces": 6,
+    "film_transparent": true,
+    "filter_size_px": 1.5,
+    "view_transform": "Standard",
+    "output_format": "PNG RGBA 8-bit",
+    "resolution_px": [
+      566,
+      1240
+    ],
+    "render_seconds": 3.2
+  },
+  "projection": {
+    "note": "texture px, top-left origin: x = W/2 + (p.right - cx)*ppm, y = H/2 - (p.up - cy)*ppm",
+    "image_px": [
+      566,
+      1240
+    ],
+    "px_per_m": 220.689655,
+    "right": [
+      1.0,
+      0.0,
+      0.0
+    ],
+    "up": [
+      0.0,
+      0.6427876353263855,
+      0.7660444378852844
+    ],
+    "center_m": [
+      0.6449999809265137,
+      2.261556087061763
+    ],
+    "origin_px": [
+      140.65517673432112,
+      1119.1020326168104
+    ],
+    "footprint_corners_px": [
+      [
+        85.48276298432114,
+        1154.5661779864217
+      ],
+      [
+        195.82759048432112,
+        1154.5661779864217
+      ],
+      [
+        195.82759048432112,
+        1083.637887247199
+      ],
+      [
+        85.48276298432114,
+        1083.637887247199
+      ]
+    ],
+    "design_bounds_bbox_px": [
+      85.48276298432114,
+      85.4338641148986,
+      480.51723701567886,
+      1154.5661779864217
+    ]
+  },
+  "tiling": null,
+  "layers": null,
+  "kind": "sprite",
+  "ground_tile": null,
+  "total_seconds": 3.3,
+  "blender_run": {
+    "exit_code": 0,
+    "seconds": 4.6,
+    "problem_lines": [
+      "00:00.765  cycles           | WARNING HIPEW initialization failed: Error opening HIP dynamic library"
+    ]
+  },
+  "verification": {
+    "png": {
+      "bit_depth": 8,
+      "png_color_type": 6,
+      "interlace": 0,
+      "file_bytes": 325344,
+      "size_px": [
+        566,
+        1240
+      ],
+      "opaque_pixels": 74893,
+      "partially_transparent_pixels": 7726,
+      "fully_transparent_pixels": 619221,
+      "content_bbox_px": [
+        84,
+        84,
+        481,
+        1155
+      ],
+      "margins_px": {
+        "left": 84,
+        "right": 84,
+        "top": 84,
+        "bottom": 84
+      },
+      "max_alpha_on_image_border": 0.0
+    },
+    "bbox_deviation_px": [
+      -1.48,
+      -1.43,
+      1.48,
+      1.43
+    ],
+    "minimum_margin_required_px": 16,
+    "tiling": null,
+    "layers": null,
+    "passed": true
+  },
+  "godot": {
+    "scene": "scenes/props/street_furniture/FlagPoleWhite.tscn",
+    "scene_name": "FlagPoleWhite",
+    "scene_semantic_sha256": "bd0913e53f036f0aaa4136aa6b7ae31c4b889c4772149d21b647c108a563585a",
+    "sprite_offset_adjust_px": [
+      0.0,
+      0.0
+    ],
+    "layout": {
+      "render_px_per_m": 220.689655,
+      "game_px_per_m": 32.0,
+      "sprite_scale": 0.14500000011328126,
+      "sprite_offset_px": [
+        -140.65517673432112,
+        -1119.1020326168104
+      ],
+      "origin_px": [
+        140.65517673432112,
+        1119.1020326168104
+      ],
+      "sprite_rect_game_px": [
+        -20.395000642410157,
+        -162.2697948562108,
+        82.0700000641172,
+        179.80000014046877
+      ],
+      "footprint_game_px": [
+        [
+          -7.999999999999997,
+          5.14230108261106
+        ],
+        [
+          8.000000000000002,
+          5.14230108261106
+        ],
+        [
+          8.000000000000002,
+          -5.142301082611093
+        ],
+        [
+          -7.999999999999997,
+          -5.142301082611093
+        ]
+      ],
+      "ground_depth_factor": 0.6427876353263855,
+      "layers": null
+    },
+    "collision": {
+      "source": "design_footprint",
+      "depth_mode": "projected",
+      "layer": 1,
+      "mask": 0,
+      "shapes": [
+        {
+          "node": "Collision",
+          "resource_id": "RectangleShape2D_footprint",
+          "center": [
+            0.0,
+            -0.0
+          ],
+          "size": [
+            16.0,
+            10.284602165222168
+          ],
+          "metres": [
+            -0.25,
+            0.25,
+            -0.25,
+            0.25
+          ]
+        }
+      ],
+      "center": [
+        0.0,
+        -0.0
+      ],
+      "size": [
+        16.0,
+        10.284602165222168
+      ],
+      "metres": [
+        -0.25,
+        0.25,
+        -0.25,
+        0.25
+      ]
+    },
+    "preview_scene": "scenes/tests/asset_previews/FlagPoleWhitePreview.tscn"
+  },
+  "godot_import": {
+    "exit_code": 0,
+    "problem_lines": [
+      "WARNING: Detected another project.godot at res://addons/godot_mcp/cache/undo/entry_000003/files. The folder will be ignored.",
+      "WARNING: UID duplicate detected between res://scenes/tests/MCPCheck.tscn and res://addons/godot_mcp/cache/undo/entry_000002/files/scenes/tests/MCPCheck.tscn."
+    ]
+  },
+  "godot_check": {
+    "scene": {
+      "exit_code": 0,
+      "problem_lines": []
+    },
+    "preview": {
+      "exit_code": 0,
+      "problem_lines": []
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "asset_id": "flag_pole_bangladesh",
+  "category": "street_furniture",
+  "generator": "flag_pole",
+  "description": "6 m flagpole with the Bangladesh flag (green field, red disc) on a 0.5 x 0.5 m concrete base, as on the CDS canteen lawn (Docs/map-reference/area1/cds-building.png). Collision = the base.",
+  "seed": 20261014,
+  "generator_params": {"flag": "bangladesh"},
+  "render": {
+    "px_per_m": 220.689655,
+    "samples": 256,
+    "elevation_deg": 40.0,
+    "azimuth_deg": 0.0
+  },
+  "godot": {
+    "scene_name": "FlagPoleBangladesh",
+    "z_index": 0,
+    "sprite_offset_adjust_px": [0.0, 0.0],
+    "preview_scene": true
+  },
+  "collision": {
+    "enabled": true,
+    "source": "design_footprint",
+    "depth_mode": "projected"
+  }
+}

@@ -1,0 +1,8 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scenes/tests/environment_previews/main_gate_cds_check.gd" id="1_check"]
+
+[node name="MainGateCdsCheck" type="Node2D"]
+editor_description = "TEMPORARY Milestone G Batch 4 test-only check (not a zone, not reachable from Main). Instances the real scenes/world/MainGateExterior.tscn and the real Player.tscn and verifies the production CDS exterior against the pre-edit record: section, door and spawn positions, collision rectangles, occluders, the player's stop lines, the door prompt, slice sort points, the canteen NorthRoof fade and texture budgets. Output: [CDS] lines."
+y_sort_enabled = true
+script = ExtResource("1_check")
