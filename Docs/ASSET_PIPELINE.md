@@ -201,7 +201,7 @@ Ground tiles (`assets/sprites/ground/`, TileSet `assets/tilesets/campus_ground.t
 |---|---|---|---|
 | `grass_ground_tile` | `ground_grass` | 0 | Lawn: tuft cells, small colour patches |
 | `grass_worn_tile` | `ground_grass` (`wear` 1.0) | 1 | Trampled grass and bare soil in the middle; border matches grass (mean diff 0.09) |
-| `paved_walkway_tile` | `ground_paving` | 2 | 0.5 m concrete slabs, running bond, joints a quarter slab away from the tile edges |
+| `paved_walkway_tile` | `ground_paving` | 2 | 0.5 m dusty clay-red pavers with dark joints (config `slab_color` / `joint_color`, linear RGB; the generator default is grey concrete), running bond, joints a quarter slab away from the tile edges. Muted and pinker than the orange-red wall bricks so the two read apart |
 | `asphalt_road_tile` | `ground_asphalt` | 3 | Aggregate, worn patches, fine cracks; no road markings |
 
 Standing sprites (40° camera, footprint origin, transparent PNG, mipmaps):

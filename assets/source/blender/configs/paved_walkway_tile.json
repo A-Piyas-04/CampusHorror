@@ -3,9 +3,12 @@
   "kind": "ground_tile",
   "category": "ground",
   "generator": "ground_paving",
-  "description": "Seamless 2 x 2 m top-down walkway tile: modeled 0.5 m grey concrete slabs in running bond (TileMapLayer source 2).",
+  "description": "Seamless 2 x 2 m top-down walkway tile: modeled 0.5 m dusty clay-red pavers in running bond with dark joints (TileMapLayer source 2). Muted and pinker than the orange-red wall bricks so walkway and walls read apart.",
   "seed": 20261013,
-  "generator_params": {},
+  "generator_params": {
+    "slab_color": [0.319, 0.120, 0.095],
+    "joint_color": [0.051, 0.027, 0.019]
+  },
   "render": {
     "samples": 256,
     "tile_px": 64

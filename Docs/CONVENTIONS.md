@@ -318,6 +318,7 @@ Introduced in Milestone G Part 2. Waiting for the user's approval. Full guide: `
 | Sprite | `Sprite` child, `centered = false`, offset = −origin pixel, uniform scale = 32 game px/m ÷ render px/m, light mask 2, linear + mipmaps filter. The root transform stays identity. |
 | Collision | Optional; a `Body` `StaticBody2D` (layer 1, mask 0) with a rectangle from the declared footprint in metres, never from sprite alpha. |
 | Shadows | No ground shadow is baked into renders. |
+| Contact shadows | A soft, non-directional ground-contact shadow is a `scenes/props/common/ContactShadow.tscn` instance added as a **child** of the placed prop instance (at its origin, sized with `scale`), so it moves with the prop. z −9: above ground, below all Y-sorted objects. No collision. |
 | Modular runs | Tileable modules (`tile_period_x_m`) are placed exactly one footprint length apart (wall: 96 px), never overlapped by moving sprites. Joins are made seamless by the generator and render (bleed), not in Godot. |
 
 ---
@@ -367,4 +368,5 @@ To re-run: open `scenes/tests/Milestone0Test.tscn` and press F6 (Run Current Sce
 | 2026-10-08 | Milestone E: section 11 (save and load) added as Proposed; temporary `debug_save` / `debug_load` actions listed in section 1. |
 | 2026-10-08 | Milestone G Part 1: section 12 (map blockout pieces) added as Proposed. |
 | 2026-10-13 | Milestone G Part 2: section 13 (rendered 2.5D props from the Blender pipeline) added as Proposed. |
+| 2026-10-13 | Milestone G composition test: §13 "Contact shadows" row added (still Proposed). |
 | 2026-10-08 | Milestone G Part 1 editability cleanup: section 12 amended (still Proposed). Landmarks own all their layers: landmark ground at z −9, a landmark `Overhead` child at z 10 (replacing "keep overhead under the zone's `Overhead`"), doors and spawns may live inside their landmark, and the `blockout_placeholder` group marks blockout-only visuals. |

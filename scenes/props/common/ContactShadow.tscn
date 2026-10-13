@@ -1,0 +1,18 @@
+[gd_scene format=3]
+
+[sub_resource type="Gradient" id="Gradient_shadow"]
+offsets = PackedFloat32Array(0, 0.55, 1)
+colors = PackedColorArray(0, 0, 0, 0.55, 0, 0, 0, 0.3, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_shadow"]
+gradient = SubResource("Gradient_shadow")
+width = 64
+height = 64
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+
+[node name="ContactShadow" type="Sprite2D"]
+editor_description = "Soft, non-directional ground-contact shadow (64 x 64 px radial fade at scale 1). Add it as a child of a standing prop instance, at the prop's footprint origin, and size it with `scale` (wide and flat, roughly the footprint plus a margin). z_index -9 keeps it above the ground (-10) and below every Y-sorted object (0). No collision. Shadows are never baked into the rendered PNGs (Docs/CONVENTIONS.md §13)."
+z_index = -9
+texture = SubResource("GradientTexture2D_shadow")

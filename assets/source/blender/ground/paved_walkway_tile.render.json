@@ -3,7 +3,7 @@
   "pipeline_version": 1,
   "asset": "paved_walkway_tile",
   "category": "ground",
-  "description": "Seamless 2 x 2 m top-down walkway tile: modeled 0.5 m grey concrete slabs in running bond (TileMapLayer source 2).",
+  "description": "Seamless 2 x 2 m top-down walkway tile: modeled 0.5 m dusty clay-red pavers in running bond with dark joints (TileMapLayer source 2). Muted and pinker than the orange-red wall bricks so walkway and walls read apart.",
   "config": "assets/source/blender/configs/paved_walkway_tile.json",
   "generator": "assets/source/blender/generators/ground_paving.py",
   "generator_params": {
@@ -12,7 +12,17 @@
     "joint": 0.022,
     "slab_height": 0.05,
     "height_jitter": 0.004,
-    "bevel_width": 0.008
+    "bevel_width": 0.008,
+    "slab_color": [
+      0.319,
+      0.12,
+      0.095
+    ],
+    "joint_color": [
+      0.051,
+      0.027,
+      0.019
+    ]
   },
   "random_seed": 20261013,
   "blender_version": "5.2.2 LTS",
@@ -35,7 +45,7 @@
       "x": 2.0,
       "y": 2.0
     },
-    "surface": "16 modeled 0.5 m concrete slabs, running bond, 22 mm joints, bevelled, height/tone jitter per slab; AO-darkened joints",
+    "surface": "16 modeled 0.5 m slabs, running bond, 22 mm joints, bevelled, height/tone jitter per slab; AO-darkened joints",
     "materials": [
       "ConcreteSlab",
       "JointGrit"
@@ -139,7 +149,7 @@
       80,
       80
     ],
-    "render_seconds": 214.6
+    "render_seconds": 1.5
   },
   "projection": {
     "note": "texture px, top-left origin: x = W/2 + (p.right - cx)*ppm, y = H/2 - (p.up - cy)*ppm",
@@ -202,12 +212,12 @@
     "border_match": null,
     "note": "rendered straight down between 8 neighbour copies with overscan_px on every side; the pipeline crops the overscan (a manual re-render of the .blend is not cropped)"
   },
-  "total_seconds": 214.7,
+  "total_seconds": 1.7,
   "blender_run": {
     "exit_code": 0,
-    "seconds": 215.9,
+    "seconds": 2.9,
     "problem_lines": [
-      "00:00.719  cycles           | WARNING HIPEW initialization failed: Error opening HIP dynamic library"
+      "00:00.812  cycles           | WARNING HIPEW initialization failed: Error opening HIP dynamic library"
     ]
   },
   "verification": {
@@ -215,7 +225,7 @@
       "bit_depth": 8,
       "png_color_type": 6,
       "interlace": 0,
-      "file_bytes": 5528,
+      "file_bytes": 5527,
       "size_px": [
         64,
         64
@@ -239,22 +249,22 @@
     },
     "seams": {
       "x": {
-        "interior_mean_step": 4.581,
-        "interior_max_step": 15.568,
-        "wrap_step": 1.234
+        "interior_mean_step": 3.607,
+        "interior_max_step": 12.536,
+        "wrap_step": 0.995
       },
       "y": {
-        "interior_mean_step": 5.052,
-        "interior_max_step": 32.208,
-        "wrap_step": 1.312
+        "interior_mean_step": 3.99,
+        "interior_max_step": 25.786,
+        "wrap_step": 1.016
       }
     },
     "luma_halves": {
-      "left": 139.32,
-      "right": 137.86,
-      "top": 137.12,
-      "bottom": 140.07,
-      "max_half_difference": 2.946
+      "left": 105.86,
+      "right": 104.8,
+      "top": 104.25,
+      "bottom": 106.41,
+      "max_half_difference": 2.161
     },
     "border_match": null,
     "passed": true
@@ -412,7 +422,11 @@
     "preview_scene": "scenes/tests/asset_previews/PavedWalkwayTilePreview.tscn"
   },
   "godot_import": {
-    "already_imported": true
+    "exit_code": 0,
+    "problem_lines": [
+      "WARNING: Detected another project.godot at res://addons/godot_mcp/cache/undo/entry_000003/files. The folder will be ignored.",
+      "WARNING: UID duplicate detected between res://scenes/tests/MCPCheck.tscn and res://addons/godot_mcp/cache/undo/entry_000002/files/scenes/tests/MCPCheck.tscn."
+    ]
   },
   "godot_check": {
     "scene": {

@@ -1,0 +1,288 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scenes/tests/environment_previews/main_gate_composition_check.gd" id="1_check"]
+[ext_resource type="TileSet" path="res://assets/tilesets/campus_ground.tres" id="2_ground"]
+[ext_resource type="PackedScene" path="res://scenes/props/architecture/RedBrickWall3m.tscn" id="3_wall"]
+[ext_resource type="PackedScene" path="res://scenes/props/architecture/RedBrickVerandaPier.tscn" id="4_pier"]
+[ext_resource type="PackedScene" path="res://scenes/props/vegetation/BroadleafTree.tscn" id="5_tree"]
+[ext_resource type="PackedScene" path="res://scenes/props/vegetation/CoconutPalm.tscn" id="6_palm"]
+[ext_resource type="PackedScene" path="res://scenes/props/vegetation/HedgeSection2m.tscn" id="7_hedge"]
+[ext_resource type="PackedScene" path="res://scenes/props/street_furniture/OutdoorBench.tscn" id="8_bench"]
+[ext_resource type="PackedScene" path="res://scenes/props/street_furniture/LampPost.tscn" id="9_lamp"]
+[ext_resource type="PackedScene" path="res://scenes/props/common/ContactShadow.tscn" id="10_shadow"]
+
+[node name="MainGateCompositionTest" type="Node2D"]
+editor_description = "TEMPORARY Milestone G visual-composition test (not the final Main Gate, not a zone, not reachable in game). A small slice of main_gate_exterior around the Main Gate: west palm path start, gate plaza, gate gap in the red-brick south boundary wall, gate trees, start of the south tree row, sidewalk and road. Local origin = gate centre on the south wall line; local = blockout world - (-1390, 1400). Positions from the blockout are approximate; hedge, benches, lamps, worn desire line and the pier gate gap are composition choices. The real gate (arch, roof, side pavilion) is NOT built. Every prop is a separately movable instance; its ContactShadow child moves with it."
+y_sort_enabled = true
+script = ExtResource("1_check")
+
+[node name="Ground" type="TileMapLayer" parent="."]
+editor_description = "campus_ground TileSet: grass 0, worn grass 1, paved walkway 2, asphalt 3. 20 x 12 cells (x -384..896, y -512..256), every cell filled."
+z_index = -10
+tile_map_data = PackedByteArray(0, 0, 250, 255, 248, 255, 0, 0, 0, 0, 0, 0, 0, 0, 251, 255, 248, 255, 0, 0, 0, 0, 0, 0, 0, 0, 252, 255, 248, 255, 0, 0, 0, 0, 0, 0, 0, 0, 253, 255, 248, 255, 0, 0, 0, 0, 0, 0, 0, 0, 254, 255, 248, 255, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 248, 255, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 248, 255, 2, 0, 0, 0, 0, 0, 0, 0, 1, 0, 248, 255, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 248, 255, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 248, 255, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 248, 255, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 248, 255, 0, 0, 0, 0, 0, 0, 0, 0, 6, 0, 248, 255, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 248, 255, 0, 0, 0, 0, 0, 0, 0, 0, 8, 0, 248, 255, 0, 0, 0, 0, 0, 0, 0, 0, 9, 0, 248, 255, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 248, 255, 0, 0, 0, 0, 0, 0, 0, 0, 11, 0, 248, 255, 0, 0, 0, 0, 0, 0, 0, 0, 12, 0, 248, 255, 0, 0, 0, 0, 0, 0, 0, 0, 13, 0, 248, 255, 0, 0, 0, 0, 0, 0, 0, 0, 250, 255, 249, 255, 0, 0, 0, 0, 0, 0, 0, 0, 251, 255, 249, 255, 0, 0, 0, 0, 0, 0, 0, 0, 252, 255, 249, 255, 0, 0, 0, 0, 0, 0, 0, 0, 253, 255, 249, 255, 0, 0, 0, 0, 0, 0, 0, 0, 254, 255, 249, 255, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 249, 255, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 249, 255, 2, 0, 0, 0, 0, 0, 0, 0, 1, 0, 249, 255, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 249, 255, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 249, 255, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 249, 255, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 249, 255, 0, 0, 0, 0, 0, 0, 0, 0, 6, 0, 249, 255, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 249, 255, 0, 0, 0, 0, 0, 0, 0, 0, 8, 0, 249, 255, 0, 0, 0, 0, 0, 0, 0, 0, 9, 0, 249, 255, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 249, 255, 0, 0, 0, 0, 0, 0, 0, 0, 11, 0, 249, 255, 0, 0, 0, 0, 0, 0, 0, 0, 12, 0, 249, 255, 0, 0, 0, 0, 0, 0, 0, 0, 13, 0, 249, 255, 0, 0, 0, 0, 0, 0, 0, 0, 250, 255, 250, 255, 0, 0, 0, 0, 0, 0, 0, 0, 251, 255, 250, 255, 0, 0, 0, 0, 0, 0, 0, 0, 252, 255, 250, 255, 0, 0, 0, 0, 0, 0, 0, 0, 253, 255, 250, 255, 0, 0, 0, 0, 0, 0, 0, 0, 254, 255, 250, 255, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 250, 255, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 250, 255, 2, 0, 0, 0, 0, 0, 0, 0, 1, 0, 250, 255, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 250, 255, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 250, 255, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 250, 255, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 250, 255, 1, 0, 0, 0, 0, 0, 0, 0, 6, 0, 250, 255, 1, 0, 0, 0, 0, 0, 0, 0, 7, 0, 250, 255, 0, 0, 0, 0, 0, 0, 0, 0, 8, 0, 250, 255, 0, 0, 0, 0, 0, 0, 0, 0, 9, 0, 250, 255, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 250, 255, 0, 0, 0, 0, 0, 0, 0, 0, 11, 0, 250, 255, 0, 0, 0, 0, 0, 0, 0, 0, 12, 0, 250, 255, 0, 0, 0, 0, 0, 0, 0, 0, 13, 0, 250, 255, 0, 0, 0, 0, 0, 0, 0, 0, 250, 255, 251, 255, 0, 0, 0, 0, 0, 0, 0, 0, 251, 255, 251, 255, 0, 0, 0, 0, 0, 0, 0, 0, 252, 255, 251, 255, 0, 0, 0, 0, 0, 0, 0, 0, 253, 255, 251, 255, 0, 0, 0, 0, 0, 0, 0, 0, 254, 255, 251, 255, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 251, 255, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 251, 255, 2, 0, 0, 0, 0, 0, 0, 0, 1, 0, 251, 255, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 251, 255, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 251, 255, 1, 0, 0, 0, 0, 0, 0, 0, 4, 0, 251, 255, 1, 0, 0, 0, 0, 0, 0, 0, 5, 0, 251, 255, 0, 0, 0, 0, 0, 0, 0, 0, 6, 0, 251, 255, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 251, 255, 0, 0, 0, 0, 0, 0, 0, 0, 8, 0, 251, 255, 0, 0, 0, 0, 0, 0, 0, 0, 9, 0, 251, 255, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 251, 255, 0, 0, 0, 0, 0, 0, 0, 0, 11, 0, 251, 255, 0, 0, 0, 0, 0, 0, 0, 0, 12, 0, 251, 255, 0, 0, 0, 0, 0, 0, 0, 0, 13, 0, 251, 255, 0, 0, 0, 0, 0, 0, 0, 0, 250, 255, 252, 255, 0, 0, 0, 0, 0, 0, 0, 0, 251, 255, 252, 255, 0, 0, 0, 0, 0, 0, 0, 0, 252, 255, 252, 255, 0, 0, 0, 0, 0, 0, 0, 0, 253, 255, 252, 255, 2, 0, 0, 0, 0, 0, 0, 0, 254, 255, 252, 255, 2, 0, 0, 0, 0, 0, 0, 0, 255, 255, 252, 255, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 252, 255, 2, 0, 0, 0, 0, 0, 0, 0, 1, 0, 252, 255, 2, 0, 0, 0, 0, 0, 0, 0, 2, 0, 252, 255, 2, 0, 0, 0, 0, 0, 0, 0, 3, 0, 252, 255, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 252, 255, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 252, 255, 0, 0, 0, 0, 0, 0, 0, 0, 6, 0, 252, 255, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 252, 255, 0, 0, 0, 0, 0, 0, 0, 0, 8, 0, 252, 255, 0, 0, 0, 0, 0, 0, 0, 0, 9, 0, 252, 255, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 252, 255, 0, 0, 0, 0, 0, 0, 0, 0, 11, 0, 252, 255, 0, 0, 0, 0, 0, 0, 0, 0, 12, 0, 252, 255, 0, 0, 0, 0, 0, 0, 0, 0, 13, 0, 252, 255, 0, 0, 0, 0, 0, 0, 0, 0, 250, 255, 253, 255, 0, 0, 0, 0, 0, 0, 0, 0, 251, 255, 253, 255, 0, 0, 0, 0, 0, 0, 0, 0, 252, 255, 253, 255, 0, 0, 0, 0, 0, 0, 0, 0, 253, 255, 253, 255, 2, 0, 0, 0, 0, 0, 0, 0, 254, 255, 253, 255, 2, 0, 0, 0, 0, 0, 0, 0, 255, 255, 253, 255, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 253, 255, 2, 0, 0, 0, 0, 0, 0, 0, 1, 0, 253, 255, 2, 0, 0, 0, 0, 0, 0, 0, 2, 0, 253, 255, 2, 0, 0, 0, 0, 0, 0, 0, 3, 0, 253, 255, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 253, 255, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 253, 255, 0, 0, 0, 0, 0, 0, 0, 0, 6, 0, 253, 255, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 253, 255, 0, 0, 0, 0, 0, 0, 0, 0, 8, 0, 253, 255, 0, 0, 0, 0, 0, 0, 0, 0, 9, 0, 253, 255, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 253, 255, 0, 0, 0, 0, 0, 0, 0, 0, 11, 0, 253, 255, 0, 0, 0, 0, 0, 0, 0, 0, 12, 0, 253, 255, 0, 0, 0, 0, 0, 0, 0, 0, 13, 0, 253, 255, 0, 0, 0, 0, 0, 0, 0, 0, 250, 255, 254, 255, 0, 0, 0, 0, 0, 0, 0, 0, 251, 255, 254, 255, 0, 0, 0, 0, 0, 0, 0, 0, 252, 255, 254, 255, 0, 0, 0, 0, 0, 0, 0, 0, 253, 255, 254, 255, 0, 0, 0, 0, 0, 0, 0, 0, 254, 255, 254, 255, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 254, 255, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 254, 255, 2, 0, 0, 0, 0, 0, 0, 0, 1, 0, 254, 255, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 254, 255, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 254, 255, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 254, 255, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 254, 255, 0, 0, 0, 0, 0, 0, 0, 0, 6, 0, 254, 255, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 254, 255, 0, 0, 0, 0, 0, 0, 0, 0, 8, 0, 254, 255, 0, 0, 0, 0, 0, 0, 0, 0, 9, 0, 254, 255, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 254, 255, 0, 0, 0, 0, 0, 0, 0, 0, 11, 0, 254, 255, 0, 0, 0, 0, 0, 0, 0, 0, 12, 0, 254, 255, 0, 0, 0, 0, 0, 0, 0, 0, 13, 0, 254, 255, 0, 0, 0, 0, 0, 0, 0, 0, 250, 255, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 251, 255, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 252, 255, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 253, 255, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 254, 255, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 255, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 2, 0, 0, 0, 0, 0, 0, 0, 1, 0, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 6, 0, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 8, 0, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 9, 0, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 11, 0, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 12, 0, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 13, 0, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 250, 255, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 251, 255, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 252, 255, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 253, 255, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 254, 255, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 255, 255, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 6, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 8, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 9, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 10, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 11, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 12, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 13, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 250, 255, 1, 0, 3, 0, 0, 0, 0, 0, 0, 0, 251, 255, 1, 0, 3, 0, 0, 0, 0, 0, 0, 0, 252, 255, 1, 0, 3, 0, 0, 0, 0, 0, 0, 0, 253, 255, 1, 0, 3, 0, 0, 0, 0, 0, 0, 0, 254, 255, 1, 0, 3, 0, 0, 0, 0, 0, 0, 0, 255, 255, 1, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 3, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 3, 0, 0, 0, 0, 0, 0, 0, 2, 0, 1, 0, 3, 0, 0, 0, 0, 0, 0, 0, 3, 0, 1, 0, 3, 0, 0, 0, 0, 0, 0, 0, 4, 0, 1, 0, 3, 0, 0, 0, 0, 0, 0, 0, 5, 0, 1, 0, 3, 0, 0, 0, 0, 0, 0, 0, 6, 0, 1, 0, 3, 0, 0, 0, 0, 0, 0, 0, 7, 0, 1, 0, 3, 0, 0, 0, 0, 0, 0, 0, 8, 0, 1, 0, 3, 0, 0, 0, 0, 0, 0, 0, 9, 0, 1, 0, 3, 0, 0, 0, 0, 0, 0, 0, 10, 0, 1, 0, 3, 0, 0, 0, 0, 0, 0, 0, 11, 0, 1, 0, 3, 0, 0, 0, 0, 0, 0, 0, 12, 0, 1, 0, 3, 0, 0, 0, 0, 0, 0, 0, 13, 0, 1, 0, 3, 0, 0, 0, 0, 0, 0, 0, 250, 255, 2, 0, 3, 0, 0, 0, 0, 0, 0, 0, 251, 255, 2, 0, 3, 0, 0, 0, 0, 0, 0, 0, 252, 255, 2, 0, 3, 0, 0, 0, 0, 0, 0, 0, 253, 255, 2, 0, 3, 0, 0, 0, 0, 0, 0, 0, 254, 255, 2, 0, 3, 0, 0, 0, 0, 0, 0, 0, 255, 255, 2, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 3, 0, 0, 0, 0, 0, 0, 0, 1, 0, 2, 0, 3, 0, 0, 0, 0, 0, 0, 0, 2, 0, 2, 0, 3, 0, 0, 0, 0, 0, 0, 0, 3, 0, 2, 0, 3, 0, 0, 0, 0, 0, 0, 0, 4, 0, 2, 0, 3, 0, 0, 0, 0, 0, 0, 0, 5, 0, 2, 0, 3, 0, 0, 0, 0, 0, 0, 0, 6, 0, 2, 0, 3, 0, 0, 0, 0, 0, 0, 0, 7, 0, 2, 0, 3, 0, 0, 0, 0, 0, 0, 0, 8, 0, 2, 0, 3, 0, 0, 0, 0, 0, 0, 0, 9, 0, 2, 0, 3, 0, 0, 0, 0, 0, 0, 0, 10, 0, 2, 0, 3, 0, 0, 0, 0, 0, 0, 0, 11, 0, 2, 0, 3, 0, 0, 0, 0, 0, 0, 0, 12, 0, 2, 0, 3, 0, 0, 0, 0, 0, 0, 0, 13, 0, 2, 0, 3, 0, 0, 0, 0, 0, 0, 0, 250, 255, 3, 0, 3, 0, 0, 0, 0, 0, 0, 0, 251, 255, 3, 0, 3, 0, 0, 0, 0, 0, 0, 0, 252, 255, 3, 0, 3, 0, 0, 0, 0, 0, 0, 0, 253, 255, 3, 0, 3, 0, 0, 0, 0, 0, 0, 0, 254, 255, 3, 0, 3, 0, 0, 0, 0, 0, 0, 0, 255, 255, 3, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 3, 0, 0, 0, 0, 0, 0, 0, 1, 0, 3, 0, 3, 0, 0, 0, 0, 0, 0, 0, 2, 0, 3, 0, 3, 0, 0, 0, 0, 0, 0, 0, 3, 0, 3, 0, 3, 0, 0, 0, 0, 0, 0, 0, 4, 0, 3, 0, 3, 0, 0, 0, 0, 0, 0, 0, 5, 0, 3, 0, 3, 0, 0, 0, 0, 0, 0, 0, 6, 0, 3, 0, 3, 0, 0, 0, 0, 0, 0, 0, 7, 0, 3, 0, 3, 0, 0, 0, 0, 0, 0, 0, 8, 0, 3, 0, 3, 0, 0, 0, 0, 0, 0, 0, 9, 0, 3, 0, 3, 0, 0, 0, 0, 0, 0, 0, 10, 0, 3, 0, 3, 0, 0, 0, 0, 0, 0, 0, 11, 0, 3, 0, 3, 0, 0, 0, 0, 0, 0, 0, 12, 0, 3, 0, 3, 0, 0, 0, 0, 0, 0, 0, 13, 0, 3, 0, 3, 0, 0, 0, 0, 0, 0, 0)
+tile_set = ExtResource("2_ground")
+
+[node name="Objects" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="BoundaryWall" type="Node2D" parent="Objects"]
+editor_description = "South boundary wall (blockout SouthWall, y 0) as RedBrickWall3m modules 96 px apart. Gap of 128 px at the gate (x -64..64) between RedBrickVerandaPier stand-ins: the real gate is not built. Piers also every 6 m on joins (composition choice). Piers come after the walls in the tree so they draw on top at equal Y."
+y_sort_enabled = true
+
+[node name="WallW304" parent="Objects/BoundaryWall" instance=ExtResource("3_wall")]
+position = Vector2(-304, 0)
+
+[node name="ContactShadow" parent="Objects/BoundaryWall/WallW304" instance=ExtResource("10_shadow")]
+scale = Vector2(1.6, 0.28)
+
+[node name="WallW208" parent="Objects/BoundaryWall" instance=ExtResource("3_wall")]
+position = Vector2(-208, 0)
+
+[node name="ContactShadow" parent="Objects/BoundaryWall/WallW208" instance=ExtResource("10_shadow")]
+scale = Vector2(1.6, 0.28)
+
+[node name="WallW112" parent="Objects/BoundaryWall" instance=ExtResource("3_wall")]
+position = Vector2(-112, 0)
+
+[node name="ContactShadow" parent="Objects/BoundaryWall/WallW112" instance=ExtResource("10_shadow")]
+scale = Vector2(1.6, 0.28)
+
+[node name="WallE112" parent="Objects/BoundaryWall" instance=ExtResource("3_wall")]
+position = Vector2(112, 0)
+
+[node name="ContactShadow" parent="Objects/BoundaryWall/WallE112" instance=ExtResource("10_shadow")]
+scale = Vector2(1.6, 0.28)
+
+[node name="WallE208" parent="Objects/BoundaryWall" instance=ExtResource("3_wall")]
+position = Vector2(208, 0)
+
+[node name="ContactShadow" parent="Objects/BoundaryWall/WallE208" instance=ExtResource("10_shadow")]
+scale = Vector2(1.6, 0.28)
+
+[node name="WallE304" parent="Objects/BoundaryWall" instance=ExtResource("3_wall")]
+position = Vector2(304, 0)
+
+[node name="ContactShadow" parent="Objects/BoundaryWall/WallE304" instance=ExtResource("10_shadow")]
+scale = Vector2(1.6, 0.28)
+
+[node name="WallE400" parent="Objects/BoundaryWall" instance=ExtResource("3_wall")]
+position = Vector2(400, 0)
+
+[node name="ContactShadow" parent="Objects/BoundaryWall/WallE400" instance=ExtResource("10_shadow")]
+scale = Vector2(1.6, 0.28)
+
+[node name="WallE496" parent="Objects/BoundaryWall" instance=ExtResource("3_wall")]
+position = Vector2(496, 0)
+
+[node name="ContactShadow" parent="Objects/BoundaryWall/WallE496" instance=ExtResource("10_shadow")]
+scale = Vector2(1.6, 0.28)
+
+[node name="WallE592" parent="Objects/BoundaryWall" instance=ExtResource("3_wall")]
+position = Vector2(592, 0)
+
+[node name="ContactShadow" parent="Objects/BoundaryWall/WallE592" instance=ExtResource("10_shadow")]
+scale = Vector2(1.6, 0.28)
+
+[node name="WallE688" parent="Objects/BoundaryWall" instance=ExtResource("3_wall")]
+position = Vector2(688, 0)
+
+[node name="ContactShadow" parent="Objects/BoundaryWall/WallE688" instance=ExtResource("10_shadow")]
+scale = Vector2(1.6, 0.28)
+
+[node name="WallE784" parent="Objects/BoundaryWall" instance=ExtResource("3_wall")]
+position = Vector2(784, 0)
+
+[node name="ContactShadow" parent="Objects/BoundaryWall/WallE784" instance=ExtResource("10_shadow")]
+scale = Vector2(1.6, 0.28)
+
+[node name="WallE880" parent="Objects/BoundaryWall" instance=ExtResource("3_wall")]
+position = Vector2(880, 0)
+
+[node name="ContactShadow" parent="Objects/BoundaryWall/WallE880" instance=ExtResource("10_shadow")]
+scale = Vector2(1.6, 0.28)
+
+[node name="PierW256" parent="Objects/BoundaryWall" instance=ExtResource("4_pier")]
+position = Vector2(-256, 0)
+
+[node name="ContactShadow" parent="Objects/BoundaryWall/PierW256" instance=ExtResource("10_shadow")]
+scale = Vector2(0.45, 0.25)
+
+[node name="GatePierWest" parent="Objects/BoundaryWall" instance=ExtResource("4_pier")]
+position = Vector2(-64, 0)
+
+[node name="ContactShadow" parent="Objects/BoundaryWall/GatePierWest" instance=ExtResource("10_shadow")]
+scale = Vector2(0.45, 0.25)
+
+[node name="GatePierEast" parent="Objects/BoundaryWall" instance=ExtResource("4_pier")]
+position = Vector2(64, 0)
+
+[node name="ContactShadow" parent="Objects/BoundaryWall/GatePierEast" instance=ExtResource("10_shadow")]
+scale = Vector2(0.45, 0.25)
+
+[node name="PierE256" parent="Objects/BoundaryWall" instance=ExtResource("4_pier")]
+position = Vector2(256, 0)
+
+[node name="ContactShadow" parent="Objects/BoundaryWall/PierE256" instance=ExtResource("10_shadow")]
+scale = Vector2(0.45, 0.25)
+
+[node name="PierE448" parent="Objects/BoundaryWall" instance=ExtResource("4_pier")]
+position = Vector2(448, 0)
+
+[node name="ContactShadow" parent="Objects/BoundaryWall/PierE448" instance=ExtResource("10_shadow")]
+scale = Vector2(0.45, 0.25)
+
+[node name="PierE640" parent="Objects/BoundaryWall" instance=ExtResource("4_pier")]
+position = Vector2(640, 0)
+
+[node name="ContactShadow" parent="Objects/BoundaryWall/PierE640" instance=ExtResource("10_shadow")]
+scale = Vector2(0.45, 0.25)
+
+[node name="PierE832" parent="Objects/BoundaryWall" instance=ExtResource("4_pier")]
+position = Vector2(832, 0)
+
+[node name="ContactShadow" parent="Objects/BoundaryWall/PierE832" instance=ExtResource("10_shadow")]
+scale = Vector2(0.45, 0.25)
+
+[node name="Vegetation" type="Node2D" parent="Objects"]
+editor_description = "Trees and palms at blockout positions (GateTrees Tree01/Tree02, SouthTreeRow Tree01/Tree02, WestPathPalms PalmW09/PalmE09). The hedge runs (y -112, flanking the path between plaza and gate, and east between the south-row trees) are a composition choice; a hedge right behind the 2.4 m wall would be hidden by it."
+y_sort_enabled = true
+
+[node name="GateTreeWest" parent="Objects/Vegetation" instance=ExtResource("5_tree")]
+position = Vector2(-210, -320)
+
+[node name="ContactShadow" parent="Objects/Vegetation/GateTreeWest" instance=ExtResource("10_shadow")]
+scale = Vector2(1.1, 0.4)
+
+[node name="GateTreeEast" parent="Objects/Vegetation" instance=ExtResource("5_tree")]
+position = Vector2(210, -320)
+
+[node name="ContactShadow" parent="Objects/Vegetation/GateTreeEast" instance=ExtResource("10_shadow")]
+scale = Vector2(1.1, 0.4)
+
+[node name="SouthRowTree01" parent="Objects/Vegetation" instance=ExtResource("5_tree")]
+position = Vector2(290, -90)
+
+[node name="ContactShadow" parent="Objects/Vegetation/SouthRowTree01" instance=ExtResource("10_shadow")]
+scale = Vector2(1.1, 0.4)
+
+[node name="SouthRowTree02" parent="Objects/Vegetation" instance=ExtResource("5_tree")]
+position = Vector2(590, -90)
+
+[node name="ContactShadow" parent="Objects/Vegetation/SouthRowTree02" instance=ExtResource("10_shadow")]
+scale = Vector2(1.1, 0.4)
+
+[node name="PalmPathWest" parent="Objects/Vegetation" instance=ExtResource("6_palm")]
+position = Vector2(-95, -360)
+
+[node name="ContactShadow" parent="Objects/Vegetation/PalmPathWest" instance=ExtResource("10_shadow")]
+scale = Vector2(0.6, 0.24)
+
+[node name="PalmPathEast" parent="Objects/Vegetation" instance=ExtResource("6_palm")]
+position = Vector2(95, -360)
+
+[node name="ContactShadow" parent="Objects/Vegetation/PalmPathEast" instance=ExtResource("10_shadow")]
+scale = Vector2(0.6, 0.24)
+
+[node name="HedgeGateW160" parent="Objects/Vegetation" instance=ExtResource("7_hedge")]
+position = Vector2(-160, -112)
+
+[node name="ContactShadow" parent="Objects/Vegetation/HedgeGateW160" instance=ExtResource("10_shadow")]
+scale = Vector2(1.2, 0.45)
+
+[node name="HedgeGateW96" parent="Objects/Vegetation" instance=ExtResource("7_hedge")]
+position = Vector2(-96, -112)
+
+[node name="ContactShadow" parent="Objects/Vegetation/HedgeGateW96" instance=ExtResource("10_shadow")]
+scale = Vector2(1.2, 0.45)
+
+[node name="HedgeGateE96" parent="Objects/Vegetation" instance=ExtResource("7_hedge")]
+position = Vector2(96, -112)
+
+[node name="ContactShadow" parent="Objects/Vegetation/HedgeGateE96" instance=ExtResource("10_shadow")]
+scale = Vector2(1.2, 0.45)
+
+[node name="HedgeGateE160" parent="Objects/Vegetation" instance=ExtResource("7_hedge")]
+position = Vector2(160, -112)
+
+[node name="ContactShadow" parent="Objects/Vegetation/HedgeGateE160" instance=ExtResource("10_shadow")]
+scale = Vector2(1.2, 0.45)
+
+[node name="HedgeE384" parent="Objects/Vegetation" instance=ExtResource("7_hedge")]
+position = Vector2(384, -112)
+
+[node name="ContactShadow" parent="Objects/Vegetation/HedgeE384" instance=ExtResource("10_shadow")]
+scale = Vector2(1.2, 0.45)
+
+[node name="HedgeE448" parent="Objects/Vegetation" instance=ExtResource("7_hedge")]
+position = Vector2(448, -112)
+
+[node name="ContactShadow" parent="Objects/Vegetation/HedgeE448" instance=ExtResource("10_shadow")]
+scale = Vector2(1.2, 0.45)
+
+[node name="HedgeE512" parent="Objects/Vegetation" instance=ExtResource("7_hedge")]
+position = Vector2(512, -112)
+
+[node name="ContactShadow" parent="Objects/Vegetation/HedgeE512" instance=ExtResource("10_shadow")]
+scale = Vector2(1.2, 0.45)
+
+[node name="HedgeE640" parent="Objects/Vegetation" instance=ExtResource("7_hedge")]
+position = Vector2(640, -112)
+
+[node name="ContactShadow" parent="Objects/Vegetation/HedgeE640" instance=ExtResource("10_shadow")]
+scale = Vector2(1.2, 0.45)
+
+[node name="HedgeE704" parent="Objects/Vegetation" instance=ExtResource("7_hedge")]
+position = Vector2(704, -112)
+
+[node name="ContactShadow" parent="Objects/Vegetation/HedgeE704" instance=ExtResource("10_shadow")]
+scale = Vector2(1.2, 0.45)
+
+[node name="HedgeE768" parent="Objects/Vegetation" instance=ExtResource("7_hedge")]
+position = Vector2(768, -112)
+
+[node name="ContactShadow" parent="Objects/Vegetation/HedgeE768" instance=ExtResource("10_shadow")]
+scale = Vector2(1.2, 0.45)
+
+[node name="HedgeE832" parent="Objects/Vegetation" instance=ExtResource("7_hedge")]
+position = Vector2(832, -112)
+
+[node name="ContactShadow" parent="Objects/Vegetation/HedgeE832" instance=ExtResource("10_shadow")]
+scale = Vector2(1.2, 0.45)
+
+[node name="StreetFurniture" type="Node2D" parent="Objects"]
+editor_description = "Benches and lamp posts: composition choices (not in the blockout)."
+y_sort_enabled = true
+
+[node name="BenchPlazaWest" parent="Objects/StreetFurniture" instance=ExtResource("8_bench")]
+position = Vector2(-128, -244)
+
+[node name="ContactShadow" parent="Objects/StreetFurniture/BenchPlazaWest" instance=ExtResource("10_shadow")]
+scale = Vector2(1.15, 0.38)
+
+[node name="BenchPlazaEast" parent="Objects/StreetFurniture" instance=ExtResource("8_bench")]
+position = Vector2(128, -244)
+
+[node name="ContactShadow" parent="Objects/StreetFurniture/BenchPlazaEast" instance=ExtResource("10_shadow")]
+scale = Vector2(1.15, 0.38)
+
+[node name="LampPlazaWest" parent="Objects/StreetFurniture" instance=ExtResource("9_lamp")]
+position = Vector2(-176, -140)
+
+[node name="ContactShadow" parent="Objects/StreetFurniture/LampPlazaWest" instance=ExtResource("10_shadow")]
+scale = Vector2(0.4, 0.18)
+
+[node name="LampPlazaEast" parent="Objects/StreetFurniture" instance=ExtResource("9_lamp")]
+position = Vector2(176, -140)
+
+[node name="ContactShadow" parent="Objects/StreetFurniture/LampPlazaEast" instance=ExtResource("10_shadow")]
+scale = Vector2(0.4, 0.18)
+
+[node name="LampSidewalk" parent="Objects/StreetFurniture" instance=ExtResource("9_lamp")]
+position = Vector2(480, 52)
+
+[node name="ContactShadow" parent="Objects/StreetFurniture/LampSidewalk" instance=ExtResource("10_shadow")]
+scale = Vector2(0.4, 0.18)
+
+[node name="Camera" type="Camera2D" parent="."]
+editor_description = "TEMPORARY review camera at gameplay zoom 1 (same as Player/Camera); frames the whole 1152 x 648 view."
+position = Vector2(256, -128)
