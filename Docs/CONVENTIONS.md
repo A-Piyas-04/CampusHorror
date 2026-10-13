@@ -297,9 +297,13 @@ Introduced in Milestone G Part 1. Waiting for the user's approval. These are for
 | Building / wall / fence / hedge | Instance `scenes/world/blockout/BlockoutBlock.tscn` (`class_name BlockoutBlock`, `@tool`, `StaticBody2D` layer 1 / mask 0). Origin = centre of the footprint's front (south) edge. Set `footprint_size`, `wall_height`, colours, `arch_count`, `casts_shadow` in the Inspector. Collision and the `LightOccluder2D` are generated from the footprint (internal children, not saved). The body uses light mask 2 (§10). |
 | Long blocks | A block Y-sorts by its front edge. Split long north–south masses into sections when something must sort between them. |
 | Trees | Instance `scenes/props/PalmTree.tscn` / `Tree.tscn`: origin at the trunk base, small trunk collision, canopy in the same node (Y-sorted, not Overhead). |
-| Ground surfaces | Plain `Polygon2D` (and `Line2D` markings) under the zone's `Ground` (z −10), one node per surface so vertices can be edited. |
-| Grouping | Related pieces share a parent `Node2D` with `y_sort_enabled` (a court, a building section, a tree row) so the group can be moved as one. |
-| Overhead | Roofs/arches the player walks under stay under the zone's `Overhead` (z 10), positioned to match their building; move both together. |
+| Grouping | Related pieces share a parent `Node2D` with `y_sort_enabled` (a building section, a tree row) so the group can be moved as one. |
+| Ground surfaces | Plain `Polygon2D` (and `Line2D` markings) under the zone's `Ground` (z −10), one node per surface so vertices can be edited. Only terrain that belongs to no landmark (grass, field, shared paths, road) lives here. |
+| Landmarks | A logical landmark (the gate, CDS, a court) is **one** parent `Node2D` with `y_sort_enabled`. Every visual layer it owns is a descendant, so moving that one parent moves the whole landmark. Never split a landmark's layers across zone-level nodes. |
+| Landmark ground | Ground owned by a landmark (court surface, gate plaza, entrance forecourt) is a child of the landmark with `z_index = -9`. Not −10: nested Y-sort would sort it against the zone `Ground` by Y and hide it whenever the landmark sits north of the zone origin. |
+| Landmark overhead | Roofs/arches/canopies the player walks under go in an `Overhead` child `Node2D` of the landmark with `z_index = 10` (positions local to the landmark). This replaces the zone-level `Overhead` for landmark pieces; the zone `Overhead` is only for things that belong to no landmark. |
+| Doors and spawns | A door or spawn marker that serves one landmark may live inside it, so it moves with it. `Zone.get_doors()` and spawn lookup search the whole zone; saves store zone ID + position only, never node paths. |
+| Placeholder marking | Every blockout-only visual is marked: the node is in group `blockout_placeholder` and has an `editor_description` starting with "BLOCKOUT PLACEHOLDER". The group on a node covers all its descendants. `BlockoutBlock`, `PalmTree` and `Tree` carry it on their scene roots. Landmark parents are not placeholders; they are the editable structure that production art will keep. |
 | Real-map layout | Recorded in `Docs/CAMPUS_MAP.md` with an accuracy label per element. |
 
 ---
@@ -348,3 +352,4 @@ To re-run: open `scenes/tests/Milestone0Test.tscn` and press F6 (Run Current Sce
 | 2026-10-07 | Milestone F: section 10 (2D lighting) added as Proposed; temporary `debug_toggle_night` action listed in section 1; Compatibility lighting result noted in section 7. |
 | 2026-10-08 | Milestone E: section 11 (save and load) added as Proposed; temporary `debug_save` / `debug_load` actions listed in section 1. |
 | 2026-10-08 | Milestone G Part 1: section 12 (map blockout pieces) added as Proposed. |
+| 2026-10-08 | Milestone G Part 1 editability cleanup: section 12 amended (still Proposed). Landmarks own all their layers: landmark ground at z −9, a landmark `Overhead` child at z 10 (replacing "keep overhead under the zone's `Overhead`"), doors and spawns may live inside their landmark, and the `blockout_placeholder` group marks blockout-only visuals. |

@@ -28,7 +28,7 @@ The user has stated that the map should **not** look like a flat coloured diagra
 - Trees and palms draw their canopy above a small trunk footprint and Y-sort with the player.
 - Overhead pieces (gate roof/arch, veranda roof edge, CDS entrance canopy) cover the player as roofs would.
 
-These are placeholders to prove scale and layering only; none of their colours, shapes or sizes are art decisions.
+These are placeholders to prove scale and layering only; none of their colours, shapes or sizes are art decisions. Every one of them is in node group `blockout_placeholder` with an `editor_description` starting "BLOCKOUT PLACEHOLDER", so they can be found and swapped for production assets inside the same landmark parent (`Docs/CAMPUS_MAP.md`, "How to edit the map").
 
 ## Not yet decided
 

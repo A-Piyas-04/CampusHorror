@@ -12,7 +12,8 @@ y_sort_enabled = true
 script = ExtResource("1_zone")
 zone_id = "main_gate_exterior"
 
-[node name="Ground" type="Node2D" parent="."]
+[node name="Ground" type="Node2D" parent="." groups=["blockout_placeholder"]]
+editor_description = "BLOCKOUT PLACEHOLDER: base terrain surfaces (grass, field, paths, road). To be replaced by production ground art (e.g. TileMapLayers)."
 z_index = -10
 
 [node name="GroundFill" type="Polygon2D" parent="Ground"]
@@ -74,14 +75,6 @@ polygon = PackedVector2Array(1260, -1080, 1360, -1080, 1360, 800, 1260, 800)
 color = Color(0.72, 0.5, 0.42, 1)
 polygon = PackedVector2Array(-1450, 720, 1360, 720, 1360, 800, -1450, 800)
 
-[node name="GatePlaza" type="Polygon2D" parent="Ground/Paths"]
-color = Color(0.72, 0.5, 0.42, 1)
-polygon = PackedVector2Array(-1560, 1120, -1220, 1120, -1220, 1240, -1560, 1240)
-
-[node name="CdsForecourt" type="Polygon2D" parent="Ground/Paths"]
-color = Color(0.66, 0.45, 0.38, 1)
-polygon = PackedVector2Array(1360, -330, 1480, -330, 1480, -110, 1360, -110)
-
 [node name="Objects" type="Node2D" parent="."]
 y_sort_enabled = true
 
@@ -89,16 +82,19 @@ y_sort_enabled = true
 y_sort_enabled = true
 
 [node name="FutsalCourt" type="Node2D" parent="Objects/SportsCourts"]
+editor_description = "Logical landmark root: move this node to move the whole court (ground layer, markings, fences)."
 y_sort_enabled = true
 position = Vector2(-200, 1000)
 
-[node name="Apron" type="Polygon2D" parent="Objects/SportsCourts/FutsalCourt"]
-z_index = -10
+[node name="Apron" type="Polygon2D" parent="Objects/SportsCourts/FutsalCourt" groups=["blockout_placeholder"]]
+editor_description = "BLOCKOUT PLACEHOLDER: court ground layer, moves with the court. Replace with production art."
+z_index = -9
 color = Color(0.62, 0.62, 0.6, 1)
 polygon = PackedVector2Array(-300, -150, 300, -150, 300, 150, -300, 150)
 
-[node name="Surface" type="Polygon2D" parent="Objects/SportsCourts/FutsalCourt"]
-z_index = -10
+[node name="Surface" type="Polygon2D" parent="Objects/SportsCourts/FutsalCourt" groups=["blockout_placeholder"]]
+editor_description = "BLOCKOUT PLACEHOLDER: court ground layer, moves with the court. Replace with production art."
+z_index = -9
 color = Color(0.36, 0.62, 0.66, 1)
 polygon = PackedVector2Array(-260, -120, 260, -120, 260, 120, -260, 120)
 
@@ -160,16 +156,19 @@ roof_color = Color(0.3, 0.33, 0.32, 0.6)
 casts_shadow = false
 
 [node name="TennisCourt" type="Node2D" parent="Objects/SportsCourts"]
+editor_description = "Logical landmark root: move this node to move the whole court (ground layer, markings, fences)."
 y_sort_enabled = true
 position = Vector2(550, 1000)
 
-[node name="Apron" type="Polygon2D" parent="Objects/SportsCourts/TennisCourt"]
-z_index = -10
+[node name="Apron" type="Polygon2D" parent="Objects/SportsCourts/TennisCourt" groups=["blockout_placeholder"]]
+editor_description = "BLOCKOUT PLACEHOLDER: court ground layer, moves with the court. Replace with production art."
+z_index = -9
 color = Color(0.62, 0.62, 0.6, 1)
 polygon = PackedVector2Array(-300, -150, 300, -150, 300, 150, -300, 150)
 
-[node name="Surface" type="Polygon2D" parent="Objects/SportsCourts/TennisCourt"]
-z_index = -10
+[node name="Surface" type="Polygon2D" parent="Objects/SportsCourts/TennisCourt" groups=["blockout_placeholder"]]
+editor_description = "BLOCKOUT PLACEHOLDER: court ground layer, moves with the court. Replace with production art."
+z_index = -9
 color = Color(0.3, 0.55, 0.5, 1)
 polygon = PackedVector2Array(-250, -130, 250, -130, 250, 130, -250, 130)
 
@@ -228,6 +227,7 @@ casts_shadow = false
 y_sort_enabled = true
 
 [node name="MainGateLandmark" type="Node2D" parent="Objects/Buildings"]
+editor_description = "Logical landmark root: move this node to move the whole gate (piers, leaves, pavilion, plaza, arrival spawn and Overhead roof/arch/canopy)."
 y_sort_enabled = true
 position = Vector2(-1390, 1400)
 
@@ -275,7 +275,44 @@ wall_height = 140.0
 wall_color = Color(0.92, 0.92, 0.9, 1)
 roof_color = Color(0.92, 0.92, 0.9, 1)
 
+[node name="GatePlaza" type="Polygon2D" parent="Objects/Buildings/MainGateLandmark" groups=["blockout_placeholder"]]
+editor_description = "BLOCKOUT PLACEHOLDER: gate approach paving, moves with the gate. Replace with production art."
+z_index = -9
+color = Color(0.72, 0.5, 0.42, 1)
+polygon = PackedVector2Array(-170, -280, 170, -280, 170, -160, -170, -160)
+
+[node name="SpawnMainGateEntry" parent="Objects/Buildings/MainGateLandmark" instance=ExtResource("2_spawn")]
+position = Vector2(0, -440)
+spawn_id = "main_gate_entry"
+
+[node name="Overhead" type="Node2D" parent="Objects/Buildings/MainGateLandmark" groups=["blockout_placeholder"]]
+editor_description = "BLOCKOUT PLACEHOLDER: gate roof, arch and pavilion canopy drawn over the player (z_index 10). Replace with production art."
+z_index = 10
+
+[node name="GateRoof" type="Polygon2D" parent="Objects/Buildings/MainGateLandmark/Overhead"]
+color = Color(0.88, 0.87, 0.84, 1)
+polygon = PackedVector2Array(-150, -395, 150, -395, 150, -220, -150, -220)
+
+[node name="Label" type="Label" parent="Objects/Buildings/MainGateLandmark/Overhead/GateRoof"]
+offset_left = -120.0
+offset_top = -330.0
+offset_right = 120.0
+offset_bottom = -290.0
+theme_override_colors/font_color = Color(0.3, 0.15, 0.1, 1)
+theme_override_font_sizes/font_size = 28
+text = "MAIN GATE"
+horizontal_alignment = 1
+
+[node name="ArchFace" type="Polygon2D" parent="Objects/Buildings/MainGateLandmark/Overhead"]
+color = Color(0.93, 0.92, 0.9, 1)
+polygon = PackedVector2Array(-60, -220, 60, -220, 60, -110, 45, -145, 25, -168, 0, -182, -25, -168, -45, -145, -60, -110)
+
+[node name="PavilionCanopy" type="Polygon2D" parent="Objects/Buildings/MainGateLandmark/Overhead"]
+color = Color(0.2, 0.35, 0.28, 1)
+polygon = PackedVector2Array(-360, -160, -140, -160, -140, -60, -360, -60)
+
 [node name="CDSExterior" type="Node2D" parent="Objects/Buildings"]
+editor_description = "Logical landmark root: move this node to move the whole CDS block (all sections, entrance forecourt, door, spawn and canopy)."
 y_sort_enabled = true
 position = Vector2(1775, 0)
 
@@ -327,6 +364,30 @@ footprint_size = Vector2(70, 450)
 wall_height = 80.0
 wall_color = Color(0.7, 0.36, 0.26, 1)
 roof_color = Color(0.52, 0.47, 0.42, 1)
+
+[node name="Forecourt" type="Polygon2D" parent="Objects/Buildings/CDSExterior/TableTennis" groups=["blockout_placeholder"]]
+editor_description = "BLOCKOUT PLACEHOLDER: CDS entrance forecourt paving, moves with CDS. Replace with production art."
+z_index = -9
+color = Color(0.66, 0.45, 0.38, 1)
+polygon = PackedVector2Array(-415, -330, -295, -330, -295, -110, -415, -110)
+
+[node name="DoorCdsMainEntry" parent="Objects/Buildings/CDSExterior/TableTennis" instance=ExtResource("3_door")]
+position = Vector2(-323, -200)
+destination_zone_id = "cds_veranda"
+destination_spawn_id = "inside_cds_entry"
+prompt_text = "Press E to enter the CDS veranda"
+
+[node name="SpawnOutsideCdsEntrance" parent="Objects/Buildings/CDSExterior/TableTennis" instance=ExtResource("2_spawn")]
+position = Vector2(-395, -200)
+spawn_id = "outside_cds_entrance"
+
+[node name="Overhead" type="Node2D" parent="Objects/Buildings/CDSExterior/TableTennis" groups=["blockout_placeholder"]]
+editor_description = "BLOCKOUT PLACEHOLDER: CDS entrance canopy drawn over the player (z_index 10). Replace with production art."
+z_index = 10
+
+[node name="EntranceCanopy" type="Polygon2D" parent="Objects/Buildings/CDSExterior/TableTennis/Overhead"]
+color = Color(0.52, 0.47, 0.42, 0.9)
+polygon = PackedVector2Array(-375, -380, -295, -380, -295, -268, -375, -268)
 
 [node name="IndoorBasketball" type="Node2D" parent="Objects/Buildings/CDSExterior"]
 y_sort_enabled = true
@@ -532,55 +593,3 @@ position = Vector2(-1600, 1080)
 
 [node name="Tree02" parent="Objects/Vegetation/GateTrees" instance=ExtResource("6_tree")]
 position = Vector2(-1180, 1080)
-
-[node name="Transitions" type="Node2D" parent="Objects"]
-y_sort_enabled = true
-
-[node name="DoorCdsMainEntry" parent="Objects/Transitions" instance=ExtResource("3_door")]
-position = Vector2(1452, -200)
-destination_zone_id = "cds_veranda"
-destination_spawn_id = "inside_cds_entry"
-prompt_text = "Press E to enter the CDS veranda"
-
-[node name="SpawnMarkers" type="Node2D" parent="Objects"]
-y_sort_enabled = true
-
-[node name="SpawnMainGateEntry" parent="Objects/SpawnMarkers" instance=ExtResource("2_spawn")]
-position = Vector2(-1390, 960)
-spawn_id = "main_gate_entry"
-
-[node name="SpawnOutsideCdsEntrance" parent="Objects/SpawnMarkers" instance=ExtResource("2_spawn")]
-position = Vector2(1380, -200)
-spawn_id = "outside_cds_entrance"
-
-[node name="Overhead" type="Node2D" parent="."]
-z_index = 10
-
-[node name="MainGateOverhead" type="Node2D" parent="Overhead"]
-position = Vector2(-1390, 1400)
-
-[node name="GateRoof" type="Polygon2D" parent="Overhead/MainGateOverhead"]
-color = Color(0.88, 0.87, 0.84, 1)
-polygon = PackedVector2Array(-150, -395, 150, -395, 150, -220, -150, -220)
-
-[node name="Label" type="Label" parent="Overhead/MainGateOverhead/GateRoof"]
-offset_left = -120.0
-offset_top = -330.0
-offset_right = 120.0
-offset_bottom = -290.0
-theme_override_colors/font_color = Color(0.3, 0.15, 0.1, 1)
-theme_override_font_sizes/font_size = 28
-text = "MAIN GATE"
-horizontal_alignment = 1
-
-[node name="ArchFace" type="Polygon2D" parent="Overhead/MainGateOverhead"]
-color = Color(0.93, 0.92, 0.9, 1)
-polygon = PackedVector2Array(-60, -220, 60, -220, 60, -110, 45, -145, 25, -168, 0, -182, -25, -168, -45, -145, -60, -110)
-
-[node name="PavilionCanopy" type="Polygon2D" parent="Overhead/MainGateOverhead"]
-color = Color(0.2, 0.35, 0.28, 1)
-polygon = PackedVector2Array(-360, -160, -140, -160, -140, -60, -360, -60)
-
-[node name="CdsEntranceCanopy" type="Polygon2D" parent="Overhead"]
-color = Color(0.52, 0.47, 0.42, 0.9)
-polygon = PackedVector2Array(1400, -380, 1480, -380, 1480, -268, 1400, -268)

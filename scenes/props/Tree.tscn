@@ -3,7 +3,8 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_trunk"]
 radius = 12.0
 
-[node name="Tree" type="StaticBody2D"]
+[node name="Tree" type="StaticBody2D" groups=["blockout_placeholder"]]
+editor_description = "BLOCKOUT PLACEHOLDER: flat-colour tree. Replace Trunk/Canopy with production art; keep the trunk collision."
 collision_mask = 0
 
 [node name="Trunk" type="Polygon2D" parent="."]

@@ -64,8 +64,8 @@ Explicitly excluded:
 
 | spawn_id | Zone | Position (feet) | Purpose / location |
 |---|---|---|---|
-| `main_gate_entry` | `main_gate_exterior` | (−1390, 960) | Game start. On the west palm path just inside (north of) the Main Gate, clear of the gate roof. |
-| `outside_cds_entrance` | `main_gate_exterior` | (1380, −200) | On the CDS forecourt, 72 px west of the CDS main door. Arrival when leaving the veranda. |
+| `main_gate_entry` | `main_gate_exterior` | (−1390, 960) | Game start. On the west palm path just inside (north of) the Main Gate, clear of the gate roof. Node: `Objects/Buildings/MainGateLandmark/SpawnMainGateEntry` (moves with the gate). |
+| `outside_cds_entrance` | `main_gate_exterior` | (1380, −200) | On the CDS forecourt, 72 px west of the CDS main door. Arrival when leaving the veranda. Node: `Objects/Buildings/CDSExterior/TableTennis/SpawnOutsideCdsEntrance` (moves with CDS). |
 | `inside_cds_entry` | `cds_veranda` | (0, −50) | In the middle of the veranda walkway, 90 px east of the exit door. Arrival when entering CDS. |
 
 `cds_exit_spawn` (proposed in the brief) was **not created**: `outside_cds_entrance` already serves as the exit arrival point. The ID stays free for later use.
@@ -76,7 +76,7 @@ Doors have no ID property in the current architecture (`Door` exports only `dest
 
 | Source zone | Transition ID | Door node | Destination zone | Destination spawn | Prompt |
 |---|---|---|---|---|---|
-| `main_gate_exterior` | `cds_main_entry` | `Objects/Transitions/DoorCdsMainEntry` at (1452, −200), on the west face of the CDS table-tennis veranda | `cds_veranda` | `inside_cds_entry` | "Press E to enter the CDS veranda" |
+| `main_gate_exterior` | `cds_main_entry` | `Objects/Buildings/CDSExterior/TableTennis/DoorCdsMainEntry` at world (1452, −200), on the west face of the CDS table-tennis veranda | `cds_veranda` | `inside_cds_entry` | "Press E to enter the CDS veranda" |
 | `cds_veranda` | `cds_exit_to_field` | `Objects/Transitions/DoorCdsExitToField` at (−90, −50), against the west parapet | `main_gate_exterior` | `outside_cds_entrance` | "Press E to go out to the field" |
 
 Reserved future IDs (documented only, **not implemented**; the matching fronts in `cds_veranda` are non-interactive):
@@ -151,8 +151,17 @@ Needs the user's campus knowledge:
 
 - Each area is a separate node: `Ground/Field`, `Ground/Paths/*`, `Ground/Roads/*`, `Objects/SportsCourts/<Court>`, `Objects/Buildings/MainGateLandmark`, `Objects/Buildings/CDSExterior/<Section>`, `Objects/Boundary/*`, `Objects/Vegetation/<Group>/*`.
 - Ground surfaces are `Polygon2D`s: select one and drag its vertices.
-- Moving a court, a CDS section or the gate: move its parent node; surfaces, fences and blocks move together.
+- **Moving a landmark: move only its parent node.** Every layer it owns is inside it (see `Docs/CONVENTIONS.md` §12):
+
+| Landmark (move this node) | Contains |
+|---|---|
+| `Objects/Buildings/MainGateLandmark` | Piers, gate leaves, side pavilion + columns, `GatePlaza` (z −9), `SpawnMainGateEntry`, `Overhead` (z 10: `GateRoof` + label, `ArchFace`, `PavilionCanopy`) |
+| `Objects/Buildings/CDSExterior` | Sections `Canteen`, `TableTennis`, `IndoorBasketball` (mass, label, veranda each). `TableTennis` also holds the entrance: `Forecourt` (z −9), `DoorCdsMainEntry`, `SpawnOutsideCdsEntrance`, `Overhead/EntranceCanopy` (z 10). A single section can also be moved on its own. |
+| `Objects/SportsCourts/FutsalCourt`, `TennisCourt` | `Apron` and `Surface` (z −9) with line markings, fence blocks |
+| `cds_veranda`: `Objects/Arcade` | Columns 01–10 and `Overhead/VerandaRoofEdge` (z 10) |
+
+- Shared terrain that belongs to no landmark (field, palm/north/east/south paths, road, sidewalk) stays under the zone's `Ground` and is edited separately. Paths that lead to a moved landmark have to be adjusted by hand.
 - Buildings, walls, fences and hedges are `BlockoutBlock` instances: change `Footprint Size`, `Wall Height`, colours and `Arch Count` in the Inspector; collision and shadows follow automatically.
-- Trees and palms are instances of `scenes/props/Tree.tscn` / `PalmTree.tscn`: duplicate (Ctrl+D) and move.
-- Overhead pieces (`Overhead/MainGateOverhead`, `Overhead/CdsEntranceCanopy`) are **not** children of the buildings (see `Docs/CONVENTIONS.md` §3). When moving the gate, move `Overhead/MainGateOverhead` by the same amount (both sit at (−1390, 1400)).
-- Doors and spawn markers: move them, keep their IDs. Keep each arrival spawn more than 56 px from the door it lands next to.
+- Trees and palms are instances of `scenes/props/Tree.tscn` / `PalmTree.tscn`: duplicate (Ctrl+D) and move. Tree rows (`CdsTrees`, `GateTrees`, …) are landscape groups, not part of the buildings they stand near.
+- Doors and spawn markers: move them, keep their IDs (node names / `spawn_id`). Keep each arrival spawn more than 56 px from the door it lands next to. Moving the gate or CDS moves their door/spawn too; saves are unaffected (they store zone ID + position, not node paths).
+- Placeholders: every blockout-only visual is in node group `blockout_placeholder` (Node panel > Groups) and its `editor_description` (hover the node in the Scene dock) starts with "BLOCKOUT PLACEHOLDER". The group covers all descendants. These are replaced by production art later; the landmark parents, collision footprints, doors and spawns are the structure that stays.
