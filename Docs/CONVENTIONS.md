@@ -294,7 +294,7 @@ Introduced in Milestone G Part 1. Waiting for the user's approval. These are for
 
 | Rule | Detail |
 |---|---|
-| Building / wall / fence / hedge | Instance `scenes/world/blockout/BlockoutBlock.tscn` (`class_name BlockoutBlock`, `@tool`, `StaticBody2D` layer 1 / mask 0). Origin = centre of the footprint's front (south) edge. Set `footprint_size`, `wall_height`, colours, `arch_count`, `casts_shadow` in the Inspector. Collision and the `LightOccluder2D` are generated from the footprint (internal children, not saved). The body uses light mask 2 (§10). |
+| Building / wall / fence / hedge | (The Main Gate `SouthWall` is no longer a `BlockoutBlock` since Batch 2; it is a production boundary run, §13.) Instance `scenes/world/blockout/BlockoutBlock.tscn` (`class_name BlockoutBlock`, `@tool`, `StaticBody2D` layer 1 / mask 0). Origin = centre of the footprint's front (south) edge. Set `footprint_size`, `wall_height`, colours, `arch_count`, `casts_shadow` in the Inspector. Collision and the `LightOccluder2D` are generated from the footprint (internal children, not saved). The body uses light mask 2 (§10). |
 | Long blocks | A block Y-sorts by its front edge. Split long north–south masses into sections when something must sort between them. |
 | Trees | Instance `scenes/props/PalmTree.tscn` / `Tree.tscn`: origin at the trunk base, small trunk collision, canopy in the same node (Y-sorted, not Overhead). |
 | Grouping | Related pieces share a parent `Node2D` with `y_sort_enabled` (a building section, a tree row) so the group can be moved as one. |
@@ -321,6 +321,7 @@ Introduced in Milestone G Part 2. Waiting for the user's approval. Full guide: `
 | Shadows | No ground shadow is baked into renders. |
 | Contact shadows | A soft, non-directional ground-contact shadow is a `scenes/props/common/ContactShadow.tscn` instance added as a **child** of the placed prop instance (at its origin, sized with `scale`), so it moves with the prop. z −9: above ground, below all Y-sorted objects. No collision. |
 | Modular runs | Tileable modules (`tile_period_x_m`) are placed exactly one footprint length apart (wall: 96 px), never overlapped by moving sprites. Joins are made seamless by the generator and render (bleed), not in Godot. |
+| Boundary runs | A boundary built from wall modules (Main Gate `SouthWall`, Batch 2) is one Y-sorted parent `Node2D` per run with integer local positions: modules exactly 96 px apart, then a pier centred on every join and free end when the references show pilasters (piers after the walls in tree order, so they draw on top at equal Y). Each instance gets its own `ContactShadow` child (composition-test sizes: wall (1.6, 0.28), pier (0.45, 0.25)). The run adds one `StaticBody2D` (layer 1 / mask 0) whose rectangle spans the whole run at the deepest footprint (the pier's), so the stop line is uniform and the player doesn't snag on pier lips, and one `LightOccluder2D` on light mask 1 over the same rectangle, because the generated props have no occluders. Generated prop internals are never edited. |
 
 ---
 
@@ -371,4 +372,5 @@ To re-run: open `scenes/tests/Milestone0Test.tscn` and press F6 (Run Current Sce
 | 2026-10-13 | Milestone G Part 2: section 13 (rendered 2.5D props from the Blender pipeline) added as Proposed. |
 | 2026-10-13 | Milestone G composition test: §13 "Contact shadows" row added (still Proposed). |
 | 2026-10-13 | Milestone G Batch 1A: §12 "Production ground (zone)" row added (still Proposed): tiles + textured edge strips + markings under `Ground`. |
+| 2026-10-13 | Milestone G Batch 2: §13 "Boundary runs" row added (still Proposed): one parent per run, modules 96 px apart, a pier on every join and end, per-instance contact shadows, one run-level collision and occluder. §12 notes that the Main Gate `SouthWall` is no longer a `BlockoutBlock`. |
 | 2026-10-08 | Milestone G Part 1 editability cleanup: section 12 amended (still Proposed). Landmarks own all their layers: landmark ground at z −9, a landmark `Overhead` child at z 10 (replacing "keep overhead under the zone's `Overhead`"), doors and spawns may live inside their landmark, and the `blockout_placeholder` group marks blockout-only visuals. |

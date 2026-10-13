@@ -1,0 +1,7 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scenes/tests/environment_previews/main_gate_vegetation_check.gd" id="1_check"]
+
+[node name="MainGateVegetationCheck" type="Node2D"]
+editor_description = "TEMPORARY Milestone G Batch 1B test-only check (not a zone, not reachable from Main). Instances the real scenes/world/MainGateExterior.tscn and verifies the production vegetation against the historical main_gate_ground_baseline.json and the versioned main_gate_ground_baseline_batch1b.json. Output: [VEGETATION] lines."
+script = ExtResource("1_check")

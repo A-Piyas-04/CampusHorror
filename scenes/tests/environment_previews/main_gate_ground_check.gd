@@ -6,12 +6,17 @@ extends Node2D
 ##   original surface edge must show the material of the original blockout layout (no snapping).
 ## - Edge strips: production texture, repeat enabled, no UV / offset, so they stay in phase with the tiles.
 ## - Everything outside Ground (doors, spawns, landmarks, collisions, occluders, vegetation, Y-sort, z,
-##   light masks) and the markings' global transforms equal the pre-edit baseline JSON.
+##   light masks) and the markings' global transforms equal the baseline JSON.
+## Baselines: main_gate_ground_baseline.json is the historical pre-Batch-1A record (placeholder vegetation; kept
+## unchanged, used by main_gate_vegetation_check.gd). main_gate_ground_baseline_batch1b.json was dumped after
+## Batch 1B (only the 42 vegetation instances differ) and is the pre-Batch-2 record (main_gate_boundary_check.gd).
+## main_gate_ground_baseline_batch2.json is the current fixture, dumped after Batch 2 and verified to differ from
+## batch1b only inside Objects/Boundary/SouthWall.
 ## Args (after `--`): `--dump-baseline=<res:// or absolute path>` writes the baseline and quits;
 ## `--quit-after-checks` quits with exit code 0 (pass) / 1 (fail).
 
 const ZONE_SCENE := "res://scenes/world/MainGateExterior.tscn"
-const BASELINE_PATH := "res://scenes/tests/environment_previews/main_gate_ground_baseline.json"
+const BASELINE_PATH := "res://scenes/tests/environment_previews/main_gate_ground_baseline_batch2.json"
 const TILESET_PATH := "res://assets/tilesets/campus_ground.tres"
 const TEXTURES := {
 	"res://assets/sprites/ground/grass_ground_tile.png": "grass",

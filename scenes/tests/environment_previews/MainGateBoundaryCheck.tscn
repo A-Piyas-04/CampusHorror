@@ -1,0 +1,7 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scenes/tests/environment_previews/main_gate_boundary_check.gd" id="1_check"]
+
+[node name="MainGateBoundaryCheck" type="Node2D"]
+editor_description = "TEMPORARY Milestone G Batch 2 test-only check (not a zone, not reachable from Main). Instances the real scenes/world/MainGateExterior.tscn and verifies the production south boundary wall (Objects/Boundary/SouthWall) against the pre-edit main_gate_ground_baseline_batch1b.json and the versioned main_gate_ground_baseline_batch2.json. Output: [BOUNDARY] lines."
+script = ExtResource("1_check")
