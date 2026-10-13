@@ -45,22 +45,22 @@
       "thickness_y": 0.3,
       "height_z": 2.4
     },
-    "bond": "running (half) bond, front and back skins",
-    "modeled_bricks": 735,
+    "bond": "running (half) bond, front and back skins; periodic over the module length (bricks crossing a module end are split between both ends, same colour and jitter)",
+    "modeled_brick_boxes": 735,
     "materials": [
       "BrickRed",
       "Mortar"
     ],
-    "bevel": "modifier, 4 mm, 2 segments, harden normals",
+    "bevel": "modifier, 4 mm, 2 segments, harden normals; no bevel on edges at the module ends (cuts)",
     "objects": [
       {
         "object": "RedBrickWall",
         "evaluated_bounds_m": {
           "x": 3.0,
-          "y": 0.3819,
-          "z": 2.3999
+          "y": 0.3818,
+          "z": 2.4
         },
-        "evaluated_faces": 39906
+        "evaluated_faces": 38626
       }
     ]
   },
@@ -141,7 +141,7 @@
       768,
       566
     ],
-    "render_seconds": 4.0
+    "render_seconds": 4.5
   },
   "projection": {
     "note": "texture px, top-left origin: x = W/2 + (p.right - cx)*ppm, y = H/2 - (p.up - cy)*ppm",
@@ -187,18 +187,33 @@
       ]
     ],
     "design_bounds_bbox_px": [
-      52.9655172413793,
+      36,
       53.17753956288837,
-      715.0344827586207,
+      732,
       512.8224548377793
     ]
   },
-  "total_seconds": 4.3,
+  "tiling": {
+    "axis": "x",
+    "period_m": 3.0,
+    "period_px": 662.0689655172414,
+    "footprint_end_columns_px": [
+      52.9655172413793,
+      715.0344827586207
+    ],
+    "bleed_px": 16,
+    "kept_columns_px": [
+      36,
+      732
+    ],
+    "note": "rendered between camera-visible neighbour copies at +-period; columns outside kept_columns are cleared by the pipeline (a manual re-render of the .blend is not cut)"
+  },
+  "total_seconds": 5.8,
   "blender_run": {
     "exit_code": 0,
-    "seconds": 5.4,
+    "seconds": 7.4,
     "problem_lines": [
-      "00:00.719  cycles           | WARNING HIPEW initialization failed: Error opening HIP dynamic library"
+      "00:01.000  cycles           | WARNING HIPEW initialization failed: Error opening HIP dynamic library"
     ]
   },
   "verification": {
@@ -206,42 +221,41 @@
       "bit_depth": 8,
       "png_color_type": 6,
       "interlace": 0,
-      "file_bytes": 527688,
+      "file_bytes": 556939,
       "size_px": [
         768,
         566
       ],
-      "opaque_pixels": 299077,
-      "partially_transparent_pixels": 5048,
-      "fully_transparent_pixels": 130563,
+      "opaque_pixels": 315371,
+      "partially_transparent_pixels": 3390,
+      "fully_transparent_pixels": 115927,
       "content_bbox_px": [
-        51,
+        36,
         52,
-        716,
+        731,
         510
       ],
       "margins_px": {
-        "left": 51,
-        "right": 51,
+        "left": 36,
+        "right": 36,
         "top": 52,
         "bottom": 55
       },
       "max_alpha_on_image_border": 0.0
     },
     "bbox_deviation_px": [
-      -1.97,
+      0,
       -1.18,
-      1.97,
+      0,
       -1.82
     ],
     "minimum_margin_required_px": 16,
-    "compare_to": {
-      "path": "assets/sprites/architecture/red_brick_wall_grid_test.png",
-      "same_size": true,
-      "mean_rgb_diff": 0.078,
-      "max_rgb_diff": 1,
-      "max_alpha_diff": 0,
-      "pixels_alpha_diff_over_2": 0
+    "tiling": {
+      "solid_rows": 450,
+      "fringe_px_at_ends": 0,
+      "end_match_mean_rgb_diff": 1.073,
+      "end_match_max_rgb_diff": 12,
+      "shift_px": 662
     },
     "passed": true
   },
@@ -314,7 +328,11 @@
     "preview_scene": "scenes/tests/asset_previews/RedBrickWall3mPreview.tscn"
   },
   "godot_import": {
-    "already_imported": true
+    "exit_code": 0,
+    "problem_lines": [
+      "WARNING: Detected another project.godot at res://addons/godot_mcp/cache/undo/entry_000003/files. The folder will be ignored.",
+      "WARNING: UID duplicate detected between res://scenes/tests/MCPCheck.tscn and res://addons/godot_mcp/cache/undo/entry_000002/files/scenes/tests/MCPCheck.tscn."
+    ]
   },
   "godot_check": {
     "scene": {

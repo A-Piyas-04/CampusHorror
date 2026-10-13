@@ -2,7 +2,7 @@
 
 Snapshot: 13 October 2026 • Milestone G Part 2
 
-Turns a Python asset generator into a validated transparent sprite plus a reusable Godot scene. Validated on one asset only: the red-brick wall (`red_brick_wall_3m`), which regenerates the approved `red_brick_wall_grid_test` render pixel-for-pixel (alpha identical, mean colour difference 0.08/255). The wall is a **pipeline proof**, not approval of final artwork. Camera, light and scale values are the approved test values; `Docs/ART_STYLE.md` still lists the exact angle, resolution and world scale as undecided.
+Turns a Python asset generator into a validated transparent sprite plus a reusable Godot scene. Validated on one asset only: the red-brick wall (`red_brick_wall_3m`). The first version regenerated the approved `red_brick_wall_grid_test` render pixel-for-pixel. The current version is a seamless tiling module (see "Seamless horizontal modules"), so its bricks differ from that test. The wall is a **pipeline proof**, not approval of final artwork. Camera, light and scale values are the approved test values; `Docs/ART_STYLE.md` still lists the exact angle, resolution and world scale as undecided.
 
 ## One command
 
@@ -20,7 +20,7 @@ It runs these steps in order and stops at the first failure (exit code 0 only if
 | `validate` | Pure-Python PNG check: 8-bit RGBA, size equals the record, transparent background, fully transparent image border, margins ≥ 16 px, alpha bounding box within 4 px of the design bounds projected through the camera (proves framing and origin alignment), record fields, Blender 5.2, output naming, Godot `res://` texture path. |
 | `scene` | Writes `scenes/props/<category>/<SceneName>.tscn` (Sprite2D with footprint origin + optional collision). Writes first-import settings for a new PNG (mipmaps on). |
 | `preview` | Writes a test-only preview `scenes/tests/asset_previews/<SceneName>Preview.tscn` (player-sized reference, footprint outline, origin dot, zoom-4 camera; optional tiled neighbour). |
-| `godot` | Runs Godot 4.7.2 headless: imports the PNG if needed, loads the prop scene with `asset_scene_check.gd` (texture size, scale, origin, footprint corners, collision vs the record), and runs the preview scene for 2 frames. Godot's errors/warnings are reported. |
+| `godot` | Runs Godot 4.7.2 headless: imports the PNG if Godot's stored source MD5 doesn't match the current file, loads the prop scene with `asset_scene_check.gd` (texture size, scale, origin, footprint corners, collision vs the record), and runs the preview scene for 2 frames. Godot's errors/warnings are reported. |
 
 Options: `--steps validate,scene,preview,godot` (skip the render), `--cpu`, `--samples N`, `--no-collision`, `--compare-to <png>`, `--force-scene`, `--blender PATH`, `--godot PATH` (or env `BLENDER_EXE` / `GODOT_EXE`). Logs: `assets/source/blender/logs/<asset_id>.*.log` (not tracked by Git).
 
@@ -69,6 +69,20 @@ RedBrickWall3m (Node2D)        metadata asset_id / generated_by; origin = footpr
 └── Body (StaticBody2D)        only if collision is enabled; layer 1 "world", mask 0
     └── Collision (CollisionShape2D, RectangleShape2D)
 ```
+
+## Seamless horizontal modules (tiling)
+
+A generator that returns `"tile_period_x_m": <metres>` declares that its model repeats seamlessly along X with that period (the wall: 3.0 m = 12 brick pitches). The generator must make the geometry periodic. In `red_brick_wall.py`, a brick crossing a module end is cut exactly at the end and its other part is placed at the opposite end with the same colour and jitter. Edges lying on the end planes get bevel weight 0 (`BoxBuilder.to_mesh(flush_x=...)`), so the parts meet flush.
+
+The shared pipeline then:
+
+1. Renders the module between camera-visible copies of itself at ±period. The ends get the shadows, occlusion and bounce of a continuous run, so no lit end face is rendered.
+2. Keeps `tile_bleed_px` (default 16) texels of that neighbour continuation past each footprint end, and clears everything else to transparent (`kept_columns_px` in the record). Two modules placed one period apart overlap only in the bleed, with matching pixels. At the join, each sprite is fully opaque, so mipmapped and linear sampling show no alpha fringe or background.
+3. Validates the join: no non-opaque pixel in solid wall rows from `bleed/2` outside to inside each end; the bleed past one end matches the texels inside the other end (mean RGB difference ≤ 3); nothing outside the kept columns.
+
+Placement is unchanged: same scale, same origin, instances exactly one footprint length apart (96 px for the wall). Don't move sprites to hide joins.
+
+Known limits: the free ends of a run show the bleed (2.3 game px past the footprint, a hard cut through the bond), and identical modules repeat their brick colours every 3 m. Fixing either needs separate variants: an end-cap module with a finished end and no bleed on that side, and A/B modules that share the bricks crossing their ends but have different interiors. Neither is built yet.
 
 ## Collision (optional, separate stage)
 

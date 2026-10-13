@@ -11,10 +11,13 @@ define DEFAULT_PARAMS and build(collection, rng, params) returning a dict with:
     "footprint_m":     [x_min, x_max, y_min, y_max] ground footprint around the origin
     "objects":         the asset objects (for evaluated bounds in the record)
     "info":            asset-specific description copied into the record
+    "tile_period_x_m": optional; the model repeats seamlessly along X with this period
+                       (rendered between neighbour copies, bleed columns kept, rest cut)
 """
 
 import importlib
 import json
+import math
 import random
 import sys
 import time
@@ -26,7 +29,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 import bpy  # noqa: E402
 from mathutils import Vector  # noqa: E402
 
-from pipeline import assetconfig, conventions as C, rig  # noqa: E402
+from pipeline import assetconfig, conventions as C, pngcheck, rig  # noqa: E402
 
 LOG = "[PIPELINE]"
 
@@ -79,6 +82,17 @@ def main():
     built = generator.build(asset_coll, random.Random(cfg["seed"]), params)
     bounds = [Vector(p) for p in built["bounds_points_m"]]
 
+    # Horizontally tileable assets: neighbour copies one period to each side give the module
+    # ends the shadows, occlusion and bounce of a continuous run, and supply the bleed columns.
+    period = built.get("tile_period_x_m")
+    if period:
+        for obj in built["objects"]:
+            for name, dx in (("TileWest", -period), ("TileEast", period)):
+                dup = obj.copy()
+                dup.name = f"{obj.name}_{name}"
+                dup.location.x += dx
+                asset_coll.objects.link(dup)
+
     lighting_info = rig.setup_lighting(scene, rig_coll, asset_coll)
     camera_info, projection = rig.setup_camera(
         scene, rig_coll, bounds, render_cfg["elevation_deg"], render_cfg["azimuth_deg"], render_cfg["width_px"])
@@ -103,6 +117,26 @@ def main():
         raise RuntimeError(f"Render finished but {out['png']} was not written.")
     print(f"{LOG} Rendered: {out['png']} in {render_seconds:.1f} s")
 
+    x0, x1, y0, y1 = built["footprint_m"]
+    tiling = None
+    if period:
+        bleed = render_cfg["tile_bleed_px"]
+        end_l = rig.project(projection, (x0, 0.0, 0.0))[0]
+        end_r = rig.project(projection, (x1, 0.0, 0.0))[0]
+        keep = [int(math.floor(end_l - bleed)), int(math.ceil(end_r + bleed))]
+        pngcheck.keep_columns(out["png"], *keep)
+        tiling = {
+            "axis": "x",
+            "period_m": period,
+            "period_px": period * projection["px_per_m"],
+            "footprint_end_columns_px": [end_l, end_r],
+            "bleed_px": bleed,
+            "kept_columns_px": keep,
+            "note": ("rendered between camera-visible neighbour copies at +-period; columns outside "
+                     "kept_columns are cleared by the pipeline (a manual re-render of the .blend is not cut)"),
+        }
+        print(f"{LOG} Tiling cut: kept columns {keep}")
+
     depsgraph = bpy.context.evaluated_depsgraph_get()
     objects_info = []
     for obj in built["objects"]:
@@ -116,9 +150,12 @@ def main():
         })
         ev.to_mesh_clear()
 
-    x0, x1, y0, y1 = built["footprint_m"]
     footprint_corners = [(x0, y0, 0.0), (x1, y0, 0.0), (x1, y1, 0.0), (x0, y1, 0.0)]
     bounds_px = [rig.project(projection, p) for p in bounds]
+    bbox_px = [min(p[0] for p in bounds_px), min(p[1] for p in bounds_px),
+               max(p[0] for p in bounds_px), max(p[1] for p in bounds_px)]
+    if tiling:
+        bbox_px[0], bbox_px[2] = tiling["kept_columns_px"]
     record = {
         "pipeline": C.PIPELINE_MARKER,
         "pipeline_version": C.PIPELINE_VERSION,
@@ -143,9 +180,9 @@ def main():
             **projection,
             "origin_px": list(rig.project(projection, (0.0, 0.0, 0.0))),
             "footprint_corners_px": [list(rig.project(projection, p)) for p in footprint_corners],
-            "design_bounds_bbox_px": [min(p[0] for p in bounds_px), min(p[1] for p in bounds_px),
-                                      max(p[0] for p in bounds_px), max(p[1] for p in bounds_px)],
+            "design_bounds_bbox_px": bbox_px,
         },
+        "tiling": tiling,
         "total_seconds": round(time.time() - t0, 1),
     }
     out["record"].write_text(json.dumps(record, indent=2), encoding="utf-8")

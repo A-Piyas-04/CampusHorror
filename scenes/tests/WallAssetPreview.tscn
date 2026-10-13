@@ -8,7 +8,7 @@ editor_description = "TEMPORARY Milestone G asset-integration test. Not part of 
 [node name="Ground" type="Polygon2D" parent="." unique_id=3685650]
 editor_description = "TEMPORARY neutral ground for the wall asset preview."
 z_index = -10
-position = Vector2(-554, -64)
+position = Vector2(-444, -209)
 color = Color(0.42, 0.42, 0.39, 1)
 polygon = PackedVector2Array(-800, -500, 800, -500, 800, 500, -800, 500)
 

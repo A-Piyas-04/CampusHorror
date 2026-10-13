@@ -29,6 +29,10 @@ RENDER_WIDTH_PX = 768
 SAMPLES = 256
 MAX_BOUNCES = 6
 FILTER_SIZE_PX = 1.5
+# Tileable assets keep this many texels of the neighbour continuation past each footprint end,
+# so mipmapped/linear sampling at a join reads opaque, identical pixels from both sprites.
+# 16 texels covers mip level 3 (8-texel blocks, used at the ~0.145 sprite scale) plus bilinear reach.
+TILE_BLEED_PX = 16
 
 # Key sun from the front-left and above; one light direction for every asset.
 SUN_ELEVATION_DEG = 55.0
@@ -49,6 +53,7 @@ GAME_PX_PER_M = 32.0
 MIN_MARGIN_PX = 16
 MAX_BORDER_ALPHA = 1.0 / 255.0
 CONTENT_BBOX_TOLERANCE_PX = 4.0     # alpha bbox vs projected design bounds
+TILE_MATCH_MEAN_MAX = 3.0           # mean RGB diff (0-255) between the bleed and the opposite end
 
 # Godot.
 SPRITE_TEXTURE_FILTER = 4           # CanvasItem.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS (texture imported with mipmaps)

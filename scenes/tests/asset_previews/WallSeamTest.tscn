@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/props/architecture/RedBrickWall3m.tscn" id="1_wall"]
+
+[node name="WallSeamTest" type="Node2D"]
+editor_description = "TEMPORARY Milestone G seam test: two RedBrickWall3m instances end to end. Origins are footprint centres (footprint 3.0 x 0.3 m = 96 x 6.17 game px), so origins 96 px apart share one footprint edge at x = 0. Not part of the game; safe to delete."
+y_sort_enabled = true
+
+[node name="Background" type="Polygon2D" parent="."]
+editor_description = "TEMPORARY neutral ground."
+z_index = -10
+color = Color(0.42, 0.42, 0.39, 1)
+polygon = PackedVector2Array(-800, -500, 800, -500, 800, 500, -800, 500)
+
+[node name="Walls" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="WallWest" parent="Walls" instance=ExtResource("1_wall")]
+position = Vector2(-48, 0)
+
+[node name="WallEast" parent="Walls" instance=ExtResource("1_wall")]
+position = Vector2(48, 0)
+
+[node name="Camera" type="Camera2D" parent="."]
+editor_description = "TEMPORARY camera at gameplay zoom 1 (same as Player/Camera), centred on the seam at x = 0."
+position = Vector2(0, -30)

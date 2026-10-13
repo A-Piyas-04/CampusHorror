@@ -31,7 +31,14 @@ class BoxBuilder:
             face.material_index = material_index
         self.box_count += 1
 
-    def to_mesh(self, name):
+    def to_mesh(self, name, flush_x=None):
+        """Writes the mesh. Every edge gets bevel weight 1 (use Bevel limit "WEIGHT"), except
+        edges lying entirely on one of the `flush_x` planes: module ends that must meet flush."""
+        weight = self.bm.edges.layers.float.new("bevel_weight_edge")
+        for edge in self.bm.edges:
+            on_end = flush_x is not None and any(
+                all(abs(v.co.x - x) < 1e-6 for v in edge.verts) for x in flush_x)
+            edge[weight] = 0.0 if on_end else 1.0
         mesh = bpy.data.meshes.new(name)
         self.bm.normal_update()
         self.bm.to_mesh(mesh)

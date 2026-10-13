@@ -63,6 +63,7 @@ def load(asset_id_or_path):
     render.setdefault("samples", C.SAMPLES)
     render.setdefault("elevation_deg", C.CAMERA_ELEVATION_DEG)
     render.setdefault("azimuth_deg", C.CAMERA_AZIMUTH_DEG)
+    render.setdefault("tile_bleed_px", C.TILE_BLEED_PX)
 
     godot = cfg.setdefault("godot", {})
     if not isinstance(godot.get("scene_name"), str) or not SCENE_RE.match(godot["scene_name"]):

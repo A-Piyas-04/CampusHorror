@@ -318,6 +318,7 @@ Introduced in Milestone G Part 2. Waiting for the user's approval. Full guide: `
 | Sprite | `Sprite` child, `centered = false`, offset = −origin pixel, uniform scale = 32 game px/m ÷ render px/m, light mask 2, linear + mipmaps filter. The root transform stays identity. |
 | Collision | Optional; a `Body` `StaticBody2D` (layer 1, mask 0) with a rectangle from the declared footprint in metres, never from sprite alpha. |
 | Shadows | No ground shadow is baked into renders. |
+| Modular runs | Tileable modules (`tile_period_x_m`) are placed exactly one footprint length apart (wall: 96 px), never overlapped by moving sprites. Joins are made seamless by the generator and render (bleed), not in Godot. |
 
 ---
 

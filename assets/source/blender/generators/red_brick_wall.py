@@ -8,8 +8,6 @@ Frame: the wall runs along X, its front face points to -Y, Z is up, and the orig
 the centre of the footprint on the ground. Dimensions are metres.
 """
 
-import math
-
 import bpy
 
 from pipeline.modeling import (BoxBuilder, ground_grime, map_range, multiply_color,
@@ -48,32 +46,40 @@ def _brick_rand(rng):
 
 
 def _add_course(builder, rng, p, z0, face_offset, offset_half):
-    """One running-bond course on the front and back skins."""
+    """One running-bond course on the front and back skins, periodic over the module length.
+
+    A brick crossing a module end is cut exactly at the end and its other part is placed
+    at the opposite end with the same colour and jitter, so identical modules placed end
+    to end continue the bond: the two parts form one whole brick across the join.
+    """
     joint = p["joint"]
+    length = p["length"]
+    half = length / 2.0
     pitch = p["brick_length"] + joint
-    half = p["length"] / 2.0
-    lo, hi = -half + joint / 2.0, half - joint / 2.0
     start = -half - (pitch / 2.0 if offset_half else 0.0)
     for side in (-1, 1):
         face_y = side * (p["thickness"] / 2.0 + face_offset)
-        x = start
-        while x < half:
-            bx0 = max(x + joint / 2.0, lo)
-            bx1 = min(x + joint / 2.0 + p["brick_length"], hi)
-            x += pitch
-            if bx1 - bx0 < 0.03:
-                continue
+        for k in range(round(length / pitch)):
+            a = start + k * pitch + joint / 2.0
+            b = a + p["brick_length"]
             # Small hand-laid irregularities.
             jitter_out = rng.uniform(-0.0015, 0.0015)
             shrink_l = rng.uniform(0.0, 0.0015)
             shrink_r = rng.uniform(0.0, 0.0015)
             shrink_top = rng.uniform(0.0, 0.001)
+            rand = _brick_rand(rng)
+            if a < -half:
+                pieces = ((-half, b - shrink_r), (a + length + shrink_l, half))
+            elif b > half:
+                pieces = ((a + shrink_l, half), (-half, b - length - shrink_r))
+            else:
+                pieces = ((a + shrink_l, b - shrink_r),)
             outer = face_y + side * jitter_out
             inner = face_y - side * p["brick_depth"]
             y0, y1 = sorted((outer, inner))
-            builder.add(bx0 + shrink_l, bx1 - shrink_r, y0, y1,
-                        z0, z0 + p["brick_height"] - shrink_top,
-                        rand=_brick_rand(rng), material_index=0)
+            for x0, x1 in pieces:
+                builder.add(x0, x1, y0, y1, z0, z0 + p["brick_height"] - shrink_top,
+                            rand=rand, material_index=0)
 
 
 def _build_mesh(collection, rng, p):
@@ -117,18 +123,19 @@ def _build_mesh(collection, rng, p):
         depth = face - p["joint_recess"]
         builder.add(-half_l, half_l, -depth, depth, z0, z1, rand=0.5, material_index=1)
 
-    brick_count = builder.box_count - 4
-    mesh = builder.to_mesh("RedBrickWallMesh")
+    box_count = builder.box_count - 4
+    # Edges lying on the module ends are cuts through a brick or the mortar core, not
+    # real corners: no bevel there, so the two parts meet flush at a join.
+    mesh = builder.to_mesh("RedBrickWallMesh", flush_x=(-half_l, half_l))
     obj = bpy.data.objects.new("RedBrickWall", mesh)
     collection.objects.link(obj)
 
     bevel = obj.modifiers.new("BrickBevel", "BEVEL")
     bevel.width = p["bevel_width"]
     bevel.segments = 2
-    bevel.limit_method = "ANGLE"
-    bevel.angle_limit = math.radians(30)
+    bevel.limit_method = "WEIGHT"
     bevel.harden_normals = True
-    return obj, brick_count
+    return obj, box_count
 
 
 def _brick_material():
@@ -216,6 +223,9 @@ def build(collection, rng, params):
     body_top = p["body_courses"] * (p["brick_height"] + p["joint"])
     if body_top >= p["height"]:
         raise ValueError(f"height {p['height']} m leaves no room for the coping above {body_top:.3f} m of courses")
+    pitch = p["brick_length"] + p["joint"]
+    if abs(round(p["length"] / pitch) * pitch - p["length"]) > 1e-9:
+        raise ValueError(f"length {p['length']} m must be a whole number of brick pitches ({pitch} m) to tile")
 
     wall, brick_count = _build_mesh(collection, rng, p)
     wall.data.materials.append(_brick_material())
@@ -228,11 +238,14 @@ def build(collection, rng, params):
         "objects": [wall],
         "bounds_points_m": [(x, y, z) for x in (-hl, hl) for y in (-hb, hb) for z in (0.0, p["height"])],
         "footprint_m": [-hl, hl, -ht, ht],
+        "tile_period_x_m": p["length"],
         "info": {
             "design_size_m": {"length_x": p["length"], "thickness_y": p["thickness"], "height_z": p["height"]},
-            "bond": "running (half) bond, front and back skins",
-            "modeled_bricks": brick_count,
+            "bond": "running (half) bond, front and back skins; periodic over the module length "
+                    "(bricks crossing a module end are split between both ends, same colour and jitter)",
+            "modeled_brick_boxes": brick_count,
             "materials": ["BrickRed", "Mortar"],
-            "bevel": f"modifier, {p['bevel_width'] * 1000:.0f} mm, 2 segments, harden normals",
+            "bevel": f"modifier, {p['bevel_width'] * 1000:.0f} mm, 2 segments, harden normals; "
+                     "no bevel on edges at the module ends (cuts)",
         },
     }

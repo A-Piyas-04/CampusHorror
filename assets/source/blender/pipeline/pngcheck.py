@@ -71,6 +71,26 @@ def read_rgba(path):
     return width, height, info, rows
 
 
+def write_rgba(path, width, height, rows):
+    """Writes 8-bit RGBA rows (bytearrays, top row first) as a PNG."""
+    def chunk(ctype, data):
+        return (struct.pack(">I", len(data)) + ctype + data
+                + struct.pack(">I", zlib.crc32(ctype + data) & 0xFFFFFFFF))
+    raw = b"".join(b"\x00" + bytes(r) for r in rows)
+    path.write_bytes(SIGNATURE + chunk(b"IHDR", struct.pack(">IIBBBBB", width, height, 8, 6, 0, 0, 0))
+                     + chunk(b"IDAT", zlib.compress(raw, 9)) + chunk(b"IEND", b""))
+
+
+def keep_columns(path, x_from, x_to):
+    """Clears every pixel outside columns [x_from, x_to) to transparent black."""
+    width, height, _, rows = read_rgba(path)
+    x_from, x_to = max(0, x_from), min(width, x_to)
+    for r in rows:
+        r[:x_from * 4] = bytes(x_from * 4)
+        r[x_to * 4:] = bytes((width - x_to) * 4)
+    write_rgba(path, width, height, rows)
+
+
 def analyse(path):
     """Size, alpha coverage, content bbox and margins of an RGBA sprite."""
     width, height, info, rows = read_rgba(path)

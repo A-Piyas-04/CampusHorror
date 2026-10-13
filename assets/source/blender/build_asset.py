@@ -18,7 +18,9 @@ Exit code 0 only if every requested step passed. Logs: assets/source/blender/log
 """
 
 import argparse
+import hashlib
 import json
+import math
 import os
 import re
 import subprocess
@@ -154,6 +156,7 @@ def step_validate(cfg, args, rep):
               f"(deviation {dev}, tolerance {C.CONTENT_BBOX_TOLERANCE_PX} px)")
     ox, oy = proj["origin_px"]
     rep.check(0 <= ox <= w and 0 <= oy <= h, f"footprint origin pixel ({ox:.2f}, {oy:.2f}) inside the image")
+    seam = check_tiling(out["png"], record.get("tiling"), rep) if record.get("tiling") else None
 
     rep.check(out["png"].resolve().is_relative_to(C.PROJECT_ROOT / "assets/sprites"),
               f"Godot texture path {assetconfig.res_path(out['png'])}")
@@ -165,12 +168,45 @@ def step_validate(cfg, args, rep):
         if "mipmaps/generate=true" not in text:
             rep.warn(".import has mipmaps off; the sprite is drawn at ~1/7 scale with a mipmap filter")
 
-    verification = {"png": png, "bbox_deviation_px": dev, "minimum_margin_required_px": C.MIN_MARGIN_PX}
+    verification = {"png": png, "bbox_deviation_px": dev, "minimum_margin_required_px": C.MIN_MARGIN_PX,
+                    "tiling": seam}
     if args.compare_to:
         diff = pngcheck.compare(out["png"], Path(args.compare_to))
         say(f"compare to {args.compare_to}: {diff}")
         verification["compare_to"] = {"path": args.compare_to, **diff}
     return verification
+
+
+def check_tiling(png_path, tiling, rep):
+    """Join quality of a horizontally tileable sprite, measured on the texture itself."""
+    width, height, _, rows = pngcheck.read_rgba(png_path)
+    end_l, end_r = tiling["footprint_end_columns_px"]
+    bleed = tiling["bleed_px"]
+    period = tiling["period_px"]
+    # Rows that are solid wall across the whole module (skips the silhouette's top/bottom edges).
+    lo, hi = math.floor(end_l - bleed / 2), math.ceil(end_r + bleed / 2)
+    solid = [r for r in rows if all(r[x * 4 + 3] == 255 for x in range(lo, hi, 4))]
+    rep.check(len(solid) >= 10, f"{len(solid)} solid wall rows found for the join checks")
+    edge_cols = list(range(lo, math.ceil(end_l + bleed / 2))) + list(range(math.floor(end_r - bleed / 2), hi))
+    fringe = sum(1 for r in solid for x in edge_cols if r[x * 4 + 3] != 255)
+    rep.check(fringe == 0, f"no alpha fringe from {bleed // 2} px outside to inside both footprint ends "
+                           f"(columns {lo}..{hi - 1}): {fringe} non-opaque px")
+    # The bleed past one end must repeat the texels just inside the other end (same world point mod period).
+    shift = round(period)
+    diffs = []
+    for r in solid:
+        for x in range(math.floor(end_l - bleed / 2), math.ceil(end_l + bleed / 2)):
+            for c in range(3):
+                diffs.append(abs(r[x * 4 + c] - r[(x + shift) * 4 + c]))
+    mean = sum(diffs) / len(diffs)
+    rep.check(mean <= C.TILE_MATCH_MEAN_MAX, f"bleed matches the opposite end (shift {shift} px, period "
+                                             f"{period:.2f} px): mean RGB diff {mean:.2f}, max {max(diffs)} "
+                                             f"(limit mean {C.TILE_MATCH_MEAN_MAX})")
+    kept = tiling["kept_columns_px"]
+    outside = sum(1 for r in rows for x in list(range(0, kept[0])) + list(range(kept[1], width)) if r[x * 4 + 3])
+    rep.check(outside == 0, f"nothing outside the kept columns {kept}: {outside} px")
+    return {"solid_rows": len(solid), "fringe_px_at_ends": fringe, "end_match_mean_rgb_diff": round(mean, 3),
+            "end_match_max_rgb_diff": max(diffs), "shift_px": shift}
 
 
 def step_scene(cfg, args, rep, record):
@@ -219,19 +255,32 @@ def godot_exe(args):
     return args.godot or os.environ.get("GODOT_EXE") or C.DEFAULT_GODOT_EXE
 
 
+def import_is_current(png):
+    """True if Godot's imported texture was made from the PNG as it is now (source_md5 matches)."""
+    imp = png.with_name(png.name + ".import")
+    if not imp.exists():
+        return False
+    m = re.search(r'^dest_files=\["res://([^"]+)\.ctex"', imp.read_text(encoding="utf-8"), re.M)
+    md5_file = C.PROJECT_ROOT / (m.group(1) + ".md5") if m else None
+    if md5_file is None or not md5_file.exists():
+        return False
+    stored = re.search(r'source_md5="([0-9a-f]+)"', md5_file.read_text(encoding="utf-8"))
+    return bool(stored) and stored.group(1) == hashlib.md5(png.read_bytes()).hexdigest()
+
+
 def step_import(cfg, args, rep):
     """Make sure Godot has imported the PNG (headless --import) so scenes can load it."""
     out = cfg["outputs"]
     imp = out["png"].with_name(out["png"].name + ".import")
-    if imp.exists() and "dest_files" in imp.read_text(encoding="utf-8"):
+    if import_is_current(out["png"]):
         return {"already_imported": True}
     code, output, secs = run([godot_exe(args), "--headless", "--path", str(C.PROJECT_ROOT), "--import"],
                              C.LOG_DIR / f"{cfg['asset_id']}.godot_import.log", timeout=600)
     found = problems(output)
     for line in found:
         rep.warn("Godot import: " + line)
-    rep.check(code == 0 and imp.exists() and "dest_files" in imp.read_text(encoding="utf-8"),
-              f"Godot imported the texture (exit {code}, {secs:.1f} s)")
+    rep.check(code == 0 and imp.exists() and import_is_current(out["png"]),
+              f"Godot imported the current texture (exit {code}, {secs:.1f} s)")
     return {"exit_code": code, "problem_lines": found}
 
 
