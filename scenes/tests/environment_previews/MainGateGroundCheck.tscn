@@ -1,0 +1,7 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scenes/tests/environment_previews/main_gate_ground_check.gd" id="1_check"]
+
+[node name="MainGateGroundCheck" type="Node2D"]
+editor_description = "TEMPORARY Milestone G Batch 1A test-only check (not a zone, not reachable from Main). Instances the real scenes/world/MainGateExterior.tscn and compares its ground and everything outside Ground with main_gate_ground_baseline.json. Output: [GROUND] lines."
+script = ExtResource("1_check")

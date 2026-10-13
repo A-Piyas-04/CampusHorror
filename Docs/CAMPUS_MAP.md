@@ -149,8 +149,24 @@ Needs the user's campus knowledge:
 
 ## How to edit the map in Godot
 
-- Each area is a separate node: `Ground/Field`, `Ground/Paths/*`, `Ground/Roads/*`, `Objects/SportsCourts/<Court>`, `Objects/Buildings/MainGateLandmark`, `Objects/Buildings/CDSExterior/<Section>`, `Objects/Boundary/*`, `Objects/Vegetation/<Group>/*`.
-- Ground surfaces are `Polygon2D`s: select one and drag its vertices.
+- Each area is a separate node: `Objects/SportsCourts/<Court>`, `Objects/Buildings/MainGateLandmark`, `Objects/Buildings/CDSExterior/<Section>`, `Objects/Boundary/*`, `Objects/Vegetation/<Group>/*`. Shared ground is under `Ground` (see below).
+- `cds_veranda` ground surfaces are still `Polygon2D`s: select one and drag its vertices.
+
+### Main Gate ground (`main_gate_exterior`, Milestone G Batch 1A)
+
+The shared ground uses the production `campus_ground` tiles. `Ground` (z −10, not Y-sorted) draws its children in tree order:
+
+| Node | What it is | How to edit |
+|---|---|---|
+| `Ground/Tiles` | `TileMapLayer` on `assets/tilesets/campus_ground.tres` (grass 0, worn grass 1, walkway 2, asphalt 3), at the world origin so cells sit on world multiples of 64 px. Cells x −38..46, y −29..30. Every 64 px cell that lies fully inside a surface uses that surface's tile; everything else is grass; four worn-grass cells at the west palm path's ends. | TileMap panel: select `Ground/Tiles`, pick a source, paint. |
+| `Ground/EdgeStrips/<Surface>/<Top\|Bottom\|West\|East\|Full>` | `Polygon2D` strips textured with the same production PNG (`texture_repeat` Enabled, no UV, polygon at the origin, so the texture continues the tiles' pattern without a seam). They fill the parts of each surface that don't cover a whole cell, so every surface keeps its exact original edges below. 17 strips. | Drag vertices. Keep the node at the origin with no `uv` / `texture_offset`, or the pavers stop lining up with the tiles. |
+| `Ground/Markings` | `Field/Outline`, `HalfwayLine`, `CentreCircle` and `Road/LaneMarking` (`Line2D`, placeholders). | Drag points; they are drawn over the tiles and strips. |
+
+Exact surface rectangles (world px), unchanged from the blockout: ground fill x −2400..3000, y −1800..1950; field x −1200..1200, y −800..700; west palm path x −1450..−1330, y −1080..1400; north path x −1450..1360, y −1080..−960; east path x 1260..1360, y −1080..800; south path x −1450..1360, y 720..800; sidewalk x −2400..3000, y 1400..1460; main road x −2400..3000, y 1460..1800. Field and grass are both grass tiles; the field is defined by its markings.
+
+To move or resize a path or road: repaint the full cells it now covers in `Ground/Tiles` (and repaint grass where it left), then move the strip vertices to the new edges; strips are only needed where an edge isn't on a multiple of 64. `scenes/tests/environment_previews/MainGateGroundCheck.tscn` checks the ground against the rectangles above (constants in `main_gate_ground_check.gd`); update those constants together with an intentional layout change.
+
+Landmark ground (gate plaza, CDS forecourt, court aprons/surfaces) is still flat-coloured blockout under each landmark at z −9.
 - **Moving a landmark: move only its parent node.** Every layer it owns is inside it (see `Docs/CONVENTIONS.md` §12):
 
 | Landmark (move this node) | Contains |
@@ -160,7 +176,7 @@ Needs the user's campus knowledge:
 | `Objects/SportsCourts/FutsalCourt`, `TennisCourt` | `Apron` and `Surface` (z −9) with line markings, fence blocks |
 | `cds_veranda`: `Objects/Arcade` | Columns 01–10 and `Overhead/VerandaRoofEdge` (z 10) |
 
-- Shared terrain that belongs to no landmark (field, palm/north/east/south paths, road, sidewalk) stays under the zone's `Ground` and is edited separately. Paths that lead to a moved landmark have to be adjusted by hand.
+- Shared terrain that belongs to no landmark (field, palm/north/east/south paths, road, sidewalk) stays under the zone's `Ground` and is edited separately (tiles + edge strips, see above). Paths that lead to a moved landmark have to be adjusted by hand.
 - Buildings, walls, fences and hedges are `BlockoutBlock` instances: change `Footprint Size`, `Wall Height`, colours and `Arch Count` in the Inspector; collision and shadows follow automatically.
 - Trees and palms are instances of `scenes/props/Tree.tscn` / `PalmTree.tscn`: duplicate (Ctrl+D) and move. Tree rows (`CdsTrees`, `GateTrees`, …) are landscape groups, not part of the buildings they stand near.
 - Doors and spawn markers: move them, keep their IDs (node names / `spawn_id`). Keep each arrival spawn more than 56 px from the door it lands next to. Moving the gate or CDS moves their door/spawn too; saves are unaffected (they store zone ID + position, not node paths).

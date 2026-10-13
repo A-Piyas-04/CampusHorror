@@ -1,0 +1,46 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/tests/environment_previews/MainGateCompositionTest.tscn" id="1_base"]
+[ext_resource type="Script" path="res://scenes/tests/environment_previews/main_gate_playable_check.gd" id="2_check"]
+[ext_resource type="PackedScene" path="res://scenes/player/Player.tscn" id="3_player"]
+[ext_resource type="Script" path="res://scripts/lighting/day_night_test_tint.gd" id="4_tint"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bounds_ns"]
+size = Vector2(1312, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bounds_we"]
+size = Vector2(16, 800)
+
+[node name="MainGatePlayableTest" instance=ExtResource("1_base")]
+editor_description = "TEMPORARY Milestone G playable integration test (not a zone, not reachable from Main). Inherits MainGateCompositionTest.tscn unchanged and adds the existing Player.tscn (movement, collision, Camera2D, lantern), the existing test day/night tint (F2) and invisible bounds along the ground edges. The check script drives the real player through walking, collision, Y-sort and camera checks on start, then leaves the scene playable."
+script = ExtResource("2_check")
+
+[node name="Camera" parent="." index="2"]
+editor_description = "Inherited review camera, disabled here: the Player's own Camera is the gameplay camera."
+enabled = false
+
+[node name="DayNightTint" type="CanvasModulate" parent="." index="3"]
+script = ExtResource("4_tint")
+
+[node name="TestBounds" type="StaticBody2D" parent="." index="4"]
+editor_description = "TEMPORARY test-only invisible walls along the Ground rectangle (x -384..896, y -512..256) so the player can't walk off the tiles. Layer 1 world, mask 0."
+collision_mask = 0
+
+[node name="North" type="CollisionShape2D" parent="TestBounds"]
+position = Vector2(256, -520)
+shape = SubResource("RectangleShape2D_bounds_ns")
+
+[node name="South" type="CollisionShape2D" parent="TestBounds"]
+position = Vector2(256, 264)
+shape = SubResource("RectangleShape2D_bounds_ns")
+
+[node name="West" type="CollisionShape2D" parent="TestBounds"]
+position = Vector2(-392, -128)
+shape = SubResource("RectangleShape2D_bounds_we")
+
+[node name="East" type="CollisionShape2D" parent="TestBounds"]
+position = Vector2(904, -128)
+shape = SubResource("RectangleShape2D_bounds_we")
+
+[node name="Player" parent="." index="5" instance=ExtResource("3_player")]
+position = Vector2(0, -170)

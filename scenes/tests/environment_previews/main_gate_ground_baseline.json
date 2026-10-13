@@ -1,0 +1,6413 @@
+{
+	"markings": {
+		"CentreCircle": {
+			"closed": true,
+			"color": [
+				0.9200000166893005,
+				0.949999988079071,
+				0.8999999761581421,
+				0.699999988079071
+			],
+			"light_mask": 1,
+			"points": [
+				[
+					0.0,
+					-120.0
+				],
+				[
+					45.900001525878906,
+					-110.9000015258789
+				],
+				[
+					84.9000015258789,
+					-84.9000015258789
+				],
+				[
+					110.9000015258789,
+					-45.900001525878906
+				],
+				[
+					120.0,
+					0.0
+				],
+				[
+					110.9000015258789,
+					45.900001525878906
+				],
+				[
+					84.9000015258789,
+					84.9000015258789
+				],
+				[
+					45.900001525878906,
+					110.9000015258789
+				],
+				[
+					0.0,
+					120.0
+				],
+				[
+					-45.900001525878906,
+					110.9000015258789
+				],
+				[
+					-84.9000015258789,
+					84.9000015258789
+				],
+				[
+					-110.9000015258789,
+					45.900001525878906
+				],
+				[
+					-120.0,
+					0.0
+				],
+				[
+					-110.9000015258789,
+					-45.900001525878906
+				],
+				[
+					-84.9000015258789,
+					-84.9000015258789
+				],
+				[
+					-45.900001525878906,
+					-110.9000015258789
+				]
+			],
+			"visible": true,
+			"width": 4.0,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				-50.0
+			],
+			"z": -10
+		},
+		"HalfwayLine": {
+			"closed": false,
+			"color": [
+				0.9200000166893005,
+				0.949999988079071,
+				0.8999999761581421,
+				0.699999988079071
+			],
+			"light_mask": 1,
+			"points": [
+				[
+					0.0,
+					-760.0
+				],
+				[
+					0.0,
+					660.0
+				]
+			],
+			"visible": true,
+			"width": 4.0,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"z": -10
+		},
+		"LaneMarking": {
+			"closed": false,
+			"color": [
+				0.8500000238418579,
+				0.8500000238418579,
+				0.800000011920929,
+				0.6000000238418579
+			],
+			"light_mask": 1,
+			"points": [
+				[
+					-2400.0,
+					1630.0
+				],
+				[
+					3000.0,
+					1630.0
+				]
+			],
+			"visible": true,
+			"width": 4.0,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"z": -10
+		},
+		"Outline": {
+			"closed": true,
+			"color": [
+				0.9200000166893005,
+				0.949999988079071,
+				0.8999999761581421,
+				0.699999988079071
+			],
+			"light_mask": 1,
+			"points": [
+				[
+					-1160.0,
+					-760.0
+				],
+				[
+					1160.0,
+					-760.0
+				],
+				[
+					1160.0,
+					660.0
+				],
+				[
+					-1160.0,
+					660.0
+				]
+			],
+			"visible": true,
+			"width": 4.0,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"z": -10
+		}
+	},
+	"nodes": {
+		".": {
+			"class": "Node2D",
+			"groups": [],
+			"light_mask": 1,
+			"scene": "res://scenes/world/MainGateExterior.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"y_sort": true,
+			"z": 0,
+			"zone_id": "\"main_gate_exterior\""
+		},
+		"./Objects": {
+			"class": "Node2D",
+			"groups": [],
+			"light_mask": 1,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"y_sort": true,
+			"z": 0
+		},
+		"./Objects/Boundary": {
+			"class": "Node2D",
+			"groups": [],
+			"light_mask": 1,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"y_sort": true,
+			"z": 0
+		},
+		"./Objects/Boundary/PrototypeEdgeEast": {
+			"casts_shadow": "false",
+			"class": "StaticBody2D",
+			"footprint_size": "Vector2(30, 2726)",
+			"groups": [
+				"blockout_placeholder"
+			],
+			"layer": 1,
+			"light_mask": 2,
+			"mask": 0,
+			"scene": "res://scenes/world/blockout/BlockoutBlock.tscn",
+			"visible": true,
+			"wall_height": "40.0",
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				2265.0,
+				1376.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Boundary/PrototypeEdgeEast/~internal0:CollisionShape2D": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"groups": [],
+			"light_mask": 1,
+			"scene": "",
+			"shape": {
+				"rect": [
+					30.0,
+					2726.0
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				2265.0,
+				13.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Boundary/PrototypeEdgeEast/~internal1:LightOccluder2D": {
+			"class": "LightOccluder2D",
+			"groups": [],
+			"light_mask": 1,
+			"occluder": [
+				[
+					-15.0,
+					-2726.0
+				],
+				[
+					15.0,
+					-2726.0
+				],
+				[
+					15.0,
+					0.0
+				],
+				[
+					-15.0,
+					0.0
+				]
+			],
+			"occluder_mask": 0,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				2265.0,
+				1376.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Boundary/PrototypeEdgeNorth": {
+			"casts_shadow": "false",
+			"class": "StaticBody2D",
+			"footprint_size": "Vector2(4010, 30)",
+			"groups": [
+				"blockout_placeholder"
+			],
+			"layer": 1,
+			"light_mask": 2,
+			"mask": 0,
+			"scene": "res://scenes/world/blockout/BlockoutBlock.tscn",
+			"visible": true,
+			"wall_height": "40.0",
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				275.0,
+				-1350.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Boundary/PrototypeEdgeNorth/~internal0:CollisionShape2D": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"groups": [],
+			"light_mask": 1,
+			"scene": "",
+			"shape": {
+				"rect": [
+					4010.0,
+					30.0
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				275.0,
+				-1365.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Boundary/PrototypeEdgeNorth/~internal1:LightOccluder2D": {
+			"class": "LightOccluder2D",
+			"groups": [],
+			"light_mask": 1,
+			"occluder": [
+				[
+					-2005.0,
+					-30.0
+				],
+				[
+					2005.0,
+					-30.0
+				],
+				[
+					2005.0,
+					0.0
+				],
+				[
+					-2005.0,
+					0.0
+				]
+			],
+			"occluder_mask": 0,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				275.0,
+				-1350.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Boundary/PrototypeEdgeWest": {
+			"casts_shadow": "false",
+			"class": "StaticBody2D",
+			"footprint_size": "Vector2(30, 2610)",
+			"groups": [
+				"blockout_placeholder"
+			],
+			"layer": 1,
+			"light_mask": 2,
+			"mask": 0,
+			"scene": "res://scenes/world/blockout/BlockoutBlock.tscn",
+			"visible": true,
+			"wall_height": "40.0",
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1715.0,
+				1260.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Boundary/PrototypeEdgeWest/~internal0:CollisionShape2D": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"groups": [],
+			"light_mask": 1,
+			"scene": "",
+			"shape": {
+				"rect": [
+					30.0,
+					2610.0
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1715.0,
+				-45.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Boundary/PrototypeEdgeWest/~internal1:LightOccluder2D": {
+			"class": "LightOccluder2D",
+			"groups": [],
+			"light_mask": 1,
+			"occluder": [
+				[
+					-15.0,
+					-2610.0
+				],
+				[
+					15.0,
+					-2610.0
+				],
+				[
+					15.0,
+					0.0
+				],
+				[
+					-15.0,
+					0.0
+				]
+			],
+			"occluder_mask": 0,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1715.0,
+				1260.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Boundary/SouthWall": {
+			"casts_shadow": "true",
+			"class": "StaticBody2D",
+			"footprint_size": "Vector2(3500, 24)",
+			"groups": [
+				"blockout_placeholder"
+			],
+			"layer": 1,
+			"light_mask": 2,
+			"mask": 0,
+			"scene": "res://scenes/world/blockout/BlockoutBlock.tscn",
+			"visible": true,
+			"wall_height": "70.0",
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				500.0,
+				1400.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Boundary/SouthWall/~internal0:CollisionShape2D": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"groups": [],
+			"light_mask": 1,
+			"scene": "",
+			"shape": {
+				"rect": [
+					3500.0,
+					24.0
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				500.0,
+				1388.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Boundary/SouthWall/~internal1:LightOccluder2D": {
+			"class": "LightOccluder2D",
+			"groups": [],
+			"light_mask": 1,
+			"occluder": [
+				[
+					-1750.0,
+					-24.0
+				],
+				[
+					1750.0,
+					-24.0
+				],
+				[
+					1750.0,
+					0.0
+				],
+				[
+					-1750.0,
+					0.0
+				]
+			],
+			"occluder_mask": 1,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				500.0,
+				1400.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Buildings": {
+			"class": "Node2D",
+			"groups": [],
+			"light_mask": 1,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"y_sort": true,
+			"z": 0
+		},
+		"./Objects/Buildings/CDSExterior": {
+			"class": "Node2D",
+			"groups": [],
+			"light_mask": 1,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				1775.0,
+				0.0
+			],
+			"y_sort": true,
+			"z": 0
+		},
+		"./Objects/Buildings/CDSExterior/Canteen": {
+			"class": "Node2D",
+			"groups": [],
+			"light_mask": 1,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				1775.0,
+				-450.0
+			],
+			"y_sort": true,
+			"z": 0
+		},
+		"./Objects/Buildings/CDSExterior/Canteen/Mass": {
+			"casts_shadow": "true",
+			"class": "StaticBody2D",
+			"footprint_size": "Vector2(450, 550)",
+			"groups": [
+				"blockout_placeholder"
+			],
+			"layer": 1,
+			"light_mask": 2,
+			"mask": 0,
+			"scene": "res://scenes/world/blockout/BlockoutBlock.tscn",
+			"visible": true,
+			"wall_height": "110.0",
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				1775.0,
+				-450.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Buildings/CDSExterior/Canteen/Mass/Label": {
+			"class": "Label",
+			"groups": [],
+			"light_mask": 1,
+			"scene": "",
+			"visible": true,
+			"z": 0
+		},
+		"./Objects/Buildings/CDSExterior/Canteen/Mass/~internal0:CollisionShape2D": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"groups": [],
+			"light_mask": 1,
+			"scene": "",
+			"shape": {
+				"rect": [
+					450.0,
+					550.0
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				1775.0,
+				-725.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Buildings/CDSExterior/Canteen/Mass/~internal1:LightOccluder2D": {
+			"class": "LightOccluder2D",
+			"groups": [],
+			"light_mask": 1,
+			"occluder": [
+				[
+					-225.0,
+					-550.0
+				],
+				[
+					225.0,
+					-550.0
+				],
+				[
+					225.0,
+					0.0
+				],
+				[
+					-225.0,
+					0.0
+				]
+			],
+			"occluder_mask": 1,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				1775.0,
+				-450.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Buildings/CDSExterior/Canteen/Veranda": {
+			"casts_shadow": "true",
+			"class": "StaticBody2D",
+			"footprint_size": "Vector2(70, 550)",
+			"groups": [
+				"blockout_placeholder"
+			],
+			"layer": 1,
+			"light_mask": 2,
+			"mask": 0,
+			"scene": "res://scenes/world/blockout/BlockoutBlock.tscn",
+			"visible": true,
+			"wall_height": "80.0",
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				1515.0,
+				-450.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Buildings/CDSExterior/Canteen/Veranda/~internal0:CollisionShape2D": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"groups": [],
+			"light_mask": 1,
+			"scene": "",
+			"shape": {
+				"rect": [
+					70.0,
+					550.0
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				1515.0,
+				-725.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Buildings/CDSExterior/Canteen/Veranda/~internal1:LightOccluder2D": {
+			"class": "LightOccluder2D",
+			"groups": [],
+			"light_mask": 1,
+			"occluder": [
+				[
+					-35.0,
+					-550.0
+				],
+				[
+					35.0,
+					-550.0
+				],
+				[
+					35.0,
+					0.0
+				],
+				[
+					-35.0,
+					0.0
+				]
+			],
+			"occluder_mask": 1,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				1515.0,
+				-450.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Buildings/CDSExterior/IndoorBasketball": {
+			"class": "Node2D",
+			"groups": [],
+			"light_mask": 1,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				1775.0,
+				700.0
+			],
+			"y_sort": true,
+			"z": 0
+		},
+		"./Objects/Buildings/CDSExterior/IndoorBasketball/Mass": {
+			"casts_shadow": "true",
+			"class": "StaticBody2D",
+			"footprint_size": "Vector2(450, 700)",
+			"groups": [
+				"blockout_placeholder"
+			],
+			"layer": 1,
+			"light_mask": 2,
+			"mask": 0,
+			"scene": "res://scenes/world/blockout/BlockoutBlock.tscn",
+			"visible": true,
+			"wall_height": "170.0",
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				1775.0,
+				700.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Buildings/CDSExterior/IndoorBasketball/Mass/Label": {
+			"class": "Label",
+			"groups": [],
+			"light_mask": 1,
+			"scene": "",
+			"visible": true,
+			"z": 0
+		},
+		"./Objects/Buildings/CDSExterior/IndoorBasketball/Mass/~internal0:CollisionShape2D": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"groups": [],
+			"light_mask": 1,
+			"scene": "",
+			"shape": {
+				"rect": [
+					450.0,
+					700.0
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				1775.0,
+				350.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Buildings/CDSExterior/IndoorBasketball/Mass/~internal1:LightOccluder2D": {
+			"class": "LightOccluder2D",
+			"groups": [],
+			"light_mask": 1,
+			"occluder": [
+				[
+					-225.0,
+					-700.0
+				],
+				[
+					225.0,
+					-700.0
+				],
+				[
+					225.0,
+					0.0
+				],
+				[
+					-225.0,
+					0.0
+				]
+			],
+			"occluder_mask": 1,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				1775.0,
+				700.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Buildings/CDSExterior/IndoorBasketball/Veranda": {
+			"casts_shadow": "true",
+			"class": "StaticBody2D",
+			"footprint_size": "Vector2(70, 700)",
+			"groups": [
+				"blockout_placeholder"
+			],
+			"layer": 1,
+			"light_mask": 2,
+			"mask": 0,
+			"scene": "res://scenes/world/blockout/BlockoutBlock.tscn",
+			"visible": true,
+			"wall_height": "80.0",
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				1515.0,
+				700.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Buildings/CDSExterior/IndoorBasketball/Veranda/~internal0:CollisionShape2D": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"groups": [],
+			"light_mask": 1,
+			"scene": "",
+			"shape": {
+				"rect": [
+					70.0,
+					700.0
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				1515.0,
+				350.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Buildings/CDSExterior/IndoorBasketball/Veranda/~internal1:LightOccluder2D": {
+			"class": "LightOccluder2D",
+			"groups": [],
+			"light_mask": 1,
+			"occluder": [
+				[
+					-35.0,
+					-700.0
+				],
+				[
+					35.0,
+					-700.0
+				],
+				[
+					35.0,
+					0.0
+				],
+				[
+					-35.0,
+					0.0
+				]
+			],
+			"occluder_mask": 1,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				1515.0,
+				700.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Buildings/CDSExterior/TableTennis": {
+			"class": "Node2D",
+			"groups": [],
+			"light_mask": 1,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				1775.0,
+				0.0
+			],
+			"y_sort": true,
+			"z": 0
+		},
+		"./Objects/Buildings/CDSExterior/TableTennis/DoorCdsMainEntry": {
+			"class": "Node2D",
+			"destination_spawn_id": "\"inside_cds_entry\"",
+			"destination_zone_id": "\"cds_veranda\"",
+			"groups": [],
+			"light_mask": 1,
+			"prompt_text": "\"Press E to enter the CDS veranda\"",
+			"scene": "res://scenes/components/Door.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				1452.0,
+				-200.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Buildings/CDSExterior/TableTennis/DoorCdsMainEntry/Body": {
+			"class": "Polygon2D",
+			"groups": [],
+			"light_mask": 1,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				1452.0,
+				-200.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Buildings/CDSExterior/TableTennis/DoorCdsMainEntry/Interactable": {
+			"class": "Area2D",
+			"groups": [],
+			"layer": 4,
+			"light_mask": 1,
+			"mask": 0,
+			"prompt_text": "\"Press E to enter the CDS veranda\"",
+			"scene": "res://scenes/components/Interactable.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				1452.0,
+				-200.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Buildings/CDSExterior/TableTennis/DoorCdsMainEntry/Interactable/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"groups": [],
+			"light_mask": 1,
+			"scene": "",
+			"shape": {
+				"circle": 32.0
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				1452.0,
+				-200.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Buildings/CDSExterior/TableTennis/Forecourt": {
+			"class": "Polygon2D",
+			"groups": [
+				"blockout_placeholder"
+			],
+			"light_mask": 1,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				1775.0,
+				0.0
+			],
+			"y_sort": false,
+			"z": -9
+		},
+		"./Objects/Buildings/CDSExterior/TableTennis/Mass": {
+			"casts_shadow": "true",
+			"class": "StaticBody2D",
+			"footprint_size": "Vector2(450, 450)",
+			"groups": [
+				"blockout_placeholder"
+			],
+			"layer": 1,
+			"light_mask": 2,
+			"mask": 0,
+			"scene": "res://scenes/world/blockout/BlockoutBlock.tscn",
+			"visible": true,
+			"wall_height": "110.0",
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				1775.0,
+				0.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Buildings/CDSExterior/TableTennis/Mass/Label": {
+			"class": "Label",
+			"groups": [],
+			"light_mask": 1,
+			"scene": "",
+			"visible": true,
+			"z": 0
+		},
+		"./Objects/Buildings/CDSExterior/TableTennis/Mass/~internal0:CollisionShape2D": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"groups": [],
+			"light_mask": 1,
+			"scene": "",
+			"shape": {
+				"rect": [
+					450.0,
+					450.0
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				1775.0,
+				-225.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Buildings/CDSExterior/TableTennis/Mass/~internal1:LightOccluder2D": {
+			"class": "LightOccluder2D",
+			"groups": [],
+			"light_mask": 1,
+			"occluder": [
+				[
+					-225.0,
+					-450.0
+				],
+				[
+					225.0,
+					-450.0
+				],
+				[
+					225.0,
+					0.0
+				],
+				[
+					-225.0,
+					0.0
+				]
+			],
+			"occluder_mask": 1,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				1775.0,
+				0.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Buildings/CDSExterior/TableTennis/Overhead": {
+			"class": "Node2D",
+			"groups": [
+				"blockout_placeholder"
+			],
+			"light_mask": 1,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				1775.0,
+				0.0
+			],
+			"y_sort": false,
+			"z": 10
+		},
+		"./Objects/Buildings/CDSExterior/TableTennis/Overhead/EntranceCanopy": {
+			"class": "Polygon2D",
+			"groups": [],
+			"light_mask": 1,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				1775.0,
+				0.0
+			],
+			"y_sort": false,
+			"z": 10
+		},
+		"./Objects/Buildings/CDSExterior/TableTennis/SpawnOutsideCdsEntrance": {
+			"class": "Marker2D",
+			"groups": [],
+			"light_mask": 1,
+			"scene": "res://scenes/components/SpawnMarker.tscn",
+			"spawn_id": "\"outside_cds_entrance\"",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				1380.0,
+				-200.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Buildings/CDSExterior/TableTennis/Veranda": {
+			"casts_shadow": "true",
+			"class": "StaticBody2D",
+			"footprint_size": "Vector2(70, 450)",
+			"groups": [
+				"blockout_placeholder"
+			],
+			"layer": 1,
+			"light_mask": 2,
+			"mask": 0,
+			"scene": "res://scenes/world/blockout/BlockoutBlock.tscn",
+			"visible": true,
+			"wall_height": "80.0",
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				1515.0,
+				0.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Buildings/CDSExterior/TableTennis/Veranda/~internal0:CollisionShape2D": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"groups": [],
+			"light_mask": 1,
+			"scene": "",
+			"shape": {
+				"rect": [
+					70.0,
+					450.0
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				1515.0,
+				-225.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Buildings/CDSExterior/TableTennis/Veranda/~internal1:LightOccluder2D": {
+			"class": "LightOccluder2D",
+			"groups": [],
+			"light_mask": 1,
+			"occluder": [
+				[
+					-35.0,
+					-450.0
+				],
+				[
+					35.0,
+					-450.0
+				],
+				[
+					35.0,
+					0.0
+				],
+				[
+					-35.0,
+					0.0
+				]
+			],
+			"occluder_mask": 1,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				1515.0,
+				0.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Buildings/MainGateLandmark": {
+			"class": "Node2D",
+			"groups": [],
+			"light_mask": 1,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1390.0,
+				1400.0
+			],
+			"y_sort": true,
+			"z": 0
+		},
+		"./Objects/Buildings/MainGateLandmark/GateLeaves": {
+			"casts_shadow": "false",
+			"class": "StaticBody2D",
+			"footprint_size": "Vector2(120, 10)",
+			"groups": [
+				"blockout_placeholder"
+			],
+			"layer": 1,
+			"light_mask": 2,
+			"mask": 0,
+			"scene": "res://scenes/world/blockout/BlockoutBlock.tscn",
+			"visible": true,
+			"wall_height": "90.0",
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1390.0,
+				1400.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Buildings/MainGateLandmark/GateLeaves/~internal0:CollisionShape2D": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"groups": [],
+			"light_mask": 1,
+			"scene": "",
+			"shape": {
+				"rect": [
+					120.0,
+					10.0
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1390.0,
+				1395.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Buildings/MainGateLandmark/GateLeaves/~internal1:LightOccluder2D": {
+			"class": "LightOccluder2D",
+			"groups": [],
+			"light_mask": 1,
+			"occluder": [
+				[
+					-60.0,
+					-10.0
+				],
+				[
+					60.0,
+					-10.0
+				],
+				[
+					60.0,
+					0.0
+				],
+				[
+					-60.0,
+					0.0
+				]
+			],
+			"occluder_mask": 0,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1390.0,
+				1400.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Buildings/MainGateLandmark/GatePlaza": {
+			"class": "Polygon2D",
+			"groups": [
+				"blockout_placeholder"
+			],
+			"light_mask": 1,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1390.0,
+				1400.0
+			],
+			"y_sort": false,
+			"z": -9
+		},
+		"./Objects/Buildings/MainGateLandmark/Overhead": {
+			"class": "Node2D",
+			"groups": [
+				"blockout_placeholder"
+			],
+			"light_mask": 1,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1390.0,
+				1400.0
+			],
+			"y_sort": false,
+			"z": 10
+		},
+		"./Objects/Buildings/MainGateLandmark/Overhead/ArchFace": {
+			"class": "Polygon2D",
+			"groups": [],
+			"light_mask": 1,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1390.0,
+				1400.0
+			],
+			"y_sort": false,
+			"z": 10
+		},
+		"./Objects/Buildings/MainGateLandmark/Overhead/GateRoof": {
+			"class": "Polygon2D",
+			"groups": [],
+			"light_mask": 1,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1390.0,
+				1400.0
+			],
+			"y_sort": false,
+			"z": 10
+		},
+		"./Objects/Buildings/MainGateLandmark/Overhead/GateRoof/Label": {
+			"class": "Label",
+			"groups": [],
+			"light_mask": 1,
+			"scene": "",
+			"visible": true,
+			"z": 10
+		},
+		"./Objects/Buildings/MainGateLandmark/Overhead/PavilionCanopy": {
+			"class": "Polygon2D",
+			"groups": [],
+			"light_mask": 1,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1390.0,
+				1400.0
+			],
+			"y_sort": false,
+			"z": 10
+		},
+		"./Objects/Buildings/MainGateLandmark/PavilionColumn1": {
+			"casts_shadow": "true",
+			"class": "StaticBody2D",
+			"footprint_size": "Vector2(16, 16)",
+			"groups": [
+				"blockout_placeholder"
+			],
+			"layer": 1,
+			"light_mask": 2,
+			"mask": 0,
+			"scene": "res://scenes/world/blockout/BlockoutBlock.tscn",
+			"visible": true,
+			"wall_height": "140.0",
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1730.0,
+				1470.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Buildings/MainGateLandmark/PavilionColumn1/~internal0:CollisionShape2D": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"groups": [],
+			"light_mask": 1,
+			"scene": "",
+			"shape": {
+				"rect": [
+					16.0,
+					16.0
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1730.0,
+				1462.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Buildings/MainGateLandmark/PavilionColumn1/~internal1:LightOccluder2D": {
+			"class": "LightOccluder2D",
+			"groups": [],
+			"light_mask": 1,
+			"occluder": [
+				[
+					-8.0,
+					-16.0
+				],
+				[
+					8.0,
+					-16.0
+				],
+				[
+					8.0,
+					0.0
+				],
+				[
+					-8.0,
+					0.0
+				]
+			],
+			"occluder_mask": 1,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1730.0,
+				1470.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Buildings/MainGateLandmark/PavilionColumn2": {
+			"casts_shadow": "true",
+			"class": "StaticBody2D",
+			"footprint_size": "Vector2(16, 16)",
+			"groups": [
+				"blockout_placeholder"
+			],
+			"layer": 1,
+			"light_mask": 2,
+			"mask": 0,
+			"scene": "res://scenes/world/blockout/BlockoutBlock.tscn",
+			"visible": true,
+			"wall_height": "140.0",
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1640.0,
+				1470.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Buildings/MainGateLandmark/PavilionColumn2/~internal0:CollisionShape2D": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"groups": [],
+			"light_mask": 1,
+			"scene": "",
+			"shape": {
+				"rect": [
+					16.0,
+					16.0
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1640.0,
+				1462.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Buildings/MainGateLandmark/PavilionColumn2/~internal1:LightOccluder2D": {
+			"class": "LightOccluder2D",
+			"groups": [],
+			"light_mask": 1,
+			"occluder": [
+				[
+					-8.0,
+					-16.0
+				],
+				[
+					8.0,
+					-16.0
+				],
+				[
+					8.0,
+					0.0
+				],
+				[
+					-8.0,
+					0.0
+				]
+			],
+			"occluder_mask": 1,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1640.0,
+				1470.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Buildings/MainGateLandmark/PavilionColumn3": {
+			"casts_shadow": "true",
+			"class": "StaticBody2D",
+			"footprint_size": "Vector2(16, 16)",
+			"groups": [
+				"blockout_placeholder"
+			],
+			"layer": 1,
+			"light_mask": 2,
+			"mask": 0,
+			"scene": "res://scenes/world/blockout/BlockoutBlock.tscn",
+			"visible": true,
+			"wall_height": "140.0",
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1550.0,
+				1470.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Buildings/MainGateLandmark/PavilionColumn3/~internal0:CollisionShape2D": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"groups": [],
+			"light_mask": 1,
+			"scene": "",
+			"shape": {
+				"rect": [
+					16.0,
+					16.0
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1550.0,
+				1462.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Buildings/MainGateLandmark/PavilionColumn3/~internal1:LightOccluder2D": {
+			"class": "LightOccluder2D",
+			"groups": [],
+			"light_mask": 1,
+			"occluder": [
+				[
+					-8.0,
+					-16.0
+				],
+				[
+					8.0,
+					-16.0
+				],
+				[
+					8.0,
+					0.0
+				],
+				[
+					-8.0,
+					0.0
+				]
+			],
+			"occluder_mask": 1,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1550.0,
+				1470.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Buildings/MainGateLandmark/PierEast": {
+			"casts_shadow": "true",
+			"class": "StaticBody2D",
+			"footprint_size": "Vector2(80, 160)",
+			"groups": [
+				"blockout_placeholder"
+			],
+			"layer": 1,
+			"light_mask": 2,
+			"mask": 0,
+			"scene": "res://scenes/world/blockout/BlockoutBlock.tscn",
+			"visible": true,
+			"wall_height": "220.0",
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1290.0,
+				1400.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Buildings/MainGateLandmark/PierEast/~internal0:CollisionShape2D": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"groups": [],
+			"light_mask": 1,
+			"scene": "",
+			"shape": {
+				"rect": [
+					80.0,
+					160.0
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1290.0,
+				1320.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Buildings/MainGateLandmark/PierEast/~internal1:LightOccluder2D": {
+			"class": "LightOccluder2D",
+			"groups": [],
+			"light_mask": 1,
+			"occluder": [
+				[
+					-40.0,
+					-160.0
+				],
+				[
+					40.0,
+					-160.0
+				],
+				[
+					40.0,
+					0.0
+				],
+				[
+					-40.0,
+					0.0
+				]
+			],
+			"occluder_mask": 1,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1290.0,
+				1400.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Buildings/MainGateLandmark/PierWest": {
+			"casts_shadow": "true",
+			"class": "StaticBody2D",
+			"footprint_size": "Vector2(80, 160)",
+			"groups": [
+				"blockout_placeholder"
+			],
+			"layer": 1,
+			"light_mask": 2,
+			"mask": 0,
+			"scene": "res://scenes/world/blockout/BlockoutBlock.tscn",
+			"visible": true,
+			"wall_height": "220.0",
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1490.0,
+				1400.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Buildings/MainGateLandmark/PierWest/~internal0:CollisionShape2D": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"groups": [],
+			"light_mask": 1,
+			"scene": "",
+			"shape": {
+				"rect": [
+					80.0,
+					160.0
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1490.0,
+				1320.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Buildings/MainGateLandmark/PierWest/~internal1:LightOccluder2D": {
+			"class": "LightOccluder2D",
+			"groups": [],
+			"light_mask": 1,
+			"occluder": [
+				[
+					-40.0,
+					-160.0
+				],
+				[
+					40.0,
+					-160.0
+				],
+				[
+					40.0,
+					0.0
+				],
+				[
+					-40.0,
+					0.0
+				]
+			],
+			"occluder_mask": 1,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1490.0,
+				1400.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Buildings/MainGateLandmark/SidePavilion": {
+			"casts_shadow": "true",
+			"class": "StaticBody2D",
+			"footprint_size": "Vector2(220, 140)",
+			"groups": [
+				"blockout_placeholder"
+			],
+			"layer": 1,
+			"light_mask": 2,
+			"mask": 0,
+			"scene": "res://scenes/world/blockout/BlockoutBlock.tscn",
+			"visible": true,
+			"wall_height": "140.0",
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1640.0,
+				1400.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Buildings/MainGateLandmark/SidePavilion/~internal0:CollisionShape2D": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"groups": [],
+			"light_mask": 1,
+			"scene": "",
+			"shape": {
+				"rect": [
+					220.0,
+					140.0
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1640.0,
+				1330.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Buildings/MainGateLandmark/SidePavilion/~internal1:LightOccluder2D": {
+			"class": "LightOccluder2D",
+			"groups": [],
+			"light_mask": 1,
+			"occluder": [
+				[
+					-110.0,
+					-140.0
+				],
+				[
+					110.0,
+					-140.0
+				],
+				[
+					110.0,
+					0.0
+				],
+				[
+					-110.0,
+					0.0
+				]
+			],
+			"occluder_mask": 1,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1640.0,
+				1400.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Buildings/MainGateLandmark/SpawnMainGateEntry": {
+			"class": "Marker2D",
+			"groups": [],
+			"light_mask": 1,
+			"scene": "res://scenes/components/SpawnMarker.tscn",
+			"spawn_id": "\"main_gate_entry\"",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1390.0,
+				960.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/SportsCourts": {
+			"class": "Node2D",
+			"groups": [],
+			"light_mask": 1,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"y_sort": true,
+			"z": 0
+		},
+		"./Objects/SportsCourts/FutsalCourt": {
+			"class": "Node2D",
+			"groups": [],
+			"light_mask": 1,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-200.0,
+				1000.0
+			],
+			"y_sort": true,
+			"z": 0
+		},
+		"./Objects/SportsCourts/FutsalCourt/Apron": {
+			"class": "Polygon2D",
+			"groups": [
+				"blockout_placeholder"
+			],
+			"light_mask": 1,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-200.0,
+				1000.0
+			],
+			"y_sort": false,
+			"z": -9
+		},
+		"./Objects/SportsCourts/FutsalCourt/FenceEast": {
+			"casts_shadow": "false",
+			"class": "StaticBody2D",
+			"footprint_size": "Vector2(6, 300)",
+			"groups": [
+				"blockout_placeholder"
+			],
+			"layer": 1,
+			"light_mask": 2,
+			"mask": 0,
+			"scene": "res://scenes/world/blockout/BlockoutBlock.tscn",
+			"visible": true,
+			"wall_height": "70.0",
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				97.0,
+				1150.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/SportsCourts/FutsalCourt/FenceEast/~internal0:CollisionShape2D": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"groups": [],
+			"light_mask": 1,
+			"scene": "",
+			"shape": {
+				"rect": [
+					6.0,
+					300.0
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				97.0,
+				1000.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/SportsCourts/FutsalCourt/FenceEast/~internal1:LightOccluder2D": {
+			"class": "LightOccluder2D",
+			"groups": [],
+			"light_mask": 1,
+			"occluder": [
+				[
+					-3.0,
+					-300.0
+				],
+				[
+					3.0,
+					-300.0
+				],
+				[
+					3.0,
+					0.0
+				],
+				[
+					-3.0,
+					0.0
+				]
+			],
+			"occluder_mask": 0,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				97.0,
+				1150.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/SportsCourts/FutsalCourt/FenceNorthEast": {
+			"casts_shadow": "false",
+			"class": "StaticBody2D",
+			"footprint_size": "Vector2(250, 6)",
+			"groups": [
+				"blockout_placeholder"
+			],
+			"layer": 1,
+			"light_mask": 2,
+			"mask": 0,
+			"scene": "res://scenes/world/blockout/BlockoutBlock.tscn",
+			"visible": true,
+			"wall_height": "70.0",
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-25.0,
+				850.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/SportsCourts/FutsalCourt/FenceNorthEast/~internal0:CollisionShape2D": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"groups": [],
+			"light_mask": 1,
+			"scene": "",
+			"shape": {
+				"rect": [
+					250.0,
+					6.0
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-25.0,
+				847.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/SportsCourts/FutsalCourt/FenceNorthEast/~internal1:LightOccluder2D": {
+			"class": "LightOccluder2D",
+			"groups": [],
+			"light_mask": 1,
+			"occluder": [
+				[
+					-125.0,
+					-6.0
+				],
+				[
+					125.0,
+					-6.0
+				],
+				[
+					125.0,
+					0.0
+				],
+				[
+					-125.0,
+					0.0
+				]
+			],
+			"occluder_mask": 0,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-25.0,
+				850.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/SportsCourts/FutsalCourt/FenceNorthWest": {
+			"casts_shadow": "false",
+			"class": "StaticBody2D",
+			"footprint_size": "Vector2(250, 6)",
+			"groups": [
+				"blockout_placeholder"
+			],
+			"layer": 1,
+			"light_mask": 2,
+			"mask": 0,
+			"scene": "res://scenes/world/blockout/BlockoutBlock.tscn",
+			"visible": true,
+			"wall_height": "70.0",
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-375.0,
+				850.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/SportsCourts/FutsalCourt/FenceNorthWest/~internal0:CollisionShape2D": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"groups": [],
+			"light_mask": 1,
+			"scene": "",
+			"shape": {
+				"rect": [
+					250.0,
+					6.0
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-375.0,
+				847.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/SportsCourts/FutsalCourt/FenceNorthWest/~internal1:LightOccluder2D": {
+			"class": "LightOccluder2D",
+			"groups": [],
+			"light_mask": 1,
+			"occluder": [
+				[
+					-125.0,
+					-6.0
+				],
+				[
+					125.0,
+					-6.0
+				],
+				[
+					125.0,
+					0.0
+				],
+				[
+					-125.0,
+					0.0
+				]
+			],
+			"occluder_mask": 0,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-375.0,
+				850.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/SportsCourts/FutsalCourt/FenceSouth": {
+			"casts_shadow": "false",
+			"class": "StaticBody2D",
+			"footprint_size": "Vector2(600, 6)",
+			"groups": [
+				"blockout_placeholder"
+			],
+			"layer": 1,
+			"light_mask": 2,
+			"mask": 0,
+			"scene": "res://scenes/world/blockout/BlockoutBlock.tscn",
+			"visible": true,
+			"wall_height": "70.0",
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-200.0,
+				1150.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/SportsCourts/FutsalCourt/FenceSouth/~internal0:CollisionShape2D": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"groups": [],
+			"light_mask": 1,
+			"scene": "",
+			"shape": {
+				"rect": [
+					600.0,
+					6.0
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-200.0,
+				1147.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/SportsCourts/FutsalCourt/FenceSouth/~internal1:LightOccluder2D": {
+			"class": "LightOccluder2D",
+			"groups": [],
+			"light_mask": 1,
+			"occluder": [
+				[
+					-300.0,
+					-6.0
+				],
+				[
+					300.0,
+					-6.0
+				],
+				[
+					300.0,
+					0.0
+				],
+				[
+					-300.0,
+					0.0
+				]
+			],
+			"occluder_mask": 0,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-200.0,
+				1150.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/SportsCourts/FutsalCourt/FenceWest": {
+			"casts_shadow": "false",
+			"class": "StaticBody2D",
+			"footprint_size": "Vector2(6, 300)",
+			"groups": [
+				"blockout_placeholder"
+			],
+			"layer": 1,
+			"light_mask": 2,
+			"mask": 0,
+			"scene": "res://scenes/world/blockout/BlockoutBlock.tscn",
+			"visible": true,
+			"wall_height": "70.0",
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-497.0,
+				1150.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/SportsCourts/FutsalCourt/FenceWest/~internal0:CollisionShape2D": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"groups": [],
+			"light_mask": 1,
+			"scene": "",
+			"shape": {
+				"rect": [
+					6.0,
+					300.0
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-497.0,
+				1000.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/SportsCourts/FutsalCourt/FenceWest/~internal1:LightOccluder2D": {
+			"class": "LightOccluder2D",
+			"groups": [],
+			"light_mask": 1,
+			"occluder": [
+				[
+					-3.0,
+					-300.0
+				],
+				[
+					3.0,
+					-300.0
+				],
+				[
+					3.0,
+					0.0
+				],
+				[
+					-3.0,
+					0.0
+				]
+			],
+			"occluder_mask": 0,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-497.0,
+				1150.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/SportsCourts/FutsalCourt/Surface": {
+			"class": "Polygon2D",
+			"groups": [
+				"blockout_placeholder"
+			],
+			"light_mask": 1,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-200.0,
+				1000.0
+			],
+			"y_sort": false,
+			"z": -9
+		},
+		"./Objects/SportsCourts/FutsalCourt/Surface/CentreCircle": {
+			"class": "Line2D",
+			"groups": [],
+			"light_mask": 1,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-200.0,
+				1000.0
+			],
+			"y_sort": false,
+			"z": -9
+		},
+		"./Objects/SportsCourts/FutsalCourt/Surface/CentreLine": {
+			"class": "Line2D",
+			"groups": [],
+			"light_mask": 1,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-200.0,
+				1000.0
+			],
+			"y_sort": false,
+			"z": -9
+		},
+		"./Objects/SportsCourts/FutsalCourt/Surface/Outline": {
+			"class": "Line2D",
+			"groups": [],
+			"light_mask": 1,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-200.0,
+				1000.0
+			],
+			"y_sort": false,
+			"z": -9
+		},
+		"./Objects/SportsCourts/TennisCourt": {
+			"class": "Node2D",
+			"groups": [],
+			"light_mask": 1,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				550.0,
+				1000.0
+			],
+			"y_sort": true,
+			"z": 0
+		},
+		"./Objects/SportsCourts/TennisCourt/Apron": {
+			"class": "Polygon2D",
+			"groups": [
+				"blockout_placeholder"
+			],
+			"light_mask": 1,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				550.0,
+				1000.0
+			],
+			"y_sort": false,
+			"z": -9
+		},
+		"./Objects/SportsCourts/TennisCourt/FenceEast": {
+			"casts_shadow": "false",
+			"class": "StaticBody2D",
+			"footprint_size": "Vector2(6, 300)",
+			"groups": [
+				"blockout_placeholder"
+			],
+			"layer": 1,
+			"light_mask": 2,
+			"mask": 0,
+			"scene": "res://scenes/world/blockout/BlockoutBlock.tscn",
+			"visible": true,
+			"wall_height": "70.0",
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				847.0,
+				1150.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/SportsCourts/TennisCourt/FenceEast/~internal0:CollisionShape2D": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"groups": [],
+			"light_mask": 1,
+			"scene": "",
+			"shape": {
+				"rect": [
+					6.0,
+					300.0
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				847.0,
+				1000.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/SportsCourts/TennisCourt/FenceEast/~internal1:LightOccluder2D": {
+			"class": "LightOccluder2D",
+			"groups": [],
+			"light_mask": 1,
+			"occluder": [
+				[
+					-3.0,
+					-300.0
+				],
+				[
+					3.0,
+					-300.0
+				],
+				[
+					3.0,
+					0.0
+				],
+				[
+					-3.0,
+					0.0
+				]
+			],
+			"occluder_mask": 0,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				847.0,
+				1150.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/SportsCourts/TennisCourt/FenceNorthEast": {
+			"casts_shadow": "false",
+			"class": "StaticBody2D",
+			"footprint_size": "Vector2(250, 6)",
+			"groups": [
+				"blockout_placeholder"
+			],
+			"layer": 1,
+			"light_mask": 2,
+			"mask": 0,
+			"scene": "res://scenes/world/blockout/BlockoutBlock.tscn",
+			"visible": true,
+			"wall_height": "70.0",
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				725.0,
+				850.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/SportsCourts/TennisCourt/FenceNorthEast/~internal0:CollisionShape2D": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"groups": [],
+			"light_mask": 1,
+			"scene": "",
+			"shape": {
+				"rect": [
+					250.0,
+					6.0
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				725.0,
+				847.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/SportsCourts/TennisCourt/FenceNorthEast/~internal1:LightOccluder2D": {
+			"class": "LightOccluder2D",
+			"groups": [],
+			"light_mask": 1,
+			"occluder": [
+				[
+					-125.0,
+					-6.0
+				],
+				[
+					125.0,
+					-6.0
+				],
+				[
+					125.0,
+					0.0
+				],
+				[
+					-125.0,
+					0.0
+				]
+			],
+			"occluder_mask": 0,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				725.0,
+				850.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/SportsCourts/TennisCourt/FenceNorthWest": {
+			"casts_shadow": "false",
+			"class": "StaticBody2D",
+			"footprint_size": "Vector2(250, 6)",
+			"groups": [
+				"blockout_placeholder"
+			],
+			"layer": 1,
+			"light_mask": 2,
+			"mask": 0,
+			"scene": "res://scenes/world/blockout/BlockoutBlock.tscn",
+			"visible": true,
+			"wall_height": "70.0",
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				375.0,
+				850.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/SportsCourts/TennisCourt/FenceNorthWest/~internal0:CollisionShape2D": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"groups": [],
+			"light_mask": 1,
+			"scene": "",
+			"shape": {
+				"rect": [
+					250.0,
+					6.0
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				375.0,
+				847.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/SportsCourts/TennisCourt/FenceNorthWest/~internal1:LightOccluder2D": {
+			"class": "LightOccluder2D",
+			"groups": [],
+			"light_mask": 1,
+			"occluder": [
+				[
+					-125.0,
+					-6.0
+				],
+				[
+					125.0,
+					-6.0
+				],
+				[
+					125.0,
+					0.0
+				],
+				[
+					-125.0,
+					0.0
+				]
+			],
+			"occluder_mask": 0,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				375.0,
+				850.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/SportsCourts/TennisCourt/FenceSouth": {
+			"casts_shadow": "false",
+			"class": "StaticBody2D",
+			"footprint_size": "Vector2(600, 6)",
+			"groups": [
+				"blockout_placeholder"
+			],
+			"layer": 1,
+			"light_mask": 2,
+			"mask": 0,
+			"scene": "res://scenes/world/blockout/BlockoutBlock.tscn",
+			"visible": true,
+			"wall_height": "70.0",
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				550.0,
+				1150.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/SportsCourts/TennisCourt/FenceSouth/~internal0:CollisionShape2D": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"groups": [],
+			"light_mask": 1,
+			"scene": "",
+			"shape": {
+				"rect": [
+					600.0,
+					6.0
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				550.0,
+				1147.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/SportsCourts/TennisCourt/FenceSouth/~internal1:LightOccluder2D": {
+			"class": "LightOccluder2D",
+			"groups": [],
+			"light_mask": 1,
+			"occluder": [
+				[
+					-300.0,
+					-6.0
+				],
+				[
+					300.0,
+					-6.0
+				],
+				[
+					300.0,
+					0.0
+				],
+				[
+					-300.0,
+					0.0
+				]
+			],
+			"occluder_mask": 0,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				550.0,
+				1150.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/SportsCourts/TennisCourt/FenceWest": {
+			"casts_shadow": "false",
+			"class": "StaticBody2D",
+			"footprint_size": "Vector2(6, 300)",
+			"groups": [
+				"blockout_placeholder"
+			],
+			"layer": 1,
+			"light_mask": 2,
+			"mask": 0,
+			"scene": "res://scenes/world/blockout/BlockoutBlock.tscn",
+			"visible": true,
+			"wall_height": "70.0",
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				253.0,
+				1150.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/SportsCourts/TennisCourt/FenceWest/~internal0:CollisionShape2D": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"groups": [],
+			"light_mask": 1,
+			"scene": "",
+			"shape": {
+				"rect": [
+					6.0,
+					300.0
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				253.0,
+				1000.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/SportsCourts/TennisCourt/FenceWest/~internal1:LightOccluder2D": {
+			"class": "LightOccluder2D",
+			"groups": [],
+			"light_mask": 1,
+			"occluder": [
+				[
+					-3.0,
+					-300.0
+				],
+				[
+					3.0,
+					-300.0
+				],
+				[
+					3.0,
+					0.0
+				],
+				[
+					-3.0,
+					0.0
+				]
+			],
+			"occluder_mask": 0,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				253.0,
+				1150.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/SportsCourts/TennisCourt/Surface": {
+			"class": "Polygon2D",
+			"groups": [
+				"blockout_placeholder"
+			],
+			"light_mask": 1,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				550.0,
+				1000.0
+			],
+			"y_sort": false,
+			"z": -9
+		},
+		"./Objects/SportsCourts/TennisCourt/Surface/Net": {
+			"class": "Line2D",
+			"groups": [],
+			"light_mask": 1,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				550.0,
+				1000.0
+			],
+			"y_sort": false,
+			"z": -9
+		},
+		"./Objects/SportsCourts/TennisCourt/Surface/Outline": {
+			"class": "Line2D",
+			"groups": [],
+			"light_mask": 1,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				550.0,
+				1000.0
+			],
+			"y_sort": false,
+			"z": -9
+		},
+		"./Objects/Vegetation": {
+			"class": "Node2D",
+			"groups": [],
+			"light_mask": 1,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"y_sort": true,
+			"z": 0
+		},
+		"./Objects/Vegetation/CdsTrees": {
+			"class": "Node2D",
+			"groups": [],
+			"light_mask": 1,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"y_sort": true,
+			"z": 0
+		},
+		"./Objects/Vegetation/CdsTrees/Tree01": {
+			"class": "StaticBody2D",
+			"groups": [
+				"blockout_placeholder"
+			],
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"scene": "res://scenes/props/Tree.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				1420.0,
+				-800.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/CdsTrees/Tree01/Canopy": {
+			"class": "Polygon2D",
+			"groups": [],
+			"light_mask": 2,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				1420.0,
+				-888.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/CdsTrees/Tree01/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"groups": [],
+			"light_mask": 1,
+			"scene": "",
+			"shape": {
+				"circle": 12.0
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				1420.0,
+				-806.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/CdsTrees/Tree01/Trunk": {
+			"class": "Polygon2D",
+			"groups": [],
+			"light_mask": 2,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				1420.0,
+				-800.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/CdsTrees/Tree02": {
+			"class": "StaticBody2D",
+			"groups": [
+				"blockout_placeholder"
+			],
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"scene": "res://scenes/props/Tree.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				1420.0,
+				-600.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/CdsTrees/Tree02/Canopy": {
+			"class": "Polygon2D",
+			"groups": [],
+			"light_mask": 2,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				1420.0,
+				-688.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/CdsTrees/Tree02/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"groups": [],
+			"light_mask": 1,
+			"scene": "",
+			"shape": {
+				"circle": 12.0
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				1420.0,
+				-606.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/CdsTrees/Tree02/Trunk": {
+			"class": "Polygon2D",
+			"groups": [],
+			"light_mask": 2,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				1420.0,
+				-600.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/CdsTrees/Tree03": {
+			"class": "StaticBody2D",
+			"groups": [
+				"blockout_placeholder"
+			],
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"scene": "res://scenes/props/Tree.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				1420.0,
+				200.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/CdsTrees/Tree03/Canopy": {
+			"class": "Polygon2D",
+			"groups": [],
+			"light_mask": 2,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				1420.0,
+				112.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/CdsTrees/Tree03/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"groups": [],
+			"light_mask": 1,
+			"scene": "",
+			"shape": {
+				"circle": 12.0
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				1420.0,
+				194.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/CdsTrees/Tree03/Trunk": {
+			"class": "Polygon2D",
+			"groups": [],
+			"light_mask": 2,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				1420.0,
+				200.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/CdsTrees/Tree04": {
+			"class": "StaticBody2D",
+			"groups": [
+				"blockout_placeholder"
+			],
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"scene": "res://scenes/props/Tree.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				1420.0,
+				450.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/CdsTrees/Tree04/Canopy": {
+			"class": "Polygon2D",
+			"groups": [],
+			"light_mask": 2,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				1420.0,
+				362.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/CdsTrees/Tree04/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"groups": [],
+			"light_mask": 1,
+			"scene": "",
+			"shape": {
+				"circle": 12.0
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				1420.0,
+				444.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/CdsTrees/Tree04/Trunk": {
+			"class": "Polygon2D",
+			"groups": [],
+			"light_mask": 2,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				1420.0,
+				450.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/GateTrees": {
+			"class": "Node2D",
+			"groups": [],
+			"light_mask": 1,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"y_sort": true,
+			"z": 0
+		},
+		"./Objects/Vegetation/GateTrees/Tree01": {
+			"class": "StaticBody2D",
+			"groups": [
+				"blockout_placeholder"
+			],
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"scene": "res://scenes/props/Tree.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1600.0,
+				1080.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/GateTrees/Tree01/Canopy": {
+			"class": "Polygon2D",
+			"groups": [],
+			"light_mask": 2,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1600.0,
+				992.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/GateTrees/Tree01/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"groups": [],
+			"light_mask": 1,
+			"scene": "",
+			"shape": {
+				"circle": 12.0
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1600.0,
+				1074.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/GateTrees/Tree01/Trunk": {
+			"class": "Polygon2D",
+			"groups": [],
+			"light_mask": 2,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1600.0,
+				1080.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/GateTrees/Tree02": {
+			"class": "StaticBody2D",
+			"groups": [
+				"blockout_placeholder"
+			],
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"scene": "res://scenes/props/Tree.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1180.0,
+				1080.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/GateTrees/Tree02/Canopy": {
+			"class": "Polygon2D",
+			"groups": [],
+			"light_mask": 2,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1180.0,
+				992.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/GateTrees/Tree02/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"groups": [],
+			"light_mask": 1,
+			"scene": "",
+			"shape": {
+				"circle": 12.0
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1180.0,
+				1074.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/GateTrees/Tree02/Trunk": {
+			"class": "Polygon2D",
+			"groups": [],
+			"light_mask": 2,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1180.0,
+				1080.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/NorthPathPalms": {
+			"class": "Node2D",
+			"groups": [],
+			"light_mask": 1,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"y_sort": true,
+			"z": 0
+		},
+		"./Objects/Vegetation/NorthPathPalms/Palm01": {
+			"class": "StaticBody2D",
+			"groups": [
+				"blockout_placeholder"
+			],
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"scene": "res://scenes/props/PalmTree.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1200.0,
+				-1115.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/NorthPathPalms/Palm01/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"groups": [],
+			"light_mask": 1,
+			"scene": "",
+			"shape": {
+				"circle": 8.0
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1200.0,
+				-1119.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/NorthPathPalms/Palm01/Fronds": {
+			"class": "Polygon2D",
+			"groups": [],
+			"light_mask": 2,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1200.0,
+				-1237.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/NorthPathPalms/Palm01/Trunk": {
+			"class": "Polygon2D",
+			"groups": [],
+			"light_mask": 2,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1200.0,
+				-1115.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/NorthPathPalms/Palm02": {
+			"class": "StaticBody2D",
+			"groups": [
+				"blockout_placeholder"
+			],
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"scene": "res://scenes/props/PalmTree.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-900.0,
+				-1115.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/NorthPathPalms/Palm02/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"groups": [],
+			"light_mask": 1,
+			"scene": "",
+			"shape": {
+				"circle": 8.0
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-900.0,
+				-1119.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/NorthPathPalms/Palm02/Fronds": {
+			"class": "Polygon2D",
+			"groups": [],
+			"light_mask": 2,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-900.0,
+				-1237.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/NorthPathPalms/Palm02/Trunk": {
+			"class": "Polygon2D",
+			"groups": [],
+			"light_mask": 2,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-900.0,
+				-1115.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/NorthPathPalms/Palm03": {
+			"class": "StaticBody2D",
+			"groups": [
+				"blockout_placeholder"
+			],
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"scene": "res://scenes/props/PalmTree.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-600.0,
+				-1115.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/NorthPathPalms/Palm03/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"groups": [],
+			"light_mask": 1,
+			"scene": "",
+			"shape": {
+				"circle": 8.0
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-600.0,
+				-1119.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/NorthPathPalms/Palm03/Fronds": {
+			"class": "Polygon2D",
+			"groups": [],
+			"light_mask": 2,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-600.0,
+				-1237.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/NorthPathPalms/Palm03/Trunk": {
+			"class": "Polygon2D",
+			"groups": [],
+			"light_mask": 2,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-600.0,
+				-1115.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/NorthPathPalms/Palm04": {
+			"class": "StaticBody2D",
+			"groups": [
+				"blockout_placeholder"
+			],
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"scene": "res://scenes/props/PalmTree.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-300.0,
+				-1115.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/NorthPathPalms/Palm04/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"groups": [],
+			"light_mask": 1,
+			"scene": "",
+			"shape": {
+				"circle": 8.0
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-300.0,
+				-1119.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/NorthPathPalms/Palm04/Fronds": {
+			"class": "Polygon2D",
+			"groups": [],
+			"light_mask": 2,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-300.0,
+				-1237.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/NorthPathPalms/Palm04/Trunk": {
+			"class": "Polygon2D",
+			"groups": [],
+			"light_mask": 2,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-300.0,
+				-1115.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/NorthPathPalms/Palm05": {
+			"class": "StaticBody2D",
+			"groups": [
+				"blockout_placeholder"
+			],
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"scene": "res://scenes/props/PalmTree.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				-1115.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/NorthPathPalms/Palm05/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"groups": [],
+			"light_mask": 1,
+			"scene": "",
+			"shape": {
+				"circle": 8.0
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				-1119.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/NorthPathPalms/Palm05/Fronds": {
+			"class": "Polygon2D",
+			"groups": [],
+			"light_mask": 2,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				-1237.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/NorthPathPalms/Palm05/Trunk": {
+			"class": "Polygon2D",
+			"groups": [],
+			"light_mask": 2,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				-1115.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/NorthPathPalms/Palm06": {
+			"class": "StaticBody2D",
+			"groups": [
+				"blockout_placeholder"
+			],
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"scene": "res://scenes/props/PalmTree.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				300.0,
+				-1115.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/NorthPathPalms/Palm06/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"groups": [],
+			"light_mask": 1,
+			"scene": "",
+			"shape": {
+				"circle": 8.0
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				300.0,
+				-1119.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/NorthPathPalms/Palm06/Fronds": {
+			"class": "Polygon2D",
+			"groups": [],
+			"light_mask": 2,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				300.0,
+				-1237.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/NorthPathPalms/Palm06/Trunk": {
+			"class": "Polygon2D",
+			"groups": [],
+			"light_mask": 2,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				300.0,
+				-1115.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/NorthPathPalms/Palm07": {
+			"class": "StaticBody2D",
+			"groups": [
+				"blockout_placeholder"
+			],
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"scene": "res://scenes/props/PalmTree.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				600.0,
+				-1115.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/NorthPathPalms/Palm07/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"groups": [],
+			"light_mask": 1,
+			"scene": "",
+			"shape": {
+				"circle": 8.0
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				600.0,
+				-1119.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/NorthPathPalms/Palm07/Fronds": {
+			"class": "Polygon2D",
+			"groups": [],
+			"light_mask": 2,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				600.0,
+				-1237.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/NorthPathPalms/Palm07/Trunk": {
+			"class": "Polygon2D",
+			"groups": [],
+			"light_mask": 2,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				600.0,
+				-1115.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/NorthPathPalms/Palm08": {
+			"class": "StaticBody2D",
+			"groups": [
+				"blockout_placeholder"
+			],
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"scene": "res://scenes/props/PalmTree.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				900.0,
+				-1115.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/NorthPathPalms/Palm08/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"groups": [],
+			"light_mask": 1,
+			"scene": "",
+			"shape": {
+				"circle": 8.0
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				900.0,
+				-1119.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/NorthPathPalms/Palm08/Fronds": {
+			"class": "Polygon2D",
+			"groups": [],
+			"light_mask": 2,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				900.0,
+				-1237.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/NorthPathPalms/Palm08/Trunk": {
+			"class": "Polygon2D",
+			"groups": [],
+			"light_mask": 2,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				900.0,
+				-1115.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/NorthPathPalms/Palm09": {
+			"class": "StaticBody2D",
+			"groups": [
+				"blockout_placeholder"
+			],
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"scene": "res://scenes/props/PalmTree.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				1200.0,
+				-1115.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/NorthPathPalms/Palm09/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"groups": [],
+			"light_mask": 1,
+			"scene": "",
+			"shape": {
+				"circle": 8.0
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				1200.0,
+				-1119.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/NorthPathPalms/Palm09/Fronds": {
+			"class": "Polygon2D",
+			"groups": [],
+			"light_mask": 2,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				1200.0,
+				-1237.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/NorthPathPalms/Palm09/Trunk": {
+			"class": "Polygon2D",
+			"groups": [],
+			"light_mask": 2,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				1200.0,
+				-1115.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/SouthTreeRow": {
+			"class": "Node2D",
+			"groups": [],
+			"light_mask": 1,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"y_sort": true,
+			"z": 0
+		},
+		"./Objects/Vegetation/SouthTreeRow/Tree01": {
+			"class": "StaticBody2D",
+			"groups": [
+				"blockout_placeholder"
+			],
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"scene": "res://scenes/props/Tree.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1100.0,
+				1310.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/SouthTreeRow/Tree01/Canopy": {
+			"class": "Polygon2D",
+			"groups": [],
+			"light_mask": 2,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1100.0,
+				1222.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/SouthTreeRow/Tree01/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"groups": [],
+			"light_mask": 1,
+			"scene": "",
+			"shape": {
+				"circle": 12.0
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1100.0,
+				1304.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/SouthTreeRow/Tree01/Trunk": {
+			"class": "Polygon2D",
+			"groups": [],
+			"light_mask": 2,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1100.0,
+				1310.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/SouthTreeRow/Tree02": {
+			"class": "StaticBody2D",
+			"groups": [
+				"blockout_placeholder"
+			],
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"scene": "res://scenes/props/Tree.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-800.0,
+				1310.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/SouthTreeRow/Tree02/Canopy": {
+			"class": "Polygon2D",
+			"groups": [],
+			"light_mask": 2,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-800.0,
+				1222.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/SouthTreeRow/Tree02/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"groups": [],
+			"light_mask": 1,
+			"scene": "",
+			"shape": {
+				"circle": 12.0
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-800.0,
+				1304.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/SouthTreeRow/Tree02/Trunk": {
+			"class": "Polygon2D",
+			"groups": [],
+			"light_mask": 2,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-800.0,
+				1310.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/SouthTreeRow/Tree03": {
+			"class": "StaticBody2D",
+			"groups": [
+				"blockout_placeholder"
+			],
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"scene": "res://scenes/props/Tree.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-500.0,
+				1310.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/SouthTreeRow/Tree03/Canopy": {
+			"class": "Polygon2D",
+			"groups": [],
+			"light_mask": 2,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-500.0,
+				1222.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/SouthTreeRow/Tree03/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"groups": [],
+			"light_mask": 1,
+			"scene": "",
+			"shape": {
+				"circle": 12.0
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-500.0,
+				1304.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/SouthTreeRow/Tree03/Trunk": {
+			"class": "Polygon2D",
+			"groups": [],
+			"light_mask": 2,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-500.0,
+				1310.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/SouthTreeRow/Tree04": {
+			"class": "StaticBody2D",
+			"groups": [
+				"blockout_placeholder"
+			],
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"scene": "res://scenes/props/Tree.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-200.0,
+				1310.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/SouthTreeRow/Tree04/Canopy": {
+			"class": "Polygon2D",
+			"groups": [],
+			"light_mask": 2,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-200.0,
+				1222.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/SouthTreeRow/Tree04/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"groups": [],
+			"light_mask": 1,
+			"scene": "",
+			"shape": {
+				"circle": 12.0
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-200.0,
+				1304.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/SouthTreeRow/Tree04/Trunk": {
+			"class": "Polygon2D",
+			"groups": [],
+			"light_mask": 2,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-200.0,
+				1310.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/SouthTreeRow/Tree05": {
+			"class": "StaticBody2D",
+			"groups": [
+				"blockout_placeholder"
+			],
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"scene": "res://scenes/props/Tree.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				100.0,
+				1310.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/SouthTreeRow/Tree05/Canopy": {
+			"class": "Polygon2D",
+			"groups": [],
+			"light_mask": 2,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				100.0,
+				1222.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/SouthTreeRow/Tree05/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"groups": [],
+			"light_mask": 1,
+			"scene": "",
+			"shape": {
+				"circle": 12.0
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				100.0,
+				1304.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/SouthTreeRow/Tree05/Trunk": {
+			"class": "Polygon2D",
+			"groups": [],
+			"light_mask": 2,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				100.0,
+				1310.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/SouthTreeRow/Tree06": {
+			"class": "StaticBody2D",
+			"groups": [
+				"blockout_placeholder"
+			],
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"scene": "res://scenes/props/Tree.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				400.0,
+				1310.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/SouthTreeRow/Tree06/Canopy": {
+			"class": "Polygon2D",
+			"groups": [],
+			"light_mask": 2,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				400.0,
+				1222.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/SouthTreeRow/Tree06/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"groups": [],
+			"light_mask": 1,
+			"scene": "",
+			"shape": {
+				"circle": 12.0
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				400.0,
+				1304.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/SouthTreeRow/Tree06/Trunk": {
+			"class": "Polygon2D",
+			"groups": [],
+			"light_mask": 2,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				400.0,
+				1310.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/SouthTreeRow/Tree07": {
+			"class": "StaticBody2D",
+			"groups": [
+				"blockout_placeholder"
+			],
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"scene": "res://scenes/props/Tree.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				700.0,
+				1310.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/SouthTreeRow/Tree07/Canopy": {
+			"class": "Polygon2D",
+			"groups": [],
+			"light_mask": 2,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				700.0,
+				1222.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/SouthTreeRow/Tree07/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"groups": [],
+			"light_mask": 1,
+			"scene": "",
+			"shape": {
+				"circle": 12.0
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				700.0,
+				1304.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/SouthTreeRow/Tree07/Trunk": {
+			"class": "Polygon2D",
+			"groups": [],
+			"light_mask": 2,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				700.0,
+				1310.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/SouthTreeRow/Tree08": {
+			"class": "StaticBody2D",
+			"groups": [
+				"blockout_placeholder"
+			],
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"scene": "res://scenes/props/Tree.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				1000.0,
+				1310.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/SouthTreeRow/Tree08/Canopy": {
+			"class": "Polygon2D",
+			"groups": [],
+			"light_mask": 2,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				1000.0,
+				1222.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/SouthTreeRow/Tree08/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"groups": [],
+			"light_mask": 1,
+			"scene": "",
+			"shape": {
+				"circle": 12.0
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				1000.0,
+				1304.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/SouthTreeRow/Tree08/Trunk": {
+			"class": "Polygon2D",
+			"groups": [],
+			"light_mask": 2,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				1000.0,
+				1310.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/SouthTreeRow/Tree09": {
+			"class": "StaticBody2D",
+			"groups": [
+				"blockout_placeholder"
+			],
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"scene": "res://scenes/props/Tree.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				1300.0,
+				1310.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/SouthTreeRow/Tree09/Canopy": {
+			"class": "Polygon2D",
+			"groups": [],
+			"light_mask": 2,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				1300.0,
+				1222.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/SouthTreeRow/Tree09/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"groups": [],
+			"light_mask": 1,
+			"scene": "",
+			"shape": {
+				"circle": 12.0
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				1300.0,
+				1304.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/SouthTreeRow/Tree09/Trunk": {
+			"class": "Polygon2D",
+			"groups": [],
+			"light_mask": 2,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				1300.0,
+				1310.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/WestPathPalms": {
+			"class": "Node2D",
+			"groups": [],
+			"light_mask": 1,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"y_sort": true,
+			"z": 0
+		},
+		"./Objects/Vegetation/WestPathPalms/PalmE01": {
+			"class": "StaticBody2D",
+			"groups": [
+				"blockout_placeholder"
+			],
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"scene": "res://scenes/props/PalmTree.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1295.0,
+				-1040.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/WestPathPalms/PalmE01/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"groups": [],
+			"light_mask": 1,
+			"scene": "",
+			"shape": {
+				"circle": 8.0
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1295.0,
+				-1044.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/WestPathPalms/PalmE01/Fronds": {
+			"class": "Polygon2D",
+			"groups": [],
+			"light_mask": 2,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1295.0,
+				-1162.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/WestPathPalms/PalmE01/Trunk": {
+			"class": "Polygon2D",
+			"groups": [],
+			"light_mask": 2,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1295.0,
+				-1040.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/WestPathPalms/PalmE02": {
+			"class": "StaticBody2D",
+			"groups": [
+				"blockout_placeholder"
+			],
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"scene": "res://scenes/props/PalmTree.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1295.0,
+				-780.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/WestPathPalms/PalmE02/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"groups": [],
+			"light_mask": 1,
+			"scene": "",
+			"shape": {
+				"circle": 8.0
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1295.0,
+				-784.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/WestPathPalms/PalmE02/Fronds": {
+			"class": "Polygon2D",
+			"groups": [],
+			"light_mask": 2,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1295.0,
+				-902.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/WestPathPalms/PalmE02/Trunk": {
+			"class": "Polygon2D",
+			"groups": [],
+			"light_mask": 2,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1295.0,
+				-780.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/WestPathPalms/PalmE03": {
+			"class": "StaticBody2D",
+			"groups": [
+				"blockout_placeholder"
+			],
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"scene": "res://scenes/props/PalmTree.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1295.0,
+				-520.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/WestPathPalms/PalmE03/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"groups": [],
+			"light_mask": 1,
+			"scene": "",
+			"shape": {
+				"circle": 8.0
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1295.0,
+				-524.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/WestPathPalms/PalmE03/Fronds": {
+			"class": "Polygon2D",
+			"groups": [],
+			"light_mask": 2,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1295.0,
+				-642.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/WestPathPalms/PalmE03/Trunk": {
+			"class": "Polygon2D",
+			"groups": [],
+			"light_mask": 2,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1295.0,
+				-520.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/WestPathPalms/PalmE04": {
+			"class": "StaticBody2D",
+			"groups": [
+				"blockout_placeholder"
+			],
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"scene": "res://scenes/props/PalmTree.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1295.0,
+				-260.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/WestPathPalms/PalmE04/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"groups": [],
+			"light_mask": 1,
+			"scene": "",
+			"shape": {
+				"circle": 8.0
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1295.0,
+				-264.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/WestPathPalms/PalmE04/Fronds": {
+			"class": "Polygon2D",
+			"groups": [],
+			"light_mask": 2,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1295.0,
+				-382.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/WestPathPalms/PalmE04/Trunk": {
+			"class": "Polygon2D",
+			"groups": [],
+			"light_mask": 2,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1295.0,
+				-260.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/WestPathPalms/PalmE05": {
+			"class": "StaticBody2D",
+			"groups": [
+				"blockout_placeholder"
+			],
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"scene": "res://scenes/props/PalmTree.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1295.0,
+				0.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/WestPathPalms/PalmE05/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"groups": [],
+			"light_mask": 1,
+			"scene": "",
+			"shape": {
+				"circle": 8.0
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1295.0,
+				-4.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/WestPathPalms/PalmE05/Fronds": {
+			"class": "Polygon2D",
+			"groups": [],
+			"light_mask": 2,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1295.0,
+				-122.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/WestPathPalms/PalmE05/Trunk": {
+			"class": "Polygon2D",
+			"groups": [],
+			"light_mask": 2,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1295.0,
+				0.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/WestPathPalms/PalmE06": {
+			"class": "StaticBody2D",
+			"groups": [
+				"blockout_placeholder"
+			],
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"scene": "res://scenes/props/PalmTree.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1295.0,
+				260.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/WestPathPalms/PalmE06/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"groups": [],
+			"light_mask": 1,
+			"scene": "",
+			"shape": {
+				"circle": 8.0
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1295.0,
+				256.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/WestPathPalms/PalmE06/Fronds": {
+			"class": "Polygon2D",
+			"groups": [],
+			"light_mask": 2,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1295.0,
+				138.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/WestPathPalms/PalmE06/Trunk": {
+			"class": "Polygon2D",
+			"groups": [],
+			"light_mask": 2,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1295.0,
+				260.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/WestPathPalms/PalmE07": {
+			"class": "StaticBody2D",
+			"groups": [
+				"blockout_placeholder"
+			],
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"scene": "res://scenes/props/PalmTree.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1295.0,
+				520.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/WestPathPalms/PalmE07/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"groups": [],
+			"light_mask": 1,
+			"scene": "",
+			"shape": {
+				"circle": 8.0
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1295.0,
+				516.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/WestPathPalms/PalmE07/Fronds": {
+			"class": "Polygon2D",
+			"groups": [],
+			"light_mask": 2,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1295.0,
+				398.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/WestPathPalms/PalmE07/Trunk": {
+			"class": "Polygon2D",
+			"groups": [],
+			"light_mask": 2,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1295.0,
+				520.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/WestPathPalms/PalmE08": {
+			"class": "StaticBody2D",
+			"groups": [
+				"blockout_placeholder"
+			],
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"scene": "res://scenes/props/PalmTree.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1295.0,
+				780.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/WestPathPalms/PalmE08/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"groups": [],
+			"light_mask": 1,
+			"scene": "",
+			"shape": {
+				"circle": 8.0
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1295.0,
+				776.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/WestPathPalms/PalmE08/Fronds": {
+			"class": "Polygon2D",
+			"groups": [],
+			"light_mask": 2,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1295.0,
+				658.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/WestPathPalms/PalmE08/Trunk": {
+			"class": "Polygon2D",
+			"groups": [],
+			"light_mask": 2,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1295.0,
+				780.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/WestPathPalms/PalmE09": {
+			"class": "StaticBody2D",
+			"groups": [
+				"blockout_placeholder"
+			],
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"scene": "res://scenes/props/PalmTree.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1295.0,
+				1040.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/WestPathPalms/PalmE09/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"groups": [],
+			"light_mask": 1,
+			"scene": "",
+			"shape": {
+				"circle": 8.0
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1295.0,
+				1036.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/WestPathPalms/PalmE09/Fronds": {
+			"class": "Polygon2D",
+			"groups": [],
+			"light_mask": 2,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1295.0,
+				918.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/WestPathPalms/PalmE09/Trunk": {
+			"class": "Polygon2D",
+			"groups": [],
+			"light_mask": 2,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1295.0,
+				1040.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/WestPathPalms/PalmW01": {
+			"class": "StaticBody2D",
+			"groups": [
+				"blockout_placeholder"
+			],
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"scene": "res://scenes/props/PalmTree.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1485.0,
+				-1040.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/WestPathPalms/PalmW01/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"groups": [],
+			"light_mask": 1,
+			"scene": "",
+			"shape": {
+				"circle": 8.0
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1485.0,
+				-1044.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/WestPathPalms/PalmW01/Fronds": {
+			"class": "Polygon2D",
+			"groups": [],
+			"light_mask": 2,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1485.0,
+				-1162.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/WestPathPalms/PalmW01/Trunk": {
+			"class": "Polygon2D",
+			"groups": [],
+			"light_mask": 2,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1485.0,
+				-1040.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/WestPathPalms/PalmW02": {
+			"class": "StaticBody2D",
+			"groups": [
+				"blockout_placeholder"
+			],
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"scene": "res://scenes/props/PalmTree.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1485.0,
+				-780.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/WestPathPalms/PalmW02/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"groups": [],
+			"light_mask": 1,
+			"scene": "",
+			"shape": {
+				"circle": 8.0
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1485.0,
+				-784.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/WestPathPalms/PalmW02/Fronds": {
+			"class": "Polygon2D",
+			"groups": [],
+			"light_mask": 2,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1485.0,
+				-902.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/WestPathPalms/PalmW02/Trunk": {
+			"class": "Polygon2D",
+			"groups": [],
+			"light_mask": 2,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1485.0,
+				-780.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/WestPathPalms/PalmW03": {
+			"class": "StaticBody2D",
+			"groups": [
+				"blockout_placeholder"
+			],
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"scene": "res://scenes/props/PalmTree.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1485.0,
+				-520.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/WestPathPalms/PalmW03/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"groups": [],
+			"light_mask": 1,
+			"scene": "",
+			"shape": {
+				"circle": 8.0
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1485.0,
+				-524.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/WestPathPalms/PalmW03/Fronds": {
+			"class": "Polygon2D",
+			"groups": [],
+			"light_mask": 2,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1485.0,
+				-642.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/WestPathPalms/PalmW03/Trunk": {
+			"class": "Polygon2D",
+			"groups": [],
+			"light_mask": 2,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1485.0,
+				-520.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/WestPathPalms/PalmW04": {
+			"class": "StaticBody2D",
+			"groups": [
+				"blockout_placeholder"
+			],
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"scene": "res://scenes/props/PalmTree.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1485.0,
+				-260.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/WestPathPalms/PalmW04/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"groups": [],
+			"light_mask": 1,
+			"scene": "",
+			"shape": {
+				"circle": 8.0
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1485.0,
+				-264.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/WestPathPalms/PalmW04/Fronds": {
+			"class": "Polygon2D",
+			"groups": [],
+			"light_mask": 2,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1485.0,
+				-382.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/WestPathPalms/PalmW04/Trunk": {
+			"class": "Polygon2D",
+			"groups": [],
+			"light_mask": 2,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1485.0,
+				-260.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/WestPathPalms/PalmW05": {
+			"class": "StaticBody2D",
+			"groups": [
+				"blockout_placeholder"
+			],
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"scene": "res://scenes/props/PalmTree.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1485.0,
+				0.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/WestPathPalms/PalmW05/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"groups": [],
+			"light_mask": 1,
+			"scene": "",
+			"shape": {
+				"circle": 8.0
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1485.0,
+				-4.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/WestPathPalms/PalmW05/Fronds": {
+			"class": "Polygon2D",
+			"groups": [],
+			"light_mask": 2,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1485.0,
+				-122.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/WestPathPalms/PalmW05/Trunk": {
+			"class": "Polygon2D",
+			"groups": [],
+			"light_mask": 2,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1485.0,
+				0.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/WestPathPalms/PalmW06": {
+			"class": "StaticBody2D",
+			"groups": [
+				"blockout_placeholder"
+			],
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"scene": "res://scenes/props/PalmTree.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1485.0,
+				260.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/WestPathPalms/PalmW06/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"groups": [],
+			"light_mask": 1,
+			"scene": "",
+			"shape": {
+				"circle": 8.0
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1485.0,
+				256.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/WestPathPalms/PalmW06/Fronds": {
+			"class": "Polygon2D",
+			"groups": [],
+			"light_mask": 2,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1485.0,
+				138.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/WestPathPalms/PalmW06/Trunk": {
+			"class": "Polygon2D",
+			"groups": [],
+			"light_mask": 2,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1485.0,
+				260.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/WestPathPalms/PalmW07": {
+			"class": "StaticBody2D",
+			"groups": [
+				"blockout_placeholder"
+			],
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"scene": "res://scenes/props/PalmTree.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1485.0,
+				520.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/WestPathPalms/PalmW07/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"groups": [],
+			"light_mask": 1,
+			"scene": "",
+			"shape": {
+				"circle": 8.0
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1485.0,
+				516.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/WestPathPalms/PalmW07/Fronds": {
+			"class": "Polygon2D",
+			"groups": [],
+			"light_mask": 2,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1485.0,
+				398.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/WestPathPalms/PalmW07/Trunk": {
+			"class": "Polygon2D",
+			"groups": [],
+			"light_mask": 2,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1485.0,
+				520.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/WestPathPalms/PalmW08": {
+			"class": "StaticBody2D",
+			"groups": [
+				"blockout_placeholder"
+			],
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"scene": "res://scenes/props/PalmTree.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1485.0,
+				780.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/WestPathPalms/PalmW08/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"groups": [],
+			"light_mask": 1,
+			"scene": "",
+			"shape": {
+				"circle": 8.0
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1485.0,
+				776.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/WestPathPalms/PalmW08/Fronds": {
+			"class": "Polygon2D",
+			"groups": [],
+			"light_mask": 2,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1485.0,
+				658.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/WestPathPalms/PalmW08/Trunk": {
+			"class": "Polygon2D",
+			"groups": [],
+			"light_mask": 2,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1485.0,
+				780.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/WestPathPalms/PalmW09": {
+			"class": "StaticBody2D",
+			"groups": [
+				"blockout_placeholder"
+			],
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"scene": "res://scenes/props/PalmTree.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1485.0,
+				1040.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/WestPathPalms/PalmW09/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"groups": [],
+			"light_mask": 1,
+			"scene": "",
+			"shape": {
+				"circle": 8.0
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1485.0,
+				1036.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/WestPathPalms/PalmW09/Fronds": {
+			"class": "Polygon2D",
+			"groups": [],
+			"light_mask": 2,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1485.0,
+				918.0
+			],
+			"y_sort": false,
+			"z": 0
+		},
+		"./Objects/Vegetation/WestPathPalms/PalmW09/Trunk": {
+			"class": "Polygon2D",
+			"groups": [],
+			"light_mask": 2,
+			"scene": "",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1485.0,
+				1040.0
+			],
+			"y_sort": false,
+			"z": 0
+		}
+	},
+	"zone_id": "main_gate_exterior"
+}
