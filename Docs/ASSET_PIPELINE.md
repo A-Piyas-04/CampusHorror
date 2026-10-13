@@ -230,6 +230,25 @@ Known limits of this batch:
 - Tree canopies Y-sort at the trunk: the player draws behind the whole canopy when north of the trunk.
 - 64 px tiles are magnified on windows larger than the base resolution (`canvas_items` stretch) and look soft.
 
+## Main Gate landmark (Milestone G Batch 3, 13 October 2026)
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File assets/source/blender/tools/main_gate_sign_texture.ps1
+python assets/source/blender/build_asset.py main_gate_tower main_gate_leaves main_gate_pavilion
+```
+
+Reconstructed from `Docs/map-reference/area1/mainGate.jpg` (plus `whole view.png` for placement). Category `landmarks`; 220.689655 px/m like the architecture.
+
+| Asset (config) | Generator | Scene | Size | Collision |
+|---|---|---|---|---|
+| `main_gate_tower` | `main_gate_tower` | `landmarks/MainGateTower` | 9.75 × 6.4 m brick tower, 8.6 m, roof tray to 9.55 m with 1.25 m overhang; 4.76 m passage under three white pointed rings (clear apex ≈ 6.15 m); crest shield and medallion | `rects_m`: `WestPier`, `EastPier` (projected); passage free |
+| `main_gate_leaves` | `main_gate_leaves` | `landmarks/MainGateLeaves` | two steel-frame leaves, 4.76 × 2.5 m | `rect_m` across the opening (top-down, 10 px deep) |
+| `main_gate_pavilion` | `main_gate_pavilion` | `landmarks/MainGatePavilion` | brick room 5.9 × 6.8 × 3.3 m with two pointed windows, canopy slab on five white columns, 9.3 × 1.65 m green bilingual sign, stub wall | `rects_m`: `Room` (projected); porch free |
+
+- `generators/landmark_common.py`: shared procedural brick shader (object-space running bond, same palette as the walls), paint/concrete/steel/glass/image materials, the two-centred pointed-arch outline, and small bmesh builders. New landmark generators should reuse it.
+- `tools/main_gate_sign_texture.ps1` (WPF text rendering, so the Bengali line is shaped correctly) writes `textures/main_gate_sign.png`; `textures/` has a `.gdignore`. The pavilion generator maps it onto the sign face. Rebuild the pavilion after changing the sign.
+- The landmark is placed and checked in the zone, not in the gallery: see `Docs/CAMPUS_MAP.md` ("Main Gate landmark") and `scenes/tests/environment_previews/MainGateLandmarkCheck.tscn`.
+
 ## What still needs eyes
 
 The checks prove geometry, scale, alignment, transparency and loading. They do not judge art quality: open the preview scene and check the look, the edge quality at game scale, and how modules join.

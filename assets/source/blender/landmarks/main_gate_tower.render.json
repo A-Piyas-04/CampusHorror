@@ -1,0 +1,422 @@
+{
+  "pipeline": "campus_asset_pipeline",
+  "pipeline_version": 1,
+  "asset": "main_gate_tower",
+  "category": "landmarks",
+  "description": "IUT Main Gate tower: red-brick gatehouse with three stepped white pointed-arch rings around an open through-passage, white crest with green disc, grey medallion, brick cornice and a broad flared light-grey roof cap. Reconstructed from Docs/map-reference/area1/mainGate.jpg and whole view.png; dimensions estimated.",
+  "config": "assets/source/blender/configs/main_gate_tower.json",
+  "generator": "assets/source/blender/generators/main_gate_tower.py",
+  "generator_params": {
+    "west_x": -5.375,
+    "east_x": 4.375,
+    "front_projection": 0.3403,
+    "depth": 6.4,
+    "height": 8.6,
+    "clear_half": 2.38,
+    "springing_z": 3.0,
+    "centre_offset": 0.9,
+    "ring_widths": [
+      0.28,
+      0.32,
+      0.42
+    ],
+    "ring_fronts": [
+      0.22,
+      0.11,
+      0.0
+    ],
+    "cornice_z": 7.95,
+    "cornice_projection": 0.07,
+    "roof_overhang": 1.25,
+    "roof_edge_z": 9.25,
+    "roof_rim_z": 9.55,
+    "roof_well_z": 9.05,
+    "roof_rim_inset": 1.0
+  },
+  "random_seed": 20261013,
+  "blender_version": "5.2.2 LTS",
+  "outputs": {
+    "blend": "assets/source/blender/landmarks/main_gate_tower.blend",
+    "record": "assets/source/blender/landmarks/main_gate_tower.render.json",
+    "png": "assets/sprites/landmarks/main_gate_tower.png",
+    "scene": "scenes/props/landmarks/MainGateTower.tscn",
+    "preview": "scenes/tests/asset_previews/MainGateTowerPreview.tscn"
+  },
+  "origin": "ground-footprint origin at z = 0 (Blender world origin); front faces -Y",
+  "footprint_m": {
+    "x_min": -5.375,
+    "x_max": 4.375,
+    "y_min": 0.0,
+    "y_max": 6.7403
+  },
+  "model": {
+    "design_size_m": {
+      "width_x": 9.75,
+      "depth_y": 6.7403,
+      "height_z": 9.55
+    },
+    "passage_clear_width_m": 4.76,
+    "clear_apex_m": 6.154,
+    "outer_ring_apex_m": 7.205,
+    "materials": [
+      "GateBrick (procedural running bond, RedBrickWall3m colours)",
+      "GateWhite",
+      "GateRoofConcrete",
+      "GateCrestGreen",
+      "GateMedallionGrey"
+    ],
+    "connection_point": "origin = arch axis on the outer-ring front plane; brick face 7 game px behind (place the node 7 px south of the wall line); east face at +140 game px = boundary wall start",
+    "reference": "Docs/map-reference/area1/mainGate.jpg (front) + whole view.png (aerial); dimensions estimated, not surveyed",
+    "objects": [
+      {
+        "object": "GateBrickMass",
+        "evaluated_bounds_m": {
+          "x": 9.89,
+          "y": 6.54,
+          "z": 8.6
+        },
+        "evaluated_faces": 2160
+      },
+      {
+        "object": "GatePassageVault",
+        "evaluated_bounds_m": {
+          "x": 4.76,
+          "y": 6.4,
+          "z": 5.6
+        },
+        "evaluated_faces": 226
+      },
+      {
+        "object": "GateArchRings",
+        "evaluated_bounds_m": {
+          "x": 6.8,
+          "y": 0.3903,
+          "z": 7.2048
+        },
+        "evaluated_faces": 702
+      },
+      {
+        "object": "GateCrest",
+        "evaluated_bounds_m": {
+          "x": 0.76,
+          "y": 0.06,
+          "z": 0.946
+        },
+        "evaluated_faces": 67
+      },
+      {
+        "object": "GateCrestDisc",
+        "evaluated_bounds_m": {
+          "x": 0.46,
+          "y": 0.035,
+          "z": 0.46
+        },
+        "evaluated_faces": 34
+      },
+      {
+        "object": "GateMedallion",
+        "evaluated_bounds_m": {
+          "x": 0.68,
+          "y": 0.1,
+          "z": 0.68
+        },
+        "evaluated_faces": 68
+      },
+      {
+        "object": "GateRoofCap",
+        "evaluated_bounds_m": {
+          "x": 12.25,
+          "y": 8.9,
+          "z": 0.95
+        },
+        "evaluated_faces": 14
+      }
+    ]
+  },
+  "camera": {
+    "type": "ORTHO",
+    "elevation_deg": 40.0,
+    "azimuth_deg": 0.0,
+    "rotation_euler_deg": [
+      50.0,
+      0.0,
+      0.0
+    ],
+    "location_m": [
+      -0.5,
+      -16.5553,
+      22.0188
+    ],
+    "ortho_scale_m": 14.241719,
+    "sensor_fit": "HORIZONTAL",
+    "content_extent_m": [
+      12.25,
+      12.4518
+    ],
+    "margin_m_each_side": 0.9961,
+    "pixels_per_metre_on_screen": 220.689655
+  },
+  "lighting": {
+    "sun_elevation_deg": 55.0,
+    "sun_azimuth_deg_from_front": -35.0,
+    "sun_direction_to_light": [
+      -0.329,
+      -0.4698,
+      0.8192
+    ],
+    "sun_strength": 3.2,
+    "sun_angle_deg": 3.0,
+    "fill_lights_linked_to_asset_only": [
+      {
+        "name": "SkyFill",
+        "elevation_deg": 70.0,
+        "azimuth_deg_from_front": 20.0,
+        "strength": 0.8,
+        "angle_deg": 90.0,
+        "color": [
+          0.75,
+          0.85,
+          1.0
+        ]
+      },
+      {
+        "name": "GroundBounce",
+        "elevation_deg": -25.0,
+        "azimuth_deg_from_front": 10.0,
+        "strength": 0.35,
+        "angle_deg": 90.0,
+        "color": [
+          1.0,
+          0.8,
+          0.65
+        ]
+      }
+    ],
+    "world_light": "none (strength 0)",
+    "ground": "none (no shadow catcher; no cast shadow baked into the PNG)"
+  },
+  "render": {
+    "engine": "CYCLES",
+    "device": "GPU (OPTIX: NVIDIA GeForce RTX 3050 Laptop GPU)",
+    "samples": 256,
+    "adaptive_sampling": true,
+    "denoiser": "compositor OIDN on colour only (albedo + normal guides); raw render alpha kept",
+    "max_bounces": 6,
+    "film_transparent": true,
+    "filter_size_px": 1.5,
+    "view_transform": "Standard",
+    "output_format": "PNG RGBA 8-bit",
+    "resolution_px": [
+      3143,
+      3188
+    ],
+    "render_seconds": 55.7
+  },
+  "projection": {
+    "note": "texture px, top-left origin: x = W/2 + (p.right - cx)*ppm, y = H/2 - (p.up - cy)*ppm",
+    "image_px": [
+      3143,
+      3188
+    ],
+    "px_per_m": 220.689655,
+    "right": [
+      1.0,
+      0.0,
+      0.0
+    ],
+    "up": [
+      0.0,
+      0.6427876353263855,
+      0.7660444378852844
+    ],
+    "center_m": [
+      -0.5,
+      6.225895166397095
+    ],
+    "origin_px": [
+      1681.8448275,
+      2967.9906563383424
+    ],
+    "footprint_corners_px": [
+      [
+        495.63793187500005,
+        2967.9906563383424
+      ],
+      [
+        2647.362068125,
+        2967.9906563383424
+      ],
+      [
+        2647.362068125,
+        2011.834740199174
+      ],
+      [
+        495.63793187500005,
+        2011.834740199174
+      ]
+    ],
+    "design_bounds_bbox_px": [
+      219.77586312500011,
+      220.0092658849826,
+      2923.224136875,
+      2967.9906563383424
+    ]
+  },
+  "tiling": null,
+  "kind": "sprite",
+  "ground_tile": null,
+  "total_seconds": 55.8,
+  "blender_run": {
+    "exit_code": 0,
+    "seconds": 56.9,
+    "problem_lines": [
+      "00:00.547  cycles           | WARNING HIPEW initialization failed: Error opening HIP dynamic library"
+    ]
+  },
+  "verification": {
+    "png": {
+      "bit_depth": 8,
+      "png_color_type": 6,
+      "interlace": 0,
+      "file_bytes": 8648921,
+      "size_px": [
+        3143,
+        3188
+      ],
+      "opaque_pixels": 5608063,
+      "partially_transparent_pixels": 27344,
+      "fully_transparent_pixels": 4384477,
+      "content_bbox_px": [
+        218,
+        219,
+        2924,
+        2968
+      ],
+      "margins_px": {
+        "left": 218,
+        "right": 218,
+        "top": 219,
+        "bottom": 219
+      },
+      "max_alpha_on_image_border": 0.0
+    },
+    "bbox_deviation_px": [
+      -1.78,
+      -1.01,
+      1.78,
+      1.01
+    ],
+    "minimum_margin_required_px": 16,
+    "tiling": null,
+    "passed": true
+  },
+  "godot": {
+    "scene": "scenes/props/landmarks/MainGateTower.tscn",
+    "scene_name": "MainGateTower",
+    "scene_semantic_sha256": "13ac5e0bb3d9add0c3226dfd7041f1c70c007d4193385b197a7cb8105e073702",
+    "sprite_offset_adjust_px": [
+      0.0,
+      0.0
+    ],
+    "layout": {
+      "render_px_per_m": 220.689655,
+      "game_px_per_m": 32.0,
+      "sprite_scale": 0.14500000011328126,
+      "sprite_offset_px": [
+        -1681.8448275,
+        -2967.9906563383424
+      ],
+      "origin_px": [
+        1681.8448275,
+        2967.9906563383424
+      ],
+      "sprite_rect_game_px": [
+        -243.86750017802152,
+        -430.35864550527737,
+        455.73500035604303,
+        462.26000036114067
+      ],
+      "footprint_game_px": [
+        [
+          -172.00000000000003,
+          0.0
+        ],
+        [
+          140.0,
+          0.0
+        ],
+        [
+          140.0,
+          -138.64260794849397
+        ],
+        [
+          -172.00000000000003,
+          -138.64260794849397
+        ]
+      ],
+      "ground_depth_factor": 0.6427876353263855
+    },
+    "collision": {
+      "source": "rects_m",
+      "depth_mode": "projected",
+      "layer": 1,
+      "mask": 0,
+      "shapes": [
+        {
+          "node": "CollisionWestPier",
+          "resource_id": "RectangleShape2D_WestPier",
+          "center": [
+            -124.08,
+            -69.32130397424699
+          ],
+          "size": [
+            95.84,
+            138.64260794849397
+          ],
+          "metres": [
+            -5.375,
+            -2.38,
+            0.0,
+            6.7403
+          ]
+        },
+        {
+          "node": "CollisionEastPier",
+          "resource_id": "RectangleShape2D_EastPier",
+          "center": [
+            108.08,
+            -69.32130397424699
+          ],
+          "size": [
+            63.84,
+            138.64260794849397
+          ],
+          "metres": [
+            2.38,
+            4.375,
+            0.0,
+            6.7403
+          ]
+        }
+      ]
+    },
+    "preview_scene": "scenes/tests/asset_previews/MainGateTowerPreview.tscn"
+  },
+  "godot_import": {
+    "exit_code": 0,
+    "problem_lines": [
+      "WARNING: Detected another project.godot at res://addons/godot_mcp/cache/undo/entry_000003/files. The folder will be ignored.",
+      "WARNING: UID duplicate detected between res://scenes/tests/MCPCheck.tscn and res://addons/godot_mcp/cache/undo/entry_000002/files/scenes/tests/MCPCheck.tscn."
+    ]
+  },
+  "godot_check": {
+    "scene": {
+      "exit_code": 0,
+      "problem_lines": []
+    },
+    "preview": {
+      "exit_code": 0,
+      "problem_lines": []
+    }
+  }
+}

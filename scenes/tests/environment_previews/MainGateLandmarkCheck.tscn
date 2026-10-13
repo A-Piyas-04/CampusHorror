@@ -1,0 +1,7 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scenes/tests/environment_previews/main_gate_landmark_check.gd" id="1_check"]
+
+[node name="MainGateLandmarkCheck" type="Node2D"]
+editor_description = "TEMPORARY Milestone G Batch 3 test-only check (not a zone, not reachable from Main). Instances the real scenes/world/MainGateExterior.tscn and verifies the production Main Gate (Objects/Buildings/MainGateLandmark: Tower, GateLeaves, Pavilion, paving, occluders, preserved spawn and gate stop) against main_gate_ground_baseline_batch2.json and the versioned main_gate_ground_baseline_batch3.json. Output: [LANDMARK] lines."
+script = ExtResource("1_check")

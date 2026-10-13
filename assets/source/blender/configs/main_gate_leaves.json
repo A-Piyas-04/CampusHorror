@@ -1,0 +1,26 @@
+{
+  "asset_id": "main_gate_leaves",
+  "category": "landmarks",
+  "generator": "main_gate_leaves",
+  "description": "IUT Main Gate leaves: pair of closed black steel gate leaves spanning the tower passage (close vertical bars below the mid rail, diagonal braces above). Collision keeps the existing 10 px gate stop line.",
+  "seed": 20261013,
+  "generator_params": {},
+  "render": {
+    "px_per_m": 220.689655,
+    "samples": 256,
+    "elevation_deg": 40.0,
+    "azimuth_deg": 0.0
+  },
+  "godot": {
+    "scene_name": "MainGateLeaves",
+    "z_index": 0,
+    "sprite_offset_adjust_px": [0.0, 0.0],
+    "preview_scene": true
+  },
+  "collision": {
+    "enabled": true,
+    "source": "rect_m",
+    "rect_m": [-2.38, 2.38, -0.15625, 0.15625],
+    "depth_mode": "top_down"
+  }
+}

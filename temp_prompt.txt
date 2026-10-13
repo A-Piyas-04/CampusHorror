@@ -1,0 +1,414 @@
+# CampusHorror — Milestone G, Batch 3: Main Gate architectural reconstruction
+# IMPORTANT: attach the ACTUAL Main Gate reference image with this prompt.
+# Optional but helpful: also attach one aerial/whole-area image showing the gate's map position.
+# The user has explicitly corrected a previous misunderstanding:
+# THIS attached image is the real Main Gate. Do NOT use Five Pillars as the gate reference.
+
+## Context
+
+Milestone G Part 2 is underway.
+
+Already completed and must be preserved:
+- Batch 1A: real `main_gate_exterior` production ground integration
+- Batch 1B: real `main_gate_exterior` production vegetation integration
+- Batch 2: south boundary edge / wall integration
+
+Those are already in place and verified. Preserve them.
+
+The current biggest visual problem is that the landmark at the Main Gate is still mostly blockout / placeholder.
+This batch should deliver the first major recognizable architectural reconstruction.
+
+## Critical correction / reference truth
+
+The user explicitly clarified:
+
+- The attached front-view photograph is the REAL Main Gate.
+- The "Five Pillars" landmark is a different campus structure in another map area.
+- Do NOT use Five Pillars as the reference for this batch.
+- Do NOT model Five Pillars here.
+- Treat the current in-scene gate blockout only as layout/collision/scaffolding, not final design truth.
+
+## Primary goal
+
+Replace the placeholder Main Gate landmark artwork in the REAL `scenes/world/MainGateExterior.tscn`
+with a Blender-generated, production-quality, 2.5D-looking reconstruction of the actual Main Gate,
+using the attached real photo as the primary design authority.
+
+The result must:
+- look recognizably like the real Main Gate
+- preserve existing gameplay structure
+- preserve map editability
+- preserve IDs, spawns, collisions and save/load behavior
+- fit the existing adopted 2.5D pipeline and camera language
+
+This is not a generic brick arch. It is a campus-specific landmark.
+
+## Architectural identity to capture
+
+From the attached Main Gate photo, the recognizable identity includes:
+
+1. A tall red-brick gate tower / portal mass.
+2. A very large layered white pointed-arch surround framing the main passage.
+3. A broad projecting light-grey roof / cap over the gate tower.
+4. A deep gate passage, not just a flat decorative facade.
+5. A left-side pavilion / canopy block with:
+   - green bilingual signboard
+   - flat canopy
+   - multiple white cylindrical columns
+   - brick backing wall
+   - pointed-arch windows
+6. A red/terracotta paved gate approach / entry surface.
+7. The general red-brick + white-arch + green-sign material language.
+8. Visible connection to the adjacent road-edge wall system.
+
+Smaller foreground details visible in the reference photo include:
+- low planted strip
+- low green fence / edging
+- chain-and-post barrier
+- a freestanding notice pillar / panel
+- posters/banners on gate-side panels
+These are lower priority than the gate architecture itself and may be simplified or deferred if needed.
+
+## Scope boundary
+
+Implement ONLY the Main Gate landmark reconstruction in the REAL `main_gate_exterior` zone.
+
+This batch MAY include:
+- a Blender-generated gate tower / passage structure
+- layered arch geometry rendered as production art
+- the gate roof/cap
+- gate leaves / visible gate panels
+- the left pavilion + sign canopy
+- pavilion windows / columns
+- safe replacement of the placeholder landmark-owned ground/plaza under the gate if needed
+- conservative joining to the already integrated south boundary wall
+
+This batch must NOT yet fully rebuild:
+- CDS
+- sports courts
+- prototype edge cleanup outside the gate join if not necessary
+- player art
+- the rest of the campus
+- Five Pillars
+- unrelated future roads or future branches of the map
+
+If some small frontage details are too uncertain or too expensive for this batch, prioritize the main gate mass and report the deferred details clearly.
+
+## Reference-grounding rules
+
+Use the attached actual Main Gate image as the primary truth.
+
+### What should be treated as observed fact
+The following are directly supported by the photo:
+- red-brick tower-like mass
+- large concentric / layered white pointed arch
+- projecting roof slab/cap
+- left canopy with green bilingual sign
+- white cylindrical support columns
+- pointed-arch windows on the left block
+- red-brick / red-paved frontage
+- attached wall continuation
+- gate passage depth
+- visible gate leaves inside the passage
+
+### What may be approximated
+The following may require approximation:
+- exact hidden back-side geometry
+- exact roof thickness and rear support details
+- exact full dimensions in meters
+- exact depth of the pavilion block behind the visible facade
+- exact right-side canopy/sign structure beyond what is visible
+- small foreground planting/fence details if not fully legible
+
+Approximate these carefully and conservatively.
+Report them as approximations, not facts.
+
+### What must NOT be invented
+Do NOT invent:
+- Five Pillars features
+- a different arch shape
+- a different material palette
+- fancy decorative elements not supported by the photo
+- an unrelated gate style
+- a completely different sign canopy form
+- excessive details that break the current top-down 2.5D readability
+
+## Pre-edit safety procedure
+
+Before editing:
+
+1. Read:
+   - `Docs/STATUS.md`
+   - `Docs/CAMPUS_MAP.md`
+   - `Docs/CONVENTIONS.md`
+   - `Docs/ASSET_PIPELINE.md`
+
+2. Inspect:
+   - `scenes/world/MainGateExterior.tscn`
+   - the `MainGateLandmark` hierarchy and all its current children
+   - the current gate-related blockout / collisions / spawns / overhang / pavilion placeholders
+   - the currently integrated south boundary wall near the gate
+   - existing reusable architecture/environment asset scenes
+   - the established Blender automation pipeline and naming conventions
+
+3. Inspect git status and preserve all existing uncommitted work.
+   - Do not discard unrelated edits.
+   - Do not commit or push.
+
+4. Record a baseline for:
+   - MainGateLandmark node hierarchy
+   - landmark root transform
+   - `SpawnMainGateEntry` position and spawn ID
+   - gate-related collisions
+   - gate-leaf blocking line / collision
+   - nearby south boundary joins
+   - relevant Y-sort state / z-index setup
+
+5. Establish a recoverable pre-edit checkpoint without disturbing the working tree.
+   If that cannot be done safely, STOP and report the blocker before editing.
+
+## Asset-production approach
+
+Use the existing Blender → render → Godot pipeline.
+
+Do NOT hand-draw ad hoc sprites.
+Do NOT revert to simple ColorRect/Polygon2D placeholder art.
+
+### Recommended asset split
+
+Use a practical modular split, so the gate remains editable and integration is manageable.
+You do not have to follow these names exactly, but the decomposition should be equivalent.
+
+Recommended pieces:
+
+1. `MainGateTowerBody`
+   - the main red-brick mass around the gate opening
+
+2. `MainGateArchFrame`
+   - the large layered white pointed arch surround
+   - if best integrated into the tower render, that is acceptable
+   - but preserve clean silhouette and depth
+
+3. `MainGateRoofCap`
+   - the projecting top roof/cap mass
+   - may be a separate render/layer so it can sit in the correct draw order
+
+4. `MainGateLeaves`
+   - visible gate leaves/panels inside the passage
+   - align visually with the existing gate-blocking behavior
+
+5. `MainGatePavilion`
+   - left-side pavilion / canopy block
+   - includes brick backing wall and overall structure
+
+6. `MainGateSignCanopy`
+   - green sign/canopy face
+   - supported by white columns
+
+7. `MainGatePavilionWindows`
+   - if they need distinct layering, otherwise integrate them into pavilion art
+
+8. Optional lower-priority details, only if safe:
+   - small notice pillar / signpost
+   - low green fence/edging
+   - small planted strip
+   - chain barriers
+
+Do NOT let optional details block the main landmark reconstruction.
+
+## Modeling / rendering guidance
+
+Follow the already adopted production style:
+- grid-aligned 2.5D construction
+- Blender orthographic render pipeline
+- consistent camera/perspective with existing produced assets
+- no baked ground cast shadows
+- standing architecture can have dimensionality and appropriate self-shading
+- preserve transparency and clean edges
+
+### Visual style constraints
+- The gate must look like a proper rendered 2.5D game asset, not a flat illustration.
+- Brick must read as the same campus red-brick family already established.
+- White arch should feel substantial and layered, not painted-on.
+- Roof cap should visibly project.
+- Passage should show depth.
+- Pavilion columns must be readable at gameplay zoom.
+- The sign canopy should read clearly as green and horizontally extended.
+
+### Sign text handling
+Because the sign is important to identity:
+- Prefer to reproduce the English line and the Bengali line if the result remains legible and clean.
+- If precise legibility at gameplay scale is unrealistic, keep the bilingual sign visually recognizable using simplified but faithful text treatment.
+- Do not omit the sign canopy entirely.
+
+### Plaza / under-gate surface
+If the current gate plaza / under-gate paving is still placeholder and visually inconsistent,
+you may replace only the landmark-owned gate-plaza / passage surface with an appropriate reddish paved treatment,
+while preserving:
+- footprint
+- player pathing
+- gate leaf blocking behavior
+- surrounding already-approved ground layout
+
+Do not redesign the wider ground system.
+
+## Integration rules in the real scene
+
+Modify the REAL `MainGateExterior.tscn`, not only a test scene.
+
+Integrate the reconstructed gate into the existing `MainGateLandmark` area while preserving the structure needed by gameplay.
+
+### Preserve exactly
+Do NOT change:
+- zone root
+- zone ID
+- doors / spawns / spawn IDs / destinations
+- `SpawnMainGateEntry` position unless there is an absolutely unavoidable reason, and if so STOP and report first
+- existing game systems
+- save/load
+- player movement / speed
+- Batch 1A ground
+- Batch 1B vegetation placements
+- Batch 2 wall except where a local gate join must be resolved
+- CDS
+- court layout
+- future roads / future landmarks
+
+### Collision rules
+- Preserve the effective blocking behavior of the gate leaves.
+- Preserve or safely replace the gate landmark collision so the player cannot walk through solid structure.
+- If collisions are refined, they must remain faithful to gameplay expectations.
+- Do not introduce collision traps or snag points.
+
+### Joining to the Batch 2 wall
+The current wall-to-gate junction mismatch should be improved if possible.
+However:
+- do not break the wall batch
+- do not shift the entire wall
+- keep the solution local to the gate landmark area
+- clearly report any remaining mismatch or approximation
+
+### Occlusion / draw order
+- Ensure the gate draws in a sensible front/back order relative to the player.
+- It is acceptable if the gate hides the player when the player is behind tall foreground structure.
+- Do not over-engineer complex fade systems in this batch.
+- If separate layering is needed (for example body vs roof/overhead), do it cleanly and report it.
+
+## Verification requirements
+
+Run actual checks. Do not mark anything passed unless it actually ran.
+
+### 1. Asset / scene validation
+Create or extend test-only previews/checks as needed so the gate can be visually inspected in isolation before/while integrating.
+
+Verify:
+- generated assets import correctly
+- no scene UID / pipeline problems
+- transparent renders are correct
+- asset scale is plausible relative to the player and nearby walls/trees
+- new gate components align correctly in the scene
+
+### 2. Real-zone structural verification
+Confirm:
+- `main_gate_exterior` still loads
+- gate landmark replaced visually
+- nearby south wall still connects acceptably
+- `SpawnMainGateEntry` unchanged
+- gate leaf / stop behavior preserved
+- no unrelated landmark / court / CDS / vegetation drift
+- one Player only
+- 0 new Godot errors
+- 0 new Godot warnings
+
+### 3. Runtime / MCP checks in `Main.tscn`
+Test at minimum:
+- walk south down the gate path toward the gate
+- verify stopping at gate leaves / gate barrier as intended
+- move around the left pavilion edge
+- inspect player draw order in front of / behind the gate structure where applicable
+- test the south boundary join near the gate
+- CDS door round trip
+- save/load near the gate
+- F2 night and lantern at/near the gate
+- verify no collision snags
+- verify the gate still exists correctly after save/load and after returning from CDS
+
+Back up and restore user save data during automated/runtime tests.
+
+### 4. Optional but useful
+If feasible, add a dedicated `MainGateLandmarkCheck` or similarly named test that validates:
+- preserved spawn position
+- preserved gate-block stop behavior
+- landmark subtree integrity
+- no displacement of nearby critical nodes
+
+Do this only if it is helpful and not overkill.
+
+## Screenshot requirements
+
+Capture screenshots from the REAL `main_gate_exterior`, not just an isolated preview.
+
+Show at least:
+
+1. Wide daytime shot of the gate in the real zone
+2. Closer daytime shot centered on the gate
+3. The gate from the field/player approach direction
+4. The left pavilion / canopy area
+5. The gate joined to the south boundary wall
+6. The player near/in front of the gate
+7. The player behind/under relevant gate structure if applicable
+8. Night + lantern at the gate
+9. If you made an isolated preview scene, one preview screenshot is also useful
+
+Also clearly capture any unresolved mismatch or placeholder remainder.
+
+## Documentation updates
+
+Update documentation only as necessary:
+- `Docs/STATUS.md`
+- `Docs/CAMPUS_MAP.md`
+- `Docs/CONVENTIONS.md`
+- `Docs/ASSET_PIPELINE.md` only if the pipeline itself needed a meaningful update
+
+Document:
+- what parts of the gate were reconstructed
+- what was directly observed from the photo
+- what was approximated
+- what remains deferred
+- test results
+- any limitations
+
+Do not claim the entire Main Gate zone is now complete.
+Do not claim the whole campus landmark system is solved.
+
+## Final report format
+
+At the end, report in this order:
+
+1. What you changed
+2. Which reference image(s) were used
+3. Which gate features were reproduced directly
+4. Which aspects were approximated
+5. What remains placeholder/deferred
+6. Automated test results
+7. Runtime/MCP test results
+8. Visual issues / uncertainties
+9. Modified/new files
+10. Git status summary
+11. Manual F5 checks for the user
+
+## Completion boundary
+
+Stop after the Main Gate architectural reconstruction batch.
+
+Do NOT begin:
+- CDS architectural reconstruction
+- sports court reconstruction
+- player-art replacement
+- Five Pillars
+- map expansion beyond the current playable Main Gate area
+
+If the single front-view Main Gate reference is not enough for a safe decision about a specific visible part,
+use the most conservative approximation and report it clearly.
+If a major design choice truly cannot be resolved safely from the available reference,
+STOP and ask for the specific missing view instead of inventing confidently.

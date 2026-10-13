@@ -10,6 +10,9 @@ extends Node2D
 ## - Compared with main_gate_ground_baseline_batch1b.json (pre-edit record) only records inside SouthWall
 ##   changed: doors, spawns, landmarks, courts, prototype edges and the 42 vegetation instances are identical.
 ## - The versioned main_gate_ground_baseline_batch2.json equals the current zone.
+## Since Batch 3 the MainGateLandmark children (except SpawnMainGateEntry) are production gate art and are
+## excluded from these comparisons; main_gate_landmark_check.gd verifies them against
+## main_gate_ground_baseline_batch3.json.
 ## Args (after `--`): `--quit-after-checks` quits with exit code 0 (pass) / 1 (fail).
 
 const ZONE_SCENE := "res://scenes/world/MainGateExterior.tscn"
@@ -20,6 +23,8 @@ const WALL_SCENE := "res://scenes/props/architecture/RedBrickWall3m.tscn"
 const PIER_SCENE := "res://scenes/props/architecture/RedBrickVerandaPier.tscn"
 const SHADOW_SCENE := "res://scenes/props/common/ContactShadow.tscn"
 const SOUTH_WALL := "./Objects/Boundary/SouthWall"
+const MAIN_GATE := "./Objects/Buildings/MainGateLandmark"
+const MAIN_GATE_SPAWN := MAIN_GATE + "/SpawnMainGateEntry"
 const RUN_ORIGIN := Vector2(-1250, 1400)
 const MODULE := 96.0
 const WALLS := 37
@@ -327,12 +332,14 @@ func _check_neighbours(before: Dictionary, now: Dictionary) -> void:
 	var compared := 0
 	var bad := []
 	for key: String in before.nodes:
+		if _gate_art(key):
+			continue
 		for prefix: String in prefixes:
 			if key == prefix or key.begins_with(prefix + "/"):
 				compared += 1
 				if not now.nodes.has(key) or not _same(before.nodes[key], now.nodes[key]):
 					bad.append(key)
-	_check(compared > 300 and bad.is_empty(), "%d records of the gate, CDS, courts, prototype edges and 42 vegetation instances identical to the pre-edit baseline (bad %s)" % [compared, bad.slice(0, 5)])
+	_check(compared == 302 and bad.is_empty(), "%d records of the gate root and spawn, CDS, courts, prototype edges and 42 vegetation instances identical to the pre-edit baseline (bad %s)" % [compared, bad.slice(0, 5)])
 	var door: Dictionary = now.nodes.get("./Objects/Buildings/CDSExterior/TableTennis/DoorCdsMainEntry", {})
 	var spawn_gate: Dictionary = now.nodes.get("./Objects/Buildings/MainGateLandmark/SpawnMainGateEntry", {})
 	var spawn_cds: Dictionary = now.nodes.get("./Objects/Buildings/CDSExterior/TableTennis/SpawnOutsideCdsEntrance", {})
@@ -357,12 +364,20 @@ func _in_south_wall(key: String) -> bool:
 	return key == SOUTH_WALL or key.begins_with(SOUTH_WALL + "/")
 
 
+## MainGateLandmark children replaced by production art in Batch 3 (the root and the spawn are still compared).
+func _gate_art(key: String) -> bool:
+	var spawn := key == MAIN_GATE_SPAWN or key.begins_with(MAIN_GATE_SPAWN + "/")
+	return key.begins_with(MAIN_GATE + "/") and not spawn
+
+
 func _check_diff(before: Dictionary, now: Dictionary) -> void:
 	var outside_changed := []
 	var removed := []
 	var added := 0
 	var compared := 0
 	for key: String in before.nodes:
+		if _gate_art(key):
+			continue
 		if _in_south_wall(key):
 			if not now.nodes.has(key) or not _same(before.nodes[key], now.nodes[key]):
 				removed.append(key)
@@ -371,24 +386,32 @@ func _check_diff(before: Dictionary, now: Dictionary) -> void:
 		if not now.nodes.has(key) or not _same(before.nodes[key], now.nodes[key]):
 			outside_changed.append(key)
 	for key: String in now.nodes:
-		if not before.nodes.has(key):
+		if not before.nodes.has(key) and not _gate_art(key):
 			if _in_south_wall(key):
 				added += 1
 			else:
 				outside_changed.append(key)
 	var expected_added := (WALLS + PIERS) * 5 + 4
-	_check(outside_changed.is_empty() and compared == 333 and removed.size() == 3,
-		"%d records outside SouthWall identical to the pre-edit baseline; the 3 blockout SouthWall records replaced (block root now a Node2D, generated collision and occluder gone) (outside changed %s)" % [compared, outside_changed.slice(0, 5)])
+	_check(outside_changed.is_empty() and compared == 306 and removed.size() == 3,
+		"%d records outside SouthWall and the replaced gate art identical to the pre-edit baseline; the 3 blockout SouthWall records replaced (block root now a Node2D, generated collision and occluder gone) (outside changed %s)" % [compared, outside_changed.slice(0, 5)])
 	_check(added == expected_added and before.zone_id == now.zone_id and _same(before.markings, now.markings),
 		"%d new records, all inside SouthWall (expected %d: 75 instances x 5 + RunCollision, Shape, EastEdgeJoin, ShadowOccluder); zone_id and %d markings unchanged" % [added, expected_added, now.markings.size()])
 
 
 func _check_versioned(before: Dictionary, now: Dictionary) -> void:
 	var versioned := _load_json(BATCH2_BASELINE)
-	_check(not versioned.is_empty() and _same(versioned, now),
-		"versioned baseline %s exists and equals the current zone (%d nodes)" % [BATCH2_BASELINE.get_file(), versioned.get("nodes", {}).size()])
 	if versioned.is_empty():
+		_check(false, "versioned baseline %s exists" % BATCH2_BASELINE.get_file())
 		return
+	var drift := []
+	for key: String in versioned.nodes:
+		if not _gate_art(key) and (not now.nodes.has(key) or not _same(versioned.nodes[key], now.nodes[key])):
+			drift.append(key)
+	for key: String in now.nodes:
+		if not _gate_art(key) and not versioned.nodes.has(key):
+			drift.append(key)
+	_check(drift.is_empty() and _same(versioned.markings, now.markings) and versioned.zone_id == now.zone_id,
+		"versioned baseline %s equals the current zone outside the replaced gate art (%d nodes; differ %s)" % [BATCH2_BASELINE.get_file(), versioned.nodes.size(), drift.slice(0, 5)])
 	var outside := []
 	for key: String in before.nodes:
 		if not _in_south_wall(key) and (not versioned.nodes.has(key) or not _same(before.nodes[key], versioned.nodes[key])):
@@ -406,7 +429,7 @@ func _check_placeholders(run: Node2D) -> void:
 			tops.append(String(_zone.get_path_to(node)))
 	var inside := tops.filter(func(p: String) -> bool: return p.begins_with("Objects/Boundary/SouthWall"))
 	print("[BOUNDARY]      remaining placeholder roots (%d): %s" % [tops.size(), ", ".join(tops)])
-	_check(inside.is_empty() and tops.size() > 0, "no placeholder left in the south boundary run (%d placeholder roots remain elsewhere: gate, CDS, courts, prototype edges, markings)" % tops.size())
+	_check(inside.is_empty() and tops.size() > 0, "no placeholder left in the south boundary run (%d placeholder roots remain elsewhere: CDS, courts, prototype edges, markings)" % tops.size())
 
 
 func _global_rect(cs: CollisionShape2D) -> Rect2:

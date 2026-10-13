@@ -12,6 +12,9 @@
 [ext_resource type="PackedScene" path="res://scenes/props/common/ContactShadow.tscn" id="10_shadow"]
 [ext_resource type="PackedScene" path="res://scenes/props/architecture/RedBrickWall3m.tscn" id="11_wall"]
 [ext_resource type="PackedScene" path="res://scenes/props/architecture/RedBrickVerandaPier.tscn" id="12_pier"]
+[ext_resource type="PackedScene" path="res://scenes/props/landmarks/MainGateTower.tscn" id="13_gate_tower"]
+[ext_resource type="PackedScene" path="res://scenes/props/landmarks/MainGateLeaves.tscn" id="14_gate_leaves"]
+[ext_resource type="PackedScene" path="res://scenes/props/landmarks/MainGatePavilion.tscn" id="15_gate_pavilion"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_south_wall_run"]
 size = Vector2(3552, 10.07891)
@@ -21,6 +24,12 @@ size = Vector2(30, 20)
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_south_wall_run"]
 polygon = PackedVector2Array(0, -5.039455, 3552, -5.039455, 3552, 5.039455, 0, 5.039455)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_main_gate_west"]
+polygon = PackedVector2Array(-360, -140, -172, -140, -172, -131.6, -76.16, -131.6, -76.16, 0, -360, 0)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_main_gate_east"]
+polygon = PackedVector2Array(76.16, -131.6, 140, -131.6, 140, 0, 76.16, 0)
 
 [node name="MainGateExterior" type="Node2D"]
 y_sort_enabled = true
@@ -324,89 +333,62 @@ casts_shadow = false
 y_sort_enabled = true
 
 [node name="MainGateLandmark" type="Node2D" parent="Objects/Buildings"]
-editor_description = "Logical landmark root: move this node to move the whole gate (piers, leaves, pavilion, plaza, arrival spawn and Overhead roof/arch/canopy)."
+editor_description = "Logical landmark root (Milestone G Batch 3): move this node to move the whole Main Gate (tower, leaves, pavilion, paving, occluders and the arrival spawn). Origin = gate axis on the boundary wall line (world -1390, 1400). Production art rendered by the Blender pipeline from Docs/map-reference/area1/mainGate.jpg + whole view.png (not Five Pillars): MainGateTower, MainGateLeaves, MainGatePavilion (scenes/props/landmarks). Tower spans local x -172..140 (the SouthWall run starts at +140), passage x -76.16..76.16; pavilion room x -360..-172; both brick masses end at y -131.6 / -140 (north faces)."
 y_sort_enabled = true
 position = Vector2(-1390, 1400)
 
-[node name="PierWest" parent="Objects/Buildings/MainGateLandmark" instance=ExtResource("4_block")]
-position = Vector2(-100, 0)
-footprint_size = Vector2(80, 160)
-wall_height = 220.0
-
-[node name="PierEast" parent="Objects/Buildings/MainGateLandmark" instance=ExtResource("4_block")]
-position = Vector2(100, 0)
-footprint_size = Vector2(80, 160)
-wall_height = 220.0
-
-[node name="GateLeaves" parent="Objects/Buildings/MainGateLandmark" instance=ExtResource("4_block")]
-footprint_size = Vector2(120, 10)
-wall_height = 90.0
-wall_color = Color(0.15, 0.25, 0.2, 0.85)
-roof_color = Color(0.15, 0.25, 0.2, 0.85)
-casts_shadow = false
-
-[node name="SidePavilion" parent="Objects/Buildings/MainGateLandmark" instance=ExtResource("4_block")]
-position = Vector2(-250, 0)
-footprint_size = Vector2(220, 140)
-wall_height = 140.0
-arch_count = 2
-
-[node name="PavilionColumn1" parent="Objects/Buildings/MainGateLandmark" instance=ExtResource("4_block")]
-position = Vector2(-340, 70)
-footprint_size = Vector2(16, 16)
-wall_height = 140.0
-wall_color = Color(0.92, 0.92, 0.9, 1)
-roof_color = Color(0.92, 0.92, 0.9, 1)
-
-[node name="PavilionColumn2" parent="Objects/Buildings/MainGateLandmark" instance=ExtResource("4_block")]
-position = Vector2(-250, 70)
-footprint_size = Vector2(16, 16)
-wall_height = 140.0
-wall_color = Color(0.92, 0.92, 0.9, 1)
-roof_color = Color(0.92, 0.92, 0.9, 1)
-
-[node name="PavilionColumn3" parent="Objects/Buildings/MainGateLandmark" instance=ExtResource("4_block")]
-position = Vector2(-160, 70)
-footprint_size = Vector2(16, 16)
-wall_height = 140.0
-wall_color = Color(0.92, 0.92, 0.9, 1)
-roof_color = Color(0.92, 0.92, 0.9, 1)
-
-[node name="GatePlaza" type="Polygon2D" parent="Objects/Buildings/MainGateLandmark" groups=["blockout_placeholder"]]
-editor_description = "BLOCKOUT PLACEHOLDER: gate approach paving, moves with the gate. Replace with production art."
+[node name="GatePlaza" type="Polygon2D" parent="Objects/Buildings/MainGateLandmark"]
+editor_description = "Red paved approach north of the gate (the blockout plaza's y range, x trimmed to the tower's footprint -172..140 so no paving pokes out east of the tower), paved_walkway_tile.png aligned to the world 64 px tile grid by texture_offset (landmark origin -1390, 1400 mod 64)."
 z_index = -9
-color = Color(0.72, 0.5, 0.42, 1)
-polygon = PackedVector2Array(-170, -280, 170, -280, 170, -160, -170, -160)
+texture_repeat = 2
+texture = ExtResource("8_walkway")
+texture_offset = Vector2(18, 56)
+polygon = PackedVector2Array(-170, -280, 140, -280, 140, -160, -170, -160)
+
+[node name="PassageFloor" type="Polygon2D" parent="Objects/Buildings/MainGateLandmark"]
+editor_description = "Paving through the gate passage, from the plaza to the wall line (shows through the tower's open arch)."
+z_index = -9
+texture_repeat = 2
+texture = ExtResource("8_walkway")
+texture_offset = Vector2(18, 56)
+polygon = PackedVector2Array(-76.16, -160, 76.16, -160, 76.16, 0, -76.16, 0)
+
+[node name="GateLeaves" parent="Objects/Buildings/MainGateLandmark" instance=ExtResource("14_gate_leaves")]
+position = Vector2(0, -5)
+
+[node name="Tower" parent="Objects/Buildings/MainGateLandmark" instance=ExtResource("13_gate_tower")]
+position = Vector2(0, 7)
+
+[node name="ContactShadowWest" parent="Objects/Buildings/MainGateLandmark/Tower" instance=ExtResource("10_shadow")]
+position = Vector2(-124, -73)
+scale = Vector2(1.8, 2.4)
+
+[node name="ContactShadowEast" parent="Objects/Buildings/MainGateLandmark/Tower" instance=ExtResource("10_shadow")]
+position = Vector2(108, -73)
+scale = Vector2(1.2, 2.4)
+
+[node name="Pavilion" parent="Objects/Buildings/MainGateLandmark" instance=ExtResource("15_gate_pavilion")]
+position = Vector2(-172, 58)
+
+[node name="ContactShadowRoom" parent="Objects/Buildings/MainGateLandmark/Pavilion" instance=ExtResource("10_shadow")]
+position = Vector2(-94, -128)
+scale = Vector2(3.3, 2.4)
+
+[node name="ContactShadowPorch" parent="Objects/Buildings/MainGateLandmark/Pavilion" instance=ExtResource("10_shadow")]
+position = Vector2(-86, -29)
+scale = Vector2(5, 1)
+
+[node name="ShadowOccluderWest" type="LightOccluder2D" parent="Objects/Buildings/MainGateLandmark"]
+editor_description = "Light mask 1 occluder over the west tower pier and the pavilion room (rendered props have no occluder of their own)."
+occluder = SubResource("OccluderPolygon2D_main_gate_west")
+
+[node name="ShadowOccluderEast" type="LightOccluder2D" parent="Objects/Buildings/MainGateLandmark"]
+editor_description = "Light mask 1 occluder over the east tower pier."
+occluder = SubResource("OccluderPolygon2D_main_gate_east")
 
 [node name="SpawnMainGateEntry" parent="Objects/Buildings/MainGateLandmark" instance=ExtResource("2_spawn")]
 position = Vector2(0, -440)
 spawn_id = "main_gate_entry"
-
-[node name="Overhead" type="Node2D" parent="Objects/Buildings/MainGateLandmark" groups=["blockout_placeholder"]]
-editor_description = "BLOCKOUT PLACEHOLDER: gate roof, arch and pavilion canopy drawn over the player (z_index 10). Replace with production art."
-z_index = 10
-
-[node name="GateRoof" type="Polygon2D" parent="Objects/Buildings/MainGateLandmark/Overhead"]
-color = Color(0.88, 0.87, 0.84, 1)
-polygon = PackedVector2Array(-150, -395, 150, -395, 150, -220, -150, -220)
-
-[node name="Label" type="Label" parent="Objects/Buildings/MainGateLandmark/Overhead/GateRoof"]
-offset_left = -120.0
-offset_top = -330.0
-offset_right = 120.0
-offset_bottom = -290.0
-theme_override_colors/font_color = Color(0.3, 0.15, 0.1, 1)
-theme_override_font_sizes/font_size = 28
-text = "MAIN GATE"
-horizontal_alignment = 1
-
-[node name="ArchFace" type="Polygon2D" parent="Objects/Buildings/MainGateLandmark/Overhead"]
-color = Color(0.93, 0.92, 0.9, 1)
-polygon = PackedVector2Array(-60, -220, 60, -220, 60, -110, 45, -145, 25, -168, 0, -182, -25, -168, -45, -145, -60, -110)
-
-[node name="PavilionCanopy" type="Polygon2D" parent="Objects/Buildings/MainGateLandmark/Overhead"]
-color = Color(0.2, 0.35, 0.28, 1)
-polygon = PackedVector2Array(-360, -160, -140, -160, -140, -60, -360, -60)
 
 [node name="CDSExterior" type="Node2D" parent="Objects/Buildings"]
 editor_description = "Logical landmark root: move this node to move the whole CDS block (all sections, entrance forecourt, door, spawn and canopy)."
@@ -517,7 +499,7 @@ arch_count = 1
 y_sort_enabled = true
 
 [node name="SouthWall" type="Node2D" parent="Objects/Boundary"]
-editor_description = "South boundary road wall (Milestone G Batch 2). Production RedBrickWall3m modules exactly 96 px apart (Wall01..Wall37 at local x 48 + 96k) with a RedBrickVerandaPier pilaster on every join and both free ends (Pier00..Pier37 at local x 96k); piers come after the walls so they draw on top at equal Y. Origin = west end of the run on the wall line (world -1250, 1400): the run spans world x -1250..2302 on the blockout line y 1400 (north edge of the sidewalk), from the Main Gate PierEast to under PrototypeEdgeEast. Basis: whole view.png / field.jpg / tennis+futsal court.png show one continuous low red-brick wall along the road (banners on the road side, tree band inside); mainGate.jpg gives the brick and coping language; pilasters about every 3 m per the user. Approximate: height and coping are fixed by the generated modules (2.4 m wall, 2.8 m pier), the line and start come from the blockout, the east end is a prototype limit (the real wall continues); banners are not built. RunCollision (one rectangle at the pier footprint depth) gives one smooth stop line; ShadowOccluder (light mask 1) replaces the blockout's generated occluder because the generated props have none. To extend: duplicate the last wall and pier (with their ContactShadow) and add 96 to x, then widen RunCollision/Shape and ShadowOccluder by 96 (see Docs/CAMPUS_MAP.md)."
+editor_description = "South boundary road wall (Milestone G Batch 2). Production RedBrickWall3m modules exactly 96 px apart (Wall01..Wall37 at local x 48 + 96k) with a RedBrickVerandaPier pilaster on every join and both free ends (Pier00..Pier37 at local x 96k); piers come after the walls so they draw on top at equal Y. Origin = west end of the run on the wall line (world -1250, 1400): the run spans world x -1250..2302 on the blockout line y 1400 (north edge of the sidewalk), from the Main Gate tower's east face (MainGateLandmark/Tower, local x +140; Pier00 sits half behind it) to under PrototypeEdgeEast. Basis: whole view.png / field.jpg / tennis+futsal court.png show one continuous low red-brick wall along the road (banners on the road side, tree band inside); mainGate.jpg gives the brick and coping language; pilasters about every 3 m per the user. Approximate: height and coping are fixed by the generated modules (2.4 m wall, 2.8 m pier), the line and start come from the blockout, the east end is a prototype limit (the real wall continues); banners are not built. RunCollision (one rectangle at the pier footprint depth) gives one smooth stop line; ShadowOccluder (light mask 1) replaces the blockout's generated occluder because the generated props have none. To extend: duplicate the last wall and pier (with their ContactShadow) and add 96 to x, then widen RunCollision/Shape and ShadowOccluder by 96 (see Docs/CAMPUS_MAP.md)."
 y_sort_enabled = true
 position = Vector2(-1250, 1400)
 

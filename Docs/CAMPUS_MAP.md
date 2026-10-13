@@ -25,13 +25,13 @@ All in `Docs/map-reference/area1/`:
 | `field+cds.jpg` (a WebP file with a `.jpg` name) | Ground-level photo of CDS across the field | CDS massing, arches |
 | `cds-building.png`, `cds-building2.png` | CDS facade: low arched section with a paved forecourt, taller section with large pointed arches, bushes along the front | CDS massing, arches, forecourt, greenery |
 | `tennis+futsal court.png` | Fenced courts beside the field | Court fences and surfaces |
-| `mainGate.jpg` | Main Gate: red-brick mass, tall opening with layered white pointed arch, large overhanging roof, a columned side pavilion with a green sign, low brick wall, planted frontage | Main Gate massing |
+| `mainGate.jpg` | Main Gate: red-brick mass, tall opening with layered white pointed arch, large overhanging roof, a columned side pavilion with a green sign, low brick wall, planted frontage | **Main Gate truth** (user, Batch 3): the production gate is reconstructed from this photo plus the aerial `whole view.png`. Not to be confused with the Five Pillars (`5-pillars*.png`), a different landmark |
 
 No annotated / hand-drawn map is in the reference folder. The layout is therefore based on `whole view.png` plus the written description in the Milestone G brief. **If a hand-drawn map exists, it should replace these assumptions.**
 
 ## A. Prototype scope
 
-Boundary: the **Main Gate area only**. The playable rectangle is closed by the south boundary wall (with the gate) and by three hedge-like `PrototypeEdge*` blocks on the west, north and east. These edges are prototype limits, **not** real campus boundaries. The south boundary wall is the real campus road wall. Since Milestone G Batch 2 it is a production red-brick run with pilasters; the gate and the prototype edges are still blockout.
+Boundary: the **Main Gate area only**. The playable rectangle is closed by the south boundary wall (with the gate) and by three hedge-like `PrototypeEdge*` blocks on the west, north and east. These edges are prototype limits, **not** real campus boundaries. The south boundary wall is the real campus road wall. Since Milestone G Batch 2 it is a production red-brick run with pilasters, and since Batch 3 the Main Gate is production art; the prototype edges are still blockout.
 
 Included:
 
@@ -54,7 +54,7 @@ Explicitly excluded:
 
 | zone_id | Name | Scene | Purpose | Main contents | Connections | Status |
 |---|---|---|---|---|---|---|
-| `main_gate_exterior` | Main Gate exterior | `scenes/world/MainGateExterior.tscn` | First real playable area; game start zone | Gate, field, paths, courts, CDS exterior, vegetation, south wall, road | `DoorCdsMainEntry` → `cds_veranda` | Blockout with production ground (Batch 1A), vegetation (Batch 1B) and south road wall (Batch 2); verified via MCP; gate, CDS and courts still blockout |
+| `main_gate_exterior` | Main Gate exterior | `scenes/world/MainGateExterior.tscn` | First real playable area; game start zone | Gate, field, paths, courts, CDS exterior, vegetation, south wall, road | `DoorCdsMainEntry` → `cds_veranda` | Blockout with production ground (Batch 1A), vegetation (Batch 1B), south road wall (Batch 2) and Main Gate (Batch 3); verified via MCP; CDS, courts and prototype edges still blockout |
 | `cds_veranda` | CDS veranda | `scenes/world/CdsVeranda.tscn` | Covered walkway along the CDS west facade | Floor, arcade columns, parapet, roof edge, three future-room fronts | `DoorCdsExitToField` → `main_gate_exterior` | Blockout, verified via MCP |
 | `test_zone_a`, `test_zone_b` | Test zones | `scenes/world/TestZoneA.tscn`, `TestZoneB.tscn` | Milestone C–F test rooms | — | Each other | Kept registered for tests and old saves; no longer the start zone |
 
@@ -133,7 +133,7 @@ Coordinates are `main_gate_exterior` pixels; +x = east (screen right), +y = sout
 | CDS footprint | 450 × 1700 px at x 1550..2000, y −1000..700; canteen 550 deep, table tennis 450, indoor basketball 700 | Approximate |
 | CDS heights | Canteen/table tennis 110 px, indoor basketball 170 px, veranda 80 px | Approximate (the taller section is assumed to be the basketball hall) |
 | CDS veranda frontage | 70 px deep along the whole west facade | Approximate |
-| Main Gate | Piers 80 × 160 px, 220 px high, opening 120 px wide; side pavilion 220 × 140 px to the west | Approximate |
+| Main Gate | Production since Batch 3 (`MainGateTower`, `MainGateLeaves`, `MainGatePavilion`). Tower local x −172..140 (9.75 m), 6.74 m deep (to local y −131.6), brick 8.6 m, roof rim 9.55 m, roof overhang 1.25 m; passage local x ±76.16 (4.76 m clear), clear apex ≈ 6.15 m, three white rings 0.28 / 0.32 / 0.42 m; leaves 2.5 m high at the wall line (stop y 1390); pavilion room local x −360..−172, y −140..0, 3.3 m high, canopy x −407..−109 on five columns at local y +58, sign 9.3 × 1.65 m | Known (photo + aerial): features, materials, arrangement (pavilion west, arch off-centre to the east, roof tray). Approximate: every dimension (estimated, not surveyed); leaves at the wall line instead of set back; tower and room footprints kept to the blockout's extents (wall join at +140, room to −360). Not built: notice pillar, green fence, planted strip, chain barriers, posters, passage inner columns, east canopy |
 | South wall | Production run since Batch 2: line y 1400 (footprint centre), x −1250..2302, 37 `RedBrickWall3m` modules (3 m = 96 px, 2.4 m ≈ 70 px high) and 38 `RedBrickVerandaPier` pilasters (2.8 m) on every join and both ends; player stops at feet y ≈ 1394.96 | Known: continuous low red-brick road wall with coping and pilasters (references + user). Approximate: height and coping profile (fixed by the generated module), pilaster spacing exactly 3 m, line y 1400 and start x −1250 (inherited from the blockout), end x 2302 (closes the prototype; the real wall continues east). Not built: road-facing banners/posters, gate-like elements, wall variations |
 | Prototype edges | x −1700, y −1350, x 2250 | Undecided (prototype limits only) |
 | Veranda zone | 270 × 1700 px walkway, columns every 170 px | Approximate |
@@ -167,12 +167,12 @@ Exact surface rectangles (world px), unchanged from the blockout: ground fill x 
 
 To move or resize a path or road: repaint the full cells it now covers in `Ground/Tiles` (and repaint grass where it left), then move the strip vertices to the new edges; strips are only needed where an edge isn't on a multiple of 64. `scenes/tests/environment_previews/MainGateGroundCheck.tscn` checks the ground against the rectangles above (constants in `main_gate_ground_check.gd`); update those constants together with an intentional layout change.
 
-Landmark ground (gate plaza, CDS forecourt, court aprons/surfaces) is still flat-coloured blockout under each landmark at z −9.
+Landmark ground under each landmark is at z −9. The gate's `GatePlaza` and `PassageFloor` use the walkway texture (Batch 3); the CDS forecourt and court aprons/surfaces are still flat-coloured blockout.
 - **Moving a landmark: move only its parent node.** Every layer it owns is inside it (see `Docs/CONVENTIONS.md` §12):
 
 | Landmark (move this node) | Contains |
 |---|---|
-| `Objects/Buildings/MainGateLandmark` | Piers, gate leaves, side pavilion + columns, `GatePlaza` (z −9), `SpawnMainGateEntry`, `Overhead` (z 10: `GateRoof` + label, `ArchFace`, `PavilionCanopy`) |
+| `Objects/Buildings/MainGateLandmark` | `Tower`, `GateLeaves`, `Pavilion` (production props with contact shadows), `GatePlaza` and `PassageFloor` (z −9), `ShadowOccluderWest` / `East`, `SpawnMainGateEntry`. No `Overhead`: the rendered roofs Y-sort with the player (see "Main Gate landmark" below) |
 | `Objects/Buildings/CDSExterior` | Sections `Canteen`, `TableTennis`, `IndoorBasketball` (mass, label, veranda each). `TableTennis` also holds the entrance: `Forecourt` (z −9), `DoorCdsMainEntry`, `SpawnOutsideCdsEntrance`, `Overhead/EntranceCanopy` (z 10). A single section can also be moved on its own. |
 | `Objects/SportsCourts/FutsalCourt`, `TennisCourt` | `Apron` and `Surface` (z −9) with line markings, fence blocks |
 | `cds_veranda`: `Objects/Arcade` | Columns 01–10 and `Overhead/VerandaRoofEdge` (z 10) |
@@ -193,6 +193,23 @@ Landmark ground (gate plaza, CDS forecourt, court aprons/surfaces) is still flat
   - **Extend east:** duplicate the last wall and the last pier (Ctrl+D, so the shadow comes along) and add 96 to their x. Then add 96 to `Shape`'s width, add 48 to its x, and move the `ShadowOccluder` polygon's east points 96 px east. Shortening works the same way in reverse.
   - Never scale, cut or overlap a module.
   - `MainGateBoundaryCheck.tscn` and `MainGateGroundCheck.tscn` expect the current 37 + 38 layout. After an intentional change, update the boundary check's constants. Then dump a new ground baseline deliberately and verify the difference (see `Docs/STATUS.md`, Batch 2).
+- Main Gate landmark (`main_gate_exterior`, Milestone G Batch 3): `Objects/Buildings/MainGateLandmark` at (−1390, 1400) (gate axis on the wall line) holds:
+
+  | Child | Local position | What it is |
+  |---|---|---|
+  | `GatePlaza` | — | Walkway-textured `Polygon2D` (z −9) x −170..140, y −280..−160; `texture_offset` (18, 56) keeps it on the world tile grid |
+  | `PassageFloor` | — | Same texture, x ±76.16, y −160..0 (seen through the arch) |
+  | `GateLeaves` | (0, −5) | `scenes/props/landmarks/MainGateLeaves.tscn`; collision 152.32 × 10 at y −10..0 = the gate stop (player feet y 1390) |
+  | `Tower` | (0, 7) | `MainGateTower.tscn`; origin on the outer white ring's front plane, so the brick face is on the wall line; pier collisions x −172..−76.16 and 76.16..140, y −131.6..+7; passage open. Children `ContactShadowWest` / `East` |
+  | `Pavilion` | (−172, 58) | `MainGatePavilion.tscn`; origin on the column line at the tower's west face; room collision x −360..−172, y −140..0. Children `ContactShadowRoom` / `Porch` |
+  | `ShadowOccluderWest` / `East` | — | Light mask 1 occluders over the west pier + room and the east pier |
+  | `SpawnMainGateEntry` | (0, −440) | Arrival spawn `main_gate_entry`, unchanged |
+
+  - **Move the gate:** move `MainGateLandmark`. Its east face at local +140 must stay on `SouthWall`'s origin (`Pier00` sits half behind the tower), and the room's north face (local y −140) must meet `PrototypeEdgeWest`'s south end (y 1260) or the corner opens.
+  - **Change the art:** edit `assets/source/blender/generators/main_gate_*.py` (or the config's `generator_params`) and run `python assets/source/blender/build_asset.py main_gate_tower main_gate_leaves main_gate_pavilion`. The scenes are rewritten in place, so the instances keep working. If a footprint changes, move the instance and update the occluder polygons, `PassageFloor` and the expected rectangles in `main_gate_landmark_check.gd`.
+  - **Change the sign text:** edit `assets/source/blender/tools/main_gate_sign_texture.ps1` and run it with `powershell -NoProfile -ExecutionPolicy Bypass -File assets/source/blender/tools/main_gate_sign_texture.ps1`, then rebuild `main_gate_pavilion`.
+  - Y-sort: the leaves (y 1395) draw before the tower (y 1407); the tower draws over `Pier00` (y 1400). Keep those orders if you move a child.
+  - `MainGateLandmarkCheck.tscn` (24 checks) and `MainGateGroundCheck.tscn` expect this layout. After an intentional change, update the landmark check's constants, dump a new ground baseline deliberately and verify the difference (see `Docs/STATUS.md`, Batch 3).
 - Trees and palms (Milestone G Batch 1B) are instances of the production `scenes/props/vegetation/BroadleafTree.tscn` / `CoconutPalm.tscn` (origin at the trunk base, trunk footprint collision), each with a `ContactShadow` child (`scenes/props/common/ContactShadow.tscn`; tree scale (1.1, 0.4), palm (0.6, 0.24)). Duplicate (Ctrl+D) the instance so the shadow comes with it, and move it. Tree rows (`CdsTrees`, `GateTrees`, …) are landscape groups, not part of the buildings they stand near. `scenes/tests/environment_previews/MainGateVegetationCheck.tscn` (Batch 1B acceptance) and `MainGateGroundCheck.tscn` expect exactly the 42 original names and positions, so an intentional vegetation change makes both fail until a new baseline is dumped and verified (see `Docs/STATUS.md`, Batch 1B).
 - Doors and spawn markers: move them, keep their IDs (node names / `spawn_id`). Keep each arrival spawn more than 56 px from the door it lands next to. Moving the gate or CDS moves their door/spawn too; saves are unaffected (they store zone ID + position, not node paths).
 - Placeholders: every blockout-only visual is in node group `blockout_placeholder` (Node panel > Groups) and its `editor_description` (hover the node in the Scene dock) starts with "BLOCKOUT PLACEHOLDER". The group covers all descendants. These are replaced by production art later; the landmark parents, collision footprints, doors and spawns are the structure that stays.

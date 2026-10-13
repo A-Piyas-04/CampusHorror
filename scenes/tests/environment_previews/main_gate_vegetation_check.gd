@@ -8,9 +8,12 @@ extends Node2D
 ## - Trunk collision (layer 1 / mask 0, production footprint) blocks a 28 x 12 player footprint from the
 ##   south and the north, and the area beside each trunk stays walkable.
 ## - Every other node outside Ground and the field markings are identical to the historical baseline, except
-##   Objects/Boundary/SouthWall, which Batch 2 replaced (verified by main_gate_boundary_check.gd).
+##   Objects/Boundary/SouthWall, which Batch 2 replaced (verified by main_gate_boundary_check.gd), and the
+##   MainGateLandmark children Batch 3 replaced (verified by main_gate_landmark_check.gd; the landmark root
+##   and SpawnMainGateEntry are still compared).
 ## - The Batch 1B versioned baseline (main_gate_ground_baseline_batch1b.json) equals the current zone outside
-##   SouthWall and differs from the historical baseline only inside the 42 vegetation instances.
+##   SouthWall and the replaced gate, and differs from the historical baseline only inside the 42 vegetation
+##   instances.
 ## Args (after `--`): `--quit-after-checks` quits with exit code 0 (pass) / 1 (fail).
 
 const ZONE_SCENE := "res://scenes/world/MainGateExterior.tscn"
@@ -20,6 +23,8 @@ const SNAPSHOT_SCRIPT := preload("res://scenes/tests/environment_previews/main_g
 const SHADOW_SCENE := "res://scenes/props/common/ContactShadow.tscn"
 const VEGETATION := "./Objects/Vegetation"
 const SOUTH_BOUNDARY := "./Objects/Boundary/SouthWall"
+const MAIN_GATE := "./Objects/Buildings/MainGateLandmark"
+const MAIN_GATE_SPAWN := MAIN_GATE + "/SpawnMainGateEntry"
 ## Placeholder scene -> [production scene, ContactShadow scale (from MainGateCompositionTest), expected count].
 const REPLACEMENTS := {
 	"res://scenes/props/PalmTree.tscn": ["res://scenes/props/vegetation/CoconutPalm.tscn", Vector2(0.6, 0.24), 27],
@@ -92,6 +97,14 @@ func _in_instance(key: String, instances: Dictionary) -> bool:
 
 func _in_south_boundary(key: String) -> bool:
 	return key == SOUTH_BOUNDARY or key.begins_with(SOUTH_BOUNDARY + "/")
+
+
+## Records replaced after Batch 1B: the Batch 2 south wall and the Batch 3 gate art (not the gate root or spawn).
+func _replaced_later(key: String) -> bool:
+	if _in_south_boundary(key):
+		return true
+	var spawn := key == MAIN_GATE_SPAWN or key.begins_with(MAIN_GATE_SPAWN + "/")
+	return key.begins_with(MAIN_GATE + "/") and not spawn
 
 
 func _node(key: String) -> Node:
@@ -225,7 +238,7 @@ func _check_unchanged(before: Dictionary, now: Dictionary, instances: Dictionary
 	var changed := []
 	var compared := 0
 	for key: String in before.nodes:
-		if _in_instance(key, instances) or _in_south_boundary(key):
+		if _in_instance(key, instances) or _replaced_later(key):
 			continue
 		compared += 1
 		if not now.nodes.has(key):
@@ -233,12 +246,13 @@ func _check_unchanged(before: Dictionary, now: Dictionary, instances: Dictionary
 		elif not _same(before.nodes[key], now.nodes[key]):
 			changed.append(key)
 	for key: String in now.nodes:
-		if not _in_instance(key, instances) and not _in_south_boundary(key) and not before.nodes.has(key):
+		if not _in_instance(key, instances) and not _replaced_later(key) and not before.nodes.has(key):
 			added.append(key)
 	# 294 baseline nodes outside Ground minus 42 placeholder subtrees of 4 records (root, 2 polygons, collision)
-	# minus the 3 blockout SouthWall records (block, collision, occluder) replaced in Batch 2.
-	_check(missing.is_empty() and added.is_empty() and changed.is_empty() and compared == 123 and before.nodes.size() == 294,
-		"%d nodes outside Ground, the 42 vegetation instances and SouthWall identical to the historical baseline (missing %s, added %s, changed %s)" % [compared, missing.slice(0, 5), added.slice(0, 5), changed.slice(0, 5)])
+	# minus the 3 blockout SouthWall records (block, collision, occluder) replaced in Batch 2
+	# minus the 27 blockout MainGateLandmark records (all but the root and the spawn's 2) replaced in Batch 3.
+	_check(missing.is_empty() and added.is_empty() and changed.is_empty() and compared == 96 and before.nodes.size() == 294,
+		"%d nodes outside Ground, the 42 vegetation instances, SouthWall and the replaced gate art identical to the historical baseline (missing %s, added %s, changed %s)" % [compared, missing.slice(0, 5), added.slice(0, 5), changed.slice(0, 5)])
 	_check(before.zone_id == now.zone_id and _same(before.markings, now.markings),
 		"zone_id and the %d field markings unchanged" % before.markings.size())
 
@@ -250,13 +264,13 @@ func _check_versioned_baseline(before: Dictionary, now: Dictionary, instances: D
 		return
 	var drift := []
 	for key: String in versioned.nodes:
-		if not _in_south_boundary(key) and (not now.nodes.has(key) or not _same(versioned.nodes[key], now.nodes[key])):
+		if not _replaced_later(key) and (not now.nodes.has(key) or not _same(versioned.nodes[key], now.nodes[key])):
 			drift.append(key)
 	for key: String in now.nodes:
-		if not _in_south_boundary(key) and not versioned.nodes.has(key):
+		if not _replaced_later(key) and not versioned.nodes.has(key):
 			drift.append(key)
 	_check(drift.is_empty() and _same(versioned.markings, now.markings) and versioned.zone_id == now.zone_id,
-		"versioned baseline equals the current zone outside SouthWall (%d nodes; differ %s)" % [versioned.nodes.size(), drift.slice(0, 5)])
+		"versioned baseline equals the current zone outside SouthWall and the replaced gate art (%d nodes; differ %s)" % [versioned.nodes.size(), drift.slice(0, 5)])
 	var diff_outside := []
 	for key: String in before.nodes:
 		if not _in_instance(key, instances) and (not versioned.nodes.has(key) or not _same(before.nodes[key], versioned.nodes[key])):

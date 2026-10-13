@@ -1,0 +1,343 @@
+{
+  "pipeline": "campus_asset_pipeline",
+  "pipeline_version": 1,
+  "asset": "main_gate_leaves",
+  "category": "landmarks",
+  "description": "IUT Main Gate leaves: pair of closed black steel gate leaves spanning the tower passage (close vertical bars below the mid rail, diagonal braces above). Collision keeps the existing 10 px gate stop line.",
+  "config": "assets/source/blender/configs/main_gate_leaves.json",
+  "generator": "assets/source/blender/generators/main_gate_leaves.py",
+  "generator_params": {
+    "clear_half": 2.38,
+    "height": 2.5,
+    "thickness": 0.06,
+    "frame": 0.08,
+    "mid_rail_z": 1.05,
+    "bar_pitch": 0.12,
+    "bar_width": 0.025,
+    "upper_bar_pitch": 0.36,
+    "brace_width": 0.06,
+    "jamb_gap": 0.02,
+    "meeting_gap": 0.01
+  },
+  "random_seed": 20261013,
+  "blender_version": "5.2.2 LTS",
+  "outputs": {
+    "blend": "assets/source/blender/landmarks/main_gate_leaves.blend",
+    "record": "assets/source/blender/landmarks/main_gate_leaves.render.json",
+    "png": "assets/sprites/landmarks/main_gate_leaves.png",
+    "scene": "scenes/props/landmarks/MainGateLeaves.tscn",
+    "preview": "scenes/tests/asset_previews/MainGateLeavesPreview.tscn"
+  },
+  "origin": "ground-footprint origin at z = 0 (Blender world origin); front faces -Y",
+  "footprint_m": {
+    "x_min": -2.38,
+    "x_max": 2.38,
+    "y_min": -0.03,
+    "y_max": 0.03
+  },
+  "model": {
+    "design_size_m": {
+      "width_x": 4.76,
+      "depth_y": 0.06,
+      "height_z": 2.5
+    },
+    "materials": [
+      "GateSteel"
+    ],
+    "connection_point": "origin = gate axis at the leaf plane; spans MainGateTower's clear passage",
+    "reference": "Docs/map-reference/area1/mainGate.jpg + whole view.png; leaves are set back in reality, placed at the gate stop line in game (approximation)",
+    "objects": [
+      {
+        "object": "GateLeaves",
+        "evaluated_bounds_m": {
+          "x": 4.72,
+          "y": 0.06,
+          "z": 2.5
+        },
+        "evaluated_faces": 3348
+      }
+    ]
+  },
+  "camera": {
+    "type": "ORTHO",
+    "elevation_deg": 40.0,
+    "azimuth_deg": 0.0,
+    "rotation_euler_deg": [
+      50.0,
+      0.0,
+      0.0
+    ],
+    "location_m": [
+      0.0,
+      -15.954,
+      14.637
+    ],
+    "ortho_scale_m": 5.523594,
+    "sensor_fit": "HORIZONTAL",
+    "content_extent_m": [
+      4.76,
+      1.9537
+    ],
+    "margin_m_each_side": 0.3808,
+    "pixels_per_metre_on_screen": 220.689655
+  },
+  "lighting": {
+    "sun_elevation_deg": 55.0,
+    "sun_azimuth_deg_from_front": -35.0,
+    "sun_direction_to_light": [
+      -0.329,
+      -0.4698,
+      0.8192
+    ],
+    "sun_strength": 3.2,
+    "sun_angle_deg": 3.0,
+    "fill_lights_linked_to_asset_only": [
+      {
+        "name": "SkyFill",
+        "elevation_deg": 70.0,
+        "azimuth_deg_from_front": 20.0,
+        "strength": 0.8,
+        "angle_deg": 90.0,
+        "color": [
+          0.75,
+          0.85,
+          1.0
+        ]
+      },
+      {
+        "name": "GroundBounce",
+        "elevation_deg": -25.0,
+        "azimuth_deg_from_front": 10.0,
+        "strength": 0.35,
+        "angle_deg": 90.0,
+        "color": [
+          1.0,
+          0.8,
+          0.65
+        ]
+      }
+    ],
+    "world_light": "none (strength 0)",
+    "ground": "none (no shadow catcher; no cast shadow baked into the PNG)"
+  },
+  "render": {
+    "engine": "CYCLES",
+    "device": "GPU (OPTIX: NVIDIA GeForce RTX 3050 Laptop GPU)",
+    "samples": 256,
+    "adaptive_sampling": true,
+    "denoiser": "compositor OIDN on colour only (albedo + normal guides); raw render alpha kept",
+    "max_bounces": 6,
+    "film_transparent": true,
+    "filter_size_px": 1.5,
+    "view_transform": "Standard",
+    "output_format": "PNG RGBA 8-bit",
+    "resolution_px": [
+      1219,
+      600
+    ],
+    "render_seconds": 3.1
+  },
+  "projection": {
+    "note": "texture px, top-left origin: x = W/2 + (p.right - cx)*ppm, y = H/2 - (p.up - cy)*ppm",
+    "image_px": [
+      1219,
+      600
+    ],
+    "px_per_m": 220.689655,
+    "right": [
+      1.0,
+      0.0,
+      0.0
+    ],
+    "up": [
+      0.0,
+      0.6427876353263855,
+      0.7660444378852844
+    ],
+    "center_m": [
+      0.0,
+      0.9575555324554443
+    ],
+    "origin_px": [
+      609.5,
+      511.3226001009333
+    ],
+    "footprint_corners_px": [
+      [
+        84.25862110000003,
+        515.5782975452867
+      ],
+      [
+        1134.7413789,
+        515.5782975452867
+      ],
+      [
+        1134.7413789,
+        507.06690265657994
+      ],
+      [
+        84.25862110000003,
+        507.06690265657994
+      ]
+    ],
+    "design_bounds_bbox_px": [
+      84.25859584407328,
+      84.42169597277135,
+      1134.7414041559268,
+      515.5782974501644
+    ]
+  },
+  "tiling": null,
+  "kind": "sprite",
+  "ground_tile": null,
+  "total_seconds": 3.4,
+  "blender_run": {
+    "exit_code": 0,
+    "seconds": 8.7,
+    "problem_lines": [
+      "00:05.094  cycles           | WARNING HIPEW initialization failed: Error opening HIP dynamic library"
+    ]
+  },
+  "verification": {
+    "png": {
+      "bit_depth": 8,
+      "png_color_type": 6,
+      "interlace": 0,
+      "file_bytes": 508725,
+      "size_px": [
+        1219,
+        600
+      ],
+      "opaque_pixels": 130445,
+      "partially_transparent_pixels": 53928,
+      "fully_transparent_pixels": 547027,
+      "content_bbox_px": [
+        87,
+        83,
+        1131,
+        516
+      ],
+      "margins_px": {
+        "left": 87,
+        "right": 87,
+        "top": 83,
+        "bottom": 83
+      },
+      "max_alpha_on_image_border": 0.0
+    },
+    "bbox_deviation_px": [
+      2.74,
+      -1.42,
+      -2.74,
+      1.42
+    ],
+    "minimum_margin_required_px": 16,
+    "tiling": null,
+    "passed": true
+  },
+  "godot": {
+    "scene": "scenes/props/landmarks/MainGateLeaves.tscn",
+    "scene_name": "MainGateLeaves",
+    "scene_semantic_sha256": "a0677d8fd0ca6c58822e3b882353d0283146c55f431e2ea16310c8c13c21c26f",
+    "sprite_offset_adjust_px": [
+      0.0,
+      0.0
+    ],
+    "layout": {
+      "render_px_per_m": 220.689655,
+      "game_px_per_m": 32.0,
+      "sprite_scale": 0.14500000011328126,
+      "sprite_offset_px": [
+        -609.5,
+        -511.3226001009333
+      ],
+      "origin_px": [
+        609.5,
+        511.3226001009333
+      ],
+      "sprite_rect_game_px": [
+        -88.37750006904493,
+        -74.1417770725586,
+        176.75500013808985,
+        87.00000006796876
+      ],
+      "footprint_game_px": [
+        [
+          -76.16,
+          0.6170761299133278
+        ],
+        [
+          76.16,
+          0.6170761299133278
+        ],
+        [
+          76.16,
+          -0.6170761299133278
+        ],
+        [
+          -76.16,
+          -0.6170761299133278
+        ]
+      ],
+      "ground_depth_factor": 0.6427876353263855
+    },
+    "collision": {
+      "source": "rect_m",
+      "depth_mode": "top_down",
+      "layer": 1,
+      "mask": 0,
+      "shapes": [
+        {
+          "node": "Collision",
+          "resource_id": "RectangleShape2D_footprint",
+          "center": [
+            0.0,
+            -0.0
+          ],
+          "size": [
+            152.32,
+            10.0
+          ],
+          "metres": [
+            -2.38,
+            2.38,
+            -0.15625,
+            0.15625
+          ]
+        }
+      ],
+      "center": [
+        0.0,
+        -0.0
+      ],
+      "size": [
+        152.32,
+        10.0
+      ],
+      "metres": [
+        -2.38,
+        2.38,
+        -0.15625,
+        0.15625
+      ]
+    },
+    "preview_scene": "scenes/tests/asset_previews/MainGateLeavesPreview.tscn"
+  },
+  "godot_import": {
+    "exit_code": 0,
+    "problem_lines": [
+      "WARNING: Detected another project.godot at res://addons/godot_mcp/cache/undo/entry_000003/files. The folder will be ignored.",
+      "WARNING: UID duplicate detected between res://scenes/tests/MCPCheck.tscn and res://addons/godot_mcp/cache/undo/entry_000002/files/scenes/tests/MCPCheck.tscn."
+    ]
+  },
+  "godot_check": {
+    "scene": {
+      "exit_code": 0,
+      "problem_lines": []
+    },
+    "preview": {
+      "exit_code": 0,
+      "problem_lines": []
+    }
+  }
+}

@@ -1,0 +1,466 @@
+{
+  "pipeline": "campus_asset_pipeline",
+  "pipeline_version": 1,
+  "asset": "main_gate_pavilion",
+  "category": "landmarks",
+  "description": "IUT Main Gate west pavilion: red-brick room with two pointed-arch windows, flat canopy on five white cylindrical columns, green bilingual sign board (ISLAMIC UNIVERSITY OF TECHNOLOGY / Bengali), boundary-wall stub. Reconstructed from Docs/map-reference/area1/mainGate.jpg; dimensions estimated.",
+  "config": "assets/source/blender/configs/main_gate_pavilion.json",
+  "generator": "assets/source/blender/generators/main_gate_pavilion.py",
+  "generator_params": {
+    "room_x": [
+      -5.875,
+      0.0
+    ],
+    "room_front_y": 2.8197,
+    "room_back_y": 9.6257,
+    "room_height": 3.3,
+    "slab_z": [
+      3.3,
+      3.55
+    ],
+    "canopy_x": [
+      -7.35,
+      1.975
+    ],
+    "canopy_front_y": -0.4,
+    "roof_back_y": 9.78,
+    "sign_z": [
+      3.55,
+      5.2
+    ],
+    "sign_thickness": 0.15,
+    "column_x": [
+      1.0,
+      -1.0,
+      -3.0,
+      -5.0,
+      -7.0
+    ],
+    "column_radius": 0.17,
+    "window_centres_x": [
+      -3.74,
+      -2.14
+    ],
+    "window_half_width": 0.45,
+    "window_sill_z": 0.95,
+    "window_springing_z": 2.0,
+    "window_centre_offset": 0.25,
+    "frame_width": 0.12,
+    "stub_wall_x": [
+      -7.6,
+      -5.875
+    ],
+    "stub_wall_height": 2.4
+  },
+  "random_seed": 20261013,
+  "blender_version": "5.2.2 LTS",
+  "outputs": {
+    "blend": "assets/source/blender/landmarks/main_gate_pavilion.blend",
+    "record": "assets/source/blender/landmarks/main_gate_pavilion.render.json",
+    "png": "assets/sprites/landmarks/main_gate_pavilion.png",
+    "scene": "scenes/props/landmarks/MainGatePavilion.tscn",
+    "preview": "scenes/tests/asset_previews/MainGatePavilionPreview.tscn"
+  },
+  "origin": "ground-footprint origin at z = 0 (Blender world origin); front faces -Y",
+  "footprint_m": {
+    "x_min": -7.6,
+    "x_max": 1.975,
+    "y_min": -0.4,
+    "y_max": 9.78
+  },
+  "model": {
+    "design_size_m": {
+      "width_x": 9.575,
+      "depth_y": 10.18,
+      "height_z": 5.2
+    },
+    "room_m": {
+      "x": [
+        -5.875,
+        0.0
+      ],
+      "y": [
+        2.8197,
+        9.6257
+      ],
+      "height": 3.3
+    },
+    "sign_texture": "assets/source/blender/textures/main_gate_sign.png (tools/main_gate_sign_texture.ps1)",
+    "materials": [
+      "PavilionBrick",
+      "PavilionWhite",
+      "PavilionSlab",
+      "PavilionSignGreen",
+      "PavilionSign",
+      "WindowGlass",
+      "PavilionGrille"
+    ],
+    "connection_point": "origin = column line at the gate tower's west face; place the node 58 game px south of the wall line so the room front sits on it",
+    "reference": "Docs/map-reference/area1/mainGate.jpg; dimensions estimated, not surveyed",
+    "objects": [
+      {
+        "object": "PavilionBrickMass",
+        "evaluated_bounds_m": {
+          "x": 7.6,
+          "y": 6.906,
+          "z": 3.3
+        },
+        "evaluated_faces": 216
+      },
+      {
+        "object": "PavilionWindowFrames",
+        "evaluated_bounds_m": {
+          "x": 2.74,
+          "y": 0.06,
+          "z": 1.831
+        },
+        "evaluated_faces": 468
+      },
+      {
+        "object": "PavilionWindowSills",
+        "evaluated_bounds_m": {
+          "x": 2.82,
+          "y": 0.1,
+          "z": 0.08
+        },
+        "evaluated_faces": 108
+      },
+      {
+        "object": "PavilionWindowGlass",
+        "evaluated_bounds_m": {
+          "x": 2.5,
+          "y": 0.022,
+          "z": 1.7038
+        },
+        "evaluated_faces": 122
+      },
+      {
+        "object": "PavilionWindowGrille",
+        "evaluated_bounds_m": {
+          "x": 2.5,
+          "y": 0.018,
+          "z": 1.3971
+        },
+        "evaluated_faces": 36
+      },
+      {
+        "object": "PavilionCanopySlab",
+        "evaluated_bounds_m": {
+          "x": 9.325,
+          "y": 10.18,
+          "z": 0.25
+        },
+        "evaluated_faces": 108
+      },
+      {
+        "object": "PavilionColumns",
+        "evaluated_bounds_m": {
+          "x": 8.44,
+          "y": 0.44,
+          "z": 3.3
+        },
+        "evaluated_faces": 610
+      },
+      {
+        "object": "PavilionSignBoard",
+        "evaluated_bounds_m": {
+          "x": 9.325,
+          "y": 0.15,
+          "z": 1.65
+        },
+        "evaluated_faces": 54
+      },
+      {
+        "object": "PavilionSignFace",
+        "evaluated_bounds_m": {
+          "x": 9.325,
+          "y": 0.0,
+          "z": 1.65
+        },
+        "evaluated_faces": 1
+      }
+    ]
+  },
+  "camera": {
+    "type": "ORTHO",
+    "elevation_deg": 40.0,
+    "azimuth_deg": 0.0,
+    "rotation_euler_deg": [
+      50.0,
+      0.0,
+      0.0
+    ],
+    "location_m": [
+      -2.8125,
+      -15.2623,
+      18.5903
+    ],
+    "ortho_scale_m": 11.106094,
+    "sensor_fit": "HORIZONTAL",
+    "content_extent_m": [
+      9.575,
+      9.144
+    ],
+    "margin_m_each_side": 0.766,
+    "pixels_per_metre_on_screen": 220.689655
+  },
+  "lighting": {
+    "sun_elevation_deg": 55.0,
+    "sun_azimuth_deg_from_front": -35.0,
+    "sun_direction_to_light": [
+      -0.329,
+      -0.4698,
+      0.8192
+    ],
+    "sun_strength": 3.2,
+    "sun_angle_deg": 3.0,
+    "fill_lights_linked_to_asset_only": [
+      {
+        "name": "SkyFill",
+        "elevation_deg": 70.0,
+        "azimuth_deg_from_front": 20.0,
+        "strength": 0.8,
+        "angle_deg": 90.0,
+        "color": [
+          0.75,
+          0.85,
+          1.0
+        ]
+      },
+      {
+        "name": "GroundBounce",
+        "elevation_deg": -25.0,
+        "azimuth_deg_from_front": 10.0,
+        "strength": 0.35,
+        "angle_deg": 90.0,
+        "color": [
+          1.0,
+          0.8,
+          0.65
+        ]
+      }
+    ],
+    "world_light": "none (strength 0)",
+    "ground": "none (no shadow catcher; no cast shadow baked into the PNG)"
+  },
+  "render": {
+    "engine": "CYCLES",
+    "device": "GPU (OPTIX: NVIDIA GeForce RTX 3050 Laptop GPU)",
+    "samples": 256,
+    "adaptive_sampling": true,
+    "denoiser": "compositor OIDN on colour only (albedo + normal guides); raw render alpha kept",
+    "max_bounces": 6,
+    "film_transparent": true,
+    "filter_size_px": 1.5,
+    "view_transform": "Standard",
+    "output_format": "PNG RGBA 8-bit",
+    "resolution_px": [
+      2451,
+      2356
+    ],
+    "render_seconds": 26.3
+  },
+  "projection": {
+    "note": "texture px, top-left origin: x = W/2 + (p.right - cx)*ppm, y = H/2 - (p.up - cy)*ppm",
+    "image_px": [
+      2451,
+      2356
+    ],
+    "px_per_m": 220.689655,
+    "right": [
+      1.0,
+      0.0,
+      0.0
+    ],
+    "up": [
+      0.0,
+      0.6427876353263855,
+      0.7660444378852844
+    ],
+    "center_m": [
+      -2.8124999403953552,
+      4.430603228509426
+    ],
+    "origin_px": [
+      1846.1896415333715,
+      2155.7882979416313
+    ],
+    "footprint_corners_px": [
+      [
+        168.94826353337157,
+        2212.5309305330097
+      ],
+      [
+        2282.0517101583714,
+        2212.5309305330097
+      ],
+      [
+        2282.0517101583714,
+        768.4309310824312
+      ],
+      [
+        168.94826353337157,
+        768.4309310824312
+      ]
+    ],
+    "design_bounds_bbox_px": [
+      168.9482845799771,
+      169.00327142827052,
+      2282.051715420023,
+      2186.9967456977834
+    ]
+  },
+  "tiling": null,
+  "kind": "sprite",
+  "ground_tile": null,
+  "total_seconds": 26.5,
+  "blender_run": {
+    "exit_code": 0,
+    "seconds": 27.6,
+    "problem_lines": [
+      "00:00.750  cycles           | WARNING HIPEW initialization failed: Error opening HIP dynamic library"
+    ]
+  },
+  "verification": {
+    "png": {
+      "bit_depth": 8,
+      "png_color_type": 6,
+      "interlace": 0,
+      "file_bytes": 4452464,
+      "size_px": [
+        2451,
+        2356
+      ],
+      "opaque_pixels": 2684206,
+      "partially_transparent_pixels": 25570,
+      "fully_transparent_pixels": 3064780,
+      "content_bbox_px": [
+        167,
+        168,
+        2283,
+        2187
+      ],
+      "margins_px": {
+        "left": 167,
+        "right": 167,
+        "top": 168,
+        "bottom": 168
+      },
+      "max_alpha_on_image_border": 0.0
+    },
+    "bbox_deviation_px": [
+      -1.95,
+      -1.0,
+      1.95,
+      1.0
+    ],
+    "minimum_margin_required_px": 16,
+    "tiling": null,
+    "passed": true
+  },
+  "godot": {
+    "scene": "scenes/props/landmarks/MainGatePavilion.tscn",
+    "scene_name": "MainGatePavilion",
+    "scene_semantic_sha256": "2f3c763d8e4bb7aeb0c796119f014e973fad839d01e445416fe0fe76ab30a193",
+    "sprite_offset_adjust_px": [
+      0.0,
+      0.0
+    ],
+    "layout": {
+      "render_px_per_m": 220.689655,
+      "game_px_per_m": 32.0,
+      "sprite_scale": 0.14500000011328126,
+      "sprite_offset_px": [
+        -1846.1896415333715,
+        -2155.7882979416313
+      ],
+      "origin_px": [
+        1846.1896415333715,
+        2155.7882979416313
+      ],
+      "sprite_rect_game_px": [
+        -267.69749823147754,
+        -312.58930344574696,
+        355.3950002776524,
+        341.62000026689066
+      ],
+      "footprint_game_px": [
+        [
+          -243.20000000000002,
+          8.227681732177748
+        ],
+        [
+          63.19999999999999,
+          8.227681732177748
+        ],
+        [
+          63.19999999999999,
+          -201.1668183517456
+        ],
+        [
+          -243.20000000000002,
+          -201.1668183517456
+        ]
+      ],
+      "ground_depth_factor": 0.6427876353263855
+    },
+    "collision": {
+      "source": "rects_m",
+      "depth_mode": "projected",
+      "layer": 1,
+      "mask": 0,
+      "shapes": [
+        {
+          "node": "CollisionRoom",
+          "resource_id": "RectangleShape2D_Room",
+          "center": [
+            -94.0,
+            -127.99598778705597
+          ],
+          "size": [
+            188.0,
+            139.99400467300416
+          ],
+          "metres": [
+            -5.875,
+            0.0,
+            2.8197,
+            9.6257
+          ]
+        }
+      ],
+      "center": [
+        -94.0,
+        -127.99598778705597
+      ],
+      "size": [
+        188.0,
+        139.99400467300416
+      ],
+      "metres": [
+        -5.875,
+        0.0,
+        2.8197,
+        9.6257
+      ]
+    },
+    "preview_scene": "scenes/tests/asset_previews/MainGatePavilionPreview.tscn"
+  },
+  "godot_import": {
+    "exit_code": 0,
+    "problem_lines": [
+      "WARNING: Detected another project.godot at res://addons/godot_mcp/cache/undo/entry_000003/files. The folder will be ignored.",
+      "WARNING: UID duplicate detected between res://scenes/tests/MCPCheck.tscn and res://addons/godot_mcp/cache/undo/entry_000002/files/scenes/tests/MCPCheck.tscn."
+    ]
+  },
+  "godot_check": {
+    "scene": {
+      "exit_code": 0,
+      "problem_lines": []
+    },
+    "preview": {
+      "exit_code": 0,
+      "problem_lines": []
+    }
+  }
+}

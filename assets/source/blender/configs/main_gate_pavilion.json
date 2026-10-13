@@ -1,0 +1,28 @@
+{
+  "asset_id": "main_gate_pavilion",
+  "category": "landmarks",
+  "generator": "main_gate_pavilion",
+  "description": "IUT Main Gate west pavilion: red-brick room with two pointed-arch windows, flat canopy on five white cylindrical columns, green bilingual sign board (ISLAMIC UNIVERSITY OF TECHNOLOGY / Bengali), boundary-wall stub. Reconstructed from Docs/map-reference/area1/mainGate.jpg; dimensions estimated.",
+  "seed": 20261013,
+  "generator_params": {},
+  "render": {
+    "px_per_m": 220.689655,
+    "samples": 256,
+    "elevation_deg": 40.0,
+    "azimuth_deg": 0.0
+  },
+  "godot": {
+    "scene_name": "MainGatePavilion",
+    "z_index": 0,
+    "sprite_offset_adjust_px": [0.0, 0.0],
+    "preview_scene": true
+  },
+  "collision": {
+    "enabled": true,
+    "source": "rects_m",
+    "rects_m": {
+      "Room": [-5.875, 0.0, 2.8197, 9.6257]
+    },
+    "depth_mode": "projected"
+  }
+}
