@@ -1,0 +1,354 @@
+"""Build one 2.5D asset: Blender render -> validation -> Godot scene (+ optional collision) -> Godot check.
+
+From the project root (any Python 3.10+, standard library only):
+
+    python assets/source/blender/build_asset.py red_brick_wall_3m
+    python assets/source/blender/build_asset.py asset_a asset_b      (small batch, built one after another)
+    python assets/source/blender/build_asset.py --all                (every config in configs/)
+
+Options:
+    --steps render,validate,scene,preview,godot   subset to run (default: all, in this order)
+    --cpu / --samples N                           Blender render overrides (not stored in the config)
+    --no-collision                                skip the collision stage even if the config enables it
+    --compare-to PATH                             also report pixel differences against another PNG
+    --force-scene                                 overwrite a generated scene that was edited by hand
+    --blender PATH / --godot PATH                 executables (defaults: env BLENDER_EXE / GODOT_EXE,
+                                                  then the paths in pipeline/conventions.py)
+Exit code 0 only if every requested step passed. Logs: assets/source/blender/logs/.
+"""
+
+import argparse
+import json
+import os
+import re
+import subprocess
+import sys
+import time
+from pathlib import Path
+
+sys.dont_write_bytecode = True
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+
+from pipeline import assetconfig, conventions as C, godot_scene, pngcheck  # noqa: E402
+
+ALL_STEPS = ["render", "validate", "scene", "preview", "godot"]
+CHECK_SCRIPT = "res://scenes/tests/asset_previews/asset_scene_check.gd"
+# Blender lines that look like problems but aren't.
+BLENDER_NOISE = re.compile(r"^\[PIPELINE\]|Fra:\d+|^Saved:|^Time:|^Blender quit")
+PROBLEM = re.compile(r"(?i)\b(error|warning|traceback|exception)\b|^WARN")
+
+
+def say(msg):
+    print(f"[BUILD] {msg}", flush=True)
+
+
+def run(cmd, log_path, timeout):
+    say("$ " + subprocess.list2cmdline(cmd))
+    t0 = time.time()
+    proc = subprocess.run(cmd, cwd=C.PROJECT_ROOT, capture_output=True, text=True,
+                          encoding="utf-8", errors="replace", timeout=timeout)
+    output = proc.stdout + ("\n--- stderr ---\n" + proc.stderr if proc.stderr.strip() else "")
+    log_path.parent.mkdir(parents=True, exist_ok=True)
+    log_path.write_text(output, encoding="utf-8")
+    return proc.returncode, output, time.time() - t0
+
+
+def problems(output, noise=None):
+    lines = []
+    for line in output.splitlines():
+        s = line.strip()
+        if s and PROBLEM.search(s) and not (noise and noise.search(s)):
+            lines.append(s)
+    return lines
+
+
+class Report:
+    def __init__(self):
+        self.checks, self.warnings, self.failed = [], [], False
+
+    def check(self, ok, what):
+        self.checks.append(("PASS" if ok else "FAIL", what))
+        say(("ok    " if ok else "FAIL  ") + what)
+        self.failed |= not ok
+        return ok
+
+    def warn(self, what):
+        self.warnings.append(what)
+        say("WARN  " + what)
+
+
+# ---------------------------------------------------------------------------
+
+def step_render(cfg, args, rep):
+    assetconfig.check_render_outputs_owned(cfg)
+    # Godot must not import generated .blend sources (it would launch Blender on every change).
+    src_dir = cfg["outputs"]["blend"].parent
+    src_dir.mkdir(parents=True, exist_ok=True)
+    (src_dir / ".gdignore").touch()
+    blender = args.blender or os.environ.get("BLENDER_EXE") or C.DEFAULT_BLENDER_EXE
+    cmd = [blender, "--background", "--factory-startup", "--python-exit-code", "1",
+           "--python", str(C.BLENDER_ROOT / "pipeline/blender_entry.py"), "--", "--config", cfg["asset_id"]]
+    if args.cpu:
+        cmd.append("--cpu")
+    if args.samples:
+        cmd += ["--samples", str(args.samples)]
+    code, output, secs = run(cmd, C.LOG_DIR / f"{cfg['asset_id']}.blender.log", timeout=3600)
+    rep.check(code == 0 and "[PIPELINE] DONE" in output, f"Blender exited {code} after {secs:.1f} s")
+    found = problems(output, BLENDER_NOISE)
+    for line in found:
+        rep.warn("Blender: " + line)
+    fatal = [s for s in found if re.search(r"(?i)traceback|^error|\| error", s)]
+    rep.check(not fatal, f"Blender: {len(fatal)} error line(s), {len(found) - len(fatal)} warning line(s)")
+    return {"exit_code": code, "seconds": round(secs, 1), "problem_lines": found}
+
+
+def step_validate(cfg, args, rep):
+    out = cfg["outputs"]
+    record = assetconfig.read_record(cfg)
+    if not rep.check(record is not None, f"record readable: {assetconfig.rel(out['record'])}"):
+        return None
+    rep.check(record.get("pipeline") == C.PIPELINE_MARKER and record.get("asset") == cfg["asset_id"],
+              "record pipeline marker and asset id")
+    for key in ("outputs", "projection", "camera", "render", "footprint_m", "lighting", "model", "blender_version"):
+        rep.check(key in record, f"record has '{key}'")
+    rep.check(str(record.get("blender_version", "")).startswith("5.2"),
+              f"rendered with Blender 5.2 ({record.get('blender_version')})")
+    rep.check(record["outputs"] == {k: assetconfig.rel(v) for k, v in out.items()},
+              "record output paths match the naming convention")
+    for key in ("blend", "png"):
+        rep.check(out[key].is_file(), f"{key} exists: {assetconfig.rel(out[key])}")
+    rep.check((C.PROJECT_ROOT / record["generator"]).is_file() and (C.PROJECT_ROOT / record["config"]).is_file(),
+              "generator and config referenced by the record exist")
+
+    cam, proj = record["camera"], record["projection"]
+    rep.check(abs(cam["elevation_deg"] - cfg["render"]["elevation_deg"]) < 1e-6
+              and abs(cam["azimuth_deg"] - cfg["render"]["azimuth_deg"]) < 1e-6 and cam["type"] == "ORTHO",
+              f"camera ortho, elevation {cam['elevation_deg']}, azimuth {cam['azimuth_deg']}")
+    rep.check("none" in record["lighting"]["ground"], "no ground plane / baked ground shadow")
+    w, h = proj["image_px"]
+    rep.check(abs(proj["px_per_m"] - w / cam["ortho_scale_m"]) < 1e-3, f"px/m {proj['px_per_m']:.3f} = width / ortho scale")
+
+    try:
+        png = pngcheck.analyse(out["png"])
+    except pngcheck.PngError as exc:
+        rep.check(False, f"PNG readable as 8-bit RGBA: {exc}")
+        return None
+    rep.check(True, "PNG is 8-bit RGBA, non-interlaced")
+    rep.check(png["size_px"] == [w, h] == record["render"]["resolution_px"],
+              f"PNG size {png['size_px']} matches record {record['render']['resolution_px']}")
+    rep.check(png["content_bbox_px"] is not None and png["opaque_pixels"] > 0,
+              f"content present ({png['opaque_pixels']} opaque, {png['partially_transparent_pixels']} partial px)")
+    rep.check(png["fully_transparent_pixels"] > 0, f"transparent background ({png['fully_transparent_pixels']} px)")
+    rep.check(png["max_alpha_on_image_border"] <= C.MAX_BORDER_ALPHA,
+              f"image border fully transparent (max alpha {png['max_alpha_on_image_border']})")
+    m = png["margins_px"] or {}
+    rep.check(bool(m) and min(m.values()) >= C.MIN_MARGIN_PX, f"margins {m} >= {C.MIN_MARGIN_PX} px")
+
+    # Alpha bbox vs the design bounds projected through the camera -> framing + origin alignment.
+    x0, y0, x1, y1 = png["content_bbox_px"]
+    actual = [x0, y0, x1 + 1, y1 + 1]
+    expected = proj["design_bounds_bbox_px"]
+    dev = [round(a - e, 2) for a, e in zip(actual, expected)]
+    rep.check(max(abs(d) for d in dev) <= C.CONTENT_BBOX_TOLERANCE_PX,
+              f"alpha bbox {actual} vs projected design bounds {[round(e, 2) for e in expected]} "
+              f"(deviation {dev}, tolerance {C.CONTENT_BBOX_TOLERANCE_PX} px)")
+    ox, oy = proj["origin_px"]
+    rep.check(0 <= ox <= w and 0 <= oy <= h, f"footprint origin pixel ({ox:.2f}, {oy:.2f}) inside the image")
+
+    rep.check(out["png"].resolve().is_relative_to(C.PROJECT_ROOT / "assets/sprites"),
+              f"Godot texture path {assetconfig.res_path(out['png'])}")
+    imp = out["png"].with_name(out["png"].name + ".import")
+    if imp.exists():
+        text = imp.read_text(encoding="utf-8")
+        rep.check(f'source_file="{assetconfig.res_path(out["png"])}"' in text or "source_file" not in text,
+                  ".import source_file matches the PNG path")
+        if "mipmaps/generate=true" not in text:
+            rep.warn(".import has mipmaps off; the sprite is drawn at ~1/7 scale with a mipmap filter")
+
+    verification = {"png": png, "bbox_deviation_px": dev, "minimum_margin_required_px": C.MIN_MARGIN_PX}
+    if args.compare_to:
+        diff = pngcheck.compare(out["png"], Path(args.compare_to))
+        say(f"compare to {args.compare_to}: {diff}")
+        verification["compare_to"] = {"path": args.compare_to, **diff}
+    return verification
+
+
+def step_scene(cfg, args, rep, record):
+    out = cfg["outputs"]
+    prev = (record.get("godot") or {}).get("scene_semantic_sha256")
+    godot_scene.check_writable(out["scene"], prev, args.force_scene)
+    if godot_scene.ensure_texture_import(out["png"]):
+        say(f"wrote first-import settings (mipmaps on): {assetconfig.rel(out['png'])}.import")
+    existing = out["scene"].read_text(encoding="utf-8") if out["scene"].exists() else None
+    if args.no_collision:
+        cfg["collision"]["enabled"] = False
+    text, lay, col = godot_scene.build_prop_scene(cfg, record, existing)
+    digest = godot_scene.write_scene(out["scene"], text)
+    say(f"wrote {assetconfig.rel(out['scene'])} (sprite scale {lay['sprite_scale']:.6f}, "
+        f"offset {[round(v, 3) for v in lay['sprite_offset_px']]}, collision {'on' if col else 'off'})")
+
+    for res in re.findall(r'path="(res://[^"]+)"', text):
+        rep.check((C.PROJECT_ROOT / res[len("res://"):]).is_file(), f"scene resource exists: {res}")
+    fp = lay["footprint_game_px"]
+    length = fp[1][0] - fp[0][0]
+    want = (record["footprint_m"]["x_max"] - record["footprint_m"]["x_min"]) * C.GAME_PX_PER_M
+    rep.check(abs(length - want) < 0.01, f"footprint {length:.3f} game px wide = {want:.3f} ({C.GAME_PX_PER_M:g} px/m)")
+    return {
+        "scene": assetconfig.rel(out["scene"]),
+        "scene_name": cfg["godot"]["scene_name"],
+        "scene_semantic_sha256": digest,
+        "sprite_offset_adjust_px": cfg["godot"]["sprite_offset_adjust_px"],
+        **godot_scene.record_summary(lay, col),
+    }
+
+
+def step_preview(cfg, args, rep, record):
+    out = cfg["outputs"]
+    if not cfg["godot"]["preview_scene"]:
+        say("preview scene disabled in config")
+        return None
+    godot_scene.check_writable(out["preview"], None, False)
+    existing = out["preview"].read_text(encoding="utf-8") if out["preview"].exists() else None
+    lay = record["godot"]["layout"]
+    godot_scene.write_scene(out["preview"], godot_scene.build_preview_scene(cfg, record, lay, existing))
+    say(f"wrote {assetconfig.rel(out['preview'])}")
+    return assetconfig.rel(out["preview"])
+
+
+def godot_exe(args):
+    return args.godot or os.environ.get("GODOT_EXE") or C.DEFAULT_GODOT_EXE
+
+
+def step_import(cfg, args, rep):
+    """Make sure Godot has imported the PNG (headless --import) so scenes can load it."""
+    out = cfg["outputs"]
+    imp = out["png"].with_name(out["png"].name + ".import")
+    if imp.exists() and "dest_files" in imp.read_text(encoding="utf-8"):
+        return {"already_imported": True}
+    code, output, secs = run([godot_exe(args), "--headless", "--path", str(C.PROJECT_ROOT), "--import"],
+                             C.LOG_DIR / f"{cfg['asset_id']}.godot_import.log", timeout=600)
+    found = problems(output)
+    for line in found:
+        rep.warn("Godot import: " + line)
+    rep.check(code == 0 and imp.exists() and "dest_files" in imp.read_text(encoding="utf-8"),
+              f"Godot imported the texture (exit {code}, {secs:.1f} s)")
+    return {"exit_code": code, "problem_lines": found}
+
+
+def step_godot(cfg, args, rep):
+    godot = godot_exe(args)
+    out = cfg["outputs"]
+    result = {}
+    for scene_key in ("scene", "preview"):
+        if scene_key == "preview" and not cfg["godot"]["preview_scene"]:
+            continue
+        scene_res = assetconfig.res_path(out[scene_key])
+        script_args = [scene_res, str(out["record"])] if scene_key == "scene" else None
+        if script_args:
+            cmd = [godot, "--headless", "--path", str(C.PROJECT_ROOT), "--script", CHECK_SCRIPT, "--", *script_args]
+        else:
+            cmd = [godot, "--headless", "--path", str(C.PROJECT_ROOT), "--quit-after", "2", scene_res]
+        code, output, secs = run(cmd, C.LOG_DIR / f"{cfg['asset_id']}.godot_{scene_key}.log", timeout=300)
+        found = problems(output)
+        for line in found:
+            rep.warn(f"Godot ({scene_key}): " + line)
+        if scene_key == "scene":
+            rep.check(code == 0 and "[ASSETCHECK] PASS" in output, f"Godot scene check exit {code}")
+            for line in output.splitlines():
+                if line.startswith("[ASSETCHECK]"):
+                    print("   " + line)
+        else:
+            rep.check(code == 0, f"Godot ran the preview scene headless (exit {code})")
+        rep.check(not found, f"Godot {scene_key}: {len(found)} error/warning line(s)")
+        result[scene_key] = {"exit_code": code, "problem_lines": found}
+    return result
+
+
+# ---------------------------------------------------------------------------
+
+def build_one(asset, steps, args):
+    try:
+        cfg = assetconfig.load(asset)
+    except assetconfig.ConfigError as exc:
+        say(f"CONFIG ERROR: {exc}")
+        return False
+
+    rep = Report()
+    say(f"asset {cfg['asset_id']} ({cfg['_config_path']}), steps {steps}")
+    try:
+        if "render" in steps:
+            blender = step_render(cfg, args, rep)
+            if rep.failed:
+                raise SystemExit(1)
+        record = assetconfig.read_record(cfg)
+        if record is None:
+            rep.check(False, "render record exists (run the render step first)")
+            raise SystemExit(1)
+        if "render" in steps:
+            record["blender_run"] = blender
+        if "validate" in steps:
+            record["verification"] = dict(step_validate(cfg, args, rep) or {}, passed=not rep.failed)
+        imported = False
+        if "scene" in steps and not rep.failed:
+            record["godot"] = step_scene(cfg, args, rep, record)
+            if "godot" in steps and not rep.failed:
+                record["godot_import"] = step_import(cfg, args, rep)
+                imported = True
+                if not rep.failed and godot_scene.texture_uid(cfg["outputs"]["png"]) and \
+                        godot_scene.texture_uid(cfg["outputs"]["png"]) not in cfg["outputs"]["scene"].read_text(encoding="utf-8"):
+                    say("embedding the texture uid Godot just assigned")
+                    record["godot"] = step_scene(cfg, args, rep, record)
+        if "preview" in steps and not rep.failed and record.get("godot"):
+            record["godot"]["preview_scene"] = step_preview(cfg, args, rep, record)
+        cfg["outputs"]["record"].write_text(json.dumps(record, indent=2), encoding="utf-8")
+        if "godot" in steps and not rep.failed:
+            if not imported:
+                record["godot_import"] = step_import(cfg, args, rep)
+            if not rep.failed:
+                record["godot_check"] = step_godot(cfg, args, rep)
+            cfg["outputs"]["record"].write_text(json.dumps(record, indent=2), encoding="utf-8")
+    except (assetconfig.ConfigError, godot_scene.SceneError) as exc:
+        rep.check(False, str(exc))
+    except SystemExit:
+        pass
+
+    passed = sum(1 for s, _ in rep.checks if s == "PASS")
+    say(f"{cfg['asset_id']}: {'FAILED' if rep.failed else 'PASS'}: {passed}/{len(rep.checks)} checks, "
+        f"{len(rep.warnings)} warning(s)")
+    return not rep.failed
+
+
+def main():
+    ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap.add_argument("assets", nargs="*", help="asset_id(s) (configs/<asset_id>.json) or config paths")
+    ap.add_argument("--all", action="store_true", help="build every config in assets/source/blender/configs/")
+    ap.add_argument("--steps", default=",".join(ALL_STEPS))
+    ap.add_argument("--cpu", action="store_true")
+    ap.add_argument("--samples", type=int)
+    ap.add_argument("--no-collision", action="store_true")
+    ap.add_argument("--compare-to")
+    ap.add_argument("--force-scene", action="store_true")
+    ap.add_argument("--blender")
+    ap.add_argument("--godot")
+    args = ap.parse_args()
+
+    steps = [s.strip() for s in args.steps.split(",") if s.strip()]
+    bad = [s for s in steps if s not in ALL_STEPS]
+    if bad:
+        ap.error(f"unknown steps {bad}; choose from {ALL_STEPS}")
+    assets = list(args.assets)
+    if args.all:
+        assets += sorted(p.stem for p in C.CONFIG_DIR.glob("*.json"))
+    if not assets:
+        ap.error("give at least one asset_id, or --all")
+    if args.compare_to and len(assets) > 1:
+        ap.error("--compare-to works with one asset only")
+
+    results = {a: build_one(a, steps, args) for a in dict.fromkeys(assets)}
+    if len(results) > 1:
+        say("batch: " + ", ".join(f"{a} {'PASS' if ok else 'FAILED'}" for a, ok in results.items()))
+    return 0 if all(results.values()) else 1
+
+
+if __name__ == "__main__":
+    sys.exit(main())

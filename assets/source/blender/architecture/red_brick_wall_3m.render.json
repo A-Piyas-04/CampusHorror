@@ -1,0 +1,329 @@
+{
+  "pipeline": "campus_asset_pipeline",
+  "pipeline_version": 1,
+  "asset": "red_brick_wall_3m",
+  "category": "architecture",
+  "description": "Straight 3.0 m red-brick boundary wall module (pipeline validation asset; same geometry, seed and view as red_brick_wall_grid_test).",
+  "config": "assets/source/blender/configs/red_brick_wall_3m.json",
+  "generator": "assets/source/blender/generators/red_brick_wall.py",
+  "generator_params": {
+    "length": 3.0,
+    "thickness": 0.3,
+    "height": 2.4,
+    "brick_length": 0.24,
+    "brick_height": 0.07,
+    "brick_depth": 0.11,
+    "joint": 0.01,
+    "joint_recess": 0.01,
+    "plinth_courses": 3,
+    "plinth_projection": 0.02,
+    "oversail_projection": 0.025,
+    "body_courses": 28,
+    "coping_projection": 0.04,
+    "coping_units": 35,
+    "bevel_width": 0.004
+  },
+  "random_seed": 20261013,
+  "blender_version": "5.2.2 LTS",
+  "outputs": {
+    "blend": "assets/source/blender/architecture/red_brick_wall_3m.blend",
+    "record": "assets/source/blender/architecture/red_brick_wall_3m.render.json",
+    "png": "assets/sprites/architecture/red_brick_wall_3m.png",
+    "scene": "scenes/props/architecture/RedBrickWall3m.tscn",
+    "preview": "scenes/tests/asset_previews/RedBrickWall3mPreview.tscn"
+  },
+  "origin": "ground-footprint origin at z = 0 (Blender world origin); front faces -Y",
+  "footprint_m": {
+    "x_min": -1.5,
+    "x_max": 1.5,
+    "y_min": -0.15,
+    "y_max": 0.15
+  },
+  "model": {
+    "design_size_m": {
+      "length_x": 3.0,
+      "thickness_y": 0.3,
+      "height_z": 2.4
+    },
+    "bond": "running (half) bond, front and back skins",
+    "modeled_bricks": 735,
+    "materials": [
+      "BrickRed",
+      "Mortar"
+    ],
+    "bevel": "modifier, 4 mm, 2 segments, harden normals",
+    "objects": [
+      {
+        "object": "RedBrickWall",
+        "evaluated_bounds_m": {
+          "x": 3.0,
+          "y": 0.3819,
+          "z": 2.3999
+        },
+        "evaluated_faces": 39906
+      }
+    ]
+  },
+  "camera": {
+    "type": "ORTHO",
+    "elevation_deg": 40.0,
+    "azimuth_deg": 0.0,
+    "rotation_euler_deg": [
+      50.0,
+      0.0,
+      0.0
+    ],
+    "location_m": [
+      0.0,
+      -16.0233,
+      14.6451
+    ],
+    "ortho_scale_m": 3.48,
+    "sensor_fit": "HORIZONTAL",
+    "content_extent_m": [
+      3.0,
+      2.0828
+    ],
+    "margin_m_each_side": 0.24,
+    "pixels_per_metre_on_screen": 220.689655
+  },
+  "lighting": {
+    "sun_elevation_deg": 55.0,
+    "sun_azimuth_deg_from_front": -35.0,
+    "sun_direction_to_light": [
+      -0.329,
+      -0.4698,
+      0.8192
+    ],
+    "sun_strength": 3.2,
+    "sun_angle_deg": 3.0,
+    "fill_lights_linked_to_asset_only": [
+      {
+        "name": "SkyFill",
+        "elevation_deg": 70.0,
+        "azimuth_deg_from_front": 20.0,
+        "strength": 0.8,
+        "angle_deg": 90.0,
+        "color": [
+          0.75,
+          0.85,
+          1.0
+        ]
+      },
+      {
+        "name": "GroundBounce",
+        "elevation_deg": -25.0,
+        "azimuth_deg_from_front": 10.0,
+        "strength": 0.35,
+        "angle_deg": 90.0,
+        "color": [
+          1.0,
+          0.8,
+          0.65
+        ]
+      }
+    ],
+    "world_light": "none (strength 0)",
+    "ground": "none (no shadow catcher; no cast shadow baked into the PNG)"
+  },
+  "render": {
+    "engine": "CYCLES",
+    "device": "GPU (OPTIX: NVIDIA GeForce RTX 3050 Laptop GPU)",
+    "samples": 256,
+    "adaptive_sampling": true,
+    "denoiser": "compositor OIDN on colour only (albedo + normal guides); raw render alpha kept",
+    "max_bounces": 6,
+    "film_transparent": true,
+    "filter_size_px": 1.5,
+    "view_transform": "Standard",
+    "output_format": "PNG RGBA 8-bit",
+    "resolution_px": [
+      768,
+      566
+    ],
+    "render_seconds": 4.0
+  },
+  "projection": {
+    "note": "texture px, top-left origin: x = W/2 + (p.right - cx)*ppm, y = H/2 - (p.up - cy)*ppm",
+    "image_px": [
+      768,
+      566
+    ],
+    "px_per_m": 220.6896551724138,
+    "right": [
+      1.0,
+      0.0,
+      0.0
+    ],
+    "up": [
+      0.0,
+      0.6427876353263855,
+      0.7660444378852844
+    ],
+    "center_m": [
+      0.0,
+      0.9192533493041992
+    ],
+    "origin_px": [
+      384.0,
+      485.8697046740302
+    ],
+    "footprint_corners_px": [
+      [
+        52.9655172413793,
+        507.1481919124209
+      ],
+      [
+        715.0344827586207,
+        507.1481919124209
+      ],
+      [
+        715.0344827586207,
+        464.59121743563946
+      ],
+      [
+        52.9655172413793,
+        464.59121743563946
+      ]
+    ],
+    "design_bounds_bbox_px": [
+      52.9655172413793,
+      53.17753956288837,
+      715.0344827586207,
+      512.8224548377793
+    ]
+  },
+  "total_seconds": 4.3,
+  "blender_run": {
+    "exit_code": 0,
+    "seconds": 5.4,
+    "problem_lines": [
+      "00:00.719  cycles           | WARNING HIPEW initialization failed: Error opening HIP dynamic library"
+    ]
+  },
+  "verification": {
+    "png": {
+      "bit_depth": 8,
+      "png_color_type": 6,
+      "interlace": 0,
+      "file_bytes": 527688,
+      "size_px": [
+        768,
+        566
+      ],
+      "opaque_pixels": 299077,
+      "partially_transparent_pixels": 5048,
+      "fully_transparent_pixels": 130563,
+      "content_bbox_px": [
+        51,
+        52,
+        716,
+        510
+      ],
+      "margins_px": {
+        "left": 51,
+        "right": 51,
+        "top": 52,
+        "bottom": 55
+      },
+      "max_alpha_on_image_border": 0.0
+    },
+    "bbox_deviation_px": [
+      -1.97,
+      -1.18,
+      1.97,
+      -1.82
+    ],
+    "minimum_margin_required_px": 16,
+    "compare_to": {
+      "path": "assets/sprites/architecture/red_brick_wall_grid_test.png",
+      "same_size": true,
+      "mean_rgb_diff": 0.078,
+      "max_rgb_diff": 1,
+      "max_alpha_diff": 0,
+      "pixels_alpha_diff_over_2": 0
+    },
+    "passed": true
+  },
+  "godot": {
+    "scene": "scenes/props/architecture/RedBrickWall3m.tscn",
+    "scene_name": "RedBrickWall3m",
+    "scene_semantic_sha256": "a293eca4f47664f7096613a1b74dbc5b70849bfadd3d0f936ef54802e7d8cb68",
+    "sprite_offset_adjust_px": [
+      0.0,
+      0.0
+    ],
+    "layout": {
+      "render_px_per_m": 220.6896551724138,
+      "game_px_per_m": 32.0,
+      "sprite_scale": 0.145,
+      "sprite_offset_px": [
+        -384.0,
+        -485.8697046740302
+      ],
+      "origin_px": [
+        384.0,
+        485.8697046740302
+      ],
+      "sprite_rect_game_px": [
+        -55.67999999999999,
+        -70.45110717773437,
+        111.35999999999999,
+        82.07
+      ],
+      "footprint_game_px": [
+        [
+          -48.0,
+          3.0853806495666527
+        ],
+        [
+          48.0,
+          3.0853806495666527
+        ],
+        [
+          48.0,
+          -3.0853806495666527
+        ],
+        [
+          -48.0,
+          -3.0853806495666527
+        ]
+      ],
+      "ground_depth_factor": 0.6427876353263855
+    },
+    "collision": {
+      "center": [
+        0.0,
+        -0.0
+      ],
+      "size": [
+        96.0,
+        6.170761299133301
+      ],
+      "source": "design_footprint",
+      "depth_mode": "projected",
+      "metres": [
+        -1.5,
+        1.5,
+        -0.15,
+        0.15
+      ],
+      "layer": 1,
+      "mask": 0
+    },
+    "preview_scene": "scenes/tests/asset_previews/RedBrickWall3mPreview.tscn"
+  },
+  "godot_import": {
+    "already_imported": true
+  },
+  "godot_check": {
+    "scene": {
+      "exit_code": 0,
+      "problem_lines": []
+    },
+    "preview": {
+      "exit_code": 0,
+      "problem_lines": []
+    }
+  }
+}

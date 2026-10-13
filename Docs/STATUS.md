@@ -1,6 +1,6 @@
 # Project status
 
-Last updated: 8 October 2026
+Last updated: 13 October 2026
 
 ## Summary
 
@@ -21,6 +21,8 @@ Milestone F is **verified through the MCP** (rendering proof only, Compatibility
 Milestone G Part 1 (real campus map **blockout** + visual direction) is **verified through the MCP**: the game now starts in `main_gate_exterior`, an editable placeholder blockout of the real Main Gate area (gate, central field, paths, sports courts, CDS exterior, vegetation, south wall and road), connected by a door to `cds_veranda`, the covered CDS walkway with placeholder fronts for the three future CDS rooms. It reuses the existing Player, zones/doors/spawns, GameState, SaveService and lighting without changes. Layout and sizes are **approximate** and need the user's review (`Docs/CAMPUS_MAP.md`); visual direction is recorded in `Docs/ART_STYLE.md`. Navigation, the CDS round trip, camera, save/load, lighting and Y-sort passed with 0 errors / 0 warnings. **No final art exists**; this is not the art sample.
 
 Milestone G Part 1 is accepted as a **structural prototype only**. An **editability cleanup** followed (no new art, no layout change): each logical landmark (Main Gate, CDS, each sports court, the veranda arcade) is now one parent node that owns all of its visual layers, including roofs/arches/canopies (a landmark `Overhead` child at z 10) and its own paving (z −9), plus the door/spawn it serves. Moving that one parent moves the whole landmark. Every blockout-only visual is marked as a placeholder (group `blockout_placeholder` + an `editor_description`). Collision, transitions, save/load and lighting were re-tested: identical results, 0 errors / 0 warnings.
+
+Milestone G Part 2 (Blender → Godot asset pipeline) is **verified on one asset** (13 October 2026): the one-off red-brick wall test script was split into shared pipeline code (`assets/source/blender/pipeline/`), a wall generator (`generators/red_brick_wall.py`) and a per-asset config (`configs/red_brick_wall_3m.json`). One command (`python assets/source/blender/build_asset.py red_brick_wall_3m`) renders with Blender 5.2.2 LTS, validates the PNG and record, writes the reusable prop scene `scenes/props/architecture/RedBrickWall3m.tscn` (Sprite2D with footprint origin + optional collision) and a test preview, and checks both in Godot 4.7.2 headless. Result: 36/36 checks; the new PNG matches the approved `red_brick_wall_grid_test.png` (identical alpha, mean colour difference 0.08/255); Godot 0 errors / 0 warnings (headless and in the editor via MCP). Gameplay scenes, the original wall files and `WallAssetPreview.tscn` are unchanged. Guide: `Docs/ASSET_PIPELINE.md`. The wall is a pipeline proof, not approved final art.
 
 ## Environment — Verified
 
@@ -204,6 +206,7 @@ Milestone G Part 1 editability cleanup checks (same approach as above; the user'
 | E. SaveService | **Verified** (automated, via MCP). One JSON save, version 1; temporary F6/F9 keys. Manual play-test pending; new convention in `Docs/CONVENTIONS.md` §11 is Proposed. |
 | F. Lighting test | **Verified** (automated, via MCP). Rendering proof only; temporary tint/lantern scripts. Manual visual check pending; new convention in `Docs/CONVENTIONS.md` §10 is Proposed. |
 | G Part 1. Real campus blockout (Main Gate area) + visual direction | **Verified** (automated, via MCP) as a **blockout only**; accepted as a structural prototype. Editability cleanup done and regression-tested (landmarks movable from one parent, placeholders marked). Layout approximate, pending the user's map review (`Docs/CAMPUS_MAP.md`). Convention `Docs/CONVENTIONS.md` §12 (amended by the cleanup) is Proposed. |
+| G Part 2. Blender → Godot 2.5D asset pipeline | **Verified** (automated) on the red-brick wall only. Pipeline proof; art not approved. Convention `Docs/CONVENTIONS.md` §13 is Proposed. Manual visual check pending. |
 | G. Custom art sample / final campus art | Not started |
 | H. Desktop export | Not started |
 
@@ -227,6 +230,7 @@ Milestone G Part 1 editability cleanup checks (same approach as above; the user'
 16. Open `MainGateExterior.tscn` in the editor once and save it (Ctrl+S). The same applies to `CdsVeranda.tscn`, `BlockoutBlock.tscn`, `PalmTree.tscn` and `Tree.tscn`; saving writes their `uid` headers. Select a CDS block and change `Footprint Size` / `Wall Height` to confirm the shape and collision preview update live.
 17. Review `Docs/ART_STYLE.md` and the Proposed convention in `Docs/CONVENTIONS.md` §12 (map blockout pieces).
 18. Editability cleanup: open `MainGateExterior.tscn`, select `Objects/Buildings/MainGateLandmark` and drag it. Roof, arch, label, canopy, plaza and arrival spawn should all follow; press Ctrl+Z afterwards. Do the same with `CDSExterior` and a court. In the Scene dock, hover a node to see its "BLOCKOUT PLACEHOLDER" description, and check Node panel > Groups for `blockout_placeholder`. Review the amended §12 rules (landmark `Overhead` child, landmark ground at z −9, doors/spawns inside landmarks, placeholder group).
+19. Milestone G Part 2: open `scenes/tests/asset_previews/RedBrickWall3mPreview.tscn` and press F6. Check that the wall's base sits on the red footprint outline, that the yellow origin dot is at the footprint centre, that the wall's height looks right next to the blue 2 m reference, and how the two side-by-side modules join (a thin light line is visible at the seam). Open `scenes/props/architecture/RedBrickWall3m.tscn` in the editor once. Optionally run `python assets/source/blender/build_asset.py red_brick_wall_3m` yourself (about 15 s).
 
 ## Project contents
 
@@ -279,6 +283,7 @@ Milestone G Part 1 editability cleanup checks (same approach as above; the user'
 - `scenes/ui/InteractionPrompt.tscn` + `scripts/ui/interaction_prompt.gd`: `CanvasLayer` (layer 10) with a bottom-centre `Label`; shows the target's `prompt_text`, hides when the target is null.
 - `scenes/tests/InteractionTestBox.tscn` + `interaction_test_box.gd`: TEMPORARY placeholder interactable (purple 48×48 box, `StaticBody2D` layer 1 with 48×16 base collision, child `Interactable`). On `interacted` it toggles purple ↔ yellow and prints `[INTERACT] InteractionTestBox used by <name> (count N)`. Now placed in `TestZoneA`; its state resets whenever Zone A is reloaded (no persistence yet). Delete it when real interactables exist.
 - The Milestone A/B `TestRoom` in `Main.tscn` was removed; the test zones replace it.
+- Asset pipeline (Milestone G Part 2, guide in `Docs/ASSET_PIPELINE.md`): `assets/source/blender/build_asset.py` (host command), `pipeline/` (shared conventions, rig, modeling helpers, Blender entry, PNG checks, scene writer), `generators/red_brick_wall.py`, `configs/red_brick_wall_3m.json`, generated `architecture/red_brick_wall_3m.blend` + `.render.json` (folder has `.gdignore`), `logs/` (ignored). Outputs: `assets/sprites/architecture/red_brick_wall_3m.png` (768×566, 220.69 px/m, mipmapped import), `scenes/props/architecture/RedBrickWall3m.tscn` (Node2D root at the footprint centre; `Sprite` scale 0.145, offset (−384, −485.87); `Body`/`Collision` 96 × 6.17 px, layer 1 / mask 0), `scenes/tests/asset_previews/RedBrickWall3mPreview.tscn` + `asset_scene_check.gd` (test only). The original `scripts/red_brick_wall_test.py`, its `.blend`, PNGs and records are kept unchanged.
 - No dialogue, inventory, inventory UI, enemies, story flags, puzzle state, save UI, save slots, autosave or other managers yet.
 
 ## Still undecided
@@ -325,6 +330,12 @@ Final base resolution, tile size, art style (pixel vs stylized/vector vs rendere
 - Milestone G Part 1: `MainGateExterior` has 27 `BlockoutBlock`s, each with an occluder. 13 cast shadows (gate piers, pavilion and columns, CDS sections, south wall); fences, hedges and gate leaves have `casts_shadow` off. Trees and palms have no occluders. There were no performance problems (145 fps), and no light limit was hit with one lantern.
 - `Docs/map-reference/` images sit inside the Godot project, so Godot imports them (`.import` files, `.godot/imported` cache). Add a `.gdignore` file to that folder if they shouldn't be imported.
 
+- Milestone G Part 2: when two wall modules are placed 96 px apart, a thin light vertical line shows at the join (module end faces / edge anti-aliasing). Needs a visual decision before walls are tiled in zones (e.g. end treatment in the generator, or a 1 px overlap via `sprite_offset_adjust_px`).
+- Milestone G Part 2: the scale reference (player placeholder 64 px = 2 m) is not foreshortened, while rendered heights are (×cos 40° on screen). Character art drawn for the same view will need to match.
+- Milestone G Part 2: the uncommitted `WallAssetPreview.tscn` change (offset −202.862, footprint guide ±331.03 × ±21.28) is correct for 220.69 px/m, but its `scale` 0.143 and description (224.5 px/m) are stale; the pipeline uses 32 / 220.69 = 0.145. Left untouched as instructed.
+- Milestone G Part 2: Godot's headless `--import` reports two warnings about `addons/godot_mcp/cache/undo/` (a nested `project.godot` and a duplicate UID of `MCPCheck.tscn`). They come from the MCP undo cache, not from the pipeline.
+- Milestone G Part 2: Blender prints `WARNING HIPEW initialization failed` (AMD HIP library missing). It's harmless on this NVIDIA machine; rendering uses OptiX.
+
 ## Next task
 
-Review the Milestone G Part 1 blockout against the real campus (manual check 15) and correct the layout. Decide the open art questions in `Docs/ART_STYLE.md` with a small art test (one CDS section, one palm, one path tile) before producing final assets. Also review the diff and commit the Milestone G Part 1 editability cleanup (5 scenes and 4 docs; not committed).
+Review the Milestone G Part 2 pipeline output (manual check 19) and decide the wall module seam and §13 conventions; then the next assets can be added as new generators/configs (`Docs/ASSET_PIPELINE.md`). Review the Milestone G Part 1 blockout against the real campus (manual check 15) and correct the layout. Decide the open art questions in `Docs/ART_STYLE.md` with a small art test (one CDS section, one palm, one path tile) before producing final assets. Also review the diff and commit the Milestone G Part 1 editability cleanup (5 scenes and 4 docs; not committed).

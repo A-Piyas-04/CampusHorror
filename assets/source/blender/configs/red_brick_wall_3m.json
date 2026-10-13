@@ -1,0 +1,26 @@
+{
+  "asset_id": "red_brick_wall_3m",
+  "category": "architecture",
+  "generator": "red_brick_wall",
+  "description": "Straight 3.0 m red-brick boundary wall module (pipeline validation asset; same geometry, seed and view as red_brick_wall_grid_test).",
+  "seed": 20261013,
+  "generator_params": {},
+  "render": {
+    "width_px": 768,
+    "samples": 256,
+    "elevation_deg": 40.0,
+    "azimuth_deg": 0.0
+  },
+  "godot": {
+    "scene_name": "RedBrickWall3m",
+    "z_index": 0,
+    "sprite_offset_adjust_px": [0.0, 0.0],
+    "preview_scene": true,
+    "preview_tile_x": true
+  },
+  "collision": {
+    "enabled": true,
+    "source": "design_footprint",
+    "depth_mode": "projected"
+  }
+}

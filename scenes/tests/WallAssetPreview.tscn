@@ -24,11 +24,11 @@ texture_filter = 4
 position = Vector2(135, 23)
 scale = Vector2(0.143, 0.143)
 texture = ExtResource("1_r4ynu")
-offset = Vector2(0, -206.4)
+offset = Vector2(0, -202.862)
 
 [node name="FootprintGuide" type="Line2D" parent="RedBrickWall" unique_id=1862562939]
 editor_description = "TEMPORARY debug outline of the 3.0 x 0.3 m footprint projected through the Blender camera, in texture pixels relative to the origin. Not collision."
-points = PackedVector2Array(-304.9, 94.4, 328, -53.7, 304.9, -94.4, -328, 53.7)
+points = PackedVector2Array(-331.03, -21.28, 331.03, -21.28, 331.03, 21.28, -331.03, 21.28)
 closed = true
 width = 7.0
 default_color = Color(1, 0.2, 0.2, 0.8)
