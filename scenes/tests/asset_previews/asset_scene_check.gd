@@ -45,9 +45,9 @@ func _check(scene_path: String, record: Dictionary) -> void:
 		_fail("Sprite with texture missing")
 		root.free()
 		return
-	var image_px: Array = record["projection"]["image_px"]
+	var crop := _crop(record["projection"].get("crop_px"), record["projection"]["image_px"])
 	var tex_size := sprite.texture.get_size()
-	_expect(tex_size == Vector2(image_px[0], image_px[1]), "texture size %s == %s" % [tex_size, image_px])
+	_expect(tex_size == crop.size, "texture size %s == %s" % [tex_size, crop.size])
 	_expect(sprite.texture.resource_path == "res://" + record["outputs"]["png"], "texture path %s" % sprite.texture.resource_path)
 	_expect(not sprite.centered, "sprite not centered")
 	# Texture2D.has_mipmaps() is always false with the headless dummy renderer; the image knows.
@@ -57,8 +57,8 @@ func _check(scene_path: String, record: Dictionary) -> void:
 	_expect(absf(sprite.scale.x - scale_expected) < 1e-4 and absf(sprite.scale.y - scale_expected) < 1e-4,
 		"sprite scale %s == %.6f" % [sprite.scale, scale_expected])
 
-	# Texture pixel -> root-local game px, exactly as Godot draws it.
-	var to_local := func(px: Vector2) -> Vector2: return sprite.transform * (px + sprite.offset)
+	# Canvas pixel -> root-local game px, exactly as Godot draws it (a cropped texture starts at crop.position).
+	var to_local := func(px: Vector2) -> Vector2: return sprite.transform * (px - crop.position + sprite.offset)
 	var origin_px: Array = record["projection"]["origin_px"]
 	var adjust: Array = godot["sprite_offset_adjust_px"]
 	var origin_game: Vector2 = to_local.call(Vector2(origin_px[0], origin_px[1]))
@@ -128,16 +128,17 @@ func _check_layers(root: Node2D, record: Dictionary, adjust: Vector2) -> void:
 			continue
 		var pos := Vector2(want["position_game_px"][0], want["position_game_px"][1])
 		any_sorted = any_sorted or not is_zero_approx(pos.y)
+		var crop := _crop(recorded[i].get("crop_px"), image_px)
 		_expect(sprite.texture.resource_path == "res://" + String(recorded[i]["png"])
-			and sprite.texture.get_size() == Vector2(image_px[0], image_px[1]),
-			"layer %s texture %s, %s" % [name, sprite.texture.resource_path, sprite.texture.get_size()])
+			and sprite.texture.get_size() == crop.size,
+			"layer %s texture %s, %s (want %s)" % [name, sprite.texture.resource_path, sprite.texture.get_size(), crop.size])
 		var image := sprite.texture.get_image()
 		_expect(image != null and image.has_mipmaps(), "layer %s imported with mipmaps" % name)
 		_expect(not sprite.centered and absf(sprite.scale.x - scale_expected) < 1e-4 and absf(sprite.scale.y - scale_expected) < 1e-4
 			and sprite.position.distance_to(pos) < TOLERANCE and sprite.z_index == int(want["z_index"])
 			and sprite.light_mask == (root.get_node("Sprite") as Sprite2D).light_mask,
 			"layer %s: scale %s, position %s (sort point), z %d, light mask %d" % [name, sprite.scale, sprite.position, sprite.z_index, sprite.light_mask])
-		var origin_game: Vector2 = sprite.transform * (Vector2(origin_px[0], origin_px[1]) + sprite.offset)
+		var origin_game: Vector2 = sprite.transform * (Vector2(origin_px[0], origin_px[1]) - crop.position + sprite.offset)
 		_expect(origin_game.distance_to(adjust) < TOLERANCE,
 			"layer %s: footprint origin pixel lands on node origin (+adjust): %s" % [name, origin_game])
 		var fade: Variant = want["fade"]
@@ -165,6 +166,13 @@ func _check_layers(root: Node2D, record: Dictionary, adjust: Vector2) -> void:
 				and cs.position.distance_to(Vector2(s["center"][0], s["center"][1])) < TOLERANCE,
 				"%s/%s size %s centre %s" % [area.name, s["node"], (cs.shape as RectangleShape2D).size, cs.position])
 	_expect(root.y_sort_enabled == any_sorted, "root y_sort_enabled %s (a layer sorts away from the origin: %s)" % [root.y_sort_enabled, any_sorted])
+
+
+## Texture rect on the render canvas: the recorded crop, or the whole canvas.
+func _crop(crop_px: Variant, image_px: Array) -> Rect2:
+	if crop_px == null:
+		return Rect2(0, 0, image_px[0], image_px[1])
+	return Rect2(crop_px[0], crop_px[1], crop_px[2], crop_px[3])
 
 
 func _expect(condition: bool, what: String) -> void:

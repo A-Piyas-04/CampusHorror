@@ -63,6 +63,76 @@ def parse_args():
     return opts
 
 
+def world_vertices(objects):
+    bpy.context.view_layer.update()
+    deps = bpy.context.evaluated_depsgraph_get()
+    pts = []
+    for obj in objects:
+        ev = obj.evaluated_get(deps)
+        mesh = ev.to_mesh()
+        mw = obj.matrix_world
+        pts += [tuple(mw @ v.co) for v in mesh.vertices]
+        ev.to_mesh_clear()
+    return pts
+
+
+def set_occluder(obj, occluder):
+    """render.occlusion: objects outside the sprite being rendered are holdouts, so the sprite keeps
+    only the pixels where its own objects are the nearest surface. Objects flagged `seam_overlap`
+    (strips that run under a neighbour to hide the join) are hidden instead, so the neighbour's own
+    surface still renders under them. Holdouts still cast shadows and bounce light."""
+    if occluder and obj.get("seam_overlap"):
+        obj.visible_camera, obj.is_holdout = False, False
+    else:
+        obj.visible_camera, obj.is_holdout = True, occluder
+
+
+def check_crop_size(png, rect):
+    if rect is None:
+        return
+    got = list(pngcheck.size(png))
+    if got != rect[2:]:
+        raise RuntimeError(f"{png}: cropped render is {got}, expected {rect[2:]} (border {rect})")
+
+
+def trim_to_alpha(png, rect, pad):
+    """Shrinks a cropped render to its alpha bbox + pad (inside the original crop). Returns the new rect."""
+    a = pngcheck.analyse(png)
+    if a["content_bbox_px"] is None:
+        return rect
+    x0, y0, x1, y1 = a["content_bbox_px"]
+    w, h = rect[2], rect[3]
+    nx0, ny0 = max(0, x0 - pad), max(0, y0 - pad)
+    nx1, ny1 = min(w, x1 + 1 + pad), min(h, y1 + 1 + pad)
+    if [nx0, ny0, nx1, ny1] != [0, 0, w, h]:
+        pngcheck.crop(png, nx0, ny0, nx1 - nx0, ny1 - ny0)
+    return [rect[0] + nx0, rect[1] + ny0, nx1 - nx0, ny1 - ny0]
+
+
+def build_context(scene, cfg):
+    """Neighbouring assets built camera-invisible: they shadow and light this asset but aren't rendered."""
+    coll = rig.new_collection(scene, "Context")
+    info = []
+    for ctx in cfg["context_assets"]:
+        ctx_cfg = assetconfig.load(ctx["asset_id"])
+        gen = importlib.import_module(f"generators.{ctx_cfg['generator']}")
+        params = dict(gen.DEFAULT_PARAMS)
+        params.update(ctx_cfg["generator_params"])
+        sub = bpy.data.collections.new(f"Context_{ctx['asset_id']}")
+        coll.children.link(sub)
+        built = gen.build(sub, random.Random(ctx_cfg["seed"]), params)
+        for obj in sub.all_objects:
+            obj.location += Vector(ctx["offset_m"])
+            if cfg["render"]["occlusion"]:
+                set_occluder(obj, True)
+            else:
+                obj.visible_camera = False
+        info.append({"asset_id": ctx["asset_id"], "offset_m": ctx["offset_m"],
+                     "objects": len(built["objects"]), "note": "camera-invisible; casts shadows and bounce light"})
+        print(f"{LOG} Context asset {ctx['asset_id']} at {ctx['offset_m']} ({len(built['objects'])} objects)")
+    return info
+
+
 def main():
     opts = parse_args()
     t0 = time.time()
@@ -88,6 +158,7 @@ def main():
 
     built = generator.build(asset_coll, random.Random(cfg["seed"]), params)
     bounds = [Vector(p) for p in built["bounds_points_m"]]
+    context_info = build_context(scene, cfg) if cfg["context_assets"] else None
     ground = cfg["kind"] == "ground_tile"
 
     # Horizontally tileable assets: neighbour copies one period to each side give the module
@@ -106,11 +177,16 @@ def main():
     if layer_objects and not [o for o in built["objects"] if o.name not in layered]:
         raise SystemExit("every object is in a layer; the base Sprite would be empty")
 
+    occlusion = render_cfg.get("occlusion")
+
     def show_only(visible):
         for obj in built["objects"]:
-            obj.visible_camera = obj in visible
+            if occlusion:
+                set_occluder(obj, obj not in visible)
+            else:
+                obj.visible_camera = obj in visible
 
-    if layer_objects:
+    if layer_objects or occlusion:
         show_only([o for o in built["objects"] if o.name not in layered])
 
     if period:
@@ -149,8 +225,18 @@ def main():
     else:
         camera_info, projection = rig.setup_camera(
             scene, rig_coll, bounds, render_cfg["elevation_deg"], render_cfg["azimuth_deg"], render_cfg["width_px"],
-            render_cfg.get("px_per_m"))
+            render_cfg.get("px_per_m"), render_cfg.get("pixel_anchor_m"))
     render_info = rig.setup_render(scene, samples, opts["cpu"])
+
+    # Cropped sprites: each render covers only its own objects' projected vertices (+ pad).
+    crops = {}
+    if render_cfg.get("crop_layers"):
+        pad = render_cfg["crop_pad_px"]
+        base_objects = [o for o in built["objects"] if o.name not in layered]
+        crops[None] = rig.crop_rect(projection, world_vertices(base_objects), pad)
+        for name, objs in layer_objects.items():
+            crops[name] = rig.crop_rect(projection, world_vertices(objs), pad)
+        rig.set_border(scene, crops[None])
 
     for p in (out["blend"], out["png"], out["record"]):
         p.parent.mkdir(parents=True, exist_ok=True)
@@ -169,21 +255,29 @@ def main():
     render_seconds = time.time() - t_render
     if not out["png"].exists():
         raise RuntimeError(f"Render finished but {out['png']} was not written.")
+    check_crop_size(out["png"], crops.get(None))
+    if crops:
+        crops[None] = trim_to_alpha(out["png"], crops[None], render_cfg["crop_pad_px"])
     print(f"{LOG} Rendered: {out['png']} in {render_seconds:.1f} s")
 
     layers_info = []
     for layer in cfg["layers"]:
         png = cfg["layer_outputs"][layer["name"]]
         show_only(layer_objects[layer["name"]])
+        if crops:
+            rig.set_border(scene, crops[layer["name"]])
         scene.render.filepath = str(png)
         t_layer = time.time()
         bpy.ops.render.render(write_still=True)
         if not png.exists():
             raise RuntimeError(f"Render finished but {png} was not written.")
+        check_crop_size(png, crops.get(layer["name"]))
+        if crops:
+            crops[layer["name"]] = trim_to_alpha(png, crops[layer["name"]], render_cfg["crop_pad_px"])
         seconds = time.time() - t_layer
         render_seconds += seconds
         print(f"{LOG} Rendered layer {layer['name']}: {png} in {seconds:.1f} s")
-        layers_info.append({
+        info = {
             "name": layer["name"],
             "png": assetconfig.rel(png),
             "objects": layer["objects"],
@@ -191,7 +285,10 @@ def main():
             "z_index": layer["z_index"],
             "fade": layer["fade"],
             "render_seconds": round(seconds, 1),
-        })
+        }
+        if crops:
+            info["crop_px"] = crops[layer["name"]]
+        layers_info.append(info)
 
     ground_info = None
     if ground:
@@ -273,9 +370,12 @@ def main():
             "origin_px": list(rig.project(projection, (0.0, 0.0, 0.0))),
             "footprint_corners_px": [list(rig.project(projection, p)) for p in footprint_corners],
             "design_bounds_bbox_px": bbox_px,
+            **({"crop_px": crops[None]} if crops else {}),
         },
         "tiling": tiling,
         "layers": layers_info or None,
+        **({"context_assets": context_info} if context_info else {}),
+        **({"seams": cfg["seams"]} if cfg["seams"] else {}),
         "kind": cfg["kind"],
         "ground_tile": ground_info,
         "total_seconds": round(time.time() - t0, 1),

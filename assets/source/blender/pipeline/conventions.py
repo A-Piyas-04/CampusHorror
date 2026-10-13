@@ -73,6 +73,8 @@ MIN_MARGIN_PX = 16
 MAX_BORDER_ALPHA = 1.0 / 255.0
 CONTENT_BBOX_TOLERANCE_PX = 4.0     # alpha bbox vs projected design bounds
 TILE_MATCH_MEAN_MAX = 3.0           # mean RGB diff (0-255) between the bleed and the opposite end
+SEAM_MATCH_MEAN_MAX = 3.0           # config "seams": mean RGB diff where both sprites are opaque
+CROP_PAD_PX = 24                    # render.crop_layers: transparent pad around each sprite's projected bounds
 
 # Godot.
 SPRITE_TEXTURE_FILTER = 4           # CanvasItem.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS (texture imported with mipmaps)

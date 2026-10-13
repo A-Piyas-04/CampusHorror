@@ -160,8 +160,17 @@ def step_validate(cfg, args, rep):
         rep.check(False, f"PNG readable as 8-bit RGBA: {exc}")
         return None
     rep.check(True, "PNG is 8-bit RGBA, non-interlaced")
-    rep.check(png["size_px"] == [w, h] == record["render"]["resolution_px"],
-              f"PNG size {png['size_px']} matches record {record['render']['resolution_px']}")
+    crop = proj.get("crop_px")
+    if bool(crop) != bool(cfg["render"]["crop_layers"]):
+        rep.check(False, f"record crop ({crop}) matches render.crop_layers {cfg['render']['crop_layers']}; re-render")
+        return None
+    if crop:
+        rep.check([w, h] == record["render"]["resolution_px"] and png["size_px"] == crop[2:]
+                  and crop[0] >= 0 and crop[1] >= 0 and crop[0] + crop[2] <= w and crop[1] + crop[3] <= h,
+                  f"PNG size {png['size_px']} = crop {crop} inside the {w} x {h} canvas")
+    else:
+        rep.check(png["size_px"] == [w, h] == record["render"]["resolution_px"],
+                  f"PNG size {png['size_px']} matches record {record['render']['resolution_px']}")
     rep.check(png["content_bbox_px"] is not None and png["opaque_pixels"] > 0,
               f"content present ({png['opaque_pixels']} opaque, {png['partially_transparent_pixels']} partial px)")
     rep.check(png["fully_transparent_pixels"] > 0, f"transparent background ({png['fully_transparent_pixels']} px)")
@@ -170,9 +179,13 @@ def step_validate(cfg, args, rep):
     m = png["margins_px"] or {}
     rep.check(bool(m) and min(m.values()) >= C.MIN_MARGIN_PX, f"margins {m} >= {C.MIN_MARGIN_PX} px")
 
-    # Layers: same canvas as the base; together they make up the whole model.
-    bboxes = [png["content_bbox_px"]]
+    # Layers: same canvas as the base (or a crop of it); together they make up the whole model.
+    def on_canvas(bbox, rect):
+        return bbox if rect is None else [bbox[0] + rect[0], bbox[1] + rect[1], bbox[2] + rect[0], bbox[3] + rect[1]]
+
+    bboxes = [on_canvas(png["content_bbox_px"], crop)]
     layer_pngs = {}
+    layer_crops = {l["name"]: l.get("crop_px") for l in record.get("layers") or []}
     for name, path in cfg["layer_outputs"].items():
         try:
             lp = pngcheck.analyse(path)
@@ -180,12 +193,16 @@ def step_validate(cfg, args, rep):
             rep.check(False, f"layer {name} PNG readable as 8-bit RGBA: {exc}")
             return None
         lm = lp["margins_px"] or {}
-        rep.check(lp["size_px"] == [w, h] and lp["content_bbox_px"] is not None and lp["opaque_pixels"] > 0
+        lcrop = layer_crops.get(name)
+        want = lcrop[2:] if crop else [w, h]
+        rep.check(lp["size_px"] == want and lp["content_bbox_px"] is not None and lp["opaque_pixels"] > 0
                   and lp["max_alpha_on_image_border"] <= C.MAX_BORDER_ALPHA
                   and bool(lm) and min(lm.values()) >= C.MIN_MARGIN_PX,
-                  f"layer {name}: {lp['size_px']} like the base, {lp['opaque_pixels']} opaque px, "
-                  f"transparent border, margins {lm}")
-        bboxes.append(lp["content_bbox_px"])
+                  f"layer {name}: {lp['size_px']} {'= its crop ' + str(lcrop) if crop else 'like the base'}, "
+                  f"{lp['opaque_pixels']} opaque px, transparent border, margins {lm}")
+        if lp["content_bbox_px"] is None:
+            return None
+        bboxes.append(on_canvas(lp["content_bbox_px"], lcrop))
         layer_pngs[name] = lp
 
     # Alpha bbox vs the design bounds projected through the camera -> framing + origin alignment.
@@ -194,10 +211,15 @@ def step_validate(cfg, args, rep):
     actual = [x0, y0, x1 + 1, y1 + 1]
     expected = proj["design_bounds_bbox_px"]
     dev = [round(a - e, 2) for a, e in zip(actual, expected)]
-    rep.check(max(abs(d) for d in dev) <= C.CONTENT_BBOX_TOLERANCE_PX,
-              f"alpha bbox{' (base + layers)' if layer_pngs else ''} {actual} vs projected design bounds "
-              f"{[round(e, 2) for e in expected]} "
-              f"(deviation {dev}, tolerance {C.CONTENT_BBOX_TOLERANCE_PX} px)")
+    tol = C.CONTENT_BBOX_TOLERANCE_PX
+    if cfg["render"]["occlusion"]:
+        # Context assets in front (south) may hide the bottom of the model; the other sides must match.
+        ok = max(abs(d) for d in dev[:3]) <= tol and dev[3] <= tol
+        note = "; bottom may be hidden by context assets in front"
+    else:
+        ok, note = max(abs(d) for d in dev) <= tol, ""
+    rep.check(ok, f"alpha bbox{' (base + layers)' if layer_pngs else ''} {actual} vs projected design bounds "
+                  f"{[round(e, 2) for e in expected]} (deviation {dev}, tolerance {tol} px{note})")
     ox, oy = proj["origin_px"]
     rep.check(0 <= ox <= w and 0 <= oy <= h, f"footprint origin pixel ({ox:.2f}, {oy:.2f}) inside the image")
     seam = check_tiling(out["png"], record.get("tiling"), rep) if record.get("tiling") else None
@@ -214,11 +236,100 @@ def step_validate(cfg, args, rep):
 
     verification = {"png": png, "bbox_deviation_px": dev, "minimum_margin_required_px": C.MIN_MARGIN_PX,
                     "tiling": seam, "layers": layer_pngs or None}
+    budget = cfg["render"]["max_texture_px"]
+    if budget is not None:
+        total = png["size_px"][0] * png["size_px"][1] + sum(
+            lp["size_px"][0] * lp["size_px"][1] for lp in layer_pngs.values())
+        rep.check(total <= budget, f"texture pixels {total:,} (base + {len(layer_pngs)} layer(s)) "
+                                   f"within the budget {budget:,}")
+        verification["texture_px"] = {"total": total, "budget": budget,
+                                      "approx_vram_mb_with_mipmaps": round(total * 4 * 4 / 3 / 2 ** 20, 1)}
+    if cfg["seams"]:
+        verification["seams"] = check_seams(cfg, record, rep)
     if args.compare_to:
         diff = pngcheck.compare(out["png"], Path(args.compare_to))
         say(f"compare to {args.compare_to}: {diff}")
         verification["compare_to"] = {"path": args.compare_to, **diff}
     return verification
+
+
+def _sprite_source(cfg, record, name):
+    """(png path, crop rect on the canvas) of the base Sprite or a layer of a rendered asset."""
+    if name == "Sprite":
+        crop = record["projection"].get("crop_px")
+        path = cfg["outputs"]["png"]
+    else:
+        layer = next((l for l in record.get("layers") or [] if l["name"] == name), None)
+        if layer is None:
+            return None, None
+        crop = layer.get("crop_px")
+        path = cfg["layer_outputs"][name]
+    return path, crop or [0, 0, *record["projection"]["image_px"]]
+
+
+def _project(proj, point):
+    w, h = proj["image_px"]
+    ppm, (cx, cy) = proj["px_per_m"], proj["center_m"]
+    pr = sum(a * b for a, b in zip(point, proj["right"]))
+    pu = sum(a * b for a, b in zip(point, proj["up"]))
+    return w / 2.0 + (pr - cx) * ppm, h / 2.0 - (pu - cy) * ppm
+
+
+def check_seams(cfg, record, rep):
+    """Where two sprites are meant to overlap (a slice's roof running under its neighbour, or two
+    sections meeting), their opaque pixels must show the same surface: mean RGB diff <= the limit."""
+    images, results = {}, []
+
+    def pixels(path):
+        if path not in images:
+            images[path] = pngcheck.read_rgba(path)
+        return images[path]
+
+    for seam in cfg["seams"]:
+        label = f"seam {seam['a']} / {(seam['asset'] + ':') if seam['asset'] else ''}{seam['b']}"
+        cfg_b, rec_b = cfg, record
+        shift = (0, 0)
+        if seam["asset"]:
+            cfg_b = assetconfig.load(seam["asset"])
+            rec_b = assetconfig.read_record(cfg_b)
+            if not rep.check(rec_b is not None, f"{label}: {seam['asset']} has a render record"):
+                continue
+            if not rep.check(abs(rec_b["projection"]["px_per_m"] - record["projection"]["px_per_m"]) < 1e-6
+                             and rec_b["projection"]["up"] == record["projection"]["up"],
+                             f"{label}: same render scale and camera"):
+                continue
+            ax, ay = _project(record["projection"], seam["offset_m"])
+            bx, by = rec_b["projection"]["origin_px"]
+            sx, sy = ax - bx, ay - by
+            if not rep.check(abs(sx - round(sx)) < 0.02 and abs(sy - round(sy)) < 0.02,
+                             f"{label}: canvases share one texel grid (shift {sx:.3f}, {sy:.3f} px)"):
+                continue
+            shift = (round(sx), round(sy))
+        path_a, ra = _sprite_source(cfg, record, seam["a"])
+        path_b, rb = _sprite_source(cfg_b, rec_b, seam["b"])
+        if not rep.check(path_a is not None and path_b is not None, f"{label}: both sprites exist"):
+            continue
+        rb = [rb[0] + shift[0], rb[1] + shift[1], rb[2], rb[3]]
+        _, _, _, rows_a = pixels(path_a)
+        _, _, _, rows_b = pixels(path_b)
+        x0, y0 = max(ra[0], rb[0]), max(ra[1], rb[1])
+        x1, y1 = min(ra[0] + ra[2], rb[0] + rb[2]), min(ra[1] + ra[3], rb[1] + rb[3])
+        diffs = []
+        for y in range(y0, y1):
+            row_a, row_b = rows_a[y - ra[1]], rows_b[y - rb[1]]
+            for x in range(x0, x1):
+                i, j = (x - ra[0]) * 4, (x - rb[0]) * 4
+                if row_a[i + 3] == 255 and row_b[j + 3] == 255:
+                    diffs.append((abs(row_a[i] - row_b[j]) + abs(row_a[i + 1] - row_b[j + 1])
+                                  + abs(row_a[i + 2] - row_b[j + 2])) / 3.0)
+        mean = sum(diffs) / len(diffs) if diffs else None
+        rep.check(len(diffs) >= seam["min_pixels"] and mean is not None and mean <= C.SEAM_MATCH_MEAN_MAX,
+                  f"{label}: {len(diffs)} overlapping opaque px (min {seam['min_pixels']}), mean RGB diff "
+                  f"{'n/a' if mean is None else round(mean, 2)} (limit {C.SEAM_MATCH_MEAN_MAX})")
+        results.append({"a": seam["a"], "b": seam["b"], "asset": seam["asset"], "shift_px": list(shift),
+                        "overlap_px": len(diffs), "mean_rgb_diff": None if mean is None else round(mean, 3),
+                        "max_rgb_diff": round(max(diffs), 2) if diffs else None})
+    return results
 
 
 def step_validate_ground(cfg, args, rep):

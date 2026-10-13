@@ -1,0 +1,573 @@
+{
+  "pipeline": "campus_asset_pipeline",
+  "pipeline_version": 1,
+  "asset": "cds_table_tennis",
+  "category": "landmarks",
+  "description": "CDS table-tennis section (middle of the low block): one-storey red brick, plain west wall with six small square vents next to the hall, then five open pointed arches; the southernmost is the entrance bay facing DoorCdsMainEntry (world y -200). Dark bitumen roof, brick parapet, light coping. From Docs/map-reference/area1/cds-building.png; dimensions estimated. Footprint = the blockout (x 1480..2000, y -450..0 world px). Two north-south slices; the north slice's roof runs 0.06 m under the canteen.",
+  "config": "assets/source/blender/configs/cds_table_tennis.json",
+  "generator": "assets/source/blender/generators/cds_section.py",
+  "generator_params": {
+    "section": "table_tennis",
+    "slice_bounds_m": [
+      13.774638
+    ],
+    "overlap_m": 0.06,
+    "overlap_north": true,
+    "dishes_m": [],
+    "south_bays": 4,
+    "south_end_m": 0.6,
+    "west_bays": 9,
+    "canteen_bays": 8,
+    "canteen_end_m": 0.45,
+    "tt_bays": 5,
+    "tt_vents": 6
+  },
+  "random_seed": 20261014,
+  "blender_version": "5.2.2 LTS",
+  "outputs": {
+    "blend": "assets/source/blender/landmarks/cds_table_tennis.blend",
+    "record": "assets/source/blender/landmarks/cds_table_tennis.render.json",
+    "png": "assets/sprites/landmarks/cds_table_tennis.png",
+    "scene": "scenes/props/landmarks/CdsTableTennis.tscn",
+    "preview": "scenes/tests/asset_previews/CdsTableTennisPreview.tscn"
+  },
+  "origin": "ground-footprint origin at z = 0 (Blender world origin); front faces -Y",
+  "footprint_m": {
+    "x_min": -9.21875,
+    "x_max": 7.03125,
+    "y_min": 0.0,
+    "y_max": 21.877366315224553
+  },
+  "model": {
+    "arcade_arch": {
+      "half_span": 0.95,
+      "springing": 1.75,
+      "offset": 0.3
+    },
+    "arcade": {
+      "bays": 5,
+      "pitch_m": 2.7009,
+      "entrance_bay_centre_m": 9.7233,
+      "plain_wall_m": [
+        0.3,
+        8.3728
+      ],
+      "vents": 6
+    },
+    "section": "table_tennis",
+    "cds_frame_y0_m": 0.0,
+    "design_size_m": {
+      "width_x": 16.25,
+      "depth_y": 21.87737,
+      "height_z": 4.22
+    },
+    "heights_m": {
+      "wall_top": 3.35,
+      "slab_top": 3.6,
+      "parapet_top": 4.15,
+      "coping_top": 4.22,
+      "west_depth": 0.45,
+      "parapet_depth": 0.3,
+      "east_depth": 0.3,
+      "end_depth": 0.3
+    },
+    "slice_bounds_m": [
+      0.0,
+      13.77464,
+      21.87737
+    ],
+    "slice_objects": {
+      "Slice1": [
+        "S1Walls",
+        "S1Roof",
+        "S1Overlap"
+      ],
+      "Slice2": [
+        "S2Walls",
+        "S2Roof",
+        "S2Overlap"
+      ]
+    },
+    "overlap_m": 0.06,
+    "materials": [
+      "CdsBrick (procedural running bond in the CDS frame)",
+      "CdsCoping",
+      "CdsBitumen",
+      "CdsHallRoof",
+      "CdsDarkRecess",
+      "CdsWindowGlass",
+      "CdsDish",
+      "CdsSteel"
+    ],
+    "reference": "Docs/map-reference/area1/cds-building.png, cds-building2.png; dimensions estimated, footprint = blockout",
+    "objects": [
+      {
+        "object": "S1Walls",
+        "evaluated_bounds_m": {
+          "x": 16.25,
+          "y": 13.7746,
+          "z": 3.35
+        },
+        "evaluated_faces": 680
+      },
+      {
+        "object": "S1Roof",
+        "evaluated_bounds_m": {
+          "x": 16.25,
+          "y": 13.7746,
+          "z": 0.87
+        },
+        "evaluated_faces": 42
+      },
+      {
+        "object": "S1Overlap",
+        "evaluated_bounds_m": {
+          "x": 16.25,
+          "y": 0.06,
+          "z": 0.87
+        },
+        "evaluated_faces": 18
+      },
+      {
+        "object": "S2Walls",
+        "evaluated_bounds_m": {
+          "x": 16.25,
+          "y": 8.1027,
+          "z": 3.35
+        },
+        "evaluated_faces": 756
+      },
+      {
+        "object": "S2Roof",
+        "evaluated_bounds_m": {
+          "x": 16.25,
+          "y": 8.1027,
+          "z": 0.87
+        },
+        "evaluated_faces": 30
+      },
+      {
+        "object": "S2Overlap",
+        "evaluated_bounds_m": {
+          "x": 16.25,
+          "y": 0.06,
+          "z": 0.87
+        },
+        "evaluated_faces": 18
+      }
+    ]
+  },
+  "camera": {
+    "type": "ORTHO",
+    "elevation_deg": 40.0,
+    "azimuth_deg": 0.0,
+    "rotation_euler_deg": [
+      50.0,
+      0.0,
+      0.0
+    ],
+    "location_m": [
+      -1.092,
+      -9.7519,
+      19.4926
+    ],
+    "ortho_scale_m": 19.022187,
+    "sensor_fit": "HORIZONTAL",
+    "content_extent_m": [
+      16.25,
+      17.3342
+    ],
+    "margin_m_each_side": 1.3867,
+    "pixels_per_metre_on_screen": 110.344828,
+    "pixel_anchor": {
+      "point_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pixel": [
+        1170,
+        2065
+      ]
+    }
+  },
+  "lighting": {
+    "sun_elevation_deg": 55.0,
+    "sun_azimuth_deg_from_front": -35.0,
+    "sun_direction_to_light": [
+      -0.329,
+      -0.4698,
+      0.8192
+    ],
+    "sun_strength": 3.2,
+    "sun_angle_deg": 3.0,
+    "fill_lights_linked_to_asset_only": [
+      {
+        "name": "SkyFill",
+        "elevation_deg": 70.0,
+        "azimuth_deg_from_front": 20.0,
+        "strength": 0.8,
+        "angle_deg": 90.0,
+        "color": [
+          0.75,
+          0.85,
+          1.0
+        ]
+      },
+      {
+        "name": "GroundBounce",
+        "elevation_deg": -25.0,
+        "azimuth_deg_from_front": 10.0,
+        "strength": 0.35,
+        "angle_deg": 90.0,
+        "color": [
+          1.0,
+          0.8,
+          0.65
+        ]
+      }
+    ],
+    "world_light": "none (strength 0)",
+    "ground": "none (no shadow catcher; no cast shadow baked into the PNG)"
+  },
+  "render": {
+    "engine": "CYCLES",
+    "device": "GPU (OPTIX: NVIDIA GeForce RTX 3050 Laptop GPU)",
+    "samples": 256,
+    "adaptive_sampling": true,
+    "denoiser": "compositor OIDN on colour only (albedo + normal guides); raw render alpha kept",
+    "max_bounces": 6,
+    "film_transparent": true,
+    "filter_size_px": 1.5,
+    "view_transform": "Standard",
+    "output_format": "PNG RGBA 8-bit",
+    "resolution_px": [
+      2099,
+      2218
+    ],
+    "render_seconds": 23.0
+  },
+  "projection": {
+    "note": "texture px, top-left origin: x = W/2 + (p.right - cx)*ppm, y = H/2 - (p.up - cy)*ppm",
+    "image_px": [
+      2099,
+      2218
+    ],
+    "px_per_m": 110.344828,
+    "right": [
+      1.0,
+      0.0,
+      0.0
+    ],
+    "up": [
+      0.0,
+      0.6427876353263855,
+      0.7660444378852844
+    ],
+    "center_m": [
+      -1.0920312459048838,
+      8.663749967510938
+    ],
+    "origin_px": [
+      1170.0,
+      2065.0
+    ],
+    "footprint_corners_px": [
+      [
+        152.75861687500014,
+        2065.0
+      ],
+      [
+        1945.8620718750003,
+        2065.0
+      ],
+      [
+        1945.8620718750003,
+        513.2757943540207
+      ],
+      [
+        152.75861687500014,
+        513.2757943540207
+      ]
+    ],
+    "design_bounds_bbox_px": [
+      152.75861687500014,
+      152.2652647925138,
+      1945.8620718750003,
+      2065.0
+    ],
+    "crop_px": [
+      128,
+      702,
+      1842,
+      643
+    ]
+  },
+  "tiling": null,
+  "layers": [
+    {
+      "name": "Slice2",
+      "png": "assets/sprites/landmarks/cds_table_tennis__slice2.png",
+      "objects": [
+        "S2Walls",
+        "S2Roof",
+        "S2Overlap"
+      ],
+      "sort_y_m": 13.774638,
+      "z_index": 0,
+      "fade": null,
+      "render_seconds": 13.5,
+      "crop_px": [
+        128,
+        128,
+        1842,
+        681
+      ]
+    }
+  ],
+  "context_assets": [
+    {
+      "asset_id": "cds_indoor_basketball",
+      "offset_m": [
+        0.0,
+        -34.031459,
+        0.0
+      ],
+      "objects": 8,
+      "note": "camera-invisible; casts shadows and bounce light"
+    },
+    {
+      "asset_id": "cds_canteen",
+      "offset_m": [
+        0.0,
+        21.877366,
+        0.0
+      ],
+      "objects": 10,
+      "note": "camera-invisible; casts shadows and bounce light"
+    }
+  ],
+  "seams": [
+    {
+      "a": "Sprite",
+      "b": "Slice2",
+      "asset": null,
+      "offset_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "min_pixels": 200
+    },
+    {
+      "a": "Slice2",
+      "b": "Sprite",
+      "asset": "cds_canteen",
+      "offset_m": [
+        0.0,
+        21.877366,
+        0.0
+      ],
+      "min_pixels": 200
+    }
+  ],
+  "kind": "sprite",
+  "ground_tile": null,
+  "total_seconds": 29.3,
+  "blender_run": {
+    "exit_code": 0,
+    "seconds": 30.7,
+    "problem_lines": [
+      "00:01.094  cycles           | WARNING HIPEW initialization failed: Error opening HIP dynamic library"
+    ]
+  },
+  "verification": {
+    "png": {
+      "bit_depth": 8,
+      "png_color_type": 6,
+      "interlace": 0,
+      "file_bytes": 840807,
+      "size_px": [
+        1842,
+        643
+      ],
+      "opaque_pixels": 967176,
+      "partially_transparent_pixels": 10605,
+      "fully_transparent_pixels": 206625,
+      "content_bbox_px": [
+        23,
+        24,
+        1818,
+        618
+      ],
+      "margins_px": {
+        "left": 23,
+        "right": 23,
+        "top": 24,
+        "bottom": 24
+      },
+      "max_alpha_on_image_border": 0.0
+    },
+    "bbox_deviation_px": [
+      -1.76,
+      -1.27,
+      1.14,
+      -744.0
+    ],
+    "minimum_margin_required_px": 16,
+    "tiling": null,
+    "layers": {
+      "Slice2": {
+        "bit_depth": 8,
+        "png_color_type": 6,
+        "interlace": 0,
+        "file_bytes": 882280,
+        "size_px": [
+          1842,
+          681
+        ],
+        "opaque_pixels": 1032934,
+        "partially_transparent_pixels": 10522,
+        "fully_transparent_pixels": 210946,
+        "content_bbox_px": [
+          23,
+          23,
+          1818,
+          656
+        ],
+        "margins_px": {
+          "left": 23,
+          "right": 23,
+          "top": 23,
+          "bottom": 24
+        },
+        "max_alpha_on_image_border": 0.0
+      }
+    },
+    "texture_px": {
+      "total": 2438808,
+      "budget": 6000000,
+      "approx_vram_mb_with_mipmaps": 12.4
+    },
+    "seams": [
+      {
+        "a": "Sprite",
+        "b": "Slice2",
+        "asset": null,
+        "shift_px": [
+          0,
+          0
+        ],
+        "overlap_px": 4763,
+        "mean_rgb_diff": 0.542,
+        "max_rgb_diff": 4.0
+      },
+      {
+        "a": "Slice2",
+        "b": "Sprite",
+        "asset": "cds_canteen",
+        "shift_px": [
+          -28,
+          -1920
+        ],
+        "overlap_px": 3574,
+        "mean_rgb_diff": 0.876,
+        "max_rgb_diff": 6.0
+      }
+    ],
+    "passed": true
+  },
+  "godot": {
+    "scene": "scenes/props/landmarks/CdsTableTennis.tscn",
+    "scene_name": "CdsTableTennis",
+    "scene_semantic_sha256": "b1bc260b67fa44191f30df30df515c74f65af0e8bce691137651bfa0fe829d18",
+    "sprite_offset_adjust_px": [
+      0.0,
+      0.0
+    ],
+    "layout": {
+      "render_px_per_m": 110.344828,
+      "game_px_per_m": 32.0,
+      "sprite_scale": 0.2899999989125,
+      "sprite_offset_px": [
+        -1042.0,
+        -1363.0
+      ],
+      "origin_px": [
+        1170.0,
+        2065.0
+      ],
+      "sprite_rect_game_px": [
+        -302.179998866825,
+        -561.7299978935125,
+        534.179997996825,
+        352.9299986765125
+      ],
+      "footprint_game_px": [
+        [
+          -294.99999999999994,
+          0.0
+        ],
+        [
+          225.00000000000009,
+          0.0
+        ],
+        [
+          225.00000000000009,
+          -450.00001794983393
+        ],
+        [
+          -294.99999999999994,
+          -450.00001794983393
+        ]
+      ],
+      "ground_depth_factor": 0.6427876353263855,
+      "layers": [
+        {
+          "name": "Slice2",
+          "position_game_px": [
+            0.0,
+            -283.3333435999031
+          ],
+          "sprite_offset_px": [
+            -1042.0,
+            -959.9884666813684
+          ],
+          "z_index": 0,
+          "fade": null,
+          "crop_px": [
+            128,
+            128,
+            1842,
+            681
+          ]
+        }
+      ],
+      "crop_px": [
+        128,
+        702,
+        1842,
+        643
+      ]
+    },
+    "collision": null,
+    "preview_scene": "scenes/tests/asset_previews/CdsTableTennisPreview.tscn"
+  },
+  "godot_import": {
+    "exit_code": 0,
+    "problem_lines": [
+      "WARNING: Detected another project.godot at res://addons/godot_mcp/cache/undo/entry_000003/files. The folder will be ignored.",
+      "WARNING: UID duplicate detected between res://scenes/tests/MCPCheck.tscn and res://addons/godot_mcp/cache/undo/entry_000002/files/scenes/tests/MCPCheck.tscn."
+    ]
+  },
+  "godot_check": {
+    "scene": {
+      "exit_code": 0,
+      "problem_lines": []
+    },
+    "preview": {
+      "exit_code": 0,
+      "problem_lines": []
+    }
+  }
+}

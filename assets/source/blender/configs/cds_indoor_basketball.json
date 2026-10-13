@@ -1,0 +1,50 @@
+{
+  "asset_id": "cds_indoor_basketball",
+  "category": "landmarks",
+  "generator": "cds_section",
+  "description": "CDS indoor basketball hall (south section of the CDS): tall red-brick mass with blind pointed-arch recesses, grilled window band, deep brick parapet band with light coping and a light-grey flat roof. West face from Docs/map-reference/area1/cds-building.png / cds-building2.png; the south face (the one the game camera sees) is not photographed and uses the same bay. Footprint = the blockout (x 1480..2000, y 0..700 world px). Three north-south slices for Y-sorting.",
+  "seed": 20261014,
+  "generator_params": {
+    "section": "indoor_basketball",
+    "slice_bounds_m": [11.54382, 22.487641]
+  },
+  "render": {
+    "px_per_m": 110.344828,
+    "samples": 256,
+    "elevation_deg": 40.0,
+    "azimuth_deg": 0.0,
+    "crop_layers": true,
+    "occlusion": true,
+    "pixel_anchor_m": [0.0, 34.031459, 0.0],
+    "max_texture_px": 9000000
+  },
+  "context_assets": [
+    {"asset_id": "cds_table_tennis", "offset_m": [0.0, 34.031459, 0.0]},
+    {"asset_id": "cds_canteen", "offset_m": [0.0, 55.908825, 0.0]}
+  ],
+  "godot": {
+    "scene_name": "CdsIndoorBasketball",
+    "z_index": 0,
+    "sprite_offset_adjust_px": [0.0, 0.0],
+    "preview_scene": true
+  },
+  "layers": [
+    {
+      "name": "Slice2",
+      "objects": ["S2Walls", "S2Roof", "S2Overlap"],
+      "sort_y_m": 11.54382
+    },
+    {
+      "name": "Slice3",
+      "objects": ["S3Walls", "S3Roof"],
+      "sort_y_m": 22.487641
+    }
+  ],
+  "seams": [
+    {"a": "Sprite", "b": "Slice2"},
+    {"a": "Slice2", "b": "Slice3"}
+  ],
+  "collision": {
+    "enabled": false
+  }
+}

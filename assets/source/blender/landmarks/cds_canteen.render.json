@@ -1,0 +1,719 @@
+{
+  "pipeline": "campus_asset_pipeline",
+  "pipeline_version": 1,
+  "asset": "cds_canteen",
+  "category": "landmarks",
+  "description": "CDS canteen (north wing of the low block): one-storey red brick, west arcade of eight pointed arches with low sill walls in front of a covered veranda, dark bitumen roof with two satellite dishes near the west parapet, brick parapet and light coping. From Docs/map-reference/area1/cds-building.png; dimensions estimated. Footprint = the blockout (x 1480..2000, y -1000..-450 world px). Three north-south slices; the north slice (NorthRoof) fades while the player stands behind the canteen.",
+  "config": "assets/source/blender/configs/cds_canteen.json",
+  "generator": "assets/source/blender/generators/cds_section.py",
+  "generator_params": {
+    "section": "canteen",
+    "slice_bounds_m": [
+      10.139626,
+      19.829252
+    ],
+    "overlap_m": 0.06,
+    "overlap_north": false,
+    "dishes_m": [
+      [
+        -7.9,
+        6.2
+      ],
+      [
+        -7.7,
+        23.4
+      ]
+    ],
+    "south_bays": 4,
+    "south_end_m": 0.6,
+    "west_bays": 9,
+    "canteen_bays": 8,
+    "canteen_end_m": 0.45,
+    "tt_bays": 5,
+    "tt_vents": 6
+  },
+  "random_seed": 20261014,
+  "blender_version": "5.2.2 LTS",
+  "outputs": {
+    "blend": "assets/source/blender/landmarks/cds_canteen.blend",
+    "record": "assets/source/blender/landmarks/cds_canteen.render.json",
+    "png": "assets/sprites/landmarks/cds_canteen.png",
+    "scene": "scenes/props/landmarks/CdsCanteen.tscn",
+    "preview": "scenes/tests/asset_previews/CdsCanteenPreview.tscn"
+  },
+  "origin": "ground-footprint origin at z = 0 (Blender world origin); front faces -Y",
+  "footprint_m": {
+    "x_min": -9.21875,
+    "x_max": 7.03125,
+    "y_min": 0.0,
+    "y_max": 26.73900327416334
+  },
+  "model": {
+    "arcade_arch": {
+      "half_span": 1.05,
+      "springing": 1.85,
+      "offset": 0.35
+    },
+    "arcade": {
+      "bays": 8,
+      "pitch_m": 3.2299
+    },
+    "section": "canteen",
+    "cds_frame_y0_m": 21.87737,
+    "design_size_m": {
+      "width_x": 16.25,
+      "depth_y": 26.739,
+      "height_z": 4.22
+    },
+    "heights_m": {
+      "wall_top": 3.35,
+      "slab_top": 3.6,
+      "parapet_top": 4.15,
+      "coping_top": 4.22,
+      "west_depth": 0.45,
+      "parapet_depth": 0.3,
+      "east_depth": 0.3,
+      "end_depth": 0.3
+    },
+    "slice_bounds_m": [
+      0.0,
+      10.13963,
+      19.82925,
+      26.739
+    ],
+    "slice_objects": {
+      "Slice1": [
+        "S1Walls",
+        "S1Roof",
+        "S1Items",
+        "S1Overlap"
+      ],
+      "Slice2": [
+        "S2Walls",
+        "S2Roof",
+        "S2Overlap"
+      ],
+      "Slice3": [
+        "S3Walls",
+        "S3Roof",
+        "S3Items"
+      ]
+    },
+    "overlap_m": 0.06,
+    "materials": [
+      "CdsBrick (procedural running bond in the CDS frame)",
+      "CdsCoping",
+      "CdsBitumen",
+      "CdsHallRoof",
+      "CdsDarkRecess",
+      "CdsWindowGlass",
+      "CdsDish",
+      "CdsSteel"
+    ],
+    "reference": "Docs/map-reference/area1/cds-building.png, cds-building2.png; dimensions estimated, footprint = blockout",
+    "objects": [
+      {
+        "object": "S1Walls",
+        "evaluated_bounds_m": {
+          "x": 16.25,
+          "y": 10.1396,
+          "z": 3.35
+        },
+        "evaluated_faces": 756
+      },
+      {
+        "object": "S1Roof",
+        "evaluated_bounds_m": {
+          "x": 16.25,
+          "y": 10.1396,
+          "z": 0.87
+        },
+        "evaluated_faces": 30
+      },
+      {
+        "object": "S1Items",
+        "evaluated_bounds_m": {
+          "x": 0.84,
+          "y": 0.4941,
+          "z": 1.0497
+        },
+        "evaluated_faces": 274
+      },
+      {
+        "object": "S1Overlap",
+        "evaluated_bounds_m": {
+          "x": 16.25,
+          "y": 0.06,
+          "z": 0.87
+        },
+        "evaluated_faces": 18
+      },
+      {
+        "object": "S2Walls",
+        "evaluated_bounds_m": {
+          "x": 16.25,
+          "y": 9.6896,
+          "z": 3.35
+        },
+        "evaluated_faces": 756
+      },
+      {
+        "object": "S2Roof",
+        "evaluated_bounds_m": {
+          "x": 16.25,
+          "y": 9.6896,
+          "z": 0.87
+        },
+        "evaluated_faces": 30
+      },
+      {
+        "object": "S2Overlap",
+        "evaluated_bounds_m": {
+          "x": 16.25,
+          "y": 0.06,
+          "z": 0.87
+        },
+        "evaluated_faces": 18
+      },
+      {
+        "object": "S3Walls",
+        "evaluated_bounds_m": {
+          "x": 16.25,
+          "y": 6.9098,
+          "z": 3.35
+        },
+        "evaluated_faces": 518
+      },
+      {
+        "object": "S3Roof",
+        "evaluated_bounds_m": {
+          "x": 16.25,
+          "y": 6.9098,
+          "z": 0.87
+        },
+        "evaluated_faces": 42
+      },
+      {
+        "object": "S3Items",
+        "evaluated_bounds_m": {
+          "x": 0.84,
+          "y": 0.4941,
+          "z": 1.0497
+        },
+        "evaluated_faces": 274
+      }
+    ]
+  },
+  "camera": {
+    "type": "ORTHO",
+    "elevation_deg": 40.0,
+    "azimuth_deg": 0.0,
+    "rotation_euler_deg": [
+      50.0,
+      0.0,
+      0.0
+    ],
+    "location_m": [
+      -1.0966,
+      -9.0754,
+      20.9393
+    ],
+    "ortho_scale_m": 19.520625,
+    "sensor_fit": "HORIZONTAL",
+    "content_extent_m": [
+      16.25,
+      20.4202
+    ],
+    "margin_m_each_side": 1.6336,
+    "pixels_per_metre_on_screen": 110.344828,
+    "pixel_anchor": {
+      "point_m": [
+        0.0,
+        -21.877366,
+        0.0
+      ],
+      "pixel": [
+        1198,
+        3985
+      ]
+    }
+  },
+  "lighting": {
+    "sun_elevation_deg": 55.0,
+    "sun_azimuth_deg_from_front": -35.0,
+    "sun_direction_to_light": [
+      -0.329,
+      -0.4698,
+      0.8192
+    ],
+    "sun_strength": 3.2,
+    "sun_angle_deg": 3.0,
+    "fill_lights_linked_to_asset_only": [
+      {
+        "name": "SkyFill",
+        "elevation_deg": 70.0,
+        "azimuth_deg_from_front": 20.0,
+        "strength": 0.8,
+        "angle_deg": 90.0,
+        "color": [
+          0.75,
+          0.85,
+          1.0
+        ]
+      },
+      {
+        "name": "GroundBounce",
+        "elevation_deg": -25.0,
+        "azimuth_deg_from_front": 10.0,
+        "strength": 0.35,
+        "angle_deg": 90.0,
+        "color": [
+          1.0,
+          0.8,
+          0.65
+        ]
+      }
+    ],
+    "world_light": "none (strength 0)",
+    "ground": "none (no shadow catcher; no cast shadow baked into the PNG)"
+  },
+  "render": {
+    "engine": "CYCLES",
+    "device": "GPU (OPTIX: NVIDIA GeForce RTX 3050 Laptop GPU)",
+    "samples": 256,
+    "adaptive_sampling": true,
+    "denoiser": "compositor OIDN on colour only (albedo + normal guides); raw render alpha kept",
+    "max_bounces": 6,
+    "film_transparent": true,
+    "filter_size_px": 1.5,
+    "view_transform": "Standard",
+    "output_format": "PNG RGBA 8-bit",
+    "resolution_px": [
+      2154,
+      2614
+    ],
+    "render_seconds": 37.2
+  },
+  "projection": {
+    "note": "texture px, top-left origin: x = W/2 + (p.right - cx)*ppm, y = H/2 - (p.up - cy)*ppm",
+    "image_px": [
+      2154,
+      2614
+    ],
+    "px_per_m": 110.344828,
+    "right": [
+      1.0,
+      0.0,
+      0.0
+    ],
+    "up": [
+      0.0,
+      0.6427876353263855,
+      0.7660444378852844
+    ],
+    "center_m": [
+      -1.0965624958878917,
+      10.206874908989844
+    ],
+    "origin_px": [
+      1198.0000000000002,
+      2433.2758562500003
+    ],
+    "footprint_corners_px": [
+      [
+        180.75861687500003,
+        2433.2758562500003
+      ],
+      [
+        1973.862071875,
+        2433.2758562500003
+      ],
+      [
+        1973.862071875,
+        536.7240493493587
+      ],
+      [
+        180.75861687500003,
+        536.7240493493587
+      ]
+    ],
+    "design_bounds_bbox_px": [
+      180.75861687500003,
+      180.01144987946213,
+      1973.862071875,
+      2433.2758562500003
+    ],
+    "crop_px": [
+      156,
+      1329,
+      1842,
+      825
+    ]
+  },
+  "tiling": null,
+  "layers": [
+    {
+      "name": "Slice2",
+      "png": "assets/sprites/landmarks/cds_canteen__slice2.png",
+      "objects": [
+        "S2Walls",
+        "S2Roof",
+        "S2Overlap"
+      ],
+      "sort_y_m": 10.139626,
+      "z_index": 0,
+      "fade": null,
+      "render_seconds": 15.1,
+      "crop_px": [
+        156,
+        641,
+        1842,
+        794
+      ]
+    },
+    {
+      "name": "NorthRoof",
+      "png": "assets/sprites/landmarks/cds_canteen__north_roof.png",
+      "objects": [
+        "S3Walls",
+        "S3Roof",
+        "S3Items"
+      ],
+      "sort_y_m": 19.829252,
+      "z_index": 0,
+      "fade": {
+        "rects_m": {
+          "Behind": [
+            -9.72,
+            7.53,
+            26.24,
+            33.05
+          ]
+        },
+        "alpha": 0.35,
+        "seconds": 0.25
+      },
+      "render_seconds": 13.4,
+      "crop_px": [
+        156,
+        156,
+        1842,
+        592
+      ]
+    }
+  ],
+  "context_assets": [
+    {
+      "asset_id": "cds_table_tennis",
+      "offset_m": [
+        0.0,
+        -21.877366,
+        0.0
+      ],
+      "objects": 6,
+      "note": "camera-invisible; casts shadows and bounce light"
+    },
+    {
+      "asset_id": "cds_indoor_basketball",
+      "offset_m": [
+        0.0,
+        -55.908825,
+        0.0
+      ],
+      "objects": 8,
+      "note": "camera-invisible; casts shadows and bounce light"
+    }
+  ],
+  "seams": [
+    {
+      "a": "Sprite",
+      "b": "Slice2",
+      "asset": null,
+      "offset_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "min_pixels": 200
+    },
+    {
+      "a": "Slice2",
+      "b": "NorthRoof",
+      "asset": null,
+      "offset_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "min_pixels": 200
+    }
+  ],
+  "kind": "sprite",
+  "ground_tile": null,
+  "total_seconds": 43.3,
+  "blender_run": {
+    "exit_code": 0,
+    "seconds": 44.6,
+    "problem_lines": [
+      "00:00.953  cycles           | WARNING HIPEW initialization failed: Error opening HIP dynamic library"
+    ]
+  },
+  "verification": {
+    "png": {
+      "bit_depth": 8,
+      "png_color_type": 6,
+      "interlace": 0,
+      "file_bytes": 1126154,
+      "size_px": [
+        1842,
+        825
+      ],
+      "opaque_pixels": 1291864,
+      "partially_transparent_pixels": 11108,
+      "fully_transparent_pixels": 216678,
+      "content_bbox_px": [
+        23,
+        23,
+        1818,
+        800
+      ],
+      "margins_px": {
+        "left": 23,
+        "right": 23,
+        "top": 23,
+        "bottom": 24
+      },
+      "max_alpha_on_image_border": 0.0
+    },
+    "bbox_deviation_px": [
+      -1.76,
+      -1.01,
+      1.14,
+      -303.28
+    ],
+    "minimum_margin_required_px": 16,
+    "tiling": null,
+    "layers": {
+      "Slice2": {
+        "bit_depth": 8,
+        "png_color_type": 6,
+        "interlace": 0,
+        "file_bytes": 1057523,
+        "size_px": [
+          1842,
+          794
+        ],
+        "opaque_pixels": 1235125,
+        "partially_transparent_pixels": 10954,
+        "fully_transparent_pixels": 216469,
+        "content_bbox_px": [
+          23,
+          23,
+          1818,
+          769
+        ],
+        "margins_px": {
+          "left": 23,
+          "right": 23,
+          "top": 23,
+          "bottom": 24
+        },
+        "max_alpha_on_image_border": 0.0
+      },
+      "NorthRoof": {
+        "bit_depth": 8,
+        "png_color_type": 6,
+        "interlace": 0,
+        "file_bytes": 948306,
+        "size_px": [
+          1842,
+          592
+        ],
+        "opaque_pixels": 964212,
+        "partially_transparent_pixels": 9903,
+        "fully_transparent_pixels": 116349,
+        "content_bbox_px": [
+          23,
+          23,
+          1818,
+          567
+        ],
+        "margins_px": {
+          "left": 23,
+          "right": 23,
+          "top": 23,
+          "bottom": 24
+        },
+        "max_alpha_on_image_border": 0.0
+      }
+    },
+    "texture_px": {
+      "total": 4072662,
+      "budget": 7000000,
+      "approx_vram_mb_with_mipmaps": 20.7
+    },
+    "seams": [
+      {
+        "a": "Sprite",
+        "b": "Slice2",
+        "asset": null,
+        "shift_px": [
+          0,
+          0
+        ],
+        "overlap_px": 4337,
+        "mean_rgb_diff": 0.653,
+        "max_rgb_diff": 3.67
+      },
+      {
+        "a": "Slice2",
+        "b": "NorthRoof",
+        "asset": null,
+        "shift_px": [
+          0,
+          0
+        ],
+        "overlap_px": 4337,
+        "mean_rgb_diff": 0.543,
+        "max_rgb_diff": 5.67
+      }
+    ],
+    "passed": true
+  },
+  "godot": {
+    "scene": "scenes/props/landmarks/CdsCanteen.tscn",
+    "scene_name": "CdsCanteen",
+    "scene_semantic_sha256": "82b69274fceb71b9c589a95e5967bb4c2d611049f09295724c696cd7c4fcc104",
+    "sprite_offset_adjust_px": [
+      0.0,
+      0.0
+    ],
+    "layout": {
+      "render_px_per_m": 110.344828,
+      "game_px_per_m": 32.0,
+      "sprite_scale": 0.2899999989125,
+      "sprite_offset_px": [
+        -1042.0000000000002,
+        -1104.2758562500003
+      ],
+      "origin_px": [
+        1198.0000000000002,
+        2433.2758562500003
+      ],
+      "sprite_rect_game_px": [
+        -302.1799988668251,
+        -660.4099958359626,
+        534.179997996825,
+        579.419997827175
+      ],
+      "footprint_game_px": [
+        [
+          -295.00000000000006,
+          0.0
+        ],
+        [
+          224.99999999999994,
+          0.0
+        ],
+        [
+          224.99999999999994,
+          -550.000021938686
+        ],
+        [
+          -295.00000000000006,
+          -550.000021938686
+        ]
+      ],
+      "ground_depth_factor": 0.6427876353263855,
+      "layers": [
+        {
+          "name": "Slice2",
+          "position_game_px": [
+            0.0,
+            -208.56403902828598
+          ],
+          "sprite_offset_px": [
+            -1042.0000000000002,
+            -1073.0895120762034
+          ],
+          "z_index": 0,
+          "fade": null,
+          "crop_px": [
+            156,
+            641,
+            1842,
+            794
+          ]
+        },
+        {
+          "name": "NorthRoof",
+          "position_game_px": [
+            0.0,
+            -407.871936107872
+          ],
+          "sprite_offset_px": [
+            -1042.0000000000002,
+            -870.8208988796839
+          ],
+          "z_index": 0,
+          "fade": {
+            "node": "NorthRoofFade",
+            "alpha": 0.35,
+            "seconds": 0.25,
+            "shapes": [
+              {
+                "node": "ShapeBehind",
+                "resource_id": "RectangleShape2D_NorthRoofFadeBehind",
+                "center": [
+                  -35.040000000000006,
+                  -609.7740623760222
+                ],
+                "size": [
+                  552.0,
+                  140.0762814903259
+                ],
+                "metres": [
+                  -9.72,
+                  7.53,
+                  26.24,
+                  33.05
+                ]
+              }
+            ]
+          },
+          "crop_px": [
+            156,
+            156,
+            1842,
+            592
+          ]
+        }
+      ],
+      "crop_px": [
+        156,
+        1329,
+        1842,
+        825
+      ]
+    },
+    "collision": null,
+    "preview_scene": "scenes/tests/asset_previews/CdsCanteenPreview.tscn"
+  },
+  "godot_import": {
+    "exit_code": 0,
+    "problem_lines": [
+      "WARNING: Detected another project.godot at res://addons/godot_mcp/cache/undo/entry_000003/files. The folder will be ignored.",
+      "WARNING: UID duplicate detected between res://scenes/tests/MCPCheck.tscn and res://addons/godot_mcp/cache/undo/entry_000002/files/scenes/tests/MCPCheck.tscn."
+    ]
+  },
+  "godot_check": {
+    "scene": {
+      "exit_code": 0,
+      "problem_lines": []
+    },
+    "preview": {
+      "exit_code": 0,
+      "problem_lines": []
+    }
+  }
+}

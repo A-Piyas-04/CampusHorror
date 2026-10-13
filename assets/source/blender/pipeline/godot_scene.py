@@ -70,6 +70,11 @@ def layout(cfg, record):
                       for x, y in proj["footprint_corners_px"]]
     w, h = proj["image_px"]
     depth = abs(proj["up"][1])
+    # Cropped textures (render.crop_layers): texture pixel (0, 0) is canvas pixel crop_px[:2].
+    base_crop = proj.get("crop_px")
+    crops = {l["name"]: l.get("crop_px") for l in record.get("layers") or []}
+    rect = [0.0, 0.0, w, h] if base_crop is None else list(base_crop)
+    base_offset = offset if base_crop is None else (offset[0] + base_crop[0], offset[1] + base_crop[1])
     layers = []
     for layer in cfg.get("layers", []):
         # Ground y (metres, +Y = back) -> game px (screen-down); the offset compensates the position.
@@ -80,24 +85,36 @@ def layout(cfg, record):
                     "seconds": layer["fade"]["seconds"],
                     "shapes": [_ground_rect(f"Shape{n}", f"RectangleShape2D_{layer['name']}Fade{n}", r, depth)
                                for n, r in layer["fade"]["rects_m"].items()]}
-        layers.append({
+        crop = crops.get(layer["name"])
+        cx, cy = (0, 0) if crop is None else crop[:2]
+        entry = {
             "name": layer["name"],
             "position_game_px": [0.0, sort_y],
-            "sprite_offset_px": [offset[0], offset[1] - sort_y / scale],
+            "sprite_offset_px": [offset[0] + cx, offset[1] - sort_y / scale + cy],
             "z_index": layer["z_index"],
             "fade": fade,
-        })
-    return {
+        }
+        if crop is not None:
+            entry["crop_px"] = crop
+            x0, y0 = min(rect[0], crop[0]), min(rect[1], crop[1])
+            rect = [x0, y0, max(rect[0] + rect[2], crop[0] + crop[2]) - x0,
+                    max(rect[1] + rect[3], crop[1] + crop[3]) - y0]
+        layers.append(entry)
+    result = {
         "render_px_per_m": ppm,
         "game_px_per_m": C.GAME_PX_PER_M,
         "sprite_scale": scale,
-        "sprite_offset_px": list(offset),
+        "sprite_offset_px": list(base_offset),
         "origin_px": [ox, oy],
-        "sprite_rect_game_px": [offset[0] * scale, offset[1] * scale, w * scale, h * scale],
+        "sprite_rect_game_px": [(offset[0] + rect[0]) * scale, (offset[1] + rect[1]) * scale,
+                                rect[2] * scale, rect[3] * scale],
         "footprint_game_px": [list(p) for p in footprint_game],
         "ground_depth_factor": depth,
         "layers": layers or None,
     }
+    if base_crop is not None:
+        result["crop_px"] = base_crop
+    return result
 
 
 def _ground_rect(node, res_id, rect_m, depth):

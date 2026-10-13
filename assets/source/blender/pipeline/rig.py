@@ -81,11 +81,13 @@ def setup_lighting(scene, rig_collection, asset_collection):
     }
 
 
-def setup_camera(scene, collection, bounds_points, elevation, azimuth, width_px, px_per_m=None):
+def setup_camera(scene, collection, bounds_points, elevation, azimuth, width_px, px_per_m=None, anchor=None):
     """Orthographic camera framing `bounds_points` with the shared margin.
 
     With `px_per_m` the render scale is fixed instead of `width_px`: the width becomes the
     framed extent at that scale, so assets of different sizes share one texel density.
+    With `anchor` (a world point) the frame is shifted by less than a pixel so the anchor
+    projects onto an integer pixel: assets anchoring the same point share one texel grid.
 
     Returns (camera_info, projection). `projection` maps a world point to texture
     pixels (top-left origin): x = W/2 + (p.right - cx) * ppm, y = H/2 - (p.up - cy) * ppm.
@@ -115,15 +117,23 @@ def setup_camera(scene, collection, bounds_points, elevation, azimuth, width_px,
         width_px = int(round(frame_w * px_per_m))
         frame_w = width_px / px_per_m
 
-    cam.location = right * cx + up * cy + forward * (min(fs) - 20.0)
-    cam_data.ortho_scale = frame_w
-
     res_x = width_px
     res_y = int(round(res_x * frame_h / frame_w / 2.0)) * 2
+    ppm = res_x / frame_w
+    anchor_px = None
+    if anchor is not None:
+        a = Vector(anchor)
+        ax = res_x / 2.0 + (a.dot(right) - cx) * ppm
+        ay = res_y / 2.0 - (a.dot(up) - cy) * ppm
+        cx += (ax - round(ax)) / ppm
+        cy -= (ay - round(ay)) / ppm
+        anchor_px = [round(ax), round(ay)]
+
+    cam.location = right * cx + up * cy + forward * (min(fs) - 20.0)
+    cam_data.ortho_scale = frame_w
     scene.render.resolution_x = res_x
     scene.render.resolution_y = res_y
     scene.render.resolution_percentage = 100
-    ppm = res_x / frame_w
 
     camera_info = {
         "type": "ORTHO",
@@ -137,6 +147,8 @@ def setup_camera(scene, collection, bounds_points, elevation, azimuth, width_px,
         "margin_m_each_side": round(margin, 4),
         "pixels_per_metre_on_screen": round(ppm, 6),
     }
+    if anchor is not None:
+        camera_info["pixel_anchor"] = {"point_m": list(anchor), "pixel": anchor_px}
     projection = {
         "image_px": [res_x, res_y],
         "px_per_m": ppm,
@@ -145,6 +157,37 @@ def setup_camera(scene, collection, bounds_points, elevation, azimuth, width_px,
         "center_m": [cx, cy],
     }
     return camera_info, projection
+
+
+def crop_rect(projection, points, pad):
+    """Integer pixel rect [x0, y0, w, h] around the projected points plus `pad`, inside the image."""
+    w, h = projection["image_px"]
+    px = [project(projection, p) for p in points]
+    x0 = max(0, math.floor(min(p[0] for p in px)) - pad)
+    y0 = max(0, math.floor(min(p[1] for p in px)) - pad)
+    x1 = min(w, math.ceil(max(p[0] for p in px)) + pad)
+    y1 = min(h, math.ceil(max(p[1] for p in px)) + pad)
+    return [x0, y0, x1 - x0, y1 - y0]
+
+
+def set_border(scene, rect):
+    """Render only `rect` ([x0, y0, w, h], top-left origin) and save it cropped; None = full frame.
+
+    Blender truncates border * resolution to whole pixels and counts y from the bottom; the
+    quarter-pixel bias makes the truncation land exactly on the rect's pixel edges."""
+    r = scene.render
+    if rect is None:
+        r.use_border = False
+        r.use_crop_to_border = False
+        return
+    w, h = r.resolution_x, r.resolution_y
+    x0, y0, cw, ch = rect
+    r.use_border = True
+    r.use_crop_to_border = True
+    r.border_min_x = (x0 + 0.25) / w
+    r.border_max_x = (x0 + cw + 0.25) / w
+    r.border_min_y = (h - y0 - ch + 0.25) / h
+    r.border_max_y = (h - y0 + 0.25) / h
 
 
 def setup_ground_camera(scene, collection, period_m, tile_px, overscan_px, top_z_m):

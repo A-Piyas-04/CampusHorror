@@ -10,6 +10,14 @@ class PngError(Exception):
     pass
 
 
+def size(path):
+    """(width, height) from the IHDR chunk, without decoding the image."""
+    head = path.read_bytes()[:24]
+    if head[:8] != SIGNATURE or head[12:16] != b"IHDR":
+        raise PngError(f"{path} is not a PNG file")
+    return struct.unpack(">II", head[16:24])
+
+
 def read_rgba(path):
     """Returns (width, height, header_info, rows) for an 8-bit RGBA, non-interlaced PNG.
 

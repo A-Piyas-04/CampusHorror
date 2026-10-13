@@ -1,0 +1,669 @@
+{
+  "pipeline": "campus_asset_pipeline",
+  "pipeline_version": 1,
+  "asset": "cds_indoor_basketball",
+  "category": "landmarks",
+  "description": "CDS indoor basketball hall (south section of the CDS): tall red-brick mass with blind pointed-arch recesses, grilled window band, deep brick parapet band with light coping and a light-grey flat roof. West face from Docs/map-reference/area1/cds-building.png / cds-building2.png; the south face (the one the game camera sees) is not photographed and uses the same bay. Footprint = the blockout (x 1480..2000, y 0..700 world px). Three north-south slices for Y-sorting.",
+  "config": "assets/source/blender/configs/cds_indoor_basketball.json",
+  "generator": "assets/source/blender/generators/cds_section.py",
+  "generator_params": {
+    "section": "indoor_basketball",
+    "slice_bounds_m": [
+      11.54382,
+      22.487641
+    ],
+    "overlap_m": 0.06,
+    "overlap_north": false,
+    "dishes_m": [],
+    "south_bays": 4,
+    "south_end_m": 0.6,
+    "west_bays": 9,
+    "canteen_bays": 8,
+    "canteen_end_m": 0.45,
+    "tt_bays": 5,
+    "tt_vents": 6
+  },
+  "random_seed": 20261014,
+  "blender_version": "5.2.2 LTS",
+  "outputs": {
+    "blend": "assets/source/blender/landmarks/cds_indoor_basketball.blend",
+    "record": "assets/source/blender/landmarks/cds_indoor_basketball.render.json",
+    "png": "assets/sprites/landmarks/cds_indoor_basketball.png",
+    "scene": "scenes/props/landmarks/CdsIndoorBasketball.tscn",
+    "preview": "scenes/tests/asset_previews/CdsIndoorBasketballPreview.tscn"
+  },
+  "origin": "ground-footprint origin at z = 0 (Blender world origin); front faces -Y",
+  "footprint_m": {
+    "x_min": -9.21875,
+    "x_max": 7.03125,
+    "y_min": 0.0,
+    "y_max": 34.03145871257152
+  },
+  "model": {
+    "south_face": {
+      "bays": 4,
+      "pitch_m": 3.7625,
+      "observed": false,
+      "note": "not photographed; same blind-arch bay as the west face (default)"
+    },
+    "west_face": {
+      "bays": 9,
+      "pitch_m": 3.6479
+    },
+    "blind_bay": {
+      "half_span": 1.3,
+      "reveal": 0.15,
+      "springing": 5.0,
+      "offset": 0.45,
+      "reveal_depth": 0.1,
+      "recess_depth": 0.45,
+      "plinth_z": 0.45,
+      "window_z": [
+        2.9,
+        3.8
+      ],
+      "mullion_pitch": 0.32
+    },
+    "section": "indoor_basketball",
+    "cds_frame_y0_m": -34.03146,
+    "design_size_m": {
+      "width_x": 16.25,
+      "depth_y": 34.03146,
+      "height_z": 8.82
+    },
+    "heights_m": {
+      "wall_top": 7.75,
+      "slab_top": 8.0,
+      "parapet_top": 8.75,
+      "coping_top": 8.82,
+      "west_depth": 0.85,
+      "parapet_depth": 0.4,
+      "east_depth": 0.4,
+      "end_depth": 0.4
+    },
+    "slice_bounds_m": [
+      0.0,
+      11.54382,
+      22.48764,
+      34.03146
+    ],
+    "slice_objects": {
+      "Slice1": [
+        "S1Walls",
+        "S1Roof",
+        "S1Overlap"
+      ],
+      "Slice2": [
+        "S2Walls",
+        "S2Roof",
+        "S2Overlap"
+      ],
+      "Slice3": [
+        "S3Walls",
+        "S3Roof"
+      ]
+    },
+    "overlap_m": 0.06,
+    "materials": [
+      "CdsBrick (procedural running bond in the CDS frame)",
+      "CdsCoping",
+      "CdsBitumen",
+      "CdsHallRoof",
+      "CdsDarkRecess",
+      "CdsWindowGlass",
+      "CdsDish",
+      "CdsSteel"
+    ],
+    "reference": "Docs/map-reference/area1/cds-building.png, cds-building2.png; dimensions estimated, footprint = blockout",
+    "objects": [
+      {
+        "object": "S1Walls",
+        "evaluated_bounds_m": {
+          "x": 16.25,
+          "y": 11.5438,
+          "z": 7.75
+        },
+        "evaluated_faces": 5324
+      },
+      {
+        "object": "S1Roof",
+        "evaluated_bounds_m": {
+          "x": 16.25,
+          "y": 11.5438,
+          "z": 1.07
+        },
+        "evaluated_faces": 42
+      },
+      {
+        "object": "S1Overlap",
+        "evaluated_bounds_m": {
+          "x": 16.25,
+          "y": 0.06,
+          "z": 1.07
+        },
+        "evaluated_faces": 18
+      },
+      {
+        "object": "S2Walls",
+        "evaluated_bounds_m": {
+          "x": 16.25,
+          "y": 10.9438,
+          "z": 7.75
+        },
+        "evaluated_faces": 2286
+      },
+      {
+        "object": "S2Roof",
+        "evaluated_bounds_m": {
+          "x": 16.25,
+          "y": 10.9438,
+          "z": 1.07
+        },
+        "evaluated_faces": 30
+      },
+      {
+        "object": "S2Overlap",
+        "evaluated_bounds_m": {
+          "x": 16.25,
+          "y": 0.06,
+          "z": 1.07
+        },
+        "evaluated_faces": 18
+      },
+      {
+        "object": "S3Walls",
+        "evaluated_bounds_m": {
+          "x": 16.25,
+          "y": 11.5438,
+          "z": 7.75
+        },
+        "evaluated_faces": 2292
+      },
+      {
+        "object": "S3Roof",
+        "evaluated_bounds_m": {
+          "x": 16.25,
+          "y": 11.5438,
+          "z": 1.07
+        },
+        "evaluated_faces": 42
+      }
+    ]
+  },
+  "camera": {
+    "type": "ORTHO",
+    "elevation_deg": 40.0,
+    "azimuth_deg": 0.0,
+    "rotation_euler_deg": [
+      50.0,
+      0.0,
+      0.0
+    ],
+    "location_m": [
+      -1.092,
+      -8.5802,
+      25.889
+    ],
+    "ortho_scale_m": 20.834687,
+    "sensor_fit": "HORIZONTAL",
+    "content_extent_m": [
+      16.25,
+      28.6315
+    ],
+    "margin_m_each_side": 2.2905,
+    "pixels_per_metre_on_screen": 110.344828,
+    "pixel_anchor": {
+      "point_m": [
+        0.0,
+        34.031459,
+        0.0
+      ],
+      "pixel": [
+        1270,
+        998
+      ]
+    }
+  },
+  "lighting": {
+    "sun_elevation_deg": 55.0,
+    "sun_azimuth_deg_from_front": -35.0,
+    "sun_direction_to_light": [
+      -0.329,
+      -0.4698,
+      0.8192
+    ],
+    "sun_strength": 3.2,
+    "sun_angle_deg": 3.0,
+    "fill_lights_linked_to_asset_only": [
+      {
+        "name": "SkyFill",
+        "elevation_deg": 70.0,
+        "azimuth_deg_from_front": 20.0,
+        "strength": 0.8,
+        "angle_deg": 90.0,
+        "color": [
+          0.75,
+          0.85,
+          1.0
+        ]
+      },
+      {
+        "name": "GroundBounce",
+        "elevation_deg": -25.0,
+        "azimuth_deg_from_front": 10.0,
+        "strength": 0.35,
+        "angle_deg": 90.0,
+        "color": [
+          1.0,
+          0.8,
+          0.65
+        ]
+      }
+    ],
+    "world_light": "none (strength 0)",
+    "ground": "none (no shadow catcher; no cast shadow baked into the PNG)"
+  },
+  "render": {
+    "engine": "CYCLES",
+    "device": "GPU (OPTIX: NVIDIA GeForce RTX 3050 Laptop GPU)",
+    "samples": 256,
+    "adaptive_sampling": true,
+    "denoiser": "compositor OIDN on colour only (albedo + normal guides); raw render alpha kept",
+    "max_bounces": 6,
+    "film_transparent": true,
+    "filter_size_px": 1.5,
+    "view_transform": "Standard",
+    "output_format": "PNG RGBA 8-bit",
+    "resolution_px": [
+      2299,
+      3664
+    ],
+    "render_seconds": 66.3
+  },
+  "projection": {
+    "note": "texture px, top-left origin: x = W/2 + (p.right - cx)*ppm, y = H/2 - (p.up - cy)*ppm",
+    "image_px": [
+      2299,
+      3664
+    ],
+    "px_per_m": 110.34482800000002,
+    "right": [
+      1.0,
+      0.0,
+      0.0
+    ],
+    "up": [
+      0.0,
+      0.6427876353263855,
+      0.7660444378852844
+    ],
+    "center_m": [
+      -1.0920312459048818,
+      14.316876935691603
+    ],
+    "origin_px": [
+      1270.0,
+      3411.7933229660575
+    ],
+    "footprint_corners_px": [
+      [
+        252.75861687499957,
+        3411.7933229660575
+      ],
+      [
+        2045.8620718749999,
+        3411.7933229660575
+      ],
+      [
+        2045.8620718749999,
+        998.0001141834231
+      ],
+      [
+        252.75861687499957,
+        998.0001141834231
+      ]
+    ],
+    "design_bounds_bbox_px": [
+      252.75861687499957,
+      252.45391412168192,
+      2045.8620718749999,
+      3411.7933229660575
+    ],
+    "crop_px": [
+      228,
+      1819,
+      1842,
+      1617
+    ]
+  },
+  "tiling": null,
+  "layers": [
+    {
+      "name": "Slice2",
+      "png": "assets/sprites/landmarks/cds_indoor_basketball__slice2.png",
+      "objects": [
+        "S2Walls",
+        "S2Roof",
+        "S2Overlap"
+      ],
+      "sort_y_m": 11.54382,
+      "z_index": 0,
+      "fade": null,
+      "render_seconds": 20.2,
+      "crop_px": [
+        228,
+        1042,
+        1842,
+        900
+      ]
+    },
+    {
+      "name": "Slice3",
+      "png": "assets/sprites/landmarks/cds_indoor_basketball__slice3.png",
+      "objects": [
+        "S3Walls",
+        "S3Roof"
+      ],
+      "sort_y_m": 22.487641,
+      "z_index": 0,
+      "fade": null,
+      "render_seconds": 22.5,
+      "crop_px": [
+        228,
+        228,
+        1842,
+        938
+      ]
+    }
+  ],
+  "context_assets": [
+    {
+      "asset_id": "cds_table_tennis",
+      "offset_m": [
+        0.0,
+        34.031459,
+        0.0
+      ],
+      "objects": 6,
+      "note": "camera-invisible; casts shadows and bounce light"
+    },
+    {
+      "asset_id": "cds_canteen",
+      "offset_m": [
+        0.0,
+        55.908825,
+        0.0
+      ],
+      "objects": 10,
+      "note": "camera-invisible; casts shadows and bounce light"
+    }
+  ],
+  "seams": [
+    {
+      "a": "Sprite",
+      "b": "Slice2",
+      "asset": null,
+      "offset_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "min_pixels": 200
+    },
+    {
+      "a": "Slice2",
+      "b": "Slice3",
+      "asset": null,
+      "offset_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "min_pixels": 200
+    }
+  ],
+  "kind": "sprite",
+  "ground_tile": null,
+  "total_seconds": 71.9,
+  "blender_run": {
+    "exit_code": 0,
+    "seconds": 73.3,
+    "problem_lines": [
+      "00:01.000  cycles           | WARNING HIPEW initialization failed: Error opening HIP dynamic library"
+    ]
+  },
+  "verification": {
+    "png": {
+      "bit_depth": 8,
+      "png_color_type": 6,
+      "interlace": 0,
+      "file_bytes": 4039410,
+      "size_px": [
+        1842,
+        1617
+      ],
+      "opaque_pixels": 2669992,
+      "partially_transparent_pixels": 16336,
+      "fully_transparent_pixels": 292186,
+      "content_bbox_px": [
+        23,
+        23,
+        1818,
+        1593
+      ],
+      "margins_px": {
+        "left": 23,
+        "right": 23,
+        "top": 23,
+        "bottom": 23
+      },
+      "max_alpha_on_image_border": 0.0
+    },
+    "bbox_deviation_px": [
+      -1.76,
+      -1.45,
+      1.14,
+      1.21
+    ],
+    "minimum_margin_required_px": 16,
+    "tiling": null,
+    "layers": {
+      "Slice2": {
+        "bit_depth": 8,
+        "png_color_type": 6,
+        "interlace": 0,
+        "file_bytes": 1343506,
+        "size_px": [
+          1842,
+          900
+        ],
+        "opaque_pixels": 1394114,
+        "partially_transparent_pixels": 11846,
+        "fully_transparent_pixels": 251840,
+        "content_bbox_px": [
+          23,
+          23,
+          1818,
+          875
+        ],
+        "margins_px": {
+          "left": 23,
+          "right": 23,
+          "top": 23,
+          "bottom": 24
+        },
+        "max_alpha_on_image_border": 0.0
+      },
+      "Slice3": {
+        "bit_depth": 8,
+        "png_color_type": 6,
+        "interlace": 0,
+        "file_bytes": 1597792,
+        "size_px": [
+          1842,
+          938
+        ],
+        "opaque_pixels": 1579338,
+        "partially_transparent_pixels": 13581,
+        "fully_transparent_pixels": 134877,
+        "content_bbox_px": [
+          23,
+          23,
+          1818,
+          913
+        ],
+        "margins_px": {
+          "left": 23,
+          "right": 23,
+          "top": 23,
+          "bottom": 24
+        },
+        "max_alpha_on_image_border": 0.0
+      }
+    },
+    "texture_px": {
+      "total": 6364110,
+      "budget": 9000000,
+      "approx_vram_mb_with_mipmaps": 32.4
+    },
+    "seams": [
+      {
+        "a": "Sprite",
+        "b": "Slice2",
+        "asset": null,
+        "shift_px": [
+          0,
+          0
+        ],
+        "overlap_px": 3725,
+        "mean_rgb_diff": 0.797,
+        "max_rgb_diff": 3.0
+      },
+      {
+        "a": "Slice2",
+        "b": "Slice3",
+        "asset": null,
+        "shift_px": [
+          0,
+          0
+        ],
+        "overlap_px": 3647,
+        "mean_rgb_diff": 0.892,
+        "max_rgb_diff": 3.0
+      }
+    ],
+    "passed": true
+  },
+  "godot": {
+    "scene": "scenes/props/landmarks/CdsIndoorBasketball.tscn",
+    "scene_name": "CdsIndoorBasketball",
+    "scene_semantic_sha256": "bc4d0e479b27b2581b7e86a2b037f9af23890baeb1c19da67d7c13a8b52dcf56",
+    "sprite_offset_adjust_px": [
+      0.0,
+      0.0
+    ],
+    "layout": {
+      "render_px_per_m": 110.34482800000002,
+      "game_px_per_m": 32.0,
+      "sprite_scale": 0.28999999891249995,
+      "sprite_offset_px": [
+        -1042.0,
+        -1592.7933229660575
+      ],
+      "origin_px": [
+        1270.0,
+        3411.7933229660575
+      ],
+      "sprite_rect_game_px": [
+        -302.1799988668249,
+        -923.3000601977812,
+        534.1799979968249,
+        930.3199965112998
+      ],
+      "footprint_game_px": [
+        [
+          -295.00000000000006,
+          0.0
+        ],
+        [
+          224.99999999999991,
+          0.0
+        ],
+        [
+          224.99999999999991,
+          -700.0000279219637
+        ],
+        [
+          -295.00000000000006,
+          -700.0000279219637
+        ]
+      ],
+      "ground_depth_factor": 0.6427876353263855,
+      "layers": [
+        {
+          "name": "Slice2",
+          "position_game_px": [
+            0.0,
+            -237.44719233386994
+          ],
+          "sprite_offset_px": [
+            -1042.0,
+            -1551.0098980546886
+          ],
+          "z_index": 0,
+          "fade": null,
+          "crop_px": [
+            228,
+            1042,
+            1842,
+            900
+          ]
+        },
+        {
+          "name": "Slice3",
+          "position_game_px": [
+            0.0,
+            -462.5528826386776
+          ],
+          "sprite_offset_px": [
+            -1042.0,
+            -1588.783376851399
+          ],
+          "z_index": 0,
+          "fade": null,
+          "crop_px": [
+            228,
+            228,
+            1842,
+            938
+          ]
+        }
+      ],
+      "crop_px": [
+        228,
+        1819,
+        1842,
+        1617
+      ]
+    },
+    "collision": null,
+    "preview_scene": "scenes/tests/asset_previews/CdsIndoorBasketballPreview.tscn"
+  },
+  "godot_import": {
+    "exit_code": 0,
+    "problem_lines": [
+      "WARNING: Detected another project.godot at res://addons/godot_mcp/cache/undo/entry_000003/files. The folder will be ignored.",
+      "WARNING: UID duplicate detected between res://scenes/tests/MCPCheck.tscn and res://addons/godot_mcp/cache/undo/entry_000002/files/scenes/tests/MCPCheck.tscn."
+    ]
+  },
+  "godot_check": {
+    "scene": {
+      "exit_code": 0,
+      "problem_lines": []
+    },
+    "preview": {
+      "exit_code": 0,
+      "problem_lines": []
+    }
+  }
+}

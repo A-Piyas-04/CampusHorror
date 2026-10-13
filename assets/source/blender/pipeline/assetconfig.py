@@ -83,6 +83,7 @@ def load(asset_id_or_path):
     ppm = render.get("px_per_m")
     if ppm is not None and not (isinstance(ppm, (int, float)) and ppm > 0):
         raise ConfigError("render.px_per_m must be a positive number (fixed render scale; omit to use width_px)")
+    _load_large_asset_options(cfg, ground)
 
     godot = cfg.setdefault("godot", {})
     if not isinstance(godot.get("scene_name"), str) or not SCENE_RE.match(godot["scene_name"]):
@@ -122,6 +123,70 @@ def load(asset_id_or_path):
         if rel(p) in PROTECTED:
             raise ConfigError(f"Output {key} would overwrite protected file {rel(p)}")
     return cfg
+
+
+def _load_large_asset_options(cfg, ground):
+    """Opt-in options for large, sliced assets (all absent = the original behaviour).
+
+    render.crop_layers: render the base and every layer only inside its own projected bounds
+        (+ render.crop_pad_px), then trim it to its alpha bbox + pad; the record keeps the full-canvas
+        projection and each sprite's crop_px.
+    render.occlusion: every object outside the sprite being rendered (and every context asset) is a
+        holdout, so a sprite keeps only the pixels where it is the nearest surface (slices that are
+        drawn over each other in Y-sort order; a faded slice shows what is behind the building).
+    render.pixel_anchor_m: [x, y, z] point (metres, asset frame) shifted onto an integer pixel, so
+        separate assets that anchor the same world point share one texel grid.
+    render.max_texture_px: budget for the summed pixel count of the base + layer PNGs.
+    context_assets: [{"asset_id", "offset_m": [x, y, z]}] other assets built camera-invisible at
+        that offset (they cast shadows and bounce light, but are not in the PNGs).
+    seams: [{"a": sprite, "b": sprite, "asset": other asset_id (optional), "offset_m": [x, y, z]
+        (frame of `asset` in this asset's frame), "min_pixels": int}] overlap bands whose opaque
+        pixels must match (sprite = "Sprite" or a layer name)."""
+    render = cfg["render"]
+    render.setdefault("crop_layers", False)
+    render.setdefault("occlusion", False)
+    render.setdefault("crop_pad_px", C.CROP_PAD_PX)
+    render.setdefault("pixel_anchor_m", None)
+    render.setdefault("max_texture_px", None)
+    cfg.setdefault("context_assets", [])
+    cfg.setdefault("seams", [])
+    used = (render["crop_layers"] or render["occlusion"] or render["pixel_anchor_m"] is not None
+            or render["max_texture_px"] is not None or cfg["context_assets"] or cfg["seams"])
+    if ground and used:
+        raise ConfigError("ground tiles don't support crop_layers, occlusion, pixel_anchor_m, max_texture_px, "
+                          "context_assets or seams")
+    if not isinstance(render["crop_layers"], bool) or not isinstance(render["occlusion"], bool):
+        raise ConfigError("render.crop_layers and render.occlusion must be true or false")
+    if not isinstance(render["crop_pad_px"], int) or render["crop_pad_px"] < C.MIN_MARGIN_PX:
+        raise ConfigError(f"render.crop_pad_px must be an integer >= {C.MIN_MARGIN_PX}")
+    anchor = render["pixel_anchor_m"]
+    if anchor is not None and not _vec3(anchor):
+        raise ConfigError("render.pixel_anchor_m must be [x, y, z] in metres")
+    budget = render["max_texture_px"]
+    if budget is not None and not (isinstance(budget, int) and budget > 0):
+        raise ConfigError("render.max_texture_px must be a positive integer")
+    for ctx in cfg["context_assets"]:
+        if not isinstance(ctx, dict) or not ID_RE.match(str(ctx.get("asset_id", ""))) \
+                or not _vec3(ctx.get("offset_m")):
+            raise ConfigError("context_assets entries must be {\"asset_id\": snake_case, \"offset_m\": [x, y, z]}")
+        if ctx["asset_id"] == cfg["asset_id"]:
+            raise ConfigError("an asset can't be its own context asset")
+        if not (C.CONFIG_DIR / f"{ctx['asset_id']}.json").is_file():
+            raise ConfigError(f"context asset config not found: {ctx['asset_id']}")
+    for seam in cfg["seams"]:
+        if not isinstance(seam, dict) or not all(SCENE_RE.match(str(seam.get(k, ""))) for k in ("a", "b")):
+            raise ConfigError("seams entries need PascalCase sprite names \"a\" and \"b\" (\"Sprite\" or a layer)")
+        seam.setdefault("asset", None)
+        seam.setdefault("offset_m", [0.0, 0.0, 0.0])
+        seam.setdefault("min_pixels", 200)
+        if seam["asset"] is not None and not (C.CONFIG_DIR / f"{seam['asset']}.json").is_file():
+            raise ConfigError(f"seam asset config not found: {seam['asset']}")
+        if not _vec3(seam["offset_m"]) or not isinstance(seam["min_pixels"], int):
+            raise ConfigError("seam offset_m must be [x, y, z] and min_pixels an integer")
+
+
+def _vec3(v):
+    return isinstance(v, list) and len(v) == 3 and all(isinstance(c, (int, float)) for c in v)
 
 
 def _load_layers(cfg, ground):
