@@ -150,6 +150,31 @@ def glass_material(name="WindowGlass"):
     return mat
 
 
+def holdout_material(name="RoofCutaway"):
+    """Transparent (alpha 0) wherever the camera sees it; see cutaway_top_faces."""
+    mat = bpy.data.materials.new(name)
+    mat.use_nodes = True
+    nt = mat.node_tree
+    nt.nodes.clear()
+    out = nt.nodes.new("ShaderNodeOutputMaterial")
+    nt.links.new(nt.nodes.new("ShaderNodeHoldout").outputs["Holdout"], out.inputs["Surface"])
+    return mat
+
+
+def cutaway_top_faces(obj, top_z, material):
+    """Gives the upward faces at `top_z` (a solid's top, directly under a roof) the holdout material.
+
+    Only matters when the roof is a separate layer: the base render then shows the ground behind
+    instead of the roof's black shadow on the mass, so a faded roof reveals the player behind the
+    building. With the roof opaque nothing changes, because the roof covers those faces entirely."""
+    mesh = obj.data
+    mesh.materials.append(material)
+    index = len(mesh.materials) - 1
+    for poly in mesh.polygons:
+        if poly.normal.z > 0.99 and min(mesh.vertices[v].co.z for v in poly.vertices) >= top_z - 1e-4:
+            poly.material_index = index
+
+
 def image_material(name, image_path, roughness=0.55):
     """Image texture on UV (sRGB), e.g. the sign face."""
     mat, nt, bsdf = new_material(name)

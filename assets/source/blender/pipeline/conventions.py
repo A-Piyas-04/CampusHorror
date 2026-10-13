@@ -78,3 +78,7 @@ TILE_MATCH_MEAN_MAX = 3.0           # mean RGB diff (0-255) between the bleed an
 SPRITE_TEXTURE_FILTER = 4           # CanvasItem.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS (texture imported with mipmaps)
 UPRIGHT_LIGHT_MASK = 2              # Docs/CONVENTIONS.md §10: lit but not shadowed
 WORLD_COLLISION_LAYER = 1           # "world"
+PLAYER_COLLISION_LAYER = 2          # Player.tscn body layer (layer number); overhead fade areas mask it
+OVERHEAD_FADE_SCRIPT = "res://scripts/components/overhead_visibility.gd"
+OVERHEAD_FADED_ALPHA = 0.35         # layer "fade" default: overhead alpha while the player is under it
+OVERHEAD_FADE_SECONDS = 0.25

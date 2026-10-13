@@ -4,6 +4,7 @@ extends SceneTree
 ##   godot --headless --path . --script res://scenes/tests/asset_previews/asset_scene_check.gd -- <scene res path> <record json abs path>
 
 const TOLERANCE := 0.05
+const OVERHEAD_SCRIPT := "res://scripts/components/overhead_visibility.gd"
 
 var _failures: Array[String] = []
 
@@ -75,6 +76,7 @@ func _check(scene_path: String, record: Dictionary) -> void:
 		- to_local.call(Vector2(corners_px[0][0], corners_px[0][1])).x
 	var length_want: float = (fp["x_max"] - fp["x_min"]) * float(lay["game_px_per_m"])
 	_expect(absf(length_game - length_want) < TOLERANCE, "footprint length %.3f game px == %.3f" % [length_game, length_want])
+	_check_layers(root, record, Vector2(adjust[0], adjust[1]))
 
 	var col: Variant = godot["collision"]
 	var body := root.get_node_or_null("Body") as StaticBody2D
@@ -104,6 +106,65 @@ func _check(scene_path: String, record: Dictionary) -> void:
 		root.name, tex_size.x * sprite.scale.x, tex_size.y * sprite.scale.y, sprite.scale.x, origin_game,
 		corners_game])
 	root.free()
+
+
+## Layer sprites: same canvas and pixel-to-origin mapping as Sprite, on their Y-sort point and z;
+## fade areas: OverheadVisibility on the player layer only, aimed at their layer, shapes as recorded.
+func _check_layers(root: Node2D, record: Dictionary, adjust: Vector2) -> void:
+	var lay: Dictionary = record["godot"]["layout"]
+	var layers: Array = lay.get("layers") if lay.get("layers") != null else []
+	var recorded: Array = record.get("layers") if record.get("layers") != null else []
+	_expect(layers.size() == recorded.size(), "%d layer(s) in the layout, %d rendered" % [layers.size(), recorded.size()])
+	var image_px: Array = record["projection"]["image_px"]
+	var origin_px: Array = record["projection"]["origin_px"]
+	var scale_expected: float = lay["sprite_scale"]
+	var any_sorted := false
+	for i in mini(layers.size(), recorded.size()):
+		var want: Dictionary = layers[i]
+		var name: String = want["name"]
+		var sprite := root.get_node_or_null(NodePath(name)) as Sprite2D
+		if sprite == null or sprite.texture == null:
+			_fail("layer sprite %s with texture missing" % name)
+			continue
+		var pos := Vector2(want["position_game_px"][0], want["position_game_px"][1])
+		any_sorted = any_sorted or not is_zero_approx(pos.y)
+		_expect(sprite.texture.resource_path == "res://" + String(recorded[i]["png"])
+			and sprite.texture.get_size() == Vector2(image_px[0], image_px[1]),
+			"layer %s texture %s, %s" % [name, sprite.texture.resource_path, sprite.texture.get_size()])
+		var image := sprite.texture.get_image()
+		_expect(image != null and image.has_mipmaps(), "layer %s imported with mipmaps" % name)
+		_expect(not sprite.centered and absf(sprite.scale.x - scale_expected) < 1e-4 and absf(sprite.scale.y - scale_expected) < 1e-4
+			and sprite.position.distance_to(pos) < TOLERANCE and sprite.z_index == int(want["z_index"])
+			and sprite.light_mask == (root.get_node("Sprite") as Sprite2D).light_mask,
+			"layer %s: scale %s, position %s (sort point), z %d, light mask %d" % [name, sprite.scale, sprite.position, sprite.z_index, sprite.light_mask])
+		var origin_game: Vector2 = sprite.transform * (Vector2(origin_px[0], origin_px[1]) + sprite.offset)
+		_expect(origin_game.distance_to(adjust) < TOLERANCE,
+			"layer %s: footprint origin pixel lands on node origin (+adjust): %s" % [name, origin_game])
+		var fade: Variant = want["fade"]
+		var area := root.get_node_or_null(NodePath(name + "Fade")) as Area2D
+		if fade == null:
+			_expect(area == null, "layer %s has no fade area" % name)
+			continue
+		if area == null or area.get_script() == null or (area.get_script() as Script).resource_path != OVERHEAD_SCRIPT:
+			_fail("%sFade (%s) missing" % [name, OVERHEAD_SCRIPT])
+			continue
+		var paths: Array = area.get("target_paths")
+		_expect(area.collision_layer == 0 and area.collision_mask == 2 and not area.monitorable
+			and paths.size() == 1 and area.get_node_or_null(paths[0]) == sprite
+			and absf(float(area.get("faded_alpha")) - float(fade["alpha"])) < 1e-4
+			and absf(float(area.get("fade_seconds")) - float(fade["seconds"])) < 1e-4,
+			"%s: layer 0 / mask 2 (player), not monitorable, targets %s, alpha %.2f, %.2f s" % [area.name, name, area.get("faded_alpha"), area.get("fade_seconds")])
+		var shapes: Array = fade["shapes"]
+		_expect(area.get_child_count() == shapes.size(), "%s has %d shape(s), record %d" % [area.name, area.get_child_count(), shapes.size()])
+		for s: Dictionary in shapes:
+			var cs := area.get_node_or_null(NodePath(s["node"])) as CollisionShape2D
+			if cs == null or not (cs.shape is RectangleShape2D):
+				_fail("%s/%s with RectangleShape2D missing" % [area.name, s["node"]])
+				continue
+			_expect((cs.shape as RectangleShape2D).size.distance_to(Vector2(s["size"][0], s["size"][1])) < TOLERANCE
+				and cs.position.distance_to(Vector2(s["center"][0], s["center"][1])) < TOLERANCE,
+				"%s/%s size %s centre %s" % [area.name, s["node"], (cs.shape as RectangleShape2D).size, cs.position])
+	_expect(root.y_sort_enabled == any_sorted, "root y_sort_enabled %s (a layer sorts away from the origin: %s)" % [root.y_sort_enabled, any_sorted])
 
 
 func _expect(condition: bool, what: String) -> void:

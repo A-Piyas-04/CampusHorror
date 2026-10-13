@@ -90,10 +90,11 @@ def step_render(cfg, args, rep):
     (src_dir / ".gdignore").touch()
     # A running editor imports a new PNG with its defaults (no mipmaps) as soon as it appears;
     # writing the first-import settings before the render wins that race.
-    if not cfg["outputs"]["png"].exists():
-        cfg["outputs"]["png"].parent.mkdir(parents=True, exist_ok=True)
-        if godot_scene.ensure_texture_import(cfg["outputs"]["png"], mipmaps=cfg["kind"] != "ground_tile"):
-            say(f"wrote first-import settings before rendering: {assetconfig.rel(cfg['outputs']['png'])}.import")
+    for png in [cfg["outputs"]["png"]] + list(cfg["layer_outputs"].values()):
+        if not png.exists():
+            png.parent.mkdir(parents=True, exist_ok=True)
+            if godot_scene.ensure_texture_import(png, mipmaps=cfg["kind"] != "ground_tile"):
+                say(f"wrote first-import settings before rendering: {assetconfig.rel(png)}.import")
     blender = args.blender or os.environ.get("BLENDER_EXE") or C.DEFAULT_BLENDER_EXE
     cmd = [blender, "--background", "--factory-startup", "--python-exit-code", "1",
            "--python", str(C.BLENDER_ROOT / "pipeline/blender_entry.py"), "--", "--config", cfg["asset_id"]]
@@ -126,6 +127,12 @@ def _check_record(cfg, rep):
               "record output paths match the naming convention")
     for key in ("blend", "png"):
         rep.check(out[key].is_file(), f"{key} exists: {assetconfig.rel(out[key])}")
+    recorded = [(l["name"], l["png"]) for l in record.get("layers") or []]
+    wanted = [(name, assetconfig.rel(p)) for name, p in cfg["layer_outputs"].items()]
+    if recorded or wanted:
+        rep.check(recorded == wanted, f"record layers {recorded} match the config {wanted}")
+        for name, p in cfg["layer_outputs"].items():
+            rep.check(p.is_file(), f"layer {name} png exists: {assetconfig.rel(p)}")
     rep.check((C.PROJECT_ROOT / record["generator"]).is_file() and (C.PROJECT_ROOT / record["config"]).is_file(),
               "generator and config referenced by the record exist")
     return record
@@ -163,13 +170,33 @@ def step_validate(cfg, args, rep):
     m = png["margins_px"] or {}
     rep.check(bool(m) and min(m.values()) >= C.MIN_MARGIN_PX, f"margins {m} >= {C.MIN_MARGIN_PX} px")
 
+    # Layers: same canvas as the base; together they make up the whole model.
+    bboxes = [png["content_bbox_px"]]
+    layer_pngs = {}
+    for name, path in cfg["layer_outputs"].items():
+        try:
+            lp = pngcheck.analyse(path)
+        except pngcheck.PngError as exc:
+            rep.check(False, f"layer {name} PNG readable as 8-bit RGBA: {exc}")
+            return None
+        lm = lp["margins_px"] or {}
+        rep.check(lp["size_px"] == [w, h] and lp["content_bbox_px"] is not None and lp["opaque_pixels"] > 0
+                  and lp["max_alpha_on_image_border"] <= C.MAX_BORDER_ALPHA
+                  and bool(lm) and min(lm.values()) >= C.MIN_MARGIN_PX,
+                  f"layer {name}: {lp['size_px']} like the base, {lp['opaque_pixels']} opaque px, "
+                  f"transparent border, margins {lm}")
+        bboxes.append(lp["content_bbox_px"])
+        layer_pngs[name] = lp
+
     # Alpha bbox vs the design bounds projected through the camera -> framing + origin alignment.
-    x0, y0, x1, y1 = png["content_bbox_px"]
+    x0, y0 = min(b[0] for b in bboxes), min(b[1] for b in bboxes)
+    x1, y1 = max(b[2] for b in bboxes), max(b[3] for b in bboxes)
     actual = [x0, y0, x1 + 1, y1 + 1]
     expected = proj["design_bounds_bbox_px"]
     dev = [round(a - e, 2) for a, e in zip(actual, expected)]
     rep.check(max(abs(d) for d in dev) <= C.CONTENT_BBOX_TOLERANCE_PX,
-              f"alpha bbox {actual} vs projected design bounds {[round(e, 2) for e in expected]} "
+              f"alpha bbox{' (base + layers)' if layer_pngs else ''} {actual} vs projected design bounds "
+              f"{[round(e, 2) for e in expected]} "
               f"(deviation {dev}, tolerance {C.CONTENT_BBOX_TOLERANCE_PX} px)")
     ox, oy = proj["origin_px"]
     rep.check(0 <= ox <= w and 0 <= oy <= h, f"footprint origin pixel ({ox:.2f}, {oy:.2f}) inside the image")
@@ -186,7 +213,7 @@ def step_validate(cfg, args, rep):
             rep.warn(".import has mipmaps off; the sprite is drawn at ~1/7 scale with a mipmap filter")
 
     verification = {"png": png, "bbox_deviation_px": dev, "minimum_margin_required_px": C.MIN_MARGIN_PX,
-                    "tiling": seam}
+                    "tiling": seam, "layers": layer_pngs or None}
     if args.compare_to:
         diff = pngcheck.compare(out["png"], Path(args.compare_to))
         say(f"compare to {args.compare_to}: {diff}")
@@ -330,8 +357,9 @@ def step_scene(cfg, args, rep, record):
     out = cfg["outputs"]
     prev = (record.get("godot") or {}).get("scene_semantic_sha256")
     godot_scene.check_writable(out["scene"], prev, args.force_scene)
-    if godot_scene.ensure_texture_import(out["png"]):
-        say(f"wrote first-import settings (mipmaps on): {assetconfig.rel(out['png'])}.import")
+    for png in [out["png"]] + list(cfg["layer_outputs"].values()):
+        if godot_scene.ensure_texture_import(png):
+            say(f"wrote first-import settings (mipmaps on): {assetconfig.rel(png)}.import")
     existing = out["scene"].read_text(encoding="utf-8") if out["scene"].exists() else None
     if args.no_collision:
         cfg["collision"]["enabled"] = False
@@ -387,17 +415,16 @@ def import_is_current(png):
 
 def step_import(cfg, args, rep):
     """Make sure Godot has imported the PNG (headless --import) so scenes can load it."""
-    out = cfg["outputs"]
-    imp = out["png"].with_name(out["png"].name + ".import")
-    if import_is_current(out["png"]):
+    pngs = [cfg["outputs"]["png"]] + list(cfg["layer_outputs"].values())
+    if all(import_is_current(p) for p in pngs):
         return {"already_imported": True}
     code, output, secs = run([godot_exe(args), "--headless", "--path", str(C.PROJECT_ROOT), "--import"],
                              C.LOG_DIR / f"{cfg['asset_id']}.godot_import.log", timeout=600)
     found = problems(output)
     for line in found:
         rep.warn("Godot import: " + line)
-    rep.check(code == 0 and imp.exists() and import_is_current(out["png"]),
-              f"Godot imported the current texture (exit {code}, {secs:.1f} s)")
+    rep.check(code == 0 and all(import_is_current(p) for p in pngs),
+              f"Godot imported the current texture{'s' if len(pngs) > 1 else ''} (exit {code}, {secs:.1f} s)")
     return {"exit_code": code, "problem_lines": found}
 
 
@@ -469,8 +496,10 @@ def build_one(asset, steps, args):
             if "godot" in steps and not rep.failed:
                 record["godot_import"] = step_import(cfg, args, rep)
                 imported = True
-                if not rep.failed and godot_scene.texture_uid(cfg["outputs"]["png"]) and \
-                        godot_scene.texture_uid(cfg["outputs"]["png"]) not in cfg["outputs"]["scene"].read_text(encoding="utf-8"):
+                uids = [godot_scene.texture_uid(p)
+                        for p in [cfg["outputs"]["png"]] + list(cfg["layer_outputs"].values())]
+                scene_text = cfg["outputs"]["scene"].read_text(encoding="utf-8")
+                if not rep.failed and any(u and u not in scene_text for u in uids):
                     say("embedding the texture uid Godot just assigned")
                     record["godot"] = scene_step(cfg, args, rep)
         if "preview" in steps and not rep.failed and record.get("godot"):

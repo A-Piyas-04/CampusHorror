@@ -5,6 +5,10 @@ The generated prop scene is a pure function of the asset config and the render r
     <SceneName> (Node2D)          origin = ground-footprint origin of the Blender model
     ├── Sprite (Sprite2D)         centered = false; offset puts the footprint origin pixel on (0, 0);
     │                             uniform scale = GAME_PX_PER_M / render px-per-metre
+    ├── <Layer> (Sprite2D)        one per config layer, same pixels-to-origin mapping; positioned on its
+    │                             Y-sort point (the root is then y_sort_enabled), optional z_index
+    ├── <Layer>Fade (Area2D)      OverheadVisibility: fades <Layer> while the player stands in its rects
+    │   └── Shape<Name> (CollisionShape2D)
     └── Body (StaticBody2D)       optional collision stage (config "collision"), never derived from alpha
         └── Collision (CollisionShape2D, RectangleShape2D from the declared footprint;
                        or one Collision<Name> per rectangle of collision.rects_m)
@@ -65,6 +69,24 @@ def layout(cfg, record):
     footprint_game = [((x - ox) * scale + adj_x, (y - oy) * scale + adj_y)
                       for x, y in proj["footprint_corners_px"]]
     w, h = proj["image_px"]
+    depth = abs(proj["up"][1])
+    layers = []
+    for layer in cfg.get("layers", []):
+        # Ground y (metres, +Y = back) -> game px (screen-down); the offset compensates the position.
+        sort_y = -layer["sort_y_m"] * C.GAME_PX_PER_M * depth
+        fade = None
+        if layer["fade"]:
+            fade = {"node": layer["name"] + "Fade", "alpha": layer["fade"]["alpha"],
+                    "seconds": layer["fade"]["seconds"],
+                    "shapes": [_ground_rect(f"Shape{n}", f"RectangleShape2D_{layer['name']}Fade{n}", r, depth)
+                               for n, r in layer["fade"]["rects_m"].items()]}
+        layers.append({
+            "name": layer["name"],
+            "position_game_px": [0.0, sort_y],
+            "sprite_offset_px": [offset[0], offset[1] - sort_y / scale],
+            "z_index": layer["z_index"],
+            "fade": fade,
+        })
     return {
         "render_px_per_m": ppm,
         "game_px_per_m": C.GAME_PX_PER_M,
@@ -73,8 +95,19 @@ def layout(cfg, record):
         "origin_px": [ox, oy],
         "sprite_rect_game_px": [offset[0] * scale, offset[1] * scale, w * scale, h * scale],
         "footprint_game_px": [list(p) for p in footprint_game],
-        "ground_depth_factor": abs(proj["up"][1]),
+        "ground_depth_factor": depth,
+        "layers": layers or None,
     }
+
+
+def _ground_rect(node, res_id, rect_m, depth):
+    """Ground rectangle [x_min, x_max, y_min, y_max] in metres -> projected game px (Blender -Y = screen-down)."""
+    x0, x1, y0, y1 = rect_m
+    k = C.GAME_PX_PER_M
+    return {"node": node, "resource_id": res_id,
+            "center": ((x0 + x1) / 2.0 * k, -(y0 + y1) / 2.0 * k * depth),
+            "size": ((x1 - x0) * k, (y1 - y0) * k * depth),
+            "metres": [x0, x1, y0, y1]}
 
 
 def collision_rect(cfg, record, lay):
@@ -214,9 +247,22 @@ def build_prop_scene(cfg, record, existing_text=None):
     tex_uid = texture_uid(out["png"])
     ext = (f'[ext_resource type="Texture2D"' + (f' uid="{tex_uid}"' if tex_uid else "")
            + f' path="{assetconfig.res_path(out["png"])}" id="1_sprite"]\n')
+    layers = lay["layers"] or []
+    layer_pngs = cfg.get("layer_outputs", {})
+    for i, layer in enumerate(layers):
+        png = layer_pngs[layer["name"]]
+        uid_l = texture_uid(png)
+        ext += (f'[ext_resource type="Texture2D"' + (f' uid="{uid_l}"' if uid_l else "")
+                + f' path="{assetconfig.res_path(png)}" id="{i + 2}_{layer["name"]}"]\n')
+    if any(layer["fade"] for layer in layers):
+        ext += f'[ext_resource type="Script" path="{C.OVERHEAD_FADE_SCRIPT}" id="overhead_visibility"]\n'
     parts = [header, ext]
     if col:
         for shape in col["shapes"]:
+            parts.append(f'[sub_resource type="RectangleShape2D" id="{shape["resource_id"]}"]\n'
+                         f'size = {vec2(*shape["size"])}\n')
+    for layer in layers:
+        for shape in (layer["fade"] or {}).get("shapes", []):
             parts.append(f'[sub_resource type="RectangleShape2D" id="{shape["resource_id"]}"]\n'
                          f'size = {vec2(*shape["size"])}\n')
 
@@ -224,9 +270,14 @@ def build_prop_scene(cfg, record, existing_text=None):
             f"({record['outputs']['record']}). Don't edit by hand: change the config and re-run "
             f"assets/source/blender/build_asset.py. Origin = ground-footprint origin of the Blender model. "
             f"Sprite scale = {C.GAME_PX_PER_M:g} game px/m / {lay['render_px_per_m']:.2f} render px/m.")
+    if layers:
+        desc += (" Layers (" + ", ".join(l["name"] for l in layers) + ") are separate renders from the same camera"
+                 "; a <Layer>Fade area (OverheadVisibility) fades its layer while the player stands under it.")
     root_props = [("editor_description", gd_string(desc))]
     if g["z_index"]:
         root_props.append(("z_index", str(g["z_index"])))
+    if any(abs(l["position_game_px"][1]) > 1e-9 for l in layers):
+        root_props.append(("y_sort_enabled", "true"))
     root_props += [("metadata/asset_id", gd_string(cfg["asset_id"])),
                    ("metadata/generated_by", gd_string(C.PIPELINE_MARKER))]
     parts.append(_node(scene, "Node2D", None, ids, root_props))
@@ -242,6 +293,41 @@ def build_prop_scene(cfg, record, existing_text=None):
         ("offset", vec2(*lay["sprite_offset_px"])),
     ]
     parts.append(_node("Sprite", "Sprite2D", ".", ids, sprite_props))
+
+    for i, layer in enumerate(layers):
+        props = []
+        if layer["z_index"]:
+            props.append(("z_index", str(layer["z_index"])))
+        if g["light_mask"] != 1:
+            props.append(("light_mask", str(g["light_mask"])))
+        if abs(layer["position_game_px"][1]) > 1e-9:
+            props.append(("position", vec2(*layer["position_game_px"])))
+        props += [
+            ("texture_filter", str(g["texture_filter"])),
+            ("scale", vec2(lay["sprite_scale"], lay["sprite_scale"])),
+            ("texture", f'ExtResource("{i + 2}_{layer["name"]}")'),
+            ("centered", "false"),
+            ("offset", vec2(*layer["sprite_offset_px"])),
+        ]
+        parts.append(_node(layer["name"], "Sprite2D", ".", ids, props))
+    for layer in layers:
+        fade = layer["fade"]
+        if not fade:
+            continue
+        parts.append(_node(fade["node"], "Area2D", ".", ids, [
+            ("collision_layer", "0"),
+            ("collision_mask", str(1 << (C.PLAYER_COLLISION_LAYER - 1))),
+            ("monitorable", "false"),
+            ("script", 'ExtResource("overhead_visibility")'),
+            ("target_paths", f'Array[NodePath]([NodePath("../{layer["name"]}")])'),
+            ("faded_alpha", fnum(fade["alpha"])),
+            ("fade_seconds", fnum(fade["seconds"])),
+        ]))
+        for shape in fade["shapes"]:
+            parts.append(_node(shape["node"], "CollisionShape2D", fade["node"], ids, [
+                ("position", vec2(*shape["center"])),
+                ("shape", f'SubResource("{shape["resource_id"]}")'),
+            ]))
 
     if col:
         body_props = []

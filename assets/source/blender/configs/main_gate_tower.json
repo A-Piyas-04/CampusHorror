@@ -17,6 +17,20 @@
     "sprite_offset_adjust_px": [0.0, 0.0],
     "preview_scene": true
   },
+  "layers": [
+    {
+      "name": "Roof",
+      "objects": ["GateRoofCap"],
+      "z_index": 10,
+      "fade": {
+        "rects_m": {
+          "Behind": [-7.125, 6.125, 6.7403, 18.6]
+        },
+        "alpha": 0.35,
+        "seconds": 0.25
+      }
+    }
+  ],
   "collision": {
     "enabled": true,
     "source": "rects_m",

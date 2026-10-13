@@ -19,8 +19,8 @@ boundary wall joins (x = 140 game px from the gate axis).
 import bmesh
 
 from generators.landmark_common import (arch_apex_z, arch_outline, brick_shader_material, concrete_material,
-                                        disc_y, finish_bmesh, finish_boxes, loft_rects, paint_material,
-                                        strip_prism)
+                                        cutaway_top_faces, disc_y, finish_bmesh, finish_boxes, holdout_material,
+                                        loft_rects, paint_material, strip_prism)
 from pipeline.modeling import BoxBuilder, extreme_points
 
 COLLECTION_NAME = "MainGateTower"
@@ -75,6 +75,9 @@ def build(collection, rng, params):
     clear = arch_outline(c, zs, d, jambs=False)
     strip_prism(bm, clear, [(x, top) for x, _ in clear], fp, back)
     vault = finish_bmesh(collection, "GatePassageVault", bm, [brick])
+    cutaway = holdout_material("GateRoofCutaway")
+    for obj in (brick_obj, vault):
+        cutaway_top_faces(obj, top, cutaway)
 
     # --- stepped white rings (each a closed band between two concentric pointed outlines)
     bm = bmesh.new()

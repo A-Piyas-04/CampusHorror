@@ -17,6 +17,36 @@
     "sprite_offset_adjust_px": [0.0, 0.0],
     "preview_scene": true
   },
+  "layers": [
+    {
+      "name": "Room",
+      "objects": ["PavilionBrickMass", "PavilionWindowFrames", "PavilionWindowSills", "PavilionWindowGlass", "PavilionWindowGrille"],
+      "sort_y_m": 2.8197
+    },
+    {
+      "name": "RoomRoof",
+      "objects": ["PavilionRoomRoof"],
+      "sort_y_m": 2.8197,
+      "fade": {
+        "rects_m": {
+          "Behind": [-6.5, 0.5, 9.6257, 13.2]
+        },
+        "alpha": 0.35,
+        "seconds": 0.25
+      }
+    },
+    {
+      "name": "Canopy",
+      "objects": ["PavilionPorchSlab", "PavilionSignBoard", "PavilionSignFace"],
+      "fade": {
+        "rects_m": {
+          "Porch": [-7.85, 2.475, 1.5, 2.8197]
+        },
+        "alpha": 0.35,
+        "seconds": 0.25
+      }
+    }
+  ],
   "collision": {
     "enabled": true,
     "source": "rects_m",

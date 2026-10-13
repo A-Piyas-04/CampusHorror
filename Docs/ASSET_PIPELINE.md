@@ -122,6 +122,25 @@ Collision is never derived from the sprite's alpha. It is off unless the config 
 - `depth_mode`: `projected` (matches the drawn footprint, ×0.643) or `top_down` (metres × 32 unchanged).
 - Rectangles only, and only for azimuth 0. `--no-collision` skips the stage for one run.
 
+## Render layers (optional, Batch 3A)
+
+One sprite Y-sorts at one point. A building with parts that must sort or draw differently (a roof that should cover the player north of the building, a room behind a porch) lists them as layers:
+
+```json
+"layers": [
+  { "name": "Roof", "objects": ["GateRoofCap"], "z_index": 10,
+    "fade": { "rects_m": { "Behind": [-7.125, 6.125, 6.7403, 18.6] }, "alpha": 0.35, "seconds": 0.25 } },
+  { "name": "Room", "objects": ["PavilionBrickMass", "..."], "sort_y_m": 2.8197 }
+]
+```
+
+- `name`: PascalCase, unique, not `Sprite` / `Body`. `objects`: generator object names; an object belongs to at most one layer. Everything not in a layer stays in the base `Sprite`, which must not end up empty. Not allowed on tileable assets.
+- **Render:** the base PNG is rendered with the layered objects hidden from the camera (`visible_camera = False`, so they still cast shadows and bounce light), then each layer is rendered alone from the same camera into `<asset_id>__<snake_name>.png` (same size and projection). Stacking the layers over the base gives the full render.
+- **Godot:** each layer is a `Sprite2D` named after it, at position `(0, −sort_y_m × 32 × 0.643)` (its Y-sort point; 0 = the asset origin) with the offset compensated so its pixels land exactly where the base's do. `z_index` defaults to 0. If any layer sorts away from the origin, the root gets `y_sort_enabled = true` so the layer sorts on its own line in the zone.
+- **Fade (`fade`, optional):** adds `<Name>Fade` (`Area2D` with `scripts/components/overhead_visibility.gd`, collision layer 0, mask 2 = player, not monitorable) whose `target_paths` is the layer sprite. `rects_m` are ground rectangles `[x_min, x_max, y_min, y_max]` in metres (y positive = north, like collision `projected`), one `Shape<Name>` each. `alpha` defaults to 0.35 and `seconds` to 0.25 (`pipeline/conventions.py`). Size a rect to the ground where the layer covers at least a quarter of the 64 px player, plus 0.5 m for the player's half-width.
+- **Holdout under roofs:** a top face directly under an overhead layer is in that layer's full shadow and renders black. `landmark_common.cutaway_top_faces(obj, top_z, holdout_material(...))` makes such faces transparent in the base sprite, so the faded roof shows the ground and the player instead of a black slab. With the roof opaque the composite is unchanged.
+- **Validation:** each layer PNG must have the base's size, opaque content and a transparent border; margins and the alpha bbox are checked on the union. `asset_scene_check.gd` checks each layer sprite and fade area.
+
 ## Regeneration and safety rules
 
 - Files the pipeline never writes: the original wall `.blend`, its three PNGs and records, `campus_asset_workshop.blend`, `WallAssetPreview.tscn`, `Main.tscn` (list in `pipeline/assetconfig.py`).
@@ -248,6 +267,14 @@ Reconstructed from `Docs/map-reference/area1/mainGate.jpg` (plus `whole view.png
 - `generators/landmark_common.py`: shared procedural brick shader (object-space running bond, same palette as the walls), paint/concrete/steel/glass/image materials, the two-centred pointed-arch outline, and small bmesh builders. New landmark generators should reuse it.
 - `tools/main_gate_sign_texture.ps1` (WPF text rendering, so the Bengali line is shaped correctly) writes `textures/main_gate_sign.png`; `textures/` has a `.gdignore`. The pavilion generator maps it onto the sign face. Rebuild the pavilion after changing the sign.
 - The landmark is placed and checked in the zone, not in the gallery: see `Docs/CAMPUS_MAP.md` ("Main Gate landmark") and `scenes/tests/environment_previews/MainGateLandmarkCheck.tscn`.
+- **Batch 3A layers** (see "Render layers"):
+
+| Asset | PNGs | Layers |
+|---|---|---|
+| `main_gate_tower` | `main_gate_tower.png`, `main_gate_tower__roof.png` (3143 × 3188) | `Roof` = `GateRoofCap`, z 10, `RoofFade` (`Behind`). Brick and vault top faces are holdout (`GateRoofCutaway`) |
+| `main_gate_pavilion` | `main_gate_pavilion.png` (columns), `__room.png`, `__room_roof.png`, `__canopy.png` (2451 × 2356) | `Room` (brick mass, window frames, sills, glass, grilles) and `RoomRoof` (`PavilionRoomRoof`, `RoomRoofFade`) at `sort_y_m` 2.8197 = the room's north face; `Canopy` (`PavilionPorchSlab`, sign board and face; `CanopyFade` over the porch). The old single slab is split into `PavilionPorchSlab` and `PavilionRoomRoof`; brick-mass and column tops are holdout |
+
+  `main_gate_leaves` has no layers and is unchanged.
 
 ## What still needs eyes
 

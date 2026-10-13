@@ -144,13 +144,22 @@
         "evaluated_faces": 36
       },
       {
-        "object": "PavilionCanopySlab",
+        "object": "PavilionPorchSlab",
         "evaluated_bounds_m": {
           "x": 9.325,
-          "y": 10.18,
+          "y": 3.2197,
           "z": 0.25
         },
-        "evaluated_faces": 108
+        "evaluated_faces": 54
+      },
+      {
+        "object": "PavilionRoomRoof",
+        "evaluated_bounds_m": {
+          "x": 6.0,
+          "y": 6.9603,
+          "z": 0.25
+        },
+        "evaluated_faces": 54
       },
       {
         "object": "PavilionColumns",
@@ -258,7 +267,7 @@
       2451,
       2356
     ],
-    "render_seconds": 26.3
+    "render_seconds": 50.2
   },
   "projection": {
     "note": "texture px, top-left origin: x = W/2 + (p.right - cx)*ppm, y = H/2 - (p.up - cy)*ppm",
@@ -311,14 +320,77 @@
     ]
   },
   "tiling": null,
+  "layers": [
+    {
+      "name": "Room",
+      "png": "assets/sprites/landmarks/main_gate_pavilion__room.png",
+      "objects": [
+        "PavilionBrickMass",
+        "PavilionWindowFrames",
+        "PavilionWindowSills",
+        "PavilionWindowGlass",
+        "PavilionWindowGrille"
+      ],
+      "sort_y_m": 2.8197,
+      "z_index": 0,
+      "fade": null,
+      "render_seconds": 14.0
+    },
+    {
+      "name": "RoomRoof",
+      "png": "assets/sprites/landmarks/main_gate_pavilion__room_roof.png",
+      "objects": [
+        "PavilionRoomRoof"
+      ],
+      "sort_y_m": 2.8197,
+      "z_index": 0,
+      "fade": {
+        "rects_m": {
+          "Behind": [
+            -6.5,
+            0.5,
+            9.6257,
+            13.2
+          ]
+        },
+        "alpha": 0.35,
+        "seconds": 0.25
+      },
+      "render_seconds": 15.4
+    },
+    {
+      "name": "Canopy",
+      "png": "assets/sprites/landmarks/main_gate_pavilion__canopy.png",
+      "objects": [
+        "PavilionPorchSlab",
+        "PavilionSignBoard",
+        "PavilionSignFace"
+      ],
+      "sort_y_m": 0.0,
+      "z_index": 0,
+      "fade": {
+        "rects_m": {
+          "Porch": [
+            -7.85,
+            2.475,
+            1.5,
+            2.8197
+          ]
+        },
+        "alpha": 0.35,
+        "seconds": 0.25
+      },
+      "render_seconds": 11.6
+    }
+  ],
   "kind": "sprite",
   "ground_tile": null,
-  "total_seconds": 26.5,
+  "total_seconds": 50.3,
   "blender_run": {
     "exit_code": 0,
-    "seconds": 27.6,
+    "seconds": 51.5,
     "problem_lines": [
-      "00:00.750  cycles           | WARNING HIPEW initialization failed: Error opening HIP dynamic library"
+      "00:00.843  cycles           | WARNING HIPEW initialization failed: Error opening HIP dynamic library"
     ]
   },
   "verification": {
@@ -326,24 +398,24 @@
       "bit_depth": 8,
       "png_color_type": 6,
       "interlace": 0,
-      "file_bytes": 4452464,
+      "file_bytes": 1671229,
       "size_px": [
         2451,
         2356
       ],
-      "opaque_pixels": 2684206,
-      "partially_transparent_pixels": 25570,
-      "fully_transparent_pixels": 3064780,
+      "opaque_pixels": 208892,
+      "partially_transparent_pixels": 15260,
+      "fully_transparent_pixels": 5550404,
       "content_bbox_px": [
-        167,
-        168,
-        2283,
+        251,
+        1568,
+        2116,
         2187
       ],
       "margins_px": {
-        "left": 167,
-        "right": 167,
-        "top": 168,
+        "left": 251,
+        "right": 334,
+        "top": 1568,
         "bottom": 168
       },
       "max_alpha_on_image_border": 0.0
@@ -356,12 +428,92 @@
     ],
     "minimum_margin_required_px": 16,
     "tiling": null,
+    "layers": {
+      "Room": {
+        "bit_depth": 8,
+        "png_color_type": 6,
+        "interlace": 0,
+        "file_bytes": 2330080,
+        "size_px": [
+          2451,
+          2356
+        ],
+        "opaque_pixels": 888222,
+        "partially_transparent_pixels": 13866,
+        "fully_transparent_pixels": 4872468,
+        "content_bbox_px": [
+          167,
+          226,
+          1847,
+          1762
+        ],
+        "margins_px": {
+          "left": 167,
+          "right": 603,
+          "top": 226,
+          "bottom": 593
+        },
+        "max_alpha_on_image_border": 0.0
+      },
+      "RoomRoof": {
+        "bit_depth": 8,
+        "png_color_type": 6,
+        "interlace": 0,
+        "file_bytes": 2832054,
+        "size_px": [
+          2451,
+          2356
+        ],
+        "opaque_pixels": 1356340,
+        "partially_transparent_pixels": 9608,
+        "fully_transparent_pixels": 4408608,
+        "content_bbox_px": [
+          521,
+          168,
+          1847,
+          1198
+        ],
+        "margins_px": {
+          "left": 521,
+          "right": 603,
+          "top": 168,
+          "bottom": 1157
+        },
+        "max_alpha_on_image_border": 0.0
+      },
+      "Canopy": {
+        "bit_depth": 8,
+        "png_color_type": 6,
+        "interlace": 0,
+        "file_bytes": 2297777,
+        "size_px": [
+          2451,
+          2356
+        ],
+        "opaque_pixels": 1018943,
+        "partially_transparent_pixels": 11056,
+        "fully_transparent_pixels": 4744557,
+        "content_bbox_px": [
+          223,
+          1155,
+          2283,
+          1654
+        ],
+        "margins_px": {
+          "left": 223,
+          "right": 167,
+          "top": 1155,
+          "bottom": 701
+        },
+        "max_alpha_on_image_border": 0.0
+      }
+    },
     "passed": true
   },
   "godot": {
     "scene": "scenes/props/landmarks/MainGatePavilion.tscn",
     "scene_name": "MainGatePavilion",
-    "scene_semantic_sha256": "2f3c763d8e4bb7aeb0c796119f014e973fad839d01e445416fe0fe76ab30a193",
+    "scene_semantic_sha256": "6ccd4404ace2161411393e3d1c47bcbec5eb5d8a10b883d61bd37ba771fa15b8",
     "sprite_offset_adjust_px": [
       0.0,
       0.0
@@ -402,7 +554,96 @@
           -201.1668183517456
         ]
       ],
-      "ground_depth_factor": 0.6427876353263855
+      "ground_depth_factor": 0.6427876353263855,
+      "layers": [
+        {
+          "name": "Room",
+          "position_game_px": [
+            0.0,
+            -57.998985450553896
+          ],
+          "sprite_offset_px": [
+            -1846.1896415333715,
+            -1755.7952951468576
+          ],
+          "z_index": 0,
+          "fade": null
+        },
+        {
+          "name": "RoomRoof",
+          "position_game_px": [
+            0.0,
+            -57.998985450553896
+          ],
+          "sprite_offset_px": [
+            -1846.1896415333715,
+            -1755.7952951468576
+          ],
+          "z_index": 0,
+          "fade": {
+            "node": "RoomRoofFade",
+            "alpha": 0.35,
+            "seconds": 0.25,
+            "shapes": [
+              {
+                "node": "ShapeBehind",
+                "resource_id": "RectangleShape2D_RoomRoofFadeBehind",
+                "center": [
+                  -96.0,
+                  -234.75324364271162
+                ],
+                "size": [
+                  224.0,
+                  73.52050703830717
+                ],
+                "metres": [
+                  -6.5,
+                  0.5,
+                  9.6257,
+                  13.2
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "Canopy",
+          "position_game_px": [
+            0.0,
+            -0.0
+          ],
+          "sprite_offset_px": [
+            -1846.1896415333715,
+            -2155.7882979416313
+          ],
+          "z_index": 0,
+          "fade": {
+            "node": "CanopyFade",
+            "alpha": 0.35,
+            "seconds": 0.25,
+            "shapes": [
+              {
+                "node": "ShapePorch",
+                "resource_id": "RectangleShape2D_CanopyFadePorch",
+                "center": [
+                  -86.0,
+                  -44.4263959731102
+                ],
+                "size": [
+                  330.4,
+                  27.145178954887392
+                ],
+                "metres": [
+                  -7.85,
+                  2.475,
+                  1.5,
+                  2.8197
+                ]
+              }
+            ]
+          }
+        }
+      ]
     },
     "collision": {
       "source": "rects_m",

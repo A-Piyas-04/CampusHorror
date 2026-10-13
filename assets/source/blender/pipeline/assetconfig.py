@@ -114,11 +114,73 @@ def load(asset_id_or_path):
     if col["depth_mode"] not in ("projected", "top_down"):
         raise ConfigError("collision.depth_mode must be 'projected' or 'top_down'")
 
+    cfg["layers"] = _load_layers(cfg, ground)
+
     cfg["outputs"] = outputs(cfg)
-    for key, p in cfg["outputs"].items():
+    cfg["layer_outputs"] = layer_outputs(cfg)
+    for key, p in list(cfg["outputs"].items()) + list(cfg["layer_outputs"].items()):
         if rel(p) in PROTECTED:
             raise ConfigError(f"Output {key} would overwrite protected file {rel(p)}")
     return cfg
+
+
+def _load_layers(cfg, ground):
+    """Optional extra sprites rendered from the same camera (e.g. a roof that fades over the player).
+
+    Each layer: {"name": PascalCase, "objects": [generator object names], "sort_y_m": ground y in
+    metres of its Y-sort point (default 0 = the asset origin), "z_index": int (default 0),
+    "fade": optional {"rects_m": {Name: [x_min, x_max, y_min, y_max]}, "alpha": 0.35, "seconds": 0.25}}.
+    Objects not listed in any layer form the base `Sprite`."""
+    layers = cfg.get("layers", [])
+    if not layers:
+        return []
+    if ground:
+        raise ConfigError("ground tiles have no layers")
+    if not isinstance(layers, list):
+        raise ConfigError("layers must be a list")
+    names, objects = set(), set()
+    for layer in layers:
+        name = layer.get("name")
+        if not isinstance(name, str) or not SCENE_RE.match(name) or name in names or name in RESERVED_NODE_NAMES:
+            raise ConfigError(f"layer name {name!r} must be unique PascalCase and not one of {sorted(RESERVED_NODE_NAMES)}")
+        names.add(name)
+        objs = layer.get("objects")
+        if not isinstance(objs, list) or not objs or not all(isinstance(o, str) for o in objs):
+            raise ConfigError(f"layer {name}: objects must be a non-empty list of object names")
+        if objects & set(objs):
+            raise ConfigError(f"layer {name}: objects {sorted(objects & set(objs))} are already in another layer")
+        objects |= set(objs)
+        layer.setdefault("sort_y_m", 0.0)
+        layer.setdefault("z_index", 0)
+        if not isinstance(layer["sort_y_m"], (int, float)) or not isinstance(layer["z_index"], int):
+            raise ConfigError(f"layer {name}: sort_y_m must be a number and z_index an integer")
+        fade = layer.setdefault("fade", None)
+        if fade is not None:
+            rects = fade.get("rects_m")
+            if not isinstance(rects, dict) or not rects or any(
+                    not SCENE_RE.match(n) or len(r) != 4 or r[0] >= r[1] or r[2] >= r[3] for n, r in rects.items()):
+                raise ConfigError(f"layer {name}: fade.rects_m must map PascalCase names to "
+                                  "[x_min, x_max, y_min, y_max] in metres")
+            fade.setdefault("alpha", C.OVERHEAD_FADED_ALPHA)
+            fade.setdefault("seconds", C.OVERHEAD_FADE_SECONDS)
+            if not 0.0 <= fade["alpha"] < 1.0 or fade["seconds"] < 0.0:
+                raise ConfigError(f"layer {name}: fade.alpha must be in [0, 1) and fade.seconds >= 0")
+    return layers
+
+
+# Node names the generated prop scene already uses; a layer can't take them.
+RESERVED_NODE_NAMES = {"Sprite", "Body"}
+
+
+def layer_outputs(cfg):
+    """Layer PNGs sit next to the base PNG: <asset_id>__<layer_snake>.png."""
+    base = outputs(cfg)["png"]
+    return {layer["name"]: base.with_name(f"{cfg['asset_id']}__{snake(layer['name'])}.png")
+            for layer in cfg.get("layers", [])}
+
+
+def snake(name):
+    return re.sub(r"(?<!^)(?=[A-Z])", "_", name).lower()
 
 
 def read_record(cfg):
@@ -136,8 +198,7 @@ def check_render_outputs_owned(cfg):
     record = read_record(cfg)
     owned = (record is not None and record.get("pipeline") == C.PIPELINE_MARKER
              and record.get("asset") == cfg["asset_id"])
-    for key in ("blend", "png", "record"):
-        p = cfg["outputs"][key]
+    for p in [cfg["outputs"][key] for key in ("blend", "png", "record")] + list(cfg["layer_outputs"].values()):
         if p.exists() and not owned:
             raise ConfigError(f"{rel(p)} exists but was not produced by the pipeline for "
                               f"{cfg['asset_id']!r}; refusing to overwrite it.")

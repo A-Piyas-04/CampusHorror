@@ -1,0 +1,8 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scenes/tests/environment_previews/main_gate_overhead_check.gd" id="1_check"]
+
+[node name="MainGateOverheadCheck" type="Node2D"]
+editor_description = "TEMPORARY Milestone G Batch 3A test-only check (not a zone, not reachable from Main). Instances the real scenes/world/MainGateExterior.tscn and the real Player.tscn and drives the player through the Main Gate's covered areas to verify the OverheadVisibility fades (tower roof, pavilion room roof, pavilion canopy). Output: [OVERHEAD] lines."
+y_sort_enabled = true
+script = ExtResource("1_check")

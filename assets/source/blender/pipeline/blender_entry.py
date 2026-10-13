@@ -15,6 +15,11 @@ define DEFAULT_PARAMS and build(collection, rng, params) returning a dict with:
                        (rendered between neighbour copies, bleed columns kept, rest cut)
     "tile_period_m":   ground tiles (config kind "ground_tile") only; the model is one square
                        period centred on the origin, rendered straight down between 8 copies
+
+Config "layers" split the render: the base PNG shows every object not in a layer, then each
+layer PNG shows only its own objects. All renders use the same camera, so they share the
+origin pixel. Hidden objects are only hidden from camera rays: they still cast shadows and
+bounce light, so each layer is lit exactly as in the combined model.
 """
 
 import importlib
@@ -88,6 +93,26 @@ def main():
     # Horizontally tileable assets: neighbour copies one period to each side give the module
     # ends the shadows, occlusion and bounce of a continuous run, and supply the bleed columns.
     period = None if ground else built.get("tile_period_x_m")
+    by_name = {obj.name: obj for obj in built["objects"]}
+    layer_objects = {}
+    for layer in cfg["layers"]:
+        missing = [n for n in layer["objects"] if n not in by_name]
+        if missing:
+            raise SystemExit(f"layer {layer['name']}: unknown objects {missing}; generator objects: {sorted(by_name)}")
+        layer_objects[layer["name"]] = [by_name[n] for n in layer["objects"]]
+    if layer_objects and period:
+        raise SystemExit("layers are not supported on tileable assets")
+    layered = {obj.name for objs in layer_objects.values() for obj in objs}
+    if layer_objects and not [o for o in built["objects"] if o.name not in layered]:
+        raise SystemExit("every object is in a layer; the base Sprite would be empty")
+
+    def show_only(visible):
+        for obj in built["objects"]:
+            obj.visible_camera = obj in visible
+
+    if layer_objects:
+        show_only([o for o in built["objects"] if o.name not in layered])
+
     if period:
         for obj in built["objects"]:
             for name, dx in (("TileWest", -period), ("TileEast", period)):
@@ -145,6 +170,28 @@ def main():
     if not out["png"].exists():
         raise RuntimeError(f"Render finished but {out['png']} was not written.")
     print(f"{LOG} Rendered: {out['png']} in {render_seconds:.1f} s")
+
+    layers_info = []
+    for layer in cfg["layers"]:
+        png = cfg["layer_outputs"][layer["name"]]
+        show_only(layer_objects[layer["name"]])
+        scene.render.filepath = str(png)
+        t_layer = time.time()
+        bpy.ops.render.render(write_still=True)
+        if not png.exists():
+            raise RuntimeError(f"Render finished but {png} was not written.")
+        seconds = time.time() - t_layer
+        render_seconds += seconds
+        print(f"{LOG} Rendered layer {layer['name']}: {png} in {seconds:.1f} s")
+        layers_info.append({
+            "name": layer["name"],
+            "png": assetconfig.rel(png),
+            "objects": layer["objects"],
+            "sort_y_m": layer["sort_y_m"],
+            "z_index": layer["z_index"],
+            "fade": layer["fade"],
+            "render_seconds": round(seconds, 1),
+        })
 
     ground_info = None
     if ground:
@@ -228,6 +275,7 @@ def main():
             "design_bounds_bbox_px": bbox_px,
         },
         "tiling": tiling,
+        "layers": layers_info or None,
         "kind": cfg["kind"],
         "ground_tile": ground_info,
         "total_seconds": round(time.time() - t0, 1),

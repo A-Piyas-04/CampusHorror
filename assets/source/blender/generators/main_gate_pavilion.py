@@ -21,9 +21,10 @@ from pathlib import Path
 
 import bmesh
 
-from generators.landmark_common import (arch_outline, brick_shader_material, concrete_material, finish_bmesh,
-                                        finish_boxes, glass_material, image_material, paint_material,
-                                        steel_material, strip_prism)
+from generators.landmark_common import (arch_outline, brick_shader_material, concrete_material,
+                                        cutaway_top_faces, finish_bmesh, finish_boxes, glass_material,
+                                        holdout_material, image_material, paint_material, steel_material,
+                                        strip_prism)
 from pipeline.modeling import BoxBuilder, add_lathe, extreme_points
 
 COLLECTION_NAME = "MainGatePavilion"
@@ -74,6 +75,7 @@ def build(collection, rng, params):
     b.add(wx0 + 0.45, wx1, fy + 0.05, fy + 0.35, 0.0, p["stub_wall_height"])
     b.add(wx0, wx0 + 0.49, fy - 0.045, fy + 0.445, 0.0, p["stub_wall_height"] + 0.35)
     brick_obj = finish_boxes(collection, "PavilionBrickMass", b, [brick], bevel_width=0.006)
+    cutaway_top_faces(brick_obj, rh, holdout_material("PavilionRoofCutaway"))
 
     # --- windows: white pointed frames, dark glass, steel grille
     frames, glass, grille = bmesh.new(), BoxBuilder(), BoxBuilder()
@@ -99,12 +101,15 @@ def build(collection, rng, params):
     grille_obj = finish_boxes(collection, "PavilionWindowGrille", grille, [steel_material("PavilionGrille")],
                               bevel_width=0.0)
 
-    # --- canopy slab: porch strip along the columns + roof over the room
-    slab = BoxBuilder()
-    slab.add(cx0, cx1, p["canopy_front_y"], fy, s0, s1)
-    slab.add(rx0 - 0.125, rx1, fy, p["roof_back_y"], s0, s1)
-    slab_obj = finish_boxes(collection, "PavilionCanopySlab", slab, [concrete_material("PavilionSlab")],
-                            bevel_width=0.008)
+    # --- canopy slab: porch strip along the columns + roof over the room. One slab in reality;
+    # two objects so the configs can render (and fade) the porch canopy and the room roof separately.
+    slab_mat = concrete_material("PavilionSlab")
+    porch = BoxBuilder()
+    porch.add(cx0, cx1, p["canopy_front_y"], fy, s0, s1)
+    porch_obj = finish_boxes(collection, "PavilionPorchSlab", porch, [slab_mat], bevel_width=0.008)
+    roof = BoxBuilder()
+    roof.add(rx0 - 0.125, rx1, fy, p["roof_back_y"], s0, s1)
+    roof_obj = finish_boxes(collection, "PavilionRoomRoof", roof, [slab_mat], bevel_width=0.008)
 
     # --- white cylindrical columns with a plain base and capital
     bm = bmesh.new()
@@ -113,6 +118,7 @@ def build(collection, rng, params):
         add_lathe(bm, [(r + 0.05, 0.0), (r + 0.05, 0.12), (r, 0.14), (r, s0 - 0.12), (r + 0.04, s0 - 0.1),
                        (r + 0.04, s0)], sides=24, center=(x, 0.0))
     columns = finish_bmesh(collection, "PavilionColumns", bm, [white], smooth=True)
+    cutaway_top_faces(columns, s0, holdout_material("PavilionCanopyCutaway"))
 
     # --- sign board: green body; the front face carries the lettering texture
     t, z0, z1 = p["sign_thickness"], *p["sign_z"]
@@ -130,7 +136,8 @@ def build(collection, rng, params):
         loop[uv].uv = coord
     mesh_face = finish_bmesh(collection, "PavilionSignFace", bm, [image_material("PavilionSign", SIGN_TEXTURE)])
 
-    objects = [brick_obj, frame_obj, sill_obj, glass_obj, grille_obj, slab_obj, columns, board_obj, mesh_face]
+    objects = [brick_obj, frame_obj, sill_obj, glass_obj, grille_obj, porch_obj, roof_obj, columns, board_obj,
+               mesh_face]
     return {
         "objects": objects,
         "bounds_points_m": extreme_points(objects),

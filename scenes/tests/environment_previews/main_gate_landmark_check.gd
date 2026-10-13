@@ -9,13 +9,22 @@ extends Node2D
 ## - Collision: the gate leaves still stop a 28 x 12 player footprint at y 1390 across the passage; the passage
 ##   jambs, tower piers and pavilion room are solid; the pavilion closes the corner with PrototypeEdgeWest and the
 ##   tower's east face meets the SouthWall run at x -1250.
-## - main_gate_ground_baseline_batch3.json equals the current zone and differs from batch2 only inside the
-##   replaced MainGateLandmark art (the landmark root and the spawn are identical).
+## - main_gate_ground_baseline_batch3.json differs from batch2 only inside the replaced MainGateLandmark art (the
+##   landmark root and the spawn are identical).
+## - Batch 3A: main_gate_ground_baseline_batch3a.json equals the current zone and differs from batch3 only by the
+##   overhead layer sprites / fade areas added inside Tower and Pavilion and the Pavilion root's Y-sort flag (every
+##   collision shape, occluder, spawn, door and transform is identical).
 ## Args (after `--`): `--quit-after-checks` quits with exit code 0 (pass) / 1 (fail).
 
 const ZONE_SCENE := "res://scenes/world/MainGateExterior.tscn"
 const BATCH2_BASELINE := "res://scenes/tests/environment_previews/main_gate_ground_baseline_batch2.json"
 const BATCH3_BASELINE := "res://scenes/tests/environment_previews/main_gate_ground_baseline_batch3.json"
+const BATCH3A_BASELINE := "res://scenes/tests/environment_previews/main_gate_ground_baseline_batch3a.json"
+## Batch 3A layer nodes inside the gate parts (added to batch3), and the one record allowed to change.
+const BATCH3A_ADDED := ["Tower/Roof", "Tower/RoofFade", "Tower/RoofFade/ShapeBehind", "Pavilion/Room",
+	"Pavilion/RoomRoof", "Pavilion/Canopy", "Pavilion/RoomRoofFade", "Pavilion/RoomRoofFade/ShapeBehind",
+	"Pavilion/CanopyFade", "Pavilion/CanopyFade/ShapePorch"]
+const BATCH3A_CHANGED := {"Pavilion": ["y_sort"]}
 const SNAPSHOT_SCRIPT := preload("res://scenes/tests/environment_previews/main_gate_ground_check.gd")
 const SHADOW_SCENE := "res://scenes/props/common/ContactShadow.tscn"
 const BLOCK_SCENE := "res://scenes/world/blockout/BlockoutBlock.tscn"
@@ -81,6 +90,7 @@ func _run_checks() -> void:
 	_check_spawn()
 	_check_blockout_gone()
 	_check_parts()
+	_check_overhead_layers()
 	_check_paving()
 	_check_occluders()
 	_check_collision_rects()
@@ -132,6 +142,36 @@ func _check_parts() -> void:
 		and pier00.global_position.y < tower.global_position.y,
 		"Y-sort: the leaves (y %.0f) draw before the tower (y %.0f), which draws over the wall's Pier00 (y %.0f) at the gate join"
 		% [leaves.global_position.y if leaves else NAN, tower.global_position.y if tower else NAN, pier00.global_position.y if pier00 else NAN])
+
+
+## Batch 3A: separately rendered layers. name -> [texture, global sort y, effective z, fade area or ""].
+const LAYERS := {
+	"Tower/Roof": ["main_gate_tower__roof.png", 1407.0, 10, "Tower/RoofFade"],
+	"Pavilion/Room": ["main_gate_pavilion__room.png", 1400.0, 0, ""],
+	"Pavilion/RoomRoof": ["main_gate_pavilion__room_roof.png", 1400.0, 0, "Pavilion/RoomRoofFade"],
+	"Pavilion/Canopy": ["main_gate_pavilion__canopy.png", 1458.0, 0, "Pavilion/CanopyFade"],
+}
+
+
+func _check_overhead_layers() -> void:
+	var pavilion := _gate.get_node_or_null("Pavilion") as Node2D
+	_check(pavilion != null and pavilion.y_sort_enabled and not (_gate.get_node("Tower") as Node2D).y_sort_enabled,
+		"Pavilion root is Y-sorted (its Room sorts on the wall line, columns and canopy on the column line); Tower is not")
+	for path: String in LAYERS:
+		var spec: Array = LAYERS[path]
+		var sprite := _gate.get_node_or_null(path) as Sprite2D
+		var base := sprite.get_parent().get_node_or_null("Sprite") as Sprite2D if sprite else null
+		_check(sprite != null and base != null and sprite.texture != null and sprite.texture.resource_path.get_file() == spec[0]
+			and absf(sprite.global_position.y - spec[1]) < 0.01 and _effective_z(sprite) == spec[2]
+			and sprite.light_mask == 2 and sprite.modulate == Color.WHITE and sprite.scale == base.scale,
+			"%s: %s, sort y %.0f, z %d, light mask 2, opaque at rest" % [path, spec[0], spec[1], spec[2]])
+		if spec[3] == "":
+			continue
+		var area := _gate.get_node_or_null(spec[3]) as Area2D
+		var paths: Array = area.get("target_paths") if area else []
+		_check(area != null and area.collision_layer == 0 and area.collision_mask == 2 and not area.monitorable
+			and paths.size() == 1 and area.get_node_or_null(paths[0]) == sprite,
+			"%s: fades only %s; layer 0 / mask 2 (player body), not monitorable, so it blocks and triggers nothing" % [spec[3], path])
 
 
 func _check_paving() -> void:
@@ -215,9 +255,11 @@ func _check_probes() -> void:
 func _check_baselines() -> void:
 	var batch2 := _load_json(BATCH2_BASELINE)
 	var batch3 := _load_json(BATCH3_BASELINE)
+	var batch3a := _load_json(BATCH3A_BASELINE)
 	var now: Dictionary = _snapper.call("_snapshot")
-	_check(not batch3.is_empty() and _same(batch3, now),
-		"versioned baseline %s exists and equals the current zone (%d nodes)" % [BATCH3_BASELINE.get_file(), batch3.get("nodes", {}).size()])
+	_check(not batch3a.is_empty() and _same(batch3a, now),
+		"versioned baseline %s exists and equals the current zone (%d nodes)" % [BATCH3A_BASELINE.get_file(), batch3a.get("nodes", {}).size()])
+	_check_batch3a_diff(batch3, batch3a)
 	if batch2.is_empty() or batch3.is_empty():
 		_check(false, "batch2 and batch3 baselines load")
 		return
@@ -239,6 +281,33 @@ func _check_baselines() -> void:
 		and removed > 0 and added > 0,
 		"batch3 differs from batch2 only inside the MainGateLandmark art (%d blockout records removed or changed, %d added; outside %s); the landmark root, spawn and markings are identical"
 		% [removed, added, outside.slice(0, 5)])
+
+
+func _check_batch3a_diff(batch3: Dictionary, batch3a: Dictionary) -> void:
+	if batch3.is_empty() or batch3a.is_empty():
+		_check(false, "batch3 and batch3a baselines load")
+		return
+	var added := []
+	var unexpected := []
+	for key: String in batch3a.nodes:
+		if not batch3.nodes.has(key):
+			added.append(key.trim_prefix(MAIN_GATE + "/"))
+	for key: String in batch3.nodes:
+		var short := key.trim_prefix(MAIN_GATE + "/")
+		if not batch3a.nodes.has(key):
+			unexpected.append("removed " + short)
+			continue
+		var a: Dictionary = batch3.nodes[key]
+		var b: Dictionary = batch3a.nodes[key]
+		for field: String in a:
+			if not b.has(field) or not _same(a[field], b[field]):
+				if not (BATCH3A_CHANGED.get(short, []) as Array).has(field) or key == short:
+					unexpected.append("%s.%s" % [short, field])
+	added.sort()
+	var want := BATCH3A_ADDED.duplicate()
+	want.sort()
+	_check(added == want and unexpected.is_empty() and _same(batch3.markings, batch3a.markings),
+		"batch3a differs from batch3 only by the overhead layers %s and Pavilion.y_sort (unexpected %s)" % [added, unexpected.slice(0, 5)])
 
 
 func _gate_art(key: String) -> bool:
