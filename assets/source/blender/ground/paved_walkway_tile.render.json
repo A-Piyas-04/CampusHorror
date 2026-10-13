@@ -1,0 +1,427 @@
+{
+  "pipeline": "campus_asset_pipeline",
+  "pipeline_version": 1,
+  "asset": "paved_walkway_tile",
+  "category": "ground",
+  "description": "Seamless 2 x 2 m top-down walkway tile: modeled 0.5 m grey concrete slabs in running bond (TileMapLayer source 2).",
+  "config": "assets/source/blender/configs/paved_walkway_tile.json",
+  "generator": "assets/source/blender/generators/ground_paving.py",
+  "generator_params": {
+    "period": 2.0,
+    "slab": 0.5,
+    "joint": 0.022,
+    "slab_height": 0.05,
+    "height_jitter": 0.004,
+    "bevel_width": 0.008
+  },
+  "random_seed": 20261013,
+  "blender_version": "5.2.2 LTS",
+  "outputs": {
+    "blend": "assets/source/blender/ground/paved_walkway_tile.blend",
+    "record": "assets/source/blender/ground/paved_walkway_tile.render.json",
+    "png": "assets/sprites/ground/paved_walkway_tile.png",
+    "scene": "assets/tilesets/campus_ground.tres",
+    "preview": "scenes/tests/asset_previews/PavedWalkwayTilePreview.tscn"
+  },
+  "origin": "ground-footprint origin at z = 0 (Blender world origin); front faces -Y",
+  "footprint_m": {
+    "x_min": -1.0,
+    "x_max": 1.0,
+    "y_min": -1.0,
+    "y_max": 1.0
+  },
+  "model": {
+    "design_size_m": {
+      "x": 2.0,
+      "y": 2.0
+    },
+    "surface": "16 modeled 0.5 m concrete slabs, running bond, 22 mm joints, bevelled, height/tone jitter per slab; AO-darkened joints",
+    "materials": [
+      "ConcreteSlab",
+      "JointGrit"
+    ],
+    "objects": [
+      {
+        "object": "PavingSlabs",
+        "evaluated_bounds_m": {
+          "x": 2.228,
+          "y": 1.978,
+          "z": 0.0531
+        },
+        "evaluated_faces": 864
+      },
+      {
+        "object": "JointBed",
+        "evaluated_bounds_m": {
+          "x": 2.0,
+          "y": 2.0,
+          "z": 0.0
+        },
+        "evaluated_faces": 1
+      }
+    ]
+  },
+  "camera": {
+    "type": "ORTHO",
+    "elevation_deg": 90.0,
+    "azimuth_deg": 0.0,
+    "rotation_euler_deg": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "location_m": [
+      0.0,
+      0.0,
+      20.054
+    ],
+    "ortho_scale_m": 2.0,
+    "rendered_ortho_scale_m": 2.5,
+    "sensor_fit": "HORIZONTAL",
+    "rendered_px": [
+      80,
+      80
+    ],
+    "overscan_px_each_side": 8,
+    "pixels_per_metre_on_screen": 32.0
+  },
+  "lighting": {
+    "sun_elevation_deg": 55.0,
+    "sun_azimuth_deg_from_front": -35.0,
+    "sun_direction_to_light": [
+      -0.329,
+      -0.4698,
+      0.8192
+    ],
+    "sun_strength": 3.2,
+    "sun_angle_deg": 3.0,
+    "fill_lights_linked_to_asset_only": [
+      {
+        "name": "SkyFill",
+        "elevation_deg": 70.0,
+        "azimuth_deg_from_front": 20.0,
+        "strength": 0.8,
+        "angle_deg": 90.0,
+        "color": [
+          0.75,
+          0.85,
+          1.0
+        ]
+      },
+      {
+        "name": "GroundBounce",
+        "elevation_deg": -25.0,
+        "azimuth_deg_from_front": 10.0,
+        "strength": 0.35,
+        "angle_deg": 90.0,
+        "color": [
+          1.0,
+          0.8,
+          0.65
+        ]
+      }
+    ],
+    "world_light": "none (strength 0)",
+    "ground": "none (the tile is the ground; no cast shadow from other objects)"
+  },
+  "render": {
+    "engine": "CYCLES",
+    "device": "GPU (OPTIX: NVIDIA GeForce RTX 3050 Laptop GPU)",
+    "samples": 256,
+    "adaptive_sampling": true,
+    "denoiser": "compositor OIDN on colour only (albedo + normal guides); raw render alpha kept",
+    "max_bounces": 6,
+    "film_transparent": true,
+    "filter_size_px": 1.5,
+    "view_transform": "Standard",
+    "output_format": "PNG RGBA 8-bit",
+    "resolution_px": [
+      80,
+      80
+    ],
+    "render_seconds": 214.6
+  },
+  "projection": {
+    "note": "texture px, top-left origin: x = W/2 + (p.right - cx)*ppm, y = H/2 - (p.up - cy)*ppm",
+    "image_px": [
+      64,
+      64
+    ],
+    "px_per_m": 32.0,
+    "right": [
+      1.0,
+      0.0,
+      0.0
+    ],
+    "up": [
+      0.0,
+      1.0,
+      0.0
+    ],
+    "center_m": [
+      0.0,
+      0.0
+    ],
+    "origin_px": [
+      32.0,
+      32.0
+    ],
+    "footprint_corners_px": [
+      [
+        0.0,
+        64.0
+      ],
+      [
+        64.0,
+        64.0
+      ],
+      [
+        64.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ]
+    ],
+    "design_bounds_bbox_px": [
+      0.0,
+      0.0,
+      64.0,
+      64.0
+    ]
+  },
+  "tiling": null,
+  "kind": "ground_tile",
+  "ground_tile": {
+    "period_m": 2.0,
+    "tile_px": 64,
+    "overscan_px": 8,
+    "tileset": "campus_ground",
+    "source_id": 2,
+    "border_match": null,
+    "note": "rendered straight down between 8 neighbour copies with overscan_px on every side; the pipeline crops the overscan (a manual re-render of the .blend is not cropped)"
+  },
+  "total_seconds": 214.7,
+  "blender_run": {
+    "exit_code": 0,
+    "seconds": 215.9,
+    "problem_lines": [
+      "00:00.719  cycles           | WARNING HIPEW initialization failed: Error opening HIP dynamic library"
+    ]
+  },
+  "verification": {
+    "png": {
+      "bit_depth": 8,
+      "png_color_type": 6,
+      "interlace": 0,
+      "file_bytes": 5528,
+      "size_px": [
+        64,
+        64
+      ],
+      "opaque_pixels": 4096,
+      "partially_transparent_pixels": 0,
+      "fully_transparent_pixels": 0,
+      "content_bbox_px": [
+        0,
+        0,
+        63,
+        63
+      ],
+      "margins_px": {
+        "left": 0,
+        "right": 0,
+        "top": 0,
+        "bottom": 0
+      },
+      "max_alpha_on_image_border": 1.0
+    },
+    "seams": {
+      "x": {
+        "interior_mean_step": 4.581,
+        "interior_max_step": 15.568,
+        "wrap_step": 1.234
+      },
+      "y": {
+        "interior_mean_step": 5.052,
+        "interior_max_step": 32.208,
+        "wrap_step": 1.312
+      }
+    },
+    "luma_halves": {
+      "left": 139.32,
+      "right": 137.86,
+      "top": 137.12,
+      "bottom": 140.07,
+      "max_half_difference": 2.946
+    },
+    "border_match": null,
+    "passed": true
+  },
+  "godot": {
+    "tileset": "assets/tilesets/campus_ground.tres",
+    "scene_name": "PavedWalkwayTile",
+    "source_id": 2,
+    "tile_size_px": 64,
+    "tileset_sources": [
+      {
+        "source_id": 0,
+        "asset_id": "grass_ground_tile",
+        "png": "assets/sprites/ground/grass_ground_tile.png"
+      },
+      {
+        "source_id": 1,
+        "asset_id": "grass_worn_tile",
+        "png": "assets/sprites/ground/grass_worn_tile.png"
+      },
+      {
+        "source_id": 2,
+        "asset_id": "paved_walkway_tile",
+        "png": "assets/sprites/ground/paved_walkway_tile.png"
+      },
+      {
+        "source_id": 3,
+        "asset_id": "asphalt_road_tile",
+        "png": "assets/sprites/ground/asphalt_road_tile.png"
+      }
+    ],
+    "collision": null,
+    "preview_cells": [
+      [
+        -3,
+        -2,
+        2
+      ],
+      [
+        -2,
+        -2,
+        2
+      ],
+      [
+        -1,
+        -2,
+        2
+      ],
+      [
+        0,
+        -2,
+        2
+      ],
+      [
+        1,
+        -2,
+        2
+      ],
+      [
+        2,
+        -2,
+        2
+      ],
+      [
+        -3,
+        -1,
+        2
+      ],
+      [
+        -2,
+        -1,
+        2
+      ],
+      [
+        -1,
+        -1,
+        2
+      ],
+      [
+        0,
+        -1,
+        2
+      ],
+      [
+        1,
+        -1,
+        2
+      ],
+      [
+        2,
+        -1,
+        2
+      ],
+      [
+        -3,
+        0,
+        2
+      ],
+      [
+        -2,
+        0,
+        2
+      ],
+      [
+        -1,
+        0,
+        2
+      ],
+      [
+        0,
+        0,
+        2
+      ],
+      [
+        1,
+        0,
+        2
+      ],
+      [
+        2,
+        0,
+        2
+      ],
+      [
+        -3,
+        1,
+        2
+      ],
+      [
+        -2,
+        1,
+        2
+      ],
+      [
+        -1,
+        1,
+        2
+      ],
+      [
+        0,
+        1,
+        2
+      ],
+      [
+        1,
+        1,
+        2
+      ],
+      [
+        2,
+        1,
+        2
+      ]
+    ],
+    "preview_scene": "scenes/tests/asset_previews/PavedWalkwayTilePreview.tscn"
+  },
+  "godot_import": {
+    "already_imported": true
+  },
+  "godot_check": {
+    "scene": {
+      "exit_code": 0,
+      "problem_lines": []
+    },
+    "preview": {
+      "exit_code": 0,
+      "problem_lines": []
+    }
+  }
+}

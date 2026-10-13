@@ -49,6 +49,9 @@ func _check(scene_path: String, record: Dictionary) -> void:
 	_expect(tex_size == Vector2(image_px[0], image_px[1]), "texture size %s == %s" % [tex_size, image_px])
 	_expect(sprite.texture.resource_path == "res://" + record["outputs"]["png"], "texture path %s" % sprite.texture.resource_path)
 	_expect(not sprite.centered, "sprite not centered")
+	# Texture2D.has_mipmaps() is always false with the headless dummy renderer; the image knows.
+	var image := sprite.texture.get_image()
+	_expect(image != null and image.has_mipmaps(), "texture imported with mipmaps (drawn at ~1/7 scale)")
 	var scale_expected: float = lay["sprite_scale"]
 	_expect(absf(sprite.scale.x - scale_expected) < 1e-4 and absf(sprite.scale.y - scale_expected) < 1e-4,
 		"sprite scale %s == %.6f" % [sprite.scale, scale_expected])
@@ -82,7 +85,8 @@ func _check(scene_path: String, record: Dictionary) -> void:
 	else:
 		_expect(body.collision_layer == int(col["layer"]) and body.collision_mask == int(col["mask"]),
 			"collision layer %d / mask %d" % [body.collision_layer, body.collision_mask])
-		var shapes: Array = col.get("shapes", [{"node": "Collision", "size": col["size"], "center": col["center"]}])
+		var shapes: Array = col["shapes"] if col.has("shapes") \
+			else [{"node": "Collision", "size": col["size"], "center": col["center"]}]
 		_expect(body.get_child_count() == shapes.size(),
 			"Body has %d collision shape(s), record %d" % [body.get_child_count(), shapes.size()])
 		for want: Dictionary in shapes:

@@ -58,11 +58,27 @@ def load(asset_id_or_path):
 
     cfg.setdefault("seed", 1)
     cfg.setdefault("generator_params", {})
+    kind = cfg.setdefault("kind", "sprite")
+    if kind not in ("sprite", "ground_tile"):
+        raise ConfigError("kind must be 'sprite' or 'ground_tile'")
+    ground = kind == "ground_tile"
     render = cfg.setdefault("render", {})
     render.setdefault("width_px", C.RENDER_WIDTH_PX)
     render.setdefault("samples", C.SAMPLES)
-    render.setdefault("elevation_deg", C.CAMERA_ELEVATION_DEG)
+    render.setdefault("elevation_deg", C.GROUND_ELEVATION_DEG if ground else C.CAMERA_ELEVATION_DEG)
     render.setdefault("azimuth_deg", C.CAMERA_AZIMUTH_DEG)
+    if ground:
+        render.setdefault("tile_px", C.GROUND_TILE_PX)
+        render.setdefault("overscan_px", C.GROUND_OVERSCAN_PX)
+        if render["elevation_deg"] != C.GROUND_ELEVATION_DEG or render["azimuth_deg"] != 0:
+            raise ConfigError("ground tiles are rendered straight down (elevation 90, azimuth 0)")
+        g = cfg.get("ground")
+        if not isinstance(g, dict) or not isinstance(g.get("tileset"), str) or not ID_RE.match(g["tileset"]):
+            raise ConfigError("ground_tile configs need ground.tileset (snake_case TileSet name)")
+        if not isinstance(g.get("source_id"), int) or g["source_id"] < 0:
+            raise ConfigError("ground.source_id must be a non-negative integer (TileSet atlas source id)")
+        g.setdefault("period_m", C.GROUND_TILE_PERIOD_M)
+        g.setdefault("border_match", None)
     render.setdefault("tile_bleed_px", C.TILE_BLEED_PX)
     ppm = render.get("px_per_m")
     if ppm is not None and not (isinstance(ppm, (int, float)) and ppm > 0):
@@ -80,6 +96,8 @@ def load(asset_id_or_path):
 
     col = cfg.setdefault("collision", {})
     col.setdefault("enabled", False)
+    if ground and col["enabled"]:
+        raise ConfigError("ground tiles have no collision (add physics to the TileSet by hand if a surface ever needs it)")
     col.setdefault("source", "design_footprint")
     col.setdefault("depth_mode", "projected")
     col.setdefault("layer", C.WORLD_COLLISION_LAYER)
@@ -126,12 +144,30 @@ def check_render_outputs_owned(cfg):
 
 
 def outputs(cfg):
+    """Ground tiles have no prop scene: their "scene" output is the shared TileSet they belong to."""
     aid, cat, scene = cfg["asset_id"], cfg["category"], cfg["godot"]["scene_name"]
     root = C.PROJECT_ROOT
+    if cfg.get("kind") == "ground_tile":
+        scene_path = root / C.GROUND_TILESET_DIR / f"{cfg['ground']['tileset']}.tres"
+    else:
+        scene_path = root / f"scenes/props/{cat}/{scene}.tscn"
     return {
         "blend": root / f"assets/source/blender/{cat}/{aid}.blend",
         "record": root / f"assets/source/blender/{cat}/{aid}.render.json",
         "png": root / f"assets/sprites/{cat}/{aid}.png",
-        "scene": root / f"scenes/props/{cat}/{scene}.tscn",
+        "scene": scene_path,
         "preview": root / f"scenes/tests/asset_previews/{scene}Preview.tscn",
     }
+
+
+def tileset_members(tileset):
+    """Every ground-tile config that belongs to `tileset`, sorted by source id."""
+    members = []
+    for path in sorted(C.CONFIG_DIR.glob("*.json")):
+        cfg = load(path.stem)
+        if cfg["kind"] == "ground_tile" and cfg["ground"]["tileset"] == tileset:
+            members.append(cfg)
+    ids = [c["ground"]["source_id"] for c in members]
+    if len(ids) != len(set(ids)):
+        raise ConfigError(f"duplicate ground.source_id in TileSet {tileset!r}: {ids}")
+    return sorted(members, key=lambda c: c["ground"]["source_id"])

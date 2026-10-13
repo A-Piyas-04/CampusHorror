@@ -1,0 +1,26 @@
+{
+  "asset_id": "hedge_section_2m",
+  "category": "vegetation",
+  "generator": "hedge",
+  "description": "Trimmed hedge module, 2.0 x 0.70 x 1.0 m, seamless along X (place instances 64 game px apart); full-footprint collision. Render scale 220.5 px/m (wall: 220.69) so the 2 m period is a whole 441 texture px and the join check compares texel-aligned columns.",
+  "seed": 20261013,
+  "generator_params": {},
+  "render": {
+    "px_per_m": 220.5,
+    "samples": 256,
+    "elevation_deg": 40.0,
+    "azimuth_deg": 0.0
+  },
+  "godot": {
+    "scene_name": "HedgeSection2m",
+    "z_index": 0,
+    "sprite_offset_adjust_px": [0.0, 0.0],
+    "preview_scene": true,
+    "preview_tile_x": true
+  },
+  "collision": {
+    "enabled": true,
+    "source": "design_footprint",
+    "depth_mode": "projected"
+  }
+}

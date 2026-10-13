@@ -1,0 +1,26 @@
+{
+  "asset_id": "outdoor_bench",
+  "category": "street_furniture",
+  "generator": "bench",
+  "description": "Park bench, 1.8 x 0.6 m, wooden slats on a dark-green steel frame, facing -Y (south, towards the camera); full-footprint collision.",
+  "seed": 20261013,
+  "generator_params": {},
+  "render": {
+    "px_per_m": 220.689655,
+    "samples": 256,
+    "elevation_deg": 40.0,
+    "azimuth_deg": 0.0
+  },
+  "godot": {
+    "scene_name": "OutdoorBench",
+    "z_index": 0,
+    "sprite_offset_adjust_px": [0.0, 0.0],
+    "preview_scene": true,
+    "preview_tile_x": false
+  },
+  "collision": {
+    "enabled": true,
+    "source": "design_footprint",
+    "depth_mode": "projected"
+  }
+}

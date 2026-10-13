@@ -1,0 +1,26 @@
+{
+  "asset_id": "palm_tree",
+  "category": "vegetation",
+  "generator": "tree_palm",
+  "description": "Coconut palm, about 8.5 m tall with a ~6.5 m crown, slight lean; origin at the trunk base, trunk-only collision (0.35 x 0.35 m).",
+  "seed": 20261013,
+  "generator_params": {},
+  "render": {
+    "px_per_m": 220.689655,
+    "samples": 256,
+    "elevation_deg": 40.0,
+    "azimuth_deg": 0.0
+  },
+  "godot": {
+    "scene_name": "CoconutPalm",
+    "z_index": 0,
+    "sprite_offset_adjust_px": [0.0, 0.0],
+    "preview_scene": true,
+    "preview_tile_x": false
+  },
+  "collision": {
+    "enabled": true,
+    "source": "design_footprint",
+    "depth_mode": "projected"
+  }
+}

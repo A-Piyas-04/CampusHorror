@@ -147,6 +147,53 @@ def setup_camera(scene, collection, bounds_points, elevation, azimuth, width_px,
     return camera_info, projection
 
 
+def setup_ground_camera(scene, collection, period_m, tile_px, overscan_px, top_z_m):
+    """Orthographic camera looking straight down (-Z) at a square ground tile centred on the origin.
+
+    Renders the tile plus `overscan_px` on every side at exactly tile_px / period_m px per metre,
+    so tile edges fall on pixel edges and cropping the overscan leaves the tile itself.
+    Returns (camera_info, projection) for the cropped tile image (right = +X, up = +Y).
+    """
+    ppm = tile_px / period_m
+    res = tile_px + 2 * overscan_px
+    frame = res / ppm
+    cam_data = bpy.data.cameras.new("GroundCamera")
+    cam_data.type = "ORTHO"
+    cam_data.sensor_fit = "HORIZONTAL"
+    cam_data.ortho_scale = frame
+    cam_data.clip_start = 0.1
+    cam_data.clip_end = top_z_m + 40.0
+    cam = bpy.data.objects.new("GroundCamera", cam_data)
+    collection.objects.link(cam)
+    scene.camera = cam
+    cam.location = (0.0, 0.0, top_z_m + 20.0)
+    cam.rotation_euler = (0.0, 0.0, 0.0)
+    scene.render.resolution_x = res
+    scene.render.resolution_y = res
+    scene.render.resolution_percentage = 100
+    camera_info = {
+        "type": "ORTHO",
+        "elevation_deg": 90.0,
+        "azimuth_deg": 0.0,
+        "rotation_euler_deg": [0.0, 0.0, 0.0],
+        "location_m": [round(c, 4) for c in cam.location],
+        "ortho_scale_m": round(period_m, 6),
+        "rendered_ortho_scale_m": round(frame, 6),
+        "sensor_fit": "HORIZONTAL",
+        "rendered_px": [res, res],
+        "overscan_px_each_side": overscan_px,
+        "pixels_per_metre_on_screen": round(ppm, 6),
+    }
+    projection = {
+        "image_px": [tile_px, tile_px],
+        "px_per_m": ppm,
+        "right": [1.0, 0.0, 0.0],
+        "up": [0.0, 1.0, 0.0],
+        "center_m": [0.0, 0.0],
+    }
+    return camera_info, projection
+
+
 def project(projection, point):
     """World point (metres) -> texture pixel (x, y), top-left origin, pixel-edge coordinates."""
     w, h = projection["image_px"]

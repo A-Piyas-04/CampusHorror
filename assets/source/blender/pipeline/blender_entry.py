@@ -13,6 +13,8 @@ define DEFAULT_PARAMS and build(collection, rng, params) returning a dict with:
     "info":            asset-specific description copied into the record
     "tile_period_x_m": optional; the model repeats seamlessly along X with this period
                        (rendered between neighbour copies, bleed columns kept, rest cut)
+    "tile_period_m":   ground tiles (config kind "ground_tile") only; the model is one square
+                       period centred on the origin, rendered straight down between 8 copies
 """
 
 import importlib
@@ -81,10 +83,11 @@ def main():
 
     built = generator.build(asset_coll, random.Random(cfg["seed"]), params)
     bounds = [Vector(p) for p in built["bounds_points_m"]]
+    ground = cfg["kind"] == "ground_tile"
 
     # Horizontally tileable assets: neighbour copies one period to each side give the module
     # ends the shadows, occlusion and bounce of a continuous run, and supply the bleed columns.
-    period = built.get("tile_period_x_m")
+    period = None if ground else built.get("tile_period_x_m")
     if period:
         for obj in built["objects"]:
             for name, dx in (("TileWest", -period), ("TileEast", period)):
@@ -93,10 +96,35 @@ def main():
                 dup.location.x += dx
                 asset_coll.objects.link(dup)
 
+    # Ground tiles: the 8 surrounding copies make the rendered area one continuous, periodic
+    # surface, so relief and shading at the tile edges match the opposite edges.
+    ground_period = None
+    if ground:
+        ground_period = built.get("tile_period_m")
+        if abs((ground_period or 0) - cfg["ground"]["period_m"]) > 1e-9:
+            raise SystemExit(f"generator tile_period_m {ground_period} != config ground.period_m "
+                             f"{cfg['ground']['period_m']}")
+        for obj in built["objects"]:
+            for i in (-1, 0, 1):
+                for j in (-1, 0, 1):
+                    if i == 0 and j == 0:
+                        continue
+                    dup = obj.copy()
+                    dup.name = f"{obj.name}_Tile{i:+d}{j:+d}"
+                    dup.location.x += i * ground_period
+                    dup.location.y += j * ground_period
+                    asset_coll.objects.link(dup)
+
     lighting_info = rig.setup_lighting(scene, rig_coll, asset_coll)
-    camera_info, projection = rig.setup_camera(
-        scene, rig_coll, bounds, render_cfg["elevation_deg"], render_cfg["azimuth_deg"], render_cfg["width_px"],
-        render_cfg.get("px_per_m"))
+    if ground:
+        lighting_info["ground"] = "none (the tile is the ground; no cast shadow from other objects)"
+        camera_info, projection = rig.setup_ground_camera(
+            scene, rig_coll, ground_period, render_cfg["tile_px"], render_cfg["overscan_px"],
+            max(p.z for p in bounds))
+    else:
+        camera_info, projection = rig.setup_camera(
+            scene, rig_coll, bounds, render_cfg["elevation_deg"], render_cfg["azimuth_deg"], render_cfg["width_px"],
+            render_cfg.get("px_per_m"))
     render_info = rig.setup_render(scene, samples, opts["cpu"])
 
     for p in (out["blend"], out["png"], out["record"]):
@@ -117,6 +145,22 @@ def main():
     if not out["png"].exists():
         raise RuntimeError(f"Render finished but {out['png']} was not written.")
     print(f"{LOG} Rendered: {out['png']} in {render_seconds:.1f} s")
+
+    ground_info = None
+    if ground:
+        ov, tile = render_cfg["overscan_px"], render_cfg["tile_px"]
+        pngcheck.crop(out["png"], ov, ov, tile, tile)
+        ground_info = {
+            "period_m": ground_period,
+            "tile_px": tile,
+            "overscan_px": ov,
+            "tileset": cfg["ground"]["tileset"],
+            "source_id": cfg["ground"]["source_id"],
+            "border_match": cfg["ground"]["border_match"],
+            "note": ("rendered straight down between 8 neighbour copies with overscan_px on every side; "
+                     "the pipeline crops the overscan (a manual re-render of the .blend is not cropped)"),
+        }
+        print(f"{LOG} Ground tile: cropped {ov} px overscan -> {tile}x{tile}")
 
     x0, x1, y0, y1 = built["footprint_m"]
     tiling = None
@@ -184,6 +228,8 @@ def main():
             "design_bounds_bbox_px": bbox_px,
         },
         "tiling": tiling,
+        "kind": cfg["kind"],
+        "ground_tile": ground_info,
         "total_seconds": round(time.time() - t0, 1),
     }
     out["record"].write_text(json.dumps(record, indent=2), encoding="utf-8")

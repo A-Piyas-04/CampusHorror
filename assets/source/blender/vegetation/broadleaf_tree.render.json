@@ -1,0 +1,358 @@
+{
+  "pipeline": "campus_asset_pipeline",
+  "pipeline_version": 1,
+  "asset": "broadleaf_tree",
+  "category": "vegetation",
+  "description": "Broadleaf shade tree, about 6 m tall with a ~4.5 m crown; origin at the trunk base, trunk-only collision (0.5 x 0.5 m).",
+  "config": "assets/source/blender/configs/broadleaf_tree.json",
+  "generator": "assets/source/blender/generators/tree_broadleaf.py",
+  "generator_params": {
+    "trunk_height": 2.3,
+    "trunk_radius": 0.19,
+    "crown_z": 4.2,
+    "crown_rx": 1.2,
+    "ring_clusters": 6,
+    "low_clusters": 3,
+    "leaf_length": 0.22,
+    "leaf_width": 0.14,
+    "leaf_density": 300.0,
+    "collision_half_m": 0.25
+  },
+  "random_seed": 20261013,
+  "blender_version": "5.2.2 LTS",
+  "outputs": {
+    "blend": "assets/source/blender/vegetation/broadleaf_tree.blend",
+    "record": "assets/source/blender/vegetation/broadleaf_tree.render.json",
+    "png": "assets/sprites/vegetation/broadleaf_tree.png",
+    "scene": "scenes/props/vegetation/BroadleafTree.tscn",
+    "preview": "scenes/tests/asset_previews/BroadleafTreePreview.tscn"
+  },
+  "origin": "ground-footprint origin at z = 0 (Blender world origin); front faces -Y",
+  "footprint_m": {
+    "x_min": -0.25,
+    "x_max": 0.25,
+    "y_min": -0.25,
+    "y_max": 0.25
+  },
+  "model": {
+    "design_size_m": {
+      "trunk_clear_height_approx": 2.63,
+      "crown_width_approx": 4.76
+    },
+    "leaf_cards": 15719,
+    "clusters": 11,
+    "footprint": "trunk only (collision); the canopy has none and Y-sorts with the trunk origin",
+    "materials": [
+      "Bark",
+      "CanopyShade",
+      "Leaves"
+    ],
+    "objects": [
+      {
+        "object": "Trunk",
+        "evaluated_bounds_m": {
+          "x": 2.1614,
+          "y": 2.2899,
+          "z": 4.9316
+        },
+        "evaluated_faces": 622
+      },
+      {
+        "object": "CanopyInner",
+        "evaluated_bounds_m": {
+          "x": 4.482,
+          "y": 4.5002,
+          "z": 3.2694
+        },
+        "evaluated_faces": 3520
+      },
+      {
+        "object": "Leaves",
+        "evaluated_bounds_m": {
+          "x": 4.8745,
+          "y": 4.9141,
+          "z": 3.6096
+        },
+        "evaluated_faces": 15719
+      }
+    ]
+  },
+  "camera": {
+    "type": "ORTHO",
+    "elevation_deg": 40.0,
+    "azimuth_deg": 0.0,
+    "rotation_euler_deg": [
+      50.0,
+      0.0,
+      0.0
+    ],
+    "location_m": [
+      0.1059,
+      -17.5224,
+      17.8497
+    ],
+    "ortho_scale_m": 5.741094,
+    "sensor_fit": "HORIZONTAL",
+    "content_extent_m": [
+      4.8745,
+      5.405
+    ],
+    "margin_m_each_side": 0.4324,
+    "pixels_per_metre_on_screen": 220.689655
+  },
+  "lighting": {
+    "sun_elevation_deg": 55.0,
+    "sun_azimuth_deg_from_front": -35.0,
+    "sun_direction_to_light": [
+      -0.329,
+      -0.4698,
+      0.8192
+    ],
+    "sun_strength": 3.2,
+    "sun_angle_deg": 3.0,
+    "fill_lights_linked_to_asset_only": [
+      {
+        "name": "SkyFill",
+        "elevation_deg": 70.0,
+        "azimuth_deg_from_front": 20.0,
+        "strength": 0.8,
+        "angle_deg": 90.0,
+        "color": [
+          0.75,
+          0.85,
+          1.0
+        ]
+      },
+      {
+        "name": "GroundBounce",
+        "elevation_deg": -25.0,
+        "azimuth_deg_from_front": 10.0,
+        "strength": 0.35,
+        "angle_deg": 90.0,
+        "color": [
+          1.0,
+          0.8,
+          0.65
+        ]
+      }
+    ],
+    "world_light": "none (strength 0)",
+    "ground": "none (no shadow catcher; no cast shadow baked into the PNG)"
+  },
+  "render": {
+    "engine": "CYCLES",
+    "device": "GPU (OPTIX: NVIDIA GeForce RTX 3050 Laptop GPU)",
+    "samples": 256,
+    "adaptive_sampling": true,
+    "denoiser": "compositor OIDN on colour only (albedo + normal guides); raw render alpha kept",
+    "max_bounces": 6,
+    "film_transparent": true,
+    "filter_size_px": 1.5,
+    "view_transform": "Standard",
+    "output_format": "PNG RGBA 8-bit",
+    "resolution_px": [
+      1267,
+      1384
+    ],
+    "render_seconds": 8.5
+  },
+  "projection": {
+    "note": "texture px, top-left origin: x = W/2 + (p.right - cx)*ppm, y = H/2 - (p.up - cy)*ppm",
+    "image_px": [
+      1267,
+      1384
+    ],
+    "px_per_m": 220.689655,
+    "right": [
+      1.0,
+      0.0,
+      0.0
+    ],
+    "up": [
+      0.0,
+      0.6427876353263855,
+      0.7660444378852844
+    ],
+    "center_m": [
+      0.10587906837463379,
+      2.4104777928441763
+    ],
+    "origin_px": [
+      610.1335849286806,
+      1223.9675124879427
+    ],
+    "footprint_corners_px": [
+      [
+        554.9611711786806,
+        1259.431657857554
+      ],
+      [
+        665.3059986786807,
+        1259.431657857554
+      ],
+      [
+        665.3059986786807,
+        1188.5033671183312
+      ],
+      [
+        554.9611711786806,
+        1188.5033671183312
+      ]
+    ],
+    "design_bounds_bbox_px": [
+      95.61995133953451,
+      95.58949565764385,
+      1171.3800486604655,
+      1288.4105191393232
+    ]
+  },
+  "tiling": null,
+  "kind": "sprite",
+  "ground_tile": null,
+  "total_seconds": 10.0,
+  "blender_run": {
+    "exit_code": 0,
+    "seconds": 11.3,
+    "problem_lines": [
+      "00:02.078  cycles           | WARNING HIPEW initialization failed: Error opening HIP dynamic library"
+    ]
+  },
+  "verification": {
+    "png": {
+      "bit_depth": 8,
+      "png_color_type": 6,
+      "interlace": 0,
+      "file_bytes": 1590349,
+      "size_px": [
+        1267,
+        1384
+      ],
+      "opaque_pixels": 667113,
+      "partially_transparent_pixels": 11839,
+      "fully_transparent_pixels": 1074576,
+      "content_bbox_px": [
+        95,
+        95,
+        1171,
+        1288
+      ],
+      "margins_px": {
+        "left": 95,
+        "right": 95,
+        "top": 95,
+        "bottom": 95
+      },
+      "max_alpha_on_image_border": 0.0
+    },
+    "bbox_deviation_px": [
+      -0.62,
+      -0.59,
+      0.62,
+      0.59
+    ],
+    "minimum_margin_required_px": 16,
+    "tiling": null,
+    "passed": true
+  },
+  "godot": {
+    "scene": "scenes/props/vegetation/BroadleafTree.tscn",
+    "scene_name": "BroadleafTree",
+    "scene_semantic_sha256": "90e5da618d1a7015d91cc85e3d267e0da8b919aed6ef83de86d66f354d6c9c30",
+    "sprite_offset_adjust_px": [
+      0.0,
+      0.0
+    ],
+    "layout": {
+      "render_px_per_m": 220.689655,
+      "game_px_per_m": 32.0,
+      "sprite_scale": 0.14500000011328126,
+      "sprite_offset_px": [
+        -610.1335849286806,
+        -1223.9675124879427
+      ],
+      "origin_px": [
+        610.1335849286806,
+        1223.9675124879427
+      ],
+      "sprite_rect_game_px": [
+        -88.4693698837754,
+        -177.47528944940427,
+        183.71500014352736,
+        200.68000015678126
+      ],
+      "footprint_game_px": [
+        [
+          -8.000000000000005,
+          5.14230108261106
+        ],
+        [
+          8.000000000000005,
+          5.14230108261106
+        ],
+        [
+          8.000000000000005,
+          -5.142301082611093
+        ],
+        [
+          -8.000000000000005,
+          -5.142301082611093
+        ]
+      ],
+      "ground_depth_factor": 0.6427876353263855
+    },
+    "collision": {
+      "source": "design_footprint",
+      "depth_mode": "projected",
+      "layer": 1,
+      "mask": 0,
+      "shapes": [
+        {
+          "node": "Collision",
+          "resource_id": "RectangleShape2D_footprint",
+          "center": [
+            0.0,
+            -0.0
+          ],
+          "size": [
+            16.0,
+            10.284602165222168
+          ],
+          "metres": [
+            -0.25,
+            0.25,
+            -0.25,
+            0.25
+          ]
+        }
+      ],
+      "center": [
+        0.0,
+        -0.0
+      ],
+      "size": [
+        16.0,
+        10.284602165222168
+      ],
+      "metres": [
+        -0.25,
+        0.25,
+        -0.25,
+        0.25
+      ]
+    },
+    "preview_scene": "scenes/tests/asset_previews/BroadleafTreePreview.tscn"
+  },
+  "godot_import": {
+    "already_imported": true
+  },
+  "godot_check": {
+    "scene": {
+      "exit_code": 0,
+      "problem_lines": []
+    },
+    "preview": {
+      "exit_code": 0,
+      "problem_lines": []
+    }
+  }
+}

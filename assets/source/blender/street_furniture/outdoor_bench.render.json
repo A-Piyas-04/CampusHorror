@@ -1,0 +1,342 @@
+{
+  "pipeline": "campus_asset_pipeline",
+  "pipeline_version": 1,
+  "asset": "outdoor_bench",
+  "category": "street_furniture",
+  "description": "Park bench, 1.8 x 0.6 m, wooden slats on a dark-green steel frame, facing -Y (south, towards the camera); full-footprint collision.",
+  "config": "assets/source/blender/configs/outdoor_bench.json",
+  "generator": "assets/source/blender/generators/bench.py",
+  "generator_params": {
+    "length": 1.8,
+    "seat_height": 0.455,
+    "back_tilt_deg": 14.0,
+    "frame_x": 0.78,
+    "bevel_width": 0.005
+  },
+  "random_seed": 20261013,
+  "blender_version": "5.2.2 LTS",
+  "outputs": {
+    "blend": "assets/source/blender/street_furniture/outdoor_bench.blend",
+    "record": "assets/source/blender/street_furniture/outdoor_bench.render.json",
+    "png": "assets/sprites/street_furniture/outdoor_bench.png",
+    "scene": "scenes/props/street_furniture/OutdoorBench.tscn",
+    "preview": "scenes/tests/asset_previews/OutdoorBenchPreview.tscn"
+  },
+  "origin": "ground-footprint origin at z = 0 (Blender world origin); front faces -Y",
+  "footprint_m": {
+    "x_min": -0.9,
+    "x_max": 0.9,
+    "y_min": -0.3,
+    "y_max": 0.3
+  },
+  "model": {
+    "design_size_m": {
+      "length_x": 1.8,
+      "depth_y": 0.6,
+      "seat_height": 0.455
+    },
+    "construction": "4 seat slats, 3 back slats (tilted), 2 end frames with armrests, centre support",
+    "materials": [
+      "BenchWood",
+      "BenchFrame"
+    ],
+    "objects": [
+      {
+        "object": "BenchSeat",
+        "evaluated_bounds_m": {
+          "x": 1.8,
+          "y": 0.47,
+          "z": 0.685
+        },
+        "evaluated_faces": 972
+      },
+      {
+        "object": "BenchBack",
+        "evaluated_bounds_m": {
+          "x": 1.8,
+          "y": 0.067,
+          "z": 0.46
+        },
+        "evaluated_faces": 324
+      }
+    ]
+  },
+  "camera": {
+    "type": "ORTHO",
+    "elevation_deg": 40.0,
+    "azimuth_deg": 0.0,
+    "rotation_euler_deg": [
+      50.0,
+      0.0,
+      0.0
+    ],
+    "location_m": [
+      0.0,
+      -15.5936,
+      13.5304
+    ],
+    "ortho_scale_m": 2.088906,
+    "sensor_fit": "HORIZONTAL",
+    "content_extent_m": [
+      1.8,
+      0.994
+    ],
+    "margin_m_each_side": 0.144,
+    "pixels_per_metre_on_screen": 220.689655
+  },
+  "lighting": {
+    "sun_elevation_deg": 55.0,
+    "sun_azimuth_deg_from_front": -35.0,
+    "sun_direction_to_light": [
+      -0.329,
+      -0.4698,
+      0.8192
+    ],
+    "sun_strength": 3.2,
+    "sun_angle_deg": 3.0,
+    "fill_lights_linked_to_asset_only": [
+      {
+        "name": "SkyFill",
+        "elevation_deg": 70.0,
+        "azimuth_deg_from_front": 20.0,
+        "strength": 0.8,
+        "angle_deg": 90.0,
+        "color": [
+          0.75,
+          0.85,
+          1.0
+        ]
+      },
+      {
+        "name": "GroundBounce",
+        "elevation_deg": -25.0,
+        "azimuth_deg_from_front": 10.0,
+        "strength": 0.35,
+        "angle_deg": 90.0,
+        "color": [
+          1.0,
+          0.8,
+          0.65
+        ]
+      }
+    ],
+    "world_light": "none (strength 0)",
+    "ground": "none (no shadow catcher; no cast shadow baked into the PNG)"
+  },
+  "render": {
+    "engine": "CYCLES",
+    "device": "GPU (OPTIX: NVIDIA GeForce RTX 3050 Laptop GPU)",
+    "samples": 256,
+    "adaptive_sampling": true,
+    "denoiser": "compositor OIDN on colour only (albedo + normal guides); raw render alpha kept",
+    "max_bounces": 6,
+    "film_transparent": true,
+    "filter_size_px": 1.5,
+    "view_transform": "Standard",
+    "output_format": "PNG RGBA 8-bit",
+    "resolution_px": [
+      461,
+      282
+    ],
+    "render_seconds": 2.1
+  },
+  "projection": {
+    "note": "texture px, top-left origin: x = W/2 + (p.right - cx)*ppm, y = H/2 - (p.up - cy)*ppm",
+    "image_px": [
+      461,
+      282
+    ],
+    "px_per_m": 220.689655,
+    "right": [
+      1.0,
+      0.0,
+      0.0
+    ],
+    "up": [
+      0.0,
+      0.6427876353263855,
+      0.7660444378852844
+    ],
+    "center_m": [
+      0.0,
+      0.34156916179927066
+    ],
+    "origin_px": [
+      230.5,
+      216.3807804761202
+    ],
+    "footprint_corners_px": [
+      [
+        31.879310500000003,
+        258.93775491965397
+      ],
+      [
+        429.1206895,
+        258.93775491965397
+      ],
+      [
+        429.1206895,
+        173.82380603258648
+      ],
+      [
+        31.879310500000003,
+        173.82380603258648
+      ]
+    ],
+    "design_bounds_bbox_px": [
+      31.879315761651412,
+      31.319537250220705,
+      429.1206842383486,
+      250.68046323403195
+    ]
+  },
+  "tiling": null,
+  "kind": "sprite",
+  "ground_tile": null,
+  "total_seconds": 2.3,
+  "blender_run": {
+    "exit_code": 0,
+    "seconds": 3.4,
+    "problem_lines": [
+      "00:00.688  cycles           | WARNING HIPEW initialization failed: Error opening HIP dynamic library"
+    ]
+  },
+  "verification": {
+    "png": {
+      "bit_depth": 8,
+      "png_color_type": 6,
+      "interlace": 0,
+      "file_bytes": 104966,
+      "size_px": [
+        461,
+        282
+      ],
+      "opaque_pixels": 47268,
+      "partially_transparent_pixels": 7866,
+      "fully_transparent_pixels": 74868,
+      "content_bbox_px": [
+        30,
+        30,
+        430,
+        251
+      ],
+      "margins_px": {
+        "left": 30,
+        "right": 30,
+        "top": 30,
+        "bottom": 30
+      },
+      "max_alpha_on_image_border": 0.0
+    },
+    "bbox_deviation_px": [
+      -1.88,
+      -1.32,
+      1.88,
+      1.32
+    ],
+    "minimum_margin_required_px": 16,
+    "tiling": null,
+    "passed": true
+  },
+  "godot": {
+    "scene": "scenes/props/street_furniture/OutdoorBench.tscn",
+    "scene_name": "OutdoorBench",
+    "scene_semantic_sha256": "a51bfed048f697bf1cebaa78c298eacc26c89ef22adfabda8acbcf2fb58d2968",
+    "sprite_offset_adjust_px": [
+      0.0,
+      0.0
+    ],
+    "layout": {
+      "render_px_per_m": 220.689655,
+      "game_px_per_m": 32.0,
+      "sprite_scale": 0.14500000011328126,
+      "sprite_offset_px": [
+        -230.5,
+        -216.3807804761202
+      ],
+      "origin_px": [
+        230.5,
+        216.3807804761202
+      ],
+      "sprite_rect_game_px": [
+        -33.42250002611133,
+        -31.375213193549317,
+        66.84500005222266,
+        40.89000003194531
+      ],
+      "footprint_game_px": [
+        [
+          -28.8,
+          6.170761299133304
+        ],
+        [
+          28.800000000000008,
+          6.170761299133304
+        ],
+        [
+          28.800000000000008,
+          -6.170761299133299
+        ],
+        [
+          -28.8,
+          -6.170761299133299
+        ]
+      ],
+      "ground_depth_factor": 0.6427876353263855
+    },
+    "collision": {
+      "source": "design_footprint",
+      "depth_mode": "projected",
+      "layer": 1,
+      "mask": 0,
+      "shapes": [
+        {
+          "node": "Collision",
+          "resource_id": "RectangleShape2D_footprint",
+          "center": [
+            0.0,
+            -0.0
+          ],
+          "size": [
+            57.6,
+            12.341522598266602
+          ],
+          "metres": [
+            -0.9,
+            0.9,
+            -0.3,
+            0.3
+          ]
+        }
+      ],
+      "center": [
+        0.0,
+        -0.0
+      ],
+      "size": [
+        57.6,
+        12.341522598266602
+      ],
+      "metres": [
+        -0.9,
+        0.9,
+        -0.3,
+        0.3
+      ]
+    },
+    "preview_scene": "scenes/tests/asset_previews/OutdoorBenchPreview.tscn"
+  },
+  "godot_import": {
+    "already_imported": true
+  },
+  "godot_check": {
+    "scene": {
+      "exit_code": 0,
+      "problem_lines": []
+    },
+    "preview": {
+      "exit_code": 0,
+      "problem_lines": []
+    }
+  }
+}

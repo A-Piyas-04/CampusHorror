@@ -91,6 +91,78 @@ def keep_columns(path, x_from, x_to):
     write_rgba(path, width, height, rows)
 
 
+def crop(path, x0, y0, width, height):
+    """Replaces the PNG with its [x0, x0 + width) x [y0, y0 + height) region."""
+    w, h, _, rows = read_rgba(path)
+    if x0 < 0 or y0 < 0 or x0 + width > w or y0 + height > h:
+        raise PngError(f"crop {x0},{y0} {width}x{height} outside the {w}x{h} image")
+    write_rgba(path, width, height, [r[x0 * 4:(x0 + width) * 4] for r in rows[y0:y0 + height]])
+
+
+def _step(a, b):
+    return (abs(a[0] - b[0]) + abs(a[1] - b[1]) + abs(a[2] - b[2])) / 3.0
+
+
+def wrap_seam_metrics(path):
+    """Seamless-tile check. For each axis: the mean RGB step between neighbouring interior
+    columns (rows) and the step across the wrap-around (last column -> first column).
+    A visible seam is a wrap step clearly above the interior steps."""
+    w, h, _, rows = read_rgba(path)
+    px = [[(r[x * 4], r[x * 4 + 1], r[x * 4 + 2]) for x in range(w)] for r in rows]
+    result = {}
+    for axis in ("x", "y"):
+        n = w if axis == "x" else h
+        steps = []
+        for i in range(n):
+            j = (i + 1) % n
+            if axis == "x":
+                s = sum(_step(px[y][i], px[y][j]) for y in range(h)) / h
+            else:
+                s = sum(_step(px[i][x], px[j][x]) for x in range(w)) / w
+            steps.append(s)
+        interior = steps[:-1]
+        result[axis] = {
+            "interior_mean_step": round(sum(interior) / len(interior), 3),
+            "interior_max_step": round(max(interior), 3),
+            "wrap_step": round(steps[-1], 3),
+        }
+    return result
+
+
+def luma_halves(path):
+    """Mean luma (0-255) of the left/right and top/bottom halves: a lighting gradient across
+    the tile shows up as a difference between opposite halves."""
+    w, h, _, rows = read_rgba(path)
+
+    def luma(r, x):
+        return 0.2126 * r[x * 4] + 0.7152 * r[x * 4 + 1] + 0.0722 * r[x * 4 + 2]
+
+    lum = [[luma(r, x) for x in range(w)] for r in rows]
+    left = sum(sum(row[:w // 2]) for row in lum) / (h * (w // 2))
+    right = sum(sum(row[w - w // 2:]) for row in lum) / (h * (w // 2))
+    top = sum(sum(row) for row in lum[:h // 2]) / (w * (h // 2))
+    bottom = sum(sum(row) for row in lum[h - h // 2:]) / (w * (h // 2))
+    return {"left": round(left, 2), "right": round(right, 2), "top": round(top, 2), "bottom": round(bottom, 2),
+            "max_half_difference": round(max(abs(left - right), abs(top - bottom)), 3)}
+
+
+def border_band_diff(path_a, path_b, band):
+    """Mean / max RGB difference between two same-size tiles inside a `band` px frame along all edges."""
+    wa, ha, _, ra = read_rgba(path_a)
+    wb, hb, _, rb = read_rgba(path_b)
+    if (wa, ha) != (wb, hb):
+        return {"same_size": False}
+    diffs = []
+    for y in range(ha):
+        for x in range(wa):
+            if band <= x < wa - band and band <= y < ha - band:
+                continue
+            i = x * 4
+            diffs.append(_step(ra[y][i:i + 3], rb[y][i:i + 3]))
+    return {"same_size": True, "band_px": band, "pixels": len(diffs),
+            "mean_rgb_diff": round(sum(diffs) / len(diffs), 3), "max_rgb_diff": round(max(diffs), 3)}
+
+
 def analyse(path):
     """Size, alpha coverage, content bbox and margins of an RGBA sprite."""
     width, height, info, rows = read_rgba(path)

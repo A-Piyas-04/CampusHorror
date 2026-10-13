@@ -1,0 +1,20 @@
+{
+  "asset_id": "grass_ground_tile",
+  "kind": "ground_tile",
+  "category": "ground",
+  "generator": "ground_grass",
+  "description": "Seamless 2 x 2 m top-down lawn tile (64 x 64 px, TileMapLayer source 0). Base tile for grass_worn_tile.",
+  "seed": 20261013,
+  "generator_params": {},
+  "render": {
+    "samples": 256,
+    "tile_px": 64
+  },
+  "ground": {
+    "tileset": "campus_ground",
+    "source_id": 0
+  },
+  "godot": {
+    "scene_name": "GrassGroundTile"
+  }
+}

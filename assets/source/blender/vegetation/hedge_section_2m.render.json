@@ -1,0 +1,366 @@
+{
+  "pipeline": "campus_asset_pipeline",
+  "pipeline_version": 1,
+  "asset": "hedge_section_2m",
+  "category": "vegetation",
+  "description": "Trimmed hedge module, 2.0 x 0.70 x 1.0 m, seamless along X (place instances 64 game px apart); full-footprint collision. Render scale 220.5 px/m (wall: 220.69) so the 2 m period is a whole 441 texture px and the join check compares texel-aligned columns.",
+  "config": "assets/source/blender/configs/hedge_section_2m.json",
+  "generator": "assets/source/blender/generators/hedge.py",
+  "generator_params": {
+    "length": 2.0,
+    "depth": 0.7,
+    "height": 1.0,
+    "corner_radius": 0.16,
+    "leaf_length": 0.085,
+    "leaf_width": 0.055,
+    "leaf_density": 950.0,
+    "segments_x": 48
+  },
+  "random_seed": 20261013,
+  "blender_version": "5.2.2 LTS",
+  "outputs": {
+    "blend": "assets/source/blender/vegetation/hedge_section_2m.blend",
+    "record": "assets/source/blender/vegetation/hedge_section_2m.render.json",
+    "png": "assets/sprites/vegetation/hedge_section_2m.png",
+    "scene": "scenes/props/vegetation/HedgeSection2m.tscn",
+    "preview": "scenes/tests/asset_previews/HedgeSection2mPreview.tscn"
+  },
+  "origin": "ground-footprint origin at z = 0 (Blender world origin); front faces -Y",
+  "footprint_m": {
+    "x_min": -1.0,
+    "x_max": 1.0,
+    "y_min": -0.35,
+    "y_max": 0.35
+  },
+  "model": {
+    "design_size_m": {
+      "length_x": 2.0,
+      "depth_y": 0.7,
+      "height_z": 1.0
+    },
+    "leaf_cards": 4837,
+    "tiling": "periodic over the module length (integer harmonics; leaves only in [-L/2, L/2))",
+    "materials": [
+      "HedgeShade",
+      "HedgeLeaves"
+    ],
+    "objects": [
+      {
+        "object": "HedgeInner",
+        "evaluated_bounds_m": {
+          "x": 2.0,
+          "y": 0.699,
+          "z": 0.9936
+        },
+        "evaluated_faces": 1920
+      },
+      {
+        "object": "HedgeLeaves",
+        "evaluated_bounds_m": {
+          "x": 2.0809,
+          "y": 0.8594,
+          "z": 1.0968
+        },
+        "evaluated_faces": 4837
+      }
+    ]
+  },
+  "camera": {
+    "type": "ORTHO",
+    "elevation_deg": 40.0,
+    "azimuth_deg": 0.0,
+    "rotation_euler_deg": [
+      50.0,
+      0.0,
+      0.0
+    ],
+    "location_m": [
+      -0.0006,
+      -15.6949,
+      13.6613
+    ],
+    "ortho_scale_m": 2.412698,
+    "sensor_fit": "HORIZONTAL",
+    "content_extent_m": [
+      2.0809,
+      1.2154
+    ],
+    "margin_m_each_side": 0.1665,
+    "pixels_per_metre_on_screen": 220.5
+  },
+  "lighting": {
+    "sun_elevation_deg": 55.0,
+    "sun_azimuth_deg_from_front": -35.0,
+    "sun_direction_to_light": [
+      -0.329,
+      -0.4698,
+      0.8192
+    ],
+    "sun_strength": 3.2,
+    "sun_angle_deg": 3.0,
+    "fill_lights_linked_to_asset_only": [
+      {
+        "name": "SkyFill",
+        "elevation_deg": 70.0,
+        "azimuth_deg_from_front": 20.0,
+        "strength": 0.8,
+        "angle_deg": 90.0,
+        "color": [
+          0.75,
+          0.85,
+          1.0
+        ]
+      },
+      {
+        "name": "GroundBounce",
+        "elevation_deg": -25.0,
+        "azimuth_deg_from_front": 10.0,
+        "strength": 0.35,
+        "angle_deg": 90.0,
+        "color": [
+          1.0,
+          0.8,
+          0.65
+        ]
+      }
+    ],
+    "world_light": "none (strength 0)",
+    "ground": "none (no shadow catcher; no cast shadow baked into the PNG)"
+  },
+  "render": {
+    "engine": "CYCLES",
+    "device": "GPU (OPTIX: NVIDIA GeForce RTX 3050 Laptop GPU)",
+    "samples": 256,
+    "adaptive_sampling": true,
+    "denoiser": "compositor OIDN on colour only (albedo + normal guides); raw render alpha kept",
+    "max_bounces": 6,
+    "film_transparent": true,
+    "filter_size_px": 1.5,
+    "view_transform": "Standard",
+    "output_format": "PNG RGBA 8-bit",
+    "resolution_px": [
+      532,
+      342
+    ],
+    "render_seconds": 2.8
+  },
+  "projection": {
+    "note": "texture px, top-left origin: x = W/2 + (p.right - cx)*ppm, y = H/2 - (p.up - cy)*ppm",
+    "image_px": [
+      532,
+      342
+    ],
+    "px_per_m": 220.5,
+    "right": [
+      1.0,
+      0.0,
+      0.0
+    ],
+    "up": [
+      0.0,
+      0.6427876353263855,
+      0.7660444378852844
+    ],
+    "center_m": [
+      -0.000639498233795166,
+      0.3766278261318803
+    ],
+    "origin_px": [
+      266.14100936055183,
+      254.0464356620796
+    ],
+    "footprint_corners_px": [
+      [
+        45.641009360551834,
+        303.6535714183934
+      ],
+      [
+        486.64100936055183,
+        303.6535714183934
+      ],
+      [
+        486.64100936055183,
+        204.4392999057658
+      ],
+      [
+        45.641009360551834,
+        204.4392999057658
+      ]
+    ],
+    "design_bounds_bbox_px": [
+      29,
+      37.00104817349404,
+      503,
+      304.99895513461126
+    ]
+  },
+  "tiling": {
+    "axis": "x",
+    "period_m": 2.0,
+    "period_px": 441.0,
+    "footprint_end_columns_px": [
+      45.641009360551834,
+      486.64100936055183
+    ],
+    "bleed_px": 16,
+    "kept_columns_px": [
+      29,
+      503
+    ],
+    "note": "rendered between camera-visible neighbour copies at +-period; columns outside kept_columns are cleared by the pipeline (a manual re-render of the .blend is not cut)"
+  },
+  "kind": "sprite",
+  "ground_tile": null,
+  "total_seconds": 3.3,
+  "blender_run": {
+    "exit_code": 0,
+    "seconds": 4.3,
+    "problem_lines": [
+      "00:00.781  cycles           | WARNING HIPEW initialization failed: Error opening HIP dynamic library"
+    ]
+  },
+  "verification": {
+    "png": {
+      "bit_depth": 8,
+      "png_color_type": 6,
+      "interlace": 0,
+      "file_bytes": 280700,
+      "size_px": [
+        532,
+        342
+      ],
+      "opaque_pixels": 117120,
+      "partially_transparent_pixels": 3549,
+      "fully_transparent_pixels": 61275,
+      "content_bbox_px": [
+        29,
+        36,
+        502,
+        305
+      ],
+      "margins_px": {
+        "left": 29,
+        "right": 29,
+        "top": 36,
+        "bottom": 36
+      },
+      "max_alpha_on_image_border": 0.0
+    },
+    "bbox_deviation_px": [
+      0,
+      -1.0,
+      0,
+      1.0
+    ],
+    "minimum_margin_required_px": 16,
+    "tiling": {
+      "solid_rows": 232,
+      "fringe_px_at_ends": 0,
+      "end_match_mean_rgb_diff": 1.231,
+      "end_match_max_rgb_diff": 15,
+      "shift_px": 441
+    },
+    "passed": true
+  },
+  "godot": {
+    "scene": "scenes/props/vegetation/HedgeSection2m.tscn",
+    "scene_name": "HedgeSection2m",
+    "scene_semantic_sha256": "4a731691fe49f266c4f154fe08a664c8af4604f538051d402482394cb7eb1cee",
+    "sprite_offset_adjust_px": [
+      0.0,
+      0.0
+    ],
+    "layout": {
+      "render_px_per_m": 220.5,
+      "game_px_per_m": 32.0,
+      "sprite_scale": 0.14512471655328799,
+      "sprite_offset_px": [
+        -266.14100936055183,
+        -254.0464356620796
+      ],
+      "origin_px": [
+        266.14100936055183,
+        254.0464356620796
+      ],
+      "sprite_rect_game_px": [
+        -38.623638546656046,
+        -36.86841696683241,
+        77.2063492063492,
+        49.63265306122449
+      ],
+      "footprint_game_px": [
+        [
+          -32.0,
+          7.1992215156555215
+        ],
+        [
+          32.0,
+          7.1992215156555215
+        ],
+        [
+          32.0,
+          -7.199221515655517
+        ],
+        [
+          -32.0,
+          -7.199221515655517
+        ]
+      ],
+      "ground_depth_factor": 0.6427876353263855
+    },
+    "collision": {
+      "source": "design_footprint",
+      "depth_mode": "projected",
+      "layer": 1,
+      "mask": 0,
+      "shapes": [
+        {
+          "node": "Collision",
+          "resource_id": "RectangleShape2D_footprint",
+          "center": [
+            0.0,
+            -0.0
+          ],
+          "size": [
+            64.0,
+            14.398443031311034
+          ],
+          "metres": [
+            -1.0,
+            1.0,
+            -0.35,
+            0.35
+          ]
+        }
+      ],
+      "center": [
+        0.0,
+        -0.0
+      ],
+      "size": [
+        64.0,
+        14.398443031311034
+      ],
+      "metres": [
+        -1.0,
+        1.0,
+        -0.35,
+        0.35
+      ]
+    },
+    "preview_scene": "scenes/tests/asset_previews/HedgeSection2mPreview.tscn"
+  },
+  "godot_import": {
+    "already_imported": true
+  },
+  "godot_check": {
+    "scene": {
+      "exit_code": 0,
+      "problem_lines": []
+    },
+    "preview": {
+      "exit_code": 0,
+      "problem_lines": []
+    }
+  }
+}

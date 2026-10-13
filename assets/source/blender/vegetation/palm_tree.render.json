@@ -1,0 +1,373 @@
+{
+  "pipeline": "campus_asset_pipeline",
+  "pipeline_version": 1,
+  "asset": "palm_tree",
+  "category": "vegetation",
+  "description": "Coconut palm, about 8.5 m tall with a ~6.5 m crown, slight lean; origin at the trunk base, trunk-only collision (0.35 x 0.35 m).",
+  "config": "assets/source/blender/configs/palm_tree.json",
+  "generator": "assets/source/blender/generators/tree_palm.py",
+  "generator_params": {
+    "trunk_height": 7.2,
+    "base_radius": 0.2,
+    "top_radius": 0.14,
+    "lean_x": 0.45,
+    "lean_y": 0.12,
+    "fronds": 16,
+    "frond_length": 3.5,
+    "leaflet_step": 0.019,
+    "leaflet_length": 0.95,
+    "leaflet_width": 0.05,
+    "dead_fronds": 2,
+    "coconuts": 7,
+    "collision_half_m": 0.175
+  },
+  "random_seed": 20261013,
+  "blender_version": "5.2.2 LTS",
+  "outputs": {
+    "blend": "assets/source/blender/vegetation/palm_tree.blend",
+    "record": "assets/source/blender/vegetation/palm_tree.render.json",
+    "png": "assets/sprites/vegetation/palm_tree.png",
+    "scene": "scenes/props/vegetation/CoconutPalm.tscn",
+    "preview": "scenes/tests/asset_previews/CoconutPalmPreview.tscn"
+  },
+  "origin": "ground-footprint origin at z = 0 (Blender world origin); front faces -Y",
+  "footprint_m": {
+    "x_min": -0.175,
+    "x_max": 0.175,
+    "y_min": -0.175,
+    "y_max": 0.175
+  },
+  "model": {
+    "design_size_m": {
+      "trunk_height": 7.2,
+      "frond_length": 3.5
+    },
+    "fronds": 16,
+    "dead_fronds": 2,
+    "leaflets": 1634,
+    "footprint": "trunk base only (collision); fronds have none and Y-sort with the trunk origin",
+    "materials": [
+      "PalmBark",
+      "Rachis",
+      "PalmFronds",
+      "PalmDeadFronds",
+      "Coconut"
+    ],
+    "objects": [
+      {
+        "object": "Trunk",
+        "evaluated_bounds_m": {
+          "x": 0.8779,
+          "y": 0.6,
+          "z": 7.2237
+        },
+        "evaluated_faces": 128
+      },
+      {
+        "object": "Rachises",
+        "evaluated_bounds_m": {
+          "x": 5.7761,
+          "y": 5.8841,
+          "z": 5.8081
+        },
+        "evaluated_faces": 1188
+      },
+      {
+        "object": "Fronds",
+        "evaluated_bounds_m": {
+          "x": 5.8576,
+          "y": 5.877,
+          "z": 5.7545
+        },
+        "evaluated_faces": 4902
+      },
+      {
+        "object": "Coconuts",
+        "evaluated_bounds_m": {
+          "x": 0.5944,
+          "y": 0.6036,
+          "z": 0.3939
+        },
+        "evaluated_faces": 560
+      }
+    ]
+  },
+  "camera": {
+    "type": "ORTHO",
+    "elevation_deg": 40.0,
+    "azimuth_deg": 0.0,
+    "rotation_euler_deg": [
+      50.0,
+      0.0,
+      0.0
+    ],
+    "location_m": [
+      0.3191,
+      -17.6856,
+      19.6069
+    ],
+    "ortho_scale_m": 7.086875,
+    "sensor_fit": "HORIZONTAL",
+    "content_extent_m": [
+      5.8576,
+      7.6888
+    ],
+    "margin_m_each_side": 0.6151,
+    "pixels_per_metre_on_screen": 220.689655
+  },
+  "lighting": {
+    "sun_elevation_deg": 55.0,
+    "sun_azimuth_deg_from_front": -35.0,
+    "sun_direction_to_light": [
+      -0.329,
+      -0.4698,
+      0.8192
+    ],
+    "sun_strength": 3.2,
+    "sun_angle_deg": 3.0,
+    "fill_lights_linked_to_asset_only": [
+      {
+        "name": "SkyFill",
+        "elevation_deg": 70.0,
+        "azimuth_deg_from_front": 20.0,
+        "strength": 0.8,
+        "angle_deg": 90.0,
+        "color": [
+          0.75,
+          0.85,
+          1.0
+        ]
+      },
+      {
+        "name": "GroundBounce",
+        "elevation_deg": -25.0,
+        "azimuth_deg_from_front": 10.0,
+        "strength": 0.35,
+        "angle_deg": 90.0,
+        "color": [
+          1.0,
+          0.8,
+          0.65
+        ]
+      }
+    ],
+    "world_light": "none (strength 0)",
+    "ground": "none (no shadow catcher; no cast shadow baked into the PNG)"
+  },
+  "render": {
+    "engine": "CYCLES",
+    "device": "GPU (OPTIX: NVIDIA GeForce RTX 3050 Laptop GPU)",
+    "samples": 256,
+    "adaptive_sampling": true,
+    "denoiser": "compositor OIDN on colour only (albedo + normal guides); raw render alpha kept",
+    "max_bounces": 6,
+    "film_transparent": true,
+    "filter_size_px": 1.5,
+    "view_transform": "Standard",
+    "output_format": "PNG RGBA 8-bit",
+    "resolution_px": [
+      1564,
+      1968
+    ],
+    "render_seconds": 11.3
+  },
+  "projection": {
+    "note": "texture px, top-left origin: x = W/2 + (p.right - cx)*ppm, y = H/2 - (p.up - cy)*ppm",
+    "image_px": [
+      1564,
+      1968
+    ],
+    "px_per_m": 220.689655,
+    "right": [
+      1.0,
+      0.0,
+      0.0
+    ],
+    "up": [
+      0.0,
+      0.6427876353263855,
+      0.7660444378852844
+    ],
+    "center_m": [
+      0.3190814256668091,
+      3.6517051993505447
+    ],
+    "origin_px": [
+      711.5820302526838,
+      1789.8935606063778
+    ],
+    "footprint_corners_px": [
+      [
+        672.9613406276837,
+        1814.718462365106
+      ],
+      [
+        750.2027198776838,
+        1814.718462365106
+      ],
+      [
+        750.2027198776838,
+        1765.0686588476499
+      ],
+      [
+        672.9613406276837,
+        1765.0686588476499
+      ]
+    ],
+    "design_bounds_bbox_px": [
+      135.64203667987294,
+      135.58142788864086,
+      1428.357963320127,
+      1832.418584763595
+    ]
+  },
+  "tiling": null,
+  "kind": "sprite",
+  "ground_tile": null,
+  "total_seconds": 11.6,
+  "blender_run": {
+    "exit_code": 0,
+    "seconds": 12.9,
+    "problem_lines": [
+      "00:00.890  cycles           | WARNING HIPEW initialization failed: Error opening HIP dynamic library"
+    ]
+  },
+  "verification": {
+    "png": {
+      "bit_depth": 8,
+      "png_color_type": 6,
+      "interlace": 0,
+      "file_bytes": 2999196,
+      "size_px": [
+        1564,
+        1968
+      ],
+      "opaque_pixels": 592025,
+      "partially_transparent_pixels": 301471,
+      "fully_transparent_pixels": 2184456,
+      "content_bbox_px": [
+        135,
+        134,
+        1428,
+        1832
+      ],
+      "margins_px": {
+        "left": 135,
+        "right": 135,
+        "top": 134,
+        "bottom": 135
+      },
+      "max_alpha_on_image_border": 0.0
+    },
+    "bbox_deviation_px": [
+      -0.64,
+      -1.58,
+      0.64,
+      0.58
+    ],
+    "minimum_margin_required_px": 16,
+    "tiling": null,
+    "passed": true
+  },
+  "godot": {
+    "scene": "scenes/props/vegetation/CoconutPalm.tscn",
+    "scene_name": "CoconutPalm",
+    "scene_semantic_sha256": "f6c5e7fa23bd9822ac21f65e9ed824aabfe092a19fa475f8015a5c60368f10f6",
+    "sprite_offset_adjust_px": [
+      0.0,
+      0.0
+    ],
+    "layout": {
+      "render_px_per_m": 220.689655,
+      "game_px_per_m": 32.0,
+      "sprite_scale": 0.14500000011328126,
+      "sprite_offset_px": [
+        -711.5820302526838,
+        -1789.8935606063778
+      ],
+      "origin_px": [
+        711.5820302526838,
+        1789.8935606063778
+      ],
+      "sprite_rect_game_px": [
+        -103.17939446724806,
+        -259.5345664906862,
+        226.7800001771719,
+        285.3600002229375
+      ],
+      "footprint_game_px": [
+        [
+          -5.60000000000001,
+          3.5996107578277816
+        ],
+        [
+          5.599999999999994,
+          3.5996107578277816
+        ],
+        [
+          5.599999999999994,
+          -3.5996107578277483
+        ],
+        [
+          -5.60000000000001,
+          -3.5996107578277483
+        ]
+      ],
+      "ground_depth_factor": 0.6427876353263855
+    },
+    "collision": {
+      "source": "design_footprint",
+      "depth_mode": "projected",
+      "layer": 1,
+      "mask": 0,
+      "shapes": [
+        {
+          "node": "Collision",
+          "resource_id": "RectangleShape2D_footprint",
+          "center": [
+            0.0,
+            -0.0
+          ],
+          "size": [
+            11.2,
+            7.199221515655517
+          ],
+          "metres": [
+            -0.175,
+            0.175,
+            -0.175,
+            0.175
+          ]
+        }
+      ],
+      "center": [
+        0.0,
+        -0.0
+      ],
+      "size": [
+        11.2,
+        7.199221515655517
+      ],
+      "metres": [
+        -0.175,
+        0.175,
+        -0.175,
+        0.175
+      ]
+    },
+    "preview_scene": "scenes/tests/asset_previews/CoconutPalmPreview.tscn"
+  },
+  "godot_import": {
+    "already_imported": true
+  },
+  "godot_check": {
+    "scene": {
+      "exit_code": 0,
+      "problem_lines": []
+    },
+    "preview": {
+      "exit_code": 0,
+      "problem_lines": []
+    }
+  }
+}

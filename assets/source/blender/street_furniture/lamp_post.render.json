@@ -1,0 +1,348 @@
+{
+  "pipeline": "campus_asset_pipeline",
+  "pipeline_version": 1,
+  "asset": "lamp_post",
+  "category": "street_furniture",
+  "description": "Campus lamp post, about 4.4 m: concrete plinth, dark-green steel pole, four-sided lantern (unlit). Collision = 0.30 x 0.30 m plinth.",
+  "config": "assets/source/blender/configs/lamp_post.json",
+  "generator": "assets/source/blender/generators/lamp_post.py",
+  "generator_params": {
+    "plinth_half": 0.15,
+    "plinth_height": 0.22
+  },
+  "random_seed": 20261013,
+  "blender_version": "5.2.2 LTS",
+  "outputs": {
+    "blend": "assets/source/blender/street_furniture/lamp_post.blend",
+    "record": "assets/source/blender/street_furniture/lamp_post.render.json",
+    "png": "assets/sprites/street_furniture/lamp_post.png",
+    "scene": "scenes/props/street_furniture/LampPost.tscn",
+    "preview": "scenes/tests/asset_previews/LampPostPreview.tscn"
+  },
+  "origin": "ground-footprint origin at z = 0 (Blender world origin); front faces -Y",
+  "footprint_m": {
+    "x_min": -0.15,
+    "x_max": 0.15,
+    "y_min": -0.15,
+    "y_max": 0.15
+  },
+  "model": {
+    "design_size_m": {
+      "height": 4.4,
+      "plinth": 0.3
+    },
+    "lit": "no (unlit by day; Godot lights provide night light)",
+    "materials": [
+      "PlinthConcrete",
+      "LampMetal",
+      "LampGlass"
+    ],
+    "objects": [
+      {
+        "object": "Plinth",
+        "evaluated_bounds_m": {
+          "x": 0.3,
+          "y": 0.3,
+          "z": 0.22
+        },
+        "evaluated_faces": 108
+      },
+      {
+        "object": "Pole",
+        "evaluated_bounds_m": {
+          "x": 0.2,
+          "y": 0.2,
+          "z": 3.48
+        },
+        "evaluated_faces": 194
+      },
+      {
+        "object": "Lantern",
+        "evaluated_bounds_m": {
+          "x": 0.3536,
+          "y": 0.3536,
+          "z": 0.7
+        },
+        "evaluated_faces": 60
+      }
+    ]
+  },
+  "camera": {
+    "type": "ORTHO",
+    "elevation_deg": 40.0,
+    "azimuth_deg": 0.0,
+    "rotation_euler_deg": [
+      50.0,
+      0.0,
+      0.0
+    ],
+    "location_m": [
+      0.0,
+      -16.4336,
+      15.9297
+    ],
+    "ortho_scale_m": 0.90625,
+    "sensor_fit": "HORIZONTAL",
+    "content_extent_m": [
+      0.3536,
+      3.4621
+    ],
+    "margin_m_each_side": 0.277,
+    "pixels_per_metre_on_screen": 220.689655
+  },
+  "lighting": {
+    "sun_elevation_deg": 55.0,
+    "sun_azimuth_deg_from_front": -35.0,
+    "sun_direction_to_light": [
+      -0.329,
+      -0.4698,
+      0.8192
+    ],
+    "sun_strength": 3.2,
+    "sun_angle_deg": 3.0,
+    "fill_lights_linked_to_asset_only": [
+      {
+        "name": "SkyFill",
+        "elevation_deg": 70.0,
+        "azimuth_deg_from_front": 20.0,
+        "strength": 0.8,
+        "angle_deg": 90.0,
+        "color": [
+          0.75,
+          0.85,
+          1.0
+        ]
+      },
+      {
+        "name": "GroundBounce",
+        "elevation_deg": -25.0,
+        "azimuth_deg_from_front": 10.0,
+        "strength": 0.35,
+        "angle_deg": 90.0,
+        "color": [
+          1.0,
+          0.8,
+          0.65
+        ]
+      }
+    ],
+    "world_light": "none (strength 0)",
+    "ground": "none (no shadow catcher; no cast shadow baked into the PNG)"
+  },
+  "render": {
+    "engine": "CYCLES",
+    "device": "GPU (OPTIX: NVIDIA GeForce RTX 3050 Laptop GPU)",
+    "samples": 256,
+    "adaptive_sampling": true,
+    "denoiser": "compositor OIDN on colour only (albedo + normal guides); raw render alpha kept",
+    "max_bounces": 6,
+    "film_transparent": true,
+    "filter_size_px": 1.5,
+    "view_transform": "Standard",
+    "output_format": "PNG RGBA 8-bit",
+    "resolution_px": [
+      200,
+      886
+    ],
+    "render_seconds": 1.8
+  },
+  "projection": {
+    "note": "texture px, top-left origin: x = W/2 + (p.right - cx)*ppm, y = H/2 - (p.up - cy)*ppm",
+    "image_px": [
+      200,
+      886
+    ],
+    "px_per_m": 220.689655,
+    "right": [
+      1.0,
+      0.0,
+      0.0
+    ],
+    "up": [
+      0.0,
+      0.6427876353263855,
+      0.7660444378852844
+    ],
+    "center_m": [
+      0.0,
+      1.6395647967001423
+    ],
+    "origin_px": [
+      100.0,
+      804.8349893338996
+    ],
+    "footprint_corners_px": [
+      [
+        66.89655175,
+        826.1134765556665
+      ],
+      [
+        133.10344824999999,
+        826.1134765556665
+      ],
+      [
+        133.10344824999999,
+        783.5565021121326
+      ],
+      [
+        66.89655175,
+        783.5565021121326
+      ]
+    ],
+    "design_bounds_bbox_px": [
+      60.98714371144593,
+      60.97940928034609,
+      139.01285628855408,
+      825.0206116332307
+    ]
+  },
+  "tiling": null,
+  "kind": "sprite",
+  "ground_tile": null,
+  "total_seconds": 1.9,
+  "blender_run": {
+    "exit_code": 0,
+    "seconds": 3.3,
+    "problem_lines": [
+      "00:00.922  cycles           | WARNING HIPEW initialization failed: Error opening HIP dynamic library"
+    ]
+  },
+  "verification": {
+    "png": {
+      "bit_depth": 8,
+      "png_color_type": 6,
+      "interlace": 0,
+      "file_bytes": 99240,
+      "size_px": [
+        200,
+        886
+      ],
+      "opaque_pixels": 24330,
+      "partially_transparent_pixels": 3607,
+      "fully_transparent_pixels": 149263,
+      "content_bbox_px": [
+        60,
+        60,
+        139,
+        826
+      ],
+      "margins_px": {
+        "left": 60,
+        "right": 60,
+        "top": 60,
+        "bottom": 59
+      },
+      "max_alpha_on_image_border": 0.0
+    },
+    "bbox_deviation_px": [
+      -0.99,
+      -0.98,
+      0.99,
+      1.98
+    ],
+    "minimum_margin_required_px": 16,
+    "tiling": null,
+    "passed": true
+  },
+  "godot": {
+    "scene": "scenes/props/street_furniture/LampPost.tscn",
+    "scene_name": "LampPost",
+    "scene_semantic_sha256": "c5226dc3710314d633525acdb39bb2a3bc301a57d3d7b76b6c9c0412e2e868d7",
+    "sprite_offset_adjust_px": [
+      0.0,
+      0.0
+    ],
+    "layout": {
+      "render_px_per_m": 220.689655,
+      "game_px_per_m": 32.0,
+      "sprite_scale": 0.14500000011328126,
+      "sprite_offset_px": [
+        -100.0,
+        -804.8349893338996
+      ],
+      "origin_px": [
+        100.0,
+        804.8349893338996
+      ],
+      "sprite_rect_game_px": [
+        -14.500000011328126,
+        -116.70107354458816,
+        29.000000022656252,
+        128.4700001003672
+      ],
+      "footprint_game_px": [
+        [
+          -4.800000000000001,
+          3.085380649566656
+        ],
+        [
+          4.799999999999998,
+          3.085380649566656
+        ],
+        [
+          4.799999999999998,
+          -3.085380649566656
+        ],
+        [
+          -4.800000000000001,
+          -3.085380649566656
+        ]
+      ],
+      "ground_depth_factor": 0.6427876353263855
+    },
+    "collision": {
+      "source": "design_footprint",
+      "depth_mode": "projected",
+      "layer": 1,
+      "mask": 0,
+      "shapes": [
+        {
+          "node": "Collision",
+          "resource_id": "RectangleShape2D_footprint",
+          "center": [
+            0.0,
+            -0.0
+          ],
+          "size": [
+            9.6,
+            6.170761299133301
+          ],
+          "metres": [
+            -0.15,
+            0.15,
+            -0.15,
+            0.15
+          ]
+        }
+      ],
+      "center": [
+        0.0,
+        -0.0
+      ],
+      "size": [
+        9.6,
+        6.170761299133301
+      ],
+      "metres": [
+        -0.15,
+        0.15,
+        -0.15,
+        0.15
+      ]
+    },
+    "preview_scene": "scenes/tests/asset_previews/LampPostPreview.tscn"
+  },
+  "godot_import": {
+    "already_imported": true
+  },
+  "godot_check": {
+    "scene": {
+      "exit_code": 0,
+      "problem_lines": []
+    },
+    "preview": {
+      "exit_code": 0,
+      "problem_lines": []
+    }
+  }
+}

@@ -1,7 +1,96 @@
 """Reusable modeling and shader-node helpers for asset generators (runs inside Blender)."""
 
+import math
+
 import bmesh
 import bpy
+from mathutils import Vector
+
+
+def add_tube(bm, points, radii, sides=8, cap_start=False, cap_end=True):
+    """Tapered tube along a polyline (rings kept perpendicular by parallel transport).
+    Returns the list of rings (lists of BMVerts)."""
+    pts = [Vector(p) for p in points]
+    tangents = []
+    for i in range(len(pts)):
+        a, b = pts[max(i - 1, 0)], pts[min(i + 1, len(pts) - 1)]
+        tangents.append((b - a).normalized())
+    ref = Vector((1, 0, 0)) if abs(tangents[0].x) < 0.9 else Vector((0, 1, 0))
+    side = tangents[0].cross(ref).normalized()
+    rings = []
+    for i, (p, t, r) in enumerate(zip(pts, tangents, radii)):
+        if i:
+            side = (side - t * side.dot(t)).normalized()
+        other = t.cross(side)
+        ring = [bm.verts.new(p + (side * math.cos(a) + other * math.sin(a)) * r)
+                for a in (2 * math.pi * k / sides for k in range(sides))]
+        rings.append(ring)
+    for r0, r1 in zip(rings, rings[1:]):
+        for k in range(sides):
+            bm.faces.new((r0[k], r0[(k + 1) % sides], r1[(k + 1) % sides], r1[k]))
+    if cap_start:
+        bm.faces.new(list(reversed(rings[0])))
+    if cap_end:
+        bm.faces.new(rings[-1])
+    return rings
+
+
+def add_lathe(bm, profile, sides=16, angle_offset=0.0, center=(0.0, 0.0)):
+    """Surface of revolution around the Z axis through `center` from a (radius, z) profile,
+    bottom to top. A radius of 0 at either end closes it with a fan."""
+    cx, cy = center
+    rings = []
+    for r, z in profile:
+        rings.append([bm.verts.new((cx + r * math.cos(angle_offset + 2 * math.pi * k / sides),
+                                    cy + r * math.sin(angle_offset + 2 * math.pi * k / sides), z))
+                      for k in range(sides)])
+    faces = []
+    for r0, r1 in zip(rings, rings[1:]):
+        for k in range(sides):
+            faces.append(bm.faces.new((r0[k], r0[(k + 1) % sides], r1[(k + 1) % sides], r1[k])))
+    if profile[0][0] > 0:
+        faces.append(bm.faces.new(list(reversed(rings[0]))))
+    if profile[-1][0] > 0:
+        faces.append(bm.faces.new(rings[-1]))
+    return faces
+
+
+def mesh_object(collection, name, bm, materials=(), smooth=False):
+    mesh = bpy.data.meshes.new(name + "Mesh")
+    bm.normal_update()
+    bm.to_mesh(mesh)
+    bm.free()
+    if smooth:
+        mesh.shade_smooth()
+    for m in materials:
+        mesh.materials.append(m)
+    obj = bpy.data.objects.new(name, mesh)
+    collection.objects.link(obj)
+    return obj
+
+
+def extreme_points(objects, elevations=range(0, 91, 5)):
+    """A few evaluated vertices (world space) that bound the objects as seen by the asset camera
+    (azimuth 0) at any of `elevations`: extremes along X and along the camera's screen-up axis.
+    Use as `bounds_points_m` for rounded shapes, where bounding-box corners would over-frame."""
+    bpy.context.view_layer.update()
+    deps = bpy.context.evaluated_depsgraph_get()
+    pts = []
+    for obj in objects:
+        ev = obj.evaluated_get(deps)
+        mesh = ev.to_mesh()
+        mw = obj.matrix_world
+        pts += [mw @ v.co for v in mesh.vertices]
+        ev.to_mesh_clear()
+    keys = [lambda p: p.x, lambda p: p.y, lambda p: p.z]
+    for el in elevations:
+        s, c = math.sin(math.radians(el)), math.cos(math.radians(el))
+        keys.append(lambda p, s=s, c=c: p.y * s + p.z * c)
+    chosen = {}
+    for key in keys:
+        for p in (min(pts, key=key), max(pts, key=key)):
+            chosen[tuple(round(v, 6) for v in p)] = None
+    return list(chosen)
 
 
 class BoxBuilder:

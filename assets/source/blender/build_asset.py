@@ -35,6 +35,7 @@ from pipeline import assetconfig, conventions as C, godot_scene, pngcheck  # noq
 
 ALL_STEPS = ["render", "validate", "scene", "preview", "godot"]
 CHECK_SCRIPT = "res://scenes/tests/asset_previews/asset_scene_check.gd"
+GROUND_CHECK_SCRIPT = "res://scenes/tests/asset_previews/ground_tile_check.gd"
 # Blender lines that look like problems but aren't.
 BLENDER_NOISE = re.compile(r"^\[PIPELINE\]|Fra:\d+|^Saved:|^Time:|^Blender quit")
 PROBLEM = re.compile(r"(?i)\b(error|warning|traceback|exception)\b|^WARN")
@@ -87,6 +88,12 @@ def step_render(cfg, args, rep):
     src_dir = cfg["outputs"]["blend"].parent
     src_dir.mkdir(parents=True, exist_ok=True)
     (src_dir / ".gdignore").touch()
+    # A running editor imports a new PNG with its defaults (no mipmaps) as soon as it appears;
+    # writing the first-import settings before the render wins that race.
+    if not cfg["outputs"]["png"].exists():
+        cfg["outputs"]["png"].parent.mkdir(parents=True, exist_ok=True)
+        if godot_scene.ensure_texture_import(cfg["outputs"]["png"], mipmaps=cfg["kind"] != "ground_tile"):
+            say(f"wrote first-import settings before rendering: {assetconfig.rel(cfg['outputs']['png'])}.import")
     blender = args.blender or os.environ.get("BLENDER_EXE") or C.DEFAULT_BLENDER_EXE
     cmd = [blender, "--background", "--factory-startup", "--python-exit-code", "1",
            "--python", str(C.BLENDER_ROOT / "pipeline/blender_entry.py"), "--", "--config", cfg["asset_id"]]
@@ -104,7 +111,7 @@ def step_render(cfg, args, rep):
     return {"exit_code": code, "seconds": round(secs, 1), "problem_lines": found}
 
 
-def step_validate(cfg, args, rep):
+def _check_record(cfg, rep):
     out = cfg["outputs"]
     record = assetconfig.read_record(cfg)
     if not rep.check(record is not None, f"record readable: {assetconfig.rel(out['record'])}"):
@@ -121,6 +128,16 @@ def step_validate(cfg, args, rep):
         rep.check(out[key].is_file(), f"{key} exists: {assetconfig.rel(out[key])}")
     rep.check((C.PROJECT_ROOT / record["generator"]).is_file() and (C.PROJECT_ROOT / record["config"]).is_file(),
               "generator and config referenced by the record exist")
+    return record
+
+
+def step_validate(cfg, args, rep):
+    if cfg["kind"] == "ground_tile":
+        return step_validate_ground(cfg, args, rep)
+    out = cfg["outputs"]
+    record = _check_record(cfg, rep)
+    if record is None:
+        return None
 
     cam, proj = record["camera"], record["projection"]
     rep.check(abs(cam["elevation_deg"] - cfg["render"]["elevation_deg"]) < 1e-6
@@ -175,6 +192,101 @@ def step_validate(cfg, args, rep):
         say(f"compare to {args.compare_to}: {diff}")
         verification["compare_to"] = {"path": args.compare_to, **diff}
     return verification
+
+
+def step_validate_ground(cfg, args, rep):
+    """Seamless top-down ground tile: opaque, exact tile size, no wrap-around seam, no lighting
+    gradient, and (for variants) a border that matches the base tile."""
+    out = cfg["outputs"]
+    record = _check_record(cfg, rep)
+    if record is None:
+        return None
+    cam, proj, g = record["camera"], record["projection"], record.get("ground_tile") or {}
+    tile = cfg["render"]["tile_px"]
+    rep.check(cam["type"] == "ORTHO" and abs(cam["elevation_deg"] - C.GROUND_ELEVATION_DEG) < 1e-6,
+              f"camera ortho, straight down (elevation {cam['elevation_deg']})")
+    rep.check(g.get("tile_px") == tile and abs(g.get("period_m", 0) - cfg["ground"]["period_m"]) < 1e-9,
+              f"record ground tile {g.get('tile_px')} px / {g.get('period_m')} m matches the config")
+    rep.check(abs(proj["px_per_m"] - tile / cfg["ground"]["period_m"]) < 1e-6,
+              f"render scale {proj['px_per_m']:.3f} px/m = tile_px / period")
+    try:
+        png = pngcheck.analyse(out["png"])
+    except pngcheck.PngError as exc:
+        rep.check(False, f"PNG readable as 8-bit RGBA: {exc}")
+        return None
+    rep.check(True, "PNG is 8-bit RGBA, non-interlaced")
+    rep.check(png["size_px"] == [tile, tile] == proj["image_px"], f"PNG size {png['size_px']} = {tile} x {tile}")
+    rep.check(png["opaque_pixels"] == tile * tile,
+              f"fully opaque ({png['opaque_pixels']} of {tile * tile} px at alpha 255)")
+
+    seams = pngcheck.wrap_seam_metrics(out["png"])
+    for axis, s in seams.items():
+        limit = C.GROUND_SEAM_RATIO_MAX * s["interior_mean_step"] + C.GROUND_SEAM_SLACK
+        rep.check(s["wrap_step"] <= limit,
+                  f"seamless along {axis}: wrap-around step {s['wrap_step']:.2f} vs interior mean "
+                  f"{s['interior_mean_step']:.2f} / max {s['interior_max_step']:.2f} (limit {limit:.2f})")
+    halves = pngcheck.luma_halves(out["png"])
+    rep.check(halves["max_half_difference"] <= C.GROUND_GRADIENT_MAX,
+              f"no lighting gradient: luma halves L/R {halves['left']}/{halves['right']}, "
+              f"T/B {halves['top']}/{halves['bottom']} (max diff {halves['max_half_difference']}, "
+              f"limit {C.GROUND_GRADIENT_MAX})")
+    border = None
+    ref_id = cfg["ground"]["border_match"]
+    if ref_id:
+        ref = assetconfig.load(ref_id)
+        if rep.check(ref["outputs"]["png"].is_file(), f"border-match base tile exists: {ref_id}"):
+            border = pngcheck.border_band_diff(out["png"], ref["outputs"]["png"], C.GROUND_BORDER_BAND_PX)
+            rep.check(border["same_size"] and border["mean_rgb_diff"] <= C.GROUND_BORDER_MATCH_MAX,
+                      f"border band ({C.GROUND_BORDER_BAND_PX} px) matches {ref_id}: mean RGB diff "
+                      f"{border.get('mean_rgb_diff')}, max {border.get('max_rgb_diff')} "
+                      f"(limit mean {C.GROUND_BORDER_MATCH_MAX})")
+    rep.check(out["png"].resolve().is_relative_to(C.PROJECT_ROOT / "assets/sprites"),
+              f"Godot texture path {assetconfig.res_path(out['png'])}")
+    imp = out["png"].with_name(out["png"].name + ".import")
+    if imp.exists() and "mipmaps/generate=true" in imp.read_text(encoding="utf-8"):
+        rep.warn(".import has mipmaps on; ground tiles are drawn 1:1")
+    return {"png": png, "seams": seams, "luma_halves": halves, "border_match": border}
+
+
+def step_tileset(cfg, args, rep):
+    out = cfg["outputs"]
+    godot_scene.check_writable(out["scene"], None, False)
+    if godot_scene.ensure_texture_import(out["png"], mipmaps=False):
+        say(f"wrote first-import settings (mipmaps off): {assetconfig.rel(out['png'])}.import")
+    name = cfg["ground"]["tileset"]
+    members = assetconfig.tileset_members(name)
+    tile = cfg["render"]["tile_px"]
+    rep.check(all(m["render"]["tile_px"] == tile for m in members), f"every tile in TileSet {name} is {tile} px")
+    existing = out["scene"].read_text(encoding="utf-8") if out["scene"].exists() else None
+    text, included = godot_scene.build_tileset(name, members, tile, existing)
+    godot_scene.write_scene(out["scene"], text)
+    say(f"wrote {assetconfig.rel(out['scene'])} ({len(included)} source(s): "
+        + ", ".join(f"{s['source_id']}={s['asset_id']}" for s in included) + ")")
+    rep.check(any(s["asset_id"] == cfg["asset_id"] for s in included), f"TileSet {name} has {cfg['asset_id']}")
+    for res in re.findall(r'path="(res://[^"]+)"', text):
+        rep.check((C.PROJECT_ROOT / res[len("res://"):]).is_file(), f"TileSet resource exists: {res}")
+    return {
+        "tileset": assetconfig.rel(out["scene"]),
+        "scene_name": cfg["godot"]["scene_name"],
+        "source_id": cfg["ground"]["source_id"],
+        "tile_size_px": tile,
+        "tileset_sources": included,
+        "collision": None,
+    }
+
+
+def step_ground_preview(cfg, args, rep, record):
+    out = cfg["outputs"]
+    godot_scene.check_writable(out["preview"], None, False)
+    ref_id = cfg["ground"]["border_match"]
+    ref_source = assetconfig.load(ref_id)["ground"]["source_id"] if ref_id else None
+    cells = godot_scene.ground_preview_cells(cfg, ref_source)
+    existing = out["preview"].read_text(encoding="utf-8") if out["preview"].exists() else None
+    godot_scene.write_scene(out["preview"], godot_scene.build_ground_preview_scene(
+        cfg, cells, cfg["render"]["tile_px"], existing))
+    record["godot"]["preview_cells"] = [list(c) for c in cells]
+    say(f"wrote {assetconfig.rel(out['preview'])} ({len(cells)} cells)")
+    return assetconfig.rel(out["preview"])
 
 
 def check_tiling(png_path, tiling, rep):
@@ -292,14 +404,20 @@ def step_import(cfg, args, rep):
 def step_godot(cfg, args, rep):
     godot = godot_exe(args)
     out = cfg["outputs"]
+    ground = cfg["kind"] == "ground_tile"
     result = {}
     for scene_key in ("scene", "preview"):
         if scene_key == "preview" and not cfg["godot"]["preview_scene"]:
             continue
         scene_res = assetconfig.res_path(out[scene_key])
-        script_args = [scene_res, str(out["record"])] if scene_key == "scene" else None
+        if scene_key == "scene" and ground:
+            script_args = [scene_res, str(out["record"]), assetconfig.res_path(out["preview"])]
+            script = GROUND_CHECK_SCRIPT
+        else:
+            script_args = [scene_res, str(out["record"])] if scene_key == "scene" else None
+            script = CHECK_SCRIPT
         if script_args:
-            cmd = [godot, "--headless", "--path", str(C.PROJECT_ROOT), "--script", CHECK_SCRIPT, "--", *script_args]
+            cmd = [godot, "--headless", "--path", str(C.PROJECT_ROOT), "--script", script, "--", *script_args]
         else:
             cmd = [godot, "--headless", "--path", str(C.PROJECT_ROOT), "--quit-after", "2", scene_res]
         code, output, secs = run(cmd, C.LOG_DIR / f"{cfg['asset_id']}.godot_{scene_key}.log", timeout=300)
@@ -307,9 +425,10 @@ def step_godot(cfg, args, rep):
         for line in found:
             rep.warn(f"Godot ({scene_key}): " + line)
         if scene_key == "scene":
-            rep.check(code == 0 and "[ASSETCHECK] PASS" in output, f"Godot scene check exit {code}")
+            tag = "[GROUNDCHECK]" if ground else "[ASSETCHECK]"
+            rep.check(code == 0 and f"{tag} PASS" in output, f"Godot {'TileSet' if ground else 'scene'} check exit {code}")
             for line in output.splitlines():
-                if line.startswith("[ASSETCHECK]"):
+                if line.startswith(tag):
                     print("   " + line)
         else:
             rep.check(code == 0, f"Godot ran the preview scene headless (exit {code})")
@@ -343,17 +462,20 @@ def build_one(asset, steps, args):
         if "validate" in steps:
             record["verification"] = dict(step_validate(cfg, args, rep) or {}, passed=not rep.failed)
         imported = False
+        ground = cfg["kind"] == "ground_tile"
+        scene_step = step_tileset if ground else (lambda c, a, r: step_scene(c, a, r, record))
         if "scene" in steps and not rep.failed:
-            record["godot"] = step_scene(cfg, args, rep, record)
+            record["godot"] = scene_step(cfg, args, rep)
             if "godot" in steps and not rep.failed:
                 record["godot_import"] = step_import(cfg, args, rep)
                 imported = True
                 if not rep.failed and godot_scene.texture_uid(cfg["outputs"]["png"]) and \
                         godot_scene.texture_uid(cfg["outputs"]["png"]) not in cfg["outputs"]["scene"].read_text(encoding="utf-8"):
                     say("embedding the texture uid Godot just assigned")
-                    record["godot"] = step_scene(cfg, args, rep, record)
+                    record["godot"] = scene_step(cfg, args, rep)
         if "preview" in steps and not rep.failed and record.get("godot"):
-            record["godot"]["preview_scene"] = step_preview(cfg, args, rep, record)
+            preview_step = step_ground_preview if ground else step_preview
+            record["godot"]["preview_scene"] = preview_step(cfg, args, rep, record)
         cfg["outputs"]["record"].write_text(json.dumps(record, indent=2), encoding="utf-8")
         if "godot" in steps and not rep.failed:
             if not imported:

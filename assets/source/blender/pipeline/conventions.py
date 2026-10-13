@@ -49,6 +49,25 @@ FILL_LIGHTS = (
 # Game scale (Docs/CAMPUS_MAP.md: roughly 32 px = 1 m; still Undecided in Docs/ART_STYLE.md).
 GAME_PX_PER_M = 32.0
 
+# Ground tiles (config "kind": "ground_tile"). Rendered straight down and drawn 1:1 by a
+# TileMapLayer, so the texture is the tile at game resolution. Proposed tile size: 2 m = 64 px.
+GROUND_ELEVATION_DEG = 90.0
+GROUND_TILE_PERIOD_M = 2.0
+GROUND_TILE_PX = 64
+# Rendered past every tile edge (between neighbour copies) and cropped off afterwards, so the
+# pixel filter and the denoiser never see an image edge inside the kept tile.
+GROUND_OVERSCAN_PX = 8
+# Wrap-around seam: mean RGB step across the opposite edges vs the mean step between
+# neighbouring interior columns/rows. A seam shows up as a step clearly above the interior.
+GROUND_SEAM_RATIO_MAX = 1.5
+GROUND_SEAM_SLACK = 1.0
+# Lighting gradient: mean luma difference between opposite halves of the tile (0-255).
+GROUND_GRADIENT_MAX = 6.0
+# Variant tiles that must blend with a base tile: mean RGB diff along the shared border band.
+GROUND_BORDER_BAND_PX = 3
+GROUND_BORDER_MATCH_MAX = 2.5
+GROUND_TILESET_DIR = "assets/tilesets"
+
 # Validation thresholds.
 MIN_MARGIN_PX = 16
 MAX_BORDER_ALPHA = 1.0 / 255.0

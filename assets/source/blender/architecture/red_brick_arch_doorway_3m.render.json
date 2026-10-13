@@ -378,11 +378,7 @@
     "preview_scene": "scenes/tests/asset_previews/RedBrickArchDoorway3mPreview.tscn"
   },
   "godot_import": {
-    "exit_code": 0,
-    "problem_lines": [
-      "WARNING: Detected another project.godot at res://addons/godot_mcp/cache/undo/entry_000003/files. The folder will be ignored.",
-      "WARNING: UID duplicate detected between res://scenes/tests/MCPCheck.tscn and res://addons/godot_mcp/cache/undo/entry_000002/files/scenes/tests/MCPCheck.tscn."
-    ]
+    "already_imported": true
   },
   "godot_check": {
     "scene": {

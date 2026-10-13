@@ -1,0 +1,20 @@
+{
+  "asset_id": "asphalt_road_tile",
+  "kind": "ground_tile",
+  "category": "ground",
+  "generator": "ground_asphalt",
+  "description": "Seamless 2 x 2 m top-down weathered asphalt road tile, no markings (TileMapLayer source 3).",
+  "seed": 20261013,
+  "generator_params": {},
+  "render": {
+    "samples": 256,
+    "tile_px": 64
+  },
+  "ground": {
+    "tileset": "campus_ground",
+    "source_id": 3
+  },
+  "godot": {
+    "scene_name": "AsphaltRoadTile"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "asset_id": "lamp_post",
+  "category": "street_furniture",
+  "generator": "lamp_post",
+  "description": "Campus lamp post, about 4.4 m: concrete plinth, dark-green steel pole, four-sided lantern (unlit). Collision = 0.30 x 0.30 m plinth.",
+  "seed": 20261013,
+  "generator_params": {},
+  "render": {
+    "px_per_m": 220.689655,
+    "samples": 256,
+    "elevation_deg": 40.0,
+    "azimuth_deg": 0.0
+  },
+  "godot": {
+    "scene_name": "LampPost",
+    "z_index": 0,
+    "sprite_offset_adjust_px": [0.0, 0.0],
+    "preview_scene": true,
+    "preview_tile_x": false
+  },
+  "collision": {
+    "enabled": true,
+    "source": "design_footprint",
+    "depth_mode": "projected"
+  }
+}

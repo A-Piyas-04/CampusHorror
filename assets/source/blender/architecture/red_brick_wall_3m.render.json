@@ -251,9 +251,9 @@
     ],
     "minimum_margin_required_px": 16,
     "tiling": {
-      "solid_rows": 450,
+      "solid_rows": 448,
       "fringe_px_at_ends": 0,
-      "end_match_mean_rgb_diff": 1.073,
+      "end_match_mean_rgb_diff": 1.074,
       "end_match_max_rgb_diff": 12,
       "shift_px": 662
     },
@@ -306,6 +306,30 @@
       "ground_depth_factor": 0.6427876353263855
     },
     "collision": {
+      "source": "design_footprint",
+      "depth_mode": "projected",
+      "layer": 1,
+      "mask": 0,
+      "shapes": [
+        {
+          "node": "Collision",
+          "resource_id": "RectangleShape2D_footprint",
+          "center": [
+            0.0,
+            -0.0
+          ],
+          "size": [
+            96.0,
+            6.170761299133301
+          ],
+          "metres": [
+            -1.5,
+            1.5,
+            -0.15,
+            0.15
+          ]
+        }
+      ],
       "center": [
         0.0,
         -0.0
@@ -314,25 +338,17 @@
         96.0,
         6.170761299133301
       ],
-      "source": "design_footprint",
-      "depth_mode": "projected",
       "metres": [
         -1.5,
         1.5,
         -0.15,
         0.15
-      ],
-      "layer": 1,
-      "mask": 0
+      ]
     },
     "preview_scene": "scenes/tests/asset_previews/RedBrickWall3mPreview.tscn"
   },
   "godot_import": {
-    "exit_code": 0,
-    "problem_lines": [
-      "WARNING: Detected another project.godot at res://addons/godot_mcp/cache/undo/entry_000003/files. The folder will be ignored.",
-      "WARNING: UID duplicate detected between res://scenes/tests/MCPCheck.tscn and res://addons/godot_mcp/cache/undo/entry_000002/files/scenes/tests/MCPCheck.tscn."
-    ]
+    "already_imported": true
   },
   "godot_check": {
     "scene": {
