@@ -1,0 +1,7 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scenes/tests/environment_previews/zone_capture.gd" id="1_capture"]
+
+[node name="ZoneCapture" type="Node"]
+editor_description = "TEMPORARY test-only screenshot tool (not reachable from Main). Instances the real Main.tscn, teleports the player to the --shots positions (optionally at night) and saves viewport PNGs to --out-dir. Run windowed, not headless."
+script = ExtResource("1_capture")

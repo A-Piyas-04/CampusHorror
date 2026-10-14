@@ -141,6 +141,63 @@ One sprite Y-sorts at one point. A building with parts that must sort or draw di
 - **Holdout under roofs:** a top face directly under an overhead layer is in that layer's full shadow and renders black. `landmark_common.cutaway_top_faces(obj, top_z, holdout_material(...))` makes such faces transparent in the base sprite, so the faded roof shows the ground and the player instead of a black slab. With the roof opaque the composite is unchanged.
 - **Validation:** each layer PNG must have the base's size, opaque content and a transparent border; margins and the alpha bbox are checked on the union. `asset_scene_check.gd` checks each layer sprite and fade area.
 
+## Large sliced assets (optional, Batch 4)
+
+Long buildings are cut into slices (layers that each sort at their own south edge). Without help, every slice PNG would be the full canvas, so these opt-in keys keep the textures small and the slices consistent. Ground tiles reject them; configs without them produce exactly the same output as before.
+
+```json
+"render": { "crop_layers": true, "occlusion": true, "pixel_anchor_m": [0.0, 0.0, 0.0], "max_texture_px": 6000000 },
+"context_assets": [ { "asset_id": "cds_canteen", "offset_m": [0.0, 21.877366, 0.0] } ],
+"seams": [ { "a": "Sprite", "b": "Slice2" },
+           { "a": "Slice2", "b": "Sprite", "asset": "cds_canteen", "offset_m": [0.0, 21.877366, 0.0] } ]
+```
+
+- **`crop_layers`:** the base and each layer are rendered with a Cycles border around the projection of their own vertices (plus `crop_pad_px`, default 24), then trimmed to the alpha bounding box plus the pad. The record stores each `crop_px` = `[x, y, w, h]` on the full canvas; `godot_scene.py` adds the crop origin to the sprite offset, so the pixels land exactly where a full-frame render would put them (verified: mean RGB difference 0.41 at offset (0, 0), ≥ 1.6 for a 1 px shift).
+- **`occlusion`:** in each render every other object is a holdout (`is_holdout`), so a slice keeps only the pixels it actually shows and the slices together still composite to the full image. Objects with the custom property `seam_overlap` are hidden from the camera instead (see seams). With occlusion, the framing check allows the alpha bbox's bottom side to shrink (context assets in front can hide it); left, top and right must stay within 4 px.
+- **`pixel_anchor_m`:** moves the camera by less than a pixel so this point (metres, asset space) lands on a whole pixel. Sections of one building anchor the same world point, so their texels line up across assets.
+- **`context_assets`:** other assets' generators are built into the same scene at `offset_m` (a `Context_<id>` collection). They cast shadows and bounce light but are never rendered (holdout with occlusion, otherwise hidden from the camera). Use it for neighbouring sections so the light at a seam matches.
+- **`seams`:** for each pair of sprites (`a` / `b`, optionally `b` in another `asset` placed at `offset_m`) the overlapping opaque pixels must match: mean RGB difference ≤ `SEAM_MATCH_MEAN_MAX` (3, the same as the wall join) over at least `min_pixels` (200). The cross-asset shift must be a whole pixel (use `pixel_anchor_m`). A south slice's `S{n}Overlap` object (the roof surface and coping, 0.06 m north under its neighbour, camera-only) gives the band where the comparison happens and hides the join.
+- **`max_texture_px`:** the sum of width × height over all the asset's PNGs must not exceed it. The record's `verification.texture_px` lists the total, the budget and the approximate VRAM.
+
+## CDS exterior (Milestone G Batch 4, 14 October 2026)
+
+```powershell
+python assets/source/blender/build_asset.py cds_indoor_basketball cds_canteen cds_table_tennis
+python assets/source/blender/build_asset.py flag_pole_bangladesh flag_pole_white
+```
+
+Reconstructed from `Docs/map-reference/area1/cds-building.png` and `cds-building2.png`. Category `landmarks`, 110.344828 px/m (sprite scale 0.29; half the gate's density, because the CDS is 16 × 56 m), 256 samples. Build the three sections in this order: the table tennis's cross-section seam reads the canteen's record.
+
+| Asset (config) | Section frame | Slices (layer, sort at m north of the section's south face) | Texture | Seams (mean RGB) |
+|---|---|---|---|---|
+| `cds_indoor_basketball` | hall, 34.03 m deep, 8.8 m | `Sprite`; `Slice2` 11.544; `Slice3` 22.488 | 6.36 Mpx of 9 | 0.80, 0.89 |
+| `cds_canteen` | north wing, 26.74 m deep, 4.2 m | `Sprite`; `Slice2` 10.140; `NorthRoof` 19.829 (fade `Behind`) | 4.07 Mpx of 7 | 0.65, 0.54 |
+| `cds_table_tennis` | middle, 21.88 m deep, 4.2 m | `Sprite`; `Slice2` 13.775 | 2.44 Mpx of 6 | 0.54; with the canteen 0.88 |
+
+- `generators/cds_common.py`: the CDS frame (metres, x east, y north, y 0 = the table-tennis south face; x −9.22 = the facade line at world x 1480, x 7.03 = the east face), section table, heights (`LOW`, `HALL`), materials (brick seed 11, coping, bitumen with patches, hall concrete, dish, steel, glass), and builders: `arcade_bay`, `blind_bay`, `roof_band`, `parapet_sides`, `end_wall`, `satellite_dish`, and `Slices`, which cuts walls and roofs at slice bounds into `S{i}Walls / Roof / Items / Overlap`. Vertices are written in the CDS frame and each object is moved by the section's y0, so object-space brick and stains continue across slices and sections.
+- `generators/cds_section.py`: one section per config (`generator_params.section`): the hall (south face of 4 blind bays, west face of 9 bays), the canteen (8 arcade bays, north end wall, 2 dishes) or the table tennis (entrance bay at the door, 5 bays, vent wall, south end wall). It refuses slice bounds that cut an opening and dishes within 1 m of a bound.
+- `generators/flag_pole.py`: concrete base, 6 m pole and finial, a waving 1.5 × 0.9 m flag flying east; `flag_pole_bangladesh` (green, red disc) and `flag_pole_white`. Category `street_furniture`, 220.69 px/m, collision from the design footprint.
+- The props have no collision. The zone keeps the former blockout rectangles as `Collision` bodies and occluders per section (see `Docs/CAMPUS_MAP.md`, "CDS exterior", and `MainGateCdsCheck.tscn`).
+- The west arcades are modelled but the 40° / 0° camera sees west faces edge-on, so in game they show only as the coping line along the facade; the visible faces are the roofs and the hall's south facade.
+
+## Player character (14 October 2026)
+
+```powershell
+& "F:\bbbb\blender.exe" --background --factory-startup --python assets/source/blender/characters/player_character.py
+```
+
+Not a `build_asset.py` config: the character is a rigged, animated sprite sheet, not a static prop, so it has its own generator. It reuses `pipeline/rig.py` (`reset_scene`, `setup_lighting`, `setup_camera` at `CAMERA_ELEVATION_DEG` 40°, `setup_render`) and `conventions.py`. About 35 s on the CPU. Nothing in Godot runs Blender.
+
+- **Writes:** `assets/source/blender/characters/player_character.blend` (model, rig, action `PlayerCycles`, camera), `player_character.render.json` (record), `assets/sprites/characters/player_character_sheet.png` (+ `.import` with mipmaps, written once before the render), `scenes/player/player_character_frames.tres` (SpriteFrames). Intermediate frames go to `assets/source/blender/logs/player_character_frames/` (ignored). It never touches `Player.tscn`, any other scene or the save.
+- **Model:** joint graphs turned into meshes with the Skin modifier + Subdivision (applied): body (head with nose and ears, neck, torso, arms, hands with fingers, legs, feet), jacket/overshirt (open front showing the shirt, collar, cuffs, hem), trousers, sneakers (sole and accent bands), hair (trimmed UV sphere, Solidify), eyes and brows. Colours are vertex-colour masks on Principled BSDF materials; constants at the top of the file (`SKIN`, `HAIR`, `JACKET`, `SHIRT`, `TROUSERS`, `SHOE`, …). Body skin under the clothes is deleted after weighting (only head, neck and hands remain), so it can never poke through.
+- **Rig:** `BONES` (18 bones, `.L` = +X). Body: automatic weights (bone heat). Clothes: weights copied from the 6 nearest body vertices (inverse-square), hair/eyes/brows 100 % `head`. `calibrate()` finds each bone's rotation sign so positive X always swings the limb forward.
+- **Animation:** `pose_idle(phase)` and `pose_walk(phase)` (amplitudes in degrees in the code), baked into one action: idle frames 1–8, walk 101–108 (timeline markers). `ground()` lifts or lowers the pelvis per frame so the lowest evaluated shoe vertex is at z = 0.
+- **Render:** `PX_PER_M` 96 (Godot `Sprite.scale` = 32 / 96), 96 samples, transparent film, no ground or shadow catcher. The camera is anchored on the feet; each facing (down 0°, up 180°, left −90°, right 90°) turns the armature, so there are true left and right views and nothing is mirrored. Cells 128 × 230 with the feet at pixel (64, 183); rows `idle_down`, `idle_up`, `idle_left`, `idle_right`, `walk_down`, `walk_up`, `walk_left`, `walk_right`; 8 columns. Sheet 1024 × 1840 (1.9 Mpx).
+- **Record values** (the generator prints and records them; `PlayerCharacterCheck` fails if they are off): `lowest_shoe_z_per_frame_m` (all 0), `body_vertices_without_weights` (0), `max_cell_border_alpha` (0: no figure touches a cell border). Plus rotation signs, vertex counts, camera, lighting and render settings.
+- `characters/` has a `.gdignore`, so Godot never imports the `.blend`.
+- **In Godot:** `scenes/player/Player.tscn` → `Sprite` (`AnimatedSprite2D`, offset (−64, −183), `centered` off, scale 1/3, light mask 2, linear + mipmaps) with `scripts/player/player_animator.gd`. If the cell size, origin or `PX_PER_M` change, update the offset and scale there and in `PlayerCharacterCheck.tscn`.
+- **Check:** `scenes/tests/character_previews/PlayerCharacterCheck.tscn` (`-- --quit-after-checks`): the record, sheet, frames, anchoring of every frame and the runtime behaviour in the real `Main.tscn`.
+
 ## Regeneration and safety rules
 
 - Files the pipeline never writes: the original wall `.blend`, its three PNGs and records, `campus_asset_workshop.blend`, `WallAssetPreview.tscn`, `Main.tscn` (list in `pipeline/assetconfig.py`).

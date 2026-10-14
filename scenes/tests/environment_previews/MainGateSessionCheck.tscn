@@ -1,0 +1,7 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scenes/tests/environment_previews/main_gate_session_check.gd" id="1_check"]
+
+[node name="MainGateSessionCheck" type="Node"]
+editor_description = "TEMPORARY overnight-session test-only check (not a zone, not reachable from Main). Switches to the real Main.tscn and drives it through input actions: CDS door round trip, court fence stops, save/load in a court, night tint and lantern. Backs up and restores user://save.json. Output: [SESSION] lines."
+script = ExtResource("1_check")

@@ -13,13 +13,15 @@ extends Node2D
 ## main_gate_ground_baseline_batch2.json was dumped after Batch 2 (differs from batch1b only inside
 ## Objects/Boundary/SouthWall). main_gate_ground_baseline_batch3.json was dumped after Batch 3 (verified by
 ## main_gate_landmark_check.gd to differ from batch2 only inside the MainGateLandmark gate art).
-## main_gate_ground_baseline_batch3a.json is the current fixture, dumped after Batch 3A and verified by
-## main_gate_landmark_check.gd to differ from batch3 only by the gate's overhead layers.
+## main_gate_ground_baseline_batch3a.json was dumped after Batch 3A (verified by main_gate_landmark_check.gd
+## to differ from batch3 only by the gate's overhead layers) and is the pre-Batch-4 record.
+## main_gate_ground_baseline_batch4.json is the current fixture, dumped after Batch 4 and verified by
+## main_gate_cds_check.gd to differ from batch3a only inside the replaced CDS art.
 ## Args (after `--`): `--dump-baseline=<res:// or absolute path>` writes the baseline and quits;
 ## `--quit-after-checks` quits with exit code 0 (pass) / 1 (fail).
 
 const ZONE_SCENE := "res://scenes/world/MainGateExterior.tscn"
-const BASELINE_PATH := "res://scenes/tests/environment_previews/main_gate_ground_baseline_batch3a.json"
+const BASELINE_PATH := "res://scenes/tests/environment_previews/main_gate_ground_baseline_batch4.json"
 const TILESET_PATH := "res://assets/tilesets/campus_ground.tres"
 const TEXTURES := {
 	"res://assets/sprites/ground/grass_ground_tile.png": "grass",

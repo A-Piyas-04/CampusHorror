@@ -1,0 +1,172 @@
+{
+  "status": "PROVISIONAL neutral student look; not character canon",
+  "generator": "assets/source/blender/characters/player_character.py",
+  "blend": "assets/source/blender/characters/player_character.blend",
+  "sheet": "assets/sprites/characters/player_character_sheet.png",
+  "frames": "scenes/player/player_character_frames.tres",
+  "sheet_px": [
+    1024,
+    1840
+  ],
+  "cell_px": [
+    128,
+    230
+  ],
+  "origin_px_in_cell": [
+    64,
+    183
+  ],
+  "rows": [
+    "idle_down",
+    "idle_up",
+    "idle_left",
+    "idle_right",
+    "walk_down",
+    "walk_up",
+    "walk_left",
+    "walk_right"
+  ],
+  "idle_frames": 8,
+  "walk_frames": 8,
+  "idle_fps": 3.0,
+  "walk_fps": 12.0,
+  "px_per_m": 96.0,
+  "godot_scale": 0.3333333333333333,
+  "figure_height_m": 1.8,
+  "action": "PlayerCycles (idle frames 1-8, walk frames 101-108)",
+  "lowest_shoe_z_per_frame_m": {
+    "idle0": -0.0,
+    "idle1": -0.0,
+    "idle2": -0.0,
+    "idle3": -0.0,
+    "idle4": -0.0,
+    "idle5": -0.0,
+    "idle6": -0.0,
+    "idle7": -0.0,
+    "walk0": -0.0,
+    "walk1": -0.0,
+    "walk2": 0.0,
+    "walk3": 0.0,
+    "walk4": -0.0,
+    "walk5": -0.0,
+    "walk6": 0.0,
+    "walk7": 0.0
+  },
+  "body_vertices_without_weights": 0,
+  "max_cell_border_alpha": 0.0,
+  "rotation_signs": {
+    "spine": 1.0,
+    "chest": 1.0,
+    "neck": 1.0,
+    "head": 1.0,
+    "upper_arm.L": 1.0,
+    "forearm.L": 1.0,
+    "hand.L": 1.0,
+    "thigh.L": 1.0,
+    "shin.L": 1.0,
+    "foot.L": 1.0,
+    "upper_arm.R": 1.0,
+    "forearm.R": 1.0,
+    "hand.R": 1.0,
+    "thigh.R": 1.0,
+    "shin.R": 1.0,
+    "foot.R": 1.0
+  },
+  "mesh_vertices": {
+    "Body": 911,
+    "Overshirt": 1260,
+    "Chinos": 1122,
+    "Sneaker.L": 290,
+    "Sneaker.R": 290,
+    "Hair": 4146,
+    "Eye.L": 114,
+    "Brow.L": 8,
+    "Eye.R": 114,
+    "Brow.R": 8
+  },
+  "camera": {
+    "type": "ORTHO",
+    "elevation_deg": 40.0,
+    "azimuth_deg": 0.0,
+    "rotation_euler_deg": [
+      50.0,
+      0.0,
+      0.0
+    ],
+    "location_m": [
+      0.0,
+      -16.0749,
+      14.4131
+    ],
+    "ortho_scale_m": 1.333333,
+    "sensor_fit": "HORIZONTAL",
+    "content_extent_m": [
+      1.0,
+      2.0676
+    ],
+    "margin_m_each_side": 0.1654,
+    "pixels_per_metre_on_screen": 96.0,
+    "pixel_anchor": {
+      "point_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pixel": [
+        64,
+        183
+      ]
+    }
+  },
+  "lighting": {
+    "sun_elevation_deg": 55.0,
+    "sun_azimuth_deg_from_front": -35.0,
+    "sun_direction_to_light": [
+      -0.329,
+      -0.4698,
+      0.8192
+    ],
+    "sun_strength": 3.2,
+    "sun_angle_deg": 3.0,
+    "fill_lights_linked_to_asset_only": [
+      {
+        "name": "SkyFill",
+        "elevation_deg": 70.0,
+        "azimuth_deg_from_front": 20.0,
+        "strength": 0.8,
+        "angle_deg": 90.0,
+        "color": [
+          0.75,
+          0.85,
+          1.0
+        ]
+      },
+      {
+        "name": "GroundBounce",
+        "elevation_deg": -25.0,
+        "azimuth_deg_from_front": 10.0,
+        "strength": 0.35,
+        "angle_deg": 90.0,
+        "color": [
+          1.0,
+          0.8,
+          0.65
+        ]
+      }
+    ],
+    "world_light": "none (strength 0)",
+    "ground": "none (no shadow catcher; no cast shadow baked into the PNG)"
+  },
+  "render": {
+    "engine": "CYCLES",
+    "device": "GPU (OPTIX: NVIDIA GeForce RTX 3050 Laptop GPU)",
+    "samples": 96,
+    "adaptive_sampling": true,
+    "denoiser": "compositor OIDN on colour only (albedo + normal guides); raw render alpha kept",
+    "max_bounces": 6,
+    "film_transparent": true,
+    "filter_size_px": 1.5,
+    "view_transform": "Standard",
+    "output_format": "PNG RGBA 8-bit"
+  }
+}

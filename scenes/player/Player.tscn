@@ -2,6 +2,9 @@
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_player"]
 [ext_resource type="Script" path="res://scripts/lighting/lantern_test_light.gd" id="2_lantern"]
+[ext_resource type="SpriteFrames" path="res://scenes/player/player_character_frames.tres" id="3_frames"]
+[ext_resource type="PackedScene" path="res://scenes/props/common/ContactShadow.tscn" id="4_shadow"]
+[ext_resource type="Script" path="res://scripts/player/player_animator.gd" id="5_animator"]
 
 [sub_resource type="Gradient" id="Gradient_lantern"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
@@ -25,13 +28,19 @@ collision_layer = 2
 motion_mode = 1
 script = ExtResource("1_player")
 
-[node name="Body" type="Polygon2D" parent="."]
-color = Color(0.25, 0.45, 0.95, 1)
-polygon = PackedVector2Array(-16, -64, 16, -64, 16, 0, -16, 0)
+[node name="ContactShadow" parent="." instance=ExtResource("4_shadow")]
+scale = Vector2(0.36, 0.14)
 
-[node name="FeetMarker" type="Polygon2D" parent="."]
-color = Color(1, 0.15, 0.15, 1)
-polygon = PackedVector2Array(0, -5, 5, 0, 0, 5, -5, 0)
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+editor_description = "Blender-rendered player character (PROVISIONAL look; assets/source/blender/characters/player_character.py). Origin pixel (64, 183) of each 128 x 230 cell = the feet, so offset (-64, -183) puts the feet on the Player origin; scale 32 / 96 px per m. player_animator.gd picks idle_/walk_<facing> from the Player's velocity."
+light_mask = 2
+texture_filter = 4
+scale = Vector2(0.333333, 0.333333)
+sprite_frames = ExtResource("3_frames")
+animation = &"idle_down"
+centered = false
+offset = Vector2(-64, -183)
+script = ExtResource("5_animator")
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 position = Vector2(0, -6)

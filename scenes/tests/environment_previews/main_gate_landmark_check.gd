@@ -13,7 +13,8 @@ extends Node2D
 ##   landmark root and the spawn are identical).
 ## - Batch 3A: main_gate_ground_baseline_batch3a.json equals the current zone and differs from batch3 only by the
 ##   overhead layer sprites / fade areas added inside Tower and Pavilion and the Pavilion root's Y-sort flag (every
-##   collision shape, occluder, spawn, door and transform is identical).
+##   collision shape, occluder, spawn, door and transform is identical). Since Batch 4 the comparison with the
+##   current zone skips the replaced CDSExterior art (main_gate_cds_check.gd verifies it).
 ## Args (after `--`): `--quit-after-checks` quits with exit code 0 (pass) / 1 (fail).
 
 const ZONE_SCENE := "res://scenes/world/MainGateExterior.tscn"
@@ -31,6 +32,8 @@ const BLOCK_SCENE := "res://scenes/world/blockout/BlockoutBlock.tscn"
 const WALKWAY := "res://assets/sprites/ground/paved_walkway_tile.png"
 const MAIN_GATE := "./Objects/Buildings/MainGateLandmark"
 const MAIN_GATE_SPAWN := MAIN_GATE + "/SpawnMainGateEntry"
+const CDS := "./Objects/Buildings/CDSExterior"
+const CDS_KEPT := ["Canteen", "TableTennis", "IndoorBasketball", "TableTennis/DoorCdsMainEntry", "TableTennis/SpawnOutsideCdsEntrance"]
 const ORIGIN := Vector2(-1390, 1400)
 ## name -> [scene, local position, ContactShadow children]
 const PARTS := {
@@ -257,8 +260,8 @@ func _check_baselines() -> void:
 	var batch3 := _load_json(BATCH3_BASELINE)
 	var batch3a := _load_json(BATCH3A_BASELINE)
 	var now: Dictionary = _snapper.call("_snapshot")
-	_check(not batch3a.is_empty() and _same(batch3a, now),
-		"versioned baseline %s exists and equals the current zone (%d nodes)" % [BATCH3A_BASELINE.get_file(), batch3a.get("nodes", {}).size()])
+	_check(not batch3a.is_empty() and _same(_without_cds_art(batch3a), _without_cds_art(now)),
+		"versioned baseline %s exists and equals the current zone outside the Batch 4 CDS art (%d nodes)" % [BATCH3A_BASELINE.get_file(), batch3a.get("nodes", {}).size()])
 	_check_batch3a_diff(batch3, batch3a)
 	if batch2.is_empty() or batch3.is_empty():
 		_check(false, "batch2 and batch3 baselines load")
@@ -308,6 +311,23 @@ func _check_batch3a_diff(batch3: Dictionary, batch3a: Dictionary) -> void:
 	want.sort()
 	_check(added == want and unexpected.is_empty() and _same(batch3.markings, batch3a.markings),
 		"batch3a differs from batch3 only by the overhead layers %s and Pavilion.y_sort (unexpected %s)" % [added, unexpected.slice(0, 5)])
+
+
+## Copy of a snapshot without the CDSExterior records replaced in Batch 4 (main_gate_cds_check.gd verifies those;
+## the CDS root, the section nodes, the door and the spawn stay in).
+func _without_cds_art(snap: Dictionary) -> Dictionary:
+	var out := snap.duplicate()
+	var nodes := {}
+	for key: String in snap.get("nodes", {}):
+		var rel := key.trim_prefix(CDS + "/")
+		var art := key.begins_with(CDS + "/")
+		for kept: String in CDS_KEPT:
+			if rel == kept or (kept.contains("/") and rel.begins_with(kept + "/")):
+				art = false
+		if not art:
+			nodes[key] = snap.nodes[key]
+	out.nodes = nodes
+	return out
 
 
 func _gate_art(key: String) -> bool:

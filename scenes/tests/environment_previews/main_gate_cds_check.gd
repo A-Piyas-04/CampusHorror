@@ -18,6 +18,7 @@ extends Node2D
 const ZONE_SCENE := "res://scenes/world/MainGateExterior.tscn"
 const PLAYER_SCENE := "res://scenes/player/Player.tscn"
 const BASELINE := "res://scenes/tests/environment_previews/main_gate_ground_baseline_batch3a.json"
+const BATCH4_BASELINE := "res://scenes/tests/environment_previews/main_gate_ground_baseline_batch4.json"
 const CONFIGS := "res://assets/source/blender/configs/%s.json"
 const CDS := "Objects/Buildings/CDSExterior"
 const BASE_KEY := "./Objects/Buildings/CDSExterior"
@@ -53,7 +54,13 @@ const STOPS := [
 	["south of the hall x 1515", Vector2(1515, 780), Vector2(0, -120)],
 	["south of the hall x 1800", Vector2(1800, 780), Vector2(0, -120)],
 ]
-const PREEDIT_STOPS := []
+const PREEDIT_STOPS := [
+	Vector2(1465.625, -900), Vector2(1465.625, -700), Vector2(1465.625, -560), Vector2(1465.625, -400),
+	Vector2(1465.625, -200), Vector2(1465.625, -60), Vector2(1465.625, 300), Vector2(1465.625, 650),
+	Vector2(1520, -1000.3125), Vector2(1800, -1000.3125),
+	Vector2(2014.375, -800), Vector2(2014.375, -200), Vector2(2014.375, 400),
+	Vector2(1515, 712.03125), Vector2(1800, 712.03125),
+]
 ## [label, start (feet, world), motion] walks that must stay free.
 const FREE_WALKS := [
 	["lawn between the flagpoles and the canteen facade, x 1460 from y -430 to -990", Vector2(1460, -430), Vector2(0, -560)],
@@ -120,6 +127,7 @@ func _run_checks() -> void:
 	_check(not _baseline.is_empty(), "pre-edit baseline loaded from %s" % BASELINE.get_file())
 	if _baseline.is_empty():
 		return
+	_check_batch4_diff()
 	_check_sections()
 	_check_door_and_spawn()
 	_check_collision()
@@ -132,6 +140,65 @@ func _run_checks() -> void:
 	_check_budget()
 	await _check_fade_cases()
 	await _check_fade_walk()
+
+
+func _check_batch4_diff() -> void:
+	var batch4 := _load_json(BATCH4_BASELINE)
+	if batch4.is_empty():
+		_check(false, "versioned baseline %s exists" % BATCH4_BASELINE.get_file())
+		return
+	var outside := []
+	var changed := 0
+	for key: String in _baseline.nodes:
+		var same: bool = batch4.nodes.has(key) and _same(_baseline.nodes[key], batch4.nodes[key])
+		if not same:
+			if _cds_art(key):
+				changed += 1
+			else:
+				outside.append(key)
+	var added := 0
+	for key: String in batch4.nodes:
+		if not _baseline.nodes.has(key):
+			if _cds_art(key):
+				added += 1
+			else:
+				outside.append(key)
+	_check(outside.is_empty() and changed > 0 and added > 0 and _same(_baseline.markings, batch4.markings) and _baseline.zone_id == batch4.zone_id,
+		"%s differs from %s only inside the replaced CDS art (%d records removed or changed, %d added; CDSExterior, sections, door and spawn identical; outside %s)"
+		% [BATCH4_BASELINE.get_file(), BASELINE.get_file(), changed, added, outside.slice(0, 5)])
+
+
+## Records under CDSExterior replaced in Batch 4: everything except the section roots, the door and the spawn.
+static func _cds_art(key: String) -> bool:
+	if not key.begins_with(BASE_KEY + "/"):
+		return false
+	var rel := key.trim_prefix(BASE_KEY + "/")
+	if SECTIONS.has(rel):
+		return false
+	for kept: String in [DOOR, SPAWN]:
+		if rel == kept or rel.begins_with(kept + "/"):
+			return false
+	return true
+
+
+func _same(a, b) -> bool:
+	if typeof(a) in [TYPE_FLOAT, TYPE_INT] and typeof(b) in [TYPE_FLOAT, TYPE_INT]:
+		return absf(float(a) - float(b)) <= 0.001
+	if a is Dictionary and b is Dictionary:
+		if a.size() != b.size():
+			return false
+		for k in a:
+			if not b.has(k) or not _same(a[k], b[k]):
+				return false
+		return true
+	if a is Array and b is Array:
+		if a.size() != b.size():
+			return false
+		for i in a.size():
+			if not _same(a[i], b[i]):
+				return false
+		return true
+	return a == b
 
 
 func _check_sections() -> void:
@@ -163,7 +230,7 @@ func _check_collision() -> void:
 	var before := []
 	for key: String in _baseline.nodes:
 		var rec: Dictionary = _baseline.nodes[key]
-		if key.begins_with(BASE_KEY + "/") and rec.get("class") == "CollisionShape2D" and rec.has("shape"):
+		if key.begins_with(BASE_KEY + "/") and key.ends_with("/~internal0:CollisionShape2D") and rec.get("shape", {}).has("rect"):
 			var size := Vector2(rec.shape.rect[0], rec.shape.rect[1])
 			before.append(Rect2(_xy(rec) - size / 2.0, size))
 	var now := []
@@ -274,7 +341,7 @@ func _check_slices() -> void:
 				bad.append("%s/%s (want y %.3f)" % [section, layer, want])
 		for child in prop.get_children():
 			if child is OverheadVisibility:
-				fades.append("%s/%s" % [section, child.name])
+				fades.append(String(_cds.get_path_to(child)))
 	_check(bad.is_empty(), "every slice sorts at its section's south edge + slice bound x 20.569 px/m (bad %s)" % [bad])
 	_check(fades == [FADE_AREA], "the only fade area under CDSExterior is %s (found %s)" % [FADE_AREA, fades])
 
