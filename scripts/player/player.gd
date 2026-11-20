@@ -30,6 +30,9 @@ func _unhandled_input(event: InputEvent) -> void:
 func teleport(target_position: Vector2) -> void:
 	global_position = target_position
 	velocity = Vector2.ZERO
+	# Physics interpolation is on (Docs/PRESENTATION.md): without this the player would be drawn sliding
+	# from the old position to the new one over a physics tick.
+	reset_physics_interpolation()
 	_set_interaction_target(null)
 	_camera.reset_smoothing()
 

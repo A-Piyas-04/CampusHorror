@@ -50,7 +50,13 @@ func _check_tileset(tileset_path: String, record: Dictionary) -> void:
 	_expect(source.get_tiles_count() == 1 and source.has_tile(Vector2i.ZERO), "exactly one tile at atlas (0, 0)")
 	# Texture2D.has_mipmaps() is always false with the headless dummy renderer; the image knows.
 	var image := source.texture.get_image()
-	_expect(image != null and not image.has_mipmaps(), "texture imported without mipmaps (drawn 1:1 by the TileMapLayer)")
+	# Mipmaps exactly when the tile is oversampled (more texels than game px, so the TileMapLayer draws it
+	# minified): pipeline/conventions.py ground_tile_oversampled(). 64 px per 2 m = 1:1, no mipmaps.
+	var period_m := float((record.get("ground_tile", {}) as Dictionary).get("period_m", 2.0))
+	var want_mips := tile_px / period_m > 32.0 + 0.000001
+	_expect(image != null and image.has_mipmaps() == want_mips,
+		"texture imported %s mipmaps (%d px per %.1f m: %s)" % ["with" if want_mips else "without", tile_px, period_m,
+		"oversampled, drawn minified" if want_mips else "drawn 1:1"])
 	if image != null:
 		image.decompress()
 		var min_alpha := 1.0

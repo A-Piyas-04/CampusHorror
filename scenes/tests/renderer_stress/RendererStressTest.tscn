@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scenes/tests/renderer_stress/renderer_stress_check.gd" id="1_stress"]
+
+[node name="RendererStressTest" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_stress")

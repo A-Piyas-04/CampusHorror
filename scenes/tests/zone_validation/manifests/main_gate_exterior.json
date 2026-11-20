@@ -1,0 +1,26 @@
+{
+	"zone_id": "main_gate_exterior",
+	"notes": "Interior box between PrototypeEdgeWest/North/East and the south road wall. The road, sidewalk and the pavilion porch are outside it by design (behind the wall and the closed gate).",
+	"playable_bounds": [-1700, -1350, 3950, 2750],
+	"ground": { "node": "Ground", "rect": [-2400, -1800, 5400, 3750] },
+	"walks": [
+		{ "name": "gate leaves stop the player in the passage (Batch 3: feet y 1389.997)", "from": [-1390, 1340], "motion": [0, 80], "expect": "stop", "stop": [-1390, 1390.0], "tol": 1.5 },
+		{ "name": "south road wall stop line (Batch 2: feet y 1394.96)", "from": [300, 1350], "motion": [0, 100], "expect": "stop", "stop": [300, 1394.96], "tol": 1.5 },
+		{ "name": "futsal court north fence stop (session check: feet y 1143.92)", "from": [-200, 1050], "motion": [0, 150], "expect": "stop", "stop": [-200, 1143.92], "tol": 1.5 },
+		{ "name": "the tower roof fade area never blocks: approach to passage is free", "from": [-1390, 1000], "motion": [0, 360], "expect": "free" }
+	],
+	"fade_layers": ["Objects/Buildings/MainGateLandmark/Tower/Roof", "Objects/Buildings/MainGateLandmark/Pavilion/RoomRoof", "Objects/Buildings/MainGateLandmark/Pavilion/Canopy"],
+	"fade_cases": [
+		{ "name": "spawn (campus side)", "feet": [-1390, 960], "faded": [] },
+		{ "name": "approach from the campus, just north of the roof", "feet": [-1390, 1010], "faded": [] },
+		{ "name": "behind the tower (centre)", "feet": [-1390, 1200], "faded": ["Objects/Buildings/MainGateLandmark/Tower/Roof"] },
+		{ "name": "behind the tower, against its back wall", "feet": [-1450, 1265], "faded": ["Objects/Buildings/MainGateLandmark/Tower/Roof"] },
+		{ "name": "behind the tower's east overhang", "feet": [-1215, 1150], "faded": ["Objects/Buildings/MainGateLandmark/Tower/Roof"] },
+		{ "name": "in the passage", "feet": [-1390, 1340], "faded": [] },
+		{ "name": "at the gate leaves", "feet": [-1390, 1388], "faded": [] },
+		{ "name": "behind the pavilion room", "feet": [-1690, 1240], "faded": ["Objects/Buildings/MainGateLandmark/Pavilion/RoomRoof"] },
+		{ "name": "behind the tower / pavilion junction", "feet": [-1595, 1240], "faded": ["Objects/Buildings/MainGateLandmark/Tower/Roof", "Objects/Buildings/MainGateLandmark/Pavilion/RoomRoof"] },
+		{ "name": "under the pavilion canopy (porch, teleport only)", "feet": [-1650, 1415], "faded": ["Objects/Buildings/MainGateLandmark/Pavilion/Canopy"] },
+		{ "name": "back at the spawn", "feet": [-1390, 960], "faded": [] }
+	]
+}

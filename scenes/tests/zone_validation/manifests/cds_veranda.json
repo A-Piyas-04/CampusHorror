@@ -1,0 +1,6 @@
+{
+	"zone_id": "cds_veranda",
+	"notes": "Covered walkway x -150..120, y -850..850 (blockout). No textured ground yet, so no ground lattice.",
+	"playable_bounds": [-150, -850, 270, 1700],
+	"walks": []
+}

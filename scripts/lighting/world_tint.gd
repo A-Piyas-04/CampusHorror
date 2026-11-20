@@ -1,7 +1,8 @@
 extends CanvasModulate
 
-## TEMPORARY Milestone F lighting proof: switches the world tint between two placeholder colours.
-## Not a day/night system. Timing, transitions and gameplay effects of night are undecided.
+## PROVISIONAL world tint (on `Main/DayNightTint`): switches the whole world canvas between a day and a
+## night colour. It has no input handling; in debug builds `DebugTools` flips it with
+## `debug_toggle_night` (F2). Replaced by the real clock and per-zone lighting profiles in roadmap J1.
 
 @export var day_color: Color = Color.WHITE
 @export var night_color: Color = Color(0.1, 0.11, 0.2)
@@ -13,13 +14,6 @@ extends CanvasModulate
 
 func _ready() -> void:
 	_apply()
-
-
-func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("debug_toggle_night"):
-		is_night = not is_night
-		print("[LIGHTING] %s tint." % ("Night" if is_night else "Day"))
-		get_viewport().set_input_as_handled()
 
 
 func _apply() -> void:

@@ -12,9 +12,10 @@ tile_map_data = PackedByteArray(0, 0, 253, 255, 254, 255, 3, 0, 0, 0, 0, 0, 0, 0
 tile_set = ExtResource("1_tileset")
 
 [node name="ScaleReference" type="Polygon2D" parent="."]
-position = Vector2(32, 32)
+position = Vector2(128, 128)
 color = Color(0.2, 0.35, 0.8, 0.8)
 polygon = PackedVector2Array(-16, -64, 16, -64, 16, 0, -16, 0)
 
 [node name="Camera" type="Camera2D" parent="."]
+process_callback = 0
 zoom = Vector2(2, 2)

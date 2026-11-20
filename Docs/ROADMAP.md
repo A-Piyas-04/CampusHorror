@@ -1,184 +1,166 @@
 # Roadmap — Milestones H onward
 
-Snapshot: 20 November 2026 • **Status: PROPOSED**
+Snapshot: 20 November 2026 • v2, after decisions D0–D12 (`Docs/DECISIONS.md`)
 
-Audience: the project owner, and any AI session picking the next batch of work.
+Audience: the project owner, and any AI session choosing the next batch of work.
 
 Supersedes the Phase 3 milestone table in
-`Docs/initial-context-source/05_SETUP_AND_IMPLEMENTATION_PLAN.md`, which ended at *"G — small campus
-patch and one room; H — desktop export"*. Milestones 0 and A–G are done or in progress; this
-document defines **H through N**.
+`Docs/initial-context-source/05_SETUP_AND_IMPLEMENTATION_PLAN.md`, which ended at "G — small campus
+patch and one room; H — desktop export". Milestones 0 and A–G are done. This document defines
+**H through N** for ***The Quiet Hours***, a finishable 2–4 hour horror game (D0).
 
-Read `Docs/PROJECT_REVIEW_2026-11.md` (state and risks) and `Docs/GAME_DESIGN.md` (the game being
-built) first. Risk IDs below (R1–R10) refer to the review.
+Read first: `Docs/PROJECT_REVIEW_2026-11.md` (state and risks R1–R10), `Docs/GAME_DESIGN.md` (the
+game), `Docs/PRESENTATION.md` (the visual and motion contract).
 
 ---
 
 ## Operating principles
 
-1. **Stop expanding the map until the game loop exists.** The hardest and most valuable rule here.
-   Every zone built before enemies, audio, navigation and the real save system exists is a zone that
-   must be reopened later to add nav meshes, sound emitters, light volumes, spawn data and save
-   hooks. One zone of production art is *enough* to build and prove the entire game. Phase 4 is
-   where the campus grows — not before.
-2. **Lock the foundation contracts first** (Phase H). Resolution, texel density, renderer, world
-   scale and movement feel are referenced by every asset and every zone. They are nearly free to
-   change today and very expensive after the second zone.
-3. **De-risk the unproven, not the comfortable.** Interiors, audio, enemy AI and navigation have
-   zero prior art in this repo. The asset pipeline has 21 successes. Spend the risk budget on the
-   former — prove each new discipline on exactly one small case before planning at scale.
-4. **Every phase ends playable.** No phase may leave the game broken or unlaunchable.
-5. **Keep the batch method, generalise its tooling.** Pre-edit checkpoint → implement → automated
-   proof with a headless exit code → written "Known issues" → commit. But fix R5 first, or the
-   harness cost grows with every zone.
-6. **Add feel budgets to acceptance criteria.** From Phase H on, every batch asserts frame time,
-   transition stall and input latency alongside geometry. Otherwise "clean and smooth" is something
-   no test can fail.
+1. **Don't expand the map until the game loop exists.** One zone of production art is enough to
+   build and prove the whole game. Zones built now would be reopened later for navigation meshes,
+   sound emitters, light volumes and save hooks. The campus grows in Phase L, not before.
+2. **The foundation contracts are now decided.** The presentation contract was Confirmed on
+   20 November 2026 (`PRESENTATION.md`). Phase H *applies* it. It no longer has to decide it.
+3. **Prove anything new on one small case first.** Interiors, audio, creature AI and navigation have
+   no prior work in this repo. The asset pipeline has 21 successes. Spend the risk on the new parts,
+   one small proof each, before scaling.
+4. **Every phase ends playable.** No phase may leave the game unable to launch.
+5. **Keep the batch method; generalise its tooling.** Pre-edit checkpoint → implement → automated
+   proof with a headless exit code → written Known issues → commit. Fix R5 early.
+6. **Smoothness budgets are acceptance criteria** (`PRESENTATION.md` §5), the same as geometry checks.
 
 ### Phase overview
 
 | Phase | Name | Theme | Gate out |
 |---|---|---|---|
-| **H** | Foundation Lock | Decide what everything depends on | Contracts locked and proven; harness generalised |
-| **I** | Game Feel | Movement, camera, transitions, **audio from zero** | Walking around Main Gate feels great |
-| **J** | The Horror Core | Lantern, night, enemy, stealth, fear | One genuinely frightening loop |
-| **K** | Systems & Chapter 1 | Save v2, inventory, journal, puzzles, UI | A 20–30 min playable chapter |
-| **L** | Campus Industrialisation | Interior kits, multi-floor, zone tooling, the real campus | Recognisable IUT, explorable |
-| **M** | Mirror Campus & Secrets | Shifted world, tunnels, labs, set-pieces | The full game's content |
-| **N** | Production | Performance, export, settings, localisation, release | Shipped |
+| **H** | Foundation | Apply the presentation contract, generalise the harness, clean house | Crisp at 1080p zoom 2, one zone validator, nothing `_test_` left in the shipping scene |
+| **I** | Game feel | Movement, camera, transitions, **audio from zero**, occlusion | Walking around Main Gate feels excellent |
+| **J** | The horror core | Night, lantern, navigation, **the Night Guard**, stealth, composure | One genuinely frightening loop |
+| **K** | Systems & Chapters 0–1 | Save v2, flags, items, journal, puzzles, UI, the interior kit proof | A stranger plays 35 min start to finish |
+| **L** | The surface campus | Interior kits, multiple floors, zone tooling, Chapters 2–3, **the strays** | The recognisable IUT, explorable |
+| **M** | Below & the Mirror | Facility art set, Chapters 4–6, Mirror Campus, the source, endings | The whole game, start to finish |
+| **N** | Release | Performance, export, settings, playtests, store | Shipped |
 
-Phases H–J are the critical path and should be done in order. K–N have parallelisable batches.
+H → I → J is the critical path, in that order. K–N contain batches that can run in parallel.
 
 ---
 
-## Phase H — Foundation Lock
+## Phase H — Foundation
 
-**Goal:** answer every question that later work would otherwise have to guess, and pay down the
-risks that get more expensive with each zone. Small, unglamorous, highest return in the document.
+| Batch | Work | Addresses | Status |
+|---|---|---|---|
+| **H1** | **Approval sweep.** One guided sitting through the ~12 open visual approvals (`NEXT_ACTIONS.md` §3), with `ZoneCapture.tscn` driving the poses. Split `STATUS.md` into a short living status and an append-only `VERIFICATION_LOG.md`. | R9 | Needs the owner |
+| **H2** | **Apply the presentation contract.** 1920 × 1080 base, `canvas_items` / `expand`, fractional scaling, no pixel snap, physics interpolation (with `reset_physics_interpolation()` on every teleport), camera zoom 2. **Re-render the 4 ground tiles at 4× density** (256 px per 2 m cell), with the TileMapLayer at scale 0.25, edge-strip `texture_scale` 4 and mipmaps on. No sprite re-render is needed (measured). Accept on: ground check 316,575 samples, all zone checks, screenshots at 1080p and 1440p. | R1 | **Done 21 Nov** |
+| **H3** | ~~Renderer decision~~ **Done 20 Nov 2026: stay on Compatibility** (`DECISIONS.md` D3). What's left: turn `RendererStressTest.tscn` into the reusable frame-time probe for the budgets, and fix the `"Forward Plus"` label in `config/features`. | R2 retired | Mostly done |
+| **H4** | **Zone validator.** Replace 9 bespoke check scenes and 6 versioned baselines with one data-driven validator (zone id + manifest) and a documented baseline-refresh workflow. Retire the old baselines once it reproduces their assertions. | R5 | **Done 21 Nov** |
+| **H5** | **Housekeeping.** Take the three TEMPORARY debug actions and both `*_test_*.gd` lighting scripts out of the shipping path. `git rm -r --cached addons/godot_mcp/cache`. Add `.gdignore` to `Docs/map-reference/`. Put test zones A/B behind a debug flag. Delete `temp_prompt.txt` and `master_prompt.txt`. Move the zone registry from a `const` in `main.gd` into a resource. | R10 | **Done 21 Nov** |
+
+**H2 + H4 + H5 were done as one batch on 21 November 2026** (`Docs/STATUS.md`, `Docs/TESTING.md`). Phase H still has H1 (needs you at the screen) and the H3 remainder (turning the stress test into a frame-time probe; it fits naturally into I5).
+
+---
+
+## Phase I — Game feel
 
 | Batch | Work | Addresses |
 |---|---|---|
-| **H1** | **Approval sweep.** Guided pass over the ~12 open visual approvals (`Docs/STATUS.md` manual checks 19–30) in one sitting, with a capture script driving the poses. Record approve / change-list per item. Split `STATUS.md` into a short living status + append-only `VERIFICATION_LOG.md`. Start an approval ledger. | R9, method |
-| **H2** | **Presentation contract.** Decide and lock base resolution, stretch mode, texel density target, camera zoom, texture filter and pixel-snap policy. Write `Docs/PRESENTATION.md` as **Confirmed**, update `ART_STYLE.md` / `CONVENTIONS.md`. Prove on one asset that raising `px_per_m` raises sharpness with zero layout or collision change, then batch re-render the library to the chosen density. | R1 |
-| **H3** | **Renderer decision.** Stress-test Compatibility vs Forward+ with ~30 dynamic lights, occluders and the real zone at night. Measure frame time on the RTX 3050. Decide and record. Fix the `config/features` label. | R2 |
-| **H4** | **Zone validator.** Replace the 9 bespoke check scenes and 6 versioned baselines with one data-driven validator taking a zone id + manifest, plus a documented baseline-refresh workflow. Retire the per-batch baselines once it reproduces their assertions. | R5 |
-| **H5** | **Housekeeping.** Remove the three TEMPORARY debug actions and both `*_test_*.gd` lighting scripts from the shipping path (replaced properly in I/J). `git rm -r --cached addons/godot_mcp/cache`. `.gdignore` in `Docs/map-reference/`. Retire `test_zone_a` / `test_zone_b` or move them behind a debug flag. Delete the stale `temp_prompt.txt` / `master_prompt.txt`. Move the zone registry out of a `const` in `main.gd` into a resource. | R10 |
+| **I1** | **Player controller v2.** Sneak 32 / walk 62 / sprint 154 px/s (`PRESENTATION.md` §4), acceleration and deceleration curves, stamina, 8-direction movement, surface detection from the ground TileSet, physics interpolation checked at 60 and 144 Hz. | R3 |
+| **I2** | **Animation v2.** Re-render the character for 8 directions, plus crouched-sneak and run cycles, a turn transition and idle variations. Playback rate follows speed (clamped 0.75–1.25). Footstep events locked to frames. All of it is generator parameters, since the pipeline already does this. | R3 |
+| **I3** | **Audio foundation, from zero.** Buses (master / ambience / SFX / footsteps / music / UI), 2D positional audio, ambience beds and reverb per zone, surface-aware footsteps wired to I2's events, an audio settings resource. Source: free CC0 libraries plus your own recordings on campus (see `NEXT_ACTIONS.md` §2, which is free and authentic). | design §6 |
+| **I4** | **Camera v2.** Deadzone, look-ahead, easing, per-zone zoom (1.5–2.5) and bounds from data, shake. | design §8 |
+| **I5** | **Transitions.** Threaded zone loading behind a fade, a loading state, a measured stall budget (0 visible frames). | R4 |
+| **I6** | **Occlusion system.** One systemic answer to the player vanishing behind buildings (a silhouette shown through occluding art, or a depth-aware cutout). Retires the hand-placed fade areas and closes the dead band behind the Main Gate tower. | R6 |
+| **I7** | **Interaction v2.** Context verbs, hold-to-interact, prompts placed in the world, keyboard and gamepad glyphs. | — |
 
-**Exit:** no Undecided item remains that an asset or zone depends on; one validator covers the zone;
-the shipping main scene contains nothing named `_test_`.
+**Exit:** a five-minute free walk through `main_gate_exterior` and `cds_veranda`, with sound, no
+hitches, the player never vanishing, and movement that feels weighted. Budgets recorded and met.
 
 ---
 
-## Phase I — Game Feel
+## Phase J — The horror core
 
-**Goal:** the stated top priority, built properly. Nothing new to *do* in the game yet — but moving
-through the existing campus should feel excellent. This is also where audio starts existing.
+| Batch | Work |
+|---|---|
+| **J1** | **Night, for real.** A persistent clock (11 pm → 4 am), per-zone lighting profiles, `LightOccluder2D` on every prop (none of the trees, palms or pipeline props has one today), working lamp posts, emergency lighting. Retires the provisional `world_tint.gd` (formerly `day_night_test_tint.gd`). |
+| **J2** | **The lantern.** Off / low / full, fuel shown on the lamp, flicker, refuel stations. **Two content channels**: *reveal-in-light* (physical detail) and *glow-in-dark* (bioluminescent traces that wash out under the lantern). Retires the provisional `player_lantern.gd` (formerly `lantern_test_light.gd`). |
+| **J3** | **Navigation + creature framework.** `NavigationRegion2D` baked per zone (there is none today), a perception module (light, sound and sight, weighted per creature), the `patrol → suspicious → investigate → chase → search → lose` state machine. Built to be reused by every later creature. |
+| **J4** | **The Night Guard.** The first and, for now, only creature (D9). A phototropic host on the real patrol route around the Main Gate and field. Rigged and rendered through the proven player-character pipeline. |
+| **J5** | **Stealth and sound.** Noise = surface × mode, hide spots, holding breath, throwable distractions. |
+| **J6** | **Composure + failure loop.** Fear expressed through the world (audio, camera, input), the no-death failure state, checkpoints. |
+
+**Exit:** a repeatable night loop in Main Gate that genuinely frightens a first-time player, with
+failure and recovery. **Playtest it on someone who didn't build it.**
+
+---
+
+## Phase K — Systems & Chapters 0–1
+
+Save architecture comes **before** content, because content built first can't be saved.
 
 | Batch | Work | Addresses |
 |---|---|---|
-| **I1** | **Player controller v2.** Acceleration / deceleration curves, turn response, walk / jog / sneak states with speeds matched to stride length (fixing the 6.25 m/s single speed), 8-direction facing, stamina, and surface awareness reading the ground TileSet. | R3 |
-| **I2** | **Animation v2.** Re-render the character for 8 directions, add sneak and jog cycles, a turn transition, and idle variations. Lock footstep events to animation frames. Generator parameters only — the pipeline already does this. | R3 |
-| **I3** | **Audio foundation — from zero.** Buses (master / ambience / SFX / footsteps / music / UI), 2D positional audio, per-zone ambience beds and reverb profiles, surface-aware footsteps wired to I2's events, and an audio settings resource. The largest missing discipline in the project. | §6 of design |
-| **I4** | **Camera v2.** Deadzone, directional look-ahead, smoothing, per-zone bounds and zoom, state-driven zoom changes, shake. Replace the rigid feet-lock. | design §8 |
-| **I5** | **Transition system.** Threaded zone loading, fade in / out, a loading state, and a measured stall budget. Decide transition presentation (currently Undecided). | R4 |
-| **I6** | **Occlusion system.** One systemic solution for the player disappearing behind building art — a silhouette through occluders or a depth-aware cutout — retiring hand-placed fade areas and closing the dead band behind the Main Gate tower. | R6 |
-| **I7** | **Interaction v2 + prompt UX.** Context-sensitive verbs, hold-to-interact, world-space markers instead of one bottom-centre label, and input-glyph-aware prompts (keyboard vs gamepad — a known gap). | — |
+| **K1** | **Save v2.** Full state (flags, inventory, world changes, clock, creature state, composure), slots, autosave at checkpoints, atomic temp-file-and-rename writes, versioned migration. | R7 |
+| **K2** | **Flags and world state.** Story flags and persistent per-object state: doors stay open and solved puzzles stay solved across reloads. | — |
+| **K3** | **Items and inventory.** Data-driven item definitions, an examine view, key items, the photo-mode camera. | — |
+| **K4** | **Notes, journal, clues.** Clue IDs, chapter gating, readable notes, the journal UI. English only, but the text lives in data. | D11 |
+| **K5** | **Puzzle framework.** Multi-step puzzle state machines, reusable puzzle objects wired in the editor, information-trail support for the local's-advantage rule. | D10 |
+| **K6** | **UI and UX.** Main menu, pause (the `pause` action is registered and unused), settings (audio, video, controls, brightness, accessibility), save and load UI. | — |
+| **K7** | **Interior kit proof.** One modular kit (floor, wall, door, window, corner, ceiling, stair modules) proven on one real CDS room. **Do not start Phase L without it.** | method |
+| **K8** | **Chapters 0 and 1.** Assemble them in the Main Gate / CDS cluster. | — |
 
-**Exit:** a 5-minute unscripted walk through `main_gate_exterior` and `cds_veranda` with sound, no
-hitching, no disappearing player, and movement that reads as weighted. Frame-time and latency
-budgets recorded and met.
+**Exit:** a stranger launches from the menu, plays about 35 minutes, saves, quits, reloads and
+finishes. **The first build worth showing anyone.**
 
 ---
 
-## Phase J — The Horror Core
+## Phase L — The surface campus (Chapters 2–3)
 
-**Goal:** make it a horror game. The first phase that adds *gameplay*.
+Blocked on the reference-photo trip (R8). Gather photos during Phase I or J.
 
 | Batch | Work |
 |---|---|
-| **J1** | **Day/night for real.** A persistent clock, per-zone lighting profiles, a true night pass over Main Gate, `LightOccluder2D` coverage on every prop (currently missing on trees, palms and all pipeline props), and working lamp posts. Retires `day_night_test_tint.gd`. |
-| **J2** | **Lantern as a mechanic.** Three-state light (off / low / full), fuel, flicker, refuel stations, reveal-in-light and reveal-in-dark content channels. Retires `lantern_test_light.gd`. |
-| **J3** | **Navigation + enemy framework.** `NavigationRegion2D` baked per zone (none exists today), a reusable perception module (light / sound / line-of-sight, weighted) and the `patrol → suspicious → investigate → chase → search → lose` state machine. |
-| **J4** | **The Watcher.** First enemy, light-hunting, in night Main Gate. Blender-pipeline character using the proven player-character rig path. |
-| **J5** | **Stealth and sound propagation.** Noise radius from surface × speed, hide spots, breath-holding, throwable distractions. Makes the existing ground TileSet a mechanic. |
-| **J6** | **Composure + death loop.** Diegetic fear expression (audio, camera, input), the non-death failure state, checkpoints and respawn. |
-| **J7** | **The Lister.** Second enemy, sound-hunting — validates that J3 is genuinely reusable rather than one-off. |
+| **L1** | **Interior kit production.** Scale K7 up into kits for institutional corridor, classroom, lecture hall, dorm room, stairwell, bathroom, office and medical ward. Built by assembly, not bespoke renders. |
+| **L2** | **Multiple floors.** Floor switching, stairwells, a vertical zone graph, per-floor save state, the camera across floors. |
+| **L3** | **Zone tooling.** A zone template scene, automatic navigation baking, light placement and validator registration. A new blockout zone in hours, not days. |
+| **L4** | **Campus layout.** A measured or paced master layout from the reference trip: zone IDs and the hub-and-spoke connection graph. Extend `CAMPUS_MAP.md` beyond area1. |
+| **L5** | **Exterior zones.** About 4 new ones: mosque / Five Pillars approach, academic quad, halls area, lakeside, in the Milestone-G batch style. Every unvisited building stands on the map, dark and locked. |
+| **L6** | **Chapter 2**: an academic building, 2–3 floors, power puzzles, the crows. |
+| **L7** | **The strays**, creature 2, on the J3 framework. Proves the framework is truly reusable. |
+| **L8** | **Chapter 3**: a hall of residence and the medical centre. |
+| **Lx** | **Performance at scale**: culling, texture budget enforcement, splitting zones where needed. |
 
-**Exit:** a repeatable night loop in one zone that is actually frightening to a first-time player,
-with a fail state and a recovery. Playtest it on someone who did not build it.
-
----
-
-## Phase K — Systems & Chapter 1
-
-**Goal:** the scaffolding content needs, then the first real content built on it. Save architecture
-must land **before** content, or the content cannot be saved.
-
-| Batch | Work | Addresses |
-|---|---|---|
-| **K1** | **Save v2.** Full state (flags, inventory, world deltas, time, enemy state, composure), slots, autosave, atomic temp-file-and-rename writes, versioned migration. | R7 |
-| **K2** | **Flags and world state.** A story-flag service and persistent per-object state, so an opened door or a solved puzzle survives a zone reload. Fixes the known "test box colour resets" class of problem. | — |
-| **K3** | **Inventory and items.** Data-driven item definitions, carry rules, an examine/inspect view, and key items. |
-| **K4** | **Notes, journal and clue system.** Clue IDs, chapter gating, readable notes, a journal UI. Data-driven and localisation-ready from day one. |
-| **K5** | **Puzzle framework.** Multi-step puzzle state machines, reusable puzzle objects, editor wiring, and the three puzzle classes from the design doc. |
-| **K6** | **Full UI/UX.** Main menu, pause (the `pause` action is registered and unused), settings (audio, video, keybinds, brightness, accessibility), save/load UI, and the diegetic HUD policy. |
-| **K7** | **Interior kit proof.** One modular interior kit (floor, wall, door, window, corner, ceiling, stair modules) proven on one real CDS room. **De-risks all of Phase L** — do not skip to L without it. | method |
-| **K8** | **Chapter 1.** Assemble a 20–30 minute playable chapter in the existing Main Gate / CDS cluster using everything above. |
-
-**Exit:** a stranger can launch the game from a menu, play Chapter 1 start to finish, save, quit,
-reload, and finish. **This is the first build worth showing anyone.**
+**Exit:** an IUT student recognises the campus, walks the hub, and enters every building the story
+needs.
 
 ---
 
-## Phase L — Campus Industrialisation
-
-**Goal:** now grow the campus — every new zone inherits a complete game. Blocked on the reference
-trip (R8), so start gathering during Phase I.
+## Phase M — Below & the Mirror (Chapters 4–6)
 
 | Batch | Work |
 |---|---|
-| **L1** | **Interior kit production.** Scale K7 into full kits: institutional corridor, classroom, lab, dorm room, stairwell, bathroom, office. Assembly, not bespoke renders — this is the cost model that makes a campus of interiors possible. |
-| **L2** | **Multi-floor system.** Floor switching, stairwells, a vertical zone graph, per-floor save state, and camera handling across floors. |
-| **L3** | **Zone authoring tooling.** A zone template scene, automated nav baking, automated light placement, automated validator registration. Target: a new blockout zone in hours, not days. |
-| **L4** | **Campus layout pass.** From the reference trip: a measured or paced master layout of IUT with zone IDs and a connection graph. Extend `Docs/CAMPUS_MAP.md` beyond area1. |
-| **L5+** | **Zone batches**, roughly one landmark cluster each, in the existing Milestone-G batch style: academic buildings, halls of residence, mosque, Five Pillars, library, cafeteria, auditorium, labs, hospital, sports complex. Each: blockout → production exterior → interiors → populate. |
-| **Lx** | **Performance at scale.** Culling, LOD, texture budget enforcement, zone splitting or streaming where needed. |
-
-**Exit:** an IUT student recognises the campus, walks it end to end, and enters the buildings that matter.
+| **M1** | **Facility art set.** A new pipeline family: concrete, steel, labs, containment, organism growth. Same camera, light and density contract. |
+| **M2** | **Chapter 4: Below.** 2 facility levels, entered from the medical centre's service level. |
+| **M3** | **Mirror system.** Per-zone colonised variants: lighting and fog profiles, overgrowth props, damaged prop re-renders through config parameters, altered signage, audio beds, foreshadowing hooks placed back into Chapters 0–3. |
+| **M4** | **Chapter 5: The Turning.** Mirror versions of Main Gate, CDS and the academic building, with heavy backtracking. |
+| **M5** | **The source + Chapter 6.** The deepest level, the final chase, the Mirror Main Gate finale, 2–3 endings. |
+| **M6** | *Optional:* the underwater / flooded facility level, only if the main line is finished. |
 
 ---
 
-## Phase M — Mirror Campus & Secrets
+## Phase N — Release
 
-**Goal:** the content multiplier. Cheap per hour of play *because* Phase L built the geometry.
-
-| Batch | Work |
-|---|---|
-| **M1** | **Mirror system.** Per-zone shifted variants: lighting and fog profiles, prop substitution and damage variants, altered signage, inverted audio beds, and threshold crossings. |
-| **M2** | **Mirror zone batches.** Shifted versions of the highest-recognition zones first (Main Gate, CDS, the academic building). |
-| **M3** | **Underground.** Service tunnels beneath the campus — darkness as the default state, no landmarks. |
-| **M4** | **The secret lab.** The story's payload. |
-| **M5** | **The Follower + set-pieces.** Scripted chases, timed sequences, the finale. |
-| **M6** | **Chapters 2–7.** Full narrative assembly, multiple endings. |
-| **M7** | **Optional: underwater.** Only if the main line is complete — it needs its own controls, physics and art rules. |
-
----
-
-## Phase N — Production
-
-Performance pass against the Phase H budgets. Desktop export (the original Milestone H — export
-templates still need installing). Settings and accessibility completeness. Localisation (English /
-Bengali). Photo mode polish. Credits. External playtesting. Store page, trailer, release.
+Performance pass against the budgets on a defined minimum-spec machine. Desktop export (the original
+Milestone H; export templates still need installing). Settings and accessibility completeness. Photo
+mode polish. Credits. External playtests (IUT students *and* people who have never seen the campus,
+to check D10 from both sides). Store page, trailer, release. **No localisation (D11).**
 
 ---
 
 ## Sequencing notes
 
-- **The reference trip (R8) gates Phase L and nothing earlier.** Do it during Phase I or J so it
-  never becomes the blocker.
-- **Audio (I3) is on the critical path, not a polish item.** Phase J's fear design depends on it;
-  retrofitting sound into finished systems costs more than building it alongside.
-- **K7 before L1, always.** Interiors are the biggest unbuilt category with no proven pipeline.
-- **Phases H and I together are roughly one Milestone-G-sized effort** and will produce no new
-  content — only a game that feels good. That is the correct trade, and it is worth saying out loud
-  before starting, so the lack of visible new buildings does not read as lack of progress.
+- **The reference trip gates Phase L only.** Do it during I or J so it never becomes the blocker.
+  Record campus sound on the same trip.
+- **Audio (I3) is on the critical path.** Phase J's fear design depends on it.
+- **K7 always comes before L1.** Interiors are the largest unbuilt category and have no proven
+  pipeline yet.
+- **Phases H and I add no new buildings.** That is the right trade, and it is stated here so the lack
+  of new buildings doesn't read as lack of progress.

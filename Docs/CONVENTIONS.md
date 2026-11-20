@@ -32,9 +32,9 @@ Game code must read input **only through these action names**, never through raw
 | `interact` | Use / talk / pick up the nearest interactable | `E` | Bottom face button (A / Cross) |
 | `lantern` | Reserved for the lantern | `F` | Left face button (X / Square) |
 | `pause` | Open/close the pause menu | `Escape` | Start / Menu |
-| `debug_toggle_night` | TEMPORARY (Milestone F): flip the test day/night tint. Remove with the test tint. | `F2` | — |
-| `debug_save` | TEMPORARY (Milestone E): write the save file. Remove when a save UI exists. | `F6` | — |
-| `debug_load` | TEMPORARY (Milestone E): load the save file. Remove when a save UI exists. | `F9` | — |
+| `debug_toggle_night` | Debug builds only (`Main/DebugTools`): flip the provisional world tint. | `F2` | — |
+| `debug_save` | Debug builds only (`Main/DebugTools`): write the save file. | `F6` | — |
+| `debug_load` | Debug builds only (`Main/DebugTools`): load the save file. | `F9` | — |
 
 Rules:
 
@@ -189,6 +189,12 @@ Rules:
 
 ## 6. Resolution and stretch
 
+> **Superseded 21 November 2026 (roadmap H2): Confirmed and applied.** Base 1920 × 1080, windowed size
+> 1600 × 900, `canvas_items` / `expand`, fractional scaling, linear filtering with mipmaps, no pixel
+> snap, `physics/common/physics_interpolation` on, player camera zoom 2 in physics process mode, ground
+> tiles 256 px drawn at TileMapLayer scale 0.25. Full contract and evidence: `Docs/PRESENTATION.md`.
+> `GameSessionCheck` asserts these settings on every run. The tables below are the 7 October record.
+
 Inspected through the Godot MCP on 7 October 2026. **No display settings were changed.**
 
 ### Currently configured — Verified
@@ -227,9 +233,15 @@ Inspected through the Godot MCP on 7 October 2026. **No display settings were ch
 | `rendering/renderer/rendering_method.web` | `gl_compatibility` (forced by Godot) |
 | `rendering/renderer/rendering_method.mobile` | `mobile` (Godot default) |
 
-Notes. None of these were changed.
+**Confirmed 20 November 2026 (decision D3): stay on Compatibility.** A stress test in the real zone
+(30 shadow-casting lights plus up to 48 stacked) rendered identical lighting to Forward+ at every light
+count; the 8-lights-per-object limit does not apply to 2D. Cost at 1080p was 2.62 ms per frame, with
+steadier pacing than Forward+. Evidence: `Docs/DECISIONS.md` D3.
 
-- `config/features` in `project.godot` still lists `"Forward Plus"` from project creation. It's a Project Manager label; the active method is `gl_compatibility`, confirmed by the engine log.
+Notes.
+
+- `config/features` was corrected to `"GL Compatibility"` on 21 November 2026 (it carried the
+  `"Forward Plus"` label from project creation).
 - `rendering_device/driver.windows = "d3d12"` only applies to the Forward+/Mobile renderers and is unused under Compatibility.
 - If a mobile export is ever made, the `.mobile` override would switch to the Mobile renderer. Revisit once the target platform is decided.
 - Final renderer choice stays tied to the lighting test (Milestone F) and the target platform. Milestone F: `CanvasModulate` tint, a shadow-casting `PointLight2D` and a `LightOccluder2D` all work under Compatibility with no errors (see section 10).
@@ -242,7 +254,7 @@ Introduced in Milestone C. Waiting for the user's approval.
 |---|---|
 | Zone scene | Lives in `scenes/world/`. Root is a `Node2D` with `scripts/world/zone.gd` (`class_name Zone`) and an exported `zone_id`, laid out as in section 3. |
 | No player in zones | Zones never contain a Player, camera or UI. Main owns one persistent Player and moves it on arrival. |
-| Zone registry | Every reachable zone is listed in `ZONE_SCENES` in `scripts/core/main.gd` (`zone_id` → scene path). The key must equal the zone root's `zone_id`; Main refuses to load a mismatch. |
+| Zone registry | Every reachable zone is listed in the `ZoneRegistry` resource `data/zones/zone_registry.tres` (`zones`: shipping, `debug_zones`: debug builds only; `zone_id` → scene path), edited in the Inspector. The key must equal the zone root's `zone_id`; Main refuses to load a mismatch. Every registered zone needs a validator manifest (`Docs/TESTING.md`). |
 | Spawn marker | Instance `scenes/components/SpawnMarker.tscn` (`Marker2D`, `class_name SpawnMarker`) inside `Objects`. Its position is the player's **feet** position on arrival. Set `spawn_id` (unique within the zone; the zone reports empty/duplicate IDs as errors). |
 | Door | Instance `scenes/components/Door.tscn` (`class_name Door`) inside `Objects`, origin on the ground where the player stands to use it. Set `destination_zone_id`, `destination_spawn_id` and optionally `prompt_text`. Doors use the standard `Interactable`; they have no collision of their own (the wall behind them blocks). |
 | Arrival spot | Put the destination spawn marker outside the arrival door's interaction range (more than 56 px from the door origin with the current shapes), so the player doesn't arrive with a door prompt already showing. |
@@ -328,7 +340,24 @@ Introduced in Milestone G Part 2. Waiting for the user's approval. Full guide: `
 
 ---
 
+## 14. Debug-only code, the zone registry and tests — Confirmed (Phase H, 21 November 2026)
+
+| Topic | Rule |
+|---|---|
+| Debug-only behaviour | Lives in `scripts/debug/` and runs only when `OS.is_debug_build()`. `Main/DebugTools` holds the developer keys (F2 night tint, F6 save, F9 load) and frees itself in a release build. No other script reads `debug_*` actions. Nothing named `*_test_*` is loaded by the shipping main scene. |
+| Provisional systems | Placeholders that are real gameplay until replaced (`world_tint.gd`, `player_lantern.gd`) say PROVISIONAL and name the roadmap batch that replaces them. |
+| Zone registry | `data/zones/zone_registry.tres` (`ZoneRegistry`): `zones` ship; `debug_zones` exist only in debug builds (test rooms A/B). No zone list in code. |
+| Cameras | Every `Camera2D` uses `process_callback = 0` (physics), because physics interpolation is on. |
+| Ground TileMapLayers | Scale = 32 × period_m / tile_px (0.25 for the 256 px campus tiles). Ground-textured `Polygon2D`s use `texture_scale` (4, 4). Convert positions with `local_to_map(to_local(p))`. |
+| Teleports | Code that moves a body instantly calls `reset_physics_interpolation()` (`Player.teleport()` does). |
+| Tests | Every registered zone has a validator manifest and baseline (`Docs/TESTING.md`). Baselines are refreshed only after reading the diff, and committed together with the change they record. Test scenes must quit with an exit code and run under a timeout. A test that measures smoothness compares against the real frame delta, never a fixed per-frame limit. |
+
 ## Still undecided
+
+> **Update 20 November 2026:** base resolution, texture filter, integer scaling and pixel snap,
+> camera zoom, art route and renderer are now **Confirmed** in `Docs/PRESENTATION.md` and
+> `Docs/DECISIONS.md` (applied in roadmap batch H2). Movement speeds are Confirmed too (sneak 32 /
+> walk 62 / sprint 154 px/s). The rest of this list still stands.
 
 These are intentionally **not** finalized and must not be treated as settled by future work:
 
@@ -379,4 +408,6 @@ To re-run: open `scenes/tests/Milestone0Test.tscn` and press F6 (Run Current Sce
 | 2026-10-13 | Milestone G Batch 3A: §13 "Landmarks" amended (still Proposed). Rendered roofs and canopies are separate render layers (a whole-building roof at z 10, sorted sub-parts via `sort_y_m`) with `OverheadVisibility` fade areas; solid bodies are never faded; top faces under roofs are holdout. Replaces "rendered roofs are part of the Y-sorted sprite". |
 | 2026-10-13 | Milestone G Batch 3: §13 "Landmarks" and "Generator textures" rows added (still Proposed). Rendered landmarks replace their blockout inside the same parent, are split into separately sorted generated parts (`landmarks` category), Y-sort their roofs instead of using `Overhead`, and get landmark-level occluders. §12 "Landmark overhead" is limited to blockout landmarks. |
 | 2026-10-14 | Milestone G Batch 4: §13 "Sliced long buildings" row added (still Proposed): section props cut into Y-sorted slices with overlap strips, a shared texel anchor and context lighting; collision and occluders stay in the zone at the approved footprint; fade only slices that hide the player. |
+| 2026-11-20 | Decisions D1–D4: resolution, density, zoom, renderer and speeds Confirmed in `Docs/PRESENTATION.md` / `Docs/DECISIONS.md`; §7 renderer Confirmed (Compatibility). |
+| 2026-11-21 | Phase H (H2 + H4 + H5): §6 applied; §14 added (debug-only code, zone registry resource, camera process mode, ground TileMapLayer scale, teleport interpolation reset, test rules). |
 | 2026-10-08 | Milestone G Part 1 editability cleanup: section 12 amended (still Proposed). Landmarks own all their layers: landmark ground at z −9, a landmark `Overhead` child at z 10 (replacing "keep overhead under the zone's `Overhead`"), doors and spawns may live inside their landmark, and the `blockout_placeholder` group marks blockout-only visuals. |

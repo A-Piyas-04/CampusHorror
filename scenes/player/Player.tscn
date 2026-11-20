@@ -1,7 +1,7 @@
 [gd_scene format=3]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_player"]
-[ext_resource type="Script" path="res://scripts/lighting/lantern_test_light.gd" id="2_lantern"]
+[ext_resource type="Script" path="res://scripts/lighting/player_lantern.gd" id="2_lantern"]
 [ext_resource type="SpriteFrames" path="res://scenes/player/player_character_frames.tres" id="3_frames"]
 [ext_resource type="PackedScene" path="res://scenes/props/common/ContactShadow.tscn" id="4_shadow"]
 [ext_resource type="Script" path="res://scripts/player/player_animator.gd" id="5_animator"]
@@ -56,6 +56,8 @@ position = Vector2(0, -6)
 shape = SubResource("CircleShape2D_interaction")
 
 [node name="Camera" type="Camera2D" parent="."]
+process_callback = 0
+zoom = Vector2(2, 2)
 
 [node name="Lantern" type="PointLight2D" parent="."]
 position = Vector2(0, -16)

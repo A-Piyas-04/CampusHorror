@@ -126,6 +126,15 @@ hooks and occlusion handling.
 Ordered by how expensive each becomes if deferred.
 
 ### R1 — Presentation contract is still undecided, and every asset depends on it 🔴
+
+> **Update, 20 November 2026: decided, and corrected.** The contract is now Confirmed in
+> `Docs/PRESENTATION.md`. Measuring every asset showed that the claim below, that the whole library
+> needs re-rendering for sharpness, **was wrong**. Every sprite is already rendered at 3–7× density
+> and mipmapped down. **Only the 4 ground tiles are drawn 1:1**, and that is the softness the old
+> notes describe. The fix shrinks to re-rendering 4 tiles (roadmap H2). The "layout-neutral" claim
+> below was proven true by an experiment: doubling `px_per_m` left footprint, collision and origin
+> byte-identical. **Applied 21 November 2026 (H2)**, verified by the zone validator and before/after
+> screenshots.
 `Docs/ART_STYLE.md` and `Docs/CONVENTIONS.md` both still list base resolution, tile size, texture
 filter, integer scaling and camera tuning as **Undecided** — after 21 assets and 355 placed nodes
 were authored against them. `project.godot` sets no viewport size at all (so 1152×648 default) with
@@ -146,6 +155,12 @@ Cost of waiting: ×4 texture memory and render time per doubling (the 3 CDS sect
 already 12.88 Mpx), so pick the target deliberately against `max_texture_px`.
 
 ### R2 — Renderer may not survive the horror design 🔴
+
+> **Update, 20 November 2026: retired.** A stress test in the real zone (30 shadow-casting lights
+> plus up to 48 stacked) found Compatibility's lighting identical to Forward+'s to four decimal
+> places at every light count. The feared 8-lights-per-object cap does not apply to 2D lighting.
+> Cost was 2.62 ms per frame at 1080p. Decision: stay on Compatibility. Evidence is in
+> `Docs/DECISIONS.md` D3.
 Active renderer is **Compatibility** (OpenGL 3.3) with default caps
 `max_lights_per_object = 8` and `max_renderable_lights = 32`. `Docs/STATUS.md` admits these were
 never tested: *"no limitation was hit with one light and one occluder."* A night campus with a
@@ -169,6 +184,10 @@ Needs `ResourceLoader.load_threaded_request` plus a fade. `Docs/CONVENTIONS.md` 
 presentation as Undecided — decide it with the loader.
 
 ### R5 — The verification harness grows linearly with the map 🟠
+
+> **Update, 21 November 2026: resolved (H4).** One data-driven validator with generic rules, a small
+> manifest and one baseline per zone replaces the 9 bespoke scenes and 6 versioned baselines. Its
+> self-test proves each rule catches a regression. See `Docs/TESTING.md`.
 One zone has produced 17 check scripts, 9 bespoke check scenes and **6 versioned baseline JSON
 files** (`main_gate_ground_baseline*.json`, one per batch). The rigor is a real asset and should be
 kept — but the pattern means any future edit to `MainGateExterior.tscn` fails several checks until a
@@ -204,6 +223,10 @@ them one at a time after a five-week gap is a waste of a session. Collapse them 
 approval pass (see `Docs/NEXT_ACTIONS.md` §1).
 
 ### R10 — Housekeeping 🟢
+
+> **Update, 21 November 2026: resolved (H5).** Debug keys quarantined in `DebugTools`, lighting
+> scripts renamed PROVISIONAL, MCP cache untracked, `.gdignore` added, the label fixed, the scratch
+> prompts deleted, and the zone registry moved to a resource.
 `addons/godot_mcp/cache/` is still Git-tracked despite being gitignored (needs
 `git rm -r --cached`). `Docs/map-reference/` has no `.gdignore`, so Godot imports every reference
 photo. `config/features` misreports the renderer. Two `*_test_*.gd` lighting scripts and three debug

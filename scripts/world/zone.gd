@@ -1,7 +1,7 @@
 class_name Zone
 extends Node2D
 
-## Stable, globally unique ID. Must match this zone's key in Main's ZONE_SCENES.
+## Stable, globally unique ID. Must match this zone's key in `data/zones/zone_registry.tres`.
 @export var zone_id: String = ""
 
 

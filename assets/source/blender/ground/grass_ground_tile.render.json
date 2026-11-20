@@ -3,13 +3,13 @@
   "pipeline_version": 1,
   "asset": "grass_ground_tile",
   "category": "ground",
-  "description": "Seamless 2 x 2 m top-down lawn tile (64 x 64 px, TileMapLayer source 0). Base tile for grass_worn_tile.",
+  "description": "Seamless 2 x 2 m top-down lawn tile (256 x 256 px, 4 texels per game px, TileMapLayer source 0). Base tile for grass_worn_tile.",
   "config": "assets/source/blender/configs/grass_ground_tile.json",
   "generator": "assets/source/blender/generators/ground_grass.py",
   "generator_params": {
     "period": 2.0,
     "wear": 0.0,
-    "wear_border_m": 0.3,
+    "wear_border_m": 0.16,
     "wear_fade_m": 0.3,
     "wear_offset": 0.0
   },
@@ -36,7 +36,7 @@
     },
     "surface": "flat tile, layered periodic (4D torus) lawn shader with bump",
     "wear": 0.0,
-    "wear_border_m": 0.3,
+    "wear_border_m": 0.16,
     "materials": [
       "Lawn"
     ],
@@ -67,14 +67,14 @@
       20.0
     ],
     "ortho_scale_m": 2.0,
-    "rendered_ortho_scale_m": 2.5,
+    "rendered_ortho_scale_m": 2.125,
     "sensor_fit": "HORIZONTAL",
     "rendered_px": [
-      80,
-      80
+      272,
+      272
     ],
     "overscan_px_each_side": 8,
-    "pixels_per_metre_on_screen": 32.0
+    "pixels_per_metre_on_screen": 128.0
   },
   "lighting": {
     "sun_elevation_deg": 55.0,
@@ -127,18 +127,18 @@
     "view_transform": "Standard",
     "output_format": "PNG RGBA 8-bit",
     "resolution_px": [
-      80,
-      80
+      272,
+      272
     ],
-    "render_seconds": 1.4
+    "render_seconds": 4.6
   },
   "projection": {
     "note": "texture px, top-left origin: x = W/2 + (p.right - cx)*ppm, y = H/2 - (p.up - cy)*ppm",
     "image_px": [
-      64,
-      64
+      256,
+      256
     ],
-    "px_per_m": 32.0,
+    "px_per_m": 128.0,
     "right": [
       1.0,
       0.0,
@@ -154,20 +154,20 @@
       0.0
     ],
     "origin_px": [
-      32.0,
-      32.0
+      128.0,
+      128.0
     ],
     "footprint_corners_px": [
       [
         0.0,
-        64.0
+        256.0
       ],
       [
-        64.0,
-        64.0
+        256.0,
+        256.0
       ],
       [
-        64.0,
+        256.0,
         0.0
       ],
       [
@@ -178,27 +178,28 @@
     "design_bounds_bbox_px": [
       0.0,
       0.0,
-      64.0,
-      64.0
+      256.0,
+      256.0
     ]
   },
   "tiling": null,
+  "layers": null,
   "kind": "ground_tile",
   "ground_tile": {
     "period_m": 2.0,
-    "tile_px": 64,
+    "tile_px": 256,
     "overscan_px": 8,
     "tileset": "campus_ground",
     "source_id": 0,
     "border_match": null,
     "note": "rendered straight down between 8 neighbour copies with overscan_px on every side; the pipeline crops the overscan (a manual re-render of the .blend is not cropped)"
   },
-  "total_seconds": 1.6,
+  "total_seconds": 6.5,
   "blender_run": {
     "exit_code": 0,
-    "seconds": 2.6,
+    "seconds": 8.4,
     "problem_lines": [
-      "00:00.625  cycles           | WARNING HIPEW initialization failed: Error opening HIP dynamic library"
+      "00:02.125  cycles           | WARNING HIPEW initialization failed: Error opening HIP dynamic library"
     ]
   },
   "verification": {
@@ -206,19 +207,19 @@
       "bit_depth": 8,
       "png_color_type": 6,
       "interlace": 0,
-      "file_bytes": 7338,
+      "file_bytes": 116030,
       "size_px": [
-        64,
-        64
+        256,
+        256
       ],
-      "opaque_pixels": 4096,
+      "opaque_pixels": 65536,
       "partially_transparent_pixels": 0,
       "fully_transparent_pixels": 0,
       "content_bbox_px": [
         0,
         0,
-        63,
-        63
+        255,
+        255
       ],
       "margins_px": {
         "left": 0,
@@ -230,22 +231,22 @@
     },
     "seams": {
       "x": {
-        "interior_mean_step": 2.069,
-        "interior_max_step": 2.688,
-        "wrap_step": 2.01
+        "interior_mean_step": 2.315,
+        "interior_max_step": 2.786,
+        "wrap_step": 2.324
       },
       "y": {
-        "interior_mean_step": 2.099,
-        "interior_max_step": 2.755,
-        "wrap_step": 2.073
+        "interior_mean_step": 2.636,
+        "interior_max_step": 3.284,
+        "wrap_step": 2.832
       }
     },
     "luma_halves": {
-      "left": 93.78,
-      "right": 94.82,
-      "top": 94.01,
-      "bottom": 94.59,
-      "max_half_difference": 1.037
+      "left": 93.66,
+      "right": 94.7,
+      "top": 93.87,
+      "bottom": 94.48,
+      "max_half_difference": 1.047
     },
     "border_match": null,
     "passed": true
@@ -254,7 +255,7 @@
     "tileset": "assets/tilesets/campus_ground.tres",
     "scene_name": "GrassGroundTile",
     "source_id": 0,
-    "tile_size_px": 64,
+    "tile_size_px": 256,
     "tileset_sources": [
       {
         "source_id": 0,

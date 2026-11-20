@@ -1,21 +1,12 @@
 extends Node
 
 ## Writes the persistent game state to disk as JSON and loads it back. Registered as the `SaveService` autoload.
-## One save file; no slots, autosave or migrations.
+## One save file; no slots, autosave or migrations (roadmap K1). The F6 / F9 developer keys live in
+## `scripts/debug/debug_tools.gd` (debug builds only).
 
 const SAVE_PATH := "user://save.json"
 ## Bump when the save format changes. Files with any other version are refused.
 const SAVE_VERSION := 1
-
-
-func _unhandled_input(event: InputEvent) -> void:
-	# TEMPORARY developer controls until a save UI exists.
-	if event.is_action_pressed("debug_save"):
-		save_game()
-		get_viewport().set_input_as_handled()
-	elif event.is_action_pressed("debug_load"):
-		load_game()
-		get_viewport().set_input_as_handled()
 
 
 func has_save() -> bool:

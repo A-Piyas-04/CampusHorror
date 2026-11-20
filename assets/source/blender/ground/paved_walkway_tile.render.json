@@ -86,14 +86,14 @@
       20.054
     ],
     "ortho_scale_m": 2.0,
-    "rendered_ortho_scale_m": 2.5,
+    "rendered_ortho_scale_m": 2.125,
     "sensor_fit": "HORIZONTAL",
     "rendered_px": [
-      80,
-      80
+      272,
+      272
     ],
     "overscan_px_each_side": 8,
-    "pixels_per_metre_on_screen": 32.0
+    "pixels_per_metre_on_screen": 128.0
   },
   "lighting": {
     "sun_elevation_deg": 55.0,
@@ -146,18 +146,18 @@
     "view_transform": "Standard",
     "output_format": "PNG RGBA 8-bit",
     "resolution_px": [
-      80,
-      80
+      272,
+      272
     ],
-    "render_seconds": 1.5
+    "render_seconds": 2.3
   },
   "projection": {
     "note": "texture px, top-left origin: x = W/2 + (p.right - cx)*ppm, y = H/2 - (p.up - cy)*ppm",
     "image_px": [
-      64,
-      64
+      256,
+      256
     ],
-    "px_per_m": 32.0,
+    "px_per_m": 128.0,
     "right": [
       1.0,
       0.0,
@@ -173,20 +173,20 @@
       0.0
     ],
     "origin_px": [
-      32.0,
-      32.0
+      128.0,
+      128.0
     ],
     "footprint_corners_px": [
       [
         0.0,
-        64.0
+        256.0
       ],
       [
-        64.0,
-        64.0
+        256.0,
+        256.0
       ],
       [
-        64.0,
+        256.0,
         0.0
       ],
       [
@@ -197,27 +197,28 @@
     "design_bounds_bbox_px": [
       0.0,
       0.0,
-      64.0,
-      64.0
+      256.0,
+      256.0
     ]
   },
   "tiling": null,
+  "layers": null,
   "kind": "ground_tile",
   "ground_tile": {
     "period_m": 2.0,
-    "tile_px": 64,
+    "tile_px": 256,
     "overscan_px": 8,
     "tileset": "campus_ground",
     "source_id": 2,
     "border_match": null,
     "note": "rendered straight down between 8 neighbour copies with overscan_px on every side; the pipeline crops the overscan (a manual re-render of the .blend is not cropped)"
   },
-  "total_seconds": 1.7,
+  "total_seconds": 4.1,
   "blender_run": {
     "exit_code": 0,
-    "seconds": 2.9,
+    "seconds": 5.1,
     "problem_lines": [
-      "00:00.812  cycles           | WARNING HIPEW initialization failed: Error opening HIP dynamic library"
+      "00:01.875  cycles           | WARNING HIPEW initialization failed: Error opening HIP dynamic library"
     ]
   },
   "verification": {
@@ -225,19 +226,19 @@
       "bit_depth": 8,
       "png_color_type": 6,
       "interlace": 0,
-      "file_bytes": 5527,
+      "file_bytes": 69859,
       "size_px": [
-        64,
-        64
+        256,
+        256
       ],
-      "opaque_pixels": 4096,
+      "opaque_pixels": 65536,
       "partially_transparent_pixels": 0,
       "fully_transparent_pixels": 0,
       "content_bbox_px": [
         0,
         0,
-        63,
-        63
+        255,
+        255
       ],
       "margins_px": {
         "left": 0,
@@ -249,22 +250,22 @@
     },
     "seams": {
       "x": {
-        "interior_mean_step": 3.607,
-        "interior_max_step": 12.536,
-        "wrap_step": 0.995
+        "interior_mean_step": 3.028,
+        "interior_max_step": 23.404,
+        "wrap_step": 0.697
       },
       "y": {
-        "interior_mean_step": 3.99,
-        "interior_max_step": 25.786,
-        "wrap_step": 1.016
+        "interior_mean_step": 3.497,
+        "interior_max_step": 50.559,
+        "wrap_step": 0.865
       }
     },
     "luma_halves": {
-      "left": 105.86,
-      "right": 104.8,
-      "top": 104.25,
-      "bottom": 106.41,
-      "max_half_difference": 2.161
+      "left": 104.31,
+      "right": 103.27,
+      "top": 102.76,
+      "bottom": 104.82,
+      "max_half_difference": 2.058
     },
     "border_match": null,
     "passed": true
@@ -273,7 +274,7 @@
     "tileset": "assets/tilesets/campus_ground.tres",
     "scene_name": "PavedWalkwayTile",
     "source_id": 2,
-    "tile_size_px": 64,
+    "tile_size_px": 256,
     "tileset_sources": [
       {
         "source_id": 0,
@@ -422,11 +423,7 @@
     "preview_scene": "scenes/tests/asset_previews/PavedWalkwayTilePreview.tscn"
   },
   "godot_import": {
-    "exit_code": 0,
-    "problem_lines": [
-      "WARNING: Detected another project.godot at res://addons/godot_mcp/cache/undo/entry_000003/files. The folder will be ignored.",
-      "WARNING: UID duplicate detected between res://scenes/tests/MCPCheck.tscn and res://addons/godot_mcp/cache/undo/entry_000002/files/scenes/tests/MCPCheck.tscn."
-    ]
+    "already_imported": true
   },
   "godot_check": {
     "scene": {

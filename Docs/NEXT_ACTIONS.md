@@ -1,6 +1,6 @@
 # Next actions — what is needed to continue
 
-Snapshot: 20 November 2026
+Snapshot: 20 November 2026 • updated after decisions D0–D12
 
 Audience: the project owner. This is the only document here with homework in it.
 
@@ -10,55 +10,34 @@ all three, plus the first batch that can start immediately.
 
 ---
 
-## 0. State of the repo, in one line
+## 0. State of the repo
 
-Nothing is broken, nothing is uncommitted, the toolchain works (Blender 5.2.2, Godot 4.7.2,
-Python 3.12), all 21 assets validate, and the real game runs 19/19 headless. Re-verified today.
-You can resume cold. Full detail: `Docs/PROJECT_REVIEW_2026-11.md` §2.
+21 November 2026: Phase H batches **H2, H4 and H5 are done and verified, but not committed**:
+- Presentation contract applied: 1080p, zoom 2, 4× sharper ground, physics interpolation.
+- One zone validator replaces 9 check scenes.
+- Debug code quarantined.
 
-Two scratch files should be deleted when convenient: `temp_prompt.txt`, `master_prompt.txt`.
+Suites: validator 45/45, session 14/14, character 19/19, pipeline 789/789. Details are in
+`Docs/STATUS.md`; how to test is in `Docs/TESTING.md`. The pre-edit state is kept at
+`refs/checkpoints/h245-preedit`.
 
----
+## 1. Decisions — all answered (20 November 2026)
 
-## 1. Blocking decisions
+All thirteen (D0–D12) are answered and recorded in **`Docs/DECISIONS.md`**, the single source of
+truth. In short: a finishable 2–4 h game with backtracking; an underground bio-organism facility as
+the premise; horror, not action; light reveals, hides and attracts; composure in; the Mirror Campus
+as the late-game spine; one creature first; a local's advantage that is never a wall; English only;
+title ***The Quiet Hours***.
 
-### The one that changes everything
+The four technical decisions were delegated to Claude and settled **by measurement**, not opinion:
+stay on the Compatibility renderer (stress test: identical lighting to Forward+ at 8–48 lights,
+steadier frame pacing); 1080p base, camera zoom 2; only the 4 ground tiles need re-rendering
+(measured: every sprite is already 3–7× oversampled); sneak 32 / walk 62 / sprint 154 px/s. Full
+numbers are in `Docs/DECISIONS.md` and `Docs/PRESENTATION.md`.
 
-**D0. Is this a finishable 2–4 hour horror game, or an open-ended campus to expand forever?**
-
-Answer this before anything else. It changes the shape of every phase in the roadmap. A finishable
-game means scope discipline, an ending, and a release. An open-ended campus means tooling investment,
-a content pipeline, and no deadline. Both are valid; they are not compatible plans.
-
-### Presentation (blocks Phase H, which blocks everything else)
-
-| # | Decision | Why it cannot wait |
-|---|---|---|
-| D1 | Base resolution and stretch mode | Not set at all today (defaults to 1152×648 with `expand`); causes the known tile-softness problem, which is the opposite of your stated top priority |
-| D2 | Texel density / camera zoom | The character is ~45 px tall on screen; faces only read at zoom 2+. Cheap to change now (one config value per asset), expensive after more zones exist |
-| D3 | Renderer: stay on Compatibility or move to Forward+ | Compatibility caps at 8 lights per object / 32 renderable, never tested. A night horror campus will exceed that |
-| D4 | Movement speeds | Current single speed is 6.25 m/s — a sprint — which is why the feet slide. Pick walk / jog / sneak values |
-
-Recommendation for D1–D2: lock an explicit base resolution, then raise texture density so the
-default camera zoom is texel-exact. Verify on one asset first — the pipeline derives sprite scale
-from `px_per_m`, so this *should* cost nothing in layout or collision.
-
-### Game design (blocks Phase J onward)
-
-These are the eight questions at the end of `Docs/GAME_DESIGN.md`. Summarised:
-
-| # | Decision |
-|---|---|
-| D5 | The premise — *why* is the campus wrong? |
-| D6 | Lantern: accept the three-state cost model (light reveals, hides and attracts), or simplify? |
-| D7 | Composure/fear system: in or cut? |
-| D8 | **Mirror Campus: the spine of the game, a late-game area, or cut?** The highest-leverage call after D0 |
-| D9 | Enemies: build all three, or start with one? |
-| D10 | Campus-knowledge puzzles: how central? (The differentiator, but it narrows the audience) |
-| D11 | Bilingual English/Bengali, or English only? Decide before any string is written |
-| D12 | Title |
-
----
+**Your remaining review:** the PROPOSED sections of `Docs/GAME_DESIGN.md`: the organism's biology,
+the Night Guard, the later creatures, the seven chapters and the ~25–30 zone scope. None of it blocks
+Phase H or I. It needs your yes / change list before Phase J (creatures) and Phase K (chapters).
 
 ## 2. Reference material — the hard blocker on campus expansion
 
@@ -83,6 +62,11 @@ Do this during Phase I or J so it never becomes the critical path. Suggested sho
 - **Ground:** the actual surfaces — brick paving, concrete, tile, grass, dirt paths.
 - **Night:** at least a few of each landmark after dark, plus lamp positions and what the lighting
   actually looks like. Phase J needs this and it does not exist.
+
+- **Sound (new, for audio batch I3):** record on your phone at night: wind across the field, the road
+  beyond the gate, footsteps on each real surface (grass, brick paving, asphalt, corridor tile,
+  stairs), doors, fans, a corridor's room tone, crows, distant dogs. Free, and authentic in a way no
+  sound library can be.
 
 Plus, campus-wide:
 
@@ -117,6 +101,8 @@ Five Pillars, then halls of residence, then the library and cafeteria.
 | 29 | Batch 4 — CDS exterior |
 | 30 | Player character |
 
+**Update 21 November 2026:** checks 22 and 23 are obsolete; their scenes were retired in H4. The rest stand, and the ground (checks 21 and 25–29) now looks sharper than when they were recorded.
+
 Do **not** work through these one at a time — that is what stalled before the pause. Batch H1 in the
 roadmap collapses them into one guided sitting using `ZoneCapture.tscn` (which already exists and
 takes `--shots=` poses) to drive the camera through every item while you approve or list changes.
@@ -133,25 +119,20 @@ Carried-over questions worth deciding in that same sitting, from the old "Next t
 
 ---
 
-## 4. What can start right now, with no decisions from you
+## 4. What can start right now
 
-If you want progress today, these are unblocked:
+Everything in **Phase I (game feel)** is unblocked. Recommended next prompt, as one batch:
 
-1. **H1's mechanical half** — split `Docs/STATUS.md` into a short living status plus an append-only
-   `VERIFICATION_LOG.md`, and set up the approval ledger.
-2. **H4 — the zone validator.** Replace 9 bespoke check scenes and 6 versioned baselines with one
-   data-driven validator. Pure refactor of test tooling, no game or asset changes, and it removes a
-   cost that otherwise grows with every future zone.
-3. **H5 — housekeeping.** Untrack the MCP cache, add the `.gdignore` to `Docs/map-reference/`, fix
-   the `config/features` renderer label, delete the scratch prompt files, move the zone registry out
-   of a `const` in `main.gd`, and quarantine the TEMPORARY debug scripts and actions.
-4. **H3's measurement half** — build the 30-light stress scene and gather the numbers, so D3 becomes
-   a decision with data behind it rather than a guess.
+1. **I1: player controller v2.** Sneak 32 / walk 62 / sprint 154 px/s, acceleration curves, stamina,
+   8 directions, surface detection from the ground TileSet.
+2. **I3: audio foundation.** Buses, positional audio, ambience, surface-aware footsteps. Free CC0
+   sounds now; your own campus recordings replace them later.
+3. **I4: camera v2 + I5: threaded transitions behind a fade.** The H3 frame-time probe fits here.
 
-Recommended first prompt: **H4 + H5 together**, then the H1 sitting and the H3 stress test, then
-D1–D4 with real measurements in hand.
+Then I2 (8-direction and run/sneak animation re-render), I6 (systemic occlusion) and I7 (interaction v2).
 
----
+**Your part, any time:** the H1 approval sitting (an hour at the screen), the reference photo and
+sound trip (§2), and reviewing the PROPOSED sections of `Docs/GAME_DESIGN.md`.
 
 ## 5. Honest expectation setting
 

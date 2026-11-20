@@ -32,6 +32,10 @@ These are placeholders to prove scale and layering only; none of their colours, 
 
 ## Not yet decided
 
+> **Superseded 20 November 2026** for resolution, world scale, camera zoom and texture filtering:
+> see `Docs/PRESENTATION.md` (Confirmed). The Blender-rendered pipeline is the confirmed route.
+> Character style and shadow softness remain open.
+
 Do not lock these until an art test is approved:
 
 - Exact asset resolution

@@ -104,7 +104,8 @@ def main():
             'polygon = PackedVector2Array(-16, -64, 16, -64, 16, 0, -16, 0)\n')
     parts.append('[node name="Camera" type="Camera2D" parent="."]\n'
                  'editor_description = "TEMPORARY camera at gameplay zoom 1 (same as Player/Camera)."\n'
-                 'position = Vector2(0, -16)\n')
+                 'position = Vector2(0, -16)\n'
+                 'process_callback = 0\n')
     OUT.write_text("\n".join(parts), encoding="utf-8", newline="\n")
     print(OUT)
 

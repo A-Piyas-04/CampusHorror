@@ -67,14 +67,14 @@
       20.0
     ],
     "ortho_scale_m": 2.0,
-    "rendered_ortho_scale_m": 2.5,
+    "rendered_ortho_scale_m": 2.125,
     "sensor_fit": "HORIZONTAL",
     "rendered_px": [
-      80,
-      80
+      272,
+      272
     ],
     "overscan_px_each_side": 8,
-    "pixels_per_metre_on_screen": 32.0
+    "pixels_per_metre_on_screen": 128.0
   },
   "lighting": {
     "sun_elevation_deg": 55.0,
@@ -127,18 +127,18 @@
     "view_transform": "Standard",
     "output_format": "PNG RGBA 8-bit",
     "resolution_px": [
-      80,
-      80
+      272,
+      272
     ],
-    "render_seconds": 1.6
+    "render_seconds": 2.3
   },
   "projection": {
     "note": "texture px, top-left origin: x = W/2 + (p.right - cx)*ppm, y = H/2 - (p.up - cy)*ppm",
     "image_px": [
-      64,
-      64
+      256,
+      256
     ],
-    "px_per_m": 32.0,
+    "px_per_m": 128.0,
     "right": [
       1.0,
       0.0,
@@ -154,20 +154,20 @@
       0.0
     ],
     "origin_px": [
-      32.0,
-      32.0
+      128.0,
+      128.0
     ],
     "footprint_corners_px": [
       [
         0.0,
-        64.0
+        256.0
       ],
       [
-        64.0,
-        64.0
+        256.0,
+        256.0
       ],
       [
-        64.0,
+        256.0,
         0.0
       ],
       [
@@ -178,27 +178,28 @@
     "design_bounds_bbox_px": [
       0.0,
       0.0,
-      64.0,
-      64.0
+      256.0,
+      256.0
     ]
   },
   "tiling": null,
+  "layers": null,
   "kind": "ground_tile",
   "ground_tile": {
     "period_m": 2.0,
-    "tile_px": 64,
+    "tile_px": 256,
     "overscan_px": 8,
     "tileset": "campus_ground",
     "source_id": 1,
     "border_match": "grass_ground_tile",
     "note": "rendered straight down between 8 neighbour copies with overscan_px on every side; the pipeline crops the overscan (a manual re-render of the .blend is not cropped)"
   },
-  "total_seconds": 1.8,
+  "total_seconds": 3.9,
   "blender_run": {
     "exit_code": 0,
-    "seconds": 2.9,
+    "seconds": 5.0,
     "problem_lines": [
-      "00:00.704  cycles           | WARNING HIPEW initialization failed: Error opening HIP dynamic library"
+      "00:01.969  cycles           | WARNING HIPEW initialization failed: Error opening HIP dynamic library"
     ]
   },
   "verification": {
@@ -206,19 +207,19 @@
       "bit_depth": 8,
       "png_color_type": 6,
       "interlace": 0,
-      "file_bytes": 7759,
+      "file_bytes": 116252,
       "size_px": [
-        64,
-        64
+        256,
+        256
       ],
-      "opaque_pixels": 4096,
+      "opaque_pixels": 65536,
       "partially_transparent_pixels": 0,
       "fully_transparent_pixels": 0,
       "content_bbox_px": [
         0,
         0,
-        63,
-        63
+        255,
+        255
       ],
       "margins_px": {
         "left": 0,
@@ -230,28 +231,28 @@
     },
     "seams": {
       "x": {
-        "interior_mean_step": 1.98,
-        "interior_max_step": 3.615,
-        "wrap_step": 2.052
+        "interior_mean_step": 2.144,
+        "interior_max_step": 2.755,
+        "wrap_step": 2.332
       },
       "y": {
-        "interior_mean_step": 2.078,
-        "interior_max_step": 3.5,
-        "wrap_step": 2.172
+        "interior_mean_step": 2.397,
+        "interior_max_step": 3.292,
+        "wrap_step": 2.832
       }
     },
     "luma_halves": {
-      "left": 98.3,
-      "right": 100.79,
-      "top": 100.95,
-      "bottom": 98.14,
-      "max_half_difference": 2.814
+      "left": 98.17,
+      "right": 100.65,
+      "top": 100.82,
+      "bottom": 98.0,
+      "max_half_difference": 2.827
     },
     "border_match": {
       "same_size": true,
-      "band_px": 3,
-      "pixels": 732,
-      "mean_rgb_diff": 0.093,
+      "band_px": 12,
+      "pixels": 11712,
+      "mean_rgb_diff": 0.071,
       "max_rgb_diff": 1.0
     },
     "passed": true
@@ -260,7 +261,7 @@
     "tileset": "assets/tilesets/campus_ground.tres",
     "scene_name": "GrassWornTile",
     "source_id": 1,
-    "tile_size_px": 64,
+    "tile_size_px": 256,
     "tileset_sources": [
       {
         "source_id": 0,

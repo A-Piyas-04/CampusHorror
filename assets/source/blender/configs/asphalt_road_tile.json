@@ -8,7 +8,7 @@
   "generator_params": {},
   "render": {
     "samples": 256,
-    "tile_px": 64
+    "tile_px": 256
   },
   "ground": {
     "tileset": "campus_ground",

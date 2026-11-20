@@ -1,0 +1,5 @@
+{
+	"zone_id": "test_zone_a",
+	"notes": "Debug-only Milestone C-F test room, interior 800 x 600.",
+	"playable_bounds": [-400, -300, 800, 600]
+}

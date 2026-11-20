@@ -1,0 +1,518 @@
+{
+	"format": 1,
+	"ground_lattice": {},
+	"nodes": {
+		".": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/world/TestZoneB.tscn",
+			"script": {
+				"path": "res://scripts/world/zone.gd",
+				"zone_id": "\"test_zone_b\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"y_sort": true,
+			"z": 0
+		},
+		"./Ground": {
+			"class": "Polygon2D",
+			"color": [
+				0.20000000298023224,
+				0.2199999988079071,
+				0.30000001192092896,
+				1.0
+			],
+			"light_mask": 1,
+			"polygon": [
+				[
+					-300.0,
+					-250.0
+				],
+				[
+					300.0,
+					-250.0
+				],
+				[
+					300.0,
+					250.0
+				],
+				[
+					-300.0,
+					250.0
+				]
+			],
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"z": -10
+		},
+		"./Objects": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"y_sort": true,
+			"z": 0
+		},
+		"./Objects/DoorToZoneA": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/components/Door.tscn",
+			"script": {
+				"destination_spawn_id": "\"by_north_door\"",
+				"destination_zone_id": "\"test_zone_a\"",
+				"path": "res://scripts/components/door.gd",
+				"prompt_text": "\"Press E to return to Test Zone A\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				250.0
+			],
+			"z": 0
+		},
+		"./Objects/DoorToZoneA/Body": {
+			"class": "Polygon2D",
+			"color": [
+				0.44999998807907104,
+				0.2800000011920929,
+				0.15000000596046448,
+				1.0
+			],
+			"light_mask": 1,
+			"polygon": [
+				[
+					-24.0,
+					-64.0
+				],
+				[
+					24.0,
+					-64.0
+				],
+				[
+					24.0,
+					0.0
+				],
+				[
+					-24.0,
+					0.0
+				]
+			],
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				250.0
+			],
+			"z": 0
+		},
+		"./Objects/DoorToZoneA/Interactable": {
+			"class": "Area2D",
+			"layer": 4,
+			"light_mask": 1,
+			"mask": 0,
+			"monitorable": true,
+			"monitoring": false,
+			"scene": "res://scenes/components/Interactable.tscn",
+			"script": {
+				"path": "res://scripts/components/interactable.gd",
+				"prompt_text": "\"Press E to return to Test Zone A\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				250.0
+			],
+			"z": 0
+		},
+		"./Objects/DoorToZoneA/Interactable/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"circle": 32.0
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				250.0
+			],
+			"z": 0
+		},
+		"./Objects/SpawnBySouthDoor": {
+			"class": "Marker2D",
+			"light_mask": 1,
+			"scene": "res://scenes/components/SpawnMarker.tscn",
+			"script": {
+				"path": "res://scripts/components/spawn_marker.gd",
+				"spawn_id": "\"by_south_door\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				170.0
+			],
+			"z": 0
+		},
+		"./Objects/SpawnCenter": {
+			"class": "Marker2D",
+			"light_mask": 1,
+			"scene": "res://scenes/components/SpawnMarker.tscn",
+			"script": {
+				"path": "res://scripts/components/spawn_marker.gd",
+				"spawn_id": "\"center\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"z": 0
+		},
+		"./Objects/WallEast": {
+			"class": "StaticBody2D",
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				320.0,
+				250.0
+			],
+			"z": 0
+		},
+		"./Objects/WallEast/Body": {
+			"class": "Polygon2D",
+			"color": [
+				0.44999998807907104,
+				0.44999998807907104,
+				0.5,
+				1.0
+			],
+			"light_mask": 1,
+			"polygon": [
+				[
+					-20.0,
+					-500.0
+				],
+				[
+					20.0,
+					-500.0
+				],
+				[
+					20.0,
+					0.0
+				],
+				[
+					-20.0,
+					0.0
+				]
+			],
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				320.0,
+				250.0
+			],
+			"z": 0
+		},
+		"./Objects/WallEast/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					40.0,
+					500.0
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				320.0,
+				0.0
+			],
+			"z": 0
+		},
+		"./Objects/WallNorth": {
+			"class": "StaticBody2D",
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				-250.0
+			],
+			"z": 0
+		},
+		"./Objects/WallNorth/Body": {
+			"class": "Polygon2D",
+			"color": [
+				0.44999998807907104,
+				0.44999998807907104,
+				0.5,
+				1.0
+			],
+			"light_mask": 1,
+			"polygon": [
+				[
+					-340.0,
+					-40.0
+				],
+				[
+					340.0,
+					-40.0
+				],
+				[
+					340.0,
+					0.0
+				],
+				[
+					-340.0,
+					0.0
+				]
+			],
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				-250.0
+			],
+			"z": 0
+		},
+		"./Objects/WallNorth/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					680.0,
+					40.0
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				-270.0
+			],
+			"z": 0
+		},
+		"./Objects/WallSouth": {
+			"class": "StaticBody2D",
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				290.0
+			],
+			"z": 0
+		},
+		"./Objects/WallSouth/Body": {
+			"class": "Polygon2D",
+			"color": [
+				0.44999998807907104,
+				0.44999998807907104,
+				0.5,
+				1.0
+			],
+			"light_mask": 1,
+			"polygon": [
+				[
+					-340.0,
+					-40.0
+				],
+				[
+					340.0,
+					-40.0
+				],
+				[
+					340.0,
+					0.0
+				],
+				[
+					-340.0,
+					0.0
+				]
+			],
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				290.0
+			],
+			"z": 0
+		},
+		"./Objects/WallSouth/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					680.0,
+					40.0
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				270.0
+			],
+			"z": 0
+		},
+		"./Objects/WallWest": {
+			"class": "StaticBody2D",
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-320.0,
+				250.0
+			],
+			"z": 0
+		},
+		"./Objects/WallWest/Body": {
+			"class": "Polygon2D",
+			"color": [
+				0.44999998807907104,
+				0.44999998807907104,
+				0.5,
+				1.0
+			],
+			"light_mask": 1,
+			"polygon": [
+				[
+					-20.0,
+					-500.0
+				],
+				[
+					20.0,
+					-500.0
+				],
+				[
+					20.0,
+					0.0
+				],
+				[
+					-20.0,
+					0.0
+				]
+			],
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-320.0,
+				250.0
+			],
+			"z": 0
+		},
+		"./Objects/WallWest/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					40.0,
+					500.0
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-320.0,
+				0.0
+			],
+			"z": 0
+		}
+	},
+	"zone_id": "test_zone_b"
+}

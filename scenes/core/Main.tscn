@@ -3,7 +3,8 @@
 [ext_resource type="Script" uid="uid://xpqahlqtnle8" path="res://scripts/core/main.gd" id="1_main"]
 [ext_resource type="PackedScene" path="res://scenes/player/Player.tscn" id="2_player"]
 [ext_resource type="PackedScene" path="res://scenes/ui/InteractionPrompt.tscn" id="3_prompt"]
-[ext_resource type="Script" uid="uid://ch0fxoqfv7kye" path="res://scripts/lighting/day_night_test_tint.gd" id="4_tint"]
+[ext_resource type="Script" uid="uid://ch0fxoqfv7kye" path="res://scripts/lighting/world_tint.gd" id="4_tint"]
+[ext_resource type="Script" path="res://scripts/debug/debug_tools.gd" id="5_debug"]
 
 [node name="Main" type="Node2D" unique_id=2145005953]
 script = ExtResource("1_main")
@@ -22,5 +23,8 @@ position = Vector2(103, 107)
 [node name="UI" type="Node" parent="." unique_id=1856723563]
 
 [node name="InteractionPrompt" parent="UI" unique_id=1921180136 instance=ExtResource("3_prompt")]
+
+[node name="DebugTools" type="Node" parent="." unique_id=1437702291]
+script = ExtResource("5_debug")
 
 [connection signal="interaction_target_changed" from="World/Player" to="UI/InteractionPrompt" method="_on_player_interaction_target_changed"]

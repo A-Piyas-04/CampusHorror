@@ -93,7 +93,7 @@ def step_render(cfg, args, rep):
     for png in [cfg["outputs"]["png"]] + list(cfg["layer_outputs"].values()):
         if not png.exists():
             png.parent.mkdir(parents=True, exist_ok=True)
-            if godot_scene.ensure_texture_import(png, mipmaps=cfg["kind"] != "ground_tile"):
+            if godot_scene.ensure_texture_import(png, mipmaps=_wants_mipmaps(cfg)):
                 say(f"wrote first-import settings before rendering: {assetconfig.rel(png)}.import")
     blender = args.blender or os.environ.get("BLENDER_EXE") or C.DEFAULT_BLENDER_EXE
     cmd = [blender, "--background", "--factory-startup", "--python-exit-code", "1",
@@ -373,24 +373,36 @@ def step_validate_ground(cfg, args, rep):
     if ref_id:
         ref = assetconfig.load(ref_id)
         if rep.check(ref["outputs"]["png"].is_file(), f"border-match base tile exists: {ref_id}"):
-            border = pngcheck.border_band_diff(out["png"], ref["outputs"]["png"], C.GROUND_BORDER_BAND_PX)
+            band = C.ground_border_band_px(cfg["render"]["tile_px"])
+            border = pngcheck.border_band_diff(out["png"], ref["outputs"]["png"], band)
             rep.check(border["same_size"] and border["mean_rgb_diff"] <= C.GROUND_BORDER_MATCH_MAX,
-                      f"border band ({C.GROUND_BORDER_BAND_PX} px) matches {ref_id}: mean RGB diff "
+                      f"border band ({band} px) matches {ref_id}: mean RGB diff "
                       f"{border.get('mean_rgb_diff')}, max {border.get('max_rgb_diff')} "
                       f"(limit mean {C.GROUND_BORDER_MATCH_MAX})")
     rep.check(out["png"].resolve().is_relative_to(C.PROJECT_ROOT / "assets/sprites"),
               f"Godot texture path {assetconfig.res_path(out['png'])}")
     imp = out["png"].with_name(out["png"].name + ".import")
-    if imp.exists() and "mipmaps/generate=true" in imp.read_text(encoding="utf-8"):
-        rep.warn(".import has mipmaps on; ground tiles are drawn 1:1")
+    if imp.exists():
+        has_mips = "mipmaps/generate=true" in imp.read_text(encoding="utf-8")
+        want = _wants_mipmaps(cfg)
+        if has_mips != want:
+            rep.warn(f".import has mipmaps {'on' if has_mips else 'off'}; this tile is "
+                     f"{'oversampled (drawn minified), so it needs them on' if want else 'drawn 1:1, so they should be off'}")
     return {"png": png, "seams": seams, "luma_halves": halves, "border_match": border}
+
+
+def _wants_mipmaps(cfg):
+    """Sprites are always drawn minified. Ground tiles only when oversampled (more texels than game px)."""
+    if cfg["kind"] != "ground_tile":
+        return True
+    return C.ground_tile_oversampled(cfg["render"]["tile_px"], cfg["ground"]["period_m"])
 
 
 def step_tileset(cfg, args, rep):
     out = cfg["outputs"]
     godot_scene.check_writable(out["scene"], None, False)
-    if godot_scene.ensure_texture_import(out["png"], mipmaps=False):
-        say(f"wrote first-import settings (mipmaps off): {assetconfig.rel(out['png'])}.import")
+    if godot_scene.ensure_texture_import(out["png"], mipmaps=_wants_mipmaps(cfg)):
+        say(f"wrote first-import settings (mipmaps {'on' if _wants_mipmaps(cfg) else 'off'}): {assetconfig.rel(out['png'])}.import")
     name = cfg["ground"]["tileset"]
     members = assetconfig.tileset_members(name)
     tile = cfg["render"]["tile_px"]

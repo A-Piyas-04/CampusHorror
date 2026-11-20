@@ -1,7 +1,8 @@
 extends PointLight2D
 
-## TEMPORARY Milestone F lighting proof: the `lantern` action only toggles this light on/off.
-## Real lantern behaviour (fuel, modes, effects on gameplay) is undecided.
+## PROVISIONAL player lantern (on `Player/Lantern`): the gameplay `lantern` action switches the light on
+## and off. Replaced in roadmap J2 by the real lantern (off / low / full, fuel, flicker; see
+## Docs/GAME_DESIGN.md §3). This is the player's real light, not a debug control.
 
 
 func _unhandled_input(event: InputEvent) -> void:

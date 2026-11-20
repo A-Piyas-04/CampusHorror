@@ -49,8 +49,10 @@ FILL_LIGHTS = (
 # Game scale (Docs/CAMPUS_MAP.md: roughly 32 px = 1 m; still Undecided in Docs/ART_STYLE.md).
 GAME_PX_PER_M = 32.0
 
-# Ground tiles (config "kind": "ground_tile"). Rendered straight down and drawn 1:1 by a
-# TileMapLayer, so the texture is the tile at game resolution. Proposed tile size: 2 m = 64 px.
+# Ground tiles (config "kind": "ground_tile"). Rendered straight down. A tile of `tile_px` covering
+# `period_m` is drawn by a TileMapLayer scaled GAME_PX_PER_M * period_m / tile_px, so one cell is always
+# 2 m = 64 game px. Since Phase H2 the campus tiles are 256 px (4 texels per game px, sharp up to an
+# effective zoom of 4; Docs/PRESENTATION.md section 2); GROUND_TILE_PX is only the default for new configs.
 GROUND_ELEVATION_DEG = 90.0
 GROUND_TILE_PERIOD_M = 2.0
 GROUND_TILE_PX = 64
@@ -84,3 +86,13 @@ PLAYER_COLLISION_LAYER = 2          # Player.tscn body layer (layer number); ove
 OVERHEAD_FADE_SCRIPT = "res://scripts/components/overhead_visibility.gd"
 OVERHEAD_FADED_ALPHA = 0.35         # layer "fade" default: overhead alpha while the player is under it
 OVERHEAD_FADE_SECONDS = 0.25
+
+
+def ground_tile_oversampled(tile_px, period_m=GROUND_TILE_PERIOD_M):
+    """True when a ground tile has more texels than game px (drawn minified), so it needs mipmaps."""
+    return tile_px / period_m > GAME_PX_PER_M + 1e-9
+
+
+def ground_border_band_px(tile_px):
+    """The worn/base border band keeps the same ground width (3 px at 64 px = 9.4 cm) at any resolution."""
+    return max(1, round(GROUND_BORDER_BAND_PX * tile_px / GROUND_TILE_PX))

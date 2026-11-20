@@ -1,6 +1,6 @@
 # Project status
 
-Last updated: 20 November 2026
+Last updated: 21 November 2026
 
 ## Resumed after a pause — read this first
 
@@ -19,11 +19,82 @@ is uncommitted; it was in fact committed in `d76443d`. Current planning lives in
 | `Docs/GAME_DESIGN.md` | The game's proposed verbs, mechanics and chapters (**PROPOSED**, unapproved) |
 | `Docs/ROADMAP.md` | Milestones H–N with per-batch breakdowns (**PROPOSED**) |
 | `Docs/NEXT_ACTIONS.md` | Blocking decisions, the reference shot list, and the approval backlog |
+| `Docs/DECISIONS.md` | **Decisions ledger**: D0–D12, all Confirmed 20 November 2026, with the renderer stress-test evidence |
+| `Docs/PRESENTATION.md` | **Confirmed presentation contract**: resolution, density, zoom, speeds, smoothness budgets (applied 21 November 2026, H2) |
+| `Docs/TESTING.md` | **How zones are tested** since H4: the validator, the session check, manifests, the baseline workflow |
+
+Since 20 November 2026 the game is ***The Quiet Hours*** (D12). New test tool:
+`scenes/tests/renderer_stress/RendererStressTest.tscn` (TEMPORARY; run windowed; `--stack=N`).
 
 Headline finding: the asset pipeline and one zone are in excellent shape (7,831 lines of Python,
 21 validated assets), while the game itself is a 659-line prototype with no enemies, puzzles, fear
 system, inventory, UI or audio (0 sound files). The roadmap therefore stops map expansion until the
 game loop exists. Everything below this section remains the authoritative per-batch record.
+
+## Phase H batch: H2 + H4 + H5 (21 November 2026) — verified (automated), not committed
+
+Pre-edit checkpoint: private ref `refs/checkpoints/h245-preedit` (`git stash create` of the working tree
+on `e3bd185`; `main` never moved), plus copies of the untracked files in the session scratchpad.
+Pre-edit record: all 10 old suites passed, 210/210, 0 error lines.
+
+**H5 housekeeping.**
+- The developer keys F2 / F6 / F9 now live in one `Main/DebugTools` node (`scripts/debug/debug_tools.gd`)
+  that frees itself in release builds; `save_service.gd` and the tint script no longer read input.
+- `day_night_test_tint.gd` → `scripts/lighting/world_tint.gd` and `lantern_test_light.gd` →
+  `scripts/lighting/player_lantern.gd`, both marked PROVISIONAL until J1 / J2. Their UIDs were kept.
+- The zone registry moved from a `const` in `main.gd` to `data/zones/zone_registry.tres` (`ZoneRegistry`):
+  `zones` ship, `debug_zones` (test rooms A/B) load only in debug builds. The user's save (in
+  `test_zone_a`) still loads in the editor.
+- `main.gd` defaults are now `main_gate_exterior` / `main_gate_entry`.
+- `config/features` now says `GL Compatibility`.
+- `addons/godot_mcp/cache` is untracked (`git rm --cached`; files kept on disk).
+- `Docs/map-reference/.gdignore` was added and the 10 reference `.import` files removed.
+- `temp_prompt.txt` / `master_prompt.txt` were deleted (backed up first).
+- Regression: 10/10 suites, 210/210, 0 error lines; the save restored byte for byte.
+
+**H4: one zone validator.** `scenes/tests/zone_validation/`: `ZoneValidator.tscn` (generic rules
+identity, graph, conventions, snapshot, ground lattice, collision probes on every shape, reachability
+flood fill, manifest walks, fades, and `--self-test`), 4 manifests, 4 baselines, and
+`GameSessionCheck.tscn` (the real `Main.tscn`: every spawn, every door, save/load, a refused bad save,
+debug keys, the presentation contract). It replaces 9 check scenes and 6 baselines (33 files retired;
+coverage map in `Docs/TESTING.md` §5).
+
+Three findings during the build, all fixed:
+- The probe rule skipped bodies off the world layer, so the self-test's "trunk off the world layer"
+  mutation passed; every static body is now probed.
+- The first fade-smoothness rule (a fixed per-frame limit) was flaky under headless frame jitter. It
+  now compares each change with that frame's real delta: 5/5 identical passes, and both snap
+  mutations are caught.
+- A parse error made the validator hang instead of fail; check runs now use a timeout.
+
+**H2: presentation contract applied** (`Docs/PRESENTATION.md`).
+- `project.godot`: 1920 × 1080 base, 1600 × 900 window, fractional scaling, physics interpolation.
+- Player camera: zoom 2, physics process mode. Godot forces this under interpolation; the pipeline
+  preview cameras and the stress test were set the same way.
+- `Player.teleport()` calls `reset_physics_interpolation()`.
+- The 4 ground tiles were re-rendered at 256 px (142/142 pipeline checks). The pipeline now derives
+  tile mipmaps from density and scales the worn-grass border band.
+- `MainGateExterior`: `Ground/Tiles` at scale 0.25, `texture_scale` (4, 4) on the 20 ground-textured
+  polygons.
+- Downsampled to 64 px, the new tiles match the old ones within 0.85–2.07 / 255 at offset (0, 0).
+- The validator's snapshot changed in exactly those 21 nodes; 0 of 316,575 ground samples changed.
+  The baseline was refreshed after review.
+- Before/after screenshots (effective zoom 2 and 4) show sharp pavers and no strip/tile seam.
+- No sprite PNG or prop scene changed.
+
+| Final check (21 November 2026) | Result |
+|---|---|
+| `ZoneValidator -- --self-test` | **PASS 45/45**, 0 error lines (about 20 s for the 4 zones) |
+| `GameSessionCheck` | **PASS 14/14**; one intended `ERROR` (the refused unknown-zone save) |
+| `PlayerCharacterCheck` | **PASS 19/19**, 0 error lines |
+| `build_asset.py --all --steps validate,scene,preview,godot` | **21/21 assets, 789/789 checks** |
+| User save `save.json` | SHA-256 `1974d576…` unchanged |
+
+**Not verified:**
+- The release-build gating (`OS.is_debug_build()` false) needs export templates, which aren't
+  installed.
+- Interpolated camera smoothness on a 120/144 Hz display needs eyes (I1/I4).
+- Manual checks 22 and 23 are obsolete: their composition and playable scenes were retired.
 
 ## Summary
 
@@ -831,7 +902,7 @@ Final base resolution, tile size, art style (pixel vs stylized/vector vs rendere
 
 ## Next task
 
-> **STALE as of 20 November 2026.** Kept for history. The files listed below as "not committed" were
+> **STALE as of 20 November 2026.** Kept for history. The check scenes named below were retired on 21 November 2026 (see `Docs/TESTING.md`); current next steps are in `Docs/NEXT_ACTIONS.md`. The files listed below as "not committed" were
 > committed in `d76443d`. For the current plan see `Docs/NEXT_ACTIONS.md` and `Docs/ROADMAP.md`.
 > The open manual checks listed here and below are still genuinely open — they are collected in
 > `Docs/NEXT_ACTIONS.md` §3.

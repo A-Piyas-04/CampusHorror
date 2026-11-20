@@ -1,6 +1,6 @@
 # Blender → Godot 2.5D asset pipeline
 
-Snapshot: 13 October 2026 • Milestone G Part 2 + first architecture and environment batches
+Snapshot: 21 November 2026 • Milestone G Part 2 + first architecture and environment batches; ground tiles at 256 px since Phase H2
 
 Turns a Python asset generator into a validated transparent sprite plus a reusable Godot scene, or (config `"kind": "ground_tile"`) into a seamless top-down ground tile in a shared TileSet. Validated on the red-brick wall (`red_brick_wall_3m`), the first architecture batch (doorway, window, pier; see "First architecture batch") and the first environment batch (4 ground tiles, 2 trees, hedge, bench, lamp post; see "First environment batch"). The first version regenerated the approved `red_brick_wall_grid_test` render pixel-for-pixel. The current version is a seamless tiling module (see "Seamless horizontal modules"), so its bricks differ from that test. The wall is a **pipeline proof**, not approval of final artwork. Camera, light and scale values are the approved test values; `Docs/ART_STYLE.md` still lists the exact angle, resolution and world scale as undecided.
 
@@ -19,7 +19,7 @@ It runs these steps in order and stops at the first failure (exit code 0 only if
 | `render` | Runs `F:\bbbb\blender.exe --background --factory-startup` with `pipeline/blender_entry.py`: the generator builds the model, the shared rig adds camera/lights/render settings, the `.blend` is saved, the PNG rendered and a `.render.json` record written. Blender's output is scanned for errors/warnings. |
 | `validate` | Pure-Python PNG check: 8-bit RGBA, size equals the record, transparent background, fully transparent image border, margins ≥ 16 px, alpha bounding box within 4 px of the design bounds projected through the camera (proves framing and origin alignment), record fields, Blender 5.2, output naming, Godot `res://` texture path. |
 | `scene` | Writes `scenes/props/<category>/<SceneName>.tscn` (Sprite2D with footprint origin + optional collision); for ground tiles, rewrites the shared TileSet instead. First-import settings for a new PNG (mipmaps on for sprites, off for ground tiles) are written before the render, so an open editor can't import it with its defaults first. |
-| `preview` | Writes a test-only preview `scenes/tests/asset_previews/<SceneName>Preview.tscn` (player-sized reference, footprint outline, origin dot, zoom-4 camera; optional tiled neighbour). |
+| `preview` | Writes a test-only preview `scenes/tests/asset_previews/<SceneName>Preview.tscn` (player-sized reference, footprint outline, origin dot, zoom-4 camera in physics process mode because the project uses physics interpolation; optional tiled neighbour). |
 | `godot` | Runs Godot 4.7.2 headless: imports the PNG if Godot's stored source MD5 doesn't match the current file, loads the prop scene with `asset_scene_check.gd` (texture size, mipmaps, scale, origin, footprint corners, collision vs the record) or, for ground tiles, the TileSet and preview with `ground_tile_check.gd`, and runs the preview scene for 2 frames. Godot's errors/warnings are reported. |
 
 Options: `--steps validate,scene,preview,godot` (skip the render), `--cpu`, `--samples N`, `--no-collision`, `--compare-to <png>`, `--force-scene`, `--blender PATH`, `--godot PATH` (or env `BLENDER_EXE` / `GODOT_EXE`). Logs: `assets/source/blender/logs/<asset_id>.*.log` (not tracked by Git).
@@ -96,17 +96,17 @@ Ground is drawn by a `TileMapLayer`, not by sprites. A ground-tile config differ
 
 ```json
 "kind": "ground_tile",
-"render": { "samples": 256, "tile_px": 64 },
+"render": { "samples": 256, "tile_px": 256 },
 "ground": { "tileset": "campus_ground", "source_id": 1, "border_match": "grass_ground_tile" }
 ```
 
-- **Size (Proposed, not decided):** one tile = 2 × 2 m = 64 × 64 px, drawn 1:1 (32 game px/m, no scaling). `Docs/ART_STYLE.md` still lists the final world scale as undecided.
+- **Size (Confirmed, H2, 21 November 2026):** one tile = 2 × 2 m = **256 × 256 px** (128 px/m, 4 texels per game px; `Docs/PRESENTATION.md` §2). A zone's `TileMapLayer` on the TileSet is drawn at **scale 0.25** (= 32 × period_m / tile_px), so one cell is still 64 game px, and every `Polygon2D` using a ground texture sets `texture_scale` (4, 4) so it stays in phase with the tiles. Cell coordinates are unaffected; convert world positions with `layer.local_to_map(layer.to_local(p))`. (Until H2 the tiles were 64 px drawn 1:1; that was the cause of the soft ground on large windows.)
 - **Camera:** orthographic, straight down (elevation 90°, azimuth 0°; anything else is rejected). The ground is **not** foreshortened like the 40° sprites: a tile is a flat top-down texture. No perspective, no cast shadows, no lighting gradient (the same sun and fills as the sprites, but a flat surface gets even light).
 - **Seamless by construction:** the generator returns `"tile_period_m": 2.0` and must make the material periodic. `generators/ground_common.py` maps X and Y each onto a circle (radius = period / 2π) and feeds the 4D point to Noise/Voronoi, so every pattern repeats exactly once per tile. 4D noise has a narrower value range than 3D: remap windows are about 0.42–0.58 for noise and 0.3–0.6 for Voronoi F1 distance.
-- **Render:** the tile is rendered among its 8 neighbour copies with an 8 px overscan on each side, then cropped to 64 × 64. Edge pixels therefore get the same AO, bevels and filtering as interior pixels.
-- **Validation (`step_validate_ground`):** 64 × 64, fully opaque; per axis, the wrap-around step (last column → first column) must be ≤ 1.5 × the interior mean step + 1; the luma difference between the left/right and top/bottom halves must be ≤ 6 (no gradient); with `border_match`, the outer 3 px band must match that tile (mean RGB diff ≤ 2.5), so variants mix with it in any order.
-- **Godot:** all configs with the same `ground.tileset` share one `assets/tilesets/<tileset>.tres` (`TileSet`, tile size 64 × 64, no physics layers), with one `TileSetAtlasSource` per tile at its `source_id` (atlas coords 0,0). The `scene` step rebuilds the whole TileSet from every member config and keeps its `uid`. Tile PNGs are imported **without** mipmaps (drawn 1:1). Ground tiles never get collision. The preview `<SceneName>Preview.tscn` is a 6 × 4 `TileMapLayer` (z −10); variants are checkerboarded with their `border_match` tile.
-- **Godot check:** `ground_tile_check.gd` (tile size, no physics, source ids, texture paths and sizes, no mipmaps, full opacity; preview layer, its TileSet, z index and every cell's source).
+- **Render:** the tile is rendered among its 8 neighbour copies with an 8 px overscan on each side, then cropped to `tile_px` × `tile_px`. Edge pixels therefore get the same AO, bevels and filtering as interior pixels.
+- **Validation (`step_validate_ground`):** `tile_px` × `tile_px`, fully opaque; per axis, the wrap-around step (last column → first column) must be ≤ 1.5 × the interior mean step + 1; the luma difference between the left/right and top/bottom halves must be ≤ 6 (no gradient); with `border_match`, the outer border band must match that tile (3 px at 64 px, scaled with resolution: 12 px at 256 px, always 9.4 cm of ground; `conventions.ground_border_band_px`) (mean RGB diff ≤ 2.5), so variants mix with it in any order.
+- **Godot:** all configs with the same `ground.tileset` share one `assets/tilesets/<tileset>.tres` (`TileSet`, tile size `tile_px` × `tile_px`, every member must use the same `tile_px`, no physics layers), with one `TileSetAtlasSource` per tile at its `source_id` (atlas coords 0,0). The `scene` step rebuilds the whole TileSet from every member config and keeps its `uid`. Tile PNGs get mipmaps **exactly when oversampled** (`tile_px / period_m` > 32 game px/m, `conventions.ground_tile_oversampled`): on for the 256 px campus tiles, off for any 1:1 tile. An existing `.import` with the wrong setting is reported as a warning. While a batch re-renders a shared TileSet to a new `tile_px`, the members not yet re-rendered make Godot report tiles outside their texture; re-run `--steps validate,scene,preview,godot` once all members are rendered. Ground tiles never get collision. The preview `<SceneName>Preview.tscn` is a 6 × 4 `TileMapLayer` (z −10); variants are checkerboarded with their `border_match` tile.
+- **Godot check:** `ground_tile_check.gd` (tile size, no physics, source ids, texture paths and sizes, mipmaps exactly when oversampled, full opacity; preview layer, its TileSet, z index and every cell's source).
 
 Seeing the repeat: `python assets/source/blender/logs/tile_sheet.py <png> [zoom]` writes a 3 × 3 sheet (logs/ is not tracked).
 
@@ -177,7 +177,7 @@ Reconstructed from `Docs/map-reference/area1/cds-building.png` and `cds-building
 - `generators/cds_common.py`: the CDS frame (metres, x east, y north, y 0 = the table-tennis south face; x −9.22 = the facade line at world x 1480, x 7.03 = the east face), section table, heights (`LOW`, `HALL`), materials (brick seed 11, coping, bitumen with patches, hall concrete, dish, steel, glass), and builders: `arcade_bay`, `blind_bay`, `roof_band`, `parapet_sides`, `end_wall`, `satellite_dish`, and `Slices`, which cuts walls and roofs at slice bounds into `S{i}Walls / Roof / Items / Overlap`. Vertices are written in the CDS frame and each object is moved by the section's y0, so object-space brick and stains continue across slices and sections.
 - `generators/cds_section.py`: one section per config (`generator_params.section`): the hall (south face of 4 blind bays, west face of 9 bays), the canteen (8 arcade bays, north end wall, 2 dishes) or the table tennis (entrance bay at the door, 5 bays, vent wall, south end wall). It refuses slice bounds that cut an opening and dishes within 1 m of a bound.
 - `generators/flag_pole.py`: concrete base, 6 m pole and finial, a waving 1.5 × 0.9 m flag flying east; `flag_pole_bangladesh` (green, red disc) and `flag_pole_white`. Category `street_furniture`, 220.69 px/m, collision from the design footprint.
-- The props have no collision. The zone keeps the former blockout rectangles as `Collision` bodies and occluders per section (see `Docs/CAMPUS_MAP.md`, "CDS exterior", and `MainGateCdsCheck.tscn`).
+- The props have no collision. The zone keeps the former blockout rectangles as `Collision` bodies and occluders per section (see `Docs/CAMPUS_MAP.md`, "CDS exterior"; checked by the zone validator, `Docs/TESTING.md`).
 - The west arcades are modelled but the 40° / 0° camera sees west faces edge-on, so in game they show only as the coping line along the facade; the visible faces are the roofs and the hall's south facade.
 
 ## Player character (14 October 2026)
@@ -323,7 +323,7 @@ Reconstructed from `Docs/map-reference/area1/mainGate.jpg` (plus `whole view.png
 
 - `generators/landmark_common.py`: shared procedural brick shader (object-space running bond, same palette as the walls), paint/concrete/steel/glass/image materials, the two-centred pointed-arch outline, and small bmesh builders. New landmark generators should reuse it.
 - `tools/main_gate_sign_texture.ps1` (WPF text rendering, so the Bengali line is shaped correctly) writes `textures/main_gate_sign.png`; `textures/` has a `.gdignore`. The pavilion generator maps it onto the sign face. Rebuild the pavilion after changing the sign.
-- The landmark is placed and checked in the zone, not in the gallery: see `Docs/CAMPUS_MAP.md` ("Main Gate landmark") and `scenes/tests/environment_previews/MainGateLandmarkCheck.tscn`.
+- The landmark is placed and checked in the zone, not in the gallery: see `Docs/CAMPUS_MAP.md` ("Main Gate landmark") and the zone validator (`Docs/TESTING.md`).
 - **Batch 3A layers** (see "Render layers"):
 
 | Asset | PNGs | Layers |

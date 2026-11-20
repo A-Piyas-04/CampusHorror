@@ -1,16 +1,11 @@
 class_name Main
 extends Node2D
 
-## Every zone a door can lead to, by zone_id. Scenes are loaded only when entered.
-const ZONE_SCENES: Dictionary[String, String] = {
-	"test_zone_a": "res://scenes/world/TestZoneA.tscn",
-	"test_zone_b": "res://scenes/world/TestZoneB.tscn",
-	"main_gate_exterior": "res://scenes/world/MainGateExterior.tscn",
-	"cds_veranda": "res://scenes/world/CdsVeranda.tscn",
-}
+## zone_id -> scene path for every zone (shipping and debug-only). Data, not code: edit the resource.
+@export var zone_registry: ZoneRegistry = preload("res://data/zones/zone_registry.tres")
 
-@export var start_zone_id: String = "test_zone_a"
-@export var start_spawn_id: String = "start"
+@export var start_zone_id: String = "main_gate_exterior"
+@export var start_spawn_id: String = "main_gate_entry"
 
 var _current_zone: Zone
 
@@ -51,7 +46,7 @@ func enter_zone_at_position(zone_id: String, feet_position: Vector2) -> bool:
 
 
 func has_zone(zone_id: String) -> bool:
-	return ZONE_SCENES.has(zone_id)
+	return zone_registry.has_zone(zone_id)
 
 
 func get_current_zone_id() -> String:
@@ -63,10 +58,11 @@ func get_player_feet_position() -> Vector2:
 
 
 func _instantiate_zone(zone_id: String) -> Zone:
-	if not ZONE_SCENES.has(zone_id):
+	var scene_path := zone_registry.get_scene_path(zone_id)
+	if scene_path.is_empty():
 		push_error("Unknown zone_id '%s'." % zone_id)
 		return null
-	var zone := (load(ZONE_SCENES[zone_id]) as PackedScene).instantiate() as Zone
+	var zone := (load(scene_path) as PackedScene).instantiate() as Zone
 	if zone == null or zone.zone_id != zone_id:
 		push_error("Scene for zone_id '%s' has no Zone root with a matching zone_id." % zone_id)
 		if zone != null:
