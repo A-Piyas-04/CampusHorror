@@ -1,6 +1,29 @@
 # Project status
 
-Last updated: 14 October 2026
+Last updated: 20 November 2026
+
+## Resumed after a pause — read this first
+
+Development paused after `d76443d` (14 October 2026) and resumed on 20 November 2026. The pause
+caused no damage: the toolchain, all 21 pipeline assets and the real game were re-verified on
+20 November (Blender 5.2.2, Godot 4.7.2, Python 3.12; `build_asset.py --all --steps validate`
+21/21 PASS; `PlayerCharacterCheck.tscn` 19/19 PASS, exit 0). The working tree is clean apart from
+the scratch files `temp_prompt.txt` / `master_prompt.txt`.
+
+**The "Next task" section at the end of this document is stale.** It says the player character batch
+is uncommitted; it was in fact committed in `d76443d`. Current planning lives in four new documents:
+
+| Document | Purpose |
+|---|---|
+| `Docs/PROJECT_REVIEW_2026-11.md` | State assessment, gap analysis and the risk register (R1–R10) |
+| `Docs/GAME_DESIGN.md` | The game's proposed verbs, mechanics and chapters (**PROPOSED**, unapproved) |
+| `Docs/ROADMAP.md` | Milestones H–N with per-batch breakdowns (**PROPOSED**) |
+| `Docs/NEXT_ACTIONS.md` | Blocking decisions, the reference shot list, and the approval backlog |
+
+Headline finding: the asset pipeline and one zone are in excellent shape (7,831 lines of Python,
+21 validated assets), while the game itself is a 659-line prototype with no enemies, puzzles, fear
+system, inventory, UI or audio (0 sound files). The roadmap therefore stops map expansion until the
+game loop exists. Everything below this section remains the authoritative per-batch record.
 
 ## Summary
 
@@ -807,6 +830,11 @@ Final base resolution, tile size, art style (pixel vs stylized/vector vs rendere
   - The editor (open during the batch) may still show the old `Player.tscn`; reload it before saving that scene so the old version is not written back.
 
 ## Next task
+
+> **STALE as of 20 November 2026.** Kept for history. The files listed below as "not committed" were
+> committed in `d76443d`. For the current plan see `Docs/NEXT_ACTIONS.md` and `Docs/ROADMAP.md`.
+> The open manual checks listed here and below are still genuinely open — they are collected in
+> `Docs/NEXT_ACTIONS.md` §3.
 
 Review the player character (manual check 30) in the real game: look, walk and idle, size, feet, night/lantern. Approve or list changes as generator parameters (colours, proportions, hair, `pose_walk` / `pose_idle` amplitudes, frame counts and fps, `PX_PER_M`), and decide on the foot sliding (lower `move_speed`, faster cycle or a run cycle). Not committed: `scenes/player/Player.tscn`, `scripts/player/player_animator.gd`, `scenes/player/player_character_frames.tres`, `assets/sprites/characters/`, `assets/source/blender/characters/`, the new checks and capture tool, `Docs/screenshots/character/` and the docs.
 
