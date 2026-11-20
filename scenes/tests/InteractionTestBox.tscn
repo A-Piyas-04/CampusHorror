@@ -19,6 +19,6 @@ position = Vector2(0, -8)
 shape = SubResource("RectangleShape2D_base")
 
 [node name="Interactable" parent="." instance=ExtResource("2_interactable")]
-prompt_text = "Press E to interact"
+object_name = "Test box"
 
 [connection signal="interacted" from="Interactable" to="." method="_on_interactable_interacted"]

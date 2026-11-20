@@ -71,9 +71,8 @@ H → I → J is the critical path, in that order. K–N contain batches that ca
 | **I6** | **Occlusion system.** One systemic answer to the player vanishing behind buildings (a silhouette shown through occluding art, or a depth-aware cutout). Retires the hand-placed fade areas and closes the dead band behind the Main Gate tower. | R6 |
 | **I7** | **Interaction v2.** Context verbs, hold-to-interact, prompts placed in the world, keyboard and gamepad glyphs. | — |
 
-**Status 21 November 2026: I1, I2, I3, I4, I5 done** (D13; `Docs/STATUS.md` Phase I batch). Remaining:
-**I6** (systemic occlusion) and **I7** (interaction v2) as the next batch, then the owner's five-minute
-feel check below.
+**Status 21 November 2026: Phase I complete (I1–I7)** (`Docs/STATUS.md`, Phase I batches 1 and 2). Remaining:
+the owner's five-minute feel check below.
 
 **Exit:** a five-minute free walk through `main_gate_exterior` and `cds_veranda`, with sound, no
 hitches, the player never vanishing, and movement that feels weighted. Budgets recorded and met.

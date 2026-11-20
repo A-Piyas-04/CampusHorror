@@ -530,7 +530,7 @@ scale = Vector2(0.7, 7)
 position = Vector2(-323, -200)
 destination_zone_id = "cds_veranda"
 destination_spawn_id = "inside_cds_entry"
-prompt_text = "Press E to enter the CDS veranda"
+place_name = "CDS veranda"
 
 [node name="SpawnOutsideCdsEntrance" parent="Objects/Buildings/CDSExterior/TableTennis" instance=ExtResource("2_spawn")]
 position = Vector2(-395, -200)

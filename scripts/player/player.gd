@@ -14,6 +14,8 @@ signal movement_mode_changed(mode: StringName)
 signal stamina_changed(stamina: float, winded: bool)
 ## A foot touched the ground (heel strike). Footstep audio listens; from J5 it is the player's noise.
 signal footstep(surface: StringName, gait: StringName, at: Vector2)
+## Hold-to-interact progress 0..1 for the current target (0 when not holding). The prompt draws it as a ring.
+signal interaction_hold_changed(progress: float)
 
 @export_group("Speeds (game px/s; 32 px = 1 m)")
 @export var sneak_speed: float = 32.0
@@ -53,6 +55,8 @@ var surface_map: SurfaceMap
 
 var _since_sprint := INF
 var _interaction_target: Interactable
+## Seconds `interact` has been held on a hold-type target; < 0 when no hold is in progress.
+var _hold := -1.0
 
 @onready var _interaction_area: Area2D = $InteractionArea
 @onready var _camera: Camera2D = $Camera
@@ -101,6 +105,7 @@ func _physics_process(delta: float) -> void:
 
 	_update_stamina(delta)
 	_update_interaction_target()
+	_update_hold(delta)
 
 
 func get_mode_speed(for_mode: StringName) -> float:
@@ -140,8 +145,34 @@ func _update_stamina(delta: float) -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if input_enabled and event.is_action_pressed("interact") and is_instance_valid(_interaction_target):
-		_interaction_target.interact(self)
+		if _interaction_target.hold_seconds > 0.0:
+			_hold = 0.0          # a hold starts; _update_hold() completes or cancels it
+		else:
+			_interaction_target.interact(self)
 		get_viewport().set_input_as_handled()
+
+
+## Fills a hold while `interact` stays down on the same target; releasing, losing the target or losing control
+## cancels it. A completed hold uses the target once; the key must be pressed again for another use.
+func _update_hold(delta: float) -> void:
+	if _hold < 0.0:
+		return
+	if not input_enabled or not is_instance_valid(_interaction_target) or not Input.is_action_pressed("interact"):
+		_cancel_hold()
+		return
+	_hold += delta
+	var need := _interaction_target.hold_seconds
+	interaction_hold_changed.emit(minf(_hold / need, 1.0))
+	if _hold >= need:
+		var target := _interaction_target
+		_cancel_hold()
+		target.interact(self)
+
+
+func _cancel_hold() -> void:
+	if _hold >= 0.0:
+		_hold = -1.0
+		interaction_hold_changed.emit(0.0)
 
 
 ## Places the player's feet at `target_position` instantly (zone changes, spawns, loading).
@@ -175,6 +206,7 @@ func _update_interaction_target() -> void:
 
 
 func _set_interaction_target(target: Interactable) -> void:
+	_cancel_hold()
 	if is_instance_valid(_interaction_target):
 		_interaction_target.tree_exiting.disconnect(_on_interaction_target_tree_exiting)
 	_interaction_target = target

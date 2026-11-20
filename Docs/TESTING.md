@@ -24,6 +24,8 @@ Godot path: `F:\App Installers\Godot_v4.7.2-stable_win64.exe\Godot_v4.7.2-stable
 | **Audio** (Phase I) | `… res://scenes/tests/feel/AudioCheck.tscn -- --quit-after-checks` | Bus layout and reverb, ambience per zone (looping), reverb following the profile, listener, footstep set coverage, footsteps per surface and gait, ducking during travel |
 | **Camera** (Phase I) | `… res://scenes/tests/feel/CameraCheck.tscn -- --quit-after-checks` | Zoom and limits from the profile, no void at the corners / centre / spawns of the playable area, look-ahead leads and settles, teleport snaps, shake decays |
 | **Transition** (Phase I) | `… res://scenes/tests/feel/TransitionCheck.tscn -- --quit-after-checks` | Door trips swap only while fully black, input locked throughout, 0.62 s door to control, overlapping travel refused, kept scenes for return trips, `travel_to_position`, an unknown zone refused |
+| **Occlusion** (Phase I) | `… res://scenes/tests/feel/OcclusionCheck.tscn -- --quit-after-checks` (add `--pixels` and drop `--headless` for the rendering proof) | Occluder index = independent count; the right items carry ghosts (dead band, tree, wall) and none in front; ghost state, clip modes restored, pool stable, zone changes, cost per tick; windowed: ghost pixels drawn at the dead band, 0 difference in front of an overlapping tree |
+| **Interaction** (Phase I) | `… res://scenes/tests/feel/InteractionCheck.tscn -- --quit-after-checks` | The prompt (verb, name, glyph, exact position, fades), gamepad / keyboard glyph switching, live rebinding, hold-to-interact, the prompt hidden during travel, every interactable has a verb |
 | **Feel probe** (windowed only) | `<godot> --path . res://scenes/tests/feel/FeelProbe.tscn -- --quit-after-checks` (no `--headless`) | Real GPU and vsync: scripted play plus 2 door trips; median / p99 / worst frame; no frame over 2x the median while the world is visible |
 
 Asset changes additionally run the pipeline: `python assets/source/blender/build_asset.py --all --steps validate,scene,preview,godot`
@@ -31,7 +33,7 @@ Asset changes additionally run the pipeline: `python assets/source/blender/build
 parse error makes a scene hang, not fail.**
 
 Expected output after Phase I (21 November 2026): validator **49/49**, session **15/15**, character
-**13/13**, movement **24/24**, audio **19/19**, camera **9/9**, transition **13/13**, feel probe **3/3**
+**13/13**, movement **24/24**, audio **19/19**, camera **9/9**, transition **13/13**, occlusion **14/14** (windowed `--pixels` **17/17**), interaction **12/12**, feel probe **4/4**
 (144 Hz display: median 6.94 ms, p99 about 9 ms), pipeline **21/21 assets**, ambience generator check
 **PASS**. Exactly two `ERROR` lines are intended: the session check's refused unknown-zone save, and the
 transition check's "Unknown zone_id 'no_such_zone'". Any other `ERROR` or `WARNING` line is a problem.
@@ -43,6 +45,13 @@ Listen for the sound itself during the manual check.
 Two lessons from Phase I, now rules: in a lambda, never assign to a captured local (GDScript captures
 locals by value; use a dictionary). `physics_frame` is emitted *before* that tick's physics runs, so in
 callback *i* of a hold, exactly *i* ticks have been processed.
+
+From I6 / I7:
+- A screenshot comparison must freeze animations and let fades and physics settle first.
+- Anything that runs on real time (animation, tweens) must be measured in its own units, not in physics
+  ticks.
+- A script that fails to parse makes its test scene hang instead of fail. Always run under a timeout, and
+  type variables explicitly (this project treats Variant inference as an error).
 
 The session check backs up `user://save.json` byte for byte and restores it (verified). The
 validator never touches the save.

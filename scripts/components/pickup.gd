@@ -3,8 +3,9 @@ extends Node2D
 
 ## Stable, globally unique ID recorded in GameState when collected. Set in the Inspector.
 @export var pickup_id: String = ""
-## Overrides the interaction prompt. Leave empty to keep the Interactable's default text.
-@export var prompt_text: String = ""
+## The prompt's verb and item name, e.g. "Pick up" + "Torch battery" (roadmap I7).
+@export var verb: String = "Pick up"
+@export var item_name: String = ""
 
 @onready var _interactable: Interactable = $Interactable
 
@@ -16,8 +17,8 @@ func _ready() -> void:
 	if GameState.is_collected(pickup_id):
 		queue_free()
 		return
-	if not prompt_text.is_empty():
-		_interactable.prompt_text = prompt_text
+	_interactable.verb = verb
+	_interactable.object_name = item_name
 
 
 func _on_interactable_interacted(_interactor: Node2D) -> void:

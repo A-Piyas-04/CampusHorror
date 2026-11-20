@@ -49,6 +49,20 @@ at its old 12 fps the legs move at 2.1 m/s, so even at the new 1.95 m/s walk the
 8 % (and at the old 6.25 m/s speed, two-thirds of the motion was sliding). It now plays at its measured
 11.1 fps.
 
+## Delegated overnight (21 November 2026)
+
+The owner, before leaving the session: *"From now on, do not ask for any decision... You judge, you determine
+which is the best decision... take it... give me a proper playable game"* in the existing area, with designed
+interiors, a 3D look everywhere, horror elements in the open field, and engaging gameplay.
+
+| # | Decision (taken by Claude under that delegation) |
+|---|---|
+| D16 | All further decisions are taken by Claude without asking, recorded here, and are reversible by the owner. Work continues until the next step needs new map references. |
+| D17 | The PROPOSED parts of `GAME_DESIGN.md` (phototropic and bioluminescent organism, the Night Guard, composure expression, chapter outline) are adopted as the working design. |
+| D18 | The playable slice is **Chapter 1, "Lights Out"**, in the built area: CDS veranda, the CDS canteen, table-tennis room and indoor basketball hall, the Main Gate security room, and the night campus outside. It has a start (menu, intro), a goal, a puzzle, the Night Guard, and an ending that points below the campus (Phase M). |
+| D19 | Interiors and new props are built by one **parametric "assembly" generator** (boxes, cylinders, materials) in the existing Blender pipeline, so dozens of 3D-looking pieces share one camera, light and density contract. |
+| D20 | The fuel level gets a small, quiet lantern indicator in a screen corner (the character art has no lantern in hand to carry it), plus the light itself dimming and flickering when low. This is the one exception to "no HUD", for readability. |
+
 ## Presentation and technology (delegated to Claude, settled by measurement)
 
 Full contract and numbers: `Docs/PRESENTATION.md`. Summary:

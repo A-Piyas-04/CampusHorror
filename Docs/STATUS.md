@@ -31,6 +31,54 @@ Headline finding: the asset pipeline and one zone are in excellent shape (7,831 
 system, inventory, UI or audio (0 sound files). The roadmap therefore stops map expansion until the
 game loop exists. Everything below this section remains the authoritative per-batch record.
 
+## Phase I batch 2: I6 + I7 (21 November 2026) — verified (automated + windowed), not committed
+
+Completes Phase I. Pre-edit checkpoint `refs/checkpoints/i67-preedit` (= `ce5c439`).
+
+- **I6, systemic occlusion** (`scripts/world/occlusion_ghosts.gd`, `assets/shaders/player_silhouette.gdshader`):
+  - When anything draws over the player, a silhouette of the player's current frame (pale fill, inner rim)
+    is attached to that item as a pooled child, with the item's `clip_children` on.
+  - It therefore shows only on the pixels that hide the player.
+  - Occluders are indexed once per zone (149 in `main_gate_exterior`, matching an independent count). Only
+    items that draw *after* the player get one, so a visible player never gets a halo.
+  - Cost: 0.085 ms per tick.
+  - The dead band behind the Main Gate tower is gone. Roof fades are kept for seeing *under* roofs.
+  - Proven at the pixel level (windowed): 2,377 pixels drawn at the dead band, and 0 in front of a tree
+    that overlaps the player from behind. Identical over 3 runs.
+- **I7, interaction v2:**
+  - `Interactable` has `verb`, `object_name`, `hold_seconds` and `prompt_offset`. The old `prompt_text`
+    sentences are converted: 4 doors, 1 pickup and the test box.
+  - World-space prompt (`scripts/ui/interaction_prompt.gd`) on a CanvasLayer that follows the viewport,
+    so it moves exactly with the world and is never darkened by the night tint. Constant size at any
+    zoom, kept on screen, with fades.
+  - Device-aware glyphs (`input_glyphs.gd`, `glyph_icon.gd`, vector-drawn): keyboard keycap, Xbox /
+    PlayStation / Nintendo face buttons, read live from the Input Map (rebinding works) and from the
+    player's keyboard layout.
+  - Hold-to-interact with a progress ring.
+- **Bug fixed along the way (camera):** a teleport showed one frame halfway between the old and new view,
+  then crept for about 8 frames. The camera has its own physics-interpolation state, which `snap()` now
+  resets. Only visible with real rendering, so it is now checked in FeelProbe (0.00 px).
+- **Test fixes:**
+  - The footstep-cadence check counted a 3 s window in physics ticks, but the animation runs on real
+    time. It now counts animation frames.
+  - Pixel comparisons freeze the idle animation and wait for fades to settle.
+  - The headless display server can't map keyboard layouts; glyphs fall back to the key position's name.
+- **Validator:** every `Interactable` must have a verb. Baselines refreshed after review: only the doors' /
+  pickup's / test box's script values changed, and 0 ground samples.
+
+| Final check | Result |
+|---|---|
+| Validator (self-test) / session / character / movement / audio / camera / transition | **49/49, 15/15, 13/13, 24/24, 19/19, 9/9, 13/13** |
+| `OcclusionCheck` headless / windowed `--pixels` (3 runs) | **14/14**; **17/17** each |
+| `InteractionCheck` | **12/12** |
+| `FeelProbe` (windowed, 144 Hz; now also walks the dead band and checks the teleport snap) | 6 of 7 runs clean, including one with a cold shader cache: median 6.93 ms, p99 about 8 ms, worst 10.3–11.8 ms, teleport offset 0.00 px. **One run had a 111 ms stall** (first windowed run right after a burst of file writes and an import); it was not reproducible cold or warm, and is probably the machine, not the game. Watching for it |
+| Ambience check / save | PASS / unchanged |
+
+Not done or open:
+- The PlayStation and Nintendo glyphs are verified by logic only (no such pad connected).
+- The hold-to-interact ring has not been seen on screen (headless-tested).
+- New `Docs/MAP_INTAKE.md`: how and when to send the rest of the campus.
+
 ## Phase I batch: I1 + I2 + I3 + I4 + I5 (21 November 2026) — verified (automated + windowed), not committed
 
 Game feel, built from zero on the existing Main Gate and CDS veranda. Decisions D13–D15 are in

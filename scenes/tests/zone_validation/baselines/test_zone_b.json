@@ -83,8 +83,10 @@
 			"script": {
 				"destination_spawn_id": "\"by_north_door\"",
 				"destination_zone_id": "\"test_zone_a\"",
+				"hold_seconds": "0.0",
 				"path": "res://scripts/components/door.gd",
-				"prompt_text": "\"Press E to return to Test Zone A\""
+				"place_name": "\"Test Zone A\"",
+				"verb": "\"Return\""
 			},
 			"visible": true,
 			"xform": [
@@ -144,8 +146,11 @@
 			"monitoring": false,
 			"scene": "res://scenes/components/Interactable.tscn",
 			"script": {
+				"hold_seconds": "0.0",
+				"object_name": "\"Test Zone A\"",
 				"path": "res://scripts/components/interactable.gd",
-				"prompt_text": "\"Press E to return to Test Zone A\""
+				"prompt_offset": "Vector2(0, -56)",
+				"verb": "\"Return\""
 			},
 			"visible": true,
 			"xform": [

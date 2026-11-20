@@ -196,7 +196,8 @@ y_sort_enabled = true
 position = Vector2(-90, -50)
 destination_zone_id = "main_gate_exterior"
 destination_spawn_id = "outside_cds_entrance"
-prompt_text = "Press E to go out to the field"
+verb = "Go out"
+place_name = "To the field"
 
 [node name="SpawnMarkers" type="Node2D" parent="Objects"]
 y_sort_enabled = true

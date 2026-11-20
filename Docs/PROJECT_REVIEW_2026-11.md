@@ -201,6 +201,9 @@ new baseline is dumped and hand-verified. At 30 zones this collapses. Generalise
 zone validator plus a documented baseline-refresh workflow.
 
 ### R6 — Occlusion is handled per-building by hand 🟡
+
+> **Update, 21 November 2026: resolved (I6).** A clipped player silhouette is attached to whatever draws over
+> the player, so no area is hand-placed and there is no dead band. Proven at the pixel level (`OcclusionCheck --pixels`).
 Buildings are single big sprites that Y-sort on one line, so the player vanishes behind facades.
 Batch 3A's answer was hand-placed `OverheadVisibility` fade areas per roof — plus a known residual
 dead band ~3 m deep behind the tower piers where the player is simply invisible. Every future

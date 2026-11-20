@@ -37,9 +37,11 @@ var _kept_scenes: Array = []
 @onready var _world: Node2D = $World
 @onready var _player: Player = $World/Player
 @onready var _transition: TransitionLayer = $UI/TransitionLayer
+@onready var _ghosts: OcclusionGhosts = $OcclusionGhosts
 
 
 func _ready() -> void:
+	_ghosts.setup(_player)
 	change_zone(start_zone_id, start_spawn_id)
 
 
@@ -181,6 +183,8 @@ func _instantiate_zone(zone_id: String, packed: PackedScene = null) -> Zone:
 
 
 func _enter_zone(zone: Zone) -> void:
+	# Ghosts live on the old zone's sprites; take them back before that zone is freed.
+	_ghosts.release_all()
 	if _current_zone != null:
 		_world.remove_child(_current_zone)
 		_current_zone.queue_free()
@@ -190,6 +194,7 @@ func _enter_zone(zone: Zone) -> void:
 	for door in zone.get_doors():
 		door.travel_requested.connect(_on_door_travel_requested)
 	_apply_profile(zone)
+	_ghosts.index_zone(zone)
 
 
 ## Everything the zone's profile decides (a zone without one gets the defaults).

@@ -83,8 +83,10 @@
 			"script": {
 				"destination_spawn_id": "\"by_south_door\"",
 				"destination_zone_id": "\"test_zone_b\"",
+				"hold_seconds": "0.0",
 				"path": "res://scripts/components/door.gd",
-				"prompt_text": "\"Press E to enter Test Zone B\""
+				"place_name": "\"Test Zone B\"",
+				"verb": "\"Enter\""
 			},
 			"visible": true,
 			"xform": [
@@ -144,8 +146,11 @@
 			"monitoring": false,
 			"scene": "res://scenes/components/Interactable.tscn",
 			"script": {
+				"hold_seconds": "0.0",
+				"object_name": "\"Test Zone B\"",
 				"path": "res://scripts/components/interactable.gd",
-				"prompt_text": "\"Press E to enter Test Zone B\""
+				"prompt_offset": "Vector2(0, -56)",
+				"verb": "\"Enter\""
 			},
 			"visible": true,
 			"xform": [
@@ -264,8 +269,11 @@
 			"monitoring": false,
 			"scene": "res://scenes/components/Interactable.tscn",
 			"script": {
+				"hold_seconds": "0.0",
+				"object_name": "\"Test box\"",
 				"path": "res://scripts/components/interactable.gd",
-				"prompt_text": "\"Press E to interact\""
+				"prompt_offset": "Vector2(0, -56)",
+				"verb": "\"Use\""
 			},
 			"visible": true,
 			"xform": [
@@ -447,9 +455,10 @@
 			"light_mask": 1,
 			"scene": "res://scenes/components/Pickup.tscn",
 			"script": {
+				"item_name": "\"Test pickup\"",
 				"path": "res://scripts/components/pickup.gd",
 				"pickup_id": "\"test_pickup_01\"",
-				"prompt_text": "\"Press E to pick up\""
+				"verb": "\"Pick up\""
 			},
 			"visible": true,
 			"xform": [
@@ -509,8 +518,11 @@
 			"monitoring": false,
 			"scene": "res://scenes/components/Interactable.tscn",
 			"script": {
+				"hold_seconds": "0.0",
+				"object_name": "\"Test pickup\"",
 				"path": "res://scripts/components/interactable.gd",
-				"prompt_text": "\"Press E to pick up\""
+				"prompt_offset": "Vector2(0, -56)",
+				"verb": "\"Pick up\""
 			},
 			"visible": true,
 			"xform": [

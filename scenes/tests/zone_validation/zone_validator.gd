@@ -297,6 +297,12 @@ func _rule_conventions(zone_id: String, zone: Zone, manifest: Dictionary) -> Arr
 			if n is Interactable:
 				if a.collision_layer != LAYER_INTERACTABLE or a.collision_mask != 0:
 					f.append("%s: Interactable must be layer 3 / mask none (layer %d, mask %d)" % [p, a.collision_layer, a.collision_mask])
+				# Doors and pickups copy their verb into their Interactable in _ready (zone not in the tree here),
+				# so read it from the owning Door / Pickup when there is one.
+				var owner_node: Node = n.get_parent()
+				var verb: String = owner_node.get("verb") if (owner_node is Door or owner_node is Pickup) else (n as Interactable).verb
+				if verb.strip_edges().is_empty():
+					f.append("%s: Interactable has no verb for its prompt" % p)
 			elif n is OverheadVisibility:
 				if a.collision_layer != 0 or a.collision_mask != LAYER_PLAYER:
 					f.append("%s: OverheadVisibility must be layer none / mask 2 player (layer %d, mask %d)" % [p, a.collision_layer, a.collision_mask])

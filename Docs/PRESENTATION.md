@@ -89,6 +89,9 @@ grows 4× per doubling, so do it per asset class, not across the board.
   settling to 0 within 3 s of stopping.
 - A teleport snaps the camera: no smoothing drift, no leftover lead or shake.
 - `shake(amount)`: trauma-based, decays within 1 s (for Phase J).
+- A teleport resets the camera's own physics interpolation too. The first rendered frame is already at the
+  new view (FeelProbe: 0.00 px). Before this fix it showed one frame halfway, then crept for about 8 frames.
+- The player is never lost behind scenery (I6): a clipped silhouette shows through whatever hides them.
 
 ## 4. Movement (D4) — applied (I1, I2)
 

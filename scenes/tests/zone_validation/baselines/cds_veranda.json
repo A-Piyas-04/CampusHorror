@@ -1389,8 +1389,10 @@
 			"script": {
 				"destination_spawn_id": "\"outside_cds_entrance\"",
 				"destination_zone_id": "\"main_gate_exterior\"",
+				"hold_seconds": "0.0",
 				"path": "res://scripts/components/door.gd",
-				"prompt_text": "\"Press E to go out to the field\""
+				"place_name": "\"To the field\"",
+				"verb": "\"Go out\""
 			},
 			"visible": true,
 			"xform": [
@@ -1450,8 +1452,11 @@
 			"monitoring": false,
 			"scene": "res://scenes/components/Interactable.tscn",
 			"script": {
+				"hold_seconds": "0.0",
+				"object_name": "\"To the field\"",
 				"path": "res://scripts/components/interactable.gd",
-				"prompt_text": "\"Press E to go out to the field\""
+				"prompt_offset": "Vector2(0, -56)",
+				"verb": "\"Go out\""
 			},
 			"visible": true,
 			"xform": [

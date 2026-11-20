@@ -101,13 +101,13 @@ position = Vector2(-200, 100)
 [node name="TestPickup01" parent="Objects" instance=ExtResource("5_pickup")]
 position = Vector2(120, 200)
 pickup_id = "test_pickup_01"
-prompt_text = "Press E to pick up"
+item_name = "Test pickup"
 
 [node name="DoorToZoneB" parent="Objects" instance=ExtResource("3_door")]
 position = Vector2(-250, -300)
 destination_zone_id = "test_zone_b"
 destination_spawn_id = "by_south_door"
-prompt_text = "Press E to enter Test Zone B"
+place_name = "Test Zone B"
 
 [node name="SpawnStart" parent="Objects" instance=ExtResource("2_spawn")]
 position = Vector2(0, 150)

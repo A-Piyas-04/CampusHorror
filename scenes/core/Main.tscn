@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://ch0fxoqfv7kye" path="res://scripts/lighting/world_tint.gd" id="4_tint"]
 [ext_resource type="Script" path="res://scripts/debug/debug_tools.gd" id="5_debug"]
 [ext_resource type="PackedScene" path="res://scenes/ui/TransitionLayer.tscn" id="6_fade"]
+[ext_resource type="Script" path="res://scripts/world/occlusion_ghosts.gd" id="7_ghosts"]
 
 [node name="Main" type="Node2D" unique_id=2145005953]
 script = ExtResource("1_main")
@@ -27,7 +28,11 @@ position = Vector2(103, 107)
 
 [node name="TransitionLayer" parent="UI" unique_id=1559023417 instance=ExtResource("6_fade")]
 
+[node name="OcclusionGhosts" type="Node" parent="." unique_id=1786523904]
+script = ExtResource("7_ghosts")
+
 [node name="DebugTools" type="Node" parent="." unique_id=1437702291]
 script = ExtResource("5_debug")
 
 [connection signal="interaction_target_changed" from="World/Player" to="UI/InteractionPrompt" method="_on_player_interaction_target_changed"]
+[connection signal="interaction_hold_changed" from="World/Player" to="UI/InteractionPrompt" method="_on_player_interaction_hold_changed"]

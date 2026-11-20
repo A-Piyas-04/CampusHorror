@@ -10073,8 +10073,10 @@
 			"script": {
 				"destination_spawn_id": "\"inside_cds_entry\"",
 				"destination_zone_id": "\"cds_veranda\"",
+				"hold_seconds": "0.0",
 				"path": "res://scripts/components/door.gd",
-				"prompt_text": "\"Press E to enter the CDS veranda\""
+				"place_name": "\"CDS veranda\"",
+				"verb": "\"Enter\""
 			},
 			"visible": true,
 			"xform": [
@@ -10134,8 +10136,11 @@
 			"monitoring": false,
 			"scene": "res://scenes/components/Interactable.tscn",
 			"script": {
+				"hold_seconds": "0.0",
+				"object_name": "\"CDS veranda\"",
 				"path": "res://scripts/components/interactable.gd",
-				"prompt_text": "\"Press E to enter the CDS veranda\""
+				"prompt_offset": "Vector2(0, -56)",
+				"verb": "\"Enter\""
 			},
 			"visible": true,
 			"xform": [

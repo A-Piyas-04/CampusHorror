@@ -130,25 +130,33 @@ func _animation_match() -> void:
 	for spec in [[["move_right"], "walk"], [["move_right", "sprint"], "run"], [["move_right", "sneak"], "sneak"]]:
 		await place(FIELD)
 		_steps.clear()
-		var r := {"anim": &"", "scale": 0.0, "spd": 0.0}
+		# Count the animation frames that really advanced in the window: the animation runs on real time while the
+		# window is counted in physics ticks, and headless physics may catch up after a slow frame, so a
+		# tick-based expectation would be flaky. Two heel strikes per cycle of advanced frames is exact.
+		var r := {"anim": &"", "scale": 0.0, "spd": 0.0, "advanced": 0, "counting": false}
+		var on_frame := func(): if r.counting: r.advanced += 1
+		sprite.frame_changed.connect(on_frame)
 		var n := 240
 		await hold(spec[0], n, 1.0, func(i):
 			if i == 60:
 				_steps.clear()
+				r.counting = true
 			r.anim = sprite.animation
 			r.scale = sprite.speed_scale
 			r.spd = _speed())
+		r.counting = false
+		sprite.frame_changed.disconnect(on_frame)
 		var anim: StringName = r.anim
 		var scale: float = r.scale
 		var spd: float = r.spd
 		var c: Dictionary = cycles.get(spec[1], {})
 		var cycle_speed := float(c.get("speed_px_s", 0.0))
 		var slide := absf(spd / maxf(cycle_speed * scale, 0.001) - 1.0)
-		var expected_steps := (n - 60) / 60.0 * 2.0 * float(c.get("fps", 0.0)) * scale / float(c.get("frames", 1))
+		var expected_steps := float(r.advanced) * 2.0 / float(c.get("frames", 1))
 		check(String(anim) == "%s_right" % spec[1] and slide <= 0.05,
 			"%s plays %s at speed_scale %.3f: legs cover %.1f px/s vs body %.1f px/s (slide %.1f %%, limit 5 %%)" % [spec[1], anim, scale, cycle_speed * scale, spd, slide * 100.0])
 		check(absf(_steps.size() - expected_steps) <= 1.0 and _steps.all(func(e): return e[1] == StringName(spec[1])),
-			"%s: %d footsteps in 3 s (expected %.1f from the cycle's 2 heel strikes), all tagged %s" % [spec[1], _steps.size(), expected_steps, spec[1]])
+			"%s: %d footsteps over %d animation frames (expected %.1f: 2 heel strikes per cycle), all tagged %s" % [spec[1], _steps.size(), r.advanced, expected_steps, spec[1]])
 
 
 func _input_lock() -> void:

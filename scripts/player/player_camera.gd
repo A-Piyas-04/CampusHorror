@@ -64,13 +64,18 @@ func apply_profile(profile: ZoneProfile) -> void:
 	snap()
 
 
-## Puts the view exactly on the player now (no smoothing drift, no leftover look-ahead or shake).
+## Puts the view exactly on the player now: no smoothing drift, no leftover look-ahead or shake, and no
+## physics-interpolated slide from the old position (the camera has its own interpolation state; resetting the
+## Player's alone left a one-frame slide plus a sub-pixel settle over ~8 frames, seen in Phase I testing).
 func snap() -> void:
 	_look = Vector2.ZERO
 	_trauma = 0.0
 	offset = Vector2.ZERO
-	reset_smoothing()
+	position_smoothing_enabled = false
 	force_update_scroll()
+	reset_smoothing()
+	reset_physics_interpolation()
+	position_smoothing_enabled = true
 
 
 ## Adds screen shake (0..1 trauma; it is squared, so small values stay subtle).
