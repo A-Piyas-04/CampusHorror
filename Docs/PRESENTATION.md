@@ -6,7 +6,8 @@ Audience: any AI session or person creating assets, zones, camera, movement or r
 
 This replaces the "Still undecided" presentation items in `Docs/ART_STYLE.md` and
 `Docs/CONVENTIONS.md`. §1–2 were **applied on 21 November 2026** (batch H2) and are asserted by
-`GameSessionCheck` on every run (`Docs/TESTING.md`). §3–5 describe targets for roadmap Phase I.
+`GameSessionCheck` on every run (`Docs/TESTING.md`). §3–5 were **applied and measured in Phase I
+(I1–I5, 21 November 2026)**; the suites in `scenes/tests/feel/` assert them.
 
 The goal behind every number here is the owner's top priority: **clean, crisp and smooth**. Nothing
 should ever look magnified, and nothing should ever stutter.
@@ -74,16 +75,22 @@ halved the sprite scale (0.145 → 0.0725). The footprint (57.6 game px), the co
 (57.6 × 12.34152) and the origin stayed byte-identical, and all 37/37 checks passed. Memory cost
 grows 4× per doubling, so do it per asset class, not across the board.
 
-## 3. Camera
+## 3. Camera — applied (I4)
 
-The camera behaviour is designed in roadmap I4. These are the limits it has to respect:
+`scripts/player/player_camera.gd` on `Player/Camera`; per-zone values in each `ZoneProfile`
+(`data/zones/profiles/<zone_id>.tres`).
 
-- Default zoom 2.0. Each zone sets its zoom, bounds and look-ahead in data, not code.
-- Never draw outside a zone's authored area. Camera limits come from zone data.
-- Changes in zoom and position ease in and out, never snap. The exception is a teleport, which also
-  resets interpolation (§1).
+- Zoom from the profile: `main_gate_exterior` 2.0, `cds_veranda` 2.2 (tighter, enclosed).
+- Limits from the profile. The validator requires that they contain the playable area plus half a
+  1920 × 1080 view at the profile's zoom, which is the exact condition for never showing the void.
+  CameraCheck confirms it at every corner, centre and spawn of both zones.
+- Eased follow (position smoothing 6). Look-ahead up to the profile's `look_ahead_px` (48 px outdoors, 40
+  in the veranda) at a sprint, scaled by speed, eased at 2.5/s. Measured: 47 px lead at a sprint,
+  settling to 0 within 3 s of stopping.
+- A teleport snaps the camera: no smoothing drift, no leftover lead or shake.
+- `shake(amount)`: trauma-based, decays within 1 s (for Phase J).
 
-## 4. Movement (D4)
+## 4. Movement (D4) — applied (I1, I2)
 
 The world scale stays at **32 game px = 1 m**. Nothing about layout changes.
 
@@ -100,6 +107,10 @@ How the numbers were chosen:
 
 - The existing walk cycle (8 frames at 12 fps, 0.667 s) covers about 1.3 m, which is **1.95 m/s**.
   Walk is set to exactly that, so the current animation plants its feet with no re-render.
+- **As built:** every cycle's speed is *measured* in Blender (planted-foot travel per frame), and its fps
+  is derived from that: walk 1.40 m per cycle at 11.1 fps, run 2.37 m at 16.2 fps, sneak (12 frames)
+  1.19 m at 10.0 fps. MovementCheck measures 0.0 % foot slide in all three gaits, motion on the same tick
+  as the input, 0 → walk in 0.100 s, walk → sprint in 0.233 s, and stop in 0.067 s.
 - Sneak and sprint are too far from 1.95 m/s for the walk cycle simply to play slower or faster
   (sneak would play at 0.5× and look like slow motion; sprint at 2.5× and look comic). Each gets its
   own cycle in I2. Within a mode, the playback rate follows the actual speed
@@ -118,11 +129,11 @@ These are acceptance criteria from Phase H onward, the same as geometry checks.
 
 | Budget | Target | Measured today |
 |---|---|---|
-| Frame time, worst case, dev machine at 1080p | ≤ 6.9 ms (144 Hz) | 3.24 ms worst with 42 lights (30 shadow-casting) |
+| Frame time, worst case, dev machine at 1080p | ≤ 6.9 ms (144 Hz) | Stress test: 3.24 ms CPU+GPU. FeelProbe (real play, vsync, 144 Hz, 3 runs): median 6.94 ms, p99 ≈ 9 ms, worst visible 10–14 ms. About 1 % of frames miss one 144 Hz refresh; open item for Phase N frame pacing |
 | Frame time on the minimum-spec target | ≤ 16.7 ms (60 Hz) | Not measured. The minimum spec is defined in Phase N |
-| Visible stall on a zone change | 0 frames (the loading happens behind a fade) | Not measured. Loading blocks the main thread today (review R4) |
-| Input to motion | ≤ 1 physics tick | Not measured |
-| Single-frame spikes during play | none over 2× the average frame time | Not measured |
+| Visible stall on a zone change | 0 frames (the loading happens behind a fade) | **Met.** The zone swaps at alpha 1.000; the swap stall (24–26 ms) is entirely behind black; door to control in 0.62 s |
+| Input to motion | ≤ 1 physics tick | **Met.** 10.3 px/s after the first tick |
+| Single-frame spikes during play | none over 2× the median frame time | **Met** in 3 FeelProbe runs (worst 1.96× in one run) |
 
-Extend `scenes/tests/renderer_stress/RendererStressTest.tscn` (temporary) into the reusable frame-time
-probe for these budgets.
+The reusable frame-time probe is `scenes/tests/feel/FeelProbe.tscn` (windowed only; `Docs/TESTING.md`).
+`RendererStressTest` stays as the lighting cost probe.

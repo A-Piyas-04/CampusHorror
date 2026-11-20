@@ -5,8 +5,9 @@ extends Node
 ##   presentation  the Confirmed contract in Docs/PRESENTATION.md is applied (base 1920x1080, canvas_items /
 ##               expand, fractional scaling, no pixel snap, physics interpolation, camera zoom 2)
 ##   spawns      every spawn of every zone is enterable and puts the feet exactly on the marker
-##   doors       at every door of every zone the prompt targets that door; "interact" arrives at the
-##               destination zone's spawn; still exactly one Player and no leaked nodes afterwards
+##   profiles    every shipping zone has a ZoneProfile
+##   doors       at every door of every zone the prompt targets that door; "interact" travels (faded, roadmap
+##               I5) to the destination zone's spawn; still exactly one Player and no leaked nodes afterwards
 ##   save/load   F6 saves the zone and feet, F9 restores them after travelling elsewhere; a save naming an
 ##               unknown zone is refused and changes nothing (one intended ERROR line)
 ##   debug keys  F2 flips the night tint (DebugTools), the lantern action toggles the lantern
@@ -81,7 +82,14 @@ func _run(main: Main) -> void:
 		if ProjectSettings.get_setting(key) != ps[key]:
 			wrong.append("%s = %s (want %s)" % [key, ProjectSettings.get_setting(key), ps[key]])
 	_check(wrong.is_empty(), "project settings match the presentation contract (%s)" % (", ".join(wrong) if not wrong.is_empty() else "%d settings" % ps.size()))
-	_check(camera.zoom.is_equal_approx(ZOOM), "player camera default zoom %s (want %s)" % [camera.zoom, ZOOM])
+	_check(camera.zoom.is_equal_approx(ZOOM), "player camera zoom in the start zone %s (want %s)" % [camera.zoom, ZOOM])
+	var missing := []
+	for zid in registry.zones.keys():
+		var z := (load(registry.get_scene_path(zid)) as PackedScene).instantiate() as Zone
+		if z.profile == null:
+			missing.append(zid)
+		z.free()
+	_check(missing.is_empty(), "every shipping zone has a ZoneProfile (missing %s)" % [missing])
 
 	# --- every spawn of every zone
 	var bad_spawns := []
@@ -123,6 +131,7 @@ func _run(main: Main) -> void:
 			var dest_zone := door.destination_zone_id
 			var dest_spawn := door.destination_spawn_id
 			await _press("interact")
+			await _await_travel(main)
 			n_doors += 1
 			if main.get_current_zone_id() != dest_zone:
 				bad_doors.append("%s/%s: expected '%s', in '%s'" % [zone_id, dp, dest_zone, main.get_current_zone_id()])
@@ -153,6 +162,7 @@ func _run(main: Main) -> void:
 		main.change_zone(other, _spawn_ids(registry, other)[0])
 		await _frames(2)
 	await _press("debug_load")
+	await _await_travel(main)
 	_check(main.get_current_zone_id() == start_zone and main.get_player_feet_position().is_equal_approx(spot),
 		"after travelling to '%s', F9 restores '%s' at %s (got %s %s)" % [other, start_zone, spot, main.get_current_zone_id(), main.get_player_feet_position()])
 
@@ -180,6 +190,14 @@ func _run(main: Main) -> void:
 	await _press("lantern")
 	_check(night != day and tint.color == day and lantern_flipped and lantern.enabled == lantern_was,
 		"F2 flips the night tint and back; the lantern action toggles the lantern and back")
+
+
+## Waits (at most 5 s) until a faded travel has finished and the player has control again.
+func _await_travel(main: Main) -> void:
+	var start := Time.get_ticks_msec()
+	while main.is_transitioning() and Time.get_ticks_msec() - start < 5000:
+		await get_tree().process_frame
+	await _frames(2)
 
 
 func _spawn_ids(registry: ZoneRegistry, zone_id: String) -> Array:

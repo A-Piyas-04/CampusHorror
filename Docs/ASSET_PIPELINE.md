@@ -180,7 +180,22 @@ Reconstructed from `Docs/map-reference/area1/cds-building.png` and `cds-building
 - The props have no collision. The zone keeps the former blockout rectangles as `Collision` bodies and occluders per section (see `Docs/CAMPUS_MAP.md`, "CDS exterior"; checked by the zone validator, `Docs/TESTING.md`).
 - The west arcades are modelled but the 40° / 0° camera sees west faces edge-on, so in game they show only as the coping line along the facade; the visible faces are the roofs and the hall's south facade.
 
-## Player character (14 October 2026)
+## Player character (14 October 2026; Phase I update 21 November 2026)
+
+> **Phase I (I2) update.** The generator now bakes **four cycles**: idle (8 frames), walk (8), run (8) and
+> sneak (12, crouched). It renders **8 facings** (down, down_left, left, up_left, up, up_right, right,
+> down_right; the armature turns in 45° steps), into **one sheet per cycle**:
+> `assets/sprites/characters/player_character_<cycle>.png`, rows = facings, 128 × 230 cells. The old single
+> `player_character_sheet.png` is removed by the generator. For each moving cycle the bake **measures** the
+> planted foot's travel per frame and derives the cycle's fps from the target ground speed, so the feet
+> never slide: walk 1.40 m per cycle at 11.1 fps (1.94 m/s), run 2.37 m at 16.2 fps (4.81 m/s), sneak
+> 1.19 m at 10.0 fps (1.00 m/s). Heel-strike frames (where the planted foot changes: walk and run 2 and 6,
+> sneak 4 and 10) go to the record and to the SpriteFrames metadata `cycles`
+> (`{frames, fps, speed_px_s, contact_frames}` per cycle), which `player_animator.gd` reads for its playback
+> rate and footstep events. Build time is a few minutes (288 frames). Review the new poses on the sheets;
+> they are procedural. To change a gait, edit `pose_run` / `pose_sneak` / `pose_walk`, then re-run: fps and
+> contacts follow automatically.
+
 
 ```powershell
 & "F:\bbbb\blender.exe" --background --factory-startup --python assets/source/blender/characters/player_character.py
@@ -188,7 +203,7 @@ Reconstructed from `Docs/map-reference/area1/cds-building.png` and `cds-building
 
 Not a `build_asset.py` config: the character is a rigged, animated sprite sheet, not a static prop, so it has its own generator. It reuses `pipeline/rig.py` (`reset_scene`, `setup_lighting`, `setup_camera` at `CAMERA_ELEVATION_DEG` 40°, `setup_render`) and `conventions.py`. About 35 s on the CPU. Nothing in Godot runs Blender.
 
-- **Writes:** `assets/source/blender/characters/player_character.blend` (model, rig, action `PlayerCycles`, camera), `player_character.render.json` (record), `assets/sprites/characters/player_character_sheet.png` (+ `.import` with mipmaps, written once before the render), `scenes/player/player_character_frames.tres` (SpriteFrames). Intermediate frames go to `assets/source/blender/logs/player_character_frames/` (ignored). It never touches `Player.tscn`, any other scene or the save.
+- **Writes:** `assets/source/blender/characters/player_character.blend` (model, rig, action `PlayerCycles`, camera), `player_character.render.json` (record), `assets/sprites/characters/player_character_<cycle>.png` (Phase I; + `.import` with mipmaps, written once before the render), `scenes/player/player_character_frames.tres` (SpriteFrames). Intermediate frames go to `assets/source/blender/logs/player_character_frames/` (ignored). It never touches `Player.tscn`, any other scene or the save.
 - **Model:** joint graphs turned into meshes with the Skin modifier + Subdivision (applied): body (head with nose and ears, neck, torso, arms, hands with fingers, legs, feet), jacket/overshirt (open front showing the shirt, collar, cuffs, hem), trousers, sneakers (sole and accent bands), hair (trimmed UV sphere, Solidify), eyes and brows. Colours are vertex-colour masks on Principled BSDF materials; constants at the top of the file (`SKIN`, `HAIR`, `JACKET`, `SHIRT`, `TROUSERS`, `SHOE`, …). Body skin under the clothes is deleted after weighting (only head, neck and hands remain), so it can never poke through.
 - **Rig:** `BONES` (18 bones, `.L` = +X). Body: automatic weights (bone heat). Clothes: weights copied from the 6 nearest body vertices (inverse-square), hair/eyes/brows 100 % `head`. `calibrate()` finds each bone's rotation sign so positive X always swings the limb forward.
 - **Animation:** `pose_idle(phase)` and `pose_walk(phase)` (amplitudes in degrees in the code), baked into one action: idle frames 1–8, walk 101–108 (timeline markers). `ground()` lifts or lowers the pelvis per frame so the lowest evaluated shoe vertex is at z = 0.

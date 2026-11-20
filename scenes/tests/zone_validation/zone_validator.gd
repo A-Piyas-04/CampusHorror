@@ -5,6 +5,9 @@ extends Node2D
 ## manifest (`manifests/<zone_id>.json`) and one baseline snapshot (`baselines/<zone_id>.json`):
 ##   identity     the scene's Zone root has the registry key as `zone_id`
 ##   graph        spawn ids are unique and non-empty; every Door leads to a registered zone and an existing spawn
+##   profile      every shipping zone has a ZoneProfile with an ambience bed and camera limits that contain the
+##                playable bounds plus half a 1920 x 1080 view at the profile's zoom (the view can never show
+##                outside the zone); its default surface has footstep sounds
 ##   conventions  Docs/CONVENTIONS.md rules: collision layers/masks per node kind, occluder light mask 1,
 ##                prop sprites light mask 2, contact shadows z -9 without collision, Y-sorted ancestors for
 ##                every placed prop, the zone ground at z -10
@@ -120,8 +123,9 @@ func _validate_zone(zone_id: String, dump: bool) -> void:
 	_rule_identity(zone_id, zone)
 	_rule_graph(zone_id, zone)
 	t = _lap(t, "identity+graph")
+	_rule_profile(zone_id, zone, manifest)
 	_rule_conventions(zone_id, zone, manifest)
-	t = _lap(t, "conventions")
+	t = _lap(t, "profile+conventions")
 	_rule_snapshot(zone_id, zone, manifest)
 	t = _lap(t, "snapshot")
 	_rule_ground(zone_id, zone, manifest)
@@ -230,6 +234,41 @@ func _spawn_ids_of(zone_id: String) -> Array:
 			z.free()
 	_spawn_cache[zone_id] = ids
 	return ids
+
+
+# =================================================================================================
+# profile (roadmap I: camera, surfaces, audio per zone)
+
+const BASE_VIEW := Vector2(1920, 1080)
+const FOOTSTEPS := "res://data/audio/footsteps.tres"
+
+
+func _rule_profile(zone_id: String, zone: Zone, manifest: Dictionary) -> Array:
+	var f := []
+	var p := zone.profile
+	var shipping := not _registry.is_debug_zone(zone_id)
+	if p == null:
+		if shipping:
+			f.append("shipping zone has no ZoneProfile (data/zones/profiles/%s.tres)" % zone_id)
+		_report(zone_id, "profile", f, "no profile (debug zone: defaults)" if f.is_empty() else "profile missing")
+		return f
+	var r := p.camera_limits
+	if shipping and (r.size.x <= 0.0 or r.size.y <= 0.0):
+		f.append("camera_limits are empty; the view could show outside the zone")
+	if shipping and p.ambience == null:
+		f.append("no ambience bed")
+	var b: Array = manifest.get("playable_bounds", [])
+	if r.size.x > 0.0 and b.size() == 4:
+		var half := BASE_VIEW / p.camera_zoom * 0.5
+		var need := Rect2(b[0], b[1], b[2], b[3]).grow_individual(half.x, half.y, half.x, half.y)
+		if not r.encloses(need):
+			f.append("camera_limits %s don't contain the playable bounds plus half a view at zoom %.2f (%s)" % [r, p.camera_zoom, need])
+	var fset := load(FOOTSTEPS) as FootstepSet
+	if fset != null and not fset.streams.has(p.default_surface):
+		f.append("default_surface '%s' has no footstep sounds" % p.default_surface)
+	_report(zone_id, "profile", f, "zoom %.2f, limits %s contain the playable area + half a view, ambience %s, default surface %s" % [
+		p.camera_zoom, r, p.ambience.resource_path.get_file() if p.ambience else "none", p.default_surface])
+	return f
 
 
 # =================================================================================================

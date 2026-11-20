@@ -21,6 +21,7 @@
 [ext_resource type="PackedScene" path="res://scenes/props/street_furniture/FlagPoleBangladesh.tscn" id="19_flag_bd"]
 [ext_resource type="PackedScene" path="res://scenes/props/street_furniture/FlagPoleWhite.tscn" id="20_flag_white"]
 [ext_resource type="PackedScene" path="res://scenes/props/street_furniture/LampPost.tscn" id="21_lamp"]
+[ext_resource type="Resource" path="res://data/zones/profiles/main_gate_exterior.tres" id="90_profile"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_south_wall_run"]
 size = Vector2(3552, 10.07891)
@@ -68,6 +69,7 @@ polygon = PackedVector2Array(-295, -700, 225, -700, 225, 0, -295, 0)
 y_sort_enabled = true
 script = ExtResource("1_zone")
 zone_id = "main_gate_exterior"
+profile = ExtResource("90_profile")
 
 [node name="Ground" type="Node2D" parent="."]
 editor_description = "Zone ground (z -10, not Y-sorted, so children draw in tree order: Tiles, EdgeStrips, Markings). Tiles: production campus_ground TileMapLayer, grid on world multiples of 64 px (grass 0, worn grass 1, walkway 2, asphalt 3); paint whole cells here. EdgeStrips: one Polygon2D per off-grid remainder of an original surface (exact blockout boundaries, no snapping), same production PNG, texture_repeat Enabled, no UV, at the origin so the texture stays in phase with the tiles. Markings: placeholder field/road lines. See Docs/CAMPUS_MAP.md (How to edit the map)."

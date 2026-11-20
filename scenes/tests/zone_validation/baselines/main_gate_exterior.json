@@ -493,6 +493,7 @@
 			"scene": "res://scenes/world/MainGateExterior.tscn",
 			"script": {
 				"path": "res://scripts/world/zone.gd",
+				"profile": "Resource(\"res://data/zones/profiles/main_gate_exterior.tres\")",
 				"zone_id": "\"main_gate_exterior\""
 			},
 			"visible": true,

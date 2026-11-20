@@ -5,7 +5,8 @@ extends Node
 ## Args (after `--`): `--out-dir=<absolute dir>` and `--shots=<name>@<x>,<y>[,<option>...][;...]`. Quits when done.
 ## Shot options: `night`, `lantern`, `zone=<zone_id>` (entered at the given feet position), `zoom=<f>`,
 ## `face=<down|up|left|right>` (a short step that way so the player faces it, then back to the position) and
-## `walk=<down|up|left|right>` (the move action is held while the shot is taken).
+## `walk=<down|up|left|right>` (the move action is held while the shot is taken) and `gait=<sprint|sneak>`
+## (that action is held too, so the shot shows the run or sneak cycle).
 ## Global `--zoom=<f>` sets the default camera zoom.
 
 const MAIN_SCENE := "res://scenes/core/Main.tscn"
@@ -50,6 +51,8 @@ func _ready() -> void:
 		await _settle(0.8)
 		if opts.has("walk"):
 			Input.action_press("move_" + opts.walk)
+			if opts.has("gait"):
+				Input.action_press(opts.gait)
 			for i in 9:
 				await get_tree().physics_frame
 		await RenderingServer.frame_post_draw
@@ -57,6 +60,8 @@ func _ready() -> void:
 		var err := get_viewport().get_texture().get_image().save_png(path)
 		if opts.has("walk"):
 			Input.action_release("move_" + opts.walk)
+			if opts.has("gait"):
+				Input.action_release(opts.gait)
 		var anim: StringName = player.get_node("Sprite").get("animation") if player.has_node("Sprite") else &"-"
 		print("[CAPTURE] %s at %s zone %s anim %s %s -> %s (%s)" % [name, pos, main.get_current_zone_id(), anim, opts.keys(), path, error_string(err)])
 	get_tree().quit(0)

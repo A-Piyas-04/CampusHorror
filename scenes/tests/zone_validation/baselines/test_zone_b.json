@@ -8,6 +8,7 @@
 			"scene": "res://scenes/world/TestZoneB.tscn",
 			"script": {
 				"path": "res://scripts/world/zone.gd",
+				"profile": "null",
 				"zone_id": "\"test_zone_b\""
 			},
 			"visible": true,

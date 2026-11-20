@@ -171,6 +171,9 @@ so switching is realistic. Decide with a 30-light stress test **before** lightin
 mechanic, because 2D lighting behaviour differs between the two renderers.
 
 ### R3 — Movement feel contradicts the top priority 🟠
+
+> **Update, 21 November 2026: resolved (I1, I2).** Three gaits at stride-matched speeds (measured 0 % foot
+> slide), eased acceleration, stamina, 8 facings. Evidence: `MovementCheck` 24/24 and `Docs/PRESENTATION.md` §4.
 `move_speed = 200` px/s at 32 px/m is **6.25 m/s** — a hard sprint, as the one and only speed. The
 walk cycle covers roughly 2 m/s, so the feet visibly slide (already logged under "Player character
 findings"). The user's stated #1 priority is smooth, clean movement; the current controller has one
@@ -178,6 +181,9 @@ constant speed, no acceleration, no deceleration, 4 facings, and no footstep sou
 single most felt flaw in the build and is cheap to fix properly.
 
 ### R4 — Zone transitions will hitch on real zones 🟠
+
+> **Update, 21 November 2026: resolved (I5).** Faded travel with a threaded load; the swap happens only while
+> the screen is black; FeelProbe shows no visible hitch. Background prefetch was tried and removed (deadlock).
 `main.gd` calls blocking `load()` on the main thread inside `change_zone()`, then hard-cuts. At 355
 nodes it is survivable; at a multi-floor building with hundreds of lit props it will stall visibly.
 Needs `ResourceLoader.load_threaded_request` plus a fade. `Docs/CONVENTIONS.md` lists transition

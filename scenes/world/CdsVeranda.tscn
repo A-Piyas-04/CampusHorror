@@ -4,11 +4,13 @@
 [ext_resource type="PackedScene" path="res://scenes/components/SpawnMarker.tscn" id="2_spawn"]
 [ext_resource type="PackedScene" path="res://scenes/components/Door.tscn" id="3_door"]
 [ext_resource type="PackedScene" path="res://scenes/world/blockout/BlockoutBlock.tscn" id="4_block"]
+[ext_resource type="Resource" path="res://data/zones/profiles/cds_veranda.tres" id="90_profile"]
 
 [node name="CdsVeranda" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_zone")
 zone_id = "cds_veranda"
+profile = ExtResource("90_profile")
 
 [node name="Ground" type="Node2D" parent="." groups=["blockout_placeholder"]]
 editor_description = "BLOCKOUT PLACEHOLDER: lawn and veranda floor surfaces. Replace with production ground art."

@@ -12,17 +12,21 @@ Pipeline:
 2. Rig: armature (root, pelvis, spine, chest, neck, head, arms, legs, feet). The body is skinned with Blender's
    automatic (bone heat) weights; the clothing copies the body's weights from the nearest body vertices; hair,
    eyes and brows follow the head bone.
-3. Animation: one action `PlayerCycles` with an 8-frame idle (breathing) at frames 1-8 and an 8-frame walk
-   at frames 101-108, both exact loops (phase i / 8). Every frame is grounded: the pelvis is moved so the lowest
-   evaluated shoe vertex is exactly at z = 0 (no floating, no penetration).
+3. Animation: one action `PlayerCycles` with four exact loops (phase i / frames): idle (breathing, frames 1-8),
+   walk (101-108), run (201-208) and sneak (crouched, 301-312). Every frame is grounded: the pelvis is moved so the
+   lowest evaluated shoe vertex is exactly at z = 0 (no floating, no penetration).
+   For each moving cycle the bake MEASURES how far the planted foot travels per frame; the cycle's fps is derived
+   from it so that playing it at that fps matches the cycle's target ground speed exactly (feet never slide), and
+   the heel-strike frames (where the planted foot changes) are recorded for footstep sounds.
 4. Render: the shared pipeline camera (orthographic 40 deg / azimuth 0) and lights (pipeline/rig.py). The
-   figure turns for the four facings; camera, sun and frame bounds stay fixed, so scale and the feet anchor
-   are identical in every cell.
+   figure turns for eight facings (45 deg steps); camera, sun and frame bounds stay fixed, so scale and the feet
+   anchor are identical in every cell. One sheet per cycle (rows = facings).
 
 Writes:
 - assets/source/blender/characters/player_character.blend (model, rig, action, camera, lights)
-- assets/sprites/characters/player_character_sheet.png (+ .import with mipmaps, written before the render)
-- scenes/player/player_character_frames.tres (SpriteFrames: idle_/walk_ down/up/left/right)
+- assets/sprites/characters/player_character_<cycle>.png, cycle = idle / walk / run / sneak (+ .import, mipmaps)
+- scenes/player/player_character_frames.tres (SpriteFrames: <cycle>_<facing>, 32 animations; metadata `cycles`
+  = per cycle frames, fps, ground speed in game px/s and heel-strike frames, read by player_animator.gd)
 - assets/source/blender/characters/player_character.render.json (record: cells, origin pixel, timing, ...)
 """
 
@@ -45,18 +49,18 @@ HERE = Path(__file__).resolve().parent
 BLEND_PATH = HERE / "player_character.blend"
 RECORD_PATH = HERE / "player_character.render.json"
 FRAMES_DIR = C.LOG_DIR / "player_character_frames"
-SHEET_REL = "assets/sprites/characters/player_character_sheet.png"
+SHEET_REL = "assets/sprites/characters/player_character_{cycle}.png"
+OLD_SHEET_REL = "assets/sprites/characters/player_character_sheet.png"   # pre-Phase-I single sheet (removed)
 FRAMES_TRES_REL = "scenes/player/player_character_frames.tres"
 
 PX_PER_M = 96.0                  # drawn at 32 / 96 in Godot (3x supersampled, mipmapped)
 SAMPLES = 96
-FACINGS = (("down", 0.0), ("up", 180.0), ("left", -90.0), ("right", 90.0))
-IDLE_FRAMES = 8
-WALK_FRAMES = 8
+# Facing name -> armature turn (deg), in screen order clockwise from down.
+FACINGS = (("down", 0.0), ("down_left", -45.0), ("left", -90.0), ("up_left", -135.0),
+           ("up", 180.0), ("up_right", 135.0), ("right", 90.0), ("down_right", 45.0))
 IDLE_FPS = 3.0                   # one breath in 2.7 s
-WALK_FPS = 12.0                  # 1.5 strides per second
-IDLE_START = 1
-WALK_START = 101
+# Moving cycles: target ground speed in m/s (Docs/PRESENTATION.md section 4: game px/s / 32).
+TARGET_SPEED_M_S = {"walk": 62.0 / 32.0, "run": 154.0 / 32.0, "sneak": 32.0 / 32.0}
 FRAME_BOUNDS = [Vector((x, y, z)) for x in (-0.5, 0.5) for y in (-0.5, 0.5) for z in (0.0, 1.86)]
 
 # Linear base colours.
@@ -480,6 +484,58 @@ def pose_idle(arm, signs, phase):
     arm.pose.bones["pelvis"].location.x = 0.004 * math.sin(t)
 
 
+def pose_run(arm, signs, phase):
+    """Running: long fast stride, strong knee tuck in the swing, forward lean, bent arms pumping."""
+    t = 2 * math.pi * phase
+    for s, n, off in ((1, "L", 0.0), (-1, "R", math.pi)):
+        a = t + off
+        thigh = 6.0 + 36.0 * math.sin(a)
+        knee = 12.0 + 80.0 * max(0.0, math.cos(a)) ** 1.2 + 10.0 * max(0.0, -math.cos(a))
+        swing(arm, signs, f"thigh.{n}", thigh)
+        swing(arm, signs, f"shin.{n}", -knee)
+        toe_off = 22.0 * max(0.0, -math.sin(a)) * max(0.0, -math.cos(a)) * 2.0
+        lift = 14.0 * max(0.0, math.cos(a))
+        swing(arm, signs, f"foot.{n}", -(thigh - knee) - toe_off + lift)
+        swing(arm, signs, f"upper_arm.{n}", 6.0 - 32.0 * math.sin(a))
+        swing(arm, signs, f"forearm.{n}", 78.0 + 10.0 * max(0.0, math.sin(-a)))
+        arm.pose.bones[f"upper_arm.{n}"].rotation_euler.y = s * math.radians(6.0)
+    pelvis = arm.pose.bones["pelvis"]
+    pelvis.location.x = -0.02 * math.cos(t)
+    pelvis.rotation_euler.y = math.radians(5.0) * math.sin(t)
+    arm.pose.bones["chest"].rotation_euler.y = -math.radians(7.0) * math.sin(t)
+    swing(arm, signs, "spine", 9.0)
+    swing(arm, signs, "chest", 4.0)
+    swing(arm, signs, "neck", -5.0)
+
+
+def pose_sneak(arm, signs, phase):
+    """Sneaking: crouched (hips and knees flexed), slow careful steps, leaning forward, arms held close."""
+    t = 2 * math.pi * phase
+    for s, n, off in ((1, "L", 0.0), (-1, "R", math.pi)):
+        a = t + off
+        thigh = 24.0 + 20.0 * math.sin(a)
+        knee = 40.0 + 28.0 * max(0.0, math.cos(a)) ** 1.3
+        swing(arm, signs, f"thigh.{n}", thigh)
+        swing(arm, signs, f"shin.{n}", -knee)
+        lift = 10.0 * max(0.0, math.cos(a))
+        swing(arm, signs, f"foot.{n}", -(thigh - knee) + lift)
+        swing(arm, signs, f"upper_arm.{n}", 16.0 - 6.0 * math.sin(a))
+        swing(arm, signs, f"forearm.{n}", 55.0)
+        arm.pose.bones[f"upper_arm.{n}"].rotation_euler.y = s * math.radians(8.0)
+    pelvis = arm.pose.bones["pelvis"]
+    pelvis.location.x = -0.01 * math.cos(t)
+    pelvis.rotation_euler.y = math.radians(2.0) * math.sin(t)
+    swing(arm, signs, "spine", 16.0)
+    swing(arm, signs, "chest", 6.0)
+    swing(arm, signs, "neck", -12.0)
+    swing(arm, signs, "head", -8.0)
+
+
+# Cycle table: name, first frame in the action, frame count, pose function. Moving cycles get their fps from
+# the measured stride (bake); idle plays at IDLE_FPS.
+CYCLES = (("idle", 1, 8, pose_idle), ("walk", 101, 8, pose_walk), ("run", 201, 8, pose_run), ("sneak", 301, 12, pose_sneak))
+
+
 def ground(arm, shoes):
     """Move the pelvis so the lowest evaluated shoe vertex sits exactly on z = 0."""
     deps = bpy.context.evaluated_depsgraph_get()
@@ -494,23 +550,65 @@ def ground(arm, shoes):
     return min((o.evaluated_get(deps).matrix_world @ v.co).z for o in shoes for v in o.evaluated_get(deps).data.vertices)
 
 
+def lowest_points(shoes):
+    """World position of each shoe's lowest evaluated vertex (shoes = [left, right])."""
+    deps = bpy.context.evaluated_depsgraph_get()
+    out = []
+    for o in shoes:
+        ev = o.evaluated_get(deps)
+        mw = ev.matrix_world
+        out.append(min((mw @ v.co for v in ev.data.vertices), key=lambda q: q.z))
+    return out
+
+
 def bake(arm, signs, shoes):
+    """Keys every cycle frame (grounded) and measures each moving cycle.
+
+    The planted foot of a frame is the lower shoe. Between two consecutive frames that share the same planted
+    foot, that foot slides backwards along Y in the in-place animation; at ground speed v the body must move
+    exactly that far forward, so fps = v / (mean planted-foot travel per frame). Heel strikes are the frames
+    where the planted foot changes."""
     arm.animation_data_create()
     action = bpy.data.actions.new("PlayerCycles")
     arm.animation_data.action = action
     scene = bpy.context.scene
-    lows = {}
-    for label, start, count, fn in (("idle", IDLE_START, IDLE_FRAMES, pose_idle), ("walk", WALK_START, WALK_FRAMES, pose_walk)):
+    lows, cycles = {}, {}
+    for label, start, count, fn in CYCLES:
         scene.timeline_markers.new(label, frame=start)
+        feet = []
         for i in range(count):
             reset_pose(arm)
             fn(arm, signs, i / count)
             lows[f"{label}{i}"] = round(ground(arm, shoes), 5)
+            feet.append(lowest_points(shoes))
             for pb in arm.pose.bones:
                 pb.keyframe_insert("location", frame=start + i)
                 pb.keyframe_insert("rotation_euler", frame=start + i)
-    scene.frame_start, scene.frame_end = IDLE_START, WALK_START + WALK_FRAMES - 1
-    return lows
+        info = {"start": start, "frames": count}
+        if label == "idle":
+            info.update({"fps": IDLE_FPS, "speed_m_s": 0.0, "contact_frames": []})
+        else:
+            planted = [0 if f[0].z <= f[1].z else 1 for f in feet]
+            travel = []
+            for i in range(count):
+                j = (i + 1) % count
+                if planted[i] == planted[j]:
+                    k = planted[i]
+                    travel.append(abs(feet[j][k].y - feet[i][k].y))
+            per_frame = sum(travel) / len(travel)
+            fps = TARGET_SPEED_M_S[label] / per_frame
+            contacts = [i for i in range(count) if planted[i] != planted[(i - 1) % count]]
+            info.update({"fps": round(fps, 3), "speed_m_s": round(per_frame * round(fps, 3), 4),
+                         "planted_travel_m_per_frame": round(per_frame, 5),
+                         "stride_m_per_cycle": round(per_frame * count, 4),
+                         "contact_frames": contacts,
+                         "planted_foot_per_frame": ["L" if q == 0 else "R" for q in planted],
+                         "planted_travel_cv": round(float(np.std(travel) / np.mean(travel)), 4)})
+        cycles[label] = info
+        print(f"[PLAYER_CHAR] cycle {label}: {info}")
+    scene.frame_start = CYCLES[0][1]
+    scene.frame_end = CYCLES[-1][1] + CYCLES[-1][2] - 1
+    return lows, cycles
 
 
 # --- Output ----------------------------------------------------------------------------------------------
@@ -526,28 +624,29 @@ def write_import(png_rel):
                     encoding="utf-8")
 
 
-ROWS = [(f"idle_{f}", f, "idle") for f, _ in FACINGS] + [(f"walk_{f}", f, "walk") for f, _ in FACINGS]
-
-
-def write_frames_tres(cell):
-    cols = max(IDLE_FRAMES, WALK_FRAMES)
-    subs, anims = [], []
-    for row, (anim, facing, kind) in enumerate(ROWS):
-        count = IDLE_FRAMES if kind == "idle" else WALK_FRAMES
-        ids = []
-        for col in range(count):
-            sid = f"Atlas_{anim}_{col}"
-            ids.append(sid)
-            subs += [f'[sub_resource type="AtlasTexture" id="{sid}"]', 'atlas = ExtResource("1_sheet")',
-                     f"region = Rect2({col * cell[0]}, {row * cell[1]}, {cell[0]}, {cell[1]})", ""]
-        frames = ", ".join('{\n"duration": 1.0,\n"texture": SubResource("%s")\n}' % i for i in ids)
-        fps = IDLE_FPS if kind == "idle" else WALK_FPS
-        anims.append('{\n"frames": [%s],\n"loop": true,\n"name": &"%s",\n"speed": %.1f\n}' % (frames, anim, fps))
-    lines = ['[gd_resource type="SpriteFrames" format=3]', "",
-             f'[ext_resource type="Texture2D" path="res://{SHEET_REL}" id="1_sheet"]', ""] + subs
-    lines += ["[resource]", "animations = [%s]" % ", ".join(anims), ""]
+def write_frames_tres(cell, cycles):
+    """SpriteFrames with <cycle>_<facing> animations (one sheet per cycle, one row per facing) and the measured
+    cycle data as resource metadata (`cycles`), so the game reads timing from the asset, not from code."""
+    ext, subs, anims = [], [], []
+    for ci, (label, _start, count, _fn) in enumerate(CYCLES):
+        ext.append(f'[ext_resource type="Texture2D" path="res://{SHEET_REL.format(cycle=label)}" id="{ci + 1}_{label}"]')
+        for row, (facing, _deg) in enumerate(FACINGS):
+            anim = f"{label}_{facing}"
+            ids = []
+            for col in range(count):
+                sid = f"Atlas_{anim}_{col}"
+                ids.append(sid)
+                subs += [f'[sub_resource type="AtlasTexture" id="{sid}"]', f'atlas = ExtResource("{ci + 1}_{label}")',
+                         f"region = Rect2({col * cell[0]}, {row * cell[1]}, {cell[0]}, {cell[1]})", ""]
+            frames = ", ".join('{\n"duration": 1.0,\n"texture": SubResource("%s")\n}' % i for i in ids)
+            anims.append('{\n"frames": [%s],\n"loop": true,\n"name": &"%s",\n"speed": %.3f\n}'
+                         % (frames, anim, cycles[label]["fps"]))
+    meta = {label: {"frames": c["frames"], "fps": c["fps"],
+                    "speed_px_s": round(c["speed_m_s"] * C.GAME_PX_PER_M, 3),
+                    "contact_frames": c["contact_frames"]} for label, c in cycles.items()}
+    lines = ['[gd_resource type="SpriteFrames" format=3]', ""] + ext + [""] + subs
+    lines += ["[resource]", "animations = [%s]" % ", ".join(anims), "metadata/cycles = %s" % json.dumps(meta), ""]
     (ROOT / FRAMES_TRES_REL).write_text("\n".join(lines), encoding="utf-8")
-    return cols
 
 
 def main():
@@ -583,7 +682,7 @@ def main():
     arm = build_armature(char)
     unweighted = skin_to_rig(arm, body, [jacket, trousers, *shoes], [hair, *details])
     signs = calibrate(arm)
-    lows = bake(arm, signs, shoes)
+    lows, cycles = bake(arm, signs, shoes)
 
     lighting = rig.setup_lighting(scene, rig_coll, char)
     camera, projection = rig.setup_camera(scene, rig_coll, FRAME_BOUNDS, C.CAMERA_ELEVATION_DEG,
@@ -596,56 +695,61 @@ def main():
         if stale.exists():
             stale.unlink()
     bpy.ops.wm.save_as_mainfile(filepath=str(BLEND_PATH), check_existing=False, compress=True)
-    write_import(SHEET_REL)
+    for label, *_ in CYCLES:
+        write_import(SHEET_REL.format(cycle=label))
 
     FRAMES_DIR.mkdir(parents=True, exist_ok=True)
-    cols = max(IDLE_FRAMES, WALK_FRAMES)
-    sheet = np.zeros((len(ROWS) * cell[1], cols * cell[0], 4), dtype=np.float32)
-    for row, (anim, facing, kind) in enumerate(ROWS):
-        arm.rotation_euler.z = math.radians(dict(FACINGS)[facing])
-        start, count = (IDLE_START, IDLE_FRAMES) if kind == "idle" else (WALK_START, WALK_FRAMES)
-        for col in range(count):
-            scene.frame_set(start + col)
-            out = FRAMES_DIR / f"{anim}_{col}.png"
-            scene.render.filepath = str(out)
-            bpy.ops.render.render(write_still=True)
-            img = bpy.data.images.load(str(out))
-            px = np.array(img.pixels[:], dtype=np.float32).reshape(cell[1], cell[0], 4)[::-1]
-            bpy.data.images.remove(img)
-            sheet[row * cell[1]:(row + 1) * cell[1], col * cell[0]:(col + 1) * cell[0]] = px
-        print(f"[PLAYER_CHAR] rendered {anim} ({count} frames)")
-    arm.rotation_euler.z = 0.0
-
-    border = np.concatenate([sheet[r * cell[1]] for r in range(len(ROWS))] + [sheet[(r + 1) * cell[1] - 1] for r in range(len(ROWS))])
-    max_border_alpha = float(np.max(border[:, 3])) if border.size else 0.0
-    for c in range(cols):
-        max_border_alpha = max(max_border_alpha, float(np.max(sheet[:, c * cell[0], 3])), float(np.max(sheet[:, (c + 1) * cell[0] - 1, 3])))
-
-    out_img = bpy.data.images.new("PlayerCharacterSheet", sheet.shape[1], sheet.shape[0], alpha=True)
-    out_img.pixels[:] = sheet[::-1].ravel()
-    out_img.filepath_raw = str(ROOT / SHEET_REL)
-    out_img.file_format = "PNG"
-    (ROOT / SHEET_REL).parent.mkdir(parents=True, exist_ok=True)
-    out_img.save()
-    write_frames_tres(cell)
+    sheets, max_border_alpha = {}, 0.0
+    for label, start, count, _fn in CYCLES:
+        sheet = np.zeros((len(FACINGS) * cell[1], count * cell[0], 4), dtype=np.float32)
+        for row, (facing, deg) in enumerate(FACINGS):
+            arm.rotation_euler.z = math.radians(deg)
+            for col in range(count):
+                scene.frame_set(start + col)
+                out = FRAMES_DIR / f"{label}_{facing}_{col}.png"
+                scene.render.filepath = str(out)
+                bpy.ops.render.render(write_still=True)
+                img = bpy.data.images.load(str(out))
+                px = np.array(img.pixels[:], dtype=np.float32).reshape(cell[1], cell[0], 4)[::-1]
+                bpy.data.images.remove(img)
+                sheet[row * cell[1]:(row + 1) * cell[1], col * cell[0]:(col + 1) * cell[0]] = px
+            print(f"[PLAYER_CHAR] rendered {label}_{facing} ({count} frames)")
+        arm.rotation_euler.z = 0.0
+        for r in range(len(FACINGS)):
+            max_border_alpha = max(max_border_alpha, float(np.max(sheet[r * cell[1], :, 3])),
+                                   float(np.max(sheet[(r + 1) * cell[1] - 1, :, 3])))
+        for c in range(count):
+            max_border_alpha = max(max_border_alpha, float(np.max(sheet[:, c * cell[0], 3])),
+                                   float(np.max(sheet[:, (c + 1) * cell[0] - 1, 3])))
+        rel = SHEET_REL.format(cycle=label)
+        out_img = bpy.data.images.new(f"PlayerCharacter_{label}", sheet.shape[1], sheet.shape[0], alpha=True)
+        out_img.pixels[:] = sheet[::-1].ravel()
+        out_img.filepath_raw = str(ROOT / rel)
+        out_img.file_format = "PNG"
+        (ROOT / rel).parent.mkdir(parents=True, exist_ok=True)
+        out_img.save()
+        sheets[label] = {"path": rel, "px": [sheet.shape[1], sheet.shape[0]]}
+    for stale in (ROOT / OLD_SHEET_REL, ROOT / (OLD_SHEET_REL + ".import")):
+        if stale.exists():
+            stale.unlink()
+    write_frames_tres(cell, cycles)
 
     record = {
         "status": "PROVISIONAL neutral student look; not character canon",
         "generator": "assets/source/blender/characters/player_character.py",
         "blend": "assets/source/blender/characters/player_character.blend",
-        "sheet": SHEET_REL, "frames": FRAMES_TRES_REL,
-        "sheet_px": [sheet.shape[1], sheet.shape[0]], "cell_px": cell, "origin_px_in_cell": origin_px,
-        "rows": [r[0] for r in ROWS], "idle_frames": IDLE_FRAMES, "walk_frames": WALK_FRAMES,
-        "idle_fps": IDLE_FPS, "walk_fps": WALK_FPS,
+        "sheets": sheets, "frames": FRAMES_TRES_REL,
+        "cell_px": cell, "origin_px_in_cell": origin_px,
+        "facings": [f for f, _ in FACINGS], "cycles": cycles,
         "px_per_m": PX_PER_M, "godot_scale": C.GAME_PX_PER_M / PX_PER_M, "figure_height_m": 1.80,
-        "action": "PlayerCycles (idle frames %d-%d, walk frames %d-%d)" % (IDLE_START, IDLE_START + IDLE_FRAMES - 1, WALK_START, WALK_START + WALK_FRAMES - 1),
+        "action": "PlayerCycles (" + ", ".join("%s %d-%d" % (c[0], c[1], c[1] + c[2] - 1) for c in CYCLES) + ")",
         "lowest_shoe_z_per_frame_m": lows, "body_vertices_without_weights": unweighted,
         "max_cell_border_alpha": max_border_alpha, "rotation_signs": signs,
         "mesh_vertices": {o.name: len(o.data.vertices) for o in char.objects if o.type == "MESH"},
         "camera": camera, "lighting": lighting, "render": render,
     }
     RECORD_PATH.write_text(json.dumps(record, indent=2), encoding="utf-8")
-    print(f"[PLAYER_CHAR] sheet {sheet.shape[1]}x{sheet.shape[0]} cell {cell} origin {origin_px} "
+    print(f"[PLAYER_CHAR] sheets {sheets} cell {cell} origin {origin_px} "
           f"unweighted {unweighted} border_alpha {max_border_alpha:.4f} lows {min(lows.values())}..{max(lows.values())}")
 
 

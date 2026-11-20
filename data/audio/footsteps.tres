@@ -1,0 +1,73 @@
+[gd_resource type="Resource" script_class="FootstepSet" format=3]
+
+[ext_resource type="Script" path="res://scripts/audio/footstep_set.gd" id="1_set"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx/footsteps/footstep_grass_000.ogg" id="grass_0"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx/footsteps/footstep_grass_001.ogg" id="grass_1"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx/footsteps/footstep_grass_002.ogg" id="grass_2"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx/footsteps/footstep_grass_003.ogg" id="grass_3"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx/footsteps/footstep_grass_004.ogg" id="grass_4"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx/footsteps/footstep_concrete_000.ogg" id="concrete_0"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx/footsteps/footstep_concrete_001.ogg" id="concrete_1"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx/footsteps/footstep_concrete_002.ogg" id="concrete_2"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx/footsteps/footstep_concrete_003.ogg" id="concrete_3"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx/footsteps/footstep_concrete_004.ogg" id="concrete_4"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_grass"]
+random_pitch = 1.08
+random_volume_offset_db = 1.5
+streams_count = 5
+stream_0/stream = ExtResource("grass_0")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("grass_1")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("grass_2")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("grass_3")
+stream_3/weight = 1.0
+stream_4/stream = ExtResource("grass_4")
+stream_4/weight = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_concrete"]
+random_pitch = 1.08
+random_volume_offset_db = 1.5
+streams_count = 5
+stream_0/stream = ExtResource("concrete_0")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("concrete_1")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("concrete_2")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("concrete_3")
+stream_3/weight = 1.0
+stream_4/stream = ExtResource("concrete_4")
+stream_4/weight = 1.0
+
+[resource]
+script = ExtResource("1_set")
+streams = Dictionary[StringName, AudioStream]({
+&"asphalt": SubResource("AudioStreamRandomizer_concrete"),
+&"concrete": SubResource("AudioStreamRandomizer_concrete"),
+&"grass": SubResource("AudioStreamRandomizer_grass"),
+&"paving": SubResource("AudioStreamRandomizer_concrete"),
+&"worn_grass": SubResource("AudioStreamRandomizer_grass")
+})
+pitch = Dictionary[StringName, float]({
+&"asphalt": 0.88,
+&"concrete": 1.05,
+&"grass": 1.0,
+&"paving": 1.0,
+&"worn_grass": 0.95
+})
+gain_db = Dictionary[StringName, float]({
+&"asphalt": -3.0,
+&"concrete": -4.0,
+&"grass": -6.0,
+&"paving": -4.0,
+&"worn_grass": -8.0
+})
+gait_gain_db = Dictionary[StringName, float]({
+&"run": 3.0,
+&"sneak": -10.0,
+&"walk": 0.0
+})
+fallback_surface = &"concrete"

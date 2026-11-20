@@ -90,8 +90,11 @@ func load_game() -> bool:
 			return _reject("'collected_ids' contains %s, which is not a non-empty string" % JSON.stringify(id))
 		collected_ids.append(id)
 
+	if main.is_transitioning():
+		return _reject("a zone travel is already in progress")
 	GameState.restore_collected_ids(collected_ids)
-	if not main.enter_zone_at_position(zone_id, feet):
+	# Faded travel (roadmap I5); the swap happens behind the black screen a moment later.
+	if not main.travel_to_position(zone_id, feet):
 		return false
 	print("[SAVE] Loaded '%s' at %s with %d collected id(s)." % [zone_id, feet, collected_ids.size()])
 	return true

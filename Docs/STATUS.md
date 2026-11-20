@@ -21,7 +21,7 @@ is uncommitted; it was in fact committed in `d76443d`. Current planning lives in
 | `Docs/NEXT_ACTIONS.md` | Blocking decisions, the reference shot list, and the approval backlog |
 | `Docs/DECISIONS.md` | **Decisions ledger**: D0–D12, all Confirmed 20 November 2026, with the renderer stress-test evidence |
 | `Docs/PRESENTATION.md` | **Confirmed presentation contract**: resolution, density, zoom, speeds, smoothness budgets (applied 21 November 2026, H2) |
-| `Docs/TESTING.md` | **How zones are tested** since H4: the validator, the session check, manifests, the baseline workflow |
+| `Docs/TESTING.md` | **How the game is tested** since H4: validator, session check, the Phase I feel suites and windowed probe, manifests, the baseline workflow |
 
 Since 20 November 2026 the game is ***The Quiet Hours*** (D12). New test tool:
 `scenes/tests/renderer_stress/RendererStressTest.tscn` (TEMPORARY; run windowed; `--stack=N`).
@@ -30,6 +30,76 @@ Headline finding: the asset pipeline and one zone are in excellent shape (7,831 
 21 validated assets), while the game itself is a 659-line prototype with no enemies, puzzles, fear
 system, inventory, UI or audio (0 sound files). The roadmap therefore stops map expansion until the
 game loop exists. Everything below this section remains the authoritative per-batch record.
+
+## Phase I batch: I1 + I2 + I3 + I4 + I5 (21 November 2026) — verified (automated + windowed), not committed
+
+Game feel, built from zero on the existing Main Gate and CDS veranda. Decisions D13–D15 are in
+`Docs/DECISIONS.md`; values and measurements are in `Docs/PRESENTATION.md` §3–5. Pre-edit checkpoint:
+`refs/checkpoints/phase-i-preedit` (= `e408aed`); all suites passed there.
+
+- **I1, movement** (`scripts/player/player.gd`): sneak 32 / walk 62 / sprint 154 px/s; eased acceleration
+  and braking; stamina (6 s sprint, 1 s delay, 8 s to refill, winded below 30 %); analog sneak; input lock;
+  `footstep` signal. New `sprint` (Shift) / `sneak` (Ctrl) actions, and every input event moved to device −1.
+- **I2, animation:**
+  - `player_character.py` bakes idle / walk / run / sneak in 8 facings (4 sheets, 288 frames). Each cycle's
+    fps is derived from the measured stride, and its heel-strike frames are recorded.
+  - `player_animator.gd` picks 8-way facings with hysteresis, scales playback by speed, keeps the phase
+    through turns, and fires footsteps on heel strikes.
+- **I3, audio** (from zero):
+  - Bus layout and the `AudioDirector` autoload (ambience crossfades, per-zone reverb, ducking).
+  - `Player/Footsteps` with surface and gait, from 10 Kenney CC0 takes (`assets/audio/CREDITS.md`).
+  - `Player/Listener`.
+  - Two seamless night ambience beds from `assets/source/audio/generate_ambience.py` (self-checking).
+- **Shared:**
+  - `ZoneProfile` resources (`data/zones/profiles/`) give each zone its camera, default surface,
+    ambience and reverb.
+  - `SurfaceMap` + `data/audio/surfaces.tres` give footstep surfaces from ground textures.
+- **I4, camera** (`player_camera.gd`): profile zoom (gate 2.0, veranda 2.2) and limits, eased follow,
+  look-ahead up to 48 px at a sprint, snap on teleport, `shake()`.
+- **I5, transitions:**
+  - `Main.travel()` / `travel_to_position()` (doors, loading a save) lock input, fade to black 0.3 s while
+    loading on a worker thread, swap only while fully black, fade in, and unlock.
+  - `TransitionLayer`.
+  - The last 3 zone scenes stay in memory.
+
+Problems found and fixed during the batch:
+- **Background prefetch deadlocked.** A worker-thread scene load plus a blocking `load()` of the same
+  scene hung `GameSessionCheck`; the engine reported a thread destroyed before completing. Proven not to be
+  plain load contention by two probes. Prefetch was removed and replaced by keeping visited scenes; the
+  rule is in CONVENTIONS §14.
+- **Ambience leaked at exit in headless runs.** The Dummy driver never mixes. A windowed run with WASAPI
+  showed no leak. Fix: no `play()` without an audio device, with the intended state tracked for tests.
+- **Ambience seam check.** It compared the seam against a global median, which fails whenever the seam
+  falls inside a cricket chirp. It now compares against the local signal, and a deliberately broken copy
+  is still caught.
+- **Test-harness bugs, all in tests and none in the game:**
+  - GDScript lambdas capture locals by value.
+  - `physics_frame` fires before that tick's physics runs.
+  - A transition-test race (a held key moving the player after the unlock) was made deterministic:
+    5/5 passes.
+- **Character check tolerances** were updated from geometry for the new diagonal facings and the run
+  stride (12.3 px = 0.6 m × 32 × sin 40°).
+- **One Godot editor crash (segfault) on shutdown** after the first headless import of the new assets.
+  The import itself completed; two repeat runs were clean. Not reproducible.
+
+| Final check (21 November 2026) | Result |
+|---|---|
+| `ZoneValidator -- --self-test` (new `profile` rule; baselines refreshed: exactly 1 line each, the root's `profile`) | **49/49** |
+| `GameSessionCheck` (doors and loading through the fade) | **15/15** (one intended ERROR) |
+| `PlayerCharacterCheck` (rewritten for 4 cycles × 8 facings) | **13/13** |
+| `MovementCheck` / `AudioCheck` / `CameraCheck` / `TransitionCheck` (new) | **24/24, 19/19, 9/9, 13/13** (Transition: one intended ERROR) |
+| `FeelProbe` (windowed, 144 Hz, vsync, 3 runs) | **3/3**: median 6.94 ms, p99 ≈ 9 ms, worst visible 10–14 ms, no visible 2× hitch; zone swap stall 24–26 ms, always behind black |
+| `build_asset.py --all --steps validate,godot` / `generate_ambience.py --check` | **21/21 assets (719/719)** / **PASS** |
+| User save `save.json` | unchanged (`1974d576…`) |
+
+**Open items:**
+- About 1 % of frames miss one 144 Hz refresh (frame pacing; Phase N).
+- The grass tile's 2 m repeat is visible on big lawns (known since Batch 1A; sharper now; needs grass
+  variants).
+- The run pose's leading arm reaches quite straight forward in side views (review it).
+- The lantern still glows in daylight (J2).
+- **Manual check for the owner:** 5 minutes of play with sound on (gaits, footsteps per surface, camera
+  lead, door fades), and approve the new sheets / screenshots.
 
 ## Phase H batch: H2 + H4 + H5 (21 November 2026) — verified (automated), not committed
 

@@ -31,6 +31,8 @@ Game code must read input **only through these action names**, never through raw
 | `move_right` | Walk right | `D`, `Right` | Left stick right, D-pad right |
 | `interact` | Use / talk / pick up the nearest interactable | `E` | Bottom face button (A / Cross) |
 | `lantern` | Reserved for the lantern | `F` | Left face button (X / Square) |
+| `sprint` | Hold to sprint (stamina-limited; D15) | `Shift` | Left stick click |
+| `sneak` | Hold to sneak (D15; a stick tilted under 60 % also sneaks) | `Ctrl` | Left shoulder |
 | `pause` | Open/close the pause menu | `Escape` | Start / Menu |
 | `debug_toggle_night` | Debug builds only (`Main/DebugTools`): flip the provisional world tint. | `F2` | — |
 | `debug_save` | Debug builds only (`Main/DebugTools`): write the save file. | `F6` | — |
@@ -48,7 +50,7 @@ Registration details (Verified in `project.godot`):
 
 - Deadzone 0.5 on every action (Godot default).
 - Keyboard bindings are stored as **physical keys** (key position), so WASD stays in the same place on non-QWERTY layouts.
-- The MCP tool stored keyboard events with device `16` and gamepad events with device `0` (first controller), rather than the editor's "All Devices" (`-1`). Synthetic key input matched the actions in the test, but a real keyboard/gamepad check is still a manual step. If a real device doesn't trigger an action, set each event's Device to "All Devices" in Project Settings → Input Map.
+- **Since Phase I (21 November 2026) every event uses device `-1` (all devices).** Before that, the MCP tool had stored keyboard events with device `16` and gamepad events with device `0` (first controller), rather than the editor's "All Devices" (`-1`). Synthetic key input matched the actions in the test, but a real keyboard/gamepad check is still a manual step. If a real device doesn't trigger an action, set each event's Device to "All Devices" in Project Settings → Input Map.
 
 ## 2. Collision layers — Confirmed (registered)
 
@@ -350,6 +352,11 @@ Introduced in Milestone G Part 2. Waiting for the user's approval. Full guide: `
 | Cameras | Every `Camera2D` uses `process_callback = 0` (physics), because physics interpolation is on. |
 | Ground TileMapLayers | Scale = 32 × period_m / tile_px (0.25 for the 256 px campus tiles). Ground-textured `Polygon2D`s use `texture_scale` (4, 4). Convert positions with `local_to_map(to_local(p))`. |
 | Teleports | Code that moves a body instantly calls `reset_physics_interpolation()` (`Player.teleport()` does). |
+| Zone profiles | Every shipping zone's root sets `profile` to `data/zones/profiles/<zone_id>.tres` (`ZoneProfile`): camera zoom and limits, look-ahead, default footstep surface, ambience, reverb. Main applies it on every entry. Feel differences between zones (and later Mirror Campus variants) are profile data, never code. |
+| Surfaces | Footstep surfaces come from ground textures via `data/audio/surfaces.tres` (texture stem -> surface) and `SurfaceMap`; a new ground texture needs a row there and a stream in `data/audio/footsteps.tres`. |
+| Audio | Buses (`data/audio/default_bus_layout.tres`): Master <- Music, Ambience, UI, World (zone reverb) <- Footsteps. World sounds go on World (or a bus that sends to it); UI sounds on UI. `AudioDirector` (autoload) owns ambience and acoustics. Sounds are heard at the player's feet (`Player/Listener`). Without an audio device (Dummy driver) nothing calls `play()`; code tracks what it would play. Every sound file has a row in `assets/audio/CREDITS.md`. |
+| Zone travel | Gameplay zone changes use `Main.travel()` / `travel_to_position()` (faded, player locked, threaded load). The instant `change_zone()` is for game start, tests and debug only. **No background prefetch of scenes**: a worker-thread load needs the main thread, so any blocking `load()` of the same scene meanwhile can deadlock (found in Phase I). Instead, Main keeps the last 3 zone scenes in memory. |
+| Character cycles | Animation timing is measured, never hand-set: the generator records each cycle's ground speed and heel-strike frames in the SpriteFrames metadata `cycles`, and the animator scales playback by actual speed / cycle speed. |
 | Tests | Every registered zone has a validator manifest and baseline (`Docs/TESTING.md`). Baselines are refreshed only after reading the diff, and committed together with the change they record. Test scenes must quit with an exit code and run under a timeout. A test that measures smoothness compares against the real frame delta, never a fixed per-frame limit. |
 
 ## Still undecided
@@ -409,5 +416,6 @@ To re-run: open `scenes/tests/Milestone0Test.tscn` and press F6 (Run Current Sce
 | 2026-10-13 | Milestone G Batch 3: §13 "Landmarks" and "Generator textures" rows added (still Proposed). Rendered landmarks replace their blockout inside the same parent, are split into separately sorted generated parts (`landmarks` category), Y-sort their roofs instead of using `Overhead`, and get landmark-level occluders. §12 "Landmark overhead" is limited to blockout landmarks. |
 | 2026-10-14 | Milestone G Batch 4: §13 "Sliced long buildings" row added (still Proposed): section props cut into Y-sorted slices with overlap strips, a shared texel anchor and context lighting; collision and occluders stay in the zone at the approved footprint; fade only slices that hide the player. |
 | 2026-11-20 | Decisions D1–D4: resolution, density, zoom, renderer and speeds Confirmed in `Docs/PRESENTATION.md` / `Docs/DECISIONS.md`; §7 renderer Confirmed (Compatibility). |
+| 2026-11-21 | Phase I (I1–I5): §1 `sprint` / `sneak` actions and device −1 for every event; §14 zone profiles, surfaces, audio buses, zone travel (no prefetch), measured character cycles. |
 | 2026-11-21 | Phase H (H2 + H4 + H5): §6 applied; §14 added (debug-only code, zone registry resource, camera process mode, ground TileMapLayer scale, teleport interpolation reset, test rules). |
 | 2026-10-08 | Milestone G Part 1 editability cleanup: section 12 amended (still Proposed). Landmarks own all their layers: landmark ground at z −9, a landmark `Overhead` child at z 10 (replacing "keep overhead under the zone's `Overhead`"), doors and spawns may live inside their landmark, and the `blockout_placeholder` group marks blockout-only visuals. |

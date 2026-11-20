@@ -1,6 +1,6 @@
 # Testing
 
-Snapshot: 21 November 2026 • Phase H4
+Snapshot: 21 November 2026 • Phase H4, extended in Phase I (feel suites)
 
 Audience: anyone (person or AI session) who changes a zone, a component, a prop or the player.
 
@@ -10,7 +10,7 @@ replace the 9 per-batch Main Gate check scenes and their 6 versioned baselines (
 
 ---
 
-## 1. The three suites
+## 1. The suites
 
 Run all of them before every commit that touches `scenes/`, `scripts/`, `data/` or `project.godot`.
 Godot path: `F:\App Installers\Godot_v4.7.2-stable_win64.exe\Godot_v4.7.2-stable_win64_console.exe`.
@@ -19,16 +19,30 @@ Godot path: `F:\App Installers\Godot_v4.7.2-stable_win64.exe\Godot_v4.7.2-stable
 |---|---|---|
 | **Zone validator** | `<godot> --headless --path . res://scenes/tests/zone_validation/ZoneValidator.tscn -- --quit-after-checks --self-test` | Every zone's structure, collision, reachability, ground and fades (§2) |
 | **Session check** | `<godot> --headless --path . res://scenes/tests/zone_validation/GameSessionCheck.tscn -- --quit-after-checks` | The real `Main.tscn`: boot, presentation contract, every spawn, every door, save/load, a refused bad save, debug keys |
-| **Character check** | `<godot> --headless --path . res://scenes/tests/character_previews/PlayerCharacterCheck.tscn -- --quit-after-checks` | The player character's frames, anchoring, animation logic, and movement physics |
+| **Character check** | `… res://scenes/tests/character_previews/PlayerCharacterCheck.tscn -- --quit-after-checks` | The 4 cycle sheets x 8 facings (288 frames: anchoring, scale, measured cycle speeds), all 8 input directions, facing hysteresis, run / sneak cycles, phase kept through turns, footsteps only on heel-strike frames, the Player surviving a trip |
+| **Movement** (Phase I) | `… res://scenes/tests/feel/MovementCheck.tscn -- --quit-after-checks` | Speeds per mode, acceleration / stop times, input on the same tick, diagonal normalisation, analog sneak, the stamina cycle, 0 % foot slide, footstep cadence, `surface_at` (known spots, plus 500 random points against an independent oracle), the input lock |
+| **Audio** (Phase I) | `… res://scenes/tests/feel/AudioCheck.tscn -- --quit-after-checks` | Bus layout and reverb, ambience per zone (looping), reverb following the profile, listener, footstep set coverage, footsteps per surface and gait, ducking during travel |
+| **Camera** (Phase I) | `… res://scenes/tests/feel/CameraCheck.tscn -- --quit-after-checks` | Zoom and limits from the profile, no void at the corners / centre / spawns of the playable area, look-ahead leads and settles, teleport snaps, shake decays |
+| **Transition** (Phase I) | `… res://scenes/tests/feel/TransitionCheck.tscn -- --quit-after-checks` | Door trips swap only while fully black, input locked throughout, 0.62 s door to control, overlapping travel refused, kept scenes for return trips, `travel_to_position`, an unknown zone refused |
+| **Feel probe** (windowed only) | `<godot> --path . res://scenes/tests/feel/FeelProbe.tscn -- --quit-after-checks` (no `--headless`) | Real GPU and vsync: scripted play plus 2 door trips; median / p99 / worst frame; no frame over 2x the median while the world is visible |
 
 Asset changes additionally run the pipeline: `python assets/source/blender/build_asset.py --all --steps validate,scene,preview,godot`
 (`Docs/ASSET_PIPELINE.md`). A failing script never quits on its own, so wrap runs in a timeout. **A
 parse error makes a scene hang, not fail.**
 
-Expected output on 21 November 2026: validator **PASS (45/45)**, session **PASS (14/14)**, character
-**PASS (19/19)**, pipeline **21/21 assets, 789/789 checks**. The session check prints exactly one
-intended `ERROR` line (the refused unknown-zone save); any other `ERROR` or `WARNING` line is a
-problem.
+Expected output after Phase I (21 November 2026): validator **49/49**, session **15/15**, character
+**13/13**, movement **24/24**, audio **19/19**, camera **9/9**, transition **13/13**, feel probe **3/3**
+(144 Hz display: median 6.94 ms, p99 about 9 ms), pipeline **21/21 assets**, ambience generator check
+**PASS**. Exactly two `ERROR` lines are intended: the session check's refused unknown-zone save, and the
+transition check's "Unknown zone_id 'no_such_zone'". Any other `ERROR` or `WARNING` line is a problem.
+
+Headless runs use the Dummy audio driver, which never mixes. Game code then tracks the sounds it would play
+instead of playing them (otherwise every playback would leak at exit), and the audio suite asserts that state.
+Listen for the sound itself during the manual check.
+
+Two lessons from Phase I, now rules: in a lambda, never assign to a captured local (GDScript captures
+locals by value; use a dictionary). `physics_frame` is emitted *before* that tick's physics runs, so in
+callback *i* of a hold, exactly *i* ticks have been processed.
 
 The session check backs up `user://save.json` byte for byte and restores it (verified). The
 validator never touches the save.
@@ -111,7 +125,8 @@ validator's output (stats line, reach area, probes), then commit.
 
 | Scene | Use |
 |---|---|
-| `scenes/tests/environment_previews/ZoneCapture.tscn` | Windowed screenshots of the real game (`--shots=name@x,y[,zoom=..][,night]…`). Needs a window. |
-| `scenes/tests/renderer_stress/RendererStressTest.tscn` | Windowed lighting cost and correctness probe (`--stack=N`). TEMPORARY until it becomes the frame-time budget probe (roadmap H3 remainder) |
+| `scenes/tests/environment_previews/ZoneCapture.tscn` | Windowed screenshots of the real game (`--shots=name@x,y[,zoom=..][,night][,walk=dir][,gait=sprint|sneak]…`). Needs a window. |
+| `scenes/tests/renderer_stress/RendererStressTest.tscn` | Windowed lighting cost and correctness probe (`--stack=N`). The frame-time budget probe is `FeelProbe.tscn` |
+| `assets/source/audio/generate_ambience.py --check` | Checks the ambience beds: loop points, seam vs the local signal, loudness, peak |
 | `scenes/tests/asset_previews/*` | Written by the asset pipeline; run by its `godot` step |
 | `MCPCheck`, `Milestone0Test`, `WallAssetPreview`, galleries | Historical; not part of any regression |

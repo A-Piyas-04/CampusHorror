@@ -5,6 +5,8 @@
 [ext_resource type="SpriteFrames" path="res://scenes/player/player_character_frames.tres" id="3_frames"]
 [ext_resource type="PackedScene" path="res://scenes/props/common/ContactShadow.tscn" id="4_shadow"]
 [ext_resource type="Script" path="res://scripts/player/player_animator.gd" id="5_animator"]
+[ext_resource type="Script" path="res://scripts/player/player_camera.gd" id="6_camera"]
+[ext_resource type="Script" path="res://scripts/player/footstep_player.gd" id="7_footsteps"]
 
 [sub_resource type="Gradient" id="Gradient_lantern"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
@@ -58,6 +60,17 @@ shape = SubResource("CircleShape2D_interaction")
 [node name="Camera" type="Camera2D" parent="."]
 process_callback = 0
 zoom = Vector2(2, 2)
+position_smoothing_enabled = true
+position_smoothing_speed = 6.0
+limit_smoothed = true
+script = ExtResource("6_camera")
+
+[node name="Footsteps" type="AudioStreamPlayer2D" parent="."]
+bus = &"Footsteps"
+max_polyphony = 3
+script = ExtResource("7_footsteps")
+
+[node name="Listener" type="AudioListener2D" parent="."]
 
 [node name="Lantern" type="PointLight2D" parent="."]
 position = Vector2(0, -16)

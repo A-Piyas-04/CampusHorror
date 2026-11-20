@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ZoneProfile" format=3]
+
+[ext_resource type="Script" path="res://scripts/world/zone_profile.gd" id="1_profile"]
+[ext_resource type="AudioStream" path="res://assets/audio/ambience/arcade_night.wav" id="2_ambience"]
+
+[resource]
+script = ExtResource("1_profile")
+camera_zoom = 2.2
+camera_limits = Rect2(-1000, -1400, 2100, 2800)
+look_ahead_px = 40.0
+default_surface = &"concrete"
+ambience = ExtResource("2_ambience")
+ambience_volume_db = -4.0
+reverb_room_size = 0.45
+reverb_damping = 0.5
+reverb_wet = 0.18

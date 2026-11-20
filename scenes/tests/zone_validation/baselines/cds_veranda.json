@@ -8,6 +8,7 @@
 			"scene": "res://scenes/world/CdsVeranda.tscn",
 			"script": {
 				"path": "res://scripts/world/zone.gd",
+				"profile": "Resource(\"res://data/zones/profiles/cds_veranda.tres\")",
 				"zone_id": "\"cds_veranda\""
 			},
 			"visible": true,

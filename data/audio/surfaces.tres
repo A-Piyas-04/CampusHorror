@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="SurfaceTable" format=3]
+
+[ext_resource type="Script" path="res://scripts/world/surface_table.gd" id="1_table"]
+
+[resource]
+script = ExtResource("1_table")
+by_texture_stem = Dictionary[String, StringName]({
+"asphalt_road_tile": &"asphalt",
+"grass_ground_tile": &"grass",
+"grass_worn_tile": &"worn_grass",
+"paved_walkway_tile": &"paving"
+})

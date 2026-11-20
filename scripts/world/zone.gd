@@ -3,6 +3,9 @@ extends Node2D
 
 ## Stable, globally unique ID. Must match this zone's key in `data/zones/zone_registry.tres`.
 @export var zone_id: String = ""
+## How this zone feels: camera zoom and limits, default footstep surface, ambience, reverb.
+## Applied by Main on every entry. Every shipping zone needs one (data/zones/profiles/<zone_id>.tres).
+@export var profile: ZoneProfile
 
 
 func _ready() -> void:

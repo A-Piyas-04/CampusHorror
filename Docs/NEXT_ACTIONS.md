@@ -12,14 +12,16 @@ all three, plus the first batch that can start immediately.
 
 ## 0. State of the repo
 
-21 November 2026: Phase H batches **H2, H4 and H5 are done and verified, but not committed**:
-- Presentation contract applied: 1080p, zoom 2, 4× sharper ground, physics interpolation.
-- One zone validator replaces 9 check scenes.
-- Debug code quarantined.
+21 November 2026: Phase H is committed; **Phase I batches I1–I5 are done and verified, but not committed**:
+- Movement with sneak / walk / sprint and stamina.
+- 8-direction run and sneak animations whose feet don't slide.
+- Footsteps, ambience and reverb.
+- A camera that leads.
+- Faded door transitions.
 
-Suites: validator 45/45, session 14/14, character 19/19, pipeline 789/789. Details are in
-`Docs/STATUS.md`; how to test is in `Docs/TESTING.md`. The pre-edit state is kept at
-`refs/checkpoints/h245-preedit`.
+Suites: validator 49/49, session 15/15, character 13/13, movement 24/24, audio 19/19, camera 9/9,
+transition 13/13, windowed feel probe 3/3. Details are in `Docs/STATUS.md`; checkpoint
+`refs/checkpoints/phase-i-preedit`.
 
 ## 1. Decisions — all answered (20 November 2026)
 
@@ -121,18 +123,18 @@ Carried-over questions worth deciding in that same sitting, from the old "Next t
 
 ## 4. What can start right now
 
-Everything in **Phase I (game feel)** is unblocked. Recommended next prompt, as one batch:
+1. **You: the five-minute feel check, with sound on.** Press F5. Walk, sprint (Shift) and sneak (Ctrl)
+   across the field, the palm path and the road edge, and through the CDS door and back. Listen to the
+   footsteps change between grass and paving, and to the veranda's echo. Watch the camera lead and the door
+   fades. Then look at the new sheets (`assets/sprites/characters/player_character_run.png`, `_sneak.png`).
+   Anything that feels off is a parameter: speeds, acceleration, look-ahead, fade time, footstep gains.
+2. **Next prompt: I6 + I7.** Systemic occlusion (the player is never lost behind a building; this retires
+   the hand-placed roof fades and the dead band behind the Main Gate tower) and interaction v2 (prompts placed
+   in the world, hold-to-interact, keyboard / gamepad glyphs). That completes Phase I.
+3. **Then Phase J:** night, the real lantern, the Night Guard.
 
-1. **I1: player controller v2.** Sneak 32 / walk 62 / sprint 154 px/s, acceleration curves, stamina,
-   8 directions, surface detection from the ground TileSet.
-2. **I3: audio foundation.** Buses, positional audio, ambience, surface-aware footsteps. Free CC0
-   sounds now; your own campus recordings replace them later.
-3. **I4: camera v2 + I5: threaded transitions behind a fade.** The H3 frame-time probe fits here.
-
-Then I2 (8-direction and run/sneak animation re-render), I6 (systemic occlusion) and I7 (interaction v2).
-
-**Your part, any time:** the H1 approval sitting (an hour at the screen), the reference photo and
-sound trip (§2), and reviewing the PROPOSED sections of `Docs/GAME_DESIGN.md`.
+**Still yours, any time:** the H1 approval sitting, the photo and sound trip (§2), and the PROPOSED
+sections of `Docs/GAME_DESIGN.md` (needed before Phase J).
 
 ## 5. Honest expectation setting
 
