@@ -21,6 +21,8 @@ var _collected_ids: Dictionary[String, bool] = {}
 var _flags: Dictionary = {}
 var _items: Dictionary = {}
 var _notes: Array[String] = []
+## note id -> [title, body], so the journal can show a note again anywhere.
+var _note_text: Dictionary = {}
 var objective: String = ""
 var lantern_fuel: float = 0.6
 
@@ -104,10 +106,17 @@ func set_objective(text: String) -> void:
 	objective_changed.emit(text)
 
 
-func mark_note_read(id: String) -> void:
+func mark_note_read(id: String, title: String = "", body: String = "") -> void:
+	if not title.is_empty() or not body.is_empty():
+		_note_text[id] = [title, body]
 	if not _notes.has(id):
 		_notes.append(id)
 		note_read.emit(id)
+
+
+## [title, body] of a read note (["", ""] if unknown).
+func get_note_text(id: String) -> Array:
+	return _note_text.get(id, ["", ""])
 
 
 func has_read_note(id: String) -> bool:
@@ -134,6 +143,7 @@ func reset() -> void:
 	_flags.clear()
 	_items.clear()
 	_notes.clear()
+	_note_text.clear()
 	set_objective("")
 	lantern_fuel = 0.6
 	fuel_changed.emit(lantern_fuel)
@@ -141,7 +151,7 @@ func reset() -> void:
 
 
 func to_dict() -> Dictionary:
-	return {"flags": _flags.duplicate(true), "items": _items.duplicate(), "notes": Array(_notes),
+	return {"flags": _flags.duplicate(true), "items": _items.duplicate(), "notes": Array(_notes), "note_text": _note_text.duplicate(true),
 		"objective": objective, "lantern_fuel": lantern_fuel}
 
 
@@ -155,6 +165,11 @@ func from_dict(d: Dictionary) -> void:
 	_notes.clear()
 	for n in d.get("notes", []):
 		_notes.append(String(n))
+	_note_text.clear()
+	var texts: Dictionary = d.get("note_text", {})
+	for k in texts:
+		var t: Array = texts[k]
+		_note_text[String(k)] = [String(t[0]), String(t[1])] if t.size() >= 2 else ["", ""]
 	objective = String(d.get("objective", ""))
 	lantern_fuel = clampf(float(d.get("lantern_fuel", 0.6)), 0.0, 1.0)
 	objective_changed.emit(objective)

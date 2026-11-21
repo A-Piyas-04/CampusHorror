@@ -1,6 +1,11 @@
 {
 	"zone_id": "cds_veranda",
-	"notes": "Covered walkway x -150..120, y -850..850 (blockout). No textured ground yet, so no ground lattice.",
-	"playable_bounds": [-150, -850, 270, 1700],
+	"notes": "CDS west veranda: three room-shell sections (CdsVerandaNorth/Middle/South), floor x -64..64, grass strip to x -192 (bounded), y -866..868.",
+	"playable_bounds": [
+		-192,
+		-866,
+		256,
+		1734
+	],
 	"walks": []
 }

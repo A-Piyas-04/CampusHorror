@@ -1,0 +1,11 @@
+{
+	"zone_id": "main_gate_security",
+	"notes": "Main Gate security office interior (SecurityOfficeRoom): 5.4 x 6 m. Fixed framing at zoom 3.0.",
+	"playable_bounds": [
+		-87,
+		-124,
+		174,
+		124
+	],
+	"walks": []
+}

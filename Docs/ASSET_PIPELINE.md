@@ -213,6 +213,34 @@ Not a `build_asset.py` config: the character is a rigged, animated sprite sheet,
 - **In Godot:** `scenes/player/Player.tscn` → `Sprite` (`AnimatedSprite2D`, offset (−64, −183), `centered` off, scale 1/3, light mask 2, linear + mipmaps) with `scripts/player/player_animator.gd`. If the cell size, origin or `PX_PER_M` change, update the offset and scale there and in `PlayerCharacterCheck.tscn`.
 - **Check:** `scenes/tests/character_previews/PlayerCharacterCheck.tscn` (`-- --quit-after-checks`): the record, sheet, frames, anchoring of every frame and the runtime behaviour in the real `Main.tscn`.
 
+## Assembly generator, props and rooms (Chapter 1 slice, 21 November 2026)
+
+Decision D19: one data-driven generator, many configs. `generators/assembly.py` builds any prop or room from
+`generator_params`: named procedural materials (`mats`: colour, roughness, metal, variation, per-part tone,
+stains, grime, bump, emission, glass, and patterns: tiles, planks, terrazzo, stripes, grain, checker), and
+objects made of parts (boxes, cylinders, tubes, lathes, lumpy blobs, text), each with optional rotations and an
+`xf` list of moves / turns. Objects can be split into render layers like any other asset. Optional `lights`
+(area or point) and a camera-invisible `ceiling_z` lid let interiors be lit from inside.
+
+The configs are **written by authoring scripts**, never by hand:
+
+| Script | Writes | Notes |
+|---|---|---|
+| `tools/author_lib.py` | (library) | The shared material library and part helpers (`box`, `cbox`, `cyl`, `tube`, `blob`, `lathe`, `text`, `moved`, `rotated_z`, `rotated`), and `write_config` |
+| `tools/author_props.py` | 43 prop configs (`furniture`, `horror`) | Small props get a finer `px_per_m` so the 16 px frame margin holds; very small ones (< 0.37 m) render at a fixed 320 px width instead |
+| `tools/author_rooms.py` | 7 room configs (`interiors`) | The `Room` class: walls with door / window openings, dado and skirting, a cut-down `SouthWall` layer, layers for fixed pieces, wall collision with door gaps, area lights at about 5.5 W per m² of floor (`light_power` scales it) |
+
+Run the script, then `build_asset.py <ids>`. Wall-mounted props need a piece at floor level (a skirting strip,
+a conduit, a hanging chain end): the pipeline requires the ground origin inside the image.
+
+New config option: `godot.sprite_z_index` sets the z_index of the base `Sprite` only (layers keep their own).
+Rooms use -10, so the floor and walls draw under everything, contact shadows (-9) included.
+
+**The Night Guard** (`characters/night_guard.py`) loads `player_character.py` without running it and
+overrides colours, output paths, a cap, the pose functions and the cycle table. It shares the player's rig,
+camera, light, grounding and stride measurement, so its scale and feet anchor match exactly. Outputs:
+`assets/sprites/characters/night_guard_{idle,walk,run}.png`, `scenes/creatures/night_guard_frames.tres`.
+
 ## Regeneration and safety rules
 
 - Files the pipeline never writes: the original wall `.blend`, its three PNGs and records, `campus_asset_workshop.blend`, `WallAssetPreview.tscn`, `Main.tscn` (list in `pipeline/assetconfig.py`).

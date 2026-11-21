@@ -89,6 +89,9 @@ def load(asset_id_or_path):
     if not isinstance(godot.get("scene_name"), str) or not SCENE_RE.match(godot["scene_name"]):
         raise ConfigError("godot.scene_name must be PascalCase (Docs/CONVENTIONS.md §5)")
     godot.setdefault("z_index", 0)
+    # z_index of the base Sprite only (layers keep their own): e.g. -5 for an interior's floor and walls, so
+    # every Y-sorted thing (the player, the room's furniture layers) draws over them.
+    godot.setdefault("sprite_z_index", 0)
     godot.setdefault("light_mask", C.UPRIGHT_LIGHT_MASK)
     godot.setdefault("texture_filter", C.SPRITE_TEXTURE_FILTER)
     godot.setdefault("sprite_offset_adjust_px", [0.0, 0.0])

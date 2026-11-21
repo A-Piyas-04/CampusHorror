@@ -17,6 +17,10 @@ extends Camera2D
 @export var shake_decay: float = 1.6
 
 var look_ahead_px: float = 48.0
+## 0..1 from Composure: the frame tightens a little as fear rises (Docs/GAME_DESIGN.md section 4).
+var tension := 0.0
+var _base_zoom := 2.0
+var _tension_applied := 0.0
 var _look := Vector2.ZERO
 var _trauma := 0.0
 var _shake_t := 0.0
@@ -44,11 +48,16 @@ func _physics_process(delta: float) -> void:
 		shake = Vector2(sin(_shake_t * 47.0) + sin(_shake_t * 23.0), cos(_shake_t * 41.0) + sin(_shake_t * 29.0)) * 0.5 * k
 		_trauma = maxf(_trauma - shake_decay * delta, 0.0)
 	offset = _look + shake
+	# Only touches the zoom while the tension changes (tools may set the zoom themselves).
+	if absf(tension - _tension_applied) > 0.001:
+		_tension_applied = lerpf(_tension_applied, tension, 1.0 - exp(-1.5 * delta))
+		zoom = Vector2.ONE * _base_zoom * (1.0 + 0.09 * _tension_applied)
 
 
 ## Zoom, limits and look-ahead for the zone being entered.
 func apply_profile(profile: ZoneProfile) -> void:
-	zoom = Vector2.ONE * profile.camera_zoom
+	_base_zoom = profile.camera_zoom
+	zoom = Vector2.ONE * profile.camera_zoom * (1.0 + 0.09 * _tension_applied)
 	look_ahead_px = profile.look_ahead_px
 	var r := profile.camera_limits
 	if r.size.x > 0.0 and r.size.y > 0.0:

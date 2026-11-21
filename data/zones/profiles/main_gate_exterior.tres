@@ -8,6 +8,7 @@ script = ExtResource("1_profile")
 camera_zoom = 2.0
 camera_limits = Rect2(-2400, -1800, 5400, 3750)
 look_ahead_px = 48.0
+night_ambient = Color(0.2, 0.22, 0.32, 1)
 default_surface = &"grass"
 ambience = ExtResource("2_ambience")
 ambience_volume_db = -4.0

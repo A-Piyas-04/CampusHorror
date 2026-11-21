@@ -1,0 +1,11 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/components/examine.gd" id="1_examine"]
+[ext_resource type="PackedScene" path="res://scenes/components/Interactable.tscn" id="2_interactable"]
+
+[node name="Examine" type="Node2D"]
+script = ExtResource("1_examine")
+
+[node name="Interactable" parent="." instance=ExtResource("2_interactable")]
+
+[connection signal="interacted" from="Interactable" to="." method="_on_interactable_interacted"]

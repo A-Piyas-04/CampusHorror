@@ -259,8 +259,14 @@ func _rule_profile(zone_id: String, zone: Zone, manifest: Dictionary) -> Array:
 		f.append("no ambience bed")
 	var b: Array = manifest.get("playable_bounds", [])
 	if r.size.x > 0.0 and b.size() == 4:
-		var half := BASE_VIEW / p.camera_zoom * 0.5
-		var need := Rect2(b[0], b[1], b[2], b[3]).grow_individual(half.x, half.y, half.x, half.y)
+		# A scrolling axis must keep half a view of zone around the playable area. An axis whose limits are no
+		# bigger than one view is a fixed framing (small interiors, decision D21): the whole room is in view and
+		# the black around it is intended, so the playable area only has to lie inside the limits on that axis.
+		var view := BASE_VIEW / p.camera_zoom
+		var half := view * 0.5
+		var hx := 0.0 if r.size.x <= view.x + 2.0 else half.x
+		var hy := 0.0 if r.size.y <= view.y + 2.0 else half.y
+		var need := Rect2(b[0], b[1], b[2], b[3]).grow_individual(hx, hy, hx, hy)
 		if not r.encloses(need):
 			f.append("camera_limits %s don't contain the playable bounds plus half a view at zoom %.2f (%s)" % [r, p.camera_zoom, need])
 	var fset := load(FOOTSTEPS) as FootstepSet
@@ -289,8 +295,8 @@ func _rule_conventions(zone_id: String, zone: Zone, manifest: Dictionary) -> Arr
 			var b := n as StaticBody2D
 			if b.collision_layer != LAYER_WORLD or b.collision_mask != 0:
 				f.append("%s: StaticBody2D must be layer 1 'world' / mask none (layer %d, mask %d)" % [p, b.collision_layer, b.collision_mask])
-		elif n is CharacterBody2D or n is RigidBody2D:
-			f.append("%s: zones must not contain moving bodies yet (%s)" % [p, n.get_class()])
+		elif (n is CharacterBody2D and not (n is NightGuard)) or n is RigidBody2D:
+			f.append("%s: zones must not contain moving bodies other than creatures (%s)" % [p, n.get_class()])
 		if n is Area2D:
 			n_areas += 1
 			var a := n as Area2D
@@ -448,7 +454,9 @@ func _snap(zone: Node, node: Node, path: String, out: Dictionary) -> void:
 		rec["occluder"] = _pts(lo.occluder.polygon) if lo.occluder else []
 	if node is Light2D:
 		var li := node as Light2D
-		rec["light"] = {"enabled": li.enabled, "energy": li.energy, "color": _col(li.color), "shadows": li.shadow_enabled,
+		# A LampLight animates `energy` every frame (flicker, breathing): record its authored `base_energy` instead.
+		var authored_energy: float = li.get("base_energy") if li.get("base_energy") != null else li.energy
+		rec["light"] = {"enabled": li.enabled, "energy": authored_energy, "color": _col(li.color), "shadows": li.shadow_enabled,
 			"range_mask": li.range_item_cull_mask, "shadow_mask": li.shadow_item_cull_mask}
 	var vars := _script_vars(node)
 	if not vars.is_empty():

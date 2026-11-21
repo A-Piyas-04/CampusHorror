@@ -7,6 +7,8 @@ extends Node
 ## `face=<down|up|left|right>` (a short step that way so the player faces it, then back to the position) and
 ## `walk=<down|up|left|right>` (the move action is held while the shot is taken) and `gait=<sprint|sneak>`
 ## (that action is held too, so the shot shows the run or sneak cycle).
+## `storynight` (the story's per-zone night darkness and the burning lantern, i.e. what a player sees),
+## `hideplayer` (no player sprite, for title images) and `lanternstate=<0|1|2>` (Off / Low / Full).
 ## Global `--zoom=<f>` sets the default camera zoom.
 
 const MAIN_SCENE := "res://scenes/core/Main.tscn"
@@ -38,12 +40,18 @@ func _ready() -> void:
 		var opts := {}
 		for part in parts.slice(2):
 			opts[part.get_slice("=", 0)] = part.get_slice("=", 1) if part.contains("=") else "1"
-		camera.zoom = Vector2.ONE * float(opts.zoom) if opts.has("zoom") else default_zoom
-		tint.set("is_night", opts.has("night"))
-		lantern.enabled = true if opts.has("lantern") else lantern_default
-		if opts.has("zone") and opts.zone != main.get_current_zone_id():
+		GameState.set_flag("night", opts.has("storynight"))
+		if opts.has("zone") and (opts.zone != main.get_current_zone_id() or opts.has("storynight")):
 			main.enter_zone_at_position(opts.zone, pos)
 			await _settle(0.3)
+		camera.zoom = Vector2.ONE * float(opts.zoom) if opts.has("zoom") else default_zoom
+		if not opts.has("storynight"):
+			tint.set("is_night", opts.has("night"))
+		lantern.enabled = true if opts.has("lantern") else lantern_default
+		if opts.has("lanternstate"):
+			lantern.call("set_state", int(opts.lanternstate))
+		(player.get_node("Sprite") as CanvasItem).visible = not opts.has("hideplayer")
+		(player.get_node("ContactShadow") as CanvasItem).visible = not opts.has("hideplayer")
 		player.call("teleport", pos)
 		if opts.has("face"):
 			await _hold("move_" + opts.face, 4)

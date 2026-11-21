@@ -1,0 +1,11 @@
+{
+	"zone_id": "cds_indoor_basketball",
+	"notes": "CDS indoor games hall interior (CdsIndoorBasketballRoom): 18 x 20 m. Fixed across, scrolls in depth.",
+	"playable_bounds": [
+		-288,
+		-412,
+		576,
+		412
+	],
+	"walks": []
+}

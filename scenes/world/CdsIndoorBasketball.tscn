@@ -1,0 +1,273 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/world/zones/hall_zone.gd" id="1_r"]
+[ext_resource type="Resource" path="res://data/zones/profiles/cds_indoor_basketball.tres" id="2_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/interiors/CdsIndoorBasketballRoom.tscn" id="3_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/furniture/FloorHatchClosed.tscn" id="4_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/furniture/FloorHatchOpen.tscn" id="5_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/horror/GrowthPods.tscn" id="6_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/common/ContactShadow.tscn" id="7_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/furniture/GymBench.tscn" id="8_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/horror/CoveredShape.tscn" id="9_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/horror/BloodTrail.tscn" id="10_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/horror/PapersScattered.tscn" id="11_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/furniture/BreakerPanel.tscn" id="12_r"]
+[ext_resource type="PackedScene" path="res://scenes/components/Keypad.tscn" id="13_r"]
+[ext_resource type="PackedScene" path="res://scenes/components/Examine.tscn" id="14_r"]
+[ext_resource type="Texture2D" path="res://data/lighting/light_soft.tres" id="15_r"]
+[ext_resource type="Script" path="res://scripts/world/glow_mark.gd" id="16_r"]
+[ext_resource type="PackedScene" path="res://scenes/components/Door.tscn" id="17_r"]
+[ext_resource type="PackedScene" path="res://scenes/components/SpawnMarker.tscn" id="18_r"]
+[ext_resource type="Script" path="res://scripts/lighting/lamp_light.gd" id="19_r"]
+[ext_resource type="PackedScene" path="res://scenes/creatures/NightGuard.tscn" id="20_r"]
+
+[node name="CdsIndoorBasketball" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_r")
+zone_id = "cds_indoor_basketball"
+profile = ExtResource("2_r")
+
+[node name="Objects" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Props" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="Story" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="Lights" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="Doors" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="SpawnMarkers" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="Glow" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="Room" parent="Objects" instance=ExtResource("3_r")]
+
+[node name="FloorHatchClosed" parent="Objects" instance=ExtResource("4_r")]
+position = Vector2(-24, -292.1792)
+
+[node name="FloorHatchOpen" parent="Objects" instance=ExtResource("5_r")]
+position = Vector2(-24, -292.1792)
+visible = false
+
+[node name="Pods" parent="Objects/Props" instance=ExtResource("6_r")]
+position = Vector2(-246.4, -358.0224)
+
+[node name="ContactShadow" parent="Objects/Props/Pods" instance=ExtResource("7_r")]
+scale = Vector2(0.8, 0.4)
+
+[node name="PodsB" parent="Objects/Props" instance=ExtResource("6_r")]
+position = Vector2(-102.4, -382.7136)
+scale = Vector2(-1, 1)
+
+[node name="ContactShadow" parent="Objects/Props/PodsB" instance=ExtResource("7_r")]
+scale = Vector2(0.8, 0.4)
+
+[node name="BenchWest" parent="Objects/Props" instance=ExtResource("8_r")]
+position = Vector2(-265.6, -185.184)
+rotation = 0
+
+[node name="ContactShadow" parent="Objects/Props/BenchWest" instance=ExtResource("7_r")]
+scale = Vector2(1.2, 0.25)
+
+[node name="Covered" parent="Objects/Props" instance=ExtResource("9_r")]
+position = Vector2(112, -123.456)
+
+[node name="ContactShadow" parent="Objects/Props/Covered" instance=ExtResource("7_r")]
+scale = Vector2(1.2, 0.4)
+
+[node name="BloodTrail" parent="Objects/Props" instance=ExtResource("10_r")]
+position = Vector2(48, -216.048)
+
+[node name="Papers" parent="Objects/Props" instance=ExtResource("11_r")]
+position = Vector2(-160, -102.88)
+
+[node name="BreakerPanel" parent="Objects/Props" instance=ExtResource("12_r")]
+position = Vector2(-144, -411.52)
+
+[node name="Breaker" parent="Objects/Story" instance=ExtResource("13_r")]
+position = Vector2(-144, -402.2608)
+code = "2704"
+title = "MAIN BREAKER"
+solved_flag = "power_on"
+solved_message = "The breaker is on."
+not_ready_message = ""
+
+[node name="ClimbDown" parent="Objects" instance=ExtResource("14_r")]
+position = Vector2(-24, -273.6608)
+verb = "Climb down"
+object_name = "The hatch"
+sets_flag = "chapter1_done"
+visible = false
+
+[node name="HatchLight" type="PointLight2D" parent="Objects"]
+position = Vector2(-24, -292.1792)
+enabled = false
+color = Color(0.45, 1, 0.75, 1)
+energy = 1.3
+range_item_cull_mask = 3
+texture = ExtResource("15_r")
+texture_scale = 1.4
+
+[node name="HatchGlow" type="Node2D" parent="Objects"]
+position = Vector2(-24, -292.1792)
+visible = false
+script = ExtResource("16_r")
+color = Color(0.45, 1, 0.82, 1)
+intensity = 1.2
+spots = PackedVector3Array(0, 0, 18, -8, -6, 10, 10, 4, 9)
+trail_to = Vector2(-210, -80)
+pulse_speed = 0.8
+
+[node name="PlantTrail" type="Node2D" parent="Objects/Glow"]
+position = Vector2(-208, -382.7136)
+script = ExtResource("16_r")
+color = Color(0.45, 1, 0.82, 1)
+intensity = 0.9
+pulse_speed = 0.5
+trail_to = Vector2(190, 90)
+
+[node name="PodGlow" type="Node2D" parent="Objects/Glow"]
+position = Vector2(-246.4, -358.0224)
+script = ExtResource("16_r")
+color = Color(0.45, 1, 0.82, 1)
+intensity = 0.9
+pulse_speed = 0.6
+spots = PackedVector3Array(-10, -10, 6, 8, -14, 5, 0, -24, 4, 14, -6, 4)
+
+[node name="PodGlowB" type="Node2D" parent="Objects/Glow"]
+position = Vector2(-102.4, -382.7136)
+script = ExtResource("16_r")
+color = Color(0.45, 1, 0.82, 1)
+intensity = 0.9
+pulse_speed = 0.6
+spots = PackedVector3Array(-8, -12, 5, 6, -18, 4, 12, -8, 5)
+
+[node name="DoorToVeranda" parent="Objects/Doors" instance=ExtResource("17_r")]
+position = Vector2(-278.4, -61.728)
+destination_zone_id = "cds_veranda"
+destination_spawn_id = "veranda_hall"
+verb = "Go out"
+place_name = "CDS veranda"
+show_placeholder = false
+
+[node name="Spawn_hall_from_veranda" parent="Objects/SpawnMarkers" instance=ExtResource("18_r")]
+position = Vector2(-249.6, -61.728)
+spawn_id = "hall_from_veranda"
+
+[node name="Tube1" type="PointLight2D" parent="Objects/Lights"]
+position = Vector2(-144, -102.88)
+color = Color(0.95, 0.97, 1, 1)
+energy = 0.9
+range_item_cull_mask = 3
+texture = ExtResource("15_r")
+texture_scale = 3
+script = ExtResource("19_r")
+mode = 0
+needs_power = true
+base_energy = 0.9
+gameplay = true
+
+[node name="Tube2" type="PointLight2D" parent="Objects/Lights"]
+position = Vector2(112, -102.88)
+color = Color(0.95, 0.97, 1, 1)
+energy = 0.9
+range_item_cull_mask = 3
+texture = ExtResource("15_r")
+texture_scale = 3
+script = ExtResource("19_r")
+mode = 0
+needs_power = true
+base_energy = 0.9
+gameplay = true
+
+[node name="Tube3" type="PointLight2D" parent="Objects/Lights"]
+position = Vector2(-144, -267.488)
+color = Color(0.95, 0.97, 1, 1)
+energy = 0.9
+range_item_cull_mask = 3
+texture = ExtResource("15_r")
+texture_scale = 3
+script = ExtResource("19_r")
+mode = 1
+needs_power = true
+base_energy = 0.9
+gameplay = true
+
+[node name="Tube4" type="PointLight2D" parent="Objects/Lights"]
+position = Vector2(112, -267.488)
+color = Color(0.95, 0.97, 1, 1)
+energy = 0.9
+range_item_cull_mask = 3
+texture = ExtResource("15_r")
+texture_scale = 3
+script = ExtResource("19_r")
+mode = 0
+needs_power = true
+base_energy = 0.9
+gameplay = true
+
+[node name="Moon1" type="PointLight2D" parent="Objects/Lights"]
+position = Vector2(-96, -370.368)
+color = Color(0.55, 0.65, 1, 1)
+energy = 0.3
+range_item_cull_mask = 3
+texture = ExtResource("15_r")
+texture_scale = 1.8
+script = ExtResource("19_r")
+mode = 0
+needs_power = false
+base_energy = 0.3
+gameplay = false
+
+[node name="Moon2" type="PointLight2D" parent="Objects/Lights"]
+position = Vector2(96, -370.368)
+color = Color(0.55, 0.65, 1, 1)
+energy = 0.3
+range_item_cull_mask = 3
+texture = ExtResource("15_r")
+texture_scale = 1.8
+script = ExtResource("19_r")
+mode = 0
+needs_power = false
+base_energy = 0.3
+gameplay = false
+
+[node name="Moon3" type="PointLight2D" parent="Objects/Lights"]
+position = Vector2(224, -370.368)
+color = Color(0.55, 0.65, 1, 1)
+energy = 0.3
+range_item_cull_mask = 3
+texture = ExtResource("15_r")
+texture_scale = 1.8
+script = ExtResource("19_r")
+mode = 0
+needs_power = false
+base_energy = 0.3
+gameplay = false
+
+[node name="ExitSign" type="PointLight2D" parent="Objects/Lights"]
+position = Vector2(-272, -154.6496)
+color = Color(0.35, 1, 0.5, 1)
+energy = 0.45
+range_item_cull_mask = 3
+texture = ExtResource("15_r")
+texture_scale = 0.55
+script = ExtResource("19_r")
+mode = 0
+needs_power = false
+base_energy = 0.45
+gameplay = false
+
+[node name="FinaleGuard" parent="Objects" instance=ExtResource("20_r")]
+position = Vector2(-307.2, -61.728)
+visible = false
+active = false
+metadata/role = "finale"

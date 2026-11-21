@@ -84,8 +84,14 @@
 				"destination_spawn_id": "\"by_south_door\"",
 				"destination_zone_id": "\"test_zone_b\"",
 				"hold_seconds": "0.0",
+				"locked_message": "\"Locked.\"",
 				"path": "res://scripts/components/door.gd",
 				"place_name": "\"Test Zone B\"",
+				"required_item": "\"\"",
+				"requires_flag": "\"\"",
+				"show_placeholder": "true",
+				"unlock_message": "\"\"",
+				"unlocked_flag": "\"door_unlocked_DoorToZoneB\"",
 				"verb": "\"Enter\""
 			},
 			"visible": true,
@@ -455,9 +461,13 @@
 			"light_mask": 1,
 			"scene": "res://scenes/components/Pickup.tscn",
 			"script": {
+				"fuel": "0.0",
+				"item_id": "\"\"",
 				"item_name": "\"Test pickup\"",
 				"path": "res://scripts/components/pickup.gd",
 				"pickup_id": "\"test_pickup_01\"",
+				"sets_flag": "\"\"",
+				"show_placeholder": "true",
 				"verb": "\"Pick up\""
 			},
 			"visible": true,

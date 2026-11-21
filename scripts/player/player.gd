@@ -44,6 +44,8 @@ signal interaction_hold_changed(progress: float)
 ## False while a transition or cutscene owns the player: no movement input (the player brakes to a stop)
 ## and no interaction.
 var input_enabled := true
+## True while tucked into a HideSpot: unseen, unheard, the lantern out.
+var concealed := false
 var stamina := 1.0
 var winded := false
 ## What the player is asking for this frame.
@@ -63,6 +65,7 @@ var _hold := -1.0
 
 
 func _ready() -> void:
+	add_to_group("player")
 	# Sounds are heard from the player's feet, not from the look-ahead camera.
 	($Listener as AudioListener2D).make_current()
 

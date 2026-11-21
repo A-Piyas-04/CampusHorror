@@ -1,0 +1,285 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/world/zone.gd" id="1_r"]
+[ext_resource type="Resource" path="res://data/zones/profiles/cds_canteen.tres" id="2_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/interiors/CdsCanteenRoom.tscn" id="3_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/furniture/CanteenTableStart.tscn" id="4_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/common/ContactShadow.tscn" id="5_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/furniture/CanteenTableSetB.tscn" id="6_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/furniture/CanteenTableSetA.tscn" id="7_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/furniture/CanteenTableSetC.tscn" id="8_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/furniture/ChairStack.tscn" id="9_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/furniture/TrashBin.tscn" id="10_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/furniture/WaterDrum.tscn" id="11_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/furniture/CrateStack.tscn" id="12_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/furniture/DegchiPot.tscn" id="13_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/horror/PapersScattered.tscn" id="14_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/furniture/NoticeBoard.tscn" id="15_r"]
+[ext_resource type="PackedScene" path="res://scenes/components/Pickup.tscn" id="16_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/furniture/HurricaneLantern.tscn" id="17_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/furniture/OilBottle.tscn" id="18_r"]
+[ext_resource type="PackedScene" path="res://scenes/components/Readable.tscn" id="19_r"]
+[ext_resource type="PackedScene" path="res://scenes/components/Examine.tscn" id="20_r"]
+[ext_resource type="PackedScene" path="res://scenes/components/Door.tscn" id="21_r"]
+[ext_resource type="PackedScene" path="res://scenes/components/SpawnMarker.tscn" id="22_r"]
+[ext_resource type="Texture2D" path="res://data/lighting/light_soft.tres" id="23_r"]
+[ext_resource type="Script" path="res://scripts/lighting/lamp_light.gd" id="24_r"]
+[ext_resource type="Script" path="res://scripts/world/glow_mark.gd" id="25_r"]
+
+[node name="CdsCanteen" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_r")
+zone_id = "cds_canteen"
+profile = ExtResource("2_r")
+
+[node name="Objects" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Props" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="Story" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="Lights" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="Doors" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="SpawnMarkers" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="Glow" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="Room" parent="Objects" instance=ExtResource("3_r")]
+
+[node name="TableStart" parent="Objects/Props" instance=ExtResource("4_r")]
+position = Vector2(-144, -72.016)
+
+[node name="ContactShadow" parent="Objects/Props/TableStart" instance=ExtResource("5_r")]
+scale = Vector2(1, 0.55)
+
+[node name="Table02" parent="Objects/Props" instance=ExtResource("6_r")]
+position = Vector2(-25.6, -72.016)
+
+[node name="ContactShadow" parent="Objects/Props/Table02" instance=ExtResource("5_r")]
+scale = Vector2(1, 0.55)
+
+[node name="Table03" parent="Objects/Props" instance=ExtResource("7_r")]
+position = Vector2(92.8, -72.016)
+
+[node name="ContactShadow" parent="Objects/Props/Table03" instance=ExtResource("5_r")]
+scale = Vector2(1, 0.55)
+
+[node name="Table04" parent="Objects/Props" instance=ExtResource("8_r")]
+position = Vector2(195.2, -74.0736)
+
+[node name="ContactShadow" parent="Objects/Props/Table04" instance=ExtResource("5_r")]
+scale = Vector2(1, 0.55)
+
+[node name="Table05" parent="Objects/Props" instance=ExtResource("7_r")]
+position = Vector2(-144, -135.8016)
+scale = Vector2(-1, 1)
+
+[node name="ContactShadow" parent="Objects/Props/Table05" instance=ExtResource("5_r")]
+scale = Vector2(1, 0.55)
+
+[node name="Table06" parent="Objects/Props" instance=ExtResource("8_r")]
+position = Vector2(-25.6, -135.8016)
+
+[node name="ContactShadow" parent="Objects/Props/Table06" instance=ExtResource("5_r")]
+scale = Vector2(1, 0.55)
+
+[node name="Table07" parent="Objects/Props" instance=ExtResource("6_r")]
+position = Vector2(92.8, -135.8016)
+
+[node name="ContactShadow" parent="Objects/Props/Table07" instance=ExtResource("5_r")]
+scale = Vector2(1, 0.55)
+
+[node name="Table08" parent="Objects/Props" instance=ExtResource("7_r")]
+position = Vector2(195.2, -135.8016)
+
+[node name="ContactShadow" parent="Objects/Props/Table08" instance=ExtResource("5_r")]
+scale = Vector2(1, 0.55)
+
+[node name="Table09" parent="Objects/Props" instance=ExtResource("6_r")]
+position = Vector2(-144, -195.472)
+
+[node name="ContactShadow" parent="Objects/Props/Table09" instance=ExtResource("5_r")]
+scale = Vector2(1, 0.55)
+
+[node name="Table10" parent="Objects/Props" instance=ExtResource("7_r")]
+position = Vector2(-25.6, -195.472)
+scale = Vector2(-1, 1)
+
+[node name="ContactShadow" parent="Objects/Props/Table10" instance=ExtResource("5_r")]
+scale = Vector2(1, 0.55)
+
+[node name="Table11" parent="Objects/Props" instance=ExtResource("8_r")]
+position = Vector2(92.8, -191.3568)
+
+[node name="ContactShadow" parent="Objects/Props/Table11" instance=ExtResource("5_r")]
+scale = Vector2(1, 0.55)
+
+[node name="ChairStack" parent="Objects/Props" instance=ExtResource("9_r")]
+position = Vector2(220.8, -20.576)
+
+[node name="ContactShadow" parent="Objects/Props/ChairStack" instance=ExtResource("5_r")]
+scale = Vector2(0.4, 0.3)
+
+[node name="TrashBin" parent="Objects/Props" instance=ExtResource("10_r")]
+position = Vector2(-220.8, -74.0736)
+
+[node name="ContactShadow" parent="Objects/Props/TrashBin" instance=ExtResource("5_r")]
+scale = Vector2(0.35, 0.25)
+
+[node name="WaterDrum" parent="Objects/Props" instance=ExtResource("11_r")]
+position = Vector2(-166.4, -255.1424)
+
+[node name="ContactShadow" parent="Objects/Props/WaterDrum" instance=ExtResource("5_r")]
+scale = Vector2(0.45, 0.3)
+
+[node name="Crates" parent="Objects/Props" instance=ExtResource("12_r")]
+position = Vector2(220.8, -244.8544)
+
+[node name="ContactShadow" parent="Objects/Props/Crates" instance=ExtResource("5_r")]
+scale = Vector2(0.6, 0.3)
+
+[node name="Pot" parent="Objects/Props" instance=ExtResource("13_r")]
+position = Vector2(140.8, -236.624)
+
+[node name="ContactShadow" parent="Objects/Props/Pot" instance=ExtResource("5_r")]
+scale = Vector2(0.45, 0.3)
+
+[node name="Papers" parent="Objects/Props" instance=ExtResource("14_r")]
+position = Vector2(38.4, -102.88)
+
+[node name="NoticeBoard" parent="Objects/Props" instance=ExtResource("15_r")]
+position = Vector2(214.4, -267.488)
+
+[node name="Lantern" parent="Objects/Story" instance=ExtResource("16_r")]
+position = Vector2(-8, -256.1712)
+pickup_id = "canteen_hurricane_lantern"
+verb = "Take"
+item_name = "Hurricane lantern"
+show_placeholder = false
+y_sort_enabled = true
+sets_flag = "got_lantern"
+
+[node name="Visual" parent="Objects/Story/Lantern" instance=ExtResource("17_r")]
+position = Vector2(0, -24.512)
+
+[node name="Oil" parent="Objects/Story" instance=ExtResource("16_r")]
+position = Vector2(102.4, -187.2416)
+pickup_id = "canteen_oil"
+verb = "Pick up"
+item_name = "Lamp kerosene"
+show_placeholder = false
+y_sort_enabled = true
+fuel = 0.25
+
+[node name="Visual" parent="Objects/Story/Oil" instance=ExtResource("18_r")]
+position = Vector2(0, -18.384)
+
+[node name="Notebook" parent="Objects/Story" instance=ExtResource("19_r")]
+position = Vector2(-134.4, -61.728)
+note_id = "player_notebook"
+title = "Your notebook"
+body = "DIGITAL LOGIC LAB REPORT: due Friday 9:00 am.\n\nTo do: ch. 4 timing diagrams, conclusion, references.\n\nCanteen closes 10:30 but the guard never kicks anyone out of CDS.\n\nDO NOT FALL ASLEEP."
+verb = "Read"
+requires_light = false
+
+[node name="Notice" parent="Objects/Story" instance=ExtResource("19_r")]
+position = Vector2(214.4, -259.2576)
+note_id = "canteen_notice"
+title = "Notice board"
+body = "NOTICE: CDS block\n\nDuring the exam period the canteen closes at 10:30 pm. Students must leave the CDS block by 11 pm.\n\nLOAD-SHEDDING: hurricane lanterns are kept on the serving counter. Return them after use.\n\nThe indoor games hall is CLOSED for maintenance. Master key with the security office at the Main Gate.\n\n(Someone has written underneath, in pen: \"the hall floor is warm. why is the hall floor warm\")"
+verb = "Read"
+requires_light = true
+
+[node name="Kitchen" parent="Objects/Story" instance=ExtResource("20_r")]
+position = Vector2(169.6, -248.9696)
+verb = "Look"
+object_name = "Kitchen door"
+message = "Something has grown out of the kitchen. It is wet, and it is warm. You don't go in."
+
+[node name="DoorToVeranda" parent="Objects/Doors" instance=ExtResource("21_r")]
+position = Vector2(-230.4, -32.9216)
+destination_zone_id = "cds_veranda"
+destination_spawn_id = "veranda_canteen"
+verb = "Go out"
+place_name = "CDS veranda"
+show_placeholder = false
+
+[node name="Spawn_canteen_from_veranda" parent="Objects/SpawnMarkers" instance=ExtResource("22_r")]
+position = Vector2(-204.8, -32.9216)
+spawn_id = "canteen_from_veranda"
+
+[node name="Spawn_canteen_wake" parent="Objects/SpawnMarkers" instance=ExtResource("22_r")]
+position = Vector2(-131.2, -41.152)
+spawn_id = "canteen_wake"
+
+[node name="MoonWest" type="PointLight2D" parent="Objects/Lights"]
+position = Vector2(-176, -218.1056)
+color = Color(0.55, 0.65, 1, 1)
+energy = 0.45
+range_item_cull_mask = 3
+texture = ExtResource("23_r")
+texture_scale = 1.6
+script = ExtResource("24_r")
+mode = 0
+needs_power = false
+base_energy = 0.45
+gameplay = false
+
+[node name="MoonEast" type="PointLight2D" parent="Objects/Lights"]
+position = Vector2(-83.2, -218.1056)
+color = Color(0.55, 0.65, 1, 1)
+energy = 0.45
+range_item_cull_mask = 3
+texture = ExtResource("23_r")
+texture_scale = 1.6
+script = ExtResource("24_r")
+mode = 0
+needs_power = false
+base_energy = 0.45
+gameplay = false
+
+[node name="ExitSign" type="PointLight2D" parent="Objects/Lights"]
+position = Vector2(-224, -117.6128)
+color = Color(0.35, 1, 0.5, 1)
+energy = 0.5
+range_item_cull_mask = 3
+texture = ExtResource("23_r")
+texture_scale = 0.6
+script = ExtResource("24_r")
+mode = 0
+needs_power = false
+base_energy = 0.5
+gameplay = false
+
+[node name="KitchenSpill" type="Node2D" parent="Objects/Glow"]
+position = Vector2(169.6, -238.6816)
+script = ExtResource("25_r")
+color = Color(0.45, 1, 0.82, 1)
+intensity = 0.9
+pulse_speed = 0.6
+spots = PackedVector3Array(-20, 6, 9, 8, -4, 12, 26, 10, 7, -6, 20, 6, 14, 26, 8, -30, -6, 5, 40, -2, 6)
+
+[node name="TrailToDoor" type="Node2D" parent="Objects/Glow"]
+position = Vector2(140.8, -213.9904)
+script = ExtResource("25_r")
+color = Color(0.45, 1, 0.82, 1)
+intensity = 0.7
+pulse_speed = 0.4
+trail_to = Vector2(-270, 180)
+
+[node name="TrailToDoor2" type="Node2D" parent="Objects/Glow"]
+position = Vector2(-160, -53.4976)
+script = ExtResource("25_r")
+color = Color(0.45, 1, 0.82, 1)
+intensity = 0.6
+pulse_speed = 0.4
+trail_to = Vector2(-60, 15)

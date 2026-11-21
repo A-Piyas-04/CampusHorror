@@ -1,6 +1,6 @@
 # Project status
 
-Last updated: 21 November 2026
+Last updated: 21 November 2026 (Chapter 1 slice)
 
 ## Resumed after a pause — read this first
 
@@ -30,6 +30,47 @@ Headline finding: the asset pipeline and one zone are in excellent shape (7,831 
 21 validated assets), while the game itself is a 659-line prototype with no enemies, puzzles, fear
 system, inventory, UI or audio (0 sound files). The roadmap therefore stops map expansion until the
 game loop exists. Everything below this section remains the authoritative per-batch record.
+
+## Chapter 1 slice, "Lights Out" (21 November 2026) — built autonomously, verified, not committed
+
+The owner asked for a complete playable piece of the mapped area, built without further questions (D16).
+Everything is recorded in `Docs/CHAPTER1.md` (how to play, the beat sheet, systems, art, how to extend) and
+decisions D16–D24. In short:
+
+- **A finishable chapter**, 20–30 minutes: title screen -> intro -> wake in the dark canteen -> the lantern ->
+  the chained Main Gate -> the security office (logbook, master key) -> the Night Guard wakes -> the dark-only
+  code in the table-tennis room -> the indoor games hall's breaker -> power, the hatch, the chase -> end card.
+  Checkpoints at every zone entry and beat; caught or fainting returns you to the last one.
+- **Five new interiors** built as 3D Blender room shells (security office, canteen, table-tennis room, indoor
+  games hall, the veranda in three sections), furnished with **43 new rendered props**, all from one parametric
+  generator and two authoring scripts.
+- **The Night Guard**: rendered (idle, dragging walk, reaching run, 8 facings), light / sight / sound senses,
+  patrol, investigate, chase, search, on a navigation mesh baked from the zone.
+- **Horror on the field**: dead and flickering lamps, a covered body, blood trails, organism growth and pods,
+  dropped belongings, a phone with the last messages, crows that give you away, glowing trails visible only
+  in the dark, the guard's first appearance under the gate lamp, hedges to hide in.
+- **Systems**: story director, GameState v2 (flags, items, notes, objective, fuel), saves v2 (atomic,
+  autosave), lantern v2 (Full / Low / Off, kerosene), lamps, glow marks, composure (vignette, colour drain,
+  heartbeat, breathing, camera), hide spots, keypad, examine, readables, HUD, note viewer, journal, pause and
+  settings, story cards, title screen, 24 generated sounds.
+- Running `Main.tscn` directly is still the daylight sandbox the tests use; the title screen is now the main
+  scene.
+
+**Tests (all pass, 21 November 2026)**: scripts 53/53, zone validator 89/89 (8 zones, baselines refreshed
+after reading the diffs: in the exterior every pre-existing node is unchanged apart from the CDS door's
+script), session 15/15, character 13/13, movement 24/24, audio 19/19, camera 9/9, transition 13/13,
+occlusion 14/14, interaction 12/12, **chapter 1 48/48** (the whole chapter played with real input, including
+being caught and reloading), pipeline validate 71/71 assets. Windowed captures of every zone at night and of the
+title / intro / first minutes were reviewed (`scenes/tests/environment_previews/StoryCapture.tscn`).
+
+Bugs found and fixed on the way: occlusion ghosts crashed on props freed while indexed (collected pickups); door
+gaps in side walls let the player walk out of a room into the void (door stops added); the security office's
+outside door sat on the zone edge (moved); audio ducking restored buses to 0 dB instead of the player's
+volume setting; the occlusion update went over budget with the new props (grid index, 0.33 -> 0.11 ms).
+
+**Needs the owner's eyes**: play it from the title screen with sound on (Docs/CHAPTER1.md has the
+controls). The interiors are invented, since there were no interior references: photos of the real rooms
+would make them accurate (`Docs/MAP_INTAKE.md`, stage 1b).
 
 ## Phase I batch 2: I6 + I7 (21 November 2026) — verified (automated + windowed), not committed
 

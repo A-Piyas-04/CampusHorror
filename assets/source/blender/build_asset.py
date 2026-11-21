@@ -152,7 +152,9 @@ def step_validate(cfg, args, rep):
               f"camera ortho, elevation {cam['elevation_deg']}, azimuth {cam['azimuth_deg']}")
     rep.check("none" in record["lighting"]["ground"], "no ground plane / baked ground shadow")
     w, h = proj["image_px"]
-    rep.check(abs(proj["px_per_m"] - w / cam["ortho_scale_m"]) < 1e-3, f"px/m {proj['px_per_m']:.3f} = width / ortho scale")
+    # The record stores the ortho scale to 6 decimals, so the tolerance grows with the density (tiny props).
+    rep.check(abs(proj["px_per_m"] - w / cam["ortho_scale_m"]) < 1e-3 + proj["px_per_m"] * 1e-5,
+              f"px/m {proj['px_per_m']:.3f} = width / ortho scale")
 
     try:
         png = pngcheck.analyse(out["png"])

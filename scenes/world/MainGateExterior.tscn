@@ -22,6 +22,33 @@
 [ext_resource type="PackedScene" path="res://scenes/props/street_furniture/FlagPoleWhite.tscn" id="20_flag_white"]
 [ext_resource type="PackedScene" path="res://scenes/props/street_furniture/LampPost.tscn" id="21_lamp"]
 [ext_resource type="Resource" path="res://data/zones/profiles/main_gate_exterior.tres" id="90_profile"]
+[ext_resource type="Script" path="res://scripts/lighting/lamp_light.gd" id="c1_lamp_light"]
+[ext_resource type="Texture2D" path="res://data/lighting/light_soft.tres" id="c1_light_tex"]
+[ext_resource type="PackedScene" path="res://scenes/components/Examine.tscn" id="c1_examine"]
+[ext_resource type="PackedScene" path="res://scenes/components/Readable.tscn" id="c1_read"]
+[ext_resource type="Script" path="res://scripts/world/glow_mark.gd" id="c1_glow"]
+[ext_resource type="Script" path="res://scripts/world/crow_flock.gd" id="c1_crows"]
+[ext_resource type="Script" path="res://scripts/world/apparition.gd" id="c1_appar"]
+[ext_resource type="PackedScene" path="res://scenes/creatures/NightGuard.tscn" id="c1_guard"]
+[ext_resource type="SpriteFrames" path="res://scenes/creatures/night_guard_frames.tres" id="c1_guard_frames"]
+[ext_resource type="PackedScene" path="res://scenes/props/horror/GateChain.tscn" id="c1_GateChain"]
+[ext_resource type="PackedScene" path="res://scenes/props/horror/PhoneDropped.tscn" id="c1_PhoneDropped"]
+[ext_resource type="PackedScene" path="res://scenes/props/horror/CoveredShape.tscn" id="c1_CoveredShape"]
+[ext_resource type="PackedScene" path="res://scenes/props/horror/BloodPool.tscn" id="c1_BloodPool"]
+[ext_resource type="PackedScene" path="res://scenes/props/horror/BicycleFallen.tscn" id="c1_BicycleFallen"]
+[ext_resource type="PackedScene" path="res://scenes/props/horror/BackpackDropped.tscn" id="c1_BackpackDropped"]
+[ext_resource type="PackedScene" path="res://scenes/props/horror/GrowthPatchB.tscn" id="c1_GrowthPatchB"]
+[ext_resource type="PackedScene" path="res://scenes/props/horror/GrowthPods.tscn" id="c1_GrowthPods"]
+[ext_resource type="PackedScene" path="res://scenes/props/horror/GrowthPatchA.tscn" id="c1_GrowthPatchA"]
+[ext_resource type="PackedScene" path="res://scenes/props/horror/GrowthPatchC.tscn" id="c1_GrowthPatchC"]
+[ext_resource type="PackedScene" path="res://scenes/props/horror/BloodTrail.tscn" id="c1_BloodTrail"]
+[ext_resource type="PackedScene" path="res://scenes/props/horror/UmbrellaFallen.tscn" id="c1_UmbrellaFallen"]
+[ext_resource type="PackedScene" path="res://scenes/props/horror/ShoeSingle.tscn" id="c1_ShoeSingle"]
+[ext_resource type="PackedScene" path="res://scenes/props/horror/PapersScattered.tscn" id="c1_PapersScattered"]
+[ext_resource type="PackedScene" path="res://scenes/props/vegetation/HedgeSection2m.tscn" id="c1_hedge"]
+[ext_resource type="PackedScene" path="res://scenes/components/HideSpot.tscn" id="c1_hide"]
+[ext_resource type="PackedScene" path="res://scenes/components/Pickup.tscn" id="c1_pickup"]
+[ext_resource type="PackedScene" path="res://scenes/props/furniture/OilBottle.tscn" id="c1_oil"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_south_wall_run"]
 size = Vector2(3552, 10.07891)
@@ -1339,3 +1366,416 @@ position = Vector2(-1180, 1080)
 
 [node name="ContactShadow" parent="Objects/Vegetation/GateTrees/Tree02" instance=ExtResource("10_shadow")]
 scale = Vector2(1.1, 0.4)
+
+[node name="Chapter1" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+editor_description = "Chapter 1 night layer: lamps (solar ones lit, the rest dead until the hall breaker is on), the chained gate, the security office door, horror dressing, crows, organism glow, the dropped phone, the guard's first appearance and the Night Guard on patrol (woken when the master key is taken)."
+
+[node name="Lamps" type="Node2D" parent="Objects/Chapter1"]
+y_sort_enabled = true
+
+[node name="Story" type="Node2D" parent="Objects/Chapter1"]
+y_sort_enabled = true
+
+[node name="Dressing" type="Node2D" parent="Objects/Chapter1"]
+y_sort_enabled = true
+
+[node name="Glow" type="Node2D" parent="Objects/Chapter1"]
+y_sort_enabled = true
+
+[node name="Creatures" type="Node2D" parent="Objects/Chapter1"]
+y_sort_enabled = true
+
+[node name="LampGate" parent="Objects/Chapter1/Lamps" instance=ExtResource("21_lamp")]
+position = Vector2(-1180, 1120)
+
+[node name="ContactShadow" parent="Objects/Chapter1/Lamps/LampGate" instance=ExtResource("10_shadow")]
+scale = Vector2(0.35, 0.2)
+
+[node name="Light" type="PointLight2D" parent="Objects/Chapter1/Lamps/LampGate"]
+color = Color(1, 0.74, 0.42, 1)
+energy = 1
+range_item_cull_mask = 3
+texture = ExtResource("c1_light_tex")
+texture_scale = 2.6
+shadow_enabled = true
+shadow_item_cull_mask = 1
+script = ExtResource("c1_lamp_light")
+mode = 1
+needs_power = false
+base_energy = 1
+
+[node name="LampWestPath" parent="Objects/Chapter1/Lamps" instance=ExtResource("21_lamp")]
+position = Vector2(-1240, 300)
+
+[node name="ContactShadow" parent="Objects/Chapter1/Lamps/LampWestPath" instance=ExtResource("10_shadow")]
+scale = Vector2(0.35, 0.2)
+
+[node name="Light" type="PointLight2D" parent="Objects/Chapter1/Lamps/LampWestPath"]
+color = Color(1, 0.74, 0.42, 1)
+energy = 1
+range_item_cull_mask = 3
+texture = ExtResource("c1_light_tex")
+texture_scale = 2.6
+shadow_enabled = true
+shadow_item_cull_mask = 1
+script = ExtResource("c1_lamp_light")
+mode = 0
+needs_power = true
+base_energy = 1
+
+[node name="LampWestNorth" parent="Objects/Chapter1/Lamps" instance=ExtResource("21_lamp")]
+position = Vector2(-1240, -500)
+
+[node name="ContactShadow" parent="Objects/Chapter1/Lamps/LampWestNorth" instance=ExtResource("10_shadow")]
+scale = Vector2(0.35, 0.2)
+
+[node name="Light" type="PointLight2D" parent="Objects/Chapter1/Lamps/LampWestNorth"]
+color = Color(1, 0.74, 0.42, 1)
+energy = 0.9
+range_item_cull_mask = 3
+texture = ExtResource("c1_light_tex")
+texture_scale = 2.6
+shadow_enabled = true
+shadow_item_cull_mask = 1
+script = ExtResource("c1_lamp_light")
+mode = 0
+needs_power = false
+base_energy = 0.9
+
+[node name="LampNorthWest" parent="Objects/Chapter1/Lamps" instance=ExtResource("21_lamp")]
+position = Vector2(-560, -1060)
+
+[node name="ContactShadow" parent="Objects/Chapter1/Lamps/LampNorthWest" instance=ExtResource("10_shadow")]
+scale = Vector2(0.35, 0.2)
+
+[node name="Light" type="PointLight2D" parent="Objects/Chapter1/Lamps/LampNorthWest"]
+color = Color(1, 0.74, 0.42, 1)
+energy = 1
+range_item_cull_mask = 3
+texture = ExtResource("c1_light_tex")
+texture_scale = 2.6
+shadow_enabled = true
+shadow_item_cull_mask = 1
+script = ExtResource("c1_lamp_light")
+mode = 0
+needs_power = true
+base_energy = 1
+
+[node name="LampNorthEast" parent="Objects/Chapter1/Lamps" instance=ExtResource("21_lamp")]
+position = Vector2(560, -1060)
+
+[node name="ContactShadow" parent="Objects/Chapter1/Lamps/LampNorthEast" instance=ExtResource("10_shadow")]
+scale = Vector2(0.35, 0.2)
+
+[node name="Light" type="PointLight2D" parent="Objects/Chapter1/Lamps/LampNorthEast"]
+color = Color(1, 0.74, 0.42, 1)
+energy = 0.9
+range_item_cull_mask = 3
+texture = ExtResource("c1_light_tex")
+texture_scale = 2.6
+shadow_enabled = true
+shadow_item_cull_mask = 1
+script = ExtResource("c1_lamp_light")
+mode = 1
+needs_power = false
+base_energy = 0.9
+
+[node name="LampCdsSouth" parent="Objects/Chapter1/Lamps" instance=ExtResource("21_lamp")]
+position = Vector2(1300, 380)
+
+[node name="ContactShadow" parent="Objects/Chapter1/Lamps/LampCdsSouth" instance=ExtResource("10_shadow")]
+scale = Vector2(0.35, 0.2)
+
+[node name="Light" type="PointLight2D" parent="Objects/Chapter1/Lamps/LampCdsSouth"]
+color = Color(1, 0.74, 0.42, 1)
+energy = 1
+range_item_cull_mask = 3
+texture = ExtResource("c1_light_tex")
+texture_scale = 2.6
+shadow_enabled = true
+shadow_item_cull_mask = 1
+script = ExtResource("c1_lamp_light")
+mode = 0
+needs_power = true
+base_energy = 1
+
+[node name="LampCourts" parent="Objects/Chapter1/Lamps" instance=ExtResource("21_lamp")]
+position = Vector2(400, 780)
+
+[node name="ContactShadow" parent="Objects/Chapter1/Lamps/LampCourts" instance=ExtResource("10_shadow")]
+scale = Vector2(0.35, 0.2)
+
+[node name="Light" type="PointLight2D" parent="Objects/Chapter1/Lamps/LampCourts"]
+color = Color(1, 0.74, 0.42, 1)
+energy = 0.85
+range_item_cull_mask = 3
+texture = ExtResource("c1_light_tex")
+texture_scale = 2.6
+shadow_enabled = true
+shadow_item_cull_mask = 1
+script = ExtResource("c1_lamp_light")
+mode = 0
+needs_power = false
+base_energy = 0.85
+
+[node name="Light" type="PointLight2D" parent="Objects/Buildings/CDSExterior/TableTennis/LampForecourt"]
+color = Color(1, 0.74, 0.42, 1)
+energy = 1.0
+range_item_cull_mask = 3
+texture = ExtResource("c1_light_tex")
+texture_scale = 2.6
+shadow_enabled = true
+shadow_item_cull_mask = 1
+script = ExtResource("c1_lamp_light")
+mode = 0
+needs_power = false
+base_energy = 1.0
+
+[node name="GateChain" parent="Objects/Chapter1/Story" instance=ExtResource("c1_GateChain")]
+position = Vector2(-1390, 1397)
+
+[node name="ExamineGate" parent="Objects/Chapter1/Story" instance=ExtResource("c1_examine")]
+position = Vector2(-1390, 1372)
+verb = "Try"
+object_name = "Main Gate"
+message = "Chained shut. From the OUTSIDE. Through the bars the road is empty: no rickshaws, no tea stall lights."
+sound = &"chain_rattle"
+sets_flag = "gate_seen"
+
+[node name="DoorSecurity" parent="Objects/Chapter1/Story" instance=ExtResource("3_door")]
+position = Vector2(-1632, 1252)
+destination_zone_id = "main_gate_security"
+destination_spawn_id = "security_inside"
+verb = "Enter"
+place_name = "Security office"
+show_placeholder = false
+
+[node name="SpawnOutsideSecurity" parent="Objects/Chapter1/Story" instance=ExtResource("2_spawn")]
+position = Vector2(-1632, 1226)
+spawn_id = "outside_security"
+
+[node name="Phone" parent="Objects/Chapter1/Story" instance=ExtResource("c1_read")]
+position = Vector2(-975, 545)
+y_sort_enabled = true
+note_id = "field_phone"
+title = "A cracked phone"
+verb = "Read"
+requires_light = false
+body = "Still on. The last messages, all from RUMANA:\n\n11:21  where r u??\n11:24  the guard is acting so weird. hes just standing under the lamp\n11:24  staring up at it\n11:26  dont go near the light\n11:26  he looked at me\n11:27  [Photo]\n\nThe photo won't load. It is just a white glare."
+
+[node name="PhoneProp" parent="Objects/Chapter1/Story/Phone" instance=ExtResource("c1_PhoneDropped")]
+
+[node name="Covered" parent="Objects/Chapter1/Dressing" instance=ExtResource("c1_CoveredShape")]
+position = Vector2(-760, 360)
+
+[node name="ContactShadow" parent="Objects/Chapter1/Dressing/Covered" instance=ExtResource("10_shadow")]
+scale = Vector2(1.2, 0.4)
+
+[node name="CoveredBlood" parent="Objects/Chapter1/Dressing" instance=ExtResource("c1_BloodPool")]
+position = Vector2(-720, 384)
+
+[node name="Bicycle" parent="Objects/Chapter1/Dressing" instance=ExtResource("c1_BicycleFallen")]
+position = Vector2(-1080, 520)
+
+[node name="Backpack" parent="Objects/Chapter1/Dressing" instance=ExtResource("c1_BackpackDropped")]
+position = Vector2(-1012, 562)
+
+[node name="GrowthB" parent="Objects/Chapter1/Dressing" instance=ExtResource("c1_GrowthPatchB")]
+position = Vector2(280, -280)
+
+[node name="Pods" parent="Objects/Chapter1/Dressing" instance=ExtResource("c1_GrowthPods")]
+position = Vector2(320, -300)
+
+[node name="ContactShadow" parent="Objects/Chapter1/Dressing/Pods" instance=ExtResource("10_shadow")]
+scale = Vector2(0.8, 0.4)
+
+[node name="GrowthA" parent="Objects/Chapter1/Dressing" instance=ExtResource("c1_GrowthPatchA")]
+position = Vector2(-180, 560)
+
+[node name="GrowthC" parent="Objects/Chapter1/Dressing" instance=ExtResource("c1_GrowthPatchC")]
+position = Vector2(880, 180)
+
+[node name="GrowthC2" parent="Objects/Chapter1/Dressing" instance=ExtResource("c1_GrowthPatchA")]
+position = Vector2(1120, -420)
+scale = Vector2(-1, 1)
+
+[node name="DragTrail" parent="Objects/Chapter1/Dressing" instance=ExtResource("c1_BloodTrail")]
+position = Vector2(1210, -205)
+
+[node name="DragTrail2" parent="Objects/Chapter1/Dressing" instance=ExtResource("c1_BloodTrail")]
+position = Vector2(1060, -195)
+scale = Vector2(-1, 1)
+
+[node name="Umbrella" parent="Objects/Chapter1/Dressing" instance=ExtResource("c1_UmbrellaFallen")]
+position = Vector2(620, 320)
+
+[node name="Shoe" parent="Objects/Chapter1/Dressing" instance=ExtResource("c1_ShoeSingle")]
+position = Vector2(-420, -280)
+
+[node name="Papers" parent="Objects/Chapter1/Dressing" instance=ExtResource("c1_PapersScattered")]
+position = Vector2(120, 430)
+
+[node name="Papers2" parent="Objects/Chapter1/Dressing" instance=ExtResource("c1_PapersScattered")]
+position = Vector2(-1330, 1050)
+
+[node name="Backpack2" parent="Objects/Chapter1/Dressing" instance=ExtResource("c1_BackpackDropped")]
+position = Vector2(700, -700)
+scale = Vector2(-1, 1)
+
+[node name="PatchB" type="Node2D" parent="Objects/Chapter1/Glow"]
+position = Vector2(280, -280)
+script = ExtResource("c1_glow")
+color = Color(0.45, 1, 0.82, 1)
+intensity = 0.9
+pulse_speed = 0.6
+spots = PackedVector3Array(-20, -6, 9, 10, 8, 12, 30, -4, 7, -36, 10, 6, 4, -14, 8)
+
+[node name="PodTips" type="Node2D" parent="Objects/Chapter1/Glow"]
+position = Vector2(320, -300)
+script = ExtResource("c1_glow")
+color = Color(0.45, 1, 0.82, 1)
+intensity = 0.9
+pulse_speed = 0.6
+spots = PackedVector3Array(-8, -18, 5, 6, -26, 5, 14, -14, 4, -2, -10, 4)
+
+[node name="PatchA" type="Node2D" parent="Objects/Chapter1/Glow"]
+position = Vector2(-180, 560)
+script = ExtResource("c1_glow")
+color = Color(0.45, 1, 0.82, 1)
+intensity = 0.9
+pulse_speed = 0.6
+spots = PackedVector3Array(-14, -4, 8, 12, 6, 9, -24, 10, 5)
+
+[node name="TrailToCds" type="Node2D" parent="Objects/Chapter1/Glow"]
+position = Vector2(300, -270)
+script = ExtResource("c1_glow")
+color = Color(0.45, 1, 0.82, 1)
+intensity = 0.7
+pulse_speed = 0.4
+trail_to = Vector2(860, 70)
+
+[node name="TrailToGate" type="Node2D" parent="Objects/Chapter1/Glow"]
+position = Vector2(-760, 360)
+script = ExtResource("c1_glow")
+color = Color(0.45, 1, 0.82, 1)
+intensity = 0.6
+pulse_speed = 0.35
+trail_to = Vector2(-420, 640)
+
+[node name="TrailFromGate" type="Node2D" parent="Objects/Chapter1/Glow"]
+position = Vector2(-1180, 1000)
+script = ExtResource("c1_glow")
+color = Color(0.45, 1, 0.82, 1)
+intensity = 0.5
+pulse_speed = 0.35
+trail_to = Vector2(-260, -560)
+
+[node name="CdsDoorSpill" type="Node2D" parent="Objects/Chapter1/Glow"]
+position = Vector2(1420, -190)
+script = ExtResource("c1_glow")
+color = Color(0.45, 1, 0.82, 1)
+intensity = 0.9
+pulse_speed = 0.6
+spots = PackedVector3Array(0, 0, 8, -12, 6, 6, 10, -6, 5)
+
+[node name="CrowsField" type="Node2D" parent="Objects/Chapter1/Creatures"]
+position = Vector2(-320, 160)
+script = ExtResource("c1_crows")
+
+[node name="CrowsNorth" type="Node2D" parent="Objects/Chapter1/Creatures"]
+position = Vector2(980, -560)
+script = ExtResource("c1_crows")
+
+[node name="CrowsGate" type="Node2D" parent="Objects/Chapter1/Creatures"]
+position = Vector2(-1100, 1020)
+script = ExtResource("c1_crows")
+
+[node name="Apparition" type="Node2D" parent="Objects/Chapter1/Creatures"]
+position = Vector2(-1176, 1136)
+script = ExtResource("c1_appar")
+done_flag = "apparition_gate"
+lamp_path = NodePath("../../Lamps/LampGate/Light")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="Objects/Chapter1/Creatures/Apparition"]
+light_mask = 2
+texture_filter = 4
+scale = Vector2(0.3333, 0.3333)
+sprite_frames = ExtResource("c1_guard_frames")
+animation = &"idle_up"
+autoplay = "idle_up"
+centered = false
+offset = Vector2(-64, -183)
+
+[node name="Notifier" type="VisibleOnScreenNotifier2D" parent="Objects/Chapter1/Creatures/Apparition"]
+rect = Rect2(-16, -60, 32, 64)
+
+[node name="NightGuard" parent="Objects/Chapter1/Creatures" instance=ExtResource("c1_guard")]
+position = Vector2(-1300, 1150)
+patrol_points = PackedVector2Array(-1390, 1180, -1250, 760, -1000, 200, -600, -300, 0, -50, 600, -400, 1250, -350, 1200, 300, 500, 650, -300, 760, -900, 900)
+active = false
+visible = false
+metadata/role = "patrol"
+
+[node name="HidingPlaces" type="Node2D" parent="Objects/Chapter1"]
+y_sort_enabled = true
+
+[node name="Hedge1" parent="Objects/Chapter1/HidingPlaces" instance=ExtResource("c1_hedge")]
+position = Vector2(-900, 650)
+
+[node name="Hedge1b" parent="Objects/Chapter1/HidingPlaces" instance=ExtResource("c1_hedge")]
+position = Vector2(-836, 656)
+
+[node name="Hide1" parent="Objects/Chapter1/HidingPlaces" instance=ExtResource("c1_hide")]
+position = Vector2(-868, 664)
+verb = "Hide"
+place_name = "In the hedge"
+exit_offset = Vector2(0, 18)
+
+[node name="Hedge2" parent="Objects/Chapter1/HidingPlaces" instance=ExtResource("c1_hedge")]
+position = Vector2(120, 720)
+
+[node name="Hedge2b" parent="Objects/Chapter1/HidingPlaces" instance=ExtResource("c1_hedge")]
+position = Vector2(184, 726)
+
+[node name="Hide2" parent="Objects/Chapter1/HidingPlaces" instance=ExtResource("c1_hide")]
+position = Vector2(152, 734)
+verb = "Hide"
+place_name = "In the hedge"
+exit_offset = Vector2(0, 18)
+
+[node name="Hedge3" parent="Objects/Chapter1/HidingPlaces" instance=ExtResource("c1_hedge")]
+position = Vector2(1240, 40)
+
+[node name="Hedge3b" parent="Objects/Chapter1/HidingPlaces" instance=ExtResource("c1_hedge")]
+position = Vector2(1304, 46)
+
+[node name="Hide3" parent="Objects/Chapter1/HidingPlaces" instance=ExtResource("c1_hide")]
+position = Vector2(1272, 54)
+verb = "Hide"
+place_name = "In the hedge"
+exit_offset = Vector2(0, 18)
+
+[node name="IdCard" parent="Objects/Chapter1/Story" instance=ExtResource("c1_read")]
+position = Vector2(-700, 396)
+note_id = "field_id_card"
+title = "A student ID on a lanyard"
+verb = "Read"
+requires_light = true
+body = "ISLAMIC UNIVERSITY OF TECHNOLOGY
+Student identity card
+
+Dept. of CSE. The name is smeared with something dark and the photo has been scratched away, as if by fingernails.
+
+The lanyard is still knotted around something under the sheet."
+
+[node name="OilCourts" parent="Objects/Chapter1/Story" instance=ExtResource("c1_pickup")]
+position = Vector2(430, 800)
+pickup_id = "field_oil_courts"
+y_sort_enabled = true
+verb = "Pick up"
+item_name = "Lamp kerosene"
+fuel = 0.25
+show_placeholder = false
+
+[node name="Visual" parent="Objects/Chapter1/Story/OilCourts" instance=ExtResource("c1_oil")]

@@ -1,207 +1,308 @@
 [gd_scene format=3]
 
-[ext_resource type="Script" path="res://scripts/world/zone.gd" id="1_zone"]
-[ext_resource type="PackedScene" path="res://scenes/components/SpawnMarker.tscn" id="2_spawn"]
-[ext_resource type="PackedScene" path="res://scenes/components/Door.tscn" id="3_door"]
-[ext_resource type="PackedScene" path="res://scenes/world/blockout/BlockoutBlock.tscn" id="4_block"]
-[ext_resource type="Resource" path="res://data/zones/profiles/cds_veranda.tres" id="90_profile"]
+[ext_resource type="Script" path="res://scripts/world/zone.gd" id="1_r"]
+[ext_resource type="Resource" path="res://data/zones/profiles/cds_veranda.tres" id="2_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/interiors/CdsVerandaNorth.tscn" id="3_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/interiors/CdsVerandaMiddle.tscn" id="4_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/interiors/CdsVerandaSouth.tscn" id="5_r"]
+[ext_resource type="PackedScene" path="res://scenes/components/Door.tscn" id="6_r"]
+[ext_resource type="PackedScene" path="res://scenes/components/SpawnMarker.tscn" id="7_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/furniture/GymBench.tscn" id="8_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/common/ContactShadow.tscn" id="9_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/furniture/TrashBin.tscn" id="10_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/furniture/WaterDrum.tscn" id="11_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/horror/BackpackDropped.tscn" id="12_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/horror/ShoeSingle.tscn" id="13_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/horror/PapersScattered.tscn" id="14_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/horror/BloodPool.tscn" id="15_r"]
+[ext_resource type="PackedScene" path="res://scenes/components/Pickup.tscn" id="16_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/furniture/OilBottle.tscn" id="17_r"]
+[ext_resource type="PackedScene" path="res://scenes/components/Readable.tscn" id="18_r"]
+[ext_resource type="Script" path="res://scripts/world/glow_mark.gd" id="19_r"]
+[ext_resource type="Texture2D" path="res://data/lighting/light_soft.tres" id="20_r"]
+[ext_resource type="Script" path="res://scripts/lighting/lamp_light.gd" id="21_r"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1"]
+size = Vector2(24, 1760)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2"]
+size = Vector2(300, 24)
 
 [node name="CdsVeranda" type="Node2D"]
 y_sort_enabled = true
-script = ExtResource("1_zone")
+script = ExtResource("1_r")
 zone_id = "cds_veranda"
-profile = ExtResource("90_profile")
-
-[node name="Ground" type="Node2D" parent="." groups=["blockout_placeholder"]]
-editor_description = "BLOCKOUT PLACEHOLDER: lawn and veranda floor surfaces. Replace with production ground art."
-z_index = -10
-
-[node name="GroundFill" type="Polygon2D" parent="Ground"]
-color = Color(0.24, 0.42, 0.2, 1)
-polygon = PackedVector2Array(-1000, -1400, 1100, -1400, 1100, 1400, -1000, 1400)
-
-[node name="VerandaFloor" type="Polygon2D" parent="Ground"]
-color = Color(0.6, 0.42, 0.36, 1)
-polygon = PackedVector2Array(-150, -850, 120, -850, 120, 850, -150, 850)
-
-[node name="CanteenTableTennisDivider" type="Line2D" parent="Ground/VerandaFloor"]
-points = PackedVector2Array(-150, -300, 120, -300)
-width = 3.0
-default_color = Color(0.45, 0.3, 0.26, 1)
-
-[node name="TableTennisBasketballDivider" type="Line2D" parent="Ground/VerandaFloor"]
-points = PackedVector2Array(-150, 150, 120, 150)
-width = 3.0
-default_color = Color(0.45, 0.3, 0.26, 1)
+profile = ExtResource("2_r")
 
 [node name="Objects" type="Node2D" parent="."]
 y_sort_enabled = true
 
-[node name="Walls" type="Node2D" parent="Objects"]
+[node name="Props" type="Node2D" parent="Objects"]
 y_sort_enabled = true
 
-[node name="CdsBuilding" parent="Objects/Walls" instance=ExtResource("4_block")]
-position = Vector2(360, 850)
-footprint_size = Vector2(480, 1700)
-wall_height = 200.0
-
-[node name="NorthEnd" parent="Objects/Walls" instance=ExtResource("4_block")]
-position = Vector2(225, -850)
-footprint_size = Vector2(750, 40)
-wall_height = 200.0
-
-[node name="SouthEnd" parent="Objects/Walls" instance=ExtResource("4_block")]
-position = Vector2(225, 890)
-footprint_size = Vector2(750, 40)
-wall_height = 200.0
-arch_count = 3
-
-[node name="WestParapet" parent="Objects/Walls" instance=ExtResource("4_block")]
-position = Vector2(-140, 850)
-footprint_size = Vector2(20, 1700)
-wall_height = 30.0
-wall_color = Color(0.7, 0.36, 0.26, 1)
-roof_color = Color(0.58, 0.32, 0.24, 1)
-
-[node name="Arcade" type="Node2D" parent="Objects"]
+[node name="Story" type="Node2D" parent="Objects"]
 y_sort_enabled = true
 
-[node name="Column01" parent="Objects/Arcade" instance=ExtResource("4_block")]
-position = Vector2(-140, -765)
-footprint_size = Vector2(24, 24)
-wall_height = 150.0
-wall_color = Color(0.7, 0.36, 0.26, 1)
-
-[node name="Column02" parent="Objects/Arcade" instance=ExtResource("4_block")]
-position = Vector2(-140, -595)
-footprint_size = Vector2(24, 24)
-wall_height = 150.0
-wall_color = Color(0.7, 0.36, 0.26, 1)
-
-[node name="Column03" parent="Objects/Arcade" instance=ExtResource("4_block")]
-position = Vector2(-140, -425)
-footprint_size = Vector2(24, 24)
-wall_height = 150.0
-wall_color = Color(0.7, 0.36, 0.26, 1)
-
-[node name="Column04" parent="Objects/Arcade" instance=ExtResource("4_block")]
-position = Vector2(-140, -255)
-footprint_size = Vector2(24, 24)
-wall_height = 150.0
-wall_color = Color(0.7, 0.36, 0.26, 1)
-
-[node name="Column05" parent="Objects/Arcade" instance=ExtResource("4_block")]
-position = Vector2(-140, -85)
-footprint_size = Vector2(24, 24)
-wall_height = 150.0
-wall_color = Color(0.7, 0.36, 0.26, 1)
-
-[node name="Column06" parent="Objects/Arcade" instance=ExtResource("4_block")]
-position = Vector2(-140, 85)
-footprint_size = Vector2(24, 24)
-wall_height = 150.0
-wall_color = Color(0.7, 0.36, 0.26, 1)
-
-[node name="Column07" parent="Objects/Arcade" instance=ExtResource("4_block")]
-position = Vector2(-140, 255)
-footprint_size = Vector2(24, 24)
-wall_height = 150.0
-wall_color = Color(0.7, 0.36, 0.26, 1)
-
-[node name="Column08" parent="Objects/Arcade" instance=ExtResource("4_block")]
-position = Vector2(-140, 425)
-footprint_size = Vector2(24, 24)
-wall_height = 150.0
-wall_color = Color(0.7, 0.36, 0.26, 1)
-
-[node name="Column09" parent="Objects/Arcade" instance=ExtResource("4_block")]
-position = Vector2(-140, 595)
-footprint_size = Vector2(24, 24)
-wall_height = 150.0
-wall_color = Color(0.7, 0.36, 0.26, 1)
-
-[node name="Column10" parent="Objects/Arcade" instance=ExtResource("4_block")]
-position = Vector2(-140, 765)
-footprint_size = Vector2(24, 24)
-wall_height = 150.0
-wall_color = Color(0.7, 0.36, 0.26, 1)
-
-[node name="Overhead" type="Node2D" parent="Objects/Arcade" groups=["blockout_placeholder"]]
-editor_description = "BLOCKOUT PLACEHOLDER: veranda roof edge above the arcade, drawn over the player (z_index 10). Replace with production art."
-z_index = 10
-
-[node name="VerandaRoofEdge" type="Polygon2D" parent="Objects/Arcade/Overhead"]
-color = Color(0.62, 0.3, 0.22, 0.9)
-polygon = PackedVector2Array(-170, -1000, -110, -1000, -110, 700, -170, 700)
-
-[node name="FutureFronts" type="Node2D" parent="Objects" groups=["blockout_placeholder"]]
-editor_description = "BLOCKOUT PLACEHOLDER: non-interactive markers for future CDS room entrances (no destinations yet). Replace with production art and real doors later."
+[node name="Lights" type="Node2D" parent="Objects"]
 y_sort_enabled = true
 
-[node name="CanteenFront" type="Node2D" parent="Objects/FutureFronts"]
-position = Vector2(100, -575)
-
-[node name="Body" type="Polygon2D" parent="Objects/FutureFronts/CanteenFront"]
-color = Color(0.55, 0.35, 0.15, 1)
-polygon = PackedVector2Array(-22, 0, -22, -50, -12, -64, 0, -70, 12, -64, 22, -50, 22, 0)
-
-[node name="Label" type="Label" parent="Objects/FutureFronts/CanteenFront"]
-offset_left = -190.0
-offset_top = -70.0
-offset_right = -30.0
-offset_bottom = -20.0
-theme_override_font_sizes/font_size = 16
-text = "Canteen
-(future)"
-horizontal_alignment = 2
-
-[node name="TableTennisFront" type="Node2D" parent="Objects/FutureFronts"]
-position = Vector2(100, -220)
-
-[node name="Body" type="Polygon2D" parent="Objects/FutureFronts/TableTennisFront"]
-color = Color(0.3, 0.35, 0.5, 1)
-polygon = PackedVector2Array(-22, 0, -22, -50, -12, -64, 0, -70, 12, -64, 22, -50, 22, 0)
-
-[node name="Label" type="Label" parent="Objects/FutureFronts/TableTennisFront"]
-offset_left = -190.0
-offset_top = -70.0
-offset_right = -30.0
-offset_bottom = -20.0
-theme_override_font_sizes/font_size = 16
-text = "Table tennis
-(future)"
-horizontal_alignment = 2
-
-[node name="IndoorBasketballFront" type="Node2D" parent="Objects/FutureFronts"]
-position = Vector2(100, 500)
-
-[node name="Body" type="Polygon2D" parent="Objects/FutureFronts/IndoorBasketballFront"]
-color = Color(0.5, 0.25, 0.25, 1)
-polygon = PackedVector2Array(-22, 0, -22, -50, -12, -64, 0, -70, 12, -64, 22, -50, 22, 0)
-
-[node name="Label" type="Label" parent="Objects/FutureFronts/IndoorBasketballFront"]
-offset_left = -190.0
-offset_top = -70.0
-offset_right = -30.0
-offset_bottom = -20.0
-theme_override_font_sizes/font_size = 16
-text = "Indoor basketball
-(future)"
-horizontal_alignment = 2
-
-[node name="Transitions" type="Node2D" parent="Objects"]
+[node name="Doors" type="Node2D" parent="Objects"]
 y_sort_enabled = true
-
-[node name="DoorCdsExitToField" parent="Objects/Transitions" instance=ExtResource("3_door")]
-position = Vector2(-90, -50)
-destination_zone_id = "main_gate_exterior"
-destination_spawn_id = "outside_cds_entrance"
-verb = "Go out"
-place_name = "To the field"
 
 [node name="SpawnMarkers" type="Node2D" parent="Objects"]
 y_sort_enabled = true
 
-[node name="SpawnInsideCdsEntry" parent="Objects/SpawnMarkers" instance=ExtResource("2_spawn")]
-position = Vector2(0, -50)
+[node name="Glow" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="SectionNorth" parent="Objects" instance=ExtResource("3_r")]
+position = Vector2(0, -283.2)
+
+[node name="SectionMiddle" parent="Objects" instance=ExtResource("4_r")]
+position = Vector2(0, 283.2)
+
+[node name="SectionSouth" parent="Objects" instance=ExtResource("5_r")]
+position = Vector2(0, 849.6)
+
+[node name="DoorCanteen" parent="Objects/Doors" instance=ExtResource("6_r")]
+position = Vector2(54.4, -558.9184)
+destination_zone_id = "cds_canteen"
+destination_spawn_id = "canteen_from_veranda"
+verb = "Enter"
+place_name = "Canteen"
+show_placeholder = false
+
+[node name="DoorTableTennis" parent="Objects/Doors" instance=ExtResource("6_r")]
+position = Vector2(54.4, -85.1104)
+destination_zone_id = "cds_table_tennis"
+destination_spawn_id = "tt_from_veranda"
+verb = "Enter"
+place_name = "Table-tennis room"
+show_placeholder = false
+
+[node name="DoorHall" parent="Objects/Doors" instance=ExtResource("6_r")]
+position = Vector2(54.4, 582.112)
+destination_zone_id = "cds_indoor_basketball"
+destination_spawn_id = "hall_from_veranda"
+verb = "Unlock"
+place_name = "Indoor games hall"
+show_placeholder = false
+required_item = "cds_master_key"
+locked_message = "Locked. The notice says the master key is with security."
+unlock_message = "The master key turns. The door is warm to the touch."
+
+[node name="DoorToField" parent="Objects/Doors" instance=ExtResource("6_r")]
+position = Vector2(-96, -0.1315)
+destination_zone_id = "main_gate_exterior"
+destination_spawn_id = "outside_cds_entrance"
+verb = "Go out"
+place_name = "To the field"
+show_placeholder = false
+
+[node name="Spawn_veranda_canteen" parent="Objects/SpawnMarkers" instance=ExtResource("7_r")]
+position = Vector2(28.8, -558.9184)
+spawn_id = "veranda_canteen"
+
+[node name="Spawn_veranda_tt" parent="Objects/SpawnMarkers" instance=ExtResource("7_r")]
+position = Vector2(28.8, -85.1104)
+spawn_id = "veranda_tt"
+
+[node name="Spawn_veranda_hall" parent="Objects/SpawnMarkers" instance=ExtResource("7_r")]
+position = Vector2(28.8, 582.112)
+spawn_id = "veranda_hall"
+
+[node name="Spawn_inside_cds_entry" parent="Objects/SpawnMarkers" instance=ExtResource("7_r")]
+position = Vector2(-25.6, -0.1315)
 spawn_id = "inside_cds_entry"
+
+[node name="Bench1" parent="Objects/Props" instance=ExtResource("8_r")]
+position = Vector2(49.6, -406.656)
+
+[node name="ContactShadow" parent="Objects/Props/Bench1" instance=ExtResource("9_r")]
+scale = Vector2(1.2, 0.25)
+
+[node name="Bench2" parent="Objects/Props" instance=ExtResource("8_r")]
+position = Vector2(49.6, 159.744)
+
+[node name="ContactShadow" parent="Objects/Props/Bench2" instance=ExtResource("9_r")]
+scale = Vector2(1.2, 0.25)
+
+[node name="Bin1" parent="Objects/Props" instance=ExtResource("10_r")]
+position = Vector2(51.2, -725.584)
+
+[node name="ContactShadow" parent="Objects/Props/Bin1" instance=ExtResource("9_r")]
+scale = Vector2(0.35, 0.25)
+
+[node name="Bin2" parent="Objects/Props" instance=ExtResource("10_r")]
+position = Vector2(51.2, 438.08)
+
+[node name="ContactShadow" parent="Objects/Props/Bin2" instance=ExtResource("9_r")]
+scale = Vector2(0.35, 0.25)
+
+[node name="Drum" parent="Objects/Props" instance=ExtResource("11_r")]
+position = Vector2(49.6, -220.912)
+
+[node name="ContactShadow" parent="Objects/Props/Drum" instance=ExtResource("9_r")]
+scale = Vector2(0.4, 0.3)
+
+[node name="Backpack" parent="Objects/Props" instance=ExtResource("12_r")]
+position = Vector2(-19.2, 200.896)
+
+[node name="Shoe" parent="Objects/Props" instance=ExtResource("13_r")]
+position = Vector2(9.6, 479.232)
+
+[node name="Papers" parent="Objects/Props" instance=ExtResource("14_r")]
+position = Vector2(0, -468.384)
+
+[node name="Pool" parent="Objects/Props" instance=ExtResource("15_r")]
+position = Vector2(19.2, 684.992)
+
+[node name="Oil" parent="Objects/Story" instance=ExtResource("16_r")]
+position = Vector2(46.4, 114.4768)
+pickup_id = "veranda_oil"
+verb = "Pick up"
+item_name = "Lamp kerosene"
+show_placeholder = false
+y_sort_enabled = true
+fuel = 0.25
+
+[node name="Visual" parent="Objects/Story/Oil" instance=ExtResource("17_r")]
+position = Vector2(0, -11.2755)
+
+[node name="HallSign" parent="Objects/Story" instance=ExtResource("18_r")]
+position = Vector2(0, 540.96)
+note_id = "hall_closed_sign"
+title = "Sign on a stand"
+body = "INDOOR GAMES HALL\nCLOSED FOR MAINTENANCE\n\nKeys: Security Office, Main Gate.\n\n(The bottom of the board is smeared with something dark, in the shape of a hand.)"
+verb = "Read"
+requires_light = true
+
+[node name="HallDoorSpill" type="Node2D" parent="Objects/Glow"]
+position = Vector2(44.8, 582.112)
+script = ExtResource("19_r")
+color = Color(0.45, 1, 0.82, 1)
+intensity = 0.9
+pulse_speed = 0.6
+spots = PackedVector3Array(0, 0, 10, -14, 8, 7, -26, -6, 6, -8, -16, 5)
+
+[node name="HallTrail" type="Node2D" parent="Objects/Glow"]
+position = Vector2(38.4, 602.688)
+script = ExtResource("19_r")
+color = Color(0.45, 1, 0.82, 1)
+intensity = 0.7
+pulse_speed = 0.5
+trail_to = Vector2(-60, 130)
+
+[node name="CanteenSpill" type="Node2D" parent="Objects/Glow"]
+position = Vector2(32, -344.928)
+script = ExtResource("19_r")
+color = Color(0.45, 1, 0.82, 1)
+intensity = 0.9
+pulse_speed = 0.6
+spots = PackedVector3Array(0, 0, 8, 12, 6, 5, -10, -4, 6)
+
+[node name="WallLamp1" type="PointLight2D" parent="Objects/Lights"]
+position = Vector2(54.4, -585.6672)
+color = Color(1, 0.85, 0.6, 1)
+energy = 0.7
+range_item_cull_mask = 3
+texture = ExtResource("20_r")
+texture_scale = 1.4
+script = ExtResource("21_r")
+mode = 0
+needs_power = true
+base_energy = 0.7
+gameplay = true
+
+[node name="WallLamp2" type="PointLight2D" parent="Objects/Lights"]
+position = Vector2(54.4, -111.8592)
+color = Color(1, 0.85, 0.6, 1)
+energy = 0.7
+range_item_cull_mask = 3
+texture = ExtResource("20_r")
+texture_scale = 1.4
+script = ExtResource("21_r")
+mode = 0
+needs_power = true
+base_energy = 0.7
+gameplay = true
+
+[node name="WallLamp3" type="PointLight2D" parent="Objects/Lights"]
+position = Vector2(54.4, 555.3632)
+color = Color(1, 0.85, 0.6, 1)
+energy = 0.7
+range_item_cull_mask = 3
+texture = ExtResource("20_r")
+texture_scale = 1.4
+script = ExtResource("21_r")
+mode = 0
+needs_power = true
+base_energy = 0.7
+gameplay = true
+
+[node name="MoonArcadeN" type="PointLight2D" parent="Objects/Lights"]
+position = Vector2(-83.2, -550.688)
+color = Color(0.55, 0.65, 1, 1)
+energy = 0.35
+range_item_cull_mask = 3
+texture = ExtResource("20_r")
+texture_scale = 2.4
+script = ExtResource("21_r")
+mode = 0
+needs_power = false
+base_energy = 0.35
+gameplay = false
+
+[node name="MoonArcadeM" type="PointLight2D" parent="Objects/Lights"]
+position = Vector2(-83.2, 15.712)
+color = Color(0.55, 0.65, 1, 1)
+energy = 0.35
+range_item_cull_mask = 3
+texture = ExtResource("20_r")
+texture_scale = 2.4
+script = ExtResource("21_r")
+mode = 0
+needs_power = false
+base_energy = 0.35
+gameplay = false
+
+[node name="MoonArcadeS" type="PointLight2D" parent="Objects/Lights"]
+position = Vector2(-83.2, 582.112)
+color = Color(0.55, 0.65, 1, 1)
+energy = 0.35
+range_item_cull_mask = 3
+texture = ExtResource("20_r")
+texture_scale = 2.4
+script = ExtResource("21_r")
+mode = 0
+needs_power = false
+base_energy = 0.35
+gameplay = false
+
+[node name="Emergency" type="PointLight2D" parent="Objects/Lights"]
+position = Vector2(57.6, -80.44)
+color = Color(1, 0.35, 0.3, 1)
+energy = 0.5
+range_item_cull_mask = 3
+texture = ExtResource("20_r")
+texture_scale = 1
+script = ExtResource("21_r")
+mode = 1
+needs_power = false
+base_energy = 0.5
+gameplay = false
+
+[node name="Bounds" type="StaticBody2D" parent="Objects"]
+collision_mask = 0
+
+[node name="West" type="CollisionShape2D" parent="Objects/Bounds"]
+position = Vector2(-186, 0)
+shape = SubResource("RectangleShape2D_1")
+
+[node name="North" type="CollisionShape2D" parent="Objects/Bounds"]
+position = Vector2(-40, -866)
+shape = SubResource("RectangleShape2D_2")
+
+[node name="South" type="CollisionShape2D" parent="Objects/Bounds"]
+position = Vector2(-40, 868)
+shape = SubResource("RectangleShape2D_2")

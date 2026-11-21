@@ -1,0 +1,11 @@
+{
+	"zone_id": "cds_canteen",
+	"notes": "CDS canteen interior (room shell asset CdsCanteenRoom): x -240..240, y -268..0 (15 x 13 m). Fixed framing at zoom 2.4.",
+	"playable_bounds": [
+		-240,
+		-268,
+		480,
+		268
+	],
+	"walks": []
+}

@@ -21,6 +21,8 @@ extends Node
 
 const SILHOUETTE := preload("res://assets/shaders/player_silhouette.gdshader")
 const SHADOW_SCENE := "res://scenes/props/common/ContactShadow.tscn"
+## Occluders are bucketed in a coarse grid (game px) so a tick only tests the few near the player.
+const CELL := 256.0
 
 ## Switch the system off (for comparisons and tests); releases every ghost.
 @export var enabled := true:
@@ -41,6 +43,8 @@ var _attached: Dictionary = {}
 ## occluding item -> its clip_children before a ghost was attached.
 var _clip_before: Dictionary = {}
 var _pool: Array[Sprite2D] = []
+## Vector2i cell -> indices into _occluders whose rect overlaps that cell.
+var _grid: Dictionary = {}
 
 
 func setup(player: Player) -> void:
@@ -54,7 +58,21 @@ func setup(player: Player) -> void:
 func index_zone(zone: Node) -> void:
 	release_all()
 	_occluders.clear()
+	_grid.clear()
 	_collect(zone)
+	for i in _occluders.size():
+		for cell in _cells(_occluders[i].rect):
+			if not _grid.has(cell):
+				_grid[cell] = []
+			(_grid[cell] as Array).append(i)
+
+
+func _cells(r: Rect2) -> Array[Vector2i]:
+	var out: Array[Vector2i] = []
+	for cx in range(floori(r.position.x / CELL), floori(r.end.x / CELL) + 1):
+		for cy in range(floori(r.position.y / CELL), floori(r.end.y / CELL) + 1):
+			out.append(Vector2i(cx, cy))
+	return out
 
 
 ## Detaches every ghost (before a zone is freed, or when disabled).
@@ -90,9 +108,23 @@ func _physics_process(_delta: float) -> void:
 	var pz := _effective_z(_sprite)
 	var py := _player.global_position.y
 	var want := {}
-	for o in _occluders:
-		var item: CanvasItem = o.item
-		if not is_instance_valid(item) or not (o.rect as Rect2).intersects(prect) or not item.is_visible_in_tree():
+	# Items can be freed while indexed (a pickup's prop when it is collected): drop their ghosts first.
+	for gone in _attached.keys():
+		if not is_instance_valid(gone) or not is_instance_valid(_attached[gone]):
+			_detach(gone)
+	var near := {}
+	for cell in _cells(prect):
+		for i in _grid.get(cell, []):
+			near[i] = true
+	var order: Array = near.keys()
+	order.sort()
+	for i in order:
+		var o: Dictionary = _occluders[i]
+		var ref: Variant = o.item
+		if not is_instance_valid(ref):
+			continue
+		var item := ref as CanvasItem
+		if not (o.rect as Rect2).intersects(prect) or not item.is_visible_in_tree():
 			continue
 		if o.z > pz or (o.z == pz and o.sort_y > py):
 			want[item] = true
@@ -126,12 +158,13 @@ func _attach(item: CanvasItem) -> void:
 
 
 func _detach(item: Variant) -> void:
-	var g: Sprite2D = _attached.get(item)
+	var ghost: Variant = _attached.get(item)
 	_attached.erase(item)
 	if is_instance_valid(item):
 		(item as CanvasItem).clip_children = _clip_before.get(item, CanvasItem.CLIP_CHILDREN_DISABLED)
 	_clip_before.erase(item)
-	if is_instance_valid(g):
+	if is_instance_valid(ghost):
+		var g := ghost as Sprite2D
 		if g.get_parent() != null:
 			g.get_parent().remove_child(g)
 		g.visible = false

@@ -57,7 +57,10 @@ func _run() -> void:
 	# --- the return trip finds the scene kept in memory
 	var back := main.zone_registry.get_scene_path("main_gate_exterior")
 	check(ResourceLoader.has_cached(back), "main_gate_exterior's scene is still in memory, so the way back loads instantly")
-	var exit_door: Door = main.get_current_zone().get_doors()[0]
+	var exit_door: Door = null
+	for d in main.get_current_zone().get_doors():
+		if d.destination_zone_id == "main_gate_exterior":
+			exit_door = d
 	await place((exit_door.get_node("Interactable") as Node2D).global_position + Vector2(0, 6))
 	await frames(3)
 	_alpha_at_entry = -1.0

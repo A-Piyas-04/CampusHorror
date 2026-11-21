@@ -1,0 +1,11 @@
+{
+	"zone_id": "cds_table_tennis",
+	"notes": "CDS table-tennis room interior (CdsTableTennisRoom): 13 x 11 m. Fixed framing at zoom 2.7.",
+	"playable_bounds": [
+		-208,
+		-227,
+		416,
+		227
+	],
+	"walks": []
+}

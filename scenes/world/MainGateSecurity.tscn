@@ -1,0 +1,174 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/world/zone.gd" id="1_r"]
+[ext_resource type="Resource" path="res://data/zones/profiles/main_gate_security.tres" id="2_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/interiors/SecurityOfficeRoom.tscn" id="3_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/furniture/SecurityDesk.tscn" id="4_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/common/ContactShadow.tscn" id="5_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/furniture/OfficeChairFallen.tscn" id="6_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/furniture/FoldingCot.tscn" id="7_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/furniture/SteelAlmirah.tscn" id="8_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/furniture/WaterDrum.tscn" id="9_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/furniture/KeyCabinet.tscn" id="10_r"]
+[ext_resource type="PackedScene" path="res://scenes/components/Readable.tscn" id="11_r"]
+[ext_resource type="PackedScene" path="res://scenes/components/Pickup.tscn" id="12_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/furniture/MasterKey.tscn" id="13_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/furniture/OilBottle.tscn" id="14_r"]
+[ext_resource type="PackedScene" path="res://scenes/components/Examine.tscn" id="15_r"]
+[ext_resource type="PackedScene" path="res://scenes/components/Door.tscn" id="16_r"]
+[ext_resource type="PackedScene" path="res://scenes/components/SpawnMarker.tscn" id="17_r"]
+[ext_resource type="Texture2D" path="res://data/lighting/light_soft.tres" id="18_r"]
+[ext_resource type="Script" path="res://scripts/lighting/lamp_light.gd" id="19_r"]
+[ext_resource type="Script" path="res://scripts/world/glow_mark.gd" id="20_r"]
+
+[node name="MainGateSecurity" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_r")
+zone_id = "main_gate_security"
+profile = ExtResource("2_r")
+
+[node name="Objects" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Props" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="Story" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="Lights" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="Doors" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="SpawnMarkers" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="Glow" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="Room" parent="Objects" instance=ExtResource("3_r")]
+
+[node name="Desk" parent="Objects/Props" instance=ExtResource("4_r")]
+position = Vector2(38.4, -65.8432)
+
+[node name="ContactShadow" parent="Objects/Props/Desk" instance=ExtResource("5_r")]
+scale = Vector2(0.9, 0.4)
+
+[node name="Chair" parent="Objects/Props" instance=ExtResource("6_r")]
+position = Vector2(9.6, -45.2672)
+
+[node name="ContactShadow" parent="Objects/Props/Chair" instance=ExtResource("5_r")]
+scale = Vector2(0.5, 0.3)
+
+[node name="Cot" parent="Objects/Props" instance=ExtResource("7_r")]
+position = Vector2(-51.2, -28.8064)
+
+[node name="ContactShadow" parent="Objects/Props/Cot" instance=ExtResource("5_r")]
+scale = Vector2(1.1, 0.4)
+
+[node name="Almirah" parent="Objects/Props" instance=ExtResource("8_r")]
+position = Vector2(68.8, -12.3456)
+
+[node name="ContactShadow" parent="Objects/Props/Almirah" instance=ExtResource("5_r")]
+scale = Vector2(0.55, 0.3)
+
+[node name="WaterDrum" parent="Objects/Props" instance=ExtResource("9_r")]
+position = Vector2(-72, -94.6496)
+
+[node name="ContactShadow" parent="Objects/Props/WaterDrum" instance=ExtResource("5_r")]
+scale = Vector2(0.4, 0.3)
+
+[node name="KeyCabinet" parent="Objects/Props" instance=ExtResource("10_r")]
+position = Vector2(-14.4, -123.456)
+
+[node name="Logbook" parent="Objects/Story" instance=ExtResource("11_r")]
+position = Vector2(24, -57.6128)
+note_id = "security_logbook"
+title = "Security logbook, Main Gate"
+body = "22:50  Canteen closed. Two students still in CDS. Let them be, exams.\n\n23:04  Power gone, whole campus. Generator in the hall plant room won't start from here.\n\n23:15  Somebody has CHAINED THE MAIN GATE FROM THE OUTSIDE. Called the office. Phone dead.\n\n23:40  Karim from maintenance came running from the hall. Says the plant room hatch is open and \"it is lit up underneath\". He has the new breaker code. He went to hide in the TT room.\n\n00:10  Karim is not Karim. He writes numbers on the walls. In the dark they shine.\n\n00:25  i went out under the lamp. the light is so warm. it wants the light. i want"
+verb = "Read"
+requires_light = true
+
+[node name="MasterKey" parent="Objects/Story" instance=ExtResource("12_r")]
+position = Vector2(-14.4, -118.312)
+pickup_id = "security_master_key"
+verb = "Take"
+item_name = "CDS master key"
+show_placeholder = false
+y_sort_enabled = true
+item_id = "cds_master_key"
+
+[node name="Visual" parent="Objects/Story/MasterKey" instance=ExtResource("13_r")]
+position = Vector2(0, -35.5424)
+
+[node name="Oil" parent="Objects/Story" instance=ExtResource("12_r")]
+position = Vector2(52.8, -58.6416)
+pickup_id = "security_oil"
+verb = "Pick up"
+item_name = "Lamp kerosene"
+show_placeholder = false
+y_sort_enabled = true
+fuel = 0.4
+
+[node name="Visual" parent="Objects/Story/Oil" instance=ExtResource("14_r")]
+position = Vector2(0, -18.384)
+
+[node name="Monitor" parent="Objects/Story" instance=ExtResource("15_r")]
+position = Vector2(38.4, -56.584)
+verb = "Look"
+object_name = "CCTV monitor"
+long_message = "One monitor still glows on battery. The last frame from the field camera:\n\na man in a guard's uniform, standing under the lamp by the gate, his face turned straight up into the light.\n\nThe time stamp is two minutes ago."
+
+[node name="Phone" parent="Objects/Story" instance=ExtResource("15_r")]
+position = Vector2(60.8, -60.6992)
+verb = "Try"
+object_name = "Desk phone"
+message = "Dead. Not even a dial tone."
+
+[node name="DoorToField" parent="Objects/Doors" instance=ExtResource("16_r")]
+position = Vector2(24, -118.312)
+destination_zone_id = "main_gate_exterior"
+destination_spawn_id = "outside_security"
+verb = "Go out"
+place_name = "To the gate"
+show_placeholder = false
+
+[node name="Spawn_security_inside" parent="Objects/SpawnMarkers" instance=ExtResource("17_r")]
+position = Vector2(24, -102.88)
+spawn_id = "security_inside"
+
+[node name="Screen" type="PointLight2D" parent="Objects/Lights"]
+position = Vector2(38.4, -94.0736)
+color = Color(0.55, 0.95, 0.75, 1)
+energy = 0.55
+range_item_cull_mask = 3
+texture = ExtResource("18_r")
+texture_scale = 0.9
+script = ExtResource("19_r")
+mode = 0
+needs_power = false
+base_energy = 0.55
+gameplay = false
+
+[node name="MoonWindow" type="PointLight2D" parent="Objects/Lights"]
+position = Vector2(-51.2, -102.88)
+color = Color(0.55, 0.65, 1, 1)
+energy = 0.35
+range_item_cull_mask = 3
+texture = ExtResource("18_r")
+texture_scale = 1
+script = ExtResource("19_r")
+mode = 0
+needs_power = false
+base_energy = 0.35
+gameplay = false
+
+[node name="Smear" type="Node2D" parent="Objects/Glow"]
+position = Vector2(32, -76.1312)
+script = ExtResource("20_r")
+color = Color(0.45, 1, 0.82, 1)
+intensity = 0.5
+pulse_speed = 0.3
+trail_to = Vector2(-8, -40)

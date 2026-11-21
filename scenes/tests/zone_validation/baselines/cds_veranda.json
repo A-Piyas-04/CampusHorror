@@ -23,163 +23,6 @@
 			"y_sort": true,
 			"z": 0
 		},
-		"./Ground": {
-			"class": "Node2D",
-			"groups": [
-				"blockout_placeholder"
-			],
-			"light_mask": 1,
-			"visible": true,
-			"xform": [
-				1.0,
-				0.0,
-				0.0,
-				1.0,
-				0.0,
-				0.0
-			],
-			"z": -10
-		},
-		"./Ground/GroundFill": {
-			"class": "Polygon2D",
-			"color": [
-				0.23999999463558197,
-				0.41999998688697815,
-				0.20000000298023224,
-				1.0
-			],
-			"light_mask": 1,
-			"polygon": [
-				[
-					-1000.0,
-					-1400.0
-				],
-				[
-					1100.0,
-					-1400.0
-				],
-				[
-					1100.0,
-					1400.0
-				],
-				[
-					-1000.0,
-					1400.0
-				]
-			],
-			"visible": true,
-			"xform": [
-				1.0,
-				0.0,
-				0.0,
-				1.0,
-				0.0,
-				0.0
-			],
-			"z": -10
-		},
-		"./Ground/VerandaFloor": {
-			"class": "Polygon2D",
-			"color": [
-				0.6000000238418579,
-				0.41999998688697815,
-				0.36000001430511475,
-				1.0
-			],
-			"light_mask": 1,
-			"polygon": [
-				[
-					-150.0,
-					-850.0
-				],
-				[
-					120.0,
-					-850.0
-				],
-				[
-					120.0,
-					850.0
-				],
-				[
-					-150.0,
-					850.0
-				]
-			],
-			"visible": true,
-			"xform": [
-				1.0,
-				0.0,
-				0.0,
-				1.0,
-				0.0,
-				0.0
-			],
-			"z": -10
-		},
-		"./Ground/VerandaFloor/CanteenTableTennisDivider": {
-			"class": "Line2D",
-			"closed": false,
-			"light_mask": 1,
-			"line_color": [
-				0.44999998807907104,
-				0.30000001192092896,
-				0.25999999046325684,
-				1.0
-			],
-			"points": [
-				[
-					-150.0,
-					-300.0
-				],
-				[
-					120.0,
-					-300.0
-				]
-			],
-			"visible": true,
-			"width": 3.0,
-			"xform": [
-				1.0,
-				0.0,
-				0.0,
-				1.0,
-				0.0,
-				0.0
-			],
-			"z": -10
-		},
-		"./Ground/VerandaFloor/TableTennisBasketballDivider": {
-			"class": "Line2D",
-			"closed": false,
-			"light_mask": 1,
-			"line_color": [
-				0.44999998807907104,
-				0.30000001192092896,
-				0.25999999046325684,
-				1.0
-			],
-			"points": [
-				[
-					-150.0,
-					150.0
-				],
-				[
-					120.0,
-					150.0
-				]
-			],
-			"visible": true,
-			"width": 3.0,
-			"xform": [
-				1.0,
-				0.0,
-				0.0,
-				1.0,
-				0.0,
-				0.0
-			],
-			"z": -10
-		},
 		"./Objects": {
 			"class": "Node2D",
 			"light_mask": 1,
@@ -195,7 +38,86 @@
 			"y_sort": true,
 			"z": 0
 		},
-		"./Objects/Arcade": {
+		"./Objects/Bounds": {
+			"class": "StaticBody2D",
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"z": 0
+		},
+		"./Objects/Bounds/North": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					300.0,
+					24.0
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-40.0,
+				-866.0
+			],
+			"z": 0
+		},
+		"./Objects/Bounds/South": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					300.0,
+					24.0
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-40.0,
+				868.0
+			],
+			"z": 0
+		},
+		"./Objects/Bounds/West": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					24.0,
+					1760.0
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-186.0,
+				0.0
+			],
+			"z": 0
+		},
+		"./Objects/Doors": {
 			"class": "Node2D",
 			"light_mask": 1,
 			"visible": true,
@@ -210,1189 +132,23 @@
 			"y_sort": true,
 			"z": 0
 		},
-		"./Objects/Arcade/Column01": {
-			"class": "StaticBody2D",
-			"groups": [
-				"blockout_placeholder"
-			],
-			"layer": 1,
-			"light_mask": 2,
-			"mask": 0,
-			"scene": "res://scenes/world/blockout/BlockoutBlock.tscn",
-			"script": {
-				"arch_color": "Color(0.22, 0.11, 0.08, 1)",
-				"arch_count": "0",
-				"casts_shadow": "true",
-				"footprint_size": "Vector2(24, 24)",
-				"path": "res://scripts/world/blockout_block.gd",
-				"roof_color": "Color(0.45, 0.42, 0.4, 1)",
-				"wall_color": "Color(0.7, 0.36, 0.26, 1)",
-				"wall_height": "150.0"
-			},
-			"visible": true,
-			"xform": [
-				1.0,
-				0.0,
-				0.0,
-				1.0,
-				-140.0,
-				-765.0
-			],
-			"z": 0
-		},
-		"./Objects/Arcade/Column01/~internal0:CollisionShape2D": {
-			"class": "CollisionShape2D",
-			"disabled": false,
-			"light_mask": 1,
-			"shape": {
-				"rect": [
-					24.0,
-					24.0
-				]
-			},
-			"visible": true,
-			"xform": [
-				1.0,
-				0.0,
-				0.0,
-				1.0,
-				-140.0,
-				-777.0
-			],
-			"z": 0
-		},
-		"./Objects/Arcade/Column01/~internal1:LightOccluder2D": {
-			"class": "LightOccluder2D",
-			"light_mask": 1,
-			"occluder": [
-				[
-					-12.0,
-					-24.0
-				],
-				[
-					12.0,
-					-24.0
-				],
-				[
-					12.0,
-					0.0
-				],
-				[
-					-12.0,
-					0.0
-				]
-			],
-			"occluder_mask": 1,
-			"visible": true,
-			"xform": [
-				1.0,
-				0.0,
-				0.0,
-				1.0,
-				-140.0,
-				-765.0
-			],
-			"z": 0
-		},
-		"./Objects/Arcade/Column02": {
-			"class": "StaticBody2D",
-			"groups": [
-				"blockout_placeholder"
-			],
-			"layer": 1,
-			"light_mask": 2,
-			"mask": 0,
-			"scene": "res://scenes/world/blockout/BlockoutBlock.tscn",
-			"script": {
-				"arch_color": "Color(0.22, 0.11, 0.08, 1)",
-				"arch_count": "0",
-				"casts_shadow": "true",
-				"footprint_size": "Vector2(24, 24)",
-				"path": "res://scripts/world/blockout_block.gd",
-				"roof_color": "Color(0.45, 0.42, 0.4, 1)",
-				"wall_color": "Color(0.7, 0.36, 0.26, 1)",
-				"wall_height": "150.0"
-			},
-			"visible": true,
-			"xform": [
-				1.0,
-				0.0,
-				0.0,
-				1.0,
-				-140.0,
-				-595.0
-			],
-			"z": 0
-		},
-		"./Objects/Arcade/Column02/~internal0:CollisionShape2D": {
-			"class": "CollisionShape2D",
-			"disabled": false,
-			"light_mask": 1,
-			"shape": {
-				"rect": [
-					24.0,
-					24.0
-				]
-			},
-			"visible": true,
-			"xform": [
-				1.0,
-				0.0,
-				0.0,
-				1.0,
-				-140.0,
-				-607.0
-			],
-			"z": 0
-		},
-		"./Objects/Arcade/Column02/~internal1:LightOccluder2D": {
-			"class": "LightOccluder2D",
-			"light_mask": 1,
-			"occluder": [
-				[
-					-12.0,
-					-24.0
-				],
-				[
-					12.0,
-					-24.0
-				],
-				[
-					12.0,
-					0.0
-				],
-				[
-					-12.0,
-					0.0
-				]
-			],
-			"occluder_mask": 1,
-			"visible": true,
-			"xform": [
-				1.0,
-				0.0,
-				0.0,
-				1.0,
-				-140.0,
-				-595.0
-			],
-			"z": 0
-		},
-		"./Objects/Arcade/Column03": {
-			"class": "StaticBody2D",
-			"groups": [
-				"blockout_placeholder"
-			],
-			"layer": 1,
-			"light_mask": 2,
-			"mask": 0,
-			"scene": "res://scenes/world/blockout/BlockoutBlock.tscn",
-			"script": {
-				"arch_color": "Color(0.22, 0.11, 0.08, 1)",
-				"arch_count": "0",
-				"casts_shadow": "true",
-				"footprint_size": "Vector2(24, 24)",
-				"path": "res://scripts/world/blockout_block.gd",
-				"roof_color": "Color(0.45, 0.42, 0.4, 1)",
-				"wall_color": "Color(0.7, 0.36, 0.26, 1)",
-				"wall_height": "150.0"
-			},
-			"visible": true,
-			"xform": [
-				1.0,
-				0.0,
-				0.0,
-				1.0,
-				-140.0,
-				-425.0
-			],
-			"z": 0
-		},
-		"./Objects/Arcade/Column03/~internal0:CollisionShape2D": {
-			"class": "CollisionShape2D",
-			"disabled": false,
-			"light_mask": 1,
-			"shape": {
-				"rect": [
-					24.0,
-					24.0
-				]
-			},
-			"visible": true,
-			"xform": [
-				1.0,
-				0.0,
-				0.0,
-				1.0,
-				-140.0,
-				-437.0
-			],
-			"z": 0
-		},
-		"./Objects/Arcade/Column03/~internal1:LightOccluder2D": {
-			"class": "LightOccluder2D",
-			"light_mask": 1,
-			"occluder": [
-				[
-					-12.0,
-					-24.0
-				],
-				[
-					12.0,
-					-24.0
-				],
-				[
-					12.0,
-					0.0
-				],
-				[
-					-12.0,
-					0.0
-				]
-			],
-			"occluder_mask": 1,
-			"visible": true,
-			"xform": [
-				1.0,
-				0.0,
-				0.0,
-				1.0,
-				-140.0,
-				-425.0
-			],
-			"z": 0
-		},
-		"./Objects/Arcade/Column04": {
-			"class": "StaticBody2D",
-			"groups": [
-				"blockout_placeholder"
-			],
-			"layer": 1,
-			"light_mask": 2,
-			"mask": 0,
-			"scene": "res://scenes/world/blockout/BlockoutBlock.tscn",
-			"script": {
-				"arch_color": "Color(0.22, 0.11, 0.08, 1)",
-				"arch_count": "0",
-				"casts_shadow": "true",
-				"footprint_size": "Vector2(24, 24)",
-				"path": "res://scripts/world/blockout_block.gd",
-				"roof_color": "Color(0.45, 0.42, 0.4, 1)",
-				"wall_color": "Color(0.7, 0.36, 0.26, 1)",
-				"wall_height": "150.0"
-			},
-			"visible": true,
-			"xform": [
-				1.0,
-				0.0,
-				0.0,
-				1.0,
-				-140.0,
-				-255.0
-			],
-			"z": 0
-		},
-		"./Objects/Arcade/Column04/~internal0:CollisionShape2D": {
-			"class": "CollisionShape2D",
-			"disabled": false,
-			"light_mask": 1,
-			"shape": {
-				"rect": [
-					24.0,
-					24.0
-				]
-			},
-			"visible": true,
-			"xform": [
-				1.0,
-				0.0,
-				0.0,
-				1.0,
-				-140.0,
-				-267.0
-			],
-			"z": 0
-		},
-		"./Objects/Arcade/Column04/~internal1:LightOccluder2D": {
-			"class": "LightOccluder2D",
-			"light_mask": 1,
-			"occluder": [
-				[
-					-12.0,
-					-24.0
-				],
-				[
-					12.0,
-					-24.0
-				],
-				[
-					12.0,
-					0.0
-				],
-				[
-					-12.0,
-					0.0
-				]
-			],
-			"occluder_mask": 1,
-			"visible": true,
-			"xform": [
-				1.0,
-				0.0,
-				0.0,
-				1.0,
-				-140.0,
-				-255.0
-			],
-			"z": 0
-		},
-		"./Objects/Arcade/Column05": {
-			"class": "StaticBody2D",
-			"groups": [
-				"blockout_placeholder"
-			],
-			"layer": 1,
-			"light_mask": 2,
-			"mask": 0,
-			"scene": "res://scenes/world/blockout/BlockoutBlock.tscn",
-			"script": {
-				"arch_color": "Color(0.22, 0.11, 0.08, 1)",
-				"arch_count": "0",
-				"casts_shadow": "true",
-				"footprint_size": "Vector2(24, 24)",
-				"path": "res://scripts/world/blockout_block.gd",
-				"roof_color": "Color(0.45, 0.42, 0.4, 1)",
-				"wall_color": "Color(0.7, 0.36, 0.26, 1)",
-				"wall_height": "150.0"
-			},
-			"visible": true,
-			"xform": [
-				1.0,
-				0.0,
-				0.0,
-				1.0,
-				-140.0,
-				-85.0
-			],
-			"z": 0
-		},
-		"./Objects/Arcade/Column05/~internal0:CollisionShape2D": {
-			"class": "CollisionShape2D",
-			"disabled": false,
-			"light_mask": 1,
-			"shape": {
-				"rect": [
-					24.0,
-					24.0
-				]
-			},
-			"visible": true,
-			"xform": [
-				1.0,
-				0.0,
-				0.0,
-				1.0,
-				-140.0,
-				-97.0
-			],
-			"z": 0
-		},
-		"./Objects/Arcade/Column05/~internal1:LightOccluder2D": {
-			"class": "LightOccluder2D",
-			"light_mask": 1,
-			"occluder": [
-				[
-					-12.0,
-					-24.0
-				],
-				[
-					12.0,
-					-24.0
-				],
-				[
-					12.0,
-					0.0
-				],
-				[
-					-12.0,
-					0.0
-				]
-			],
-			"occluder_mask": 1,
-			"visible": true,
-			"xform": [
-				1.0,
-				0.0,
-				0.0,
-				1.0,
-				-140.0,
-				-85.0
-			],
-			"z": 0
-		},
-		"./Objects/Arcade/Column06": {
-			"class": "StaticBody2D",
-			"groups": [
-				"blockout_placeholder"
-			],
-			"layer": 1,
-			"light_mask": 2,
-			"mask": 0,
-			"scene": "res://scenes/world/blockout/BlockoutBlock.tscn",
-			"script": {
-				"arch_color": "Color(0.22, 0.11, 0.08, 1)",
-				"arch_count": "0",
-				"casts_shadow": "true",
-				"footprint_size": "Vector2(24, 24)",
-				"path": "res://scripts/world/blockout_block.gd",
-				"roof_color": "Color(0.45, 0.42, 0.4, 1)",
-				"wall_color": "Color(0.7, 0.36, 0.26, 1)",
-				"wall_height": "150.0"
-			},
-			"visible": true,
-			"xform": [
-				1.0,
-				0.0,
-				0.0,
-				1.0,
-				-140.0,
-				85.0
-			],
-			"z": 0
-		},
-		"./Objects/Arcade/Column06/~internal0:CollisionShape2D": {
-			"class": "CollisionShape2D",
-			"disabled": false,
-			"light_mask": 1,
-			"shape": {
-				"rect": [
-					24.0,
-					24.0
-				]
-			},
-			"visible": true,
-			"xform": [
-				1.0,
-				0.0,
-				0.0,
-				1.0,
-				-140.0,
-				73.0
-			],
-			"z": 0
-		},
-		"./Objects/Arcade/Column06/~internal1:LightOccluder2D": {
-			"class": "LightOccluder2D",
-			"light_mask": 1,
-			"occluder": [
-				[
-					-12.0,
-					-24.0
-				],
-				[
-					12.0,
-					-24.0
-				],
-				[
-					12.0,
-					0.0
-				],
-				[
-					-12.0,
-					0.0
-				]
-			],
-			"occluder_mask": 1,
-			"visible": true,
-			"xform": [
-				1.0,
-				0.0,
-				0.0,
-				1.0,
-				-140.0,
-				85.0
-			],
-			"z": 0
-		},
-		"./Objects/Arcade/Column07": {
-			"class": "StaticBody2D",
-			"groups": [
-				"blockout_placeholder"
-			],
-			"layer": 1,
-			"light_mask": 2,
-			"mask": 0,
-			"scene": "res://scenes/world/blockout/BlockoutBlock.tscn",
-			"script": {
-				"arch_color": "Color(0.22, 0.11, 0.08, 1)",
-				"arch_count": "0",
-				"casts_shadow": "true",
-				"footprint_size": "Vector2(24, 24)",
-				"path": "res://scripts/world/blockout_block.gd",
-				"roof_color": "Color(0.45, 0.42, 0.4, 1)",
-				"wall_color": "Color(0.7, 0.36, 0.26, 1)",
-				"wall_height": "150.0"
-			},
-			"visible": true,
-			"xform": [
-				1.0,
-				0.0,
-				0.0,
-				1.0,
-				-140.0,
-				255.0
-			],
-			"z": 0
-		},
-		"./Objects/Arcade/Column07/~internal0:CollisionShape2D": {
-			"class": "CollisionShape2D",
-			"disabled": false,
-			"light_mask": 1,
-			"shape": {
-				"rect": [
-					24.0,
-					24.0
-				]
-			},
-			"visible": true,
-			"xform": [
-				1.0,
-				0.0,
-				0.0,
-				1.0,
-				-140.0,
-				243.0
-			],
-			"z": 0
-		},
-		"./Objects/Arcade/Column07/~internal1:LightOccluder2D": {
-			"class": "LightOccluder2D",
-			"light_mask": 1,
-			"occluder": [
-				[
-					-12.0,
-					-24.0
-				],
-				[
-					12.0,
-					-24.0
-				],
-				[
-					12.0,
-					0.0
-				],
-				[
-					-12.0,
-					0.0
-				]
-			],
-			"occluder_mask": 1,
-			"visible": true,
-			"xform": [
-				1.0,
-				0.0,
-				0.0,
-				1.0,
-				-140.0,
-				255.0
-			],
-			"z": 0
-		},
-		"./Objects/Arcade/Column08": {
-			"class": "StaticBody2D",
-			"groups": [
-				"blockout_placeholder"
-			],
-			"layer": 1,
-			"light_mask": 2,
-			"mask": 0,
-			"scene": "res://scenes/world/blockout/BlockoutBlock.tscn",
-			"script": {
-				"arch_color": "Color(0.22, 0.11, 0.08, 1)",
-				"arch_count": "0",
-				"casts_shadow": "true",
-				"footprint_size": "Vector2(24, 24)",
-				"path": "res://scripts/world/blockout_block.gd",
-				"roof_color": "Color(0.45, 0.42, 0.4, 1)",
-				"wall_color": "Color(0.7, 0.36, 0.26, 1)",
-				"wall_height": "150.0"
-			},
-			"visible": true,
-			"xform": [
-				1.0,
-				0.0,
-				0.0,
-				1.0,
-				-140.0,
-				425.0
-			],
-			"z": 0
-		},
-		"./Objects/Arcade/Column08/~internal0:CollisionShape2D": {
-			"class": "CollisionShape2D",
-			"disabled": false,
-			"light_mask": 1,
-			"shape": {
-				"rect": [
-					24.0,
-					24.0
-				]
-			},
-			"visible": true,
-			"xform": [
-				1.0,
-				0.0,
-				0.0,
-				1.0,
-				-140.0,
-				413.0
-			],
-			"z": 0
-		},
-		"./Objects/Arcade/Column08/~internal1:LightOccluder2D": {
-			"class": "LightOccluder2D",
-			"light_mask": 1,
-			"occluder": [
-				[
-					-12.0,
-					-24.0
-				],
-				[
-					12.0,
-					-24.0
-				],
-				[
-					12.0,
-					0.0
-				],
-				[
-					-12.0,
-					0.0
-				]
-			],
-			"occluder_mask": 1,
-			"visible": true,
-			"xform": [
-				1.0,
-				0.0,
-				0.0,
-				1.0,
-				-140.0,
-				425.0
-			],
-			"z": 0
-		},
-		"./Objects/Arcade/Column09": {
-			"class": "StaticBody2D",
-			"groups": [
-				"blockout_placeholder"
-			],
-			"layer": 1,
-			"light_mask": 2,
-			"mask": 0,
-			"scene": "res://scenes/world/blockout/BlockoutBlock.tscn",
-			"script": {
-				"arch_color": "Color(0.22, 0.11, 0.08, 1)",
-				"arch_count": "0",
-				"casts_shadow": "true",
-				"footprint_size": "Vector2(24, 24)",
-				"path": "res://scripts/world/blockout_block.gd",
-				"roof_color": "Color(0.45, 0.42, 0.4, 1)",
-				"wall_color": "Color(0.7, 0.36, 0.26, 1)",
-				"wall_height": "150.0"
-			},
-			"visible": true,
-			"xform": [
-				1.0,
-				0.0,
-				0.0,
-				1.0,
-				-140.0,
-				595.0
-			],
-			"z": 0
-		},
-		"./Objects/Arcade/Column09/~internal0:CollisionShape2D": {
-			"class": "CollisionShape2D",
-			"disabled": false,
-			"light_mask": 1,
-			"shape": {
-				"rect": [
-					24.0,
-					24.0
-				]
-			},
-			"visible": true,
-			"xform": [
-				1.0,
-				0.0,
-				0.0,
-				1.0,
-				-140.0,
-				583.0
-			],
-			"z": 0
-		},
-		"./Objects/Arcade/Column09/~internal1:LightOccluder2D": {
-			"class": "LightOccluder2D",
-			"light_mask": 1,
-			"occluder": [
-				[
-					-12.0,
-					-24.0
-				],
-				[
-					12.0,
-					-24.0
-				],
-				[
-					12.0,
-					0.0
-				],
-				[
-					-12.0,
-					0.0
-				]
-			],
-			"occluder_mask": 1,
-			"visible": true,
-			"xform": [
-				1.0,
-				0.0,
-				0.0,
-				1.0,
-				-140.0,
-				595.0
-			],
-			"z": 0
-		},
-		"./Objects/Arcade/Column10": {
-			"class": "StaticBody2D",
-			"groups": [
-				"blockout_placeholder"
-			],
-			"layer": 1,
-			"light_mask": 2,
-			"mask": 0,
-			"scene": "res://scenes/world/blockout/BlockoutBlock.tscn",
-			"script": {
-				"arch_color": "Color(0.22, 0.11, 0.08, 1)",
-				"arch_count": "0",
-				"casts_shadow": "true",
-				"footprint_size": "Vector2(24, 24)",
-				"path": "res://scripts/world/blockout_block.gd",
-				"roof_color": "Color(0.45, 0.42, 0.4, 1)",
-				"wall_color": "Color(0.7, 0.36, 0.26, 1)",
-				"wall_height": "150.0"
-			},
-			"visible": true,
-			"xform": [
-				1.0,
-				0.0,
-				0.0,
-				1.0,
-				-140.0,
-				765.0
-			],
-			"z": 0
-		},
-		"./Objects/Arcade/Column10/~internal0:CollisionShape2D": {
-			"class": "CollisionShape2D",
-			"disabled": false,
-			"light_mask": 1,
-			"shape": {
-				"rect": [
-					24.0,
-					24.0
-				]
-			},
-			"visible": true,
-			"xform": [
-				1.0,
-				0.0,
-				0.0,
-				1.0,
-				-140.0,
-				753.0
-			],
-			"z": 0
-		},
-		"./Objects/Arcade/Column10/~internal1:LightOccluder2D": {
-			"class": "LightOccluder2D",
-			"light_mask": 1,
-			"occluder": [
-				[
-					-12.0,
-					-24.0
-				],
-				[
-					12.0,
-					-24.0
-				],
-				[
-					12.0,
-					0.0
-				],
-				[
-					-12.0,
-					0.0
-				]
-			],
-			"occluder_mask": 1,
-			"visible": true,
-			"xform": [
-				1.0,
-				0.0,
-				0.0,
-				1.0,
-				-140.0,
-				765.0
-			],
-			"z": 0
-		},
-		"./Objects/Arcade/Overhead": {
-			"class": "Node2D",
-			"groups": [
-				"blockout_placeholder"
-			],
-			"light_mask": 1,
-			"visible": true,
-			"xform": [
-				1.0,
-				0.0,
-				0.0,
-				1.0,
-				0.0,
-				0.0
-			],
-			"z": 10
-		},
-		"./Objects/Arcade/Overhead/VerandaRoofEdge": {
-			"class": "Polygon2D",
-			"color": [
-				0.6200000047683716,
-				0.30000001192092896,
-				0.2199999988079071,
-				0.8999999761581421
-			],
-			"light_mask": 1,
-			"polygon": [
-				[
-					-170.0,
-					-1000.0
-				],
-				[
-					-110.0,
-					-1000.0
-				],
-				[
-					-110.0,
-					700.0
-				],
-				[
-					-170.0,
-					700.0
-				]
-			],
-			"visible": true,
-			"xform": [
-				1.0,
-				0.0,
-				0.0,
-				1.0,
-				0.0,
-				0.0
-			],
-			"z": 10
-		},
-		"./Objects/FutureFronts": {
-			"class": "Node2D",
-			"groups": [
-				"blockout_placeholder"
-			],
-			"light_mask": 1,
-			"visible": true,
-			"xform": [
-				1.0,
-				0.0,
-				0.0,
-				1.0,
-				0.0,
-				0.0
-			],
-			"y_sort": true,
-			"z": 0
-		},
-		"./Objects/FutureFronts/CanteenFront": {
-			"class": "Node2D",
-			"light_mask": 1,
-			"visible": true,
-			"xform": [
-				1.0,
-				0.0,
-				0.0,
-				1.0,
-				100.0,
-				-575.0
-			],
-			"z": 0
-		},
-		"./Objects/FutureFronts/CanteenFront/Body": {
-			"class": "Polygon2D",
-			"color": [
-				0.550000011920929,
-				0.3499999940395355,
-				0.15000000596046448,
-				1.0
-			],
-			"light_mask": 1,
-			"polygon": [
-				[
-					-22.0,
-					0.0
-				],
-				[
-					-22.0,
-					-50.0
-				],
-				[
-					-12.0,
-					-64.0
-				],
-				[
-					0.0,
-					-70.0
-				],
-				[
-					12.0,
-					-64.0
-				],
-				[
-					22.0,
-					-50.0
-				],
-				[
-					22.0,
-					0.0
-				]
-			],
-			"visible": true,
-			"xform": [
-				1.0,
-				0.0,
-				0.0,
-				1.0,
-				100.0,
-				-575.0
-			],
-			"z": 0
-		},
-		"./Objects/FutureFronts/CanteenFront/Label": {
-			"class": "Label",
-			"light_mask": 1,
-			"visible": true,
-			"z": 0
-		},
-		"./Objects/FutureFronts/IndoorBasketballFront": {
-			"class": "Node2D",
-			"light_mask": 1,
-			"visible": true,
-			"xform": [
-				1.0,
-				0.0,
-				0.0,
-				1.0,
-				100.0,
-				500.0
-			],
-			"z": 0
-		},
-		"./Objects/FutureFronts/IndoorBasketballFront/Body": {
-			"class": "Polygon2D",
-			"color": [
-				0.5,
-				0.25,
-				0.25,
-				1.0
-			],
-			"light_mask": 1,
-			"polygon": [
-				[
-					-22.0,
-					0.0
-				],
-				[
-					-22.0,
-					-50.0
-				],
-				[
-					-12.0,
-					-64.0
-				],
-				[
-					0.0,
-					-70.0
-				],
-				[
-					12.0,
-					-64.0
-				],
-				[
-					22.0,
-					-50.0
-				],
-				[
-					22.0,
-					0.0
-				]
-			],
-			"visible": true,
-			"xform": [
-				1.0,
-				0.0,
-				0.0,
-				1.0,
-				100.0,
-				500.0
-			],
-			"z": 0
-		},
-		"./Objects/FutureFronts/IndoorBasketballFront/Label": {
-			"class": "Label",
-			"light_mask": 1,
-			"visible": true,
-			"z": 0
-		},
-		"./Objects/FutureFronts/TableTennisFront": {
-			"class": "Node2D",
-			"light_mask": 1,
-			"visible": true,
-			"xform": [
-				1.0,
-				0.0,
-				0.0,
-				1.0,
-				100.0,
-				-220.0
-			],
-			"z": 0
-		},
-		"./Objects/FutureFronts/TableTennisFront/Body": {
-			"class": "Polygon2D",
-			"color": [
-				0.30000001192092896,
-				0.3499999940395355,
-				0.5,
-				1.0
-			],
-			"light_mask": 1,
-			"polygon": [
-				[
-					-22.0,
-					0.0
-				],
-				[
-					-22.0,
-					-50.0
-				],
-				[
-					-12.0,
-					-64.0
-				],
-				[
-					0.0,
-					-70.0
-				],
-				[
-					12.0,
-					-64.0
-				],
-				[
-					22.0,
-					-50.0
-				],
-				[
-					22.0,
-					0.0
-				]
-			],
-			"visible": true,
-			"xform": [
-				1.0,
-				0.0,
-				0.0,
-				1.0,
-				100.0,
-				-220.0
-			],
-			"z": 0
-		},
-		"./Objects/FutureFronts/TableTennisFront/Label": {
-			"class": "Label",
-			"light_mask": 1,
-			"visible": true,
-			"z": 0
-		},
-		"./Objects/SpawnMarkers": {
-			"class": "Node2D",
-			"light_mask": 1,
-			"visible": true,
-			"xform": [
-				1.0,
-				0.0,
-				0.0,
-				1.0,
-				0.0,
-				0.0
-			],
-			"y_sort": true,
-			"z": 0
-		},
-		"./Objects/SpawnMarkers/SpawnInsideCdsEntry": {
-			"class": "Marker2D",
-			"light_mask": 1,
-			"scene": "res://scenes/components/SpawnMarker.tscn",
-			"script": {
-				"path": "res://scripts/components/spawn_marker.gd",
-				"spawn_id": "\"inside_cds_entry\""
-			},
-			"visible": true,
-			"xform": [
-				1.0,
-				0.0,
-				0.0,
-				1.0,
-				0.0,
-				-50.0
-			],
-			"z": 0
-		},
-		"./Objects/Transitions": {
-			"class": "Node2D",
-			"light_mask": 1,
-			"visible": true,
-			"xform": [
-				1.0,
-				0.0,
-				0.0,
-				1.0,
-				0.0,
-				0.0
-			],
-			"y_sort": true,
-			"z": 0
-		},
-		"./Objects/Transitions/DoorCdsExitToField": {
+		"./Objects/Doors/DoorCanteen": {
 			"class": "Node2D",
 			"light_mask": 1,
 			"scene": "res://scenes/components/Door.tscn",
 			"script": {
-				"destination_spawn_id": "\"outside_cds_entrance\"",
-				"destination_zone_id": "\"main_gate_exterior\"",
+				"destination_spawn_id": "\"canteen_from_veranda\"",
+				"destination_zone_id": "\"cds_canteen\"",
 				"hold_seconds": "0.0",
+				"locked_message": "\"Locked.\"",
 				"path": "res://scripts/components/door.gd",
-				"place_name": "\"To the field\"",
-				"verb": "\"Go out\""
+				"place_name": "\"Canteen\"",
+				"required_item": "\"\"",
+				"requires_flag": "\"\"",
+				"show_placeholder": "false",
+				"unlock_message": "\"\"",
+				"unlocked_flag": "\"door_unlocked_DoorCanteen\"",
+				"verb": "\"Enter\""
 			},
 			"visible": true,
 			"xform": [
@@ -1400,12 +156,12 @@
 				0.0,
 				0.0,
 				1.0,
-				-90.0,
-				-50.0
+				54.400001525878906,
+				-558.9183959960938
 			],
 			"z": 0
 		},
-		"./Objects/Transitions/DoorCdsExitToField/Body": {
+		"./Objects/Doors/DoorCanteen/Body": {
 			"class": "Polygon2D",
 			"color": [
 				0.44999998807907104,
@@ -1432,18 +188,351 @@
 					0.0
 				]
 			],
+			"visible": false,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				54.400001525878906,
+				-558.9183959960938
+			],
+			"z": 0
+		},
+		"./Objects/Doors/DoorCanteen/Interactable": {
+			"class": "Area2D",
+			"layer": 4,
+			"light_mask": 1,
+			"mask": 0,
+			"monitorable": true,
+			"monitoring": false,
+			"scene": "res://scenes/components/Interactable.tscn",
+			"script": {
+				"hold_seconds": "0.0",
+				"object_name": "\"Canteen\"",
+				"path": "res://scripts/components/interactable.gd",
+				"prompt_offset": "Vector2(0, -56)",
+				"verb": "\"Enter\""
+			},
 			"visible": true,
 			"xform": [
 				1.0,
 				0.0,
 				0.0,
 				1.0,
-				-90.0,
-				-50.0
+				54.400001525878906,
+				-558.9183959960938
 			],
 			"z": 0
 		},
-		"./Objects/Transitions/DoorCdsExitToField/Interactable": {
+		"./Objects/Doors/DoorCanteen/Interactable/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"circle": 32.0
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				54.400001525878906,
+				-558.9183959960938
+			],
+			"z": 0
+		},
+		"./Objects/Doors/DoorHall": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/components/Door.tscn",
+			"script": {
+				"destination_spawn_id": "\"hall_from_veranda\"",
+				"destination_zone_id": "\"cds_indoor_basketball\"",
+				"hold_seconds": "0.0",
+				"locked_message": "\"Locked. The notice says the master key is with security.\"",
+				"path": "res://scripts/components/door.gd",
+				"place_name": "\"Indoor games hall\"",
+				"required_item": "\"cds_master_key\"",
+				"requires_flag": "\"\"",
+				"show_placeholder": "false",
+				"unlock_message": "\"The master key turns. The door is warm to the touch.\"",
+				"unlocked_flag": "\"door_unlocked_DoorHall\"",
+				"verb": "\"Unlock\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				54.400001525878906,
+				582.1119995117188
+			],
+			"z": 0
+		},
+		"./Objects/Doors/DoorHall/Body": {
+			"class": "Polygon2D",
+			"color": [
+				0.44999998807907104,
+				0.2800000011920929,
+				0.15000000596046448,
+				1.0
+			],
+			"light_mask": 1,
+			"polygon": [
+				[
+					-24.0,
+					-64.0
+				],
+				[
+					24.0,
+					-64.0
+				],
+				[
+					24.0,
+					0.0
+				],
+				[
+					-24.0,
+					0.0
+				]
+			],
+			"visible": false,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				54.400001525878906,
+				582.1119995117188
+			],
+			"z": 0
+		},
+		"./Objects/Doors/DoorHall/Interactable": {
+			"class": "Area2D",
+			"layer": 4,
+			"light_mask": 1,
+			"mask": 0,
+			"monitorable": true,
+			"monitoring": false,
+			"scene": "res://scenes/components/Interactable.tscn",
+			"script": {
+				"hold_seconds": "0.0",
+				"object_name": "\"Indoor games hall\"",
+				"path": "res://scripts/components/interactable.gd",
+				"prompt_offset": "Vector2(0, -56)",
+				"verb": "\"Unlock\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				54.400001525878906,
+				582.1119995117188
+			],
+			"z": 0
+		},
+		"./Objects/Doors/DoorHall/Interactable/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"circle": 32.0
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				54.400001525878906,
+				582.1119995117188
+			],
+			"z": 0
+		},
+		"./Objects/Doors/DoorTableTennis": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/components/Door.tscn",
+			"script": {
+				"destination_spawn_id": "\"tt_from_veranda\"",
+				"destination_zone_id": "\"cds_table_tennis\"",
+				"hold_seconds": "0.0",
+				"locked_message": "\"Locked.\"",
+				"path": "res://scripts/components/door.gd",
+				"place_name": "\"Table-tennis room\"",
+				"required_item": "\"\"",
+				"requires_flag": "\"\"",
+				"show_placeholder": "false",
+				"unlock_message": "\"\"",
+				"unlocked_flag": "\"door_unlocked_DoorTableTennis\"",
+				"verb": "\"Enter\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				54.400001525878906,
+				-85.11039733886719
+			],
+			"z": 0
+		},
+		"./Objects/Doors/DoorTableTennis/Body": {
+			"class": "Polygon2D",
+			"color": [
+				0.44999998807907104,
+				0.2800000011920929,
+				0.15000000596046448,
+				1.0
+			],
+			"light_mask": 1,
+			"polygon": [
+				[
+					-24.0,
+					-64.0
+				],
+				[
+					24.0,
+					-64.0
+				],
+				[
+					24.0,
+					0.0
+				],
+				[
+					-24.0,
+					0.0
+				]
+			],
+			"visible": false,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				54.400001525878906,
+				-85.11039733886719
+			],
+			"z": 0
+		},
+		"./Objects/Doors/DoorTableTennis/Interactable": {
+			"class": "Area2D",
+			"layer": 4,
+			"light_mask": 1,
+			"mask": 0,
+			"monitorable": true,
+			"monitoring": false,
+			"scene": "res://scenes/components/Interactable.tscn",
+			"script": {
+				"hold_seconds": "0.0",
+				"object_name": "\"Table-tennis room\"",
+				"path": "res://scripts/components/interactable.gd",
+				"prompt_offset": "Vector2(0, -56)",
+				"verb": "\"Enter\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				54.400001525878906,
+				-85.11039733886719
+			],
+			"z": 0
+		},
+		"./Objects/Doors/DoorTableTennis/Interactable/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"circle": 32.0
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				54.400001525878906,
+				-85.11039733886719
+			],
+			"z": 0
+		},
+		"./Objects/Doors/DoorToField": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/components/Door.tscn",
+			"script": {
+				"destination_spawn_id": "\"outside_cds_entrance\"",
+				"destination_zone_id": "\"main_gate_exterior\"",
+				"hold_seconds": "0.0",
+				"locked_message": "\"Locked.\"",
+				"path": "res://scripts/components/door.gd",
+				"place_name": "\"To the field\"",
+				"required_item": "\"\"",
+				"requires_flag": "\"\"",
+				"show_placeholder": "false",
+				"unlock_message": "\"\"",
+				"unlocked_flag": "\"door_unlocked_DoorToField\"",
+				"verb": "\"Go out\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-96.0,
+				-0.1315000057220459
+			],
+			"z": 0
+		},
+		"./Objects/Doors/DoorToField/Body": {
+			"class": "Polygon2D",
+			"color": [
+				0.44999998807907104,
+				0.2800000011920929,
+				0.15000000596046448,
+				1.0
+			],
+			"light_mask": 1,
+			"polygon": [
+				[
+					-24.0,
+					-64.0
+				],
+				[
+					24.0,
+					-64.0
+				],
+				[
+					24.0,
+					0.0
+				],
+				[
+					-24.0,
+					0.0
+				]
+			],
+			"visible": false,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-96.0,
+				-0.1315000057220459
+			],
+			"z": 0
+		},
+		"./Objects/Doors/DoorToField/Interactable": {
 			"class": "Area2D",
 			"layer": 4,
 			"light_mask": 1,
@@ -1464,12 +553,12 @@
 				0.0,
 				0.0,
 				1.0,
-				-90.0,
-				-50.0
+				-96.0,
+				-0.1315000057220459
 			],
 			"z": 0
 		},
-		"./Objects/Transitions/DoorCdsExitToField/Interactable/Collision": {
+		"./Objects/Doors/DoorToField/Interactable/Collision": {
 			"class": "CollisionShape2D",
 			"disabled": false,
 			"light_mask": 1,
@@ -1482,12 +571,12 @@
 				0.0,
 				0.0,
 				1.0,
-				-90.0,
-				-50.0
+				-96.0,
+				-0.1315000057220459
 			],
 			"z": 0
 		},
-		"./Objects/Walls": {
+		"./Objects/Glow": {
 			"class": "Node2D",
 			"light_mask": 1,
 			"visible": true,
@@ -1502,24 +591,26 @@
 			"y_sort": true,
 			"z": 0
 		},
-		"./Objects/Walls/CdsBuilding": {
-			"class": "StaticBody2D",
+		"./Objects/Glow/CanteenSpill": {
+			"class": "Node2D",
 			"groups": [
-				"blockout_placeholder"
+				"glow_marks"
 			],
-			"layer": 1,
-			"light_mask": 2,
-			"mask": 0,
-			"scene": "res://scenes/world/blockout/BlockoutBlock.tscn",
+			"light_mask": 1,
 			"script": {
-				"arch_color": "Color(0.22, 0.11, 0.08, 1)",
-				"arch_count": "0",
-				"casts_shadow": "true",
-				"footprint_size": "Vector2(480, 1700)",
-				"path": "res://scripts/world/blockout_block.gd",
-				"roof_color": "Color(0.45, 0.42, 0.4, 1)",
-				"wall_color": "Color(0.62, 0.28, 0.2, 1)",
-				"wall_height": "200.0"
+				"color": "Color(0.45, 1, 0.82, 1)",
+				"intensity": "0.9",
+				"note_body": "\"\"",
+				"note_id": "\"\"",
+				"note_title": "\"\"",
+				"path": "res://scripts/world/glow_mark.gd",
+				"pulse_speed": "0.6",
+				"spots": "PackedVector3Array(0, 0, 8, 12, 6, 5, -10, -4, 6)",
+				"trail_spacing": "22.0",
+				"trail_to": "Vector2(0, 0)",
+				"writing": "\"\"",
+				"writing_offset": "Vector2(0, 0)",
+				"writing_size": "26"
 			},
 			"visible": true,
 			"xform": [
@@ -1527,20 +618,31 @@
 				0.0,
 				0.0,
 				1.0,
-				360.0,
-				850.0
+				32.0,
+				-344.9280090332031
 			],
 			"z": 0
 		},
-		"./Objects/Walls/CdsBuilding/~internal0:CollisionShape2D": {
-			"class": "CollisionShape2D",
-			"disabled": false,
+		"./Objects/Glow/HallDoorSpill": {
+			"class": "Node2D",
+			"groups": [
+				"glow_marks"
+			],
 			"light_mask": 1,
-			"shape": {
-				"rect": [
-					480.0,
-					1700.0
-				]
+			"script": {
+				"color": "Color(0.45, 1, 0.82, 1)",
+				"intensity": "0.9",
+				"note_body": "\"\"",
+				"note_id": "\"\"",
+				"note_title": "\"\"",
+				"path": "res://scripts/world/glow_mark.gd",
+				"pulse_speed": "0.6",
+				"spots": "PackedVector3Array(0, 0, 10, -14, 8, 7, -26, -6, 6, -8, -16, 5)",
+				"trail_spacing": "22.0",
+				"trail_to": "Vector2(0, 0)",
+				"writing": "\"\"",
+				"writing_offset": "Vector2(0, 0)",
+				"writing_size": "26"
 			},
 			"visible": true,
 			"xform": [
@@ -1548,62 +650,81 @@
 				0.0,
 				0.0,
 				1.0,
-				360.0,
+				44.79999923706055,
+				582.1119995117188
+			],
+			"z": 0
+		},
+		"./Objects/Glow/HallTrail": {
+			"class": "Node2D",
+			"groups": [
+				"glow_marks"
+			],
+			"light_mask": 1,
+			"script": {
+				"color": "Color(0.45, 1, 0.82, 1)",
+				"intensity": "0.7",
+				"note_body": "\"\"",
+				"note_id": "\"\"",
+				"note_title": "\"\"",
+				"path": "res://scripts/world/glow_mark.gd",
+				"pulse_speed": "0.5",
+				"spots": "PackedVector3Array()",
+				"trail_spacing": "22.0",
+				"trail_to": "Vector2(-60, 130)",
+				"writing": "\"\"",
+				"writing_offset": "Vector2(0, 0)",
+				"writing_size": "26"
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				38.400001525878906,
+				602.68798828125
+			],
+			"z": 0
+		},
+		"./Objects/Lights": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
 				0.0
 			],
+			"y_sort": true,
 			"z": 0
 		},
-		"./Objects/Walls/CdsBuilding/~internal1:LightOccluder2D": {
-			"class": "LightOccluder2D",
+		"./Objects/Lights/Emergency": {
+			"class": "PointLight2D",
+			"light": {
+				"color": [
+					1.0,
+					0.3499999940395355,
+					0.30000001192092896,
+					1.0
+				],
+				"enabled": true,
+				"energy": 0.5,
+				"range_mask": 3,
+				"shadow_mask": 1,
+				"shadows": false
+			},
 			"light_mask": 1,
-			"occluder": [
-				[
-					-240.0,
-					-1700.0
-				],
-				[
-					240.0,
-					-1700.0
-				],
-				[
-					240.0,
-					0.0
-				],
-				[
-					-240.0,
-					0.0
-				]
-			],
-			"occluder_mask": 1,
-			"visible": true,
-			"xform": [
-				1.0,
-				0.0,
-				0.0,
-				1.0,
-				360.0,
-				850.0
-			],
-			"z": 0
-		},
-		"./Objects/Walls/NorthEnd": {
-			"class": "StaticBody2D",
-			"groups": [
-				"blockout_placeholder"
-			],
-			"layer": 1,
-			"light_mask": 2,
-			"mask": 0,
-			"scene": "res://scenes/world/blockout/BlockoutBlock.tscn",
 			"script": {
-				"arch_color": "Color(0.22, 0.11, 0.08, 1)",
-				"arch_count": "0",
-				"casts_shadow": "true",
-				"footprint_size": "Vector2(750, 40)",
-				"path": "res://scripts/world/blockout_block.gd",
-				"roof_color": "Color(0.45, 0.42, 0.4, 1)",
-				"wall_color": "Color(0.62, 0.28, 0.2, 1)",
-				"wall_height": "200.0"
+				"base_energy": "0.5",
+				"gameplay": "false",
+				"gameplay_radius": "0.0",
+				"mode": "1",
+				"needs_power": "false",
+				"path": "res://scripts/lighting/lamp_light.gd"
 			},
 			"visible": true,
 			"xform": [
@@ -1611,83 +732,34 @@
 				0.0,
 				0.0,
 				1.0,
-				225.0,
-				-850.0
+				57.599998474121094,
+				-80.44000244140625
 			],
 			"z": 0
 		},
-		"./Objects/Walls/NorthEnd/~internal0:CollisionShape2D": {
-			"class": "CollisionShape2D",
-			"disabled": false,
-			"light_mask": 1,
-			"shape": {
-				"rect": [
-					750.0,
-					40.0
-				]
+		"./Objects/Lights/MoonArcadeM": {
+			"class": "PointLight2D",
+			"light": {
+				"color": [
+					0.550000011920929,
+					0.6499999761581421,
+					1.0,
+					1.0
+				],
+				"enabled": true,
+				"energy": 0.35,
+				"range_mask": 3,
+				"shadow_mask": 1,
+				"shadows": false
 			},
-			"visible": true,
-			"xform": [
-				1.0,
-				0.0,
-				0.0,
-				1.0,
-				225.0,
-				-870.0
-			],
-			"z": 0
-		},
-		"./Objects/Walls/NorthEnd/~internal1:LightOccluder2D": {
-			"class": "LightOccluder2D",
 			"light_mask": 1,
-			"occluder": [
-				[
-					-375.0,
-					-40.0
-				],
-				[
-					375.0,
-					-40.0
-				],
-				[
-					375.0,
-					0.0
-				],
-				[
-					-375.0,
-					0.0
-				]
-			],
-			"occluder_mask": 1,
-			"visible": true,
-			"xform": [
-				1.0,
-				0.0,
-				0.0,
-				1.0,
-				225.0,
-				-850.0
-			],
-			"z": 0
-		},
-		"./Objects/Walls/SouthEnd": {
-			"class": "StaticBody2D",
-			"groups": [
-				"blockout_placeholder"
-			],
-			"layer": 1,
-			"light_mask": 2,
-			"mask": 0,
-			"scene": "res://scenes/world/blockout/BlockoutBlock.tscn",
 			"script": {
-				"arch_color": "Color(0.22, 0.11, 0.08, 1)",
-				"arch_count": "3",
-				"casts_shadow": "true",
-				"footprint_size": "Vector2(750, 40)",
-				"path": "res://scripts/world/blockout_block.gd",
-				"roof_color": "Color(0.45, 0.42, 0.4, 1)",
-				"wall_color": "Color(0.62, 0.28, 0.2, 1)",
-				"wall_height": "200.0"
+				"base_energy": "0.35",
+				"gameplay": "false",
+				"gameplay_radius": "0.0",
+				"mode": "0",
+				"needs_power": "false",
+				"path": "res://scripts/lighting/lamp_light.gd"
 			},
 			"visible": true,
 			"xform": [
@@ -1695,83 +767,34 @@
 				0.0,
 				0.0,
 				1.0,
-				225.0,
-				890.0
+				-83.19999694824219,
+				15.711999893188477
 			],
 			"z": 0
 		},
-		"./Objects/Walls/SouthEnd/~internal0:CollisionShape2D": {
-			"class": "CollisionShape2D",
-			"disabled": false,
-			"light_mask": 1,
-			"shape": {
-				"rect": [
-					750.0,
-					40.0
-				]
+		"./Objects/Lights/MoonArcadeN": {
+			"class": "PointLight2D",
+			"light": {
+				"color": [
+					0.550000011920929,
+					0.6499999761581421,
+					1.0,
+					1.0
+				],
+				"enabled": true,
+				"energy": 0.35,
+				"range_mask": 3,
+				"shadow_mask": 1,
+				"shadows": false
 			},
-			"visible": true,
-			"xform": [
-				1.0,
-				0.0,
-				0.0,
-				1.0,
-				225.0,
-				870.0
-			],
-			"z": 0
-		},
-		"./Objects/Walls/SouthEnd/~internal1:LightOccluder2D": {
-			"class": "LightOccluder2D",
 			"light_mask": 1,
-			"occluder": [
-				[
-					-375.0,
-					-40.0
-				],
-				[
-					375.0,
-					-40.0
-				],
-				[
-					375.0,
-					0.0
-				],
-				[
-					-375.0,
-					0.0
-				]
-			],
-			"occluder_mask": 1,
-			"visible": true,
-			"xform": [
-				1.0,
-				0.0,
-				0.0,
-				1.0,
-				225.0,
-				890.0
-			],
-			"z": 0
-		},
-		"./Objects/Walls/WestParapet": {
-			"class": "StaticBody2D",
-			"groups": [
-				"blockout_placeholder"
-			],
-			"layer": 1,
-			"light_mask": 2,
-			"mask": 0,
-			"scene": "res://scenes/world/blockout/BlockoutBlock.tscn",
 			"script": {
-				"arch_color": "Color(0.22, 0.11, 0.08, 1)",
-				"arch_count": "0",
-				"casts_shadow": "true",
-				"footprint_size": "Vector2(20, 1700)",
-				"path": "res://scripts/world/blockout_block.gd",
-				"roof_color": "Color(0.58, 0.32, 0.24, 1)",
-				"wall_color": "Color(0.7, 0.36, 0.26, 1)",
-				"wall_height": "30.0"
+				"base_energy": "0.35",
+				"gameplay": "false",
+				"gameplay_radius": "0.0",
+				"mode": "0",
+				"needs_power": "false",
+				"path": "res://scripts/lighting/lamp_light.gd"
 			},
 			"visible": true,
 			"xform": [
@@ -1779,20 +802,34 @@
 				0.0,
 				0.0,
 				1.0,
-				-140.0,
-				850.0
+				-83.19999694824219,
+				-550.68798828125
 			],
 			"z": 0
 		},
-		"./Objects/Walls/WestParapet/~internal0:CollisionShape2D": {
-			"class": "CollisionShape2D",
-			"disabled": false,
+		"./Objects/Lights/MoonArcadeS": {
+			"class": "PointLight2D",
+			"light": {
+				"color": [
+					0.550000011920929,
+					0.6499999761581421,
+					1.0,
+					1.0
+				],
+				"enabled": true,
+				"energy": 0.35,
+				"range_mask": 3,
+				"shadow_mask": 1,
+				"shadows": false
+			},
 			"light_mask": 1,
-			"shape": {
-				"rect": [
-					20.0,
-					1700.0
-				]
+			"script": {
+				"base_energy": "0.35",
+				"gameplay": "false",
+				"gameplay_radius": "0.0",
+				"mode": "0",
+				"needs_power": "false",
+				"path": "res://scripts/lighting/lamp_light.gd"
 			},
 			"visible": true,
 			"xform": [
@@ -1800,41 +837,1703 @@
 				0.0,
 				0.0,
 				1.0,
-				-140.0,
+				-83.19999694824219,
+				582.1119995117188
+			],
+			"z": 0
+		},
+		"./Objects/Lights/WallLamp1": {
+			"class": "PointLight2D",
+			"light": {
+				"color": [
+					1.0,
+					0.8500000238418579,
+					0.6000000238418579,
+					1.0
+				],
+				"enabled": false,
+				"energy": 0.7,
+				"range_mask": 3,
+				"shadow_mask": 1,
+				"shadows": false
+			},
+			"light_mask": 1,
+			"script": {
+				"base_energy": "0.7",
+				"gameplay": "true",
+				"gameplay_radius": "0.0",
+				"mode": "0",
+				"needs_power": "true",
+				"path": "res://scripts/lighting/lamp_light.gd"
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				54.400001525878906,
+				-585.6671752929688
+			],
+			"z": 0
+		},
+		"./Objects/Lights/WallLamp2": {
+			"class": "PointLight2D",
+			"light": {
+				"color": [
+					1.0,
+					0.8500000238418579,
+					0.6000000238418579,
+					1.0
+				],
+				"enabled": false,
+				"energy": 0.7,
+				"range_mask": 3,
+				"shadow_mask": 1,
+				"shadows": false
+			},
+			"light_mask": 1,
+			"script": {
+				"base_energy": "0.7",
+				"gameplay": "true",
+				"gameplay_radius": "0.0",
+				"mode": "0",
+				"needs_power": "true",
+				"path": "res://scripts/lighting/lamp_light.gd"
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				54.400001525878906,
+				-111.85919952392578
+			],
+			"z": 0
+		},
+		"./Objects/Lights/WallLamp3": {
+			"class": "PointLight2D",
+			"light": {
+				"color": [
+					1.0,
+					0.8500000238418579,
+					0.6000000238418579,
+					1.0
+				],
+				"enabled": false,
+				"energy": 0.7,
+				"range_mask": 3,
+				"shadow_mask": 1,
+				"shadows": false
+			},
+			"light_mask": 1,
+			"script": {
+				"base_energy": "0.7",
+				"gameplay": "true",
+				"gameplay_radius": "0.0",
+				"mode": "0",
+				"needs_power": "true",
+				"path": "res://scripts/lighting/lamp_light.gd"
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				54.400001525878906,
+				555.3632202148438
+			],
+			"z": 0
+		},
+		"./Objects/Props": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
 				0.0
 			],
+			"y_sort": true,
 			"z": 0
 		},
-		"./Objects/Walls/WestParapet/~internal1:LightOccluder2D": {
-			"class": "LightOccluder2D",
+		"./Objects/Props/Backpack": {
+			"class": "Node2D",
 			"light_mask": 1,
-			"occluder": [
+			"scene": "res://scenes/props/horror/BackpackDropped.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-19.200000762939453,
+				200.89599609375
+			],
+			"z": -1
+		},
+		"./Objects/Props/Backpack/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-179.62210083007813,
+				-253.78689575195313
+			],
+			"texture": "res://assets/sprites/horror/backpack_dropped.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.053333334624767303,
+				0.0,
+				0.0,
+				0.053333334624767303,
+				-19.200000762939453,
+				200.89599609375
+			],
+			"z": -1
+		},
+		"./Objects/Props/Bench1": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/furniture/GymBench.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				49.599998474121094,
+				-406.656005859375
+			],
+			"z": 0
+		},
+		"./Objects/Props/Bench1/Body": {
+			"class": "StaticBody2D",
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				49.599998474121094,
+				-406.656005859375
+			],
+			"z": 0
+		},
+		"./Objects/Props/Bench1/Body/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					64.0,
+					6.1707611083984375
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				49.599998474121094,
+				-406.656005859375
+			],
+			"z": 0
+		},
+		"./Objects/Props/Bench1/ContactShadow": {
+			"centered": true,
+			"class": "Sprite2D",
+			"light_mask": 1,
+			"offset": [
+				0.0,
+				0.0
+			],
+			"scene": "res://scenes/props/common/ContactShadow.tscn",
+			"texture": "embedded:GradientTexture2D",
+			"visible": true,
+			"xform": [
+				1.2000000476837158,
+				0.0,
+				0.0,
+				0.25,
+				49.599998474121094,
+				-406.656005859375
+			],
+			"z": -9
+		},
+		"./Objects/Props/Bench1/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-174.0,
+				-91.39271545410156
+			],
+			"texture": "res://assets/sprites/furniture/gym_bench.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.21333333849906921,
+				0.0,
+				0.0,
+				0.21333333849906921,
+				49.599998474121094,
+				-406.656005859375
+			],
+			"z": 0
+		},
+		"./Objects/Props/Bench2": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/furniture/GymBench.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				49.599998474121094,
+				159.74400329589844
+			],
+			"z": 0
+		},
+		"./Objects/Props/Bench2/Body": {
+			"class": "StaticBody2D",
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				49.599998474121094,
+				159.74400329589844
+			],
+			"z": 0
+		},
+		"./Objects/Props/Bench2/Body/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					64.0,
+					6.1707611083984375
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				49.599998474121094,
+				159.74400329589844
+			],
+			"z": 0
+		},
+		"./Objects/Props/Bench2/ContactShadow": {
+			"centered": true,
+			"class": "Sprite2D",
+			"light_mask": 1,
+			"offset": [
+				0.0,
+				0.0
+			],
+			"scene": "res://scenes/props/common/ContactShadow.tscn",
+			"texture": "embedded:GradientTexture2D",
+			"visible": true,
+			"xform": [
+				1.2000000476837158,
+				0.0,
+				0.0,
+				0.25,
+				49.599998474121094,
+				159.74400329589844
+			],
+			"z": -9
+		},
+		"./Objects/Props/Bench2/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-174.0,
+				-91.39271545410156
+			],
+			"texture": "res://assets/sprites/furniture/gym_bench.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.21333333849906921,
+				0.0,
+				0.0,
+				0.21333333849906921,
+				49.599998474121094,
+				159.74400329589844
+			],
+			"z": 0
+		},
+		"./Objects/Props/Bin1": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/furniture/TrashBin.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				51.20000076293945,
+				-725.583984375
+			],
+			"z": 0
+		},
+		"./Objects/Props/Bin1/Body": {
+			"class": "StaticBody2D",
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				51.20000076293945,
+				-725.583984375
+			],
+			"z": 0
+		},
+		"./Objects/Props/Bin1/Body/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					12.800000190734863,
+					8.227682113647461
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				51.20000076293945,
+				-725.583984375
+			],
+			"z": 0
+		},
+		"./Objects/Props/Bin1/ContactShadow": {
+			"centered": true,
+			"class": "Sprite2D",
+			"light_mask": 1,
+			"offset": [
+				0.0,
+				0.0
+			],
+			"scene": "res://scenes/props/common/ContactShadow.tscn",
+			"texture": "embedded:GradientTexture2D",
+			"visible": true,
+			"xform": [
+				0.3499999940395355,
+				0.0,
+				0.0,
+				0.25,
+				51.20000076293945,
+				-725.583984375
+			],
+			"z": -9
+		},
+		"./Objects/Props/Bin1/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-161.5,
+				-382.0125732421875
+			],
+			"texture": "res://assets/sprites/furniture/trash_bin.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.05169227719306946,
+				0.0,
+				0.0,
+				0.05169227719306946,
+				51.20000076293945,
+				-725.583984375
+			],
+			"z": 0
+		},
+		"./Objects/Props/Bin2": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/furniture/TrashBin.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				51.20000076293945,
+				438.0799865722656
+			],
+			"z": 0
+		},
+		"./Objects/Props/Bin2/Body": {
+			"class": "StaticBody2D",
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				51.20000076293945,
+				438.0799865722656
+			],
+			"z": 0
+		},
+		"./Objects/Props/Bin2/Body/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					12.800000190734863,
+					8.227682113647461
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				51.20000076293945,
+				438.0799865722656
+			],
+			"z": 0
+		},
+		"./Objects/Props/Bin2/ContactShadow": {
+			"centered": true,
+			"class": "Sprite2D",
+			"light_mask": 1,
+			"offset": [
+				0.0,
+				0.0
+			],
+			"scene": "res://scenes/props/common/ContactShadow.tscn",
+			"texture": "embedded:GradientTexture2D",
+			"visible": true,
+			"xform": [
+				0.3499999940395355,
+				0.0,
+				0.0,
+				0.25,
+				51.20000076293945,
+				438.0799865722656
+			],
+			"z": -9
+		},
+		"./Objects/Props/Bin2/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-161.5,
+				-382.0125732421875
+			],
+			"texture": "res://assets/sprites/furniture/trash_bin.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.05169227719306946,
+				0.0,
+				0.0,
+				0.05169227719306946,
+				51.20000076293945,
+				438.0799865722656
+			],
+			"z": 0
+		},
+		"./Objects/Props/Drum": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/furniture/WaterDrum.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				49.599998474121094,
+				-220.91200256347656
+			],
+			"z": 0
+		},
+		"./Objects/Props/Drum/Body": {
+			"class": "StaticBody2D",
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				49.599998474121094,
+				-220.91200256347656
+			],
+			"z": 0
+		},
+		"./Objects/Props/Drum/Body/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					17.920000076293945,
+					11.518754005432129
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				49.599998474121094,
+				-220.91200256347656
+			],
+			"z": 0
+		},
+		"./Objects/Props/Drum/ContactShadow": {
+			"centered": true,
+			"class": "Sprite2D",
+			"light_mask": 1,
+			"offset": [
+				0.0,
+				0.0
+			],
+			"scene": "res://scenes/props/common/ContactShadow.tscn",
+			"texture": "embedded:GradientTexture2D",
+			"visible": true,
+			"xform": [
+				0.4000000059604645,
+				0.0,
+				0.0,
+				0.30000001192092896,
+				49.599998474121094,
+				-220.91200256347656
+			],
+			"z": -9
+		},
+		"./Objects/Props/Drum/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-167.0,
+				-423.5296936035156
+			],
+			"texture": "res://assets/sprites/furniture/water_drum.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.07138459384441376,
+				0.0,
+				0.0,
+				0.07138459384441376,
+				49.599998474121094,
+				-220.91200256347656
+			],
+			"z": 0
+		},
+		"./Objects/Props/Papers": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/horror/PapersScattered.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				-468.3840026855469
+			],
+			"z": -1
+		},
+		"./Objects/Props/Papers/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-138.1426239013672,
+				-66.6351089477539
+			],
+			"texture": "res://assets/sprites/horror/papers_scattered.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.2461538463830948,
+				0.0,
+				0.0,
+				0.2461538463830948,
+				0.0,
+				-468.3840026855469
+			],
+			"z": -1
+		},
+		"./Objects/Props/Pool": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/horror/BloodPool.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				19.200000762939453,
+				684.9920043945313
+			],
+			"z": -1
+		},
+		"./Objects/Props/Pool/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-130.66432189941406,
+				-65.67082977294922
+			],
+			"texture": "res://assets/sprites/horror/blood_pool.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.19692307710647583,
+				0.0,
+				0.0,
+				0.19692307710647583,
+				19.200000762939453,
+				684.9920043945313
+			],
+			"z": -1
+		},
+		"./Objects/Props/Shoe": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/horror/ShoeSingle.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				9.600000381469727,
+				479.23199462890625
+			],
+			"z": -1
+		},
+		"./Objects/Props/Shoe/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-160.0,
+				-157.0746612548828
+			],
+			"texture": "res://assets/sprites/horror/shoe_single.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.026328055188059807,
+				0.0,
+				0.0,
+				0.026328055188059807,
+				9.600000381469727,
+				479.23199462890625
+			],
+			"z": -1
+		},
+		"./Objects/SectionMiddle": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/interiors/CdsVerandaMiddle.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				283.20001220703125
+			],
+			"y_sort": true,
+			"z": 0
+		},
+		"./Objects/SectionMiddle/Body": {
+			"class": "StaticBody2D",
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				283.20001220703125
+			],
+			"z": 0
+		},
+		"./Objects/SectionMiddle/Body/CollisionArcadeA": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					14.399999618530273,
+					264.622802734375
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-71.19999694824219,
+				157.05935668945313
+			],
+			"z": 0
+		},
+		"./Objects/SectionMiddle/Body/CollisionArcadeB": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					14.399999618530273,
+					264.622802734375
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-71.19999694824219,
+				-156.92953491210938
+			],
+			"z": 0
+		},
+		"./Objects/SectionMiddle/Body/CollisionDoorLeaf": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					28.799999237060547,
+					1.2341523170471191
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				49.599998474121094,
+				-102.88394165039063
+			],
+			"z": 0
+		},
+		"./Objects/SectionMiddle/Body/CollisionDoorStopE1": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					16.0,
+					41.13840866088867
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				81.5999984741211,
+				-84.98873901367188
+			],
+			"z": 0
+		},
+		"./Objects/SectionMiddle/Body/CollisionWallE1": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					9.600000381469727,
+					355.84722900390625
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				68.80000305175781,
+				111.44715881347656
+			],
+			"z": 0
+		},
+		"./Objects/SectionMiddle/Body/CollisionWallE2": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					9.600000381469727,
+					185.7399139404297
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				68.80000305175781,
+				-196.3709716796875
+			],
+			"z": 0
+		},
+		"./Objects/SectionMiddle/DoorLeaf": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				74.24999237060547,
+				-182.64727783203125
+			],
+			"texture": "res://assets/sprites/interiors/cds_veranda_middle__door_leaf.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.35555556416511536,
+				0.0,
+				0.0,
+				0.35555556416511536,
+				0.0,
+				-102.47256469726563
+			],
+			"z": 0
+		},
+		"./Objects/SectionMiddle/Sign": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				52.249996185302734,
+				-217.67141723632813
+			],
+			"texture": "res://assets/sprites/interiors/cds_veranda_middle__sign.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.35555556416511536,
+				0.0,
+				0.0,
+				0.35555556416511536,
+				0.0,
+				-64.4195556640625
+			],
+			"z": 0
+		},
+		"./Objects/SectionMiddle/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-564.75,
+				-1869.3514404296875
+			],
+			"texture": "res://assets/sprites/interiors/cds_veranda_middle.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.35555556416511536,
+				0.0,
+				0.0,
+				0.35555556416511536,
+				0.0,
+				283.20001220703125
+			],
+			"z": -10
+		},
+		"./Objects/SectionNorth": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/interiors/CdsVerandaNorth.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				-283.20001220703125
+			],
+			"y_sort": true,
+			"z": 0
+		},
+		"./Objects/SectionNorth/Body": {
+			"class": "StaticBody2D",
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				-283.20001220703125
+			],
+			"z": 0
+		},
+		"./Objects/SectionNorth/Body/CollisionArcade": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					14.399999618530273,
+					578.6116943359375
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-71.19999694824219,
+				-566.3350830078125
+			],
+			"z": 0
+		},
+		"./Objects/SectionNorth/Body/CollisionDoorLeaf": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					28.799999237060547,
+					1.2341523170471191
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				49.599998474121094,
+				-576.7225341796875
+			],
+			"z": 0
+		},
+		"./Objects/SectionNorth/Body/CollisionDoorStopE1": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					16.0,
+					41.13840866088867
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				81.5999984741211,
+				-558.827392578125
+			],
+			"z": 0
+		},
+		"./Objects/SectionNorth/Body/CollisionWallE1": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					9.600000381469727,
+					263.28582763671875
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				68.80000305175781,
+				-408.6721496582031
+			],
+			"z": 0
+		},
+		"./Objects/SectionNorth/Body/CollisionWallE2": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					9.600000381469727,
+					278.30133056640625
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				68.80000305175781,
+				-716.4902954101563
+			],
+			"z": 0
+		},
+		"./Objects/SectionNorth/Body/CollisionWallN": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					147.1999969482422,
+					6.1707611083984375
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				-852.5556030273438
+			],
+			"z": 0
+		},
+		"./Objects/SectionNorth/DoorLeaf": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				74.24999237060547,
+				-181.97637939453125
+			],
+			"texture": "res://assets/sprites/interiors/cds_veranda_north__door_leaf.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.35555556416511536,
+				0.0,
+				0.0,
+				0.35555556416511536,
+				0.0,
+				-576.3111572265625
+			],
+			"z": 0
+		},
+		"./Objects/SectionNorth/Sign": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				52.249996185302734,
+				-217.00051879882813
+			],
+			"texture": "res://assets/sprites/interiors/cds_veranda_north__sign.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.35555556416511536,
+				0.0,
+				0.0,
+				0.35555556416511536,
+				0.0,
+				-538.2581787109375
+			],
+			"z": 0
+		},
+		"./Objects/SectionNorth/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-564.75,
+				-1869.3515625
+			],
+			"texture": "res://assets/sprites/interiors/cds_veranda_north.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.35555556416511536,
+				0.0,
+				0.0,
+				0.35555556416511536,
+				0.0,
+				-283.20001220703125
+			],
+			"z": -10
+		},
+		"./Objects/SectionSouth": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/interiors/CdsVerandaSouth.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				849.5999755859375
+			],
+			"y_sort": true,
+			"z": 0
+		},
+		"./Objects/SectionSouth/Body": {
+			"class": "StaticBody2D",
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				849.5999755859375
+			],
+			"z": 0
+		},
+		"./Objects/SectionSouth/Body/CollisionArcade": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					14.399999618530273,
+					578.6116943359375
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-71.19999694824219,
+				566.46484375
+			],
+			"z": 0
+		},
+		"./Objects/SectionSouth/Body/CollisionDoorStopE1": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					16.0,
+					41.13840866088867
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				81.5999984741211,
+				582.2003173828125
+			],
+			"z": 0
+		},
+		"./Objects/SectionSouth/Body/CollisionWallE1": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					9.600000381469727,
+					255.05813598632813
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				68.80000305175781,
+				728.24169921875
+			],
+			"z": 0
+		},
+		"./Objects/SectionSouth/Body/CollisionWallE2": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					9.600000381469727,
+					286.5290222167969
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				68.80000305175781,
+				420.42352294921875
+			],
+			"z": 0
+		},
+		"./Objects/SectionSouth/Body/CollisionWallS1": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					147.1999969482422,
+					6.1707611083984375
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				852.6853637695313
+			],
+			"z": 0
+		},
+		"./Objects/SectionSouth/Sign": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				52.12763214111328,
+				-217.14083862304688
+			],
+			"texture": "res://assets/sprites/interiors/cds_veranda_south__sign.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.35555556416511536,
+				0.0,
+				0.0,
+				0.35555556416511536,
+				0.0,
+				602.76953125
+			],
+			"z": 0
+		},
+		"./Objects/SectionSouth/SouthWall": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-232.87237548828125,
+				-114.70675659179688
+			],
+			"texture": "res://assets/sprites/interiors/cds_veranda_south__south_wall.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.35555556416511536,
+				0.0,
+				0.0,
+				0.35555556416511536,
+				0.0,
+				855.770751953125
+			],
+			"z": 0
+		},
+		"./Objects/SectionSouth/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-564.8723754882813,
+				-1869.3514404296875
+			],
+			"texture": "res://assets/sprites/interiors/cds_veranda_south.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.35555556416511536,
+				0.0,
+				0.0,
+				0.35555556416511536,
+				0.0,
+				849.5999755859375
+			],
+			"z": -10
+		},
+		"./Objects/SpawnMarkers": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"y_sort": true,
+			"z": 0
+		},
+		"./Objects/SpawnMarkers/Spawn_inside_cds_entry": {
+			"class": "Marker2D",
+			"light_mask": 1,
+			"scene": "res://scenes/components/SpawnMarker.tscn",
+			"script": {
+				"path": "res://scripts/components/spawn_marker.gd",
+				"spawn_id": "\"inside_cds_entry\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-25.600000381469727,
+				-0.1315000057220459
+			],
+			"z": 0
+		},
+		"./Objects/SpawnMarkers/Spawn_veranda_canteen": {
+			"class": "Marker2D",
+			"light_mask": 1,
+			"scene": "res://scenes/components/SpawnMarker.tscn",
+			"script": {
+				"path": "res://scripts/components/spawn_marker.gd",
+				"spawn_id": "\"veranda_canteen\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				28.799999237060547,
+				-558.9183959960938
+			],
+			"z": 0
+		},
+		"./Objects/SpawnMarkers/Spawn_veranda_hall": {
+			"class": "Marker2D",
+			"light_mask": 1,
+			"scene": "res://scenes/components/SpawnMarker.tscn",
+			"script": {
+				"path": "res://scripts/components/spawn_marker.gd",
+				"spawn_id": "\"veranda_hall\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				28.799999237060547,
+				582.1119995117188
+			],
+			"z": 0
+		},
+		"./Objects/SpawnMarkers/Spawn_veranda_tt": {
+			"class": "Marker2D",
+			"light_mask": 1,
+			"scene": "res://scenes/components/SpawnMarker.tscn",
+			"script": {
+				"path": "res://scripts/components/spawn_marker.gd",
+				"spawn_id": "\"veranda_tt\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				28.799999237060547,
+				-85.11039733886719
+			],
+			"z": 0
+		},
+		"./Objects/Story": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"y_sort": true,
+			"z": 0
+		},
+		"./Objects/Story/HallSign": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/components/Readable.tscn",
+			"script": {
+				"body": "\"INDOOR GAMES HALL\nCLOSED FOR MAINTENANCE\n\nKeys: Security Office, Main Gate.\n\n(The bottom of the board is smeared with something dark, in the shape of a hand.)\"",
+				"dark_message": "\"Too dark to read. Light the lantern.\"",
+				"note_id": "\"hall_closed_sign\"",
+				"path": "res://scripts/components/readable.gd",
+				"requires_light": "true",
+				"sets_flag": "\"\"",
+				"title": "\"Sign on a stand\"",
+				"verb": "\"Read\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				540.9600219726563
+			],
+			"z": 0
+		},
+		"./Objects/Story/HallSign/Interactable": {
+			"class": "Area2D",
+			"layer": 4,
+			"light_mask": 1,
+			"mask": 0,
+			"monitorable": true,
+			"monitoring": false,
+			"scene": "res://scenes/components/Interactable.tscn",
+			"script": {
+				"hold_seconds": "0.0",
+				"object_name": "\"Sign on a stand\"",
+				"path": "res://scripts/components/interactable.gd",
+				"prompt_offset": "Vector2(0, -56)",
+				"verb": "\"Read\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				540.9600219726563
+			],
+			"z": 0
+		},
+		"./Objects/Story/HallSign/Interactable/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"circle": 32.0
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				540.9600219726563
+			],
+			"z": 0
+		},
+		"./Objects/Story/Oil": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/components/Pickup.tscn",
+			"script": {
+				"fuel": "0.25",
+				"item_id": "\"\"",
+				"item_name": "\"Lamp kerosene\"",
+				"path": "res://scripts/components/pickup.gd",
+				"pickup_id": "\"veranda_oil\"",
+				"sets_flag": "\"\"",
+				"show_placeholder": "false",
+				"verb": "\"Pick up\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				46.400001525878906,
+				114.47679901123047
+			],
+			"y_sort": true,
+			"z": 0
+		},
+		"./Objects/Story/Oil/Body": {
+			"class": "Polygon2D",
+			"color": [
+				0.949999988079071,
+				0.8500000238418579,
+				0.20000000298023224,
+				1.0
+			],
+			"light_mask": 1,
+			"polygon": [
 				[
-					-10.0,
-					-1700.0
+					0.0,
+					-24.0
 				],
 				[
 					10.0,
-					-1700.0
+					-12.0
 				],
 				[
-					10.0,
+					0.0,
 					0.0
 				],
 				[
 					-10.0,
-					0.0
+					-12.0
 				]
 			],
-			"occluder_mask": 1,
+			"visible": false,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				46.400001525878906,
+				114.47679901123047
+			],
+			"z": 0
+		},
+		"./Objects/Story/Oil/Interactable": {
+			"class": "Area2D",
+			"layer": 4,
+			"light_mask": 1,
+			"mask": 0,
+			"monitorable": true,
+			"monitoring": false,
+			"scene": "res://scenes/components/Interactable.tscn",
+			"script": {
+				"hold_seconds": "0.0",
+				"object_name": "\"Lamp kerosene\"",
+				"path": "res://scripts/components/interactable.gd",
+				"prompt_offset": "Vector2(0, -56)",
+				"verb": "\"Pick up\""
+			},
 			"visible": true,
 			"xform": [
 				1.0,
 				0.0,
 				0.0,
 				1.0,
-				-140.0,
-				850.0
+				46.400001525878906,
+				114.47679901123047
+			],
+			"z": 0
+		},
+		"./Objects/Story/Oil/Interactable/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"circle": 32.0
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				46.400001525878906,
+				114.47679901123047
+			],
+			"z": 0
+		},
+		"./Objects/Story/Oil/Visual": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/furniture/OilBottle.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				46.400001525878906,
+				103.20130157470703
+			],
+			"z": 0
+		},
+		"./Objects/Story/Oil/Visual/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-160.0,
+				-401.0264587402344
+			],
+			"texture": "res://assets/sprites/furniture/oil_bottle.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.0218083206564188,
+				0.0,
+				0.0,
+				0.0218083206564188,
+				46.400001525878906,
+				103.20130157470703
 			],
 			"z": 0
 		}

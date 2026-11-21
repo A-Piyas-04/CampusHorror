@@ -1,6 +1,6 @@
 # Map intake — how to give Claude the rest of the campus
 
-Snapshot: 21 November 2026
+Snapshot: 21 November 2026 (updated after the Chapter 1 slice)
 
 Audience: the project owner. What to collect, when it's needed, and how to hand it over.
 
@@ -16,6 +16,7 @@ routine.
 | Stage | What | Needed by | Your time |
 |---|---|---|---|
 | **1. Now** | The **whole-campus layout**: an aerial / satellite view plus a labelled sketch (§2.1) | Before Phase K's chapter work. It decides the hub-and-spoke map, the zone boundaries, the backtracking routes and where the existing Main Gate area connects. Cheap to give, and it shapes everything after it | About 30 minutes, from home |
+| **1b. Now, optional, quick win** | **Inside the rooms already built** for Chapter 1: the CDS canteen, the table-tennis room, the indoor games hall, the CDS veranda and the Main Gate security office. These interiors were *invented* (only exteriors had references). Per room: one photo from each corner, the floor and wall finishes up close, the furniture, signs and notice boards, and rough sizes (paces are fine) | Any time: I rebuild a room from its data file (`assets/source/blender/tools/author_rooms.py`) in one batch | One visit, about 20 minutes |
 | **2. Before Phase L** (about two big batches from now, after Phases J and K) | **Full photo sets for the first two areas the story uses**: the academic building for Chapter 2 and its surroundings, then the hall of residence and medical centre for Chapter 3 (§2.2) | The first Phase L batch | One campus visit |
 | **3. Rolling** | Each further area, **one batch ahead** of the batch that builds it (mosque / Five Pillars approach, library, cafeteria, lakeside, …) | I'll ask for the next area at the end of each campus batch | One visit per area or two |
 

@@ -1,0 +1,1528 @@
+{
+	"format": 1,
+	"ground_lattice": {},
+	"nodes": {
+		".": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/world/MainGateSecurity.tscn",
+			"script": {
+				"path": "res://scripts/world/zone.gd",
+				"profile": "Resource(\"res://data/zones/profiles/main_gate_security.tres\")",
+				"zone_id": "\"main_gate_security\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"y_sort": true,
+			"z": 0
+		},
+		"./Objects": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"y_sort": true,
+			"z": 0
+		},
+		"./Objects/Doors": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"y_sort": true,
+			"z": 0
+		},
+		"./Objects/Doors/DoorToField": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/components/Door.tscn",
+			"script": {
+				"destination_spawn_id": "\"outside_security\"",
+				"destination_zone_id": "\"main_gate_exterior\"",
+				"hold_seconds": "0.0",
+				"locked_message": "\"Locked.\"",
+				"path": "res://scripts/components/door.gd",
+				"place_name": "\"To the gate\"",
+				"required_item": "\"\"",
+				"requires_flag": "\"\"",
+				"show_placeholder": "false",
+				"unlock_message": "\"\"",
+				"unlocked_flag": "\"door_unlocked_DoorToField\"",
+				"verb": "\"Go out\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				24.0,
+				-118.31199645996094
+			],
+			"z": 0
+		},
+		"./Objects/Doors/DoorToField/Body": {
+			"class": "Polygon2D",
+			"color": [
+				0.44999998807907104,
+				0.2800000011920929,
+				0.15000000596046448,
+				1.0
+			],
+			"light_mask": 1,
+			"polygon": [
+				[
+					-24.0,
+					-64.0
+				],
+				[
+					24.0,
+					-64.0
+				],
+				[
+					24.0,
+					0.0
+				],
+				[
+					-24.0,
+					0.0
+				]
+			],
+			"visible": false,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				24.0,
+				-118.31199645996094
+			],
+			"z": 0
+		},
+		"./Objects/Doors/DoorToField/Interactable": {
+			"class": "Area2D",
+			"layer": 4,
+			"light_mask": 1,
+			"mask": 0,
+			"monitorable": true,
+			"monitoring": false,
+			"scene": "res://scenes/components/Interactable.tscn",
+			"script": {
+				"hold_seconds": "0.0",
+				"object_name": "\"To the gate\"",
+				"path": "res://scripts/components/interactable.gd",
+				"prompt_offset": "Vector2(0, -56)",
+				"verb": "\"Go out\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				24.0,
+				-118.31199645996094
+			],
+			"z": 0
+		},
+		"./Objects/Doors/DoorToField/Interactable/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"circle": 32.0
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				24.0,
+				-118.31199645996094
+			],
+			"z": 0
+		},
+		"./Objects/Glow": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"y_sort": true,
+			"z": 0
+		},
+		"./Objects/Glow/Smear": {
+			"class": "Node2D",
+			"groups": [
+				"glow_marks"
+			],
+			"light_mask": 1,
+			"script": {
+				"color": "Color(0.45, 1, 0.82, 1)",
+				"intensity": "0.5",
+				"note_body": "\"\"",
+				"note_id": "\"\"",
+				"note_title": "\"\"",
+				"path": "res://scripts/world/glow_mark.gd",
+				"pulse_speed": "0.3",
+				"spots": "PackedVector3Array()",
+				"trail_spacing": "22.0",
+				"trail_to": "Vector2(-8, -40)",
+				"writing": "\"\"",
+				"writing_offset": "Vector2(0, 0)",
+				"writing_size": "26"
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				32.0,
+				-76.1312026977539
+			],
+			"z": 0
+		},
+		"./Objects/Lights": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"y_sort": true,
+			"z": 0
+		},
+		"./Objects/Lights/MoonWindow": {
+			"class": "PointLight2D",
+			"light": {
+				"color": [
+					0.550000011920929,
+					0.6499999761581421,
+					1.0,
+					1.0
+				],
+				"enabled": true,
+				"energy": 0.35,
+				"range_mask": 3,
+				"shadow_mask": 1,
+				"shadows": false
+			},
+			"light_mask": 1,
+			"script": {
+				"base_energy": "0.35",
+				"gameplay": "false",
+				"gameplay_radius": "0.0",
+				"mode": "0",
+				"needs_power": "false",
+				"path": "res://scripts/lighting/lamp_light.gd"
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-51.20000076293945,
+				-102.87999725341797
+			],
+			"z": 0
+		},
+		"./Objects/Lights/Screen": {
+			"class": "PointLight2D",
+			"light": {
+				"color": [
+					0.550000011920929,
+					0.949999988079071,
+					0.75,
+					1.0
+				],
+				"enabled": true,
+				"energy": 0.55,
+				"range_mask": 3,
+				"shadow_mask": 1,
+				"shadows": false
+			},
+			"light_mask": 1,
+			"script": {
+				"base_energy": "0.55",
+				"gameplay": "false",
+				"gameplay_radius": "0.0",
+				"mode": "0",
+				"needs_power": "false",
+				"path": "res://scripts/lighting/lamp_light.gd"
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				38.400001525878906,
+				-94.07360076904297
+			],
+			"z": 0
+		},
+		"./Objects/Props": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"y_sort": true,
+			"z": 0
+		},
+		"./Objects/Props/Almirah": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/furniture/SteelAlmirah.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				68.80000305175781,
+				-12.345600128173828
+			],
+			"z": 0
+		},
+		"./Objects/Props/Almirah/Body": {
+			"class": "StaticBody2D",
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				68.80000305175781,
+				-12.345600128173828
+			],
+			"z": 0
+		},
+		"./Objects/Props/Almirah/Body/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					28.799999237060547,
+					10.695985794067383
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				68.80000305175781,
+				-12.139907836914063
+			],
+			"z": 0
+		},
+		"./Objects/Props/Almirah/ContactShadow": {
+			"centered": true,
+			"class": "Sprite2D",
+			"light_mask": 1,
+			"offset": [
+				0.0,
+				0.0
+			],
+			"scene": "res://scenes/props/common/ContactShadow.tscn",
+			"texture": "embedded:GradientTexture2D",
+			"visible": true,
+			"xform": [
+				0.550000011920929,
+				0.0,
+				0.0,
+				0.30000001192092896,
+				68.80000305175781,
+				-12.345600128173828
+			],
+			"z": -9
+		},
+		"./Objects/Props/Almirah/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-171.0,
+				-507.2367248535156
+			],
+			"texture": "res://assets/sprites/furniture/steel_almirah.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.11076918989419937,
+				0.0,
+				0.0,
+				0.11076918989419937,
+				68.80000305175781,
+				-12.345600128173828
+			],
+			"z": 0
+		},
+		"./Objects/Props/Chair": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/furniture/OfficeChairFallen.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				9.600000381469727,
+				-45.2672004699707
+			],
+			"z": 0
+		},
+		"./Objects/Props/Chair/Body": {
+			"class": "StaticBody2D",
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				9.600000381469727,
+				-45.2672004699707
+			],
+			"z": 0
+		},
+		"./Objects/Props/Chair/Body/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					28.799999237060547,
+					12.341522216796875
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				9.600000381469727,
+				-45.2672004699707
+			],
+			"z": 0
+		},
+		"./Objects/Props/Chair/ContactShadow": {
+			"centered": true,
+			"class": "Sprite2D",
+			"light_mask": 1,
+			"offset": [
+				0.0,
+				0.0
+			],
+			"scene": "res://scenes/props/common/ContactShadow.tscn",
+			"texture": "embedded:GradientTexture2D",
+			"visible": true,
+			"xform": [
+				0.5,
+				0.0,
+				0.0,
+				0.30000001192092896,
+				9.600000381469727,
+				-45.2672004699707
+			],
+			"z": -9
+		},
+		"./Objects/Props/Chair/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-54.96367645263672,
+				-255.8500518798828
+			],
+			"texture": "res://assets/sprites/furniture/office_chair_fallen.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.1230769231915474,
+				0.0,
+				0.0,
+				0.1230769231915474,
+				9.600000381469727,
+				-45.2672004699707
+			],
+			"z": 0
+		},
+		"./Objects/Props/Cot": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/furniture/FoldingCot.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-51.20000076293945,
+				-28.806400299072266
+			],
+			"z": 0
+		},
+		"./Objects/Props/Cot/Body": {
+			"class": "StaticBody2D",
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-51.20000076293945,
+				-28.806400299072266
+			],
+			"z": 0
+		},
+		"./Objects/Props/Cot/Body/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					60.79999923706055,
+					16.455364227294922
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-51.20000076293945,
+				-28.806400299072266
+			],
+			"z": 0
+		},
+		"./Objects/Props/Cot/ContactShadow": {
+			"centered": true,
+			"class": "Sprite2D",
+			"light_mask": 1,
+			"offset": [
+				0.0,
+				0.0
+			],
+			"scene": "res://scenes/props/common/ContactShadow.tscn",
+			"texture": "embedded:GradientTexture2D",
+			"visible": true,
+			"xform": [
+				1.100000023841858,
+				0.0,
+				0.0,
+				0.4000000059604645,
+				-51.20000076293945,
+				-28.806400299072266
+			],
+			"z": -9
+		},
+		"./Objects/Props/Cot/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-165.5,
+				-113.66825866699219
+			],
+			"texture": "res://assets/sprites/furniture/folding_cot.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.21333333849906921,
+				0.0,
+				0.0,
+				0.21333333849906921,
+				-51.20000076293945,
+				-28.806400299072266
+			],
+			"z": 0
+		},
+		"./Objects/Props/Desk": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/furniture/SecurityDesk.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				38.400001525878906,
+				-65.84320068359375
+			],
+			"z": 0
+		},
+		"./Objects/Props/Desk/Body": {
+			"class": "StaticBody2D",
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				38.400001525878906,
+				-65.84320068359375
+			],
+			"z": 0
+		},
+		"./Objects/Props/Desk/Body/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					44.79999923706055,
+					14.604135513305664
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				38.400001525878906,
+				-65.7403564453125
+			],
+			"z": 0
+		},
+		"./Objects/Props/Desk/ContactShadow": {
+			"centered": true,
+			"class": "Sprite2D",
+			"light_mask": 1,
+			"offset": [
+				0.0,
+				0.0
+			],
+			"scene": "res://scenes/props/common/ContactShadow.tscn",
+			"texture": "embedded:GradientTexture2D",
+			"visible": true,
+			"xform": [
+				0.8999999761581421,
+				0.0,
+				0.0,
+				0.4000000059604645,
+				38.400001525878906,
+				-65.84320068359375
+			],
+			"z": -9
+		},
+		"./Objects/Props/Desk/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-122.0,
+				-169.02879333496094
+			],
+			"texture": "res://assets/sprites/furniture/security_desk.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.21333333849906921,
+				0.0,
+				0.0,
+				0.21333333849906921,
+				38.400001525878906,
+				-65.84320068359375
+			],
+			"z": 0
+		},
+		"./Objects/Props/KeyCabinet": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/furniture/KeyCabinet.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-14.399999618530273,
+				-123.45600128173828
+			],
+			"z": 0
+		},
+		"./Objects/Props/KeyCabinet/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-182.5,
+				-699.4754028320313
+			],
+			"texture": "res://assets/sprites/furniture/key_cabinet.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.07384621351957321,
+				0.0,
+				0.0,
+				0.07384621351957321,
+				-14.399999618530273,
+				-123.45600128173828
+			],
+			"z": 0
+		},
+		"./Objects/Props/WaterDrum": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/furniture/WaterDrum.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-72.0,
+				-94.64959716796875
+			],
+			"z": 0
+		},
+		"./Objects/Props/WaterDrum/Body": {
+			"class": "StaticBody2D",
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-72.0,
+				-94.64959716796875
+			],
+			"z": 0
+		},
+		"./Objects/Props/WaterDrum/Body/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					17.920000076293945,
+					11.518754005432129
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-72.0,
+				-94.64959716796875
+			],
+			"z": 0
+		},
+		"./Objects/Props/WaterDrum/ContactShadow": {
+			"centered": true,
+			"class": "Sprite2D",
+			"light_mask": 1,
+			"offset": [
+				0.0,
+				0.0
+			],
+			"scene": "res://scenes/props/common/ContactShadow.tscn",
+			"texture": "embedded:GradientTexture2D",
+			"visible": true,
+			"xform": [
+				0.4000000059604645,
+				0.0,
+				0.0,
+				0.30000001192092896,
+				-72.0,
+				-94.64959716796875
+			],
+			"z": -9
+		},
+		"./Objects/Props/WaterDrum/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-167.0,
+				-423.5296936035156
+			],
+			"texture": "res://assets/sprites/furniture/water_drum.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.07138459384441376,
+				0.0,
+				0.0,
+				0.07138459384441376,
+				-72.0,
+				-94.64959716796875
+			],
+			"z": 0
+		},
+		"./Objects/Room": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/interiors/SecurityOfficeRoom.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"y_sort": true,
+			"z": 0
+		},
+		"./Objects/Room/Body": {
+			"class": "StaticBody2D",
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"z": 0
+		},
+		"./Objects/Room/Body/CollisionWallE1": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					8.0,
+					133.6998291015625
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				90.4000015258789,
+				-61.707611083984375
+			],
+			"z": 0
+		},
+		"./Objects/Room/Body/CollisionWallN": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					188.8000030517578,
+					5.142301082611084
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				-125.98637390136719
+			],
+			"z": 0
+		},
+		"./Objects/Room/Body/CollisionWallS1": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					188.8000030517578,
+					5.142301082611084
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				2.571150541305542
+			],
+			"z": 0
+		},
+		"./Objects/Room/Body/CollisionWallW1": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					8.0,
+					133.6998291015625
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-90.4000015258789,
+				-61.707611083984375
+			],
+			"z": 0
+		},
+		"./Objects/Room/SouthWall": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-410.5,
+				-141.4875030517578
+			],
+			"texture": "res://assets/sprites/interiors/security_office_room__south_wall.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.2461538463830948,
+				0.0,
+				0.0,
+				0.2461538463830948,
+				0.0,
+				5.142301082611084
+			],
+			"z": 0
+		},
+		"./Objects/Room/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-408.5,
+				-845.596923828125
+			],
+			"texture": "res://assets/sprites/interiors/security_office_room.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.2461538463830948,
+				0.0,
+				0.0,
+				0.2461538463830948,
+				0.0,
+				0.0
+			],
+			"z": -10
+		},
+		"./Objects/SpawnMarkers": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"y_sort": true,
+			"z": 0
+		},
+		"./Objects/SpawnMarkers/Spawn_security_inside": {
+			"class": "Marker2D",
+			"light_mask": 1,
+			"scene": "res://scenes/components/SpawnMarker.tscn",
+			"script": {
+				"path": "res://scripts/components/spawn_marker.gd",
+				"spawn_id": "\"security_inside\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				24.0,
+				-102.87999725341797
+			],
+			"z": 0
+		},
+		"./Objects/Story": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"y_sort": true,
+			"z": 0
+		},
+		"./Objects/Story/Logbook": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/components/Readable.tscn",
+			"script": {
+				"body": "\"22:50  Canteen closed. Two students still in CDS. Let them be, exams.\n\n23:04  Power gone, whole campus. Generator in the hall plant room won't start from here.\n\n23:15  Somebody has CHAINED THE MAIN GATE FROM THE OUTSIDE. Called the office. Phone dead.\n\n23:40  Karim from maintenance came running from the hall. Says the plant room hatch is open and \\\"it is lit up underneath\\\". He has the new breaker code. He went to hide in the TT room.\n\n00:10  Karim is not Karim. He writes numbers on the walls. In the dark they shine.\n\n00:25  i went out under the lamp. the light is so warm. it wants the light. i want\"",
+				"dark_message": "\"Too dark to read. Light the lantern.\"",
+				"note_id": "\"security_logbook\"",
+				"path": "res://scripts/components/readable.gd",
+				"requires_light": "true",
+				"sets_flag": "\"\"",
+				"title": "\"Security logbook, Main Gate\"",
+				"verb": "\"Read\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				24.0,
+				-57.61280059814453
+			],
+			"z": 0
+		},
+		"./Objects/Story/Logbook/Interactable": {
+			"class": "Area2D",
+			"layer": 4,
+			"light_mask": 1,
+			"mask": 0,
+			"monitorable": true,
+			"monitoring": false,
+			"scene": "res://scenes/components/Interactable.tscn",
+			"script": {
+				"hold_seconds": "0.0",
+				"object_name": "\"Security logbook, Main Gate\"",
+				"path": "res://scripts/components/interactable.gd",
+				"prompt_offset": "Vector2(0, -56)",
+				"verb": "\"Read\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				24.0,
+				-57.61280059814453
+			],
+			"z": 0
+		},
+		"./Objects/Story/Logbook/Interactable/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"circle": 32.0
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				24.0,
+				-57.61280059814453
+			],
+			"z": 0
+		},
+		"./Objects/Story/MasterKey": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/components/Pickup.tscn",
+			"script": {
+				"fuel": "0.0",
+				"item_id": "\"cds_master_key\"",
+				"item_name": "\"CDS master key\"",
+				"path": "res://scripts/components/pickup.gd",
+				"pickup_id": "\"security_master_key\"",
+				"sets_flag": "\"\"",
+				"show_placeholder": "false",
+				"verb": "\"Take\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-14.399999618530273,
+				-118.31199645996094
+			],
+			"y_sort": true,
+			"z": 0
+		},
+		"./Objects/Story/MasterKey/Body": {
+			"class": "Polygon2D",
+			"color": [
+				0.949999988079071,
+				0.8500000238418579,
+				0.20000000298023224,
+				1.0
+			],
+			"light_mask": 1,
+			"polygon": [
+				[
+					0.0,
+					-24.0
+				],
+				[
+					10.0,
+					-12.0
+				],
+				[
+					0.0,
+					0.0
+				],
+				[
+					-10.0,
+					-12.0
+				]
+			],
+			"visible": false,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-14.399999618530273,
+				-118.31199645996094
+			],
+			"z": 0
+		},
+		"./Objects/Story/MasterKey/Interactable": {
+			"class": "Area2D",
+			"layer": 4,
+			"light_mask": 1,
+			"mask": 0,
+			"monitorable": true,
+			"monitoring": false,
+			"scene": "res://scenes/components/Interactable.tscn",
+			"script": {
+				"hold_seconds": "0.0",
+				"object_name": "\"CDS master key\"",
+				"path": "res://scripts/components/interactable.gd",
+				"prompt_offset": "Vector2(0, -56)",
+				"verb": "\"Take\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-14.399999618530273,
+				-118.31199645996094
+			],
+			"z": 0
+		},
+		"./Objects/Story/MasterKey/Interactable/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"circle": 32.0
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-14.399999618530273,
+				-118.31199645996094
+			],
+			"z": 0
+		},
+		"./Objects/Story/MasterKey/Visual": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/furniture/MasterKey.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-14.399999618530273,
+				-153.85440063476563
+			],
+			"z": -1
+		},
+		"./Objects/Story/MasterKey/Visual/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-206.73863220214844,
+				-66.64039611816406
+			],
+			"texture": "res://assets/sprites/furniture/master_key.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.013234787620604038,
+				0.0,
+				0.0,
+				0.013234787620604038,
+				-14.399999618530273,
+				-153.85440063476563
+			],
+			"z": -1
+		},
+		"./Objects/Story/Monitor": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/components/Examine.tscn",
+			"script": {
+				"hidden_until_flag": "\"\"",
+				"long_message": "\"One monitor still glows on battery. The last frame from the field camera:\n\na man in a guard's uniform, standing under the lamp by the gate, his face turned straight up into the light.\n\nThe time stamp is two minutes ago.\"",
+				"message": "\"\"",
+				"not_ready_message": "\"\"",
+				"object_name": "\"CCTV monitor\"",
+				"path": "res://scripts/components/examine.gd",
+				"requires_flag": "\"\"",
+				"sets_flag": "\"\"",
+				"sound": "&\"\"",
+				"verb": "\"Look\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				38.400001525878906,
+				-56.58399963378906
+			],
+			"z": 0
+		},
+		"./Objects/Story/Monitor/Interactable": {
+			"class": "Area2D",
+			"layer": 4,
+			"light_mask": 1,
+			"mask": 0,
+			"monitorable": true,
+			"monitoring": false,
+			"scene": "res://scenes/components/Interactable.tscn",
+			"script": {
+				"hold_seconds": "0.0",
+				"object_name": "\"CCTV monitor\"",
+				"path": "res://scripts/components/interactable.gd",
+				"prompt_offset": "Vector2(0, -56)",
+				"verb": "\"Look\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				38.400001525878906,
+				-56.58399963378906
+			],
+			"z": 0
+		},
+		"./Objects/Story/Monitor/Interactable/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"circle": 32.0
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				38.400001525878906,
+				-56.58399963378906
+			],
+			"z": 0
+		},
+		"./Objects/Story/Oil": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/components/Pickup.tscn",
+			"script": {
+				"fuel": "0.4",
+				"item_id": "\"\"",
+				"item_name": "\"Lamp kerosene\"",
+				"path": "res://scripts/components/pickup.gd",
+				"pickup_id": "\"security_oil\"",
+				"sets_flag": "\"\"",
+				"show_placeholder": "false",
+				"verb": "\"Pick up\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				52.79999923706055,
+				-58.6416015625
+			],
+			"y_sort": true,
+			"z": 0
+		},
+		"./Objects/Story/Oil/Body": {
+			"class": "Polygon2D",
+			"color": [
+				0.949999988079071,
+				0.8500000238418579,
+				0.20000000298023224,
+				1.0
+			],
+			"light_mask": 1,
+			"polygon": [
+				[
+					0.0,
+					-24.0
+				],
+				[
+					10.0,
+					-12.0
+				],
+				[
+					0.0,
+					0.0
+				],
+				[
+					-10.0,
+					-12.0
+				]
+			],
+			"visible": false,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				52.79999923706055,
+				-58.6416015625
+			],
+			"z": 0
+		},
+		"./Objects/Story/Oil/Interactable": {
+			"class": "Area2D",
+			"layer": 4,
+			"light_mask": 1,
+			"mask": 0,
+			"monitorable": true,
+			"monitoring": false,
+			"scene": "res://scenes/components/Interactable.tscn",
+			"script": {
+				"hold_seconds": "0.0",
+				"object_name": "\"Lamp kerosene\"",
+				"path": "res://scripts/components/interactable.gd",
+				"prompt_offset": "Vector2(0, -56)",
+				"verb": "\"Pick up\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				52.79999923706055,
+				-58.6416015625
+			],
+			"z": 0
+		},
+		"./Objects/Story/Oil/Interactable/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"circle": 32.0
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				52.79999923706055,
+				-58.6416015625
+			],
+			"z": 0
+		},
+		"./Objects/Story/Oil/Visual": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/furniture/OilBottle.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				52.79999923706055,
+				-77.02560424804688
+			],
+			"z": 0
+		},
+		"./Objects/Story/Oil/Visual/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-160.0,
+				-401.0264587402344
+			],
+			"texture": "res://assets/sprites/furniture/oil_bottle.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.0218083206564188,
+				0.0,
+				0.0,
+				0.0218083206564188,
+				52.79999923706055,
+				-77.02560424804688
+			],
+			"z": 0
+		},
+		"./Objects/Story/Phone": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/components/Examine.tscn",
+			"script": {
+				"hidden_until_flag": "\"\"",
+				"long_message": "\"\"",
+				"message": "\"Dead. Not even a dial tone.\"",
+				"not_ready_message": "\"\"",
+				"object_name": "\"Desk phone\"",
+				"path": "res://scripts/components/examine.gd",
+				"requires_flag": "\"\"",
+				"sets_flag": "\"\"",
+				"sound": "&\"\"",
+				"verb": "\"Try\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				60.79999923706055,
+				-60.69919967651367
+			],
+			"z": 0
+		},
+		"./Objects/Story/Phone/Interactable": {
+			"class": "Area2D",
+			"layer": 4,
+			"light_mask": 1,
+			"mask": 0,
+			"monitorable": true,
+			"monitoring": false,
+			"scene": "res://scenes/components/Interactable.tscn",
+			"script": {
+				"hold_seconds": "0.0",
+				"object_name": "\"Desk phone\"",
+				"path": "res://scripts/components/interactable.gd",
+				"prompt_offset": "Vector2(0, -56)",
+				"verb": "\"Try\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				60.79999923706055,
+				-60.69919967651367
+			],
+			"z": 0
+		},
+		"./Objects/Story/Phone/Interactable/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"circle": 32.0
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				60.79999923706055,
+				-60.69919967651367
+			],
+			"z": 0
+		}
+	},
+	"zone_id": "main_gate_security"
+}

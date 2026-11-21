@@ -1,0 +1,2798 @@
+{
+	"format": 1,
+	"ground_lattice": {},
+	"nodes": {
+		".": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/world/CdsCanteen.tscn",
+			"script": {
+				"path": "res://scripts/world/zone.gd",
+				"profile": "Resource(\"res://data/zones/profiles/cds_canteen.tres\")",
+				"zone_id": "\"cds_canteen\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"y_sort": true,
+			"z": 0
+		},
+		"./Objects": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"y_sort": true,
+			"z": 0
+		},
+		"./Objects/Doors": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"y_sort": true,
+			"z": 0
+		},
+		"./Objects/Doors/DoorToVeranda": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/components/Door.tscn",
+			"script": {
+				"destination_spawn_id": "\"veranda_canteen\"",
+				"destination_zone_id": "\"cds_veranda\"",
+				"hold_seconds": "0.0",
+				"locked_message": "\"Locked.\"",
+				"path": "res://scripts/components/door.gd",
+				"place_name": "\"CDS veranda\"",
+				"required_item": "\"\"",
+				"requires_flag": "\"\"",
+				"show_placeholder": "false",
+				"unlock_message": "\"\"",
+				"unlocked_flag": "\"door_unlocked_DoorToVeranda\"",
+				"verb": "\"Go out\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-230.39999389648438,
+				-32.921600341796875
+			],
+			"z": 0
+		},
+		"./Objects/Doors/DoorToVeranda/Body": {
+			"class": "Polygon2D",
+			"color": [
+				0.44999998807907104,
+				0.2800000011920929,
+				0.15000000596046448,
+				1.0
+			],
+			"light_mask": 1,
+			"polygon": [
+				[
+					-24.0,
+					-64.0
+				],
+				[
+					24.0,
+					-64.0
+				],
+				[
+					24.0,
+					0.0
+				],
+				[
+					-24.0,
+					0.0
+				]
+			],
+			"visible": false,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-230.39999389648438,
+				-32.921600341796875
+			],
+			"z": 0
+		},
+		"./Objects/Doors/DoorToVeranda/Interactable": {
+			"class": "Area2D",
+			"layer": 4,
+			"light_mask": 1,
+			"mask": 0,
+			"monitorable": true,
+			"monitoring": false,
+			"scene": "res://scenes/components/Interactable.tscn",
+			"script": {
+				"hold_seconds": "0.0",
+				"object_name": "\"CDS veranda\"",
+				"path": "res://scripts/components/interactable.gd",
+				"prompt_offset": "Vector2(0, -56)",
+				"verb": "\"Go out\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-230.39999389648438,
+				-32.921600341796875
+			],
+			"z": 0
+		},
+		"./Objects/Doors/DoorToVeranda/Interactable/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"circle": 32.0
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-230.39999389648438,
+				-32.921600341796875
+			],
+			"z": 0
+		},
+		"./Objects/Glow": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"y_sort": true,
+			"z": 0
+		},
+		"./Objects/Glow/KitchenSpill": {
+			"class": "Node2D",
+			"groups": [
+				"glow_marks"
+			],
+			"light_mask": 1,
+			"script": {
+				"color": "Color(0.45, 1, 0.82, 1)",
+				"intensity": "0.9",
+				"note_body": "\"\"",
+				"note_id": "\"\"",
+				"note_title": "\"\"",
+				"path": "res://scripts/world/glow_mark.gd",
+				"pulse_speed": "0.6",
+				"spots": "PackedVector3Array(-20, 6, 9, 8, -4, 12, 26, 10, 7, -6, 20, 6, 14, 26, 8, -30, -6, 5, 40, -2, 6)",
+				"trail_spacing": "22.0",
+				"trail_to": "Vector2(0, 0)",
+				"writing": "\"\"",
+				"writing_offset": "Vector2(0, 0)",
+				"writing_size": "26"
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				169.60000610351563,
+				-238.6815948486328
+			],
+			"z": 0
+		},
+		"./Objects/Glow/TrailToDoor": {
+			"class": "Node2D",
+			"groups": [
+				"glow_marks"
+			],
+			"light_mask": 1,
+			"script": {
+				"color": "Color(0.45, 1, 0.82, 1)",
+				"intensity": "0.7",
+				"note_body": "\"\"",
+				"note_id": "\"\"",
+				"note_title": "\"\"",
+				"path": "res://scripts/world/glow_mark.gd",
+				"pulse_speed": "0.4",
+				"spots": "PackedVector3Array()",
+				"trail_spacing": "22.0",
+				"trail_to": "Vector2(-270, 180)",
+				"writing": "\"\"",
+				"writing_offset": "Vector2(0, 0)",
+				"writing_size": "26"
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				140.8000030517578,
+				-213.9904022216797
+			],
+			"z": 0
+		},
+		"./Objects/Glow/TrailToDoor2": {
+			"class": "Node2D",
+			"groups": [
+				"glow_marks"
+			],
+			"light_mask": 1,
+			"script": {
+				"color": "Color(0.45, 1, 0.82, 1)",
+				"intensity": "0.6",
+				"note_body": "\"\"",
+				"note_id": "\"\"",
+				"note_title": "\"\"",
+				"path": "res://scripts/world/glow_mark.gd",
+				"pulse_speed": "0.4",
+				"spots": "PackedVector3Array()",
+				"trail_spacing": "22.0",
+				"trail_to": "Vector2(-60, 15)",
+				"writing": "\"\"",
+				"writing_offset": "Vector2(0, 0)",
+				"writing_size": "26"
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-160.0,
+				-53.49760055541992
+			],
+			"z": 0
+		},
+		"./Objects/Lights": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"y_sort": true,
+			"z": 0
+		},
+		"./Objects/Lights/ExitSign": {
+			"class": "PointLight2D",
+			"light": {
+				"color": [
+					0.3499999940395355,
+					1.0,
+					0.5,
+					1.0
+				],
+				"enabled": true,
+				"energy": 0.5,
+				"range_mask": 3,
+				"shadow_mask": 1,
+				"shadows": false
+			},
+			"light_mask": 1,
+			"script": {
+				"base_energy": "0.5",
+				"gameplay": "false",
+				"gameplay_radius": "0.0",
+				"mode": "0",
+				"needs_power": "false",
+				"path": "res://scripts/lighting/lamp_light.gd"
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-224.0,
+				-117.61280059814453
+			],
+			"z": 0
+		},
+		"./Objects/Lights/MoonEast": {
+			"class": "PointLight2D",
+			"light": {
+				"color": [
+					0.550000011920929,
+					0.6499999761581421,
+					1.0,
+					1.0
+				],
+				"enabled": true,
+				"energy": 0.45,
+				"range_mask": 3,
+				"shadow_mask": 1,
+				"shadows": false
+			},
+			"light_mask": 1,
+			"script": {
+				"base_energy": "0.45",
+				"gameplay": "false",
+				"gameplay_radius": "0.0",
+				"mode": "0",
+				"needs_power": "false",
+				"path": "res://scripts/lighting/lamp_light.gd"
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-83.19999694824219,
+				-218.10560607910156
+			],
+			"z": 0
+		},
+		"./Objects/Lights/MoonWest": {
+			"class": "PointLight2D",
+			"light": {
+				"color": [
+					0.550000011920929,
+					0.6499999761581421,
+					1.0,
+					1.0
+				],
+				"enabled": true,
+				"energy": 0.45,
+				"range_mask": 3,
+				"shadow_mask": 1,
+				"shadows": false
+			},
+			"light_mask": 1,
+			"script": {
+				"base_energy": "0.45",
+				"gameplay": "false",
+				"gameplay_radius": "0.0",
+				"mode": "0",
+				"needs_power": "false",
+				"path": "res://scripts/lighting/lamp_light.gd"
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-176.0,
+				-218.10560607910156
+			],
+			"z": 0
+		},
+		"./Objects/Props": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"y_sort": true,
+			"z": 0
+		},
+		"./Objects/Props/ChairStack": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/furniture/ChairStack.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				220.8000030517578,
+				-20.576000213623047
+			],
+			"z": 0
+		},
+		"./Objects/Props/ChairStack/Body": {
+			"class": "StaticBody2D",
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				220.8000030517578,
+				-20.576000213623047
+			],
+			"z": 0
+		},
+		"./Objects/Props/ChairStack/Body/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					16.0,
+					10.284602165222168
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				220.8000030517578,
+				-19.95892333984375
+			],
+			"z": 0
+		},
+		"./Objects/Props/ChairStack/ContactShadow": {
+			"centered": true,
+			"class": "Sprite2D",
+			"light_mask": 1,
+			"offset": [
+				0.0,
+				0.0
+			],
+			"scene": "res://scenes/props/common/ContactShadow.tscn",
+			"texture": "embedded:GradientTexture2D",
+			"visible": true,
+			"xform": [
+				0.4000000059604645,
+				0.0,
+				0.0,
+				0.30000001192092896,
+				220.8000030517578,
+				-20.576000213623047
+			],
+			"z": -9
+		},
+		"./Objects/Props/ChairStack/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-154.0,
+				-515.1638793945313
+			],
+			"texture": "res://assets/sprites/furniture/chair_stack.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.0676923468708992,
+				0.0,
+				0.0,
+				0.0676923468708992,
+				220.8000030517578,
+				-20.576000213623047
+			],
+			"z": 0
+		},
+		"./Objects/Props/Crates": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/furniture/CrateStack.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				220.8000030517578,
+				-244.85440063476563
+			],
+			"z": 0
+		},
+		"./Objects/Props/Crates/Body": {
+			"class": "StaticBody2D",
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				220.8000030517578,
+				-244.85440063476563
+			],
+			"z": 0
+		},
+		"./Objects/Props/Crates/Body/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					27.520000457763672,
+					6.5821452140808105
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				220.8000030517578,
+				-244.85440063476563
+			],
+			"z": 0
+		},
+		"./Objects/Props/Crates/ContactShadow": {
+			"centered": true,
+			"class": "Sprite2D",
+			"light_mask": 1,
+			"offset": [
+				0.0,
+				0.0
+			],
+			"scene": "res://scenes/props/common/ContactShadow.tscn",
+			"texture": "embedded:GradientTexture2D",
+			"visible": true,
+			"xform": [
+				0.6000000238418579,
+				0.0,
+				0.0,
+				0.30000001192092896,
+				220.8000030517578,
+				-244.85440063476563
+			],
+			"z": -9
+		},
+		"./Objects/Props/Crates/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-151.0,
+				-186.32057189941406
+			],
+			"texture": "res://assets/sprites/furniture/crate_stack.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.10584601014852524,
+				0.0,
+				0.0,
+				0.10584601014852524,
+				220.8000030517578,
+				-244.85440063476563
+			],
+			"z": 0
+		},
+		"./Objects/Props/NoticeBoard": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/furniture/NoticeBoard.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				214.39999389648438,
+				-267.4880065917969
+			],
+			"z": 0
+		},
+		"./Objects/Props/NoticeBoard/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-174.0,
+				-322.4503173828125
+			],
+			"texture": "res://assets/sprites/furniture/notice_board.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.1599999964237213,
+				0.0,
+				0.0,
+				0.1599999964237213,
+				214.39999389648438,
+				-267.4880065917969
+			],
+			"z": 0
+		},
+		"./Objects/Props/Papers": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/horror/PapersScattered.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				38.400001525878906,
+				-102.87999725341797
+			],
+			"z": -1
+		},
+		"./Objects/Props/Papers/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-138.1426239013672,
+				-66.6351089477539
+			],
+			"texture": "res://assets/sprites/horror/papers_scattered.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.2461538463830948,
+				0.0,
+				0.0,
+				0.2461538463830948,
+				38.400001525878906,
+				-102.87999725341797
+			],
+			"z": -1
+		},
+		"./Objects/Props/Pot": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/furniture/DegchiPot.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				140.8000030517578,
+				-236.62399291992188
+			],
+			"z": 0
+		},
+		"./Objects/Props/Pot/Body": {
+			"class": "StaticBody2D",
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				140.8000030517578,
+				-236.62399291992188
+			],
+			"z": 0
+		},
+		"./Objects/Props/Pot/Body/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					19.200000762939453,
+					12.341522216796875
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				140.8000030517578,
+				-236.62399291992188
+			],
+			"z": 0
+		},
+		"./Objects/Props/Pot/ContactShadow": {
+			"centered": true,
+			"class": "Sprite2D",
+			"light_mask": 1,
+			"offset": [
+				0.0,
+				0.0
+			],
+			"scene": "res://scenes/props/common/ContactShadow.tscn",
+			"texture": "embedded:GradientTexture2D",
+			"visible": true,
+			"xform": [
+				0.44999998807907104,
+				0.0,
+				0.0,
+				0.30000001192092896,
+				140.8000030517578,
+				-236.62399291992188
+			],
+			"z": -9
+		},
+		"./Objects/Props/Pot/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-174.0,
+				-203.82073974609375
+			],
+			"texture": "res://assets/sprites/furniture/degchi_pot.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.07876922935247421,
+				0.0,
+				0.0,
+				0.07876922935247421,
+				140.8000030517578,
+				-236.62399291992188
+			],
+			"z": 0
+		},
+		"./Objects/Props/Table02": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/furniture/CanteenTableSetB.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-25.600000381469727,
+				-72.01599884033203
+			],
+			"z": 0
+		},
+		"./Objects/Props/Table02/Body": {
+			"class": "StaticBody2D",
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-25.600000381469727,
+				-72.01599884033203
+			],
+			"z": 0
+		},
+		"./Objects/Props/Table02/Body/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					51.20000076293945,
+					32.910728454589844
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-25.600000381469727,
+				-72.01599884033203
+			],
+			"z": 0
+		},
+		"./Objects/Props/Table02/ContactShadow": {
+			"centered": true,
+			"class": "Sprite2D",
+			"light_mask": 1,
+			"offset": [
+				0.0,
+				0.0
+			],
+			"scene": "res://scenes/props/common/ContactShadow.tscn",
+			"texture": "embedded:GradientTexture2D",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				0.550000011920929,
+				-25.600000381469727,
+				-72.01599884033203
+			],
+			"z": -9
+		},
+		"./Objects/Props/Table02/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-131.0,
+				-171.02532958984375
+			],
+			"texture": "res://assets/sprites/furniture/canteen_table_set_b.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.21333333849906921,
+				0.0,
+				0.0,
+				0.21333333849906921,
+				-25.600000381469727,
+				-72.01599884033203
+			],
+			"z": 0
+		},
+		"./Objects/Props/Table03": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/furniture/CanteenTableSetA.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				92.80000305175781,
+				-72.01599884033203
+			],
+			"z": 0
+		},
+		"./Objects/Props/Table03/Body": {
+			"class": "StaticBody2D",
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				92.80000305175781,
+				-72.01599884033203
+			],
+			"z": 0
+		},
+		"./Objects/Props/Table03/Body/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					51.20000076293945,
+					32.910728454589844
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				92.80000305175781,
+				-72.01599884033203
+			],
+			"z": 0
+		},
+		"./Objects/Props/Table03/ContactShadow": {
+			"centered": true,
+			"class": "Sprite2D",
+			"light_mask": 1,
+			"offset": [
+				0.0,
+				0.0
+			],
+			"scene": "res://scenes/props/common/ContactShadow.tscn",
+			"texture": "embedded:GradientTexture2D",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				0.550000011920929,
+				92.80000305175781,
+				-72.01599884033203
+			],
+			"z": -9
+		},
+		"./Objects/Props/Table03/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-131.5,
+				-170.7645721435547
+			],
+			"texture": "res://assets/sprites/furniture/canteen_table_set_a.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.21333333849906921,
+				0.0,
+				0.0,
+				0.21333333849906921,
+				92.80000305175781,
+				-72.01599884033203
+			],
+			"z": 0
+		},
+		"./Objects/Props/Table04": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/furniture/CanteenTableSetC.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				195.1999969482422,
+				-74.07360076904297
+			],
+			"z": 0
+		},
+		"./Objects/Props/Table04/Body": {
+			"class": "StaticBody2D",
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				195.1999969482422,
+				-74.07360076904297
+			],
+			"z": 0
+		},
+		"./Objects/Props/Table04/Body/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					51.20000076293945,
+					32.910728454589844
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				195.1999969482422,
+				-74.07360076904297
+			],
+			"z": 0
+		},
+		"./Objects/Props/Table04/ContactShadow": {
+			"centered": true,
+			"class": "Sprite2D",
+			"light_mask": 1,
+			"offset": [
+				0.0,
+				0.0
+			],
+			"scene": "res://scenes/props/common/ContactShadow.tscn",
+			"texture": "embedded:GradientTexture2D",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				0.550000011920929,
+				195.1999969482422,
+				-74.07360076904297
+			],
+			"z": -9
+		},
+		"./Objects/Props/Table04/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-131.0,
+				-168.92234802246094
+			],
+			"texture": "res://assets/sprites/furniture/canteen_table_set_c.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.21333333849906921,
+				0.0,
+				0.0,
+				0.21333333849906921,
+				195.1999969482422,
+				-74.07360076904297
+			],
+			"z": 0
+		},
+		"./Objects/Props/Table05": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/furniture/CanteenTableSetA.tscn",
+			"visible": true,
+			"xform": [
+				-1.0,
+				0.0,
+				0.0,
+				1.0,
+				-144.0,
+				-135.80160522460938
+			],
+			"z": 0
+		},
+		"./Objects/Props/Table05/Body": {
+			"class": "StaticBody2D",
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"visible": true,
+			"xform": [
+				-1.0,
+				0.0,
+				0.0,
+				1.0,
+				-144.0,
+				-135.80160522460938
+			],
+			"z": 0
+		},
+		"./Objects/Props/Table05/Body/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					51.20000076293945,
+					32.910728454589844
+				]
+			},
+			"visible": true,
+			"xform": [
+				-1.0,
+				0.0,
+				0.0,
+				1.0,
+				-144.0,
+				-135.80160522460938
+			],
+			"z": 0
+		},
+		"./Objects/Props/Table05/ContactShadow": {
+			"centered": true,
+			"class": "Sprite2D",
+			"light_mask": 1,
+			"offset": [
+				0.0,
+				0.0
+			],
+			"scene": "res://scenes/props/common/ContactShadow.tscn",
+			"texture": "embedded:GradientTexture2D",
+			"visible": true,
+			"xform": [
+				-1.0,
+				0.0,
+				0.0,
+				0.550000011920929,
+				-144.0,
+				-135.80160522460938
+			],
+			"z": -9
+		},
+		"./Objects/Props/Table05/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-131.5,
+				-170.7645721435547
+			],
+			"texture": "res://assets/sprites/furniture/canteen_table_set_a.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				-0.21333333849906921,
+				0.0,
+				0.0,
+				0.21333333849906921,
+				-144.0,
+				-135.80160522460938
+			],
+			"z": 0
+		},
+		"./Objects/Props/Table06": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/furniture/CanteenTableSetC.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-25.600000381469727,
+				-135.80160522460938
+			],
+			"z": 0
+		},
+		"./Objects/Props/Table06/Body": {
+			"class": "StaticBody2D",
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-25.600000381469727,
+				-135.80160522460938
+			],
+			"z": 0
+		},
+		"./Objects/Props/Table06/Body/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					51.20000076293945,
+					32.910728454589844
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-25.600000381469727,
+				-135.80160522460938
+			],
+			"z": 0
+		},
+		"./Objects/Props/Table06/ContactShadow": {
+			"centered": true,
+			"class": "Sprite2D",
+			"light_mask": 1,
+			"offset": [
+				0.0,
+				0.0
+			],
+			"scene": "res://scenes/props/common/ContactShadow.tscn",
+			"texture": "embedded:GradientTexture2D",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				0.550000011920929,
+				-25.600000381469727,
+				-135.80160522460938
+			],
+			"z": -9
+		},
+		"./Objects/Props/Table06/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-131.0,
+				-168.92234802246094
+			],
+			"texture": "res://assets/sprites/furniture/canteen_table_set_c.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.21333333849906921,
+				0.0,
+				0.0,
+				0.21333333849906921,
+				-25.600000381469727,
+				-135.80160522460938
+			],
+			"z": 0
+		},
+		"./Objects/Props/Table07": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/furniture/CanteenTableSetB.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				92.80000305175781,
+				-135.80160522460938
+			],
+			"z": 0
+		},
+		"./Objects/Props/Table07/Body": {
+			"class": "StaticBody2D",
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				92.80000305175781,
+				-135.80160522460938
+			],
+			"z": 0
+		},
+		"./Objects/Props/Table07/Body/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					51.20000076293945,
+					32.910728454589844
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				92.80000305175781,
+				-135.80160522460938
+			],
+			"z": 0
+		},
+		"./Objects/Props/Table07/ContactShadow": {
+			"centered": true,
+			"class": "Sprite2D",
+			"light_mask": 1,
+			"offset": [
+				0.0,
+				0.0
+			],
+			"scene": "res://scenes/props/common/ContactShadow.tscn",
+			"texture": "embedded:GradientTexture2D",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				0.550000011920929,
+				92.80000305175781,
+				-135.80160522460938
+			],
+			"z": -9
+		},
+		"./Objects/Props/Table07/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-131.0,
+				-171.02532958984375
+			],
+			"texture": "res://assets/sprites/furniture/canteen_table_set_b.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.21333333849906921,
+				0.0,
+				0.0,
+				0.21333333849906921,
+				92.80000305175781,
+				-135.80160522460938
+			],
+			"z": 0
+		},
+		"./Objects/Props/Table08": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/furniture/CanteenTableSetA.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				195.1999969482422,
+				-135.80160522460938
+			],
+			"z": 0
+		},
+		"./Objects/Props/Table08/Body": {
+			"class": "StaticBody2D",
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				195.1999969482422,
+				-135.80160522460938
+			],
+			"z": 0
+		},
+		"./Objects/Props/Table08/Body/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					51.20000076293945,
+					32.910728454589844
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				195.1999969482422,
+				-135.80160522460938
+			],
+			"z": 0
+		},
+		"./Objects/Props/Table08/ContactShadow": {
+			"centered": true,
+			"class": "Sprite2D",
+			"light_mask": 1,
+			"offset": [
+				0.0,
+				0.0
+			],
+			"scene": "res://scenes/props/common/ContactShadow.tscn",
+			"texture": "embedded:GradientTexture2D",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				0.550000011920929,
+				195.1999969482422,
+				-135.80160522460938
+			],
+			"z": -9
+		},
+		"./Objects/Props/Table08/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-131.5,
+				-170.7645721435547
+			],
+			"texture": "res://assets/sprites/furniture/canteen_table_set_a.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.21333333849906921,
+				0.0,
+				0.0,
+				0.21333333849906921,
+				195.1999969482422,
+				-135.80160522460938
+			],
+			"z": 0
+		},
+		"./Objects/Props/Table09": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/furniture/CanteenTableSetB.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-144.0,
+				-195.4720001220703
+			],
+			"z": 0
+		},
+		"./Objects/Props/Table09/Body": {
+			"class": "StaticBody2D",
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-144.0,
+				-195.4720001220703
+			],
+			"z": 0
+		},
+		"./Objects/Props/Table09/Body/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					51.20000076293945,
+					32.910728454589844
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-144.0,
+				-195.4720001220703
+			],
+			"z": 0
+		},
+		"./Objects/Props/Table09/ContactShadow": {
+			"centered": true,
+			"class": "Sprite2D",
+			"light_mask": 1,
+			"offset": [
+				0.0,
+				0.0
+			],
+			"scene": "res://scenes/props/common/ContactShadow.tscn",
+			"texture": "embedded:GradientTexture2D",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				0.550000011920929,
+				-144.0,
+				-195.4720001220703
+			],
+			"z": -9
+		},
+		"./Objects/Props/Table09/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-131.0,
+				-171.02532958984375
+			],
+			"texture": "res://assets/sprites/furniture/canteen_table_set_b.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.21333333849906921,
+				0.0,
+				0.0,
+				0.21333333849906921,
+				-144.0,
+				-195.4720001220703
+			],
+			"z": 0
+		},
+		"./Objects/Props/Table10": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/furniture/CanteenTableSetA.tscn",
+			"visible": true,
+			"xform": [
+				-1.0,
+				0.0,
+				0.0,
+				1.0,
+				-25.600000381469727,
+				-195.4720001220703
+			],
+			"z": 0
+		},
+		"./Objects/Props/Table10/Body": {
+			"class": "StaticBody2D",
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"visible": true,
+			"xform": [
+				-1.0,
+				0.0,
+				0.0,
+				1.0,
+				-25.600000381469727,
+				-195.4720001220703
+			],
+			"z": 0
+		},
+		"./Objects/Props/Table10/Body/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					51.20000076293945,
+					32.910728454589844
+				]
+			},
+			"visible": true,
+			"xform": [
+				-1.0,
+				0.0,
+				0.0,
+				1.0,
+				-25.600000381469727,
+				-195.4720001220703
+			],
+			"z": 0
+		},
+		"./Objects/Props/Table10/ContactShadow": {
+			"centered": true,
+			"class": "Sprite2D",
+			"light_mask": 1,
+			"offset": [
+				0.0,
+				0.0
+			],
+			"scene": "res://scenes/props/common/ContactShadow.tscn",
+			"texture": "embedded:GradientTexture2D",
+			"visible": true,
+			"xform": [
+				-1.0,
+				0.0,
+				0.0,
+				0.550000011920929,
+				-25.600000381469727,
+				-195.4720001220703
+			],
+			"z": -9
+		},
+		"./Objects/Props/Table10/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-131.5,
+				-170.7645721435547
+			],
+			"texture": "res://assets/sprites/furniture/canteen_table_set_a.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				-0.21333333849906921,
+				0.0,
+				0.0,
+				0.21333333849906921,
+				-25.600000381469727,
+				-195.4720001220703
+			],
+			"z": 0
+		},
+		"./Objects/Props/Table11": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/furniture/CanteenTableSetC.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				92.80000305175781,
+				-191.35679626464844
+			],
+			"z": 0
+		},
+		"./Objects/Props/Table11/Body": {
+			"class": "StaticBody2D",
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				92.80000305175781,
+				-191.35679626464844
+			],
+			"z": 0
+		},
+		"./Objects/Props/Table11/Body/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					51.20000076293945,
+					32.910728454589844
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				92.80000305175781,
+				-191.35679626464844
+			],
+			"z": 0
+		},
+		"./Objects/Props/Table11/ContactShadow": {
+			"centered": true,
+			"class": "Sprite2D",
+			"light_mask": 1,
+			"offset": [
+				0.0,
+				0.0
+			],
+			"scene": "res://scenes/props/common/ContactShadow.tscn",
+			"texture": "embedded:GradientTexture2D",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				0.550000011920929,
+				92.80000305175781,
+				-191.35679626464844
+			],
+			"z": -9
+		},
+		"./Objects/Props/Table11/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-131.0,
+				-168.92234802246094
+			],
+			"texture": "res://assets/sprites/furniture/canteen_table_set_c.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.21333333849906921,
+				0.0,
+				0.0,
+				0.21333333849906921,
+				92.80000305175781,
+				-191.35679626464844
+			],
+			"z": 0
+		},
+		"./Objects/Props/TableStart": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/furniture/CanteenTableStart.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-144.0,
+				-72.01599884033203
+			],
+			"z": 0
+		},
+		"./Objects/Props/TableStart/Body": {
+			"class": "StaticBody2D",
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-144.0,
+				-72.01599884033203
+			],
+			"z": 0
+		},
+		"./Objects/Props/TableStart/Body/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					51.20000076293945,
+					32.910728454589844
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-144.0,
+				-72.01599884033203
+			],
+			"z": 0
+		},
+		"./Objects/Props/TableStart/ContactShadow": {
+			"centered": true,
+			"class": "Sprite2D",
+			"light_mask": 1,
+			"offset": [
+				0.0,
+				0.0
+			],
+			"scene": "res://scenes/props/common/ContactShadow.tscn",
+			"texture": "embedded:GradientTexture2D",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				0.550000011920929,
+				-144.0,
+				-72.01599884033203
+			],
+			"z": -9
+		},
+		"./Objects/Props/TableStart/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-132.5,
+				-187.1870880126953
+			],
+			"texture": "res://assets/sprites/furniture/canteen_table_start.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.21333333849906921,
+				0.0,
+				0.0,
+				0.21333333849906921,
+				-144.0,
+				-72.01599884033203
+			],
+			"z": 0
+		},
+		"./Objects/Props/TrashBin": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/furniture/TrashBin.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-220.8000030517578,
+				-74.07360076904297
+			],
+			"z": 0
+		},
+		"./Objects/Props/TrashBin/Body": {
+			"class": "StaticBody2D",
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-220.8000030517578,
+				-74.07360076904297
+			],
+			"z": 0
+		},
+		"./Objects/Props/TrashBin/Body/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					12.800000190734863,
+					8.227682113647461
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-220.8000030517578,
+				-74.07360076904297
+			],
+			"z": 0
+		},
+		"./Objects/Props/TrashBin/ContactShadow": {
+			"centered": true,
+			"class": "Sprite2D",
+			"light_mask": 1,
+			"offset": [
+				0.0,
+				0.0
+			],
+			"scene": "res://scenes/props/common/ContactShadow.tscn",
+			"texture": "embedded:GradientTexture2D",
+			"visible": true,
+			"xform": [
+				0.3499999940395355,
+				0.0,
+				0.0,
+				0.25,
+				-220.8000030517578,
+				-74.07360076904297
+			],
+			"z": -9
+		},
+		"./Objects/Props/TrashBin/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-161.5,
+				-382.0125732421875
+			],
+			"texture": "res://assets/sprites/furniture/trash_bin.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.05169227719306946,
+				0.0,
+				0.0,
+				0.05169227719306946,
+				-220.8000030517578,
+				-74.07360076904297
+			],
+			"z": 0
+		},
+		"./Objects/Props/WaterDrum": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/furniture/WaterDrum.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-166.39999389648438,
+				-255.14239501953125
+			],
+			"z": 0
+		},
+		"./Objects/Props/WaterDrum/Body": {
+			"class": "StaticBody2D",
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-166.39999389648438,
+				-255.14239501953125
+			],
+			"z": 0
+		},
+		"./Objects/Props/WaterDrum/Body/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					17.920000076293945,
+					11.518754005432129
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-166.39999389648438,
+				-255.14239501953125
+			],
+			"z": 0
+		},
+		"./Objects/Props/WaterDrum/ContactShadow": {
+			"centered": true,
+			"class": "Sprite2D",
+			"light_mask": 1,
+			"offset": [
+				0.0,
+				0.0
+			],
+			"scene": "res://scenes/props/common/ContactShadow.tscn",
+			"texture": "embedded:GradientTexture2D",
+			"visible": true,
+			"xform": [
+				0.44999998807907104,
+				0.0,
+				0.0,
+				0.30000001192092896,
+				-166.39999389648438,
+				-255.14239501953125
+			],
+			"z": -9
+		},
+		"./Objects/Props/WaterDrum/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-167.0,
+				-423.5296936035156
+			],
+			"texture": "res://assets/sprites/furniture/water_drum.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.07138459384441376,
+				0.0,
+				0.0,
+				0.07138459384441376,
+				-166.39999389648438,
+				-255.14239501953125
+			],
+			"z": 0
+		},
+		"./Objects/Room": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/interiors/CdsCanteenRoom.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"y_sort": true,
+			"z": 0
+		},
+		"./Objects/Room/Body": {
+			"class": "StaticBody2D",
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"z": 0
+		},
+		"./Objects/Room/Body/CollisionBasins": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					41.599998474121094,
+					9.256141662597656
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-206.39999389648438,
+				-262.7715759277344
+			],
+			"z": 0
+		},
+		"./Objects/Room/Body/CollisionCounter": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					161.9199981689453,
+					17.27813148498535
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				60.79999923706055,
+				-258.7605895996094
+			],
+			"z": 0
+		},
+		"./Objects/Room/Body/CollisionDoorStopW1": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					16.0,
+					37.024566650390625
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-256.0,
+				-32.910728454589844
+			],
+			"z": 0
+		},
+		"./Objects/Room/Body/CollisionWallE1": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					8.0,
+					277.68426513671875
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				244.0,
+				-133.6998291015625
+			],
+			"z": 0
+		},
+		"./Objects/Room/Body/CollisionWallN": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					496.0,
+					5.142301082611084
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				-269.9707946777344
+			],
+			"z": 0
+		},
+		"./Objects/Room/Body/CollisionWallS1": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					496.0,
+					5.142301082611084
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				2.571150541305542
+			],
+			"z": 0
+		},
+		"./Objects/Room/Body/CollisionWallW1": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					8.0,
+					21.59766387939453
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-244.0,
+				-5.65653133392334
+			],
+			"z": 0
+		},
+		"./Objects/Room/Body/CollisionWallW2": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					8.0,
+					223.17587280273438
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-244.0,
+				-160.9540252685547
+			],
+			"z": 0
+		},
+		"./Objects/Room/SouthWall": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-801.5,
+				-114.3638687133789
+			],
+			"texture": "res://assets/sprites/interiors/cds_canteen_room__south_wall.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.3199999928474426,
+				0.0,
+				0.0,
+				0.3199999928474426,
+				0.0,
+				5.142301082611084
+			],
+			"z": 0
+		},
+		"./Objects/Room/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-804.5,
+				-1136.294189453125
+			],
+			"texture": "res://assets/sprites/interiors/cds_canteen_room.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.3199999928474426,
+				0.0,
+				0.0,
+				0.3199999928474426,
+				0.0,
+				0.0
+			],
+			"z": -10
+		},
+		"./Objects/SpawnMarkers": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"y_sort": true,
+			"z": 0
+		},
+		"./Objects/SpawnMarkers/Spawn_canteen_from_veranda": {
+			"class": "Marker2D",
+			"light_mask": 1,
+			"scene": "res://scenes/components/SpawnMarker.tscn",
+			"script": {
+				"path": "res://scripts/components/spawn_marker.gd",
+				"spawn_id": "\"canteen_from_veranda\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-204.8000030517578,
+				-32.921600341796875
+			],
+			"z": 0
+		},
+		"./Objects/SpawnMarkers/Spawn_canteen_wake": {
+			"class": "Marker2D",
+			"light_mask": 1,
+			"scene": "res://scenes/components/SpawnMarker.tscn",
+			"script": {
+				"path": "res://scripts/components/spawn_marker.gd",
+				"spawn_id": "\"canteen_wake\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-131.1999969482422,
+				-41.152000427246094
+			],
+			"z": 0
+		},
+		"./Objects/Story": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"y_sort": true,
+			"z": 0
+		},
+		"./Objects/Story/Kitchen": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/components/Examine.tscn",
+			"script": {
+				"hidden_until_flag": "\"\"",
+				"long_message": "\"\"",
+				"message": "\"Something has grown out of the kitchen. It is wet, and it is warm. You don't go in.\"",
+				"not_ready_message": "\"\"",
+				"object_name": "\"Kitchen door\"",
+				"path": "res://scripts/components/examine.gd",
+				"requires_flag": "\"\"",
+				"sets_flag": "\"\"",
+				"sound": "&\"\"",
+				"verb": "\"Look\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				169.60000610351563,
+				-248.9696044921875
+			],
+			"z": 0
+		},
+		"./Objects/Story/Kitchen/Interactable": {
+			"class": "Area2D",
+			"layer": 4,
+			"light_mask": 1,
+			"mask": 0,
+			"monitorable": true,
+			"monitoring": false,
+			"scene": "res://scenes/components/Interactable.tscn",
+			"script": {
+				"hold_seconds": "0.0",
+				"object_name": "\"Kitchen door\"",
+				"path": "res://scripts/components/interactable.gd",
+				"prompt_offset": "Vector2(0, -56)",
+				"verb": "\"Look\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				169.60000610351563,
+				-248.9696044921875
+			],
+			"z": 0
+		},
+		"./Objects/Story/Kitchen/Interactable/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"circle": 32.0
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				169.60000610351563,
+				-248.9696044921875
+			],
+			"z": 0
+		},
+		"./Objects/Story/Lantern": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/components/Pickup.tscn",
+			"script": {
+				"fuel": "0.0",
+				"item_id": "\"\"",
+				"item_name": "\"Hurricane lantern\"",
+				"path": "res://scripts/components/pickup.gd",
+				"pickup_id": "\"canteen_hurricane_lantern\"",
+				"sets_flag": "\"got_lantern\"",
+				"show_placeholder": "false",
+				"verb": "\"Take\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-8.0,
+				-256.17120361328125
+			],
+			"y_sort": true,
+			"z": 0
+		},
+		"./Objects/Story/Lantern/Body": {
+			"class": "Polygon2D",
+			"color": [
+				0.949999988079071,
+				0.8500000238418579,
+				0.20000000298023224,
+				1.0
+			],
+			"light_mask": 1,
+			"polygon": [
+				[
+					0.0,
+					-24.0
+				],
+				[
+					10.0,
+					-12.0
+				],
+				[
+					0.0,
+					0.0
+				],
+				[
+					-10.0,
+					-12.0
+				]
+			],
+			"visible": false,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-8.0,
+				-256.17120361328125
+			],
+			"z": 0
+		},
+		"./Objects/Story/Lantern/Interactable": {
+			"class": "Area2D",
+			"layer": 4,
+			"light_mask": 1,
+			"mask": 0,
+			"monitorable": true,
+			"monitoring": false,
+			"scene": "res://scenes/components/Interactable.tscn",
+			"script": {
+				"hold_seconds": "0.0",
+				"object_name": "\"Hurricane lantern\"",
+				"path": "res://scripts/components/interactable.gd",
+				"prompt_offset": "Vector2(0, -56)",
+				"verb": "\"Take\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-8.0,
+				-256.17120361328125
+			],
+			"z": 0
+		},
+		"./Objects/Story/Lantern/Interactable/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"circle": 32.0
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-8.0,
+				-256.17120361328125
+			],
+			"z": 0
+		},
+		"./Objects/Story/Lantern/Visual": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/furniture/HurricaneLantern.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-8.0,
+				-280.6831970214844
+			],
+			"z": 0
+		},
+		"./Objects/Story/Lantern/Visual/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-160.0,
+				-403.428955078125
+			],
+			"texture": "res://assets/sprites/furniture/hurricane_lantern.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.023069756105542183,
+				0.0,
+				0.0,
+				0.023069756105542183,
+				-8.0,
+				-280.6831970214844
+			],
+			"z": 0
+		},
+		"./Objects/Story/Notebook": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/components/Readable.tscn",
+			"script": {
+				"body": "\"DIGITAL LOGIC LAB REPORT: due Friday 9:00 am.\n\nTo do: ch. 4 timing diagrams, conclusion, references.\n\nCanteen closes 10:30 but the guard never kicks anyone out of CDS.\n\nDO NOT FALL ASLEEP.\"",
+				"dark_message": "\"Too dark to read. Light the lantern.\"",
+				"note_id": "\"player_notebook\"",
+				"path": "res://scripts/components/readable.gd",
+				"requires_light": "false",
+				"sets_flag": "\"\"",
+				"title": "\"Your notebook\"",
+				"verb": "\"Read\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-134.39999389648438,
+				-61.72800064086914
+			],
+			"z": 0
+		},
+		"./Objects/Story/Notebook/Interactable": {
+			"class": "Area2D",
+			"layer": 4,
+			"light_mask": 1,
+			"mask": 0,
+			"monitorable": true,
+			"monitoring": false,
+			"scene": "res://scenes/components/Interactable.tscn",
+			"script": {
+				"hold_seconds": "0.0",
+				"object_name": "\"Your notebook\"",
+				"path": "res://scripts/components/interactable.gd",
+				"prompt_offset": "Vector2(0, -56)",
+				"verb": "\"Read\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-134.39999389648438,
+				-61.72800064086914
+			],
+			"z": 0
+		},
+		"./Objects/Story/Notebook/Interactable/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"circle": 32.0
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-134.39999389648438,
+				-61.72800064086914
+			],
+			"z": 0
+		},
+		"./Objects/Story/Notice": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/components/Readable.tscn",
+			"script": {
+				"body": "\"NOTICE: CDS block\n\nDuring the exam period the canteen closes at 10:30 pm. Students must leave the CDS block by 11 pm.\n\nLOAD-SHEDDING: hurricane lanterns are kept on the serving counter. Return them after use.\n\nThe indoor games hall is CLOSED for maintenance. Master key with the security office at the Main Gate.\n\n(Someone has written underneath, in pen: \\\"the hall floor is warm. why is the hall floor warm\\\")\"",
+				"dark_message": "\"Too dark to read. Light the lantern.\"",
+				"note_id": "\"canteen_notice\"",
+				"path": "res://scripts/components/readable.gd",
+				"requires_light": "true",
+				"sets_flag": "\"\"",
+				"title": "\"Notice board\"",
+				"verb": "\"Read\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				214.39999389648438,
+				-259.2575988769531
+			],
+			"z": 0
+		},
+		"./Objects/Story/Notice/Interactable": {
+			"class": "Area2D",
+			"layer": 4,
+			"light_mask": 1,
+			"mask": 0,
+			"monitorable": true,
+			"monitoring": false,
+			"scene": "res://scenes/components/Interactable.tscn",
+			"script": {
+				"hold_seconds": "0.0",
+				"object_name": "\"Notice board\"",
+				"path": "res://scripts/components/interactable.gd",
+				"prompt_offset": "Vector2(0, -56)",
+				"verb": "\"Read\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				214.39999389648438,
+				-259.2575988769531
+			],
+			"z": 0
+		},
+		"./Objects/Story/Notice/Interactable/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"circle": 32.0
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				214.39999389648438,
+				-259.2575988769531
+			],
+			"z": 0
+		},
+		"./Objects/Story/Oil": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/components/Pickup.tscn",
+			"script": {
+				"fuel": "0.25",
+				"item_id": "\"\"",
+				"item_name": "\"Lamp kerosene\"",
+				"path": "res://scripts/components/pickup.gd",
+				"pickup_id": "\"canteen_oil\"",
+				"sets_flag": "\"\"",
+				"show_placeholder": "false",
+				"verb": "\"Pick up\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				102.4000015258789,
+				-187.24159240722656
+			],
+			"y_sort": true,
+			"z": 0
+		},
+		"./Objects/Story/Oil/Body": {
+			"class": "Polygon2D",
+			"color": [
+				0.949999988079071,
+				0.8500000238418579,
+				0.20000000298023224,
+				1.0
+			],
+			"light_mask": 1,
+			"polygon": [
+				[
+					0.0,
+					-24.0
+				],
+				[
+					10.0,
+					-12.0
+				],
+				[
+					0.0,
+					0.0
+				],
+				[
+					-10.0,
+					-12.0
+				]
+			],
+			"visible": false,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				102.4000015258789,
+				-187.24159240722656
+			],
+			"z": 0
+		},
+		"./Objects/Story/Oil/Interactable": {
+			"class": "Area2D",
+			"layer": 4,
+			"light_mask": 1,
+			"mask": 0,
+			"monitorable": true,
+			"monitoring": false,
+			"scene": "res://scenes/components/Interactable.tscn",
+			"script": {
+				"hold_seconds": "0.0",
+				"object_name": "\"Lamp kerosene\"",
+				"path": "res://scripts/components/interactable.gd",
+				"prompt_offset": "Vector2(0, -56)",
+				"verb": "\"Pick up\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				102.4000015258789,
+				-187.24159240722656
+			],
+			"z": 0
+		},
+		"./Objects/Story/Oil/Interactable/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"circle": 32.0
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				102.4000015258789,
+				-187.24159240722656
+			],
+			"z": 0
+		},
+		"./Objects/Story/Oil/Visual": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/furniture/OilBottle.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				102.4000015258789,
+				-205.62559509277344
+			],
+			"z": 0
+		},
+		"./Objects/Story/Oil/Visual/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-160.0,
+				-401.0264587402344
+			],
+			"texture": "res://assets/sprites/furniture/oil_bottle.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.0218083206564188,
+				0.0,
+				0.0,
+				0.0218083206564188,
+				102.4000015258789,
+				-205.62559509277344
+			],
+			"z": 0
+		}
+	},
+	"zone_id": "cds_canteen"
+}

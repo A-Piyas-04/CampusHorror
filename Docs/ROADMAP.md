@@ -79,6 +79,30 @@ hitches, the player never vanishing, and movement that feels weighted. Budgets r
 
 ---
 
+## Chapter 1 slice (21 November 2026, decisions D16–D24): J and K pulled forward
+
+The owner asked for a complete playable piece of the mapped area. It was built by taking the first usable
+version of most J and K batches at once (details: `Docs/CHAPTER1.md`). What is done and what remains:
+
+| Batch | Delivered in the slice | Still open |
+|---|---|---|
+| J1 Night | Story-mode night per zone (`ZoneProfile.night_ambient`), lamps (steady / flickering / dead / needs power), moonlight and exit signs | The clock (11 pm to 4 am), occluders on trees, palms and props |
+| J2 Lantern | Off / Low / Full, kerosene, flicker, refuels, reveal-in-light notes, glow-in-dark traces and writing | Fuel shown on the lamp art (D20 uses a small gauge for now) |
+| J3 Navigation + creatures | Baked navigation per zone, light / sight / sound perception, the full state machine | A shared creature base class once creature 2 exists |
+| J4 Night Guard | Rendered (idle, walk, run, 8 facings), patrol, chase, catch | |
+| J5 Stealth and sound | Noise = surface x gait, hide spots (lockers, hedges), crows as spotters | Holding breath, throwables |
+| J6 Composure + failure | Vignette, colour drain, heartbeat, breathing, camera; faint and caught -> blackout -> checkpoint | Input lag at low composure, "lose something" on fainting |
+| K1 Save v2 | Full story state, autosave checkpoints, atomic writes, v1 saves still load | Slots, migration beyond v1 |
+| K2 Flags | Story flags, doors that stay unlocked, collected pickups | |
+| K3 Items | Key items (master key), kerosene | Inventory / examine screen, photo mode |
+| K4 Notes and journal | Readables, glow writing, journal in the pause menu with the full text | |
+| K5 Puzzles | Keypad component, a two-mechanic chain (light reveals / dark reveals) | A general multi-step puzzle framework |
+| K6 UI | Title screen, pause, journal, settings (volumes, fullscreen), story cards, HUD (objective, toasts, lantern gauge) | Control remapping, brightness, accessibility options, save / load UI |
+| K7 Interior kit | Replaced by the room-shell method (D22): five rooms built from data | Multi-storey rooms, ceilings seen from inside |
+| K8 Chapters 0–1 | Chapter 1 complete | Chapter 0 (dusk, before the power fails) |
+
+---
+
 ## Phase J — The horror core
 
 | Batch | Work |

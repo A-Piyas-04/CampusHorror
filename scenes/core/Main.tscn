@@ -7,6 +7,13 @@
 [ext_resource type="Script" path="res://scripts/debug/debug_tools.gd" id="5_debug"]
 [ext_resource type="PackedScene" path="res://scenes/ui/TransitionLayer.tscn" id="6_fade"]
 [ext_resource type="Script" path="res://scripts/world/occlusion_ghosts.gd" id="7_ghosts"]
+[ext_resource type="Script" path="res://scripts/ui/hud.gd" id="8_hud"]
+[ext_resource type="Script" path="res://scripts/ui/note_viewer.gd" id="9_notes"]
+[ext_resource type="Script" path="res://scripts/ui/keypad_ui.gd" id="10_keypad"]
+[ext_resource type="Script" path="res://scripts/ui/pause_menu.gd" id="11_pause"]
+[ext_resource type="Script" path="res://scripts/ui/story_card.gd" id="12_card"]
+[ext_resource type="Script" path="res://scripts/player/composure.gd" id="13_composure"]
+[ext_resource type="Script" path="res://scripts/world/glow_layer.gd" id="14_glow"]
 
 [node name="Main" type="Node2D" unique_id=2145005953]
 script = ExtResource("1_main")
@@ -27,6 +34,27 @@ position = Vector2(103, 107)
 [node name="InteractionPrompt" parent="UI" unique_id=1921180136 instance=ExtResource("3_prompt")]
 
 [node name="TransitionLayer" parent="UI" unique_id=1559023417 instance=ExtResource("6_fade")]
+
+[node name="Hud" type="CanvasLayer" parent="UI"]
+script = ExtResource("8_hud")
+
+[node name="NoteViewer" type="CanvasLayer" parent="UI"]
+script = ExtResource("9_notes")
+
+[node name="KeypadUi" type="CanvasLayer" parent="UI"]
+script = ExtResource("10_keypad")
+
+[node name="PauseMenu" type="CanvasLayer" parent="UI"]
+script = ExtResource("11_pause")
+
+[node name="StoryCard" type="CanvasLayer" parent="UI"]
+script = ExtResource("12_card")
+
+[node name="GlowLayer" type="CanvasLayer" parent="."]
+script = ExtResource("14_glow")
+
+[node name="Composure" type="CanvasLayer" parent="."]
+script = ExtResource("13_composure")
 
 [node name="OcclusionGhosts" type="Node" parent="." unique_id=1786523904]
 script = ExtResource("7_ghosts")

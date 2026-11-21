@@ -10,7 +10,7 @@ extends Node
 ##               I5) to the destination zone's spawn; still exactly one Player and no leaked nodes afterwards
 ##   save/load   F6 saves the zone and feet, F9 restores them after travelling elsewhere; a save naming an
 ##               unknown zone is refused and changes nothing (one intended ERROR line)
-##   debug keys  F2 flips the night tint (DebugTools), the lantern action toggles the lantern
+##   debug keys  F2 flips the night tint (DebugTools), the lantern action cycles the lantern
 ## The user's save (user://save.json) is backed up byte for byte first and restored (or removed again) at
 ## the end; the restore is verified.
 ## Args (after `--`): `--quit-after-checks` quits with exit code 0 (pass) / 1 (fail).
@@ -130,8 +130,27 @@ func _run(main: Main) -> void:
 			# Read the destination now: the zone change frees this door.
 			var dest_zone := door.destination_zone_id
 			var dest_spawn := door.destination_spawn_id
+			# A locked door must refuse first, then open once its key / flag is held (state restored after).
+			var key := door.required_item
+			var need_flag := door.requires_flag
+			var unlocked_flag := door.unlocked_flag
+			if door.is_locked():
+				await _press("interact")
+				await _await_travel(main)
+				if main.get_current_zone_id() != zone_id:
+					bad_doors.append("%s/%s: locked, but it let the player through" % [zone_id, dp])
+					continue
+				if not key.is_empty():
+					GameState.add_item(key)
+				if not need_flag.is_empty():
+					GameState.set_flag(need_flag)
 			await _press("interact")
 			await _await_travel(main)
+			if not key.is_empty() and GameState.has_item(key):
+				GameState.remove_item(key)
+			if not need_flag.is_empty():
+				GameState.set_flag(need_flag, false)
+			GameState.set_flag(unlocked_flag, false)
 			n_doors += 1
 			if main.get_current_zone_id() != dest_zone:
 				bad_doors.append("%s/%s: expected '%s', in '%s'" % [zone_id, dp, dest_zone, main.get_current_zone_id()])
@@ -184,12 +203,13 @@ func _run(main: Main) -> void:
 	await _press("debug_toggle_night")
 	var night := tint.color
 	await _press("debug_toggle_night")
-	var lantern_was := lantern.enabled
-	await _press("lantern")
-	var lantern_flipped := lantern.enabled != lantern_was
-	await _press("lantern")
-	_check(night != day and tint.color == day and lantern_flipped and lantern.enabled == lantern_was,
-		"F2 flips the night tint and back; the lantern action toggles the lantern and back")
+	# Lantern v2: the action cycles Full -> Low -> Off -> Full.
+	var states: Array[int] = [int(lantern.get("state"))]
+	for i in 3:
+		await _press("lantern")
+		states.append(int(lantern.get("state")))
+	_check(night != day and tint.color == day and states == [2, 1, 0, 2],
+		"F2 flips the night tint and back; the lantern action cycles Full, Low, Off and back to Full (got %s)" % [states])
 
 
 ## Waits (at most 5 s) until a faded travel has finished and the player has control again.

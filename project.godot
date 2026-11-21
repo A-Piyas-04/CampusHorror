@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="CampusHorror"
-run/main_scene="res://scenes/core/Main.tscn"
+run/main_scene="res://scenes/core/MainMenu.tscn"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -25,6 +25,8 @@ MCPRuntime="*uid://c40iebabcftlv"
 GameState="*res://scripts/core/game_state.gd"
 SaveService="*res://scripts/core/save_service.gd"
 AudioDirector="*res://scripts/audio/audio_director.gd"
+Settings="*res://scripts/core/settings.gd"
+Game="*res://scripts/core/game_flow.gd"
 
 [display]
 
@@ -135,5 +137,6 @@ common/physics_interpolation=true
 
 [rendering]
 
+environment/defaults/default_clear_color=Color(0, 0, 0, 1)
 rendering_device/driver.windows="d3d12"
 renderer/rendering_method="gl_compatibility"

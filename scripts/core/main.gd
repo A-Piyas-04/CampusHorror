@@ -33,16 +33,43 @@ var _current_zone: Zone
 var _transitioning := false
 ## Most recently used last: [scene_path, PackedScene].
 var _kept_scenes: Array = []
+var _director: Chapter1
 
 @onready var _world: Node2D = $World
 @onready var _player: Player = $World/Player
 @onready var _transition: TransitionLayer = $UI/TransitionLayer
 @onready var _ghosts: OcclusionGhosts = $OcclusionGhosts
+@onready var _tint: CanvasModulate = $DayNightTint
 
 
 func _ready() -> void:
+	add_to_group("main")
 	_ghosts.setup(_player)
-	change_zone(start_zone_id, start_spawn_id)
+	# How the game was started (Game autoload): "new" / "continue" run the story; "" (the editor, tests) is the
+	# classic instant start in daylight with no director.
+	match Game.take_start_mode():
+		"new":
+			_start_story(true)
+		"continue":
+			if SaveService.load_at_start(self):
+				_start_story(false)
+			else:
+				_start_story(true)
+		_:
+			change_zone(start_zone_id, start_spawn_id)
+
+
+func _start_story(new_game: bool) -> void:
+	var lantern := _player.get_node("Lantern")
+	lantern.set("burns_fuel", true)
+	_director = Chapter1.new()
+	_director.name = "Chapter1"
+	add_child(_director)
+	_director.setup(self)
+	if new_game:
+		_director.begin_new()
+	else:
+		_director.begin_continue()
 
 
 # --- Instant (synchronous) zone changes ---------------------------------------------------------------------
@@ -103,6 +130,22 @@ func get_current_zone_id() -> String:
 
 func get_current_zone() -> Zone:
 	return _current_zone
+
+
+## Bakes the current zone's navigation from its colliders if it has creatures and none is baked yet (the story
+## director calls this on zone entry, still behind the travel fade). Returns true if a mesh exists afterwards.
+func bake_navigation() -> bool:
+	if _current_zone == null:
+		return false
+	if _current_zone.get_node_or_null("BakedNavigation") != null:
+		return true
+	for c in get_tree().get_nodes_in_group("creatures"):
+		if _current_zone.is_ancestor_of(c):
+			var profile := _current_zone.profile if _current_zone.profile != null else ZoneProfile.new()
+			var bounds := profile.camera_limits if profile.camera_limits.size.x > 0.0 else Rect2(-3000, -3000, 6000, 6000)
+			NavBuilder.bake(_current_zone, bounds)
+			return true
+	return false
 
 
 func get_player_feet_position() -> Vector2:
@@ -205,6 +248,10 @@ func _apply_profile(zone: Zone) -> void:
 	if camera.has_method("apply_profile"):
 		camera.call("apply_profile", profile)
 	AudioDirector.apply_profile(profile)
+	# Night (story mode): the zone's own darkness; the sandbox start keeps the day tint (F2 still flips it).
+	if GameState.has_flag("night"):
+		_tint.set("night_color", profile.night_ambient)
+		_tint.set("is_night", true)
 
 
 ## Keeps a reference to the zone's PackedScene (most recent last) so the resource cache holds it.

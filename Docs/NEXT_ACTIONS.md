@@ -12,14 +12,18 @@ all three, plus the first batch that can start immediately.
 
 ## 0. State of the repo
 
-21 November 2026: **Phase I is complete (I1–I7) and verified, but the second batch (I6 + I7) is not committed.**
-Movement, animation, audio, camera and transitions came in batch 1. Batch 2 adds:
-- The player is never lost behind scenery.
-- World-space prompts with keyboard / gamepad glyphs.
-- Hold-to-interact.
+21 November 2026, overnight: **Chapter 1 "Lights Out" is playable from the title screen to the end card**
+(decisions D16–D24, `Docs/CHAPTER1.md`). It sits on top of Phase I batch 2 (I6 + I7), and **none of it is
+committed yet**: Phase I batch 2 and the Chapter 1 slice are both in the working tree. Private checkpoints:
+`refs/checkpoints/i67-preedit`, `phase-i-complete`, `ch1-wip1` and a final `chapter1-complete`.
 
-All 9 automated suites pass, plus the windowed feel and occlusion probes. Details are in `Docs/STATUS.md`;
-checkpoint `refs/checkpoints/i67-preedit`.
+What to do now, in order:
+1. **Play it**: F5 in the editor (the title screen is the main scene), sound on, about 25 minutes.
+2. **Tell me what to change**: feel, difficulty (the guard), story text, looks. Everything is data or a short
+   script; nothing is locked in.
+3. **Commit** when you're happy (Phase I batch 2 and Chapter 1 together, or in two commits).
+4. **Optional, quick win**: photos of the real rooms (`Docs/MAP_INTAKE.md` stage 1b) so the interiors match IUT.
+5. **The next campus area** needs the whole-campus layout (MAP_INTAKE stage 1).
 
 ## 1. Decisions — all answered (20 November 2026)
 
