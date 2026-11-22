@@ -32,6 +32,9 @@ var _t := 0.0
 
 
 func _ready() -> void:
+	# carried at the hip: lifted off the ground so it rakes across normal-mapped ground (Map v2, D46)
+	if height <= 0.0:
+		height = 55.0
 	add_to_group("player_lantern")
 	add_to_group("gameplay_lights")
 	_set_state(start_state, true)
@@ -97,9 +100,17 @@ func _process(delta: float) -> void:
 	var flicker := 1.0 + 0.025 * sin(_t * 13.0) + 0.02 * sin(_t * 7.3 + 1.7)
 	if is_lit and GameState.lantern_fuel < 0.15:
 		flicker *= 0.55 + 0.45 * absf(sin(_t * 23.0) * sin(_t * 3.1))
-	energy = lerpf(energy, _energy_target * flicker, k)
+	energy = lerpf(energy, _energy_target * flicker * _ambient_scale(), k)
 	if not is_lit and energy < 0.02:
 		enabled = false
+
+
+## Explore mode (D45): a flame is lost in daylight, so its strength follows the time of day's darkness.
+func _ambient_scale() -> float:
+	if Game.story_active:
+		return 1.0
+	var tint := get_tree().get_first_node_in_group("world_tint")
+	return lerpf(0.18, 1.0, float(tint.get("darkness"))) if tint != null else 1.0
 
 
 ## World-space radius the light reaches at the current state.

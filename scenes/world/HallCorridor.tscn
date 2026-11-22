@@ -42,7 +42,7 @@ y_sort_enabled = true
 
 [node name="DoorOut" parent="Objects/Doors" instance=ExtResource("4_r")]
 position = Vector2(-406.4, -45.2672)
-destination_zone_id = "halls_exterior"
+destination_zone_id = "campus"
 destination_spawn_id = "outside_south_hall"
 verb = "Go out"
 place_name = "South Hall entrance"
@@ -74,6 +74,7 @@ investigate_speed = 60.0
 chase_speed = 128.0
 modulate = Color(0.86, 0.83, 0.96, 1)
 metadata/role = "patrol"
+metadata/chapter = 4
 
 [node name="Spawn_hallcorr_from_room" parent="Objects/SpawnMarkers" instance=ExtResource("5_r")]
 position = Vector2(0, -65.8432)

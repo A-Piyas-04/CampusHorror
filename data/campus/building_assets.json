@@ -1,0 +1,469 @@
+{
+ "note": "Which rendered building stands where (Map v2). Written by assets/source/blender/tools/author_campus_v2.py; read by tools/zones/campus_world.py, which places a site's asset once its scene exists.",
+ "assets": [
+  {
+   "site": "main_gate",
+   "asset_id": "v2_main_gate",
+   "scene": "res://scenes/props/campus_v2/V2MainGate.tscn",
+   "centre_m": [
+    477.75,
+    268.3
+   ],
+   "layers": [
+    "P2GateBeam",
+    "P3SecurityBooth"
+   ]
+  },
+  {
+   "site": "five_fundamentals",
+   "asset_id": "v2_five_fundamentals",
+   "scene": "res://scenes/props/campus_v2/V2FiveFundamentals.tscn",
+   "centre_m": [
+    300.6,
+    220.6
+   ],
+   "layers": [
+    "Fins"
+   ]
+  },
+  {
+   "site": "mosque",
+   "asset_id": "v2_mosque",
+   "scene": "res://scenes/props/campus_v2/V2Mosque.tscn",
+   "centre_m": [
+    243.5,
+    188.81
+   ],
+   "layers": [
+    "Mosque",
+    "P3Cylinder",
+    "P4Cylinder",
+    "P5Cylinder"
+   ]
+  },
+  {
+   "site": "auditorium",
+   "asset_id": "v2_auditorium",
+   "scene": "res://scenes/props/campus_v2/V2Auditorium.tscn",
+   "centre_m": [
+    202.05,
+    169.95
+   ],
+   "layers": [
+    "Auditorium"
+   ]
+  },
+  {
+   "site": "cafeteria_library",
+   "asset_id": "v2_cafeteria_library",
+   "scene": "res://scenes/props/campus_v2/V2CafeteriaLibrary.tscn",
+   "centre_m": [
+    284.75,
+    142.3
+   ],
+   "layers": [
+    "Cafeteria"
+   ]
+  },
+  {
+   "site": "admin",
+   "asset_id": "v2_admin",
+   "scene": "res://scenes/props/campus_v2/V2Admin.tscn",
+   "centre_m": [
+    237.5,
+    131.9
+   ],
+   "layers": [
+    "P0Part0",
+    "P1BridgeTo5"
+   ]
+  },
+  {
+   "site": "indoor_sports",
+   "asset_id": "v2_indoor_sports",
+   "scene": "res://scenes/props/campus_v2/V2IndoorSports.tscn",
+   "centre_m": [
+    401.85,
+    128.2
+   ],
+   "layers": [
+    "P0Part0"
+   ]
+  },
+  {
+   "site": "cds",
+   "asset_id": "v2_cds",
+   "scene": "res://scenes/props/campus_v2/V2Cds.tscn",
+   "centre_m": [
+    360.0,
+    128.7
+   ],
+   "layers": [
+    "P0Part0",
+    "P1Part1",
+    "P2ArcadeVeranda"
+   ]
+  },
+  {
+   "site": "ub_hall",
+   "asset_id": "v2_ub_hall",
+   "scene": "res://scenes/props/campus_v2/V2UbHall.tscn",
+   "centre_m": [
+    423.2,
+    44.85
+   ],
+   "layers": [
+    "P0Part0",
+    "P1NorthBlock",
+    "P2GateCanopy"
+   ]
+  },
+  {
+   "site": "south_hall",
+   "asset_id": "v2_south_hall",
+   "scene": "res://scenes/props/campus_v2/V2SouthHall.tscn",
+   "centre_m": [
+    349.1,
+    85.32
+   ],
+   "layers": [
+    "P0WestWing",
+    "P2StairTower",
+    "P4StairTower",
+    "P5MiddleWing",
+    "P7StairTower",
+    "P9StairTower",
+    "P10EastWing",
+    "P12StairTower",
+    "P14StairTower"
+   ]
+  },
+  {
+   "site": "north_hall",
+   "asset_id": "v2_north_hall",
+   "scene": "res://scenes/props/campus_v2/V2NorthHall.tscn",
+   "centre_m": [
+    349.05,
+    29.05
+   ],
+   "layers": [
+    "P0WestWing",
+    "P2StairTower",
+    "P4StairTower",
+    "P5MiddleWing",
+    "P7StairTower",
+    "P9StairTower",
+    "P10EastWing",
+    "P12StairTower",
+    "P14StairTower"
+   ]
+  },
+  {
+   "site": "academic_1",
+   "asset_id": "v2_academic_1",
+   "scene": "res://scenes/props/campus_v2/V2Academic1.tscn",
+   "centre_m": [
+    231.35,
+    87.4
+   ],
+   "layers": [
+    "P0Part0",
+    "P1Part1",
+    "P2Part2",
+    "P3StairTower",
+    "P4StairTower"
+   ]
+  },
+  {
+   "site": "car_parking",
+   "asset_id": "v2_car_parking",
+   "scene": "res://scenes/props/campus_v2/V2CarParking.tscn",
+   "centre_m": [
+    229.95,
+    65.45
+   ],
+   "layers": [
+    "Shed0",
+    "Shed1",
+    "Shed2"
+   ]
+  },
+  {
+   "site": "academic_2",
+   "asset_id": "v2_academic_2",
+   "scene": "res://scenes/props/campus_v2/V2Academic2.tscn",
+   "centre_m": [
+    231.35,
+    32.75
+   ],
+   "layers": [
+    "P0Part0",
+    "P1Part1",
+    "P2Part2",
+    "P3StairTower",
+    "P4StairTower"
+   ]
+  },
+  {
+   "site": "southern_workshop",
+   "asset_id": "v2_southern_workshop",
+   "scene": "res://scenes/props/campus_v2/V2SouthernWorkshop.tscn",
+   "centre_m": [
+    142.6,
+    94.05
+   ],
+   "layers": [
+    "P0",
+    "P1",
+    "P2"
+   ]
+  },
+  {
+   "site": "middle_workshop",
+   "asset_id": "v2_middle_workshop",
+   "scene": "res://scenes/props/campus_v2/V2MiddleWorkshop.tscn",
+   "centre_m": [
+    142.05,
+    65.55
+   ],
+   "layers": [
+    "P0",
+    "P1",
+    "P2"
+   ]
+  },
+  {
+   "site": "northern_workshop",
+   "asset_id": "v2_northern_workshop",
+   "scene": "res://scenes/props/campus_v2/V2NorthernWorkshop.tscn",
+   "centre_m": [
+    142.25,
+    36.35
+   ],
+   "layers": [
+    "P0",
+    "P1",
+    "P2"
+   ]
+  },
+  {
+   "site": "academic_3",
+   "asset_id": "v2_academic_3",
+   "scene": "res://scenes/props/campus_v2/V2Academic3.tscn",
+   "centre_m": [
+    142.35,
+    19.9
+   ],
+   "layers": [
+    "P0WestHalf",
+    "P1EastHalf"
+   ]
+  },
+  {
+   "site": "substation",
+   "asset_id": "v2_substation",
+   "scene": "res://scenes/props/campus_v2/V2Substation.tscn",
+   "centre_m": [
+    149.15,
+    127.7
+   ],
+   "layers": [
+    "P0",
+    "P1",
+    "P2"
+   ]
+  },
+  {
+   "site": "vc_residence",
+   "asset_id": "v2_vc_residence",
+   "scene": "res://scenes/props/campus_v2/V2VcResidence.tscn",
+   "centre_m": [
+    119.85,
+    258.25
+   ],
+   "layers": [
+    "P0Part0",
+    "P1Porch",
+    "P2Porch"
+   ]
+  },
+  {
+   "site": "female_hall",
+   "asset_id": "v2_female_hall",
+   "scene": "res://scenes/props/campus_v2/V2FemaleHall.tscn",
+   "centre_m": [
+    62.15,
+    255.75
+   ],
+   "layers": [
+    "P0NorthWing",
+    "P1StairTower",
+    "P2StairTower",
+    "P3SouthWing",
+    "P4StairTower",
+    "P5StairTower"
+   ]
+  },
+  {
+   "site": "f_type_bungalow",
+   "asset_id": "v2_f_type_bungalow",
+   "scene": "res://scenes/props/campus_v2/V2FTypeBungalow.tscn",
+   "centre_m": [
+    79.65,
+    218.6
+   ],
+   "layers": [
+    "P0Part0",
+    "P1Outbuilding"
+   ]
+  },
+  {
+   "site": "d_type_building",
+   "asset_id": "v2_d_type_building",
+   "scene": "res://scenes/props/campus_v2/V2DTypeBuilding.tscn",
+   "centre_m": [
+    72.75,
+    172.85
+   ],
+   "layers": [
+    "P0Part0"
+   ]
+  },
+  {
+   "site": "medical_laundry",
+   "asset_id": "v2_medical_laundry",
+   "scene": "res://scenes/props/campus_v2/V2MedicalLaundry.tscn",
+   "centre_m": [
+    3.8,
+    49.0
+   ],
+   "layers": [
+    "P0MedicalCenter",
+    "P1Laundry"
+   ]
+  },
+  {
+   "site": "new_male_hall",
+   "asset_id": "v2_new_male_hall",
+   "scene": "res://scenes/props/campus_v2/V2NewMaleHall.tscn",
+   "centre_m": [
+    58.95,
+    31.05
+   ],
+   "layers": [
+    "P0",
+    "P1",
+    "P2",
+    "P3"
+   ]
+  },
+  {
+   "site": "studio_apartments",
+   "asset_id": "v2_studio_apartments",
+   "scene": "res://scenes/props/campus_v2/V2StudioApartments.tscn",
+   "centre_m": [
+    46.3,
+    133.3
+   ],
+   "layers": [
+    "Plot"
+   ]
+  },
+  {
+   "site": "new_academic",
+   "asset_id": "v2_new_academic",
+   "scene": "res://scenes/props/campus_v2/V2NewAcademic.tscn",
+   "centre_m": [
+    180.65,
+    272.1
+   ],
+   "layers": [
+    "Plot"
+   ]
+  },
+  {
+   "site": "north_strip_block",
+   "asset_id": "v2_north_strip_block",
+   "scene": "res://scenes/props/campus_v2/V2NorthStripBlock.tscn",
+   "centre_m": [
+    349.85,
+    8.85
+   ],
+   "layers": [
+    "P0Part0"
+   ]
+  },
+  {
+   "site": "north_strip_room_w",
+   "asset_id": "v2_north_strip_room_w",
+   "scene": "res://scenes/props/campus_v2/V2NorthStripRoomW.tscn",
+   "centre_m": [
+    329.45,
+    7.85
+   ],
+   "layers": [
+    "P0Part0"
+   ]
+  },
+  {
+   "site": "north_strip_room_e",
+   "asset_id": "v2_north_strip_room_e",
+   "scene": "res://scenes/props/campus_v2/V2NorthStripRoomE.tscn",
+   "centre_m": [
+    366.6,
+    7.85
+   ],
+   "layers": [
+    "P0Part0"
+   ]
+  },
+  {
+   "site": "pump_house",
+   "asset_id": "v2_pump_house",
+   "scene": "res://scenes/props/campus_v2/V2PumpHouse.tscn",
+   "centre_m": [
+    210.4,
+    12.7
+   ],
+   "layers": [
+    "P0Part0"
+   ]
+  },
+  {
+   "site": "south_service_gate",
+   "asset_id": "v2_south_service_gate",
+   "scene": "res://scenes/props/campus_v2/V2SouthServiceGate.tscn",
+   "centre_m": [
+    286.0,
+    292.2
+   ],
+   "layers": [
+    "P0Part0"
+   ]
+  },
+  {
+   "site": "courts_shelter",
+   "asset_id": "v2_courts_shelter",
+   "scene": "res://scenes/props/campus_v2/V2CourtsShelter.tscn",
+   "centre_m": [
+    449.8,
+    142.25
+   ],
+   "layers": [
+    "P0Part0"
+   ]
+  },
+  {
+   "site": "nw_hut",
+   "asset_id": "v2_nw_hut",
+   "scene": "res://scenes/props/campus_v2/V2NwHut.tscn",
+   "centre_m": [
+    16.2,
+    18.3
+   ],
+   "layers": [
+    "P0Part0"
+   ]
+  }
+ ]
+}

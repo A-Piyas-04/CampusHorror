@@ -1,5 +1,27 @@
 # Next actions — what is needed to continue
 
+## Map v2: what the owner can do now (22 November 2026)
+
+1. **Play it.** F5, then **Explore campus**.
+   - Keys: `M` campus map, `T` time of day, `F` lantern, mouse wheel zoom, `Shift` run.
+   - The campus is the official board's layout at true scale, north up. The Main Gate is at the bottom-right
+     (south-east).
+2. **Check the layout against your board.**
+   - Open `map-design/reference/board_overlay.png` (the game's layout over your photo) or `map-design/campus_map.svg`
+     (switch on its "Reference" layer).
+   - Corrections go in an `owner` layer, or as notes.
+3. **Send one more photo.** Your board photo cuts off two corners:
+   - the **north-west**, where #24 Medical Center/Laundry runs off the edge;
+   - the **south-east**, where the Main Gate (#1) is.
+
+   Please photograph those two corners of the board.
+4. **Send photos of buildings built only from the aerials** (list in `map-design/new-areas/README.md`):
+   - 3rd Academic, the workshops, the Female Hall, the VC Residence;
+   - the staff quarters, the Medical Center, the New Male Hall site.
+5. **Commit** when you are happy. Nothing has been committed; private checkpoints are `pre-map-v2` and
+   `map-v2-m2-explore`.
+
+
 Snapshot: 20 November 2026 • updated after decisions D0–D12
 
 Audience: the project owner. This is the only document here with homework in it.
@@ -12,18 +34,21 @@ all three, plus the first batch that can start immediately.
 
 ## 0. State of the repo
 
-21 November 2026, overnight: **Chapter 1 "Lights Out" is playable from the title screen to the end card**
-(decisions D16–D24, `Docs/CHAPTER1.md`). It sits on top of Phase I batch 2 (I6 + I7), and **none of it is
-committed yet**: Phase I batch 2 and the Chapter 1 slice are both in the working tree. Private checkpoints:
-`refs/checkpoints/i67-preedit`, `phase-i-complete`, `ch1-wip1` and a final `chapter1-complete`.
+22 November 2026: **the whole surface campus and Chapters 1–5 are playable**, chained from the title screen
+(Chapter 1's hatch leads into Chapter 2, and so on; after Chapter 5 the game returns to the title). Everything
+since the last commit is in the working tree; private checkpoints: `chapter2-playable`, `chapter3-playable`,
+`chapter4-playable`, `chapter5-playable` (`tools/checkpoint.sh`). All 16 test suites pass (`bash tools/run_checks.sh`).
 
 What to do now, in order:
-1. **Play it**: F5 in the editor (the title screen is the main scene), sound on, about 25 minutes.
-2. **Tell me what to change**: feel, difficulty (the guard), story text, looks. Everything is data or a short
-   script; nothing is locked in.
-3. **Commit** when you're happy (Phase I batch 2 and Chapter 1 together, or in two commits).
-4. **Optional, quick win**: photos of the real rooms (`Docs/MAP_INTAKE.md` stage 1b) so the interiors match IUT.
-5. **The next campus area** needs the whole-campus layout (MAP_INTAKE stage 1).
+1. **Play it**: F5 (title screen), sound on. "Chapters" on the title menu starts any chapter (1-5) directly
+   (it replaces your save). Debug build keys: F3 next beat, F4 guard off/on, F7 refill the lantern.
+2. **Tell me what to change**: the campus layout (positions are approximate, from the photos), the interiors
+   (all concepts), difficulty, story text.
+3. **Commit** when you're happy.
+4. **Add to the map**: draw new areas in an `owner` layer of `map-design/campus_map.svg`, or drop photos and
+   notes in `map-design/new-areas/` (see `map-design/README.md`), then tell me.
+5. **Optional references** that would raise accuracy: photos of any interiors you want matched; the area
+   beyond the lake (west) and beyond the ME workshops (north), currently the campus edge.
 
 ## 1. Decisions — all answered (20 November 2026)
 

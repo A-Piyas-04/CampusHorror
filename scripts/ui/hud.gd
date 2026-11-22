@@ -85,7 +85,7 @@ func _process(delta: float) -> void:
 	var lantern := get_tree().get_first_node_in_group("player_lantern")
 	var on := lantern != null and bool(lantern.get("is_lit"))
 	_gauge_hold = maxf(_gauge_hold - delta, 0.0)
-	var want := 1.0 if (on or _gauge_hold > 0.0) else 0.0
+	var want := 1.0 if (on or _gauge_hold > 0.0) and Game.story_active else 0.0   # Explore mode: no fuel to show
 	_gauge.modulate.a = move_toward(_gauge.modulate.a, want, delta * 3.0)
 	_gauge.fuel = GameState.lantern_fuel
 	_gauge.lit = on

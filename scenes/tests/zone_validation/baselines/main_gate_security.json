@@ -59,7 +59,7 @@
 			"scene": "res://scenes/components/Door.tscn",
 			"script": {
 				"destination_spawn_id": "\"outside_security\"",
-				"destination_zone_id": "\"main_gate_exterior\"",
+				"destination_zone_id": "\"campus\"",
 				"hold_seconds": "0.0",
 				"locked_message": "\"Locked.\"",
 				"path": "res://scripts/components/door.gd",

@@ -1,0 +1,17 @@
+{
+ "id": "concrete_floor_02",
+ "resolution": "1k",
+ "files": [
+  "concrete_floor_02_diffuse_1k.jpg",
+  "concrete_floor_02_nor_gl_1k.jpg"
+ ],
+ "use": "ground: concrete paths, courts' surrounds, compounds",
+ "dimensions_mm": [
+  2000,
+  2000
+ ],
+ "authors": [
+  "Rob Tuytel"
+ ],
+ "license": "CC0 1.0 (https://polyhaven.com/license)"
+}

@@ -243,7 +243,7 @@
 			],
 			"z": 0
 		},
-		"./Objects/Glow/WallCode/@Area2D@3": {
+		"./Objects/Glow/WallCode/@Area2D@459": {
 			"class": "Area2D",
 			"layer": 4,
 			"light_mask": 1,
@@ -268,7 +268,7 @@
 			],
 			"z": 0
 		},
-		"./Objects/Glow/WallCode/@Area2D@3/@CollisionShape2D@2": {
+		"./Objects/Glow/WallCode/@Area2D@459/@CollisionShape2D@458": {
 			"class": "CollisionShape2D",
 			"disabled": false,
 			"light_mask": 1,

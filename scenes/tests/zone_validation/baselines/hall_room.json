@@ -875,7 +875,7 @@
 			"light_mask": 1,
 			"scene": "res://scenes/components/Readable.tscn",
 			"script": {
-				"body": "\"Nov 20. The dogs behind UB Hall have stopped barking. They just stand at the fence and look at the lights. Rafi says they follow the torch beams.\n\nNov 21. Rafi went out to the courtyard with his phone torch. He hasn't come back.\"",
+				"body": "\"Nov 20. The dogs behind UB Hall have stopped barking. They just stand at the fence and look at the lights.\n\nNov 21. Dr. Karim gave Rafi the key to the workshop lift ('if anything happens, it goes to the roof people'). Tonight the residents started walking in their sleep, all towards the light. Rafi went out to the courtyard with his phone torch to find his roommate. He hasn't come back.\"",
 				"dark_message": "\"Too dark to read. Light the lantern.\"",
 				"note_id": "\"dorm_diary\"",
 				"path": "res://scripts/components/readable.gd",

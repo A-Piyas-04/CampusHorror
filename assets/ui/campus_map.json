@@ -1,0 +1,72 @@
+{
+ "x0": -26.0,
+ "y0": -13.6,
+ "px_per_m": 3.2,
+ "world_px_per_m": [
+  32.0,
+  20.576
+ ],
+ "size": [
+  1939,
+  1047
+ ],
+ "map_width_px": 1677,
+ "entrances": {
+  "main_gate_security": [
+   473.5,
+   277.6,
+   "IUT Main Gate"
+  ],
+  "mosque_prayer_hall": [
+   259.8,
+   191.4,
+   "IUT Mosque"
+  ],
+  "auditorium_hall": [
+   223.4,
+   162.0,
+   "Auditorium"
+  ],
+  "central_cafe": [
+   271.0,
+   163.0,
+   "Cafeteria / Library"
+  ],
+  "admin_lobby": [
+   232.6,
+   142.6,
+   "Administrative Building"
+  ],
+  "cds_veranda": [
+   364.5,
+   141.0,
+   "CDS / Student Center"
+  ],
+  "hall_corridor": [
+   350.0,
+   86.7,
+   "South Hall of Residence"
+  ],
+  "hall_common": [
+   349.3,
+   30.8,
+   "North Hall of Residence"
+  ],
+  "academic_corridor": [
+   222.5,
+   99.6,
+   "1st Academic Building"
+  ],
+  "academic_lab": [
+   222.5,
+   44.9,
+   "2nd Academic Building"
+  ],
+  "me_workshop": [
+   142.6,
+   73.3,
+   "Middle Workshop"
+  ]
+ },
+ "source": "data/campus/campus_layout.json via tools/campus/ui_map.py"
+}

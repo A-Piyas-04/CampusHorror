@@ -103,6 +103,39 @@ version of most J and K batches at once (details: `Docs/CHAPTER1.md`). What is d
 
 ---
 
+## Whole campus + Chapters 2–4 (22 November 2026, decisions D25–D38): most of Phase L pulled forward
+
+The owner's 12 annotated campus photos (`Docs/map-reference/campus/`) became the whole surface campus and three
+more chapters, built autonomously under D16 (decisions D25–D38, plan and log: `Docs/CAMPUS_BUILD.md`).
+
+| Area | What exists |
+|---|---|
+| Exteriors (4, one shared frame, D28) | `main_gate_exterior` (field, CDS, gate: Chapter 1), `central_plaza` (lake ring, island plaza, Mosque + minaret, Auditorium, Admin, Central Cafe, Five Pillars, three bridges), `halls_exterior` (South / North Hall, palm courtyard, UB Hall, halls gate), `academic_exterior` (Academic 1–3, ME workshops, garage, main road). Walk-off edges join them (`ZoneEdge`). |
+| Interiors (12 new concepts) | Academic 1 corridor + room 304, Academic 2 EEE lab, Admin lobby + registrar's office, Mosque prayer hall, Auditorium + AV hall, Central Cafeteria, South Hall corridor + room 203, North Hall common room |
+| Art | 22 campus buildings (`author_campus.py`; big ones fade when you walk behind them, D31), 19 interior props, 12 room shells, a diesel generator |
+| Chapters | 1 Lights Out -> 2 The Plaza -> 3 Lecture Hall -> 4 The Halls, chained in one session (D32); title menu "Chapters" starts any of them |
+| Threats | Night Guard (light + sound), crows (spotters), students (sound hunters, D36), sleepwalkers (drawn to light, D37) |
+| Tests | 16 suites, all passing: validator 239/239 (21 zones), Campus traversal 120/120 (every door and edge, live), Chapter 1 49, Chapter 2 41, Chapter 3 27, Chapter 4 22, plus the feel / session / character suites |
+
+Regenerate the campus from its scripts (never hand-edit those scenes): `python tools/zones/campus_zones.py`
+(exteriors), `python tools/zones/campus_interiors.py` (interiors), `python tools/zones/map_registry.py`
+(the registry in `Docs/CAMPUS_MAP.md`). Next: Chapter 5 "Below" (the facility under the ME workshops) needs a
+facility art set; then Chapter 6 (the Mirror Campus) and the endings.
+
+Still open from Phase L: per-building interior accuracy (needs interior photos), more night dressing in the new exteriors, a chapter-select unlock rule for release (today every built chapter is listed).
+
+## Done: Chapter 5 "Below" + the editable map (22 November 2026) — built autonomously, verified, not committed
+
+- **Chapter 5, "Below"** (D40): the ME workshop floor and Site 7 under it (B1 corridor, control room, containment
+  lab, the B2 turbine hall). New facility art set (hazard stripes, facility paint, specimen tanks, control desks,
+  lathes, workbenches, the caged pit lift). Technicians (former staff; light and sound). The truth about
+  Organism 7 (director's log) and the Night Guard (host report). Chapters now chain 1 -> 5; after Chapter 5 the game
+  returns to the title. Test: `Chapter5Check`.
+- **`map-design/`** (D41): the whole campus as an editable plan (SVG in metres with layers, interior floor plans,
+  JSON, PNG previews, a `new-areas/` folder for the owner's photos and notes). Generated from the game; layers
+  named `owner...` survive regeneration. See `map-design/README.md`.
+- The game stays 2.5D (D39); a realism pass can come later as a re-render.
+
 ## Phase J — The horror core
 
 | Batch | Work |

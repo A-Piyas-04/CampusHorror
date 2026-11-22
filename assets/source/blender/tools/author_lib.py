@@ -44,6 +44,16 @@ MATS = {
     "mattress": {"color": [0.55, 0.5, 0.38], "rough": 0.9, "stains": 0.5, "stain_color": [0.4, 0.33, 0.2]},
     "screen_dark": {"color": [0.02, 0.025, 0.03], "rough": 0.1, "spec": 0.8},
     "screen_glow": {"color": [0.05, 0.1, 0.08], "rough": 0.2, "emit": [0.4, 0.75, 0.55], "emit_strength": 1.2},
+    "hazard": {"color": [0.85, 0.68, 0.08], "rough": 0.6, "stains": 0.3,
+               "pattern": {"type": "stripes", "period": 0.4, "color2": [0.06, 0.06, 0.06], "axis": "x"}},
+    "facility_paint": {"color": [0.58, 0.62, 0.57], "rough": 0.8, "var": 0.1, "stains": 0.45,
+                       "stain_color": [0.4, 0.38, 0.3]},
+    "facility_dado": {"color": [0.3, 0.36, 0.33], "rough": 0.6, "stains": 0.3},
+    "tank_liquid": {"color": [0.2, 0.4, 0.33], "rough": 0.1, "spec": 0.9, "emit": [0.3, 0.9, 0.7],
+                    "emit_strength": 0.35, "var": 0.25, "var_scale": 5},
+    "concrete_wet": {"color": [0.36, 0.36, 0.34], "rough": 0.3, "wet": 0.6, "bump": 0.2, "bump_scale": 50,
+                     "stains": 0.5, "stain_color": [0.2, 0.25, 0.22]},
+    "red_lamp": {"color": [0.5, 0.05, 0.04], "emit": [1.0, 0.1, 0.05], "emit_strength": 2.0},
     "screen_static": {"color": [0.13, 0.14, 0.16], "rough": 0.25, "emit": [0.32, 0.38, 0.48], "emit_strength": 0.45,
                       "var": 0.6, "var_scale": 420, "part_var": 0.0},
     "glass": {"color": [0.05, 0.07, 0.1], "glass": True, "var": 0.0, "part_var": 0.0},
@@ -227,7 +237,7 @@ def rotated(parts, rot, pivot=(0.0, 0.0, 0.0)):
 
 def write_config(asset_id, category, scene_name, description, params, *, px_per_m=150.0, samples=192,
                  layers=None, collision=None, z_index=0, sprite_z_index=0, seed=20261121, crop_layers=None,
-                 max_texture_px=None, width_px=None):
+                 max_texture_px=None, width_px=None, render_extra=None):
     cfg = {
         "asset_id": asset_id,
         "category": category,
@@ -248,6 +258,8 @@ def write_config(asset_id, category, scene_name, description, params, *, px_per_
         cfg["render"]["crop_layers"] = True if crop_layers is None else crop_layers
     if max_texture_px:
         cfg["render"]["max_texture_px"] = max_texture_px
+    if render_extra:
+        cfg["render"].update(render_extra)
     path = CONFIG_DIR / f"{asset_id}.json"
     text_out = json.dumps(cfg, indent=2) + "\n"
     if not path.exists() or path.read_text(encoding="utf-8") != text_out:

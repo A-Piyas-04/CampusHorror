@@ -2,8 +2,8 @@ extends "res://scenes/tests/feel/feel_check_base.gd"
 ## Phase I interaction suite (I7), on the real Main.tscn: the world-space prompt (verb, name, glyph, position,
 ## fades), device-aware glyphs and rebinding, hold-to-interact, and the prompt during travel.
 
-const CDS_DOOR := "Objects/Buildings/CDSExterior/TableTennis/DoorCdsMainEntry"
-const FIELD := Vector2(-1000, -200)
+const CDS_DOOR := "Objects/Doors/Door_cds_veranda"
+const FIELD := Vector2(12320, 4300)
 
 var prompt: CanvasLayer
 
@@ -30,7 +30,7 @@ func _door_prompt() -> void:
 	await seconds(0.3)
 	var texts: Array = prompt.call("get_texts")
 	var glyph: Dictionary = prompt.call("get_glyph")
-	check(prompt.call("get_shown_target") == area and approx(prompt.call("get_alpha"), 1.0, 0.01) and texts == ["Enter", "CDS veranda"],
+	check(prompt.call("get_shown_target") == area and approx(prompt.call("get_alpha"), 1.0, 0.01) and texts == ["Enter", "CDS"],
 		"at the CDS door the prompt fades in with '%s' / '%s'" % texts)
 	check(glyph.get("kind") == "key" and glyph.get("text") == "E", "keyboard glyph: %s" % [glyph])
 	var anchor: Vector2 = prompt.call("get_anchor_world")
@@ -122,7 +122,7 @@ func _hold() -> void:
 	check(uses.n == 1 and peak.p >= 0.95, "holding 1 s uses it exactly once (ring reached %.2f), no repeat while still held" % peak.p)
 	box.interacted.disconnect(cb)
 	box.hold_seconds = 0.0
-	main.change_zone("main_gate_exterior", "main_gate_entry")
+	main.change_zone("campus", "explore_start")
 	await frames(2)
 
 
@@ -136,7 +136,7 @@ func _travel_hides() -> void:
 		shown_during = maxf(shown_during, float(prompt.call("get_alpha")) if prompt.call("get_shown_target") != null else 0.0)
 		await get_tree().process_frame
 	check(shown_during == 0.0 and main.get_current_zone_id() == "cds_veranda", "during the door travel no prompt is shown (the player has no control)")
-	main.change_zone("main_gate_exterior", "main_gate_entry")
+	main.change_zone("campus", "explore_start")
 	await frames(2)
 
 

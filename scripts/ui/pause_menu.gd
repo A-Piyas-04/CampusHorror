@@ -45,14 +45,24 @@ func _ready() -> void:
 	_add_button("Settings", _show_settings)
 	_add_button("Quit to title", func() -> void:
 		close()
+		_save_explore()
 		Game.quit_to_title())
-	_add_button("Quit game", func() -> void: get_tree().quit())
+	_add_button("Quit game", func() -> void:
+		_save_explore()
+		get_tree().quit())
 	_content = PanelContainer.new()
 	_content.add_theme_stylebox_override("panel", UIStyle.panel_style(UIStyle.PANEL, 10, 30))
 	_content.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	_content.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	_content.visible = false
 	row.add_child(_content)
+
+
+## Explore mode keeps the walk: leaving saves where you are, so Continue brings you back (D45).
+func _save_explore() -> void:
+	var main := get_tree().current_scene as Main
+	if main != null and main.is_explore() and not main.is_transitioning():
+		SaveService.save_game()
 
 
 func _add_button(text: String, action: Callable) -> Button:

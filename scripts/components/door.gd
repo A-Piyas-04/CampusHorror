@@ -39,6 +39,8 @@ func _ready() -> void:
 
 
 func is_locked() -> bool:
+	if not Game.story_active:
+		return false          # Explore mode (D45): every door opens, like ZoneEdge locks outside the story
 	if GameState.has_flag(unlocked_flag):
 		return false
 	if not required_item.is_empty() and not GameState.has_item(required_item):

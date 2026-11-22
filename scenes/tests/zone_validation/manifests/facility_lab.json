@@ -1,0 +1,11 @@
+{
+	"zone_id": "facility_lab",
+	"notes": "Interior concept (Docs/CAMPUS_BUILD.md S9), 14 x 10 m.",
+	"playable_bounds": [
+		-224,
+		-206,
+		448,
+		214
+	],
+	"walks": []
+}

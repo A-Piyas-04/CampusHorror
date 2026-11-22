@@ -11,7 +11,7 @@ const EXPECTED_BUSES := ["Master", "Music", "Ambience", "UI", "World", "Footstep
 func _run() -> void:
 	tag = "AUDIO"
 	_buses()
-	await _ambience_and_reverb("main_gate_exterior")
+	await _ambience_and_reverb("campus")
 	_player_audio_nodes()
 	_footstep_set()
 	await _footsteps()
@@ -80,9 +80,9 @@ func _walk_step(at: Vector2, actions: Array) -> Dictionary:
 
 func _footsteps() -> void:
 	var fset := load(FOOTSTEPS) as FootstepSet
-	for spec in [["the palm path", Vector2(-1390, 300), ["move_up"], &"paving", &"walk"],
-			["the field, sprinting", Vector2(-1000, -200), ["move_right", "sprint"], &"grass", &"run"],
-			["the field, sneaking", Vector2(-1000, -200), ["move_right", "sneak"], &"grass", &"sneak"]]:
+	for spec in [["the plaza pavers", Vector2(5760, 2510), ["move_up"], &"paving", &"walk"],
+			["the field, sprinting", Vector2(12320, 4300), ["move_right", "sprint"], &"grass", &"run"],
+			["the field, sneaking", Vector2(12320, 4300), ["move_right", "sneak"], &"grass", &"sneak"]]:
 		var r: Dictionary = await _walk_step(spec[1], spec[2])
 		var last: Dictionary = r.last
 		var want_db := float(fset.gain_db.get(spec[3], 0.0)) + float(fset.gait_gain_db.get(spec[4], 0.0))
@@ -100,11 +100,11 @@ func _travel_ducking() -> void:
 	var idx := AudioServer.get_bus_index(&"Ambience")
 	var base := AudioServer.get_bus_volume_db(idx)
 	var lowest := base
-	check(main.travel("main_gate_exterior", "main_gate_entry"), "travel back to main_gate_exterior starts")
+	check(main.travel("campus", "explore_start"), "travel back to campus starts")
 	while main.is_transitioning():
 		lowest = minf(lowest, AudioServer.get_bus_volume_db(idx))
 		await get_tree().process_frame
 	await seconds(0.5)
 	check(approx(lowest, base + AudioDirector.DUCK_DB, 0.5) and approx(AudioServer.get_bus_volume_db(idx), base, 0.05),
 		"during the travel fade the Ambience bus dips to %.1f dB (base %.1f, duck %.0f) and comes back to %.1f dB" % [lowest, base, AudioDirector.DUCK_DB, AudioServer.get_bus_volume_db(idx)])
-	await _ambience_and_reverb("main_gate_exterior")
+	await _ambience_and_reverb("campus")

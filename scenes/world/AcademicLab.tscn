@@ -8,10 +8,11 @@
 [ext_resource type="PackedScene" path="res://scenes/props/furniture/LabBench.tscn" id="6_r"]
 [ext_resource type="PackedScene" path="res://scenes/props/common/ContactShadow.tscn" id="7_r"]
 [ext_resource type="PackedScene" path="res://scenes/components/Readable.tscn" id="8_r"]
-[ext_resource type="PackedScene" path="res://scenes/components/Keypad.tscn" id="9_r"]
-[ext_resource type="Texture2D" path="res://data/lighting/light_soft.tres" id="10_r"]
-[ext_resource type="Script" path="res://scripts/lighting/lamp_light.gd" id="11_r"]
-[ext_resource type="Script" path="res://scripts/world/glow_mark.gd" id="12_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/furniture/KeyCabinet.tscn" id="9_r"]
+[ext_resource type="PackedScene" path="res://scenes/components/Keypad.tscn" id="10_r"]
+[ext_resource type="Texture2D" path="res://data/lighting/light_soft.tres" id="11_r"]
+[ext_resource type="Script" path="res://scripts/lighting/lamp_light.gd" id="12_r"]
+[ext_resource type="Script" path="res://scripts/world/glow_mark.gd" id="13_r"]
 
 [node name="AcademicLab" type="Node2D"]
 y_sort_enabled = true
@@ -44,7 +45,7 @@ y_sort_enabled = true
 
 [node name="DoorOut" parent="Objects/Doors" instance=ExtResource("4_r")]
 position = Vector2(-214.4, -32.9216)
-destination_zone_id = "academic_exterior"
+destination_zone_id = "campus"
 destination_spawn_id = "outside_academic_2"
 verb = "Go out"
 place_name = "The road"
@@ -85,7 +86,10 @@ title = "Lab logbook"
 body = "EEE Lab 2, night shift log.\n\n22:40 Phase test on the generator feed from the workshops. The meters read power going DOWN into the ground, not out of it.\n\n23:10 Something is drawing current under the ME workshops. A lot of it.\n\n23:58 The scopes show a heartbeat on the mains. I've locked the genset key in the key box. Code: the course number of my night class, room 304. Nobody runs that generator."
 requires_light = true
 
-[node name="KeyBox" parent="Objects/Story" instance=ExtResource("9_r")]
+[node name="KeyCabinet" parent="Objects/Props" instance=ExtResource("9_r")]
+position = Vector2(179.2, -202.6736)
+
+[node name="KeyBox" parent="Objects/Story" instance=ExtResource("10_r")]
 position = Vector2(179.2, -195.472)
 code = "4501"
 title = "LAB KEY BOX"
@@ -98,9 +102,9 @@ position = Vector2(-96, -92.592)
 color = Color(0.95, 0.97, 1.0, 1)
 energy = 0.8
 range_item_cull_mask = 3
-texture = ExtResource("10_r")
+texture = ExtResource("11_r")
 texture_scale = 2.2
-script = ExtResource("11_r")
+script = ExtResource("12_r")
 mode = 0
 needs_power = true
 base_energy = 0.8
@@ -112,9 +116,9 @@ position = Vector2(96, -92.592)
 color = Color(0.95, 0.97, 1.0, 1)
 energy = 0.8
 range_item_cull_mask = 3
-texture = ExtResource("10_r")
+texture = ExtResource("11_r")
 texture_scale = 2.2
-script = ExtResource("11_r")
+script = ExtResource("12_r")
 mode = 0
 needs_power = true
 base_energy = 0.8
@@ -126,9 +130,9 @@ position = Vector2(0, -65.8432)
 color = Color(0.5, 1.0, 0.7, 1)
 energy = 0.4
 range_item_cull_mask = 3
-texture = ExtResource("10_r")
+texture = ExtResource("11_r")
 texture_scale = 0.8
-script = ExtResource("11_r")
+script = ExtResource("12_r")
 mode = 0
 needs_power = false
 base_energy = 0.4
@@ -136,7 +140,7 @@ gameplay = false
 
 [node name="Growth" type="Node2D" parent="Objects/Glow"]
 position = Vector2(176, -41.152)
-script = ExtResource("12_r")
+script = ExtResource("13_r")
 color = Color(0.45, 1, 0.82, 1)
 intensity = 0.8
 pulse_speed = 0.5

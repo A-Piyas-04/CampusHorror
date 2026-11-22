@@ -1,0 +1,17 @@
+{
+ "id": "leafy_grass",
+ "resolution": "1k",
+ "files": [
+  "leafy_grass_diffuse_1k.jpg",
+  "leafy_grass_nor_gl_1k.jpg"
+ ],
+ "use": "ground: mown lawn",
+ "dimensions_mm": [
+  2000,
+  2000
+ ],
+ "authors": [
+  "Charlotte Baglioni"
+ ],
+ "license": "CC0 1.0 (https://polyhaven.com/license)"
+}

@@ -47,7 +47,16 @@ func _ready() -> void:
 	fs.add_theme_color_override("font_hover_color", UIStyle.TEXT)
 	fs.toggled.connect(func(on: bool) -> void: Settings.set_fullscreen(on))
 	add_child(fs)
-	var hint := UIStyle.label("Move: WASD / stick   Sprint: Shift   Sneak: Ctrl   Lantern: F   Interact: E   Pause: Esc",
+	var fx := CheckButton.new()
+	fx.text = "Visual effects (colour grade, bloom, grain)"
+	fx.button_pressed = Settings.post_fx
+	fx.add_theme_font_size_override("font_size", 20)
+	fx.add_theme_color_override("font_color", UIStyle.TEXT)
+	fx.add_theme_color_override("font_focus_color", UIStyle.ACCENT)
+	fx.add_theme_color_override("font_hover_color", UIStyle.TEXT)
+	fx.toggled.connect(func(on: bool) -> void: Settings.set_post_fx(on))
+	add_child(fx)
+	var hint := UIStyle.label("Move: WASD / stick   Sprint: Shift   Sneak: Ctrl   Lantern: F   Interact: E   Map: M   Time of day: T   Zoom: wheel   Pause: Esc",
 		15, UIStyle.TEXT_DIM)
 	hint.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	hint.custom_minimum_size = Vector2(600, 0)

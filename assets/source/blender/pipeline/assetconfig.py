@@ -197,7 +197,11 @@ def _load_layers(cfg, ground):
 
     Each layer: {"name": PascalCase, "objects": [generator object names], "sort_y_m": ground y in
     metres of its Y-sort point (default 0 = the asset origin), "z_index": int (default 0),
-    "fade": optional {"rects_m": {Name: [x_min, x_max, y_min, y_max]}, "alpha": 0.35, "seconds": 0.25}}.
+    "fade": optional {"rects_m": {Name: [x_min, x_max, y_min, y_max]}, "alpha": 0.35, "seconds": 0.25},
+    "holdouts": optional [layer names] whose objects cut this layer's sprite where they stand in front of it (a
+    volume partly buried in another loses its buried faces instead of rendering them unlit and black),
+    "covered_by": optional [layer names] standing in front and touching it (rendered twice so the surfaces they hide
+    are lit, not black, when they fade)}.
     Objects not listed in any layer form the base `Sprite`."""
     layers = cfg.get("layers", [])
     if not layers:
@@ -222,6 +226,10 @@ def _load_layers(cfg, ground):
         layer.setdefault("z_index", 0)
         if not isinstance(layer["sort_y_m"], (int, float)) or not isinstance(layer["z_index"], int):
             raise ConfigError(f"layer {name}: sort_y_m must be a number and z_index an integer")
+        for key in ("holdouts", "covered_by"):
+            names_ = layer.setdefault(key, [])
+            if not isinstance(names_, list) or not all(isinstance(h, str) for h in names_):
+                raise ConfigError(f"layer {name}: {key} must be a list of layer names")
         fade = layer.setdefault("fade", None)
         if fade is not None:
             rects = fade.get("rects_m")
@@ -233,6 +241,13 @@ def _load_layers(cfg, ground):
             fade.setdefault("seconds", C.OVERHEAD_FADE_SECONDS)
             if not 0.0 <= fade["alpha"] < 1.0 or fade["seconds"] < 0.0:
                 raise ConfigError(f"layer {name}: fade.alpha must be in [0, 1) and fade.seconds >= 0")
+    for layer in layers:
+        for key in ("holdouts", "covered_by"):
+            bad = [h for h in layer[key] if h not in names or h == layer["name"]]
+            if bad:
+                raise ConfigError(f"layer {layer['name']}: {key} {bad} are not other layers of this asset")
+        if set(layer["holdouts"]) & set(layer["covered_by"]):
+            raise ConfigError(f"layer {layer['name']}: a layer can't be both a holdout and covering")
     return layers
 
 

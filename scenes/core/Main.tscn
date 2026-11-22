@@ -14,11 +14,13 @@
 [ext_resource type="Script" path="res://scripts/ui/story_card.gd" id="12_card"]
 [ext_resource type="Script" path="res://scripts/player/composure.gd" id="13_composure"]
 [ext_resource type="Script" path="res://scripts/world/glow_layer.gd" id="14_glow"]
+[ext_resource type="Script" path="res://scripts/ui/campus_map_screen.gd" id="15_map"]
+[ext_resource type="Script" path="res://scripts/world/post_fx.gd" id="16_post"]
 
 [node name="Main" type="Node2D" unique_id=2145005953]
 script = ExtResource("1_main")
-start_zone_id = "main_gate_exterior"
-start_spawn_id = "main_gate_entry"
+start_zone_id = "campus"
+start_spawn_id = "explore_start"
 
 [node name="DayNightTint" type="CanvasModulate" parent="." unique_id=1901959482]
 script = ExtResource("4_tint")
@@ -49,6 +51,12 @@ script = ExtResource("11_pause")
 
 [node name="StoryCard" type="CanvasLayer" parent="UI"]
 script = ExtResource("12_card")
+
+[node name="CampusMap" type="CanvasLayer" parent="UI"]
+script = ExtResource("15_map")
+
+[node name="PostFx" type="CanvasLayer" parent="."]
+script = ExtResource("16_post")
 
 [node name="GlowLayer" type="CanvasLayer" parent="."]
 script = ExtResource("14_glow")

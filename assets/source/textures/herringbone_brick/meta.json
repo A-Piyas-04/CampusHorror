@@ -1,0 +1,17 @@
+{
+ "id": "herringbone_brick",
+ "resolution": "1k",
+ "files": [
+  "herringbone_brick_diffuse_1k.jpg",
+  "herringbone_brick_nor_gl_1k.jpg"
+ ],
+ "use": "ground: the plaza's herringbone brick pavers",
+ "dimensions_mm": [
+  1800.0000715255737,
+  1800.0000715255737
+ ],
+ "authors": [
+  "Rob Tuytel"
+ ],
+ "license": "CC0 1.0 (https://polyhaven.com/license)"
+}

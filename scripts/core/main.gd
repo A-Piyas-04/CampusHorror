@@ -22,8 +22,8 @@ signal transition_finished(zone_id: String)
 ## zone_id -> scene path for every zone (shipping and debug-only). Data, not code: edit the resource.
 @export var zone_registry: ZoneRegistry = preload("res://data/zones/zone_registry.tres")
 
-@export var start_zone_id: String = "main_gate_exterior"
-@export var start_spawn_id: String = "main_gate_entry"
+@export var start_zone_id: String = "campus"
+@export var start_spawn_id: String = "explore_start"
 ## Seconds for each half of a travel fade (out, then in).
 @export var fade_seconds: float = 0.3
 ## How many recently visited zone scenes stay loaded (instant return trips).
@@ -39,6 +39,8 @@ const CHAPTERS := {
 	1: "res://scripts/story/chapter_1.gd",
 	2: "res://scripts/story/chapter_2.gd",
 	3: "res://scripts/story/chapter_3.gd",
+	4: "res://scripts/story/chapter_4.gd",
+	5: "res://scripts/story/chapter_5.gd",
 }
 
 @onready var _world: Node2D = $World
@@ -51,13 +53,19 @@ const CHAPTERS := {
 func _ready() -> void:
 	add_to_group("main")
 	_ghosts.setup(_player)
-	# How the game was started (Game autoload): "new" / "continue" run the story; "" (the editor, tests) is the
-	# classic instant start in daylight with no director.
+	# How the game was started (Game autoload): "explore" is the default game (D45: the campus, basic mechanics, no
+	# director); "new" / "continue" / "chapter:N" run the parked story; "" (the editor, tests) is the classic instant
+	# start in daylight with no director.
+	Game.story_active = false
 	match Game.take_start_mode():
+		"explore":
+			_start_explore(false)
 		"new":
 			_start_story(true)
 		"continue":
-			if SaveService.load_at_start(self):
+			if not Game.STORY_ENABLED:
+				_start_explore(true)
+			elif SaveService.load_at_start(self):
 				_start_story(false)
 			else:
 				_start_story(true)
@@ -67,6 +75,40 @@ func _ready() -> void:
 				_start_story_at(int(String(mode).get_slice(":", 1)))
 			else:
 				change_zone(start_zone_id, start_spawn_id)
+
+
+## Explore mode (D45): a fresh walk from the Main Gate, or back where the explore save left off.
+func _start_explore(resume: bool) -> void:
+	if not (resume and SaveService.load_at_start(self)):
+		GameState.reset()
+		change_zone(start_zone_id, start_spawn_id)
+	var phase := int(GameState.get_flag("time_phase", 1))
+	_tint.call("set_phase", phase, true)
+	var lantern := _player.get_node("Lantern")
+	if phase == 1 or phase == 2:
+		lantern.call("set_state", 0)          # daylight: the lantern starts unlit
+	GameState.set_objective("Explore the IUT campus   ·   M  map   ·   T  time of day   ·   F  lantern   ·   Shift  run")
+	print("[EXPLORE] %s the campus (%s)." % ["Resuming" if resume else "Exploring", _tint.call("phase_name")])
+
+
+## Explore mode's time key: the next phase of the day, eased (T).
+func cycle_time_of_day() -> String:
+	var p: int = _tint.call("next_phase")
+	GameState.set_flag("time_phase", p)
+	return String(_tint.call("phase_name"))
+
+
+func is_explore() -> bool:
+	return _director == null
+
+
+func _unhandled_input(event: InputEvent) -> void:
+	if _director == null and event.is_action_pressed("time_of_day") and not _transitioning:
+		var hud := get_tree().get_first_node_in_group("hud")
+		var name_now := cycle_time_of_day()
+		if hud != null:
+			hud.call("toast", name_now)
+		get_viewport().set_input_as_handled()
 
 
 func _start_story(new_game: bool) -> void:
@@ -96,6 +138,7 @@ func start_chapter(chapter: int) -> void:
 
 
 func _make_director(chapter: int) -> StoryDirector:
+	Game.story_active = true
 	var lantern := _player.get_node("Lantern")
 	lantern.set("burns_fuel", true)
 	var d := (load(CHAPTERS[chapter]) as GDScript).new() as StoryDirector

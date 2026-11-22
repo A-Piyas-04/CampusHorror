@@ -1,0 +1,150 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/world/zone.gd" id="1_r"]
+[ext_resource type="Resource" path="res://data/zones/profiles/me_workshop.tres" id="2_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/interiors/MeWorkshopRoom.tscn" id="3_r"]
+[ext_resource type="PackedScene" path="res://scenes/components/Door.tscn" id="4_r"]
+[ext_resource type="PackedScene" path="res://scenes/components/SpawnMarker.tscn" id="5_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/furniture/Lathe.tscn" id="6_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/common/ContactShadow.tscn" id="7_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/furniture/Workbench.tscn" id="8_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/furniture/CrateStack.tscn" id="9_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/furniture/WaterDrum.tscn" id="10_r"]
+[ext_resource type="PackedScene" path="res://scenes/components/Readable.tscn" id="11_r"]
+[ext_resource type="Texture2D" path="res://data/lighting/light_soft.tres" id="12_r"]
+[ext_resource type="Script" path="res://scripts/lighting/lamp_light.gd" id="13_r"]
+[ext_resource type="Script" path="res://scripts/world/glow_mark.gd" id="14_r"]
+
+[node name="MeWorkshopFloor" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_r")
+zone_id = "me_workshop"
+profile = ExtResource("2_r")
+
+[node name="Objects" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Props" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="Story" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="Lights" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="Doors" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="SpawnMarkers" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="Glow" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="Room" parent="Objects" instance=ExtResource("3_r")]
+
+[node name="DoorOut" parent="Objects/Doors" instance=ExtResource("4_r")]
+position = Vector2(-256, -7.2016)
+destination_zone_id = "campus"
+destination_spawn_id = "outside_workshop"
+verb = "Go out"
+place_name = "The road"
+show_placeholder = false
+
+[node name="Spawn_workshop_from_outside" parent="Objects/SpawnMarkers" instance=ExtResource("5_r")]
+position = Vector2(-256, -30.864)
+spawn_id = "workshop_from_outside"
+
+[node name="DoorPitLift" parent="Objects/Doors" instance=ExtResource("4_r")]
+position = Vector2(288, -157.4064)
+destination_zone_id = "facility_corridor"
+destination_spawn_id = "corridor_from_lift"
+verb = "Ride down"
+place_name = "Pit lift"
+show_placeholder = false
+required_item = "lift_key"
+locked_message = "The lift's key switch is locked. Rafi had the key."
+
+[node name="Spawn_workshop_from_lift" parent="Objects/SpawnMarkers" instance=ExtResource("5_r")]
+position = Vector2(288, -131.6864)
+spawn_id = "workshop_from_lift"
+
+[node name="Lathe0" parent="Objects/Props" instance=ExtResource("6_r")]
+position = Vector2(-192, -102.88)
+
+[node name="ContactShadow" parent="Objects/Props/Lathe0" instance=ExtResource("7_r")]
+scale = Vector2(1.1, 0.4)
+
+[node name="Lathe1" parent="Objects/Props" instance=ExtResource("6_r")]
+position = Vector2(-32, -102.88)
+
+[node name="ContactShadow" parent="Objects/Props/Lathe1" instance=ExtResource("7_r")]
+scale = Vector2(1.1, 0.4)
+
+[node name="Bench0" parent="Objects/Props" instance=ExtResource("8_r")]
+position = Vector2(-288, -233.5376)
+
+[node name="ContactShadow" parent="Objects/Props/Bench0" instance=ExtResource("7_r")]
+scale = Vector2(1.1, 0.45)
+
+[node name="Bench1" parent="Objects/Props" instance=ExtResource("8_r")]
+position = Vector2(-128, -233.5376)
+
+[node name="ContactShadow" parent="Objects/Props/Bench1" instance=ExtResource("7_r")]
+scale = Vector2(1.1, 0.45)
+
+[node name="Crates" parent="Objects/Props" instance=ExtResource("9_r")]
+position = Vector2(128, -41.152)
+
+[node name="ContactShadow" parent="Objects/Props/Crates" instance=ExtResource("7_r")]
+scale = Vector2(0.6, 0.3)
+
+[node name="Drum" parent="Objects/Props" instance=ExtResource("10_r")]
+position = Vector2(352, -41.152)
+
+[node name="ContactShadow" parent="Objects/Props/Drum" instance=ExtResource("7_r")]
+scale = Vector2(0.4, 0.3)
+
+[node name="JobCard" parent="Objects/Story" instance=ExtResource("11_r")]
+position = Vector2(-128, -222.2208)
+note_id = "workshop_job_card"
+title = "A job card on the bench"
+body = "WORKSHOP JOB CARD 07.\n\nService the pit lift (B2). Authorised: the Registrar. Do NOT enter this job in the log book.\n\nKeys: Dr. Karim only.\n\nSomeone has added in pencil: 'what is B2 for?'"
+requires_light = true
+
+[node name="TubeW" type="PointLight2D" parent="Objects/Lights"]
+position = Vector2(-192, -123.456)
+color = Color(0.95, 0.97, 1.0, 1)
+energy = 0.75
+range_item_cull_mask = 3
+texture = ExtResource("12_r")
+texture_scale = 2.6
+script = ExtResource("13_r")
+mode = 0
+needs_power = true
+base_energy = 0.75
+gameplay = true
+power_flag = "power_academic"
+
+[node name="TubeE" type="PointLight2D" parent="Objects/Lights"]
+position = Vector2(128, -123.456)
+color = Color(0.95, 0.97, 1.0, 1)
+energy = 0.75
+range_item_cull_mask = 3
+texture = ExtResource("12_r")
+texture_scale = 2.6
+script = ExtResource("13_r")
+mode = 1
+needs_power = true
+base_energy = 0.75
+gameplay = true
+power_flag = "power_academic"
+
+[node name="LiftGrowth" type="Node2D" parent="Objects/Glow"]
+position = Vector2(288, -148.1472)
+script = ExtResource("14_r")
+color = Color(0.45, 1, 0.82, 1)
+intensity = 0.8
+pulse_speed = 0.5
+spots = PackedVector3Array(0, 0, 8, -14, 6, 6, 12, 4, 5)

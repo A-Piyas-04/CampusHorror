@@ -157,7 +157,7 @@ func _rouse_students() -> void:
 	for g in get_tree().get_nodes_in_group("creatures"):
 		var host := g as NightGuard
 		if host != null and host.active and zone.is_ancestor_of(host):
-			host._last_known = Vector2(2720, -3575)
+			host._last_known = Vector2(3030, -3600)
 			host.awareness = maxf(host.awareness, 0.9)
 			host._set_state(NightGuard.State.INVESTIGATE)
 
@@ -181,7 +181,7 @@ func debug_next_beat() -> String:
 		return "Beat 3: the whiteboard is read (4501)"
 	if not GameState.has_flag("has_generator_key"):
 		GameState.set_flag("keybox_open")
-		_go("academic_exterior", Vector2(2720, -3500))
+		_go("academic_exterior", Vector2(3030, -3540))
 		return "Beat 4: the genset key taken, at the garage"
 	if not GameState.has_flag("generator_on"):
 		GameState.set_flag("generator_on")

@@ -106,7 +106,8 @@ func _after_blackout() -> void:
 # --- Shared helpers --------------------------------------------------------------------------------------------
 
 ## Points every creature of the current zone at the player and switches patrols on or off (_patrol_active()).
-## Creatures with the `role` meta "finale" stay dormant until their chapter wakes them.
+## Creatures with the `role` meta "finale" stay dormant until their chapter wakes them. Each creature belongs to
+## one chapter (`chapter` meta; untagged = Chapter 1): another chapter's creatures stay dormant.
 func _wire_creatures(zone: Zone) -> void:
 	main.bake_navigation()
 	for g in get_tree().get_nodes_in_group("creatures"):
@@ -119,12 +120,20 @@ func _wire_creatures(zone: Zone) -> void:
 		if not guard.caught.is_connected(_on_caught):
 			guard.caught.connect(_on_caught)
 		var role := String(guard.get_meta("role", "patrol"))
-		if role == "patrol":
+		if not _owns(guard):
+			guard.active = false
+			guard.visible = false
+		elif role == "patrol":
 			guard.active = _patrol_active() and not debug_guard_off
 			guard.visible = guard.active
 		elif role == "finale":
 			guard.active = false
 			guard.visible = false
+
+
+## Whether `creature` belongs to this chapter (its `chapter` meta; untagged creatures are Chapter 1's).
+func _owns(creature: Node) -> bool:
+	return int(creature.get_meta("chapter", 1)) == chapter_number()
 
 
 func _hint(key: String, text: String) -> void:
@@ -207,7 +216,7 @@ func debug_toggle_guard() -> String:
 			continue
 		if debug_guard_off:
 			guard.active = false
-		elif String(guard.get_meta("role", "patrol")) == "patrol":
+		elif String(guard.get_meta("role", "patrol")) == "patrol" and _owns(guard):
 			guard.active = _patrol_active()
 			guard.visible = guard.active
 			guard.reset_brain()

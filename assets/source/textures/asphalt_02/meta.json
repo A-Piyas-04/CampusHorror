@@ -1,0 +1,17 @@
+{
+ "id": "asphalt_02",
+ "resolution": "1k",
+ "files": [
+  "asphalt_02_diffuse_1k.jpg",
+  "asphalt_02_nor_gl_1k.jpg"
+ ],
+ "use": "ground: the asphalt gate road",
+ "dimensions_mm": [
+  3000.000238418579,
+  3000
+ ],
+ "authors": [
+  "Rob Tuytel"
+ ],
+ "license": "CC0 1.0 (https://polyhaven.com/license)"
+}

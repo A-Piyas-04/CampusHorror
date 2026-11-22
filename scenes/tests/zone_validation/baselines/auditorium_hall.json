@@ -170,11 +170,11 @@
 			"scene": "res://scenes/components/Door.tscn",
 			"script": {
 				"destination_spawn_id": "\"outside_auditorium\"",
-				"destination_zone_id": "\"central_plaza\"",
+				"destination_zone_id": "\"campus\"",
 				"hold_seconds": "0.0",
 				"locked_message": "\"Locked.\"",
 				"path": "res://scripts/components/door.gd",
-				"place_name": "\"Central Plaza\"",
+				"place_name": "\"The plaza\"",
 				"required_item": "\"\"",
 				"requires_flag": "\"\"",
 				"show_placeholder": "false",
@@ -241,7 +241,7 @@
 			"scene": "res://scenes/components/Interactable.tscn",
 			"script": {
 				"hold_seconds": "0.0",
-				"object_name": "\"Central Plaza\"",
+				"object_name": "\"The plaza\"",
 				"path": "res://scripts/components/interactable.gd",
 				"prompt_offset": "Vector2(0, -56)",
 				"verb": "\"Go out\""
@@ -375,6 +375,9 @@
 		},
 		"./Objects/Lights/StageSpot": {
 			"class": "PointLight2D",
+			"groups": [
+				"gameplay_lights"
+			],
 			"light": {
 				"color": [
 					1.0,
@@ -382,7 +385,7 @@
 					0.699999988079071,
 					1.0
 				],
-				"enabled": false,
+				"enabled": true,
 				"energy": 0.6,
 				"range_mask": 3,
 				"shadow_mask": 1,

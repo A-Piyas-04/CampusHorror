@@ -1,0 +1,1384 @@
+{
+	"format": 1,
+	"ground_lattice": {},
+	"nodes": {
+		".": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/world/FacilityCorridor.tscn",
+			"script": {
+				"path": "res://scripts/world/zone.gd",
+				"profile": "Resource(\"res://data/zones/profiles/facility_corridor.tres\")",
+				"zone_id": "\"facility_corridor\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"y_sort": true,
+			"z": 0
+		},
+		"./Objects": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"y_sort": true,
+			"z": 0
+		},
+		"./Objects/Doors": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"y_sort": true,
+			"z": 0
+		},
+		"./Objects/Doors/DoorB2": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/components/Door.tscn",
+			"script": {
+				"destination_spawn_id": "\"chamber_from_lift\"",
+				"destination_zone_id": "\"facility_chamber\"",
+				"hold_seconds": "0.0",
+				"locked_message": "\"The B2 lift is dead: no current reaches it. The control room routes the power.\"",
+				"path": "res://scripts/components/door.gd",
+				"place_name": "\"Lift to B2\"",
+				"required_item": "\"\"",
+				"requires_flag": "\"b2_lift_powered\"",
+				"show_placeholder": "false",
+				"unlock_message": "\"\"",
+				"unlocked_flag": "\"door_unlocked_DoorB2\"",
+				"verb": "\"Ride down\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				470.3999938964844,
+				-45.2672004699707
+			],
+			"z": 0
+		},
+		"./Objects/Doors/DoorB2/Body": {
+			"class": "Polygon2D",
+			"color": [
+				0.44999998807907104,
+				0.2800000011920929,
+				0.15000000596046448,
+				1.0
+			],
+			"light_mask": 1,
+			"polygon": [
+				[
+					-24.0,
+					-64.0
+				],
+				[
+					24.0,
+					-64.0
+				],
+				[
+					24.0,
+					0.0
+				],
+				[
+					-24.0,
+					0.0
+				]
+			],
+			"visible": false,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				470.3999938964844,
+				-45.2672004699707
+			],
+			"z": 0
+		},
+		"./Objects/Doors/DoorB2/Interactable": {
+			"class": "Area2D",
+			"layer": 4,
+			"light_mask": 1,
+			"mask": 0,
+			"monitorable": true,
+			"monitoring": false,
+			"scene": "res://scenes/components/Interactable.tscn",
+			"script": {
+				"hold_seconds": "0.0",
+				"object_name": "\"Lift to B2\"",
+				"path": "res://scripts/components/interactable.gd",
+				"prompt_offset": "Vector2(0, -56)",
+				"verb": "\"Ride down\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				470.3999938964844,
+				-45.2672004699707
+			],
+			"z": 0
+		},
+		"./Objects/Doors/DoorB2/Interactable/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"circle": 32.0
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				470.3999938964844,
+				-45.2672004699707
+			],
+			"z": 0
+		},
+		"./Objects/Doors/DoorControl": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/components/Door.tscn",
+			"script": {
+				"destination_spawn_id": "\"control_from_corridor\"",
+				"destination_zone_id": "\"facility_control\"",
+				"hold_seconds": "0.0",
+				"locked_message": "\"Locked.\"",
+				"path": "res://scripts/components/door.gd",
+				"place_name": "\"Control room\"",
+				"required_item": "\"\"",
+				"requires_flag": "\"\"",
+				"show_placeholder": "false",
+				"unlock_message": "\"\"",
+				"unlocked_flag": "\"door_unlocked_DoorControl\"",
+				"verb": "\"Enter\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-192.0,
+				-86.41919708251953
+			],
+			"z": 0
+		},
+		"./Objects/Doors/DoorControl/Body": {
+			"class": "Polygon2D",
+			"color": [
+				0.44999998807907104,
+				0.2800000011920929,
+				0.15000000596046448,
+				1.0
+			],
+			"light_mask": 1,
+			"polygon": [
+				[
+					-24.0,
+					-64.0
+				],
+				[
+					24.0,
+					-64.0
+				],
+				[
+					24.0,
+					0.0
+				],
+				[
+					-24.0,
+					0.0
+				]
+			],
+			"visible": false,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-192.0,
+				-86.41919708251953
+			],
+			"z": 0
+		},
+		"./Objects/Doors/DoorControl/Interactable": {
+			"class": "Area2D",
+			"layer": 4,
+			"light_mask": 1,
+			"mask": 0,
+			"monitorable": true,
+			"monitoring": false,
+			"scene": "res://scenes/components/Interactable.tscn",
+			"script": {
+				"hold_seconds": "0.0",
+				"object_name": "\"Control room\"",
+				"path": "res://scripts/components/interactable.gd",
+				"prompt_offset": "Vector2(0, -56)",
+				"verb": "\"Enter\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-192.0,
+				-86.41919708251953
+			],
+			"z": 0
+		},
+		"./Objects/Doors/DoorControl/Interactable/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"circle": 32.0
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-192.0,
+				-86.41919708251953
+			],
+			"z": 0
+		},
+		"./Objects/Doors/DoorLab": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/components/Door.tscn",
+			"script": {
+				"destination_spawn_id": "\"lab_from_corridor\"",
+				"destination_zone_id": "\"facility_lab\"",
+				"hold_seconds": "0.0",
+				"locked_message": "\"Locked.\"",
+				"path": "res://scripts/components/door.gd",
+				"place_name": "\"Containment\"",
+				"required_item": "\"\"",
+				"requires_flag": "\"\"",
+				"show_placeholder": "false",
+				"unlock_message": "\"\"",
+				"unlocked_flag": "\"door_unlocked_DoorLab\"",
+				"verb": "\"Enter\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				192.0,
+				-86.41919708251953
+			],
+			"z": 0
+		},
+		"./Objects/Doors/DoorLab/Body": {
+			"class": "Polygon2D",
+			"color": [
+				0.44999998807907104,
+				0.2800000011920929,
+				0.15000000596046448,
+				1.0
+			],
+			"light_mask": 1,
+			"polygon": [
+				[
+					-24.0,
+					-64.0
+				],
+				[
+					24.0,
+					-64.0
+				],
+				[
+					24.0,
+					0.0
+				],
+				[
+					-24.0,
+					0.0
+				]
+			],
+			"visible": false,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				192.0,
+				-86.41919708251953
+			],
+			"z": 0
+		},
+		"./Objects/Doors/DoorLab/Interactable": {
+			"class": "Area2D",
+			"layer": 4,
+			"light_mask": 1,
+			"mask": 0,
+			"monitorable": true,
+			"monitoring": false,
+			"scene": "res://scenes/components/Interactable.tscn",
+			"script": {
+				"hold_seconds": "0.0",
+				"object_name": "\"Containment\"",
+				"path": "res://scripts/components/interactable.gd",
+				"prompt_offset": "Vector2(0, -56)",
+				"verb": "\"Enter\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				192.0,
+				-86.41919708251953
+			],
+			"z": 0
+		},
+		"./Objects/Doors/DoorLab/Interactable/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"circle": 32.0
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				192.0,
+				-86.41919708251953
+			],
+			"z": 0
+		},
+		"./Objects/Doors/DoorLift": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/components/Door.tscn",
+			"script": {
+				"destination_spawn_id": "\"workshop_from_lift\"",
+				"destination_zone_id": "\"me_workshop\"",
+				"hold_seconds": "0.0",
+				"locked_message": "\"Locked.\"",
+				"path": "res://scripts/components/door.gd",
+				"place_name": "\"ME workshop\"",
+				"required_item": "\"\"",
+				"requires_flag": "\"\"",
+				"show_placeholder": "false",
+				"unlock_message": "\"\"",
+				"unlocked_flag": "\"door_unlocked_DoorLift\"",
+				"verb": "\"Ride up\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-470.3999938964844,
+				-45.2672004699707
+			],
+			"z": 0
+		},
+		"./Objects/Doors/DoorLift/Body": {
+			"class": "Polygon2D",
+			"color": [
+				0.44999998807907104,
+				0.2800000011920929,
+				0.15000000596046448,
+				1.0
+			],
+			"light_mask": 1,
+			"polygon": [
+				[
+					-24.0,
+					-64.0
+				],
+				[
+					24.0,
+					-64.0
+				],
+				[
+					24.0,
+					0.0
+				],
+				[
+					-24.0,
+					0.0
+				]
+			],
+			"visible": false,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-470.3999938964844,
+				-45.2672004699707
+			],
+			"z": 0
+		},
+		"./Objects/Doors/DoorLift/Interactable": {
+			"class": "Area2D",
+			"layer": 4,
+			"light_mask": 1,
+			"mask": 0,
+			"monitorable": true,
+			"monitoring": false,
+			"scene": "res://scenes/components/Interactable.tscn",
+			"script": {
+				"hold_seconds": "0.0",
+				"object_name": "\"ME workshop\"",
+				"path": "res://scripts/components/interactable.gd",
+				"prompt_offset": "Vector2(0, -56)",
+				"verb": "\"Ride up\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-470.3999938964844,
+				-45.2672004699707
+			],
+			"z": 0
+		},
+		"./Objects/Doors/DoorLift/Interactable/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"circle": 32.0
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-470.3999938964844,
+				-45.2672004699707
+			],
+			"z": 0
+		},
+		"./Objects/Glow": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"y_sort": true,
+			"z": 0
+		},
+		"./Objects/Glow/Growth": {
+			"class": "Node2D",
+			"groups": [
+				"glow_marks"
+			],
+			"light_mask": 1,
+			"script": {
+				"color": "Color(0.45, 1, 0.82, 1)",
+				"intensity": "0.8",
+				"note_body": "\"\"",
+				"note_id": "\"\"",
+				"note_title": "\"\"",
+				"path": "res://scripts/world/glow_mark.gd",
+				"pulse_speed": "0.5",
+				"spots": "PackedVector3Array(0, 0, 9, -16, 6, 6, 18, -4, 7)",
+				"trail_spacing": "22.0",
+				"trail_to": "Vector2(0, 0)",
+				"writing": "\"\"",
+				"writing_offset": "Vector2(0, 0)",
+				"writing_size": "26"
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				304.0,
+				-61.72800064086914
+			],
+			"z": 0
+		},
+		"./Objects/Lights": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"y_sort": true,
+			"z": 0
+		},
+		"./Objects/Lights/Red0": {
+			"class": "PointLight2D",
+			"light": {
+				"color": [
+					1.0,
+					0.18000000715255737,
+					0.11999999731779099,
+					1.0
+				],
+				"enabled": true,
+				"energy": 0.5,
+				"range_mask": 3,
+				"shadow_mask": 1,
+				"shadows": false
+			},
+			"light_mask": 1,
+			"script": {
+				"base_energy": "0.5",
+				"gameplay": "false",
+				"gameplay_radius": "0.0",
+				"mode": "0",
+				"needs_power": "false",
+				"path": "res://scripts/lighting/lamp_light.gd",
+				"power_flag": "\"power_on\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-384.0,
+				-80.24639892578125
+			],
+			"z": 0
+		},
+		"./Objects/Lights/Red1": {
+			"class": "PointLight2D",
+			"light": {
+				"color": [
+					1.0,
+					0.18000000715255737,
+					0.11999999731779099,
+					1.0
+				],
+				"enabled": true,
+				"energy": 0.5,
+				"range_mask": 3,
+				"shadow_mask": 1,
+				"shadows": false
+			},
+			"light_mask": 1,
+			"script": {
+				"base_energy": "0.5",
+				"gameplay": "false",
+				"gameplay_radius": "0.0",
+				"mode": "0",
+				"needs_power": "false",
+				"path": "res://scripts/lighting/lamp_light.gd",
+				"power_flag": "\"power_on\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-64.0,
+				-80.24639892578125
+			],
+			"z": 0
+		},
+		"./Objects/Lights/Red2": {
+			"class": "PointLight2D",
+			"light": {
+				"color": [
+					1.0,
+					0.18000000715255737,
+					0.11999999731779099,
+					1.0
+				],
+				"enabled": true,
+				"energy": 0.5,
+				"range_mask": 3,
+				"shadow_mask": 1,
+				"shadows": false
+			},
+			"light_mask": 1,
+			"script": {
+				"base_energy": "0.5",
+				"gameplay": "false",
+				"gameplay_radius": "0.0",
+				"mode": "0",
+				"needs_power": "false",
+				"path": "res://scripts/lighting/lamp_light.gd",
+				"power_flag": "\"power_on\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				320.0,
+				-80.24639892578125
+			],
+			"z": 0
+		},
+		"./Objects/Props": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"y_sort": true,
+			"z": 0
+		},
+		"./Objects/Room": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/interiors/FacilityCorridorRoom.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"y_sort": true,
+			"z": 0
+		},
+		"./Objects/Room/Body": {
+			"class": "StaticBody2D",
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"z": 0
+		},
+		"./Objects/Room/Body/CollisionDoorStopE1": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					16.0,
+					37.024566650390625
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				496.0,
+				-45.25225067138672
+			],
+			"z": 0
+		},
+		"./Objects/Room/Body/CollisionDoorStopW1": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					16.0,
+					32.910728454589844
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-496.0,
+				-45.25225067138672
+			],
+			"z": 0
+		},
+		"./Objects/Room/Body/CollisionWallE1": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					8.0,
+					33.939186096191406
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				484.0,
+				-11.827292442321777
+			],
+			"z": 0
+		},
+		"./Objects/Room/Body/CollisionWallE2": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					8.0,
+					35.99610900878906
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				484.0,
+				-79.7056655883789
+			],
+			"z": 0
+		},
+		"./Objects/Room/Body/CollisionWallN": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					976.0,
+					5.142301082611084
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				-95.132568359375
+			],
+			"z": 0
+		},
+		"./Objects/Room/Body/CollisionWallS1": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					976.0,
+					5.142301082611084
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				2.571150541305542
+			],
+			"z": 0
+		},
+		"./Objects/Room/Body/CollisionWallW1": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					8.0,
+					35.99610900878906
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-484.0,
+				-12.855752944946289
+			],
+			"z": 0
+		},
+		"./Objects/Room/Body/CollisionWallW2": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					8.0,
+					38.05302810668945
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-484.0,
+				-78.67720794677734
+			],
+			"z": 0
+		},
+		"./Objects/Room/SouthWall": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-1398.5,
+				-105.7668228149414
+			],
+			"texture": "res://assets/sprites/interiors/facility_corridor_room__south_wall.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.35555556416511536,
+				0.0,
+				0.0,
+				0.35555556416511536,
+				0.0,
+				5.142301082611084
+			],
+			"z": 0
+		},
+		"./Objects/Room/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-1401.5,
+				-520.3040771484375
+			],
+			"texture": "res://assets/sprites/interiors/facility_corridor_room.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.35555556416511536,
+				0.0,
+				0.0,
+				0.35555556416511536,
+				0.0,
+				0.0
+			],
+			"z": -10
+		},
+		"./Objects/SpawnMarkers": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"y_sort": true,
+			"z": 0
+		},
+		"./Objects/SpawnMarkers/Spawn_corridor_from_b2": {
+			"class": "Marker2D",
+			"light_mask": 1,
+			"scene": "res://scenes/components/SpawnMarker.tscn",
+			"script": {
+				"path": "res://scripts/components/spawn_marker.gd",
+				"spawn_id": "\"corridor_from_b2\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				441.6000061035156,
+				-45.2672004699707
+			],
+			"z": 0
+		},
+		"./Objects/SpawnMarkers/Spawn_corridor_from_control": {
+			"class": "Marker2D",
+			"light_mask": 1,
+			"scene": "res://scenes/components/SpawnMarker.tscn",
+			"script": {
+				"path": "res://scripts/components/spawn_marker.gd",
+				"spawn_id": "\"corridor_from_control\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-192.0,
+				-65.84320068359375
+			],
+			"z": 0
+		},
+		"./Objects/SpawnMarkers/Spawn_corridor_from_lab": {
+			"class": "Marker2D",
+			"light_mask": 1,
+			"scene": "res://scenes/components/SpawnMarker.tscn",
+			"script": {
+				"path": "res://scripts/components/spawn_marker.gd",
+				"spawn_id": "\"corridor_from_lab\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				192.0,
+				-65.84320068359375
+			],
+			"z": 0
+		},
+		"./Objects/SpawnMarkers/Spawn_corridor_from_lift": {
+			"class": "Marker2D",
+			"light_mask": 1,
+			"scene": "res://scenes/components/SpawnMarker.tscn",
+			"script": {
+				"path": "res://scripts/components/spawn_marker.gd",
+				"spawn_id": "\"corridor_from_lift\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-441.6000061035156,
+				-45.2672004699707
+			],
+			"z": 0
+		},
+		"./Objects/Story": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"y_sort": true,
+			"z": 0
+		},
+		"./Objects/Story/Notice": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/components/Readable.tscn",
+			"script": {
+				"body": "\"SITE 7 - STAFF NOTICE.\n\nLights on the colony side of B2 stay OFF at all times. It grows towards light. It feeds on current.\n\nIf the feed is ever interrupted it will reach for ANY other source.\"",
+				"dark_message": "\"Too dark to read. Light the lantern.\"",
+				"note_id": "\"site7_notice\"",
+				"path": "res://scripts/components/readable.gd",
+				"requires_light": "true",
+				"sets_flag": "\"\"",
+				"title": "\"Staff notice\"",
+				"verb": "\"Read\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-368.0,
+				-80.24639892578125
+			],
+			"z": 0
+		},
+		"./Objects/Story/Notice/Interactable": {
+			"class": "Area2D",
+			"layer": 4,
+			"light_mask": 1,
+			"mask": 0,
+			"monitorable": true,
+			"monitoring": false,
+			"scene": "res://scenes/components/Interactable.tscn",
+			"script": {
+				"hold_seconds": "0.0",
+				"object_name": "\"Staff notice\"",
+				"path": "res://scripts/components/interactable.gd",
+				"prompt_offset": "Vector2(0, -56)",
+				"verb": "\"Read\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-368.0,
+				-80.24639892578125
+			],
+			"z": 0
+		},
+		"./Objects/Story/Notice/Interactable/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"circle": 32.0
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-368.0,
+				-80.24639892578125
+			],
+			"z": 0
+		},
+		"./Objects/Story/Technician1": {
+			"class": "CharacterBody2D",
+			"groups": [
+				"creatures",
+				"threats"
+			],
+			"layer": 8,
+			"light_mask": 1,
+			"mask": 1,
+			"modulate": [
+				0.800000011920929,
+				0.949999988079071,
+				0.8500000238418579,
+				1.0
+			],
+			"scene": "res://scenes/creatures/NightGuard.tscn",
+			"script": {
+				"active": "false",
+				"catch_radius": "20.0",
+				"chase_speed": "132.0",
+				"close_sense_radius": "60.0",
+				"hearing": "1.3",
+				"investigate_speed": "60.0",
+				"light_sensitivity": "1.0",
+				"linger_seconds": "2.5",
+				"lose_seconds": "3.0",
+				"path": "res://scripts/creatures/night_guard.gd",
+				"patrol_points": "PackedVector2Array(-352, -41.152, 352, -49.3824)",
+				"patrol_speed": "34.0",
+				"search_seconds": "7.0",
+				"sight_radius": "140.0"
+			},
+			"visible": false,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-128.0,
+				-45.2672004699707
+			],
+			"z": 0
+		},
+		"./Objects/Story/Technician1/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					24.0,
+					10.0
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-128.0,
+				-45.2672004699707
+			],
+			"z": 0
+		},
+		"./Objects/Story/Technician1/ContactShadow": {
+			"centered": true,
+			"class": "Sprite2D",
+			"light_mask": 1,
+			"offset": [
+				0.0,
+				0.0
+			],
+			"scene": "res://scenes/props/common/ContactShadow.tscn",
+			"texture": "embedded:GradientTexture2D",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-128.0,
+				-45.2672004699707
+			],
+			"z": -9
+		},
+		"./Objects/Story/Technician1/Eyes": {
+			"class": "Node2D",
+			"groups": [
+				"glow_marks"
+			],
+			"light_mask": 1,
+			"script": {
+				"color": "Color(0.85, 1, 0.9, 1)",
+				"intensity": "0.8",
+				"note_body": "\"\"",
+				"note_id": "\"\"",
+				"note_title": "\"\"",
+				"path": "res://scripts/world/glow_mark.gd",
+				"pulse_speed": "0.2",
+				"spots": "PackedVector3Array(-2.2, -51, 1.6, 2.2, -51, 1.6)",
+				"trail_spacing": "22.0",
+				"trail_to": "Vector2(0, 0)",
+				"writing": "\"\"",
+				"writing_offset": "Vector2(0, 0)",
+				"writing_size": "26"
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-128.0,
+				-45.2672004699707
+			],
+			"z": 0
+		},
+		"./Objects/Story/Technician1/NavAgent": {
+			"class": "NavigationAgent2D"
+		},
+		"./Objects/Story/Technician1/Sprite": {
+			"class": "AnimatedSprite2D",
+			"frames": "res://scenes/creatures/night_guard_frames.tres",
+			"light_mask": 2,
+			"offset": [
+				-64.0,
+				-183.0
+			],
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.33333298563957214,
+				0.0,
+				0.0,
+				0.33333298563957214,
+				-128.0,
+				-45.2672004699707
+			],
+			"z": 0
+		},
+		"./Objects/Story/Technician2": {
+			"class": "CharacterBody2D",
+			"groups": [
+				"creatures",
+				"threats"
+			],
+			"layer": 8,
+			"light_mask": 1,
+			"mask": 1,
+			"modulate": [
+				0.800000011920929,
+				0.949999988079071,
+				0.8500000238418579,
+				1.0
+			],
+			"scene": "res://scenes/creatures/NightGuard.tscn",
+			"script": {
+				"active": "false",
+				"catch_radius": "20.0",
+				"chase_speed": "132.0",
+				"close_sense_radius": "60.0",
+				"hearing": "1.3",
+				"investigate_speed": "60.0",
+				"light_sensitivity": "1.0",
+				"linger_seconds": "2.5",
+				"lose_seconds": "3.0",
+				"path": "res://scripts/creatures/night_guard.gd",
+				"patrol_points": "PackedVector2Array(384, -30.864, 64, -32.9216)",
+				"patrol_speed": "34.0",
+				"search_seconds": "7.0",
+				"sight_radius": "140.0"
+			},
+			"visible": false,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				320.0,
+				-32.921600341796875
+			],
+			"z": 0
+		},
+		"./Objects/Story/Technician2/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					24.0,
+					10.0
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				320.0,
+				-32.921600341796875
+			],
+			"z": 0
+		},
+		"./Objects/Story/Technician2/ContactShadow": {
+			"centered": true,
+			"class": "Sprite2D",
+			"light_mask": 1,
+			"offset": [
+				0.0,
+				0.0
+			],
+			"scene": "res://scenes/props/common/ContactShadow.tscn",
+			"texture": "embedded:GradientTexture2D",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				320.0,
+				-32.921600341796875
+			],
+			"z": -9
+		},
+		"./Objects/Story/Technician2/Eyes": {
+			"class": "Node2D",
+			"groups": [
+				"glow_marks"
+			],
+			"light_mask": 1,
+			"script": {
+				"color": "Color(0.85, 1, 0.9, 1)",
+				"intensity": "0.8",
+				"note_body": "\"\"",
+				"note_id": "\"\"",
+				"note_title": "\"\"",
+				"path": "res://scripts/world/glow_mark.gd",
+				"pulse_speed": "0.2",
+				"spots": "PackedVector3Array(-2.2, -51, 1.6, 2.2, -51, 1.6)",
+				"trail_spacing": "22.0",
+				"trail_to": "Vector2(0, 0)",
+				"writing": "\"\"",
+				"writing_offset": "Vector2(0, 0)",
+				"writing_size": "26"
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				320.0,
+				-32.921600341796875
+			],
+			"z": 0
+		},
+		"./Objects/Story/Technician2/NavAgent": {
+			"class": "NavigationAgent2D"
+		},
+		"./Objects/Story/Technician2/Sprite": {
+			"class": "AnimatedSprite2D",
+			"frames": "res://scenes/creatures/night_guard_frames.tres",
+			"light_mask": 2,
+			"offset": [
+				-64.0,
+				-183.0
+			],
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.33333298563957214,
+				0.0,
+				0.0,
+				0.33333298563957214,
+				320.0,
+				-32.921600341796875
+			],
+			"z": 0
+		}
+	},
+	"zone_id": "facility_corridor"
+}

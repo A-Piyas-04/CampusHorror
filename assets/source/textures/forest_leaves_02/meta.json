@@ -1,0 +1,17 @@
+{
+ "id": "forest_leaves_02",
+ "resolution": "1k",
+ "files": [
+  "forest_leaves_02_diffuse_1k.jpg",
+  "forest_leaves_02_nor_gl_1k.jpg"
+ ],
+ "use": "ground: leaf litter under the woods",
+ "dimensions_mm": [
+  3000.9725093841553,
+  3000.9801387786865
+ ],
+ "authors": [
+  "Rob Tuytel"
+ ],
+ "license": "CC0 1.0 (https://polyhaven.com/license)"
+}

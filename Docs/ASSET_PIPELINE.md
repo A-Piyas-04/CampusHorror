@@ -379,3 +379,64 @@ Reconstructed from `Docs/map-reference/area1/mainGate.jpg` (plus `whole view.png
 ## What still needs eyes
 
 The checks prove geometry, scale, alignment, transparency and loading. They do not judge art quality: open the preview scene and check the look, the edge quality at game scale, and how modules join.
+
+
+## Campus buildings and interiors (22 November 2026, D25–D31)
+
+- `assets/source/blender/tools/author_campus.py` writes the 22 campus building configs (category `campus`,
+  scenes in `scenes/props/campus/`): plaza buildings, bridges, lamps, hall segments, UB Hall, the halls gate,
+  academic blocks, ME workshops, garage canopy, street lamps. Run it, then
+  `python assets/source/blender/build_asset.py <ids>`.
+- `fade=True` buildings are one `Building` render layer sorted at the south face with a fade rect over the
+  ground they hide (alpha 0.3), so walking behind a building turns it translucent (D31).
+- The assembly generator gained `prism` parts (a polygon extruded along `axis` `y` = front-facing shape, `x` =
+  side shape, `z` = flat inlay in the floor plane, e.g. a rug's woven arch) and planar texture coordinates so
+  brick / tile patterns run correctly on every face.
+- `author_props.campus_props()` (interior furniture + the diesel generator) and `author_rooms.campus_rooms()`
+  (12 room shells; south-wall doors get `DoorStopS` colliders). Collision rect names must be PascalCase; small
+  tall props may need `min_px` to keep the 16 px frame margin.
+
+
+
+## Map v2 buildings, infrastructure and photo textures (22 November 2026, D46)
+
+**Photo textures**
+- `generators/assembly.py` (under `assets/source/blender/`) has a material pattern `{"type": "image", "albedo": "<repo path>", "tile_m": m}`.
+  - It box-projects a CC0 photo per face (`planar_coords`) and tints it by `color`.
+  - The photo's luminance drives the bump, so mortar and cracks recess.
+- `tools/textures/fetch_cc0.py` downloads the sets (Poly Haven, CC0) into `assets/source/textures/`. That folder
+  has a `.gdignore`; licences are in its `LICENSES.md`.
+
+**Buildings: `tools/author_campus_v2.py`**
+- One config per layout site, category `campus_v2`, at 64 px/m.
+- Every footprint part is its own object and sorted layer, with a fade (D31).
+- The south face and the roof carry the detail, because those are what the camera sees:
+  - piers, spandrels, sills, recessed glazing with frames and curtains, and rain pipes;
+  - arcades as arch-cut spandrel prisms with a deep veranda;
+  - round stair towers with slits;
+  - roofs with terrace tiles, a parapet and coping, expansion joints, patches, spouts, water tanks on stands, a
+    stair head, and AC condensers;
+  - entrances with steps, panelled doors, a canopy and a lit name board.
+- Special builders: the Mosque (a true half-disc recess with stepped glazing), the Auditorium loggia and fly tower,
+  the Cafeteria arcade, the Five Fundamentals, sawtooth workshops, parking sheds with cars, the substation yard,
+  the construction site, the proposed plots, and the Main Gate.
+- It writes `data/campus/building_assets.json`. `tools/zones/campus_world.py` places a site's scene once the scene
+  exists; until then the site stays a massing model. Collision comes from the layout, not the render.
+
+**Infrastructure: `tools/author_infra_v2.py`**
+- 4 m modules in four directions (`ew`, `ns`, `se`, `ne`):
+  - `v2_wall_*`: the boundary wall with barbed wire;
+  - `v2_parapet_*`: the lake parapet;
+  - `v2_bridge_*`: the causeway balustrade.
+- `campus_world.py` lays them along the wall and every water edge.
+
+**Trees**
+- `generators/tree_broadleaf.py` takes `leaf_stops`, `cluster_scale` and `flower_density` / `flower_color`.
+- Species configs: `tree_rain`, `tree_mahogany`, `tree_mango`, `tree_krishnachura`, `palm_leaning`, `palm_tall`,
+  `palm_areca`.
+
+**Build**
+
+    python assets/source/blender/build_asset.py $(cd assets/source/blender/tools && python author_campus_v2.py --list | tr -d '')
+
+On Windows, strip the `` from the list. Buildings take about 1–1.5 min each on the GPU.

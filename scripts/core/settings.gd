@@ -1,13 +1,16 @@
 extends Node
 
 ## Autoload `Settings`: player preferences, saved to user://settings.cfg and applied at start.
-## Volumes are linear 0..1 per bus; fullscreen on / off.
+## Volumes are linear 0..1 per bus; fullscreen on / off; post-processing (grade, bloom, vignette, grain) on / off.
+
+signal changed
 
 const PATH := "user://settings.cfg"
 const BUSES := {"master": &"Master", "music": &"Music", "ambience": &"Ambience", "effects": &"World", "ui": &"UI"}
 
 var volumes := {"master": 0.9, "music": 0.8, "ambience": 0.8, "effects": 0.9, "ui": 0.8}
 var fullscreen := false
+var post_fx := true
 
 
 func _ready() -> void:
@@ -16,6 +19,7 @@ func _ready() -> void:
 		for k in volumes:
 			volumes[k] = float(cfg.get_value("audio", k, volumes[k]))
 		fullscreen = bool(cfg.get_value("video", "fullscreen", fullscreen))
+		post_fx = bool(cfg.get_value("video", "post_fx", post_fx))
 	apply()
 
 
@@ -42,9 +46,16 @@ func set_fullscreen(on: bool) -> void:
 	save()
 
 
+func set_post_fx(on: bool) -> void:
+	post_fx = on
+	save()
+	changed.emit()
+
+
 func save() -> void:
 	var cfg := ConfigFile.new()
 	for k in volumes:
 		cfg.set_value("audio", k, volumes[k])
 	cfg.set_value("video", "fullscreen", fullscreen)
+	cfg.set_value("video", "post_fx", post_fx)
 	cfg.save(PATH)

@@ -19,7 +19,7 @@ const BLEND_PATH := "res://assets/source/blender/characters/player_character.ble
 const RECORD_PATH := "res://assets/source/blender/characters/player_character.render.json"
 const SETS := {"idle": 8, "walk": 8, "run": 8, "sneak": 12}
 const FACINGS := ["down", "down_left", "left", "up_left", "up", "up_right", "right", "down_right"]
-const OPEN_SPOT := Vector2(-1000, -200)
+const OPEN_SPOT := Vector2(12320, 4300)
 ## Input actions for each 8-way facing.
 const DIR_ACTIONS := {"right": ["move_right"], "down_right": ["move_right", "move_down"], "down": ["move_down"],
 	"down_left": ["move_left", "move_down"], "left": ["move_left"], "up_left": ["move_left", "move_up"],
@@ -177,7 +177,7 @@ func _footstep_frames() -> void:
 
 
 func _persistence() -> void:
-	var door := main.get_current_zone().get_node("Objects/Buildings/CDSExterior/TableTennis/DoorCdsMainEntry")
+	var door := main.get_current_zone().get_node("Objects/Doors/Door_cds_veranda")
 	await place((door.get_node("Interactable") as Node2D).global_position + Vector2(0, 6))
 	await press("interact")
 	await await_travel()
@@ -185,5 +185,5 @@ func _persistence() -> void:
 	var sprite := player.get_node("Sprite") as AnimatedSprite2D
 	check(main.get_current_zone_id() == "cds_veranda" and players.size() == 1 and players[0] == player and sprite.is_playing(),
 		"the same Player (and its character) survives a faded trip into cds_veranda; still exactly one Player")
-	main.change_zone("main_gate_exterior", "main_gate_entry")
+	main.change_zone("campus", "explore_start")
 	await frames(2)

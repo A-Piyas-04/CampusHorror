@@ -7,6 +7,8 @@ extends Camera2D
 ##   view never shows outside the zone's authored area.
 ## - `shake(amount)`: trauma-based shake for later scares (roadmap J); decays on its own.
 ## - `snap()`: called by Player.teleport(); no drift after spawning, loading or travelling.
+## - Explore mode (D45): `zoom_in` / `zoom_out` (mouse wheel, = / -, D-pad) ease the view between 0.75x and 1.25x
+##   of the zone's zoom (so 1.5-2.5 outdoors), never below MIN_ZOOM.
 
 ## Position smoothing speed (higher = tighter).
 @export var follow_speed: float = 6.0
@@ -16,7 +18,13 @@ extends Camera2D
 ## Trauma lost per second.
 @export var shake_decay: float = 1.6
 
+const MIN_ZOOM := 1.5
+const ZOOM_STEP := 1.1
+
 var look_ahead_px: float = 48.0
+## The player's own zoom factor (Explore mode) and the value it eases towards.
+var user_zoom := 1.0
+var _user_zoom_target := 1.0
 ## 0..1 from Composure: the frame tightens a little as fear rises (Docs/GAME_DESIGN.md section 4).
 var tension := 0.0
 var _base_zoom := 2.0
@@ -48,16 +56,37 @@ func _physics_process(delta: float) -> void:
 		shake = Vector2(sin(_shake_t * 47.0) + sin(_shake_t * 23.0), cos(_shake_t * 41.0) + sin(_shake_t * 29.0)) * 0.5 * k
 		_trauma = maxf(_trauma - shake_decay * delta, 0.0)
 	offset = _look + shake
-	# Only touches the zoom while the tension changes (tools may set the zoom themselves).
+	# Only touches the zoom while the tension or the player's zoom changes (tools may set the zoom themselves).
+	var changed := false
 	if absf(tension - _tension_applied) > 0.001:
 		_tension_applied = lerpf(_tension_applied, tension, 1.0 - exp(-1.5 * delta))
-		zoom = Vector2.ONE * _base_zoom * (1.0 + 0.09 * _tension_applied)
+		changed = true
+	if absf(_user_zoom_target - user_zoom) > 0.0005:
+		user_zoom = lerpf(user_zoom, _user_zoom_target, 1.0 - exp(-9.0 * delta))
+		changed = true
+	if changed:
+		zoom = Vector2.ONE * _current_zoom()
+
+
+func _current_zoom() -> float:
+	return maxf(_base_zoom * user_zoom, MIN_ZOOM) * (1.0 + 0.09 * _tension_applied)
+
+
+func _unhandled_input(event: InputEvent) -> void:
+	if Game.story_active or get_tree().paused:
+		return
+	if event.is_action_pressed("zoom_in"):
+		_user_zoom_target = clampf(_user_zoom_target * ZOOM_STEP, 0.75, 1.25)
+		get_viewport().set_input_as_handled()
+	elif event.is_action_pressed("zoom_out"):
+		_user_zoom_target = clampf(_user_zoom_target / ZOOM_STEP, 0.75, 1.25)
+		get_viewport().set_input_as_handled()
 
 
 ## Zoom, limits and look-ahead for the zone being entered.
 func apply_profile(profile: ZoneProfile) -> void:
 	_base_zoom = profile.camera_zoom
-	zoom = Vector2.ONE * profile.camera_zoom * (1.0 + 0.09 * _tension_applied)
+	zoom = Vector2.ONE * _current_zoom()
 	look_ahead_px = profile.look_ahead_px
 	var r := profile.camera_limits
 	if r.size.x > 0.0 and r.size.y > 0.0:

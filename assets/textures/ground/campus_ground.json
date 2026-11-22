@@ -1,0 +1,25 @@
+{
+ "x0": -54.0,
+ "y0": -41.6,
+ "px_per_m": 4.0,
+ "size": [
+  2320,
+  1533
+ ],
+ "layers": [
+  "lawn",
+  "turf",
+  "leaf_litter",
+  "herringbone",
+  "brick_road",
+  "asphalt",
+  "concrete",
+  "earth"
+ ],
+ "water_px_per_m": 8.0,
+ "water_size": [
+  4640,
+  3066
+ ],
+ "source": "data/campus/campus_layout.json via tools/zones/ground_mask.py"
+}

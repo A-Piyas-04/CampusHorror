@@ -59,7 +59,7 @@
 			"scene": "res://scenes/components/Door.tscn",
 			"script": {
 				"destination_spawn_id": "\"outside_north_hall\"",
-				"destination_zone_id": "\"halls_exterior\"",
+				"destination_zone_id": "\"campus\"",
 				"hold_seconds": "0.0",
 				"locked_message": "\"Locked.\"",
 				"path": "res://scripts/components/door.gd",
@@ -969,7 +969,7 @@
 			"light_mask": 1,
 			"scene": "res://scenes/components/Readable.tscn",
 			"script": {
-				"body": "\"It crackles. A voice, very faint: '...anyone in the halls, the UB roof... we can see the lights from up here... don't come through the courtyard with a light...'\"",
+				"body": "\"It crackles. A voice, very faint: '...anyone in the halls, we're on the UB roof, back stair... the sleepwalkers go for any light, keep it OFF... Rafi from South Hall, room 203, has the workshop lift key. He went out an hour ago. If you find him, bring the key. Knock three short, three long.'\"",
 				"dark_message": "\"Too dark to read. Light the lantern.\"",
 				"note_id": "\"common_radio\"",
 				"path": "res://scripts/components/readable.gd",

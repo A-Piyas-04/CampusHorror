@@ -129,7 +129,7 @@ message = "Dead. Not even a dial tone."
 
 [node name="DoorToField" parent="Objects/Doors" instance=ExtResource("16_r")]
 position = Vector2(24, -118.312)
-destination_zone_id = "main_gate_exterior"
+destination_zone_id = "campus"
 destination_spawn_id = "outside_security"
 verb = "Go out"
 place_name = "To the gate"

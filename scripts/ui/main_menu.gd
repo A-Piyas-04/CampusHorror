@@ -1,6 +1,8 @@
 extends Control
 
-## Title screen (the project's main scene): New game, Continue, Settings, Quit over a slow night shot of the campus.
+## Title screen (the project's main scene): Continue, Explore campus, Settings, Quit over a slow shot of the campus.
+## While the story is parked (Game.STORY_ENABLED false, D45) "Explore campus" is the game; New game and Chapters
+## come back with the story.
 ## The background is assets/ui/title_background.png (a capture of the night Main Gate) drifting very slowly, with a
 ## vignette and a faint flicker, so the screen is alive but calm. Starting a game hands over to `Game`.
 
@@ -11,6 +13,7 @@ var _menu: VBoxContainer
 var _side: PanelContainer
 var _t := 0.0
 var _confirm: VBoxContainer
+var _main_button: Button
 
 
 func _ready() -> void:
@@ -54,8 +57,12 @@ func _ready() -> void:
 	var cont := _add("Continue", Game.continue_game)
 	cont.disabled = not has_save
 	cont.visible = has_save
-	_add("New game", _on_new_game)
-	_add("Chapters", _on_chapters)
+	if Game.STORY_ENABLED:
+		_main_button = _add("New game", _on_new_game)
+		_add("Explore campus", _start_explore)
+		_add("Chapters", _on_chapters)
+	else:
+		_main_button = _add("Explore campus", _start_explore)
 	_add("Settings", _toggle_settings)
 	_add("Quit", func() -> void: get_tree().quit())
 
@@ -78,7 +85,7 @@ func _ready() -> void:
 	modulate.a = 0.0
 	create_tween().tween_property(self, "modulate:a", 1.0, 1.4)
 	await get_tree().process_frame
-	(_menu.get_child(0 if has_save else 1) as Button).grab_focus()
+	(cont if has_save else _main_button).grab_focus()
 
 
 func _add(text: String, action: Callable) -> Button:
@@ -106,14 +113,14 @@ func _on_new_game() -> void:
 	var no := UIStyle.button("Back", 26)
 	no.pressed.connect(func() -> void:
 		_side.visible = false
-		(_menu.get_child(1) as Button).grab_focus())
+		_main_button.grab_focus())
 	_confirm.add_child(no)
 	await get_tree().process_frame
 	no.grab_focus()
 
 
 ## The built chapters (D32): start any of them fresh, with what the earlier chapters grant.
-const CHAPTER_TITLES := {1: "Lights Out", 2: "The Plaza", 3: "Lecture Hall"}
+const CHAPTER_TITLES := {1: "Lights Out", 2: "The Plaza", 3: "Lecture Hall", 4: "The Halls", 5: "Below"}
 
 
 func _on_chapters() -> void:
@@ -134,7 +141,7 @@ func _on_chapters() -> void:
 	var back := UIStyle.button("Back", 26)
 	back.pressed.connect(func() -> void:
 		_side.visible = false
-		(_menu.get_child(2) as Button).grab_focus())
+		_main_button.grab_focus())
 	box.add_child(back)
 	await get_tree().process_frame
 	first.grab_focus()
@@ -148,6 +155,13 @@ func _start_chapter(n: int) -> void:
 		Game.new_game()
 	else:
 		Game.start_chapter(n)
+
+
+func _start_explore() -> void:
+	var t := create_tween()
+	t.tween_property(self, "modulate", Color.BLACK, 0.8)
+	await t.finished
+	Game.explore()
 
 
 func _start_new() -> void:
@@ -172,7 +186,7 @@ func _toggle_settings() -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if _side.visible and (event.is_action_pressed("ui_cancel") or event.is_action_pressed("pause")):
 		_side.visible = false
-		(_menu.get_child(1) as Button).grab_focus()
+		_main_button.grab_focus()
 		get_viewport().set_input_as_handled()
 
 

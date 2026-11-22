@@ -1,0 +1,41 @@
+{
+  "asset_id": "palm_areca",
+  "category": "vegetation",
+  "generator": "tree_palm",
+  "description": "Areca (betel-nut) palm: a slim straight stem and a small tuft, planted in rows. Map v2 species variety (D46).",
+  "seed": 53,
+  "generator_params": {
+    "trunk_height": 7.6,
+    "base_radius": 0.11,
+    "top_radius": 0.08,
+    "lean_x": 0.12,
+    "lean_y": 0.05,
+    "fronds": 10,
+    "frond_length": 2.3,
+    "leaflet_length": 0.7,
+    "dead_fronds": 1,
+    "coconuts": 0,
+    "collision_half_m": 0.12
+  },
+  "render": {
+    "px_per_m": 150.0,
+    "samples": 160,
+    "elevation_deg": 40.0,
+    "azimuth_deg": 0.0
+  },
+  "godot": {
+    "scene_name": "PalmAreca",
+    "z_index": 0,
+    "sprite_offset_adjust_px": [
+      0.0,
+      0.0
+    ],
+    "preview_scene": true,
+    "preview_tile_x": false
+  },
+  "collision": {
+    "enabled": true,
+    "source": "design_footprint",
+    "depth_mode": "projected"
+  }
+}

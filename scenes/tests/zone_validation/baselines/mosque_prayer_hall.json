@@ -59,11 +59,11 @@
 			"scene": "res://scenes/components/Door.tscn",
 			"script": {
 				"destination_spawn_id": "\"outside_mosque\"",
-				"destination_zone_id": "\"central_plaza\"",
+				"destination_zone_id": "\"campus\"",
 				"hold_seconds": "0.0",
 				"locked_message": "\"Locked.\"",
 				"path": "res://scripts/components/door.gd",
-				"place_name": "\"Central Plaza\"",
+				"place_name": "\"The plaza\"",
 				"required_item": "\"\"",
 				"requires_flag": "\"\"",
 				"show_placeholder": "false",
@@ -130,7 +130,7 @@
 			"scene": "res://scenes/components/Interactable.tscn",
 			"script": {
 				"hold_seconds": "0.0",
-				"object_name": "\"Central Plaza\"",
+				"object_name": "\"The plaza\"",
 				"path": "res://scripts/components/interactable.gd",
 				"prompt_offset": "Vector2(0, -56)",
 				"verb": "\"Go out\""
@@ -489,7 +489,43 @@
 			],
 			"z": 0
 		},
-		"./Objects/Props/Rugs0": {
+		"./Objects/Props/Rugs0_0": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/furniture/PrayerRugs.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-198.39999389648438,
+				-82.30400085449219
+			],
+			"z": -1
+		},
+		"./Objects/Props/Rugs0_0/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-513.5,
+				-129.68943786621094
+			],
+			"texture": "res://assets/sprites/furniture/prayer_rugs.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.21333333849906921,
+				0.0,
+				0.0,
+				0.21333333849906921,
+				-198.39999389648438,
+				-82.30400085449219
+			],
+			"z": -1
+		},
+		"./Objects/Props/Rugs0_1": {
 			"class": "Node2D",
 			"light_mask": 1,
 			"scene": "res://scenes/props/furniture/PrayerRugs.tscn",
@@ -504,7 +540,7 @@
 			],
 			"z": -1
 		},
-		"./Objects/Props/Rugs0/Sprite": {
+		"./Objects/Props/Rugs0_1/Sprite": {
 			"centered": false,
 			"class": "Sprite2D",
 			"light_mask": 2,
@@ -525,7 +561,79 @@
 			],
 			"z": -1
 		},
-		"./Objects/Props/Rugs1": {
+		"./Objects/Props/Rugs0_2": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/furniture/PrayerRugs.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				198.39999389648438,
+				-82.30400085449219
+			],
+			"z": -1
+		},
+		"./Objects/Props/Rugs0_2/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-513.5,
+				-129.68943786621094
+			],
+			"texture": "res://assets/sprites/furniture/prayer_rugs.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.21333333849906921,
+				0.0,
+				0.0,
+				0.21333333849906921,
+				198.39999389648438,
+				-82.30400085449219
+			],
+			"z": -1
+		},
+		"./Objects/Props/Rugs1_0": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/furniture/PrayerRugs.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-198.39999389648438,
+				-123.45600128173828
+			],
+			"z": -1
+		},
+		"./Objects/Props/Rugs1_0/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-513.5,
+				-129.68943786621094
+			],
+			"texture": "res://assets/sprites/furniture/prayer_rugs.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.21333333849906921,
+				0.0,
+				0.0,
+				0.21333333849906921,
+				-198.39999389648438,
+				-123.45600128173828
+			],
+			"z": -1
+		},
+		"./Objects/Props/Rugs1_1": {
 			"class": "Node2D",
 			"light_mask": 1,
 			"scene": "res://scenes/props/furniture/PrayerRugs.tscn",
@@ -536,11 +644,11 @@
 				0.0,
 				1.0,
 				0.0,
-				-131.6864013671875
+				-123.45600128173828
 			],
 			"z": -1
 		},
-		"./Objects/Props/Rugs1/Sprite": {
+		"./Objects/Props/Rugs1_1/Sprite": {
 			"centered": false,
 			"class": "Sprite2D",
 			"light_mask": 2,
@@ -557,11 +665,83 @@
 				0.0,
 				0.21333333849906921,
 				0.0,
-				-131.6864013671875
+				-123.45600128173828
 			],
 			"z": -1
 		},
-		"./Objects/Props/Rugs2": {
+		"./Objects/Props/Rugs1_2": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/furniture/PrayerRugs.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				198.39999389648438,
+				-123.45600128173828
+			],
+			"z": -1
+		},
+		"./Objects/Props/Rugs1_2/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-513.5,
+				-129.68943786621094
+			],
+			"texture": "res://assets/sprites/furniture/prayer_rugs.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.21333333849906921,
+				0.0,
+				0.0,
+				0.21333333849906921,
+				198.39999389648438,
+				-123.45600128173828
+			],
+			"z": -1
+		},
+		"./Objects/Props/Rugs2_0": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/furniture/PrayerRugs.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-198.39999389648438,
+				-164.60800170898438
+			],
+			"z": -1
+		},
+		"./Objects/Props/Rugs2_0/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-513.5,
+				-129.68943786621094
+			],
+			"texture": "res://assets/sprites/furniture/prayer_rugs.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.21333333849906921,
+				0.0,
+				0.0,
+				0.21333333849906921,
+				-198.39999389648438,
+				-164.60800170898438
+			],
+			"z": -1
+		},
+		"./Objects/Props/Rugs2_1": {
 			"class": "Node2D",
 			"light_mask": 1,
 			"scene": "res://scenes/props/furniture/PrayerRugs.tscn",
@@ -572,11 +752,11 @@
 				0.0,
 				1.0,
 				0.0,
-				-181.0688018798828
+				-164.60800170898438
 			],
 			"z": -1
 		},
-		"./Objects/Props/Rugs2/Sprite": {
+		"./Objects/Props/Rugs2_1/Sprite": {
 			"centered": false,
 			"class": "Sprite2D",
 			"light_mask": 2,
@@ -593,11 +773,83 @@
 				0.0,
 				0.21333333849906921,
 				0.0,
-				-181.0688018798828
+				-164.60800170898438
 			],
 			"z": -1
 		},
-		"./Objects/Props/Rugs3": {
+		"./Objects/Props/Rugs2_2": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/furniture/PrayerRugs.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				198.39999389648438,
+				-164.60800170898438
+			],
+			"z": -1
+		},
+		"./Objects/Props/Rugs2_2/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-513.5,
+				-129.68943786621094
+			],
+			"texture": "res://assets/sprites/furniture/prayer_rugs.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.21333333849906921,
+				0.0,
+				0.0,
+				0.21333333849906921,
+				198.39999389648438,
+				-164.60800170898438
+			],
+			"z": -1
+		},
+		"./Objects/Props/Rugs3_0": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/furniture/PrayerRugs.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-198.39999389648438,
+				-205.75999450683594
+			],
+			"z": -1
+		},
+		"./Objects/Props/Rugs3_0/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-513.5,
+				-129.68943786621094
+			],
+			"texture": "res://assets/sprites/furniture/prayer_rugs.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.21333333849906921,
+				0.0,
+				0.0,
+				0.21333333849906921,
+				-198.39999389648438,
+				-205.75999450683594
+			],
+			"z": -1
+		},
+		"./Objects/Props/Rugs3_1": {
 			"class": "Node2D",
 			"light_mask": 1,
 			"scene": "res://scenes/props/furniture/PrayerRugs.tscn",
@@ -608,11 +860,11 @@
 				0.0,
 				1.0,
 				0.0,
-				-230.45120239257813
+				-205.75999450683594
 			],
 			"z": -1
 		},
-		"./Objects/Props/Rugs3/Sprite": {
+		"./Objects/Props/Rugs3_1/Sprite": {
 			"centered": false,
 			"class": "Sprite2D",
 			"light_mask": 2,
@@ -629,7 +881,151 @@
 				0.0,
 				0.21333333849906921,
 				0.0,
-				-230.45120239257813
+				-205.75999450683594
+			],
+			"z": -1
+		},
+		"./Objects/Props/Rugs3_2": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/furniture/PrayerRugs.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				198.39999389648438,
+				-205.75999450683594
+			],
+			"z": -1
+		},
+		"./Objects/Props/Rugs3_2/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-513.5,
+				-129.68943786621094
+			],
+			"texture": "res://assets/sprites/furniture/prayer_rugs.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.21333333849906921,
+				0.0,
+				0.0,
+				0.21333333849906921,
+				198.39999389648438,
+				-205.75999450683594
+			],
+			"z": -1
+		},
+		"./Objects/Props/Rugs4_0": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/furniture/PrayerRugs.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-198.39999389648438,
+				-246.91200256347656
+			],
+			"z": -1
+		},
+		"./Objects/Props/Rugs4_0/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-513.5,
+				-129.68943786621094
+			],
+			"texture": "res://assets/sprites/furniture/prayer_rugs.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.21333333849906921,
+				0.0,
+				0.0,
+				0.21333333849906921,
+				-198.39999389648438,
+				-246.91200256347656
+			],
+			"z": -1
+		},
+		"./Objects/Props/Rugs4_1": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/furniture/PrayerRugs.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				-246.91200256347656
+			],
+			"z": -1
+		},
+		"./Objects/Props/Rugs4_1/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-513.5,
+				-129.68943786621094
+			],
+			"texture": "res://assets/sprites/furniture/prayer_rugs.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.21333333849906921,
+				0.0,
+				0.0,
+				0.21333333849906921,
+				0.0,
+				-246.91200256347656
+			],
+			"z": -1
+		},
+		"./Objects/Props/Rugs4_2": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/furniture/PrayerRugs.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				198.39999389648438,
+				-246.91200256347656
+			],
+			"z": -1
+		},
+		"./Objects/Props/Rugs4_2/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-513.5,
+				-129.68943786621094
+			],
+			"texture": "res://assets/sprites/furniture/prayer_rugs.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.21333333849906921,
+				0.0,
+				0.0,
+				0.21333333849906921,
+				198.39999389648438,
+				-246.91200256347656
 			],
 			"z": -1
 		},

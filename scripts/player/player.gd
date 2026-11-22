@@ -129,6 +129,13 @@ func emit_footstep() -> void:
 
 
 func _update_stamina(delta: float) -> void:
+	if not Game.story_active:
+		# Explore mode (D45): a big campus to cross, so sprinting never tires.
+		if stamina < 1.0 or winded:
+			stamina = 1.0
+			winded = false
+			stamina_changed.emit(stamina, winded)
+		return
 	var before := stamina
 	var was_winded := winded
 	if mode == &"sprint" and velocity.length() > walk_speed + 0.5:

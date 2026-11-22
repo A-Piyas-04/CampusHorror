@@ -44,7 +44,7 @@ y_sort_enabled = true
 
 [node name="DoorOut" parent="Objects/Doors" instance=ExtResource("4_r")]
 position = Vector2(-384, -7.2016)
-destination_zone_id = "academic_exterior"
+destination_zone_id = "campus"
 destination_spawn_id = "outside_academic_1"
 verb = "Go out"
 place_name = "The road"
@@ -68,7 +68,7 @@ spawn_id = "corridor_from_classroom"
 
 [node name="DoorStairs" parent="Objects/Doors" instance=ExtResource("4_r")]
 position = Vector2(470.4, -51.44)
-destination_zone_id = "academic_exterior"
+destination_zone_id = "campus"
 destination_spawn_id = "outside_academic_1"
 verb = "Open"
 place_name = "Stairwell"
@@ -165,3 +165,4 @@ investigate_speed = 52.0
 chase_speed = 118.0
 modulate = Color(0.72, 0.86, 0.78, 1)
 metadata/role = "patrol"
+metadata/chapter = 3

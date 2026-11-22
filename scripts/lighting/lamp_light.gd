@@ -9,6 +9,8 @@ extends PointLight2D
 ##   don't need power. When the power comes back the lamp stutters on over a second.
 ## - While lit it is a gameplay light (group "gameplay_lights"): it reveals notes, hides the organism's glow and draws
 ##   phototropic hosts (LightQuery, NightGuard). A lit lamp is also a safe pool for composure.
+## - Explore mode (no story director, D45): circuits are ignored and every lamp follows the time of day instead:
+##   it comes on as `Main/DayNightTint.darkness` rises past ON_DARKNESS and brightens into the night.
 
 enum Mode { STEADY, FLICKER, DEAD }
 
@@ -23,7 +25,10 @@ enum Mode { STEADY, FLICKER, DEAD }
 ## (doesn't reveal notes, hide glow or draw hosts).
 @export var gameplay: bool = true
 
+const ON_DARKNESS := 0.3
+
 var _t := 0.0
+var _dark := 1.0
 var _rng := RandomNumberGenerator.new()
 var _next_stutter := 0.0
 var _stutter_left := 0.0
@@ -36,13 +41,34 @@ func _ready() -> void:
 	_next_stutter = _rng.randf_range(1.0, 6.0)
 	if needs_power:
 		GameState.flag_changed.connect(_on_flag)
+	var tint := get_tree().get_first_node_in_group("world_tint") if is_inside_tree() else null
+	if tint != null and tint.has_signal("phase_changed"):
+		_dark = float(tint.get("darkness"))
+		tint.connect("phase_changed", _on_phase)
 	_refresh(true)
 
 
 func is_on() -> bool:
 	if mode == Mode.DEAD:
 		return false
+	if not Game.story_active:
+		return _dark >= ON_DARKNESS
 	return not needs_power or GameState.has_flag(power_flag)
+
+
+func _on_phase(_phase: int, darkness: float) -> void:
+	var was := is_on()
+	_dark = darkness
+	if is_on() and not was:
+		_powering = 0.5
+	_refresh(false)
+
+
+## Explore mode scales lamps with the dark (dim at dusk, full at night); story mode keeps authored energy.
+func _ambient_scale() -> float:
+	if Game.story_active:
+		return 1.0
+	return smoothstep(ON_DARKNESS, 0.85, _dark)
 
 
 func _on_flag(id: String, _v: Variant) -> void:
@@ -64,7 +90,7 @@ func _process(delta: float) -> void:
 	if not enabled:
 		return
 	_t += delta
-	var e := base_energy * (1.0 + 0.02 * sin(_t * 7.0))
+	var e := base_energy * (1.0 + 0.02 * sin(_t * 7.0)) * maxf(_ambient_scale(), 0.15)
 	if _powering > 0.0:
 		_powering -= delta
 		e *= 1.0 if fmod(_t * 13.0, 1.0) > 0.5 + _powering * 0.3 else 0.1

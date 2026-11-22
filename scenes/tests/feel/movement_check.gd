@@ -1,7 +1,7 @@
 extends "res://scenes/tests/feel/feel_check_base.gd"
 ## Phase I movement suite (I1 + I2 + surfaces), on the real Main.tscn. Targets: Docs/PRESENTATION.md section 4.
 
-const FIELD := Vector2(-1000, -200)          # open grass in the central field, nothing to collide with
+const FIELD := Vector2(12320, 4300)          # open grass in the central field, nothing to collide with
 const TOL := 1.0                             # px/s
 const SURFACES_TABLE := "res://data/audio/surfaces.tres"
 
@@ -93,6 +93,8 @@ func _analog_and_diagonal() -> void:
 
 
 func _stamina() -> void:
+	# Stamina belongs to the story (Explore mode, D45, never tires): test it with a director's rules in force.
+	Game.story_active = true
 	await place(FIELD)
 	player.stamina = 1.0
 	player.winded = false
@@ -122,6 +124,13 @@ func _stamina() -> void:
 	check(approx(_speed(), player.sprint_speed, TOL), "sprinting works again once recovered (%.1f px/s)" % _speed())
 	release_all()
 	player.stamina = 1.0
+	Game.story_active = false
+	await place(FIELD)
+	var lowest := {"s": 1.0, "w": false}
+	await hold(["move_right", "sprint"], 8 * 60, 1.0, func(_i):
+		lowest.s = minf(lowest.s, player.stamina)
+		lowest.w = lowest.w or player.winded)
+	check(lowest.s >= 1.0 and not lowest.w, "Explore mode: 8 s of sprinting never tires the player (lowest stamina %.2f)" % lowest.s)
 
 
 func _animation_match() -> void:
@@ -173,48 +182,33 @@ func _surfaces() -> void:
 	var zone := main.get_current_zone()
 	var map := player.surface_map
 	var table := (load(SURFACES_TABLE) as SurfaceTable).by_texture_stem
-	var tiles := zone.get_node("Ground/Tiles") as TileMapLayer
-	var worn := Vector2.INF
-	for c in tiles.get_used_cells():
-		if tiles.get_cell_source_id(c) == 1:
-			worn = tiles.to_global(tiles.map_to_local(c))
-			break
-	var known := [["the west palm path", Vector2(-1390, 0), &"paving"], ["the central field", FIELD, &"grass"],
-		["the road beyond the wall", Vector2(0, 1600), &"asphalt"], ["a worn-grass cell", worn, &"worn_grass"]]
-	for floor_name in ["Objects/Buildings/MainGateLandmark/GatePlaza", "Objects/Buildings/CDSExterior/TableTennis/Forecourt"]:
-		var pg := zone.get_node(floor_name) as Polygon2D
-		known.append([floor_name.get_file() + " (polygon over tiles)", _inside_point(pg), &"paving"])
+	# Known spots on the campus (Map v2): the plaza's brick pavers, the spine road, the Central Field, the asphalt
+	# gate road, the leaf litter under the woods.
+	var known := [["the plaza pavers", Vector2(5760, 2510), &"paving"], ["the spine road", Vector2(9600, 2224), &"paving"],
+		["the central field", FIELD, &"grass"], ["the gate road", Vector2(13440, 5490), &"asphalt"],
+		["the woods", Vector2(4000, 3601), &"worn_grass"]]
 	var bad := []
 	for k in known:
 		var got := map.surface_at(k[1])
 		if got != k[2]:
 			bad.append("%s %s: %s (want %s)" % [k[0], k[1], got, k[2]])
-	check(bad.is_empty(), "surface_at is right on %d known spots: path, field, road, worn patch, gate plaza, CDS forecourt (bad %s)" % [known.size(), bad])
-	# Agreement with an independent oracle (validator rule + landmark floors) on 500 random points.
+	check(bad.is_empty(), "surface_at is right on %d known spots: pavers, road, field, gate road, woods (bad %s)" % [known.size(), bad])
+	# Agreement with an independent oracle (the topmost textured ground polygon, else the profile default) on 500
+	# random points over the whole campus.
 	var rng := RandomNumberGenerator.new()
-	rng.seed = 20261121
-	var floors: Array = []
-	var strips: Array = []
-	for n in zone.find_children("*", "Polygon2D", true, false):
+	rng.seed = 20261122
+	var polys: Array = []
+	for n in zone.get_node("Ground").find_children("*", "Polygon2D", true, false):
 		var pg := n as Polygon2D
-		if pg.texture == null or not table.has(pg.texture.resource_path.get_file().get_basename()):
-			continue
-		(strips if zone.get_node("Ground").is_ancestor_of(pg) else floors).append(pg)
+		if pg.texture != null and table.has(pg.texture.resource_path.get_file().get_basename()):
+			polys.append(pg)
 	var disagree := []
 	for i in 500:
-		var p := Vector2(rng.randf_range(-2390, 2990), rng.randf_range(-1790, 1940))
-		var want := &""
-		for pg: Polygon2D in floors:
+		var p := Vector2(rng.randf_range(0, 15400), rng.randf_range(0, 6100))
+		var want := &"grass"
+		for pg: Polygon2D in polys:
 			if Geometry2D.is_point_in_polygon(pg.global_transform.affine_inverse() * p, pg.polygon):
 				want = table[pg.texture.resource_path.get_file().get_basename()]
-		if want == &"":
-			for pg: Polygon2D in strips:
-				if Geometry2D.is_point_in_polygon(pg.global_transform.affine_inverse() * p, pg.polygon):
-					want = table[pg.texture.resource_path.get_file().get_basename()]
-		if want == &"":
-			var src := tiles.get_cell_source_id(tiles.local_to_map(tiles.to_local(p)))
-			var atlas := tiles.tile_set.get_source(src) as TileSetAtlasSource if src != -1 else null
-			want = table.get(atlas.texture.resource_path.get_file().get_basename(), &"grass") if atlas else &"grass"
 		var got := map.surface_at(p)
 		if got != want:
 			disagree.append("%s: %s vs %s" % [p.round(), got, want])
@@ -223,7 +217,7 @@ func _surfaces() -> void:
 	await frames(2)
 	var vs := player.surface_map.surface_at(player.global_position)
 	check(vs == &"concrete", "cds_veranda (no ground textures) uses its profile's default surface: %s" % vs)
-	main.change_zone("main_gate_exterior", "main_gate_entry")
+	main.change_zone("campus", "explore_start")
 	await frames(2)
 
 

@@ -48,10 +48,10 @@ y_sort_enabled = true
 
 [node name="DoorOut" parent="Objects/Doors" instance=ExtResource("4_r")]
 position = Vector2(-192, -7.2016)
-destination_zone_id = "central_plaza"
+destination_zone_id = "campus"
 destination_spawn_id = "outside_cafe"
 verb = "Go out"
-place_name = "Central Plaza"
+place_name = "The plaza"
 show_placeholder = false
 
 [node name="Spawn_cafe_from_plaza" parent="Objects/SpawnMarkers" instance=ExtResource("5_r")]

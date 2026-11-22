@@ -660,10 +660,60 @@ def campus_props():
          one(dg, 0.006), [-1.3, 1.3, -0.6, 0.6], collision_rect=[-1.3, 1.3, -0.6, 0.6])
 
 
+def facility_props():
+    """Chapter 5 "Below" (D40): the ME workshop floor and the Site 7 facility. Concepts, no references."""
+    from author_lib import prism
+    # Centre lathe (ME workshop): bed, headstock with chuck, tailstock, chip tray, two pedestals.
+    lt = [box(-0.85, -0.55, -0.25, 0.25, 0.0, 0.85, "metal_dark"), box(0.55, 0.85, -0.25, 0.25, 0.0, 0.85, "metal_dark"),
+          box(-0.9, 0.9, -0.3, 0.3, 0.55, 0.6, "metal_dark"),
+          box(-0.9, 0.9, -0.2, 0.2, 0.85, 1.0, "steel_green"),
+          box(-0.9, -0.45, -0.25, 0.25, 1.0, 1.45, "steel_green"),
+          cyl([-0.45, 0.0, 1.2], [-0.33, 0.0, 1.2], 0.14, "chrome", sides=16),
+          box(0.5, 0.75, -0.15, 0.15, 1.0, 1.3, "steel_green"),
+          cyl([0.5, 0.0, 1.2], [0.3, 0.0, 1.2], 0.03, "chrome", sides=10),
+          box(-0.2, 0.2, -0.28, -0.2, 1.0, 1.12, "steel_grey"),
+          box(-0.85, -0.6, -0.27, -0.25, 1.15, 1.35, "black_paint")]
+    prop("lathe", "Lathe", "furniture", "Centre lathe on two pedestals (ME workshop).", one(lt, 0.006),
+         [-0.95, 0.95, -0.32, 0.32], collision_rect=[-0.92, 0.92, -0.3, 0.3])
+    # Heavy workbench with a vice, a toolbox and scattered tools.
+    wb = [box(-1.0, 1.0, -0.4, 0.4, 0.85, 0.92, "wood_dark"), box(-0.95, 0.95, -0.35, 0.35, 0.18, 0.22, "metal_dark"),
+          box(0.65, 0.95, -0.44, -0.26, 0.92, 1.06, "steel_blue"), box(0.75, 0.85, -0.5, -0.44, 0.96, 1.0, "chrome"),
+          box(-0.8, -0.35, -0.15, 0.2, 0.92, 1.12, "plastic_red"), box(-0.8, -0.35, -0.15, 0.2, 1.12, 1.14, "metal_dark"),
+          box(-0.1, 0.25, -0.2, -0.16, 0.92, 0.94, "metal_dark"), box(0.1, 0.45, 0.1, 0.14, 0.92, 0.94, "chrome")]
+    for x in (-0.95, 0.95):
+        for y in (-0.35, 0.35):
+            wb.append(box(x - 0.03, x + 0.03, y - 0.03, y + 0.03, 0.0, 0.85, "metal_dark"))
+    prop("workbench", "Workbench", "furniture", "Heavy workbench with a vice and a red toolbox.", one(wb, 0.004),
+         [-1.0, 1.0, -0.5, 0.4], collision_rect=[-1.0, 1.0, -0.42, 0.4])
+    # Control desk (Site 7 control room): steel base, sloped console of buttons, two CRT monitors.
+    cd = [box(-1.0, 1.0, -0.45, 0.35, 0.0, 0.75, "steel_grey"),
+          prism([(-0.45, 0.75), (0.35, 0.75), (0.35, 1.0), (-0.3, 0.88)], [-1.0, 1.0], "metal_dark", axis="x")]
+    for k in range(10):
+        x = -0.85 + k * 0.19
+        cd.append(box(x, x + 0.06, -0.3, -0.24, 0.86, 0.9, "red_paint" if k % 4 == 0 else "exit_green" if k % 4 == 2
+                      else "chrome"))
+    for x0, scr in ((-0.85, "screen_glow"), (0.15, "screen_static")):
+        cd += [box(x0, x0 + 0.6, 0.0, 0.35, 1.0, 1.45, "metal_dark"), box(x0 + 0.05, x0 + 0.55, -0.01, 0.0, 1.05, 1.4, scr)]
+    prop("control_desk", "ControlDesk", "furniture", "Site 7 control desk: button console and two CRT monitors.",
+         one(cd, 0.004), [-1.0, 1.0, -0.45, 0.35], collision_rect=[-1.0, 1.0, -0.45, 0.35])
+    # Specimen tank: a column of glowing fluid between steel caps, ribs, a shape suspended inside.
+    tk = [cyl([0, 0, 0], [0, 0, 0.3], 0.5, "steel_grey", sides=24),
+          cyl([0, 0, 0.3], [0, 0, 1.95], 0.43, "tank_liquid", sides=24),
+          blob(0.0, -0.05, 1.05, 0.17, 0.14, 0.45, "flesh", lump=0.3, seed=71),
+          cyl([0, 0, 1.95], [0, 0, 2.25], 0.5, "steel_grey", sides=24),
+          tube([[0.25, 0.1, 2.25], [0.25, 0.1, 2.6], [0.25, 0.45, 2.6]], 0.04, "metal_dark")]
+    for a in range(4):
+        x, y = [(0.45, 0), (-0.45, 0), (0, 0.45), (0, -0.45)][a]
+        tk.append(box(x - 0.025, x + 0.025, y - 0.025, y + 0.025, 0.3, 1.95, "metal_dark"))
+    prop("specimen_tank", "SpecimenTank", "furniture", "Site 7 specimen tank: glowing fluid, a shape suspended in it.",
+         one(tk, 0.003), [-0.5, 0.5, -0.5, 0.5], collision_rect=[-0.5, 0.5, -0.5, 0.5], tall=True, min_px=150.0)
+
+
 def define():
     furniture()
     horror()
     campus_props()
+    facility_props()
 
 
 def main():

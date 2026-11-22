@@ -45,7 +45,7 @@ y_sort_enabled = true
 
 [node name="DoorOut" parent="Objects/Doors" instance=ExtResource("4_r")]
 position = Vector2(-182.4, -32.9216)
-destination_zone_id = "halls_exterior"
+destination_zone_id = "campus"
 destination_spawn_id = "outside_north_hall"
 verb = "Go out"
 place_name = "North Hall entrance"

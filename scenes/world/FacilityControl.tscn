@@ -1,0 +1,122 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/world/zone.gd" id="1_r"]
+[ext_resource type="Resource" path="res://data/zones/profiles/facility_control.tres" id="2_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/interiors/FacilityControlRoom.tscn" id="3_r"]
+[ext_resource type="PackedScene" path="res://scenes/components/Door.tscn" id="4_r"]
+[ext_resource type="PackedScene" path="res://scenes/components/SpawnMarker.tscn" id="5_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/furniture/ControlDesk.tscn" id="6_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/common/ContactShadow.tscn" id="7_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/furniture/OfficeChairFallen.tscn" id="8_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/furniture/FileCabinet.tscn" id="9_r"]
+[ext_resource type="PackedScene" path="res://scenes/components/Readable.tscn" id="10_r"]
+[ext_resource type="PackedScene" path="res://scenes/components/Examine.tscn" id="11_r"]
+[ext_resource type="Texture2D" path="res://data/lighting/light_soft.tres" id="12_r"]
+[ext_resource type="Script" path="res://scripts/lighting/lamp_light.gd" id="13_r"]
+
+[node name="FacilityControl" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_r")
+zone_id = "facility_control"
+profile = ExtResource("2_r")
+
+[node name="Objects" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Props" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="Story" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="Lights" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="Doors" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="SpawnMarkers" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="Glow" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="Room" parent="Objects" instance=ExtResource("3_r")]
+
+[node name="DoorOut" parent="Objects/Doors" instance=ExtResource("4_r")]
+position = Vector2(-128, -7.2016)
+destination_zone_id = "facility_corridor"
+destination_spawn_id = "corridor_from_control"
+verb = "Go out"
+place_name = "B1 corridor"
+show_placeholder = false
+
+[node name="Spawn_control_from_corridor" parent="Objects/SpawnMarkers" instance=ExtResource("5_r")]
+position = Vector2(-128, -28.8064)
+spawn_id = "control_from_corridor"
+
+[node name="DeskW" parent="Objects/Props" instance=ExtResource("6_r")]
+position = Vector2(-80, -102.88)
+
+[node name="ContactShadow" parent="Objects/Props/DeskW" instance=ExtResource("7_r")]
+scale = Vector2(1.1, 0.45)
+
+[node name="DeskE" parent="Objects/Props" instance=ExtResource("6_r")]
+position = Vector2(134.4, -61.728)
+
+[node name="ContactShadow" parent="Objects/Props/DeskE" instance=ExtResource("7_r")]
+scale = Vector2(1.1, 0.45)
+
+[node name="Chair" parent="Objects/Props" instance=ExtResource("8_r")]
+position = Vector2(-32, -65.8432)
+
+[node name="ContactShadow" parent="Objects/Props/Chair" instance=ExtResource("7_r")]
+scale = Vector2(0.4, 0.3)
+
+[node name="Cabinet" parent="Objects/Props" instance=ExtResource("9_r")]
+position = Vector2(172.8, -148.1472)
+
+[node name="ContactShadow" parent="Objects/Props/Cabinet" instance=ExtResource("7_r")]
+scale = Vector2(0.35, 0.25)
+
+[node name="DirectorLog" parent="Objects/Story" instance=ExtResource("10_r")]
+position = Vector2(-80, -90.5344)
+note_id = "director_log"
+title = "Director's log, Site 7"
+body = "1984. The tunnel crew broke into a cavity under the workshops full of soft green light. Organism 7: one colony, kilometres of it, feeding on light and on current.\n\n1991. The University agreed to keep it fed from the campus grid. In return, the research. In return, silence.\n\n2026. It takes more every year. Tonight it took everything: the whole campus went dark at 11:04.\n\nThe feed routing is on the switchboard. Staff card only. If the feed is cut, God help whoever is holding a light."
+requires_light = true
+
+[node name="Switchboard" parent="Objects/Story" instance=ExtResource("11_r")]
+position = Vector2(80, -147.1184)
+verb = "Route"
+object_name = "Feed routing"
+message = "You swipe the card. One by one you throw the breakers from ORGANISM FEED to LIFT B2. Far below, something shifts in the dark, and every light on B1 dims."
+sets_flag = "b2_lift_powered"
+requires_flag = "has_facility_card"
+not_ready_message = "The switchboard is locked behind a card reader. STAFF CARD ONLY."
+
+[node name="Crt" type="PointLight2D" parent="Objects/Lights"]
+position = Vector2(-96, -144.032)
+color = Color(0.55, 0.9, 0.7, 1)
+energy = 0.45
+range_item_cull_mask = 3
+texture = ExtResource("12_r")
+texture_scale = 1.8
+script = ExtResource("13_r")
+mode = 0
+needs_power = false
+base_energy = 0.45
+gameplay = false
+
+[node name="Red" type="PointLight2D" parent="Objects/Lights"]
+position = Vector2(105.6, -152.2624)
+color = Color(1.0, 0.18, 0.12, 1)
+energy = 0.4
+range_item_cull_mask = 3
+texture = ExtResource("12_r")
+texture_scale = 1.0
+script = ExtResource("13_r")
+mode = 0
+needs_power = false
+base_energy = 0.4
+gameplay = false

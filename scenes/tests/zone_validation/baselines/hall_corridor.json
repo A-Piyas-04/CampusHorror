@@ -59,7 +59,7 @@
 			"scene": "res://scenes/components/Door.tscn",
 			"script": {
 				"destination_spawn_id": "\"outside_south_hall\"",
-				"destination_zone_id": "\"halls_exterior\"",
+				"destination_zone_id": "\"campus\"",
 				"hold_seconds": "0.0",
 				"locked_message": "\"Locked.\"",
 				"path": "res://scripts/components/door.gd",
@@ -343,6 +343,9 @@
 		},
 		"./Objects/Lights/Tube": {
 			"class": "PointLight2D",
+			"groups": [
+				"gameplay_lights"
+			],
 			"light": {
 				"color": [
 					0.949999988079071,
@@ -350,7 +353,7 @@
 					1.0,
 					1.0
 				],
-				"enabled": false,
+				"enabled": true,
 				"energy": 0.8,
 				"range_mask": 3,
 				"shadow_mask": 1,
@@ -752,6 +755,146 @@
 				0.0
 			],
 			"y_sort": true,
+			"z": 0
+		},
+		"./Objects/Story/Sleeper": {
+			"class": "CharacterBody2D",
+			"groups": [
+				"creatures",
+				"threats"
+			],
+			"layer": 8,
+			"light_mask": 1,
+			"mask": 1,
+			"modulate": [
+				0.8600000143051147,
+				0.8299999833106995,
+				0.9599999785423279,
+				1.0
+			],
+			"scene": "res://scenes/creatures/NightGuard.tscn",
+			"script": {
+				"active": "false",
+				"catch_radius": "20.0",
+				"chase_speed": "128.0",
+				"close_sense_radius": "40.0",
+				"hearing": "0.6",
+				"investigate_speed": "60.0",
+				"light_sensitivity": "2.2",
+				"linger_seconds": "2.5",
+				"lose_seconds": "3.0",
+				"path": "res://scripts/creatures/night_guard.gd",
+				"patrol_points": "PackedVector2Array(128, -45.2672, 384, -47.3248)",
+				"patrol_speed": "26.0",
+				"search_seconds": "7.0",
+				"sight_radius": "110.0"
+			},
+			"visible": false,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				256.0,
+				-45.2672004699707
+			],
+			"z": 0
+		},
+		"./Objects/Story/Sleeper/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					24.0,
+					10.0
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				256.0,
+				-45.2672004699707
+			],
+			"z": 0
+		},
+		"./Objects/Story/Sleeper/ContactShadow": {
+			"centered": true,
+			"class": "Sprite2D",
+			"light_mask": 1,
+			"offset": [
+				0.0,
+				0.0
+			],
+			"scene": "res://scenes/props/common/ContactShadow.tscn",
+			"texture": "embedded:GradientTexture2D",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				256.0,
+				-45.2672004699707
+			],
+			"z": -9
+		},
+		"./Objects/Story/Sleeper/Eyes": {
+			"class": "Node2D",
+			"groups": [
+				"glow_marks"
+			],
+			"light_mask": 1,
+			"script": {
+				"color": "Color(0.85, 1, 0.9, 1)",
+				"intensity": "0.8",
+				"note_body": "\"\"",
+				"note_id": "\"\"",
+				"note_title": "\"\"",
+				"path": "res://scripts/world/glow_mark.gd",
+				"pulse_speed": "0.2",
+				"spots": "PackedVector3Array(-2.2, -51, 1.6, 2.2, -51, 1.6)",
+				"trail_spacing": "22.0",
+				"trail_to": "Vector2(0, 0)",
+				"writing": "\"\"",
+				"writing_offset": "Vector2(0, 0)",
+				"writing_size": "26"
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				256.0,
+				-45.2672004699707
+			],
+			"z": 0
+		},
+		"./Objects/Story/Sleeper/NavAgent": {
+			"class": "NavigationAgent2D"
+		},
+		"./Objects/Story/Sleeper/Sprite": {
+			"class": "AnimatedSprite2D",
+			"frames": "res://scenes/creatures/night_guard_frames.tres",
+			"light_mask": 2,
+			"offset": [
+				-64.0,
+				-183.0
+			],
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.33333298563957214,
+				0.0,
+				0.0,
+				0.33333298563957214,
+				256.0,
+				-45.2672004699707
+			],
 			"z": 0
 		}
 	},

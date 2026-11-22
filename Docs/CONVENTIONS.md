@@ -189,6 +189,28 @@ Rules:
 - IDs are registered in the relevant doc (`CAMPUS_MAP.md` for zones/spawns, `CONTENT.md` for items/clues/flags) when those docs exist.
 - The IDs above are format examples, not approved story content.
 
+## 5b. The whole campus (22 November 2026, D25–D38) — Confirmed
+
+- **One frame for every exterior**: the game px of `main_gate_exterior` (+x east, +y south). A position means
+  the same place in every exterior zone, so an edge's arrival spawn is simply the matching point next door.
+- **Walk-off edges** (`ZoneEdge`, `scenes/components/ZoneEdge.tscn`): layer 16 ("trigger"), mask 2 (player).
+  Put a wall just beyond each strip and the arrival spawn a few metres inside the neighbour, clear of its
+  strips (the Campus suite checks both). Optional story locks: `required_item` / `requires_flag` +
+  `locked_message`; locks apply only when a story director runs.
+- **Generated zones**: the campus exteriors and interiors are written by `tools/zones/campus_zones.py` and
+  `tools/zones/campus_interiors.py` (helpers in `tools/zones/scene_lib.py`). Edit the script and regenerate;
+  hand edits to those scenes are overwritten.
+  Both generators then refresh the registry in `Docs/CAMPUS_MAP.md` and the editable map in `map-design/`
+  (`tools/zones/export_map_design.py`; the owner's `owner...` layers there are preserved, D41).
+- **Power circuits**: a `LampLight` with `needs_power` lights when its `power_flag` is set: `power_on` (CDS block,
+  Chapter 1), `power_plaza`, `power_academic`, `power_halls`.
+- **Creatures belong to a chapter**: `metadata/chapter` on a NightGuard-based creature (untagged = 1) decides
+  which chapter director may wake it; `metadata/role` "patrol" / "finale" as before. Variants are the same
+  brain with exports: `light_sensitivity`, `hearing`, speeds, sight (students, sleepwalkers).
+- **Chapters**: one `StoryDirector` subclass per chapter (`scripts/story/chapter_N.gd`), registered in
+  `Main.CHAPTERS`; the save's `chapter` flag picks the director on Continue; start mode `chapter:N` starts one
+  fresh (title menu "Chapters", tests).
+
 ## 6. Resolution and stretch
 
 > **Superseded 21 November 2026 (roadmap H2): Confirmed and applied.** Base 1920 × 1080, windowed size

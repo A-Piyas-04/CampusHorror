@@ -1,0 +1,86 @@
+{
+ "size": 1024,
+ "layers": [
+  {
+   "layer": 0,
+   "texture": "leafy_grass",
+   "tile_m": 2.0,
+   "mean_rgb": [
+    0.5919,
+    0.515,
+    0.3499
+   ]
+  },
+  {
+   "layer": 1,
+   "texture": "sparse_grass",
+   "tile_m": 2.0,
+   "mean_rgb": [
+    0.3118,
+    0.2414,
+    0.0833
+   ]
+  },
+  {
+   "layer": 2,
+   "texture": "forest_leaves_02",
+   "tile_m": 3.0,
+   "mean_rgb": [
+    0.5567,
+    0.4406,
+    0.2295
+   ]
+  },
+  {
+   "layer": 3,
+   "texture": "herringbone_brick",
+   "tile_m": 1.8,
+   "mean_rgb": [
+    0.3131,
+    0.236,
+    0.1737
+   ]
+  },
+  {
+   "layer": 4,
+   "texture": "brick_pavement",
+   "tile_m": 2.0,
+   "mean_rgb": [
+    0.3098,
+    0.2316,
+    0.1984
+   ]
+  },
+  {
+   "layer": 5,
+   "texture": "asphalt_02",
+   "tile_m": 3.0,
+   "mean_rgb": [
+    0.3551,
+    0.3526,
+    0.332
+   ]
+  },
+  {
+   "layer": 6,
+   "texture": "concrete_floor_02",
+   "tile_m": 2.0,
+   "mean_rgb": [
+    0.4694,
+    0.4323,
+    0.3563
+   ]
+  },
+  {
+   "layer": 7,
+   "texture": "dirt",
+   "tile_m": 2.0,
+   "mean_rgb": [
+    0.3886,
+    0.3229,
+    0.2446
+   ]
+  }
+ ],
+ "license": "CC0 (Poly Haven), see assets/source/textures/LICENSES.md"
+}

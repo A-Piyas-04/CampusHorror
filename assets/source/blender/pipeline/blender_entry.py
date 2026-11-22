@@ -19,7 +19,10 @@ define DEFAULT_PARAMS and build(collection, rng, params) returning a dict with:
 Config "layers" split the render: the base PNG shows every object not in a layer, then each
 layer PNG shows only its own objects. All renders use the same camera, so they share the
 origin pixel. Hidden objects are only hidden from camera rays: they still cast shadows and
-bounce light, so each layer is lit exactly as in the combined model.
+bounce light, so each layer is lit exactly as in the combined model. Two optional per-layer keys fix
+volumes that touch: "holdouts" (layers behind that cut this one where they stand in front of it, so
+buried faces vanish) and "covered_by" (layers in front: this layer renders twice and the surfaces they
+hide are lit as if open, so a D31 fade never reveals unlit black; see layer_fill.py).
 """
 
 import importlib
@@ -36,7 +39,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 import bpy  # noqa: E402
 from mathutils import Vector  # noqa: E402
 
-from pipeline import assetconfig, conventions as C, pngcheck, rig  # noqa: E402
+from pipeline import assetconfig, conventions as C, layer_fill, pngcheck, rig  # noqa: E402
 
 LOG = "[PIPELINE]"
 
@@ -109,6 +112,59 @@ def trim_to_alpha(png, rect, pad):
     return [rect[0] + nx0, rect[1] + ny0, nx1 - nx0, ny1 - ny0]
 
 
+_MASK_MATS = {}
+
+
+def _mask_material(kind):
+    """Flat emission: red = window glass and curtains, green = lamps and lit signs, black = everything else
+    (still opaque, so it occludes exactly like the colour render)."""
+    if kind not in _MASK_MATS:
+        mat = bpy.data.materials.new(f"_window_mask_{kind}")
+        mat.use_nodes = True
+        nt = mat.node_tree
+        nt.nodes.clear()
+        out = nt.nodes.new("ShaderNodeOutputMaterial")
+        em = nt.nodes.new("ShaderNodeEmission")
+        em.inputs["Color"].default_value = {"glass": (1, 0, 0, 1), "lamp": (0, 1, 0, 1), "other": (0, 0, 0, 1)}[kind]
+        em.inputs["Strength"].default_value = 1.0
+        nt.links.new(em.outputs["Emission"], out.inputs["Surface"])
+        _MASK_MATS[kind] = mat
+    return _MASK_MATS[kind]
+
+
+def render_mask(scene, objects, png, crop):
+    """render.window_mask (Map v2, D46): `<layer>_mask.png` beside the layer PNG, same camera and crop, for
+    tools/campus/night_windows.py. Materials are swapped for flat emission and restored afterwards."""
+    saved = []
+    for obj in objects:
+        if obj.type != "MESH":
+            continue
+        mats = list(obj.data.materials)
+        saved.append((obj, mats))
+        for i, m in enumerate(mats):
+            name = (m.name if m else "").lower()
+            kind = "glass" if ("glass" in name or "curtain" in name) else (
+                "lamp" if ("lamp" in name or "sign_text" in name) else "other")
+            obj.data.materials[i] = _mask_material(kind)
+    samples, adaptive = scene.cycles.samples, scene.cycles.use_adaptive_sampling
+    comp, view = scene.render.use_compositing, scene.view_settings.view_transform
+    scene.cycles.samples = 4
+    scene.cycles.use_adaptive_sampling = False
+    scene.render.use_compositing = False
+    scene.view_settings.view_transform = "Standard"
+    if crop:
+        rig.set_border(scene, crop)
+    mask_png = png.with_name(png.stem + "_mask.png")
+    scene.render.filepath = str(mask_png)
+    bpy.ops.render.render(write_still=True)
+    scene.cycles.samples, scene.cycles.use_adaptive_sampling = samples, adaptive
+    scene.render.use_compositing, scene.view_settings.view_transform = comp, view
+    for obj, mats in saved:
+        for i, m in enumerate(mats):
+            obj.data.materials[i] = m
+    print(f"{LOG} Rendered window mask: {mask_png}")
+
+
 def build_context(scene, cfg):
     """Neighbouring assets built camera-invisible: they shadow and light this asset but aren't rendered."""
     coll = rig.new_collection(scene, "Context")
@@ -179,12 +235,14 @@ def main():
 
     occlusion = render_cfg.get("occlusion")
 
-    def show_only(visible):
+    def show_only(visible, holdouts=()):
         for obj in built["objects"]:
             if occlusion:
                 set_occluder(obj, obj not in visible)
+            elif obj in holdouts:
+                obj.visible_camera, obj.is_holdout = True, True
             else:
-                obj.visible_camera = obj in visible
+                obj.visible_camera, obj.is_holdout = obj in visible, False
 
     if layer_objects or occlusion:
         show_only([o for o in built["objects"] if o.name not in layered])
@@ -263,12 +321,31 @@ def main():
     layers_info = []
     for layer in cfg["layers"]:
         png = cfg["layer_outputs"][layer["name"]]
-        show_only(layer_objects[layer["name"]])
+        holds = [o for h in layer.get("holdouts", []) for o in layer_objects[h]]
+        covers = [o for c in layer.get("covered_by", []) for o in layer_objects[c]]
+        show_only(layer_objects[layer["name"]], holds + covers)
         if crops:
             rig.set_border(scene, crops[layer["name"]])
-        scene.render.filepath = str(png)
         t_layer = time.time()
-        bpy.ops.render.render(write_still=True)
+        filled = None
+        if covers:
+            # Two passes (layer_fill.py): the exposed surfaces with the covering layers as holdouts (their real
+            # shadows stay), then the covered surfaces with those layers gone (lit as if open); first over second.
+            exposed = png.with_name(png.stem + "_exposed.png")
+            scene.render.filepath = str(exposed)
+            bpy.ops.render.render(write_still=True)
+            for o in covers:
+                o.visible_camera, o.is_holdout = False, False
+                o.visible_shadow = o.visible_diffuse = o.visible_glossy = o.visible_transmission = False
+            scene.render.filepath = str(png)
+            bpy.ops.render.render(write_still=True)
+            filled = layer_fill.png_over(exposed, png, png)
+            exposed.unlink()
+            for o in covers:
+                o.visible_shadow = o.visible_diffuse = o.visible_glossy = o.visible_transmission = True
+        else:
+            scene.render.filepath = str(png)
+            bpy.ops.render.render(write_still=True)
         if not png.exists():
             raise RuntimeError(f"Render finished but {png} was not written.")
         check_crop_size(png, crops.get(layer["name"]))
@@ -277,6 +354,8 @@ def main():
         seconds = time.time() - t_layer
         render_seconds += seconds
         print(f"{LOG} Rendered layer {layer['name']}: {png} in {seconds:.1f} s")
+        if render_cfg.get("window_mask"):
+            render_mask(scene, layer_objects[layer["name"]], png, crops.get(layer["name"]))
         info = {
             "name": layer["name"],
             "png": assetconfig.rel(png),
@@ -284,6 +363,9 @@ def main():
             "sort_y_m": layer["sort_y_m"],
             "z_index": layer["z_index"],
             "fade": layer["fade"],
+            "holdouts": layer.get("holdouts", []),
+            "covered_by": layer.get("covered_by", []),
+            "covered_fill": None if filled is None else round(filled, 4),
             "render_seconds": round(seconds, 1),
         }
         if crops:

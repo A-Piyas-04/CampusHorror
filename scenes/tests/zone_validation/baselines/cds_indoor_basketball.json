@@ -255,7 +255,9 @@
 				"catch_radius": "20.0",
 				"chase_speed": "134.0",
 				"close_sense_radius": "64.0",
+				"hearing": "1.0",
 				"investigate_speed": "58.0",
+				"light_sensitivity": "1.0",
 				"linger_seconds": "2.5",
 				"lose_seconds": "3.0",
 				"path": "res://scripts/creatures/night_guard.gd",
@@ -797,6 +799,9 @@
 		},
 		"./Objects/Lights/Tube1": {
 			"class": "PointLight2D",
+			"groups": [
+				"gameplay_lights"
+			],
 			"light": {
 				"color": [
 					0.949999988079071,
@@ -804,7 +809,7 @@
 					1.0,
 					1.0
 				],
-				"enabled": false,
+				"enabled": true,
 				"energy": 0.9,
 				"range_mask": 3,
 				"shadow_mask": 1,
@@ -833,6 +838,9 @@
 		},
 		"./Objects/Lights/Tube2": {
 			"class": "PointLight2D",
+			"groups": [
+				"gameplay_lights"
+			],
 			"light": {
 				"color": [
 					0.949999988079071,
@@ -840,7 +848,7 @@
 					1.0,
 					1.0
 				],
-				"enabled": false,
+				"enabled": true,
 				"energy": 0.9,
 				"range_mask": 3,
 				"shadow_mask": 1,
@@ -869,6 +877,9 @@
 		},
 		"./Objects/Lights/Tube3": {
 			"class": "PointLight2D",
+			"groups": [
+				"gameplay_lights"
+			],
 			"light": {
 				"color": [
 					0.949999988079071,
@@ -876,7 +887,7 @@
 					1.0,
 					1.0
 				],
-				"enabled": false,
+				"enabled": true,
 				"energy": 0.9,
 				"range_mask": 3,
 				"shadow_mask": 1,
@@ -905,6 +916,9 @@
 		},
 		"./Objects/Lights/Tube4": {
 			"class": "PointLight2D",
+			"groups": [
+				"gameplay_lights"
+			],
 			"light": {
 				"color": [
 					0.949999988079071,
@@ -912,7 +926,7 @@
 					1.0,
 					1.0
 				],
-				"enabled": false,
+				"enabled": true,
 				"energy": 0.9,
 				"range_mask": 3,
 				"shadow_mask": 1,

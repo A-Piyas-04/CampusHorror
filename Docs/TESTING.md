@@ -10,6 +10,29 @@ replace the 9 per-batch Main Gate check scenes and their 6 versioned baselines (
 
 ---
 
+## 0. Map v2 (22 November 2026)
+
+The default suites are: Scripts, Validator, GameSession, Character, Movement, Audio, Camera, Transition,
+Occlusion, Interaction, and **CampusWorld**.
+
+`scenes/tests/zone_validation/campus_world_check.gd` covers the new campus:
+- layout entrances against doors and spawns;
+- every interior exit landing on a campus spawn;
+- a 1.25 m swept flood fill from the Main Gate that must reach every entrance and landmark, and must not reach the
+  far side of the wall or the lakes;
+- round trips through every door;
+- Explore basics: unlocked doors, time of day driving the lamps, the lantern by day and night, and the map screen.
+
+**Retargeted suites.** The feel suites now use campus anchors: the Central Field, the plaza pavers, the CDS door
+`Objects/Doors/Door_cds_veranda`, and a halls-avenue palm.
+
+**Parked suites.** The story suites (Chapter1–5, DebugKeys, Campus) drive the retired exteriors:
+
+    CHECKS="Chapter1 Chapter2 Chapter3 Chapter4 Chapter5 DebugKeys Campus" tools/run_checks.sh
+
+**Validator self-test.** It mutates the legacy `scenes/world/legacy/MainGateExterior.tscn` as a fixture; its
+manifest and baseline stay in place.
+
 ## 1. The suites
 
 Run all of them before every commit that touches `scenes/`, `scripts/`, `data/` or `project.godot`:
@@ -33,6 +56,11 @@ is `F:\App Installers\Godot_v4.7.2-stable_win64.exe\Godot_v4.7.2-stable_win64_co
 | **Occlusion** (Phase I) | `… res://scenes/tests/feel/OcclusionCheck.tscn -- --quit-after-checks` (add `--pixels` and drop `--headless` for the rendering proof) | Occluder index = independent count; the right items carry ghosts (dead band, tree, wall) and none in front; ghost state, clip modes restored, pool stable, zone changes, cost per tick; windowed: ghost pixels drawn at the dead band, 0 difference in front of an overlapping tree |
 | **Interaction** (Phase I) | `… res://scenes/tests/feel/InteractionCheck.tscn -- --quit-after-checks` | The prompt (verb, name, glyph, exact position, fades), gamepad / keyboard glyph switching, live rebinding, hold-to-interact, the prompt hidden during travel, every interactable has a verb |
 | **Chapter 1** (story) | `… res://scenes/tests/story/Chapter1Check.tscn -- --quit-after-checks` | A NEW story game played end to end with real input: intro card, the dark canteen, the lantern, notes in the light, every door of the chapter, the chained gate, logbook and master key, the guard waking, patrolling, seeing the lantern, chasing and catching (blackout, checkpoint reload), the dark-only wall code, the locker, the hall's keypad, the finale, the hatch, the end card and the title screen. Saves to its own file. |
+| **Chapter 2** (story) | `… res://scenes/tests/story/Chapter2Check.tscn -- --quit-after-checks` | Chapter 2 started fresh (start mode `chapter:2`): the manhole arrival, the guard's plaza patrol and baked navigation, the locked north gate, the Mosque note, the Admin memo and a wrong safe code, the AV hall date, the safe (1911), being caught (blackout -> checkpoint), the north road, the end card and Chapter 3 taking over |
+| **Chapter 3** (story) | `… res://scenes/tests/story/Chapter3Check.tscn -- --quit-after-checks` | Chapter 3 fresh: students awake and sound-tuned, the dead shutter, the keyless generator, lab log, room 304's board, the key box (wrong code, 4501), a student hearing a sprint, the generator (academic circuit live), the run to the halls, Chapter 4 taking over |
+| **Chapter 4** (story) | `… res://scenes/tests/story/Chapter4Check.tscn -- --quit-after-checks` | Chapter 4 fresh: three sleepwalkers, light draws them far more than footsteps, the barricaded stair, the radio, room 203's diary, Rafi and the lift key, the survivors, the end card and the title |
+| **Chapter 5** (story) | `… res://scenes/tests/story/Chapter5Check.tscn -- --quit-after-checks` | Chapter 5 fresh: the powered workshop door, the pit lift (Rafi's key) to Site 7, technicians awake (and Chapter 3's students not), the dead B2 lift, the director's log, the card-locked switchboard, the host report and the staff card, the switchboard rousing every technician, the B2 lift, the colony, the end card and the title |
+| **Campus** (traversal) | `… res://scenes/tests/story/CampusTraversalCheck.tscn -- --quit-after-checks` | Static: every door and edge of every zone resolves; no edge lands inside an edge strip; every open way has a way back. Live: the real Main tours every edge (walking into the strip) and door (interact), checking each arrival, that each edge has its own collision shape, and the locked stairwell |
 | **Debug keys** | `… res://scenes/tests/story/DebugKeysCheck.tscn -- --quit-after-checks` | The developer keys that drive Chapter 1: F3 steps through every beat (granting what each assumes), F4 switches the guard off and on, F7 fills the lantern |
 | **Scripts** | `… res://scenes/tests/scripts/ScriptCompileCheck.tscn` | Every script under `res://scripts` compiles with the autoloads present (a parse error otherwise hangs only the scene that loads it) |
 | **Feel probe** (windowed only) | `<godot> --path . res://scenes/tests/feel/FeelProbe.tscn -- --quit-after-checks` (no `--headless`) | Real GPU and vsync: scripted play plus 2 door trips; median / p99 / worst frame; no frame over 2x the median while the world is visible |

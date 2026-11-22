@@ -3,7 +3,7 @@ extends "res://scenes/tests/feel/feel_check_base.gd"
 ## outside the zone's authored area, look-ahead leads movement and settles, teleports snap, shake decays.
 
 const MANIFESTS := "res://scenes/tests/zone_validation/manifests/%s.json"
-const FIELD := Vector2(-1000, -200)
+const FIELD := Vector2(12320, 4300)
 
 var cam: Camera2D
 
@@ -11,13 +11,13 @@ var cam: Camera2D
 func _run() -> void:
 	tag = "CAMERA"
 	cam = player.get_node("Camera") as Camera2D
-	await _profile_and_limits("main_gate_exterior")
+	await _profile_and_limits("campus")
 	await _look_ahead()
 	await _snap_and_shake()
 	main.change_zone("cds_veranda", "inside_cds_entry")
 	await frames(3)
 	await _profile_and_limits("cds_veranda")
-	main.change_zone("main_gate_exterior", "main_gate_entry")
+	main.change_zone("campus", "explore_start")
 	await frames(3)
 
 
@@ -33,6 +33,11 @@ func _profile_and_limits(zone_id: String) -> void:
 	var probes := [bounds.position, Vector2(bounds.end.x, bounds.position.y), bounds.end, Vector2(bounds.position.x, bounds.end.y), bounds.get_center()]
 	for marker in main.get_current_zone().get_spawn_markers():
 		probes.append(marker.global_position)
+	# The probes reach the zone's borders, where walk-off edges (ZoneEdge) live: switch them off so a probe tests
+	# this zone's camera instead of travelling to the neighbour.
+	for e in main.get_current_zone().find_children("*", "ZoneEdge", true, false):
+		(e as ZoneEdge).set_deferred("monitoring", false)
+	await frames(2)
 	var outside := []
 	for p in probes:
 		await place(p)

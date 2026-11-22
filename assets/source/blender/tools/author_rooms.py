@@ -796,6 +796,130 @@ def campus_rooms():
     r.build()
 
 
+def facility_rooms():
+    """Chapter 5 "Below" (D40): the ME workshop floor with the pit lift, and Site 7 under it (concepts)."""
+    # ME workshop floor: concrete, brick walls, tool boards, the caged pit lift in the north-east corner.
+    r = Room("me_workshop_room", "MeWorkshopRoom",
+             "ME workshop floor: concrete, brick, tool boards, the caged pit lift marked B2 (concept).",
+             24.0, 12.0, 5.0, floor="concrete", wall="brick", dado=None, px_per_m=80.0)
+    r.opening("S", -8.0, 2.0, 0.0, 2.4, "door")
+    D = r.D
+    x0, x1, y0, y1 = 7.0, 11.0, 8.0, D
+    r.base += [box(x0 - 0.3, x1 + 0.3, y0 - 0.3, y0, 0.0, 0.01, "hazard"),
+               box(x0 - 0.3, x0, y0, y1, 0.0, 0.01, "hazard"), box(x1, x1 + 0.3, y0, y1, 0.0, 0.01, "hazard"),
+               box(x0, x1, y0, y1, 0.0, 0.006, "black_paint")]
+    for cx, cy in ((x0, y0), (x1, y0), (x0, y1 - 0.1), (x1, y1 - 0.1)):
+        r.base.append(box(cx - 0.06, cx + 0.06, cy - 0.06, cy + 0.06, 0.0, 3.2, "metal_dark"))
+    r.base += [box(x0, x1, y0 - 0.06, y0, 3.1, 3.2, "metal_dark"), box(x0, x1, y0 - 0.06, y0, 0.0, 0.1, "metal_dark")]
+    for k in range(1, 8):
+        x = x0 + k * (x1 - x0) / 8
+        if not 8.4 < x < 9.6:
+            r.base.append(box(x - 0.015, x + 0.015, y0 - 0.04, y0 - 0.01, 0.1, 3.1, "steel_grey"))
+    for y in (y0 + 1.0, y0 + 2.0, y0 + 3.0):
+        for x in (x0, x1):
+            r.base.append(box(x - 0.015, x + 0.015, y - 0.015, y + 0.015, 0.1, 3.1, "steel_grey"))
+    r.base += [text("LIFT - B2", [9.0, D - 0.03, 3.6], 0.3, "sign_white"),
+               text("AUTHORISED STAFF ONLY", [9.0, D - 0.03, 3.3], 0.13, "red_paint")]
+    r.collision["PitLift"] = [x0 - 0.1, x1 + 0.1, y0 - 0.1, y1]
+    for bx in (-9.0, -4.0, 1.0):
+        r.base.append(box(bx - 1.4, bx + 1.4, D - 0.05, D, 1.2, 2.4, "wood"))
+        for k in range(6):
+            r.base.append(box(bx - 1.2 + k * 0.45, bx - 1.0 + k * 0.45, D - 0.09, D - 0.05, 1.5, 2.1 - (k % 3) * 0.15,
+                              "metal_dark"))
+    r.base += tube_light(-6.0, D, 4.6) + tube_light(4.0, D, 4.6) + blood_smear(-8.0, 0.6, 8.6, 7.6, 1301, w=0.12)
+    r.base += growth_spill(9.0, 7.2, 0.7, 1302)
+    r.build()
+
+    # B1 corridor: painted concrete, pipes overhead, signs, the B2 lift door at the east end.
+    r = Room("facility_corridor_room", "FacilityCorridorRoom",
+             "Site 7, level B1: a long service corridor, pipes, signs, the B2 lift door east (concept).",
+             30.0, 4.5, 3.2, floor="concrete", wall="facility_paint", dado="facility_dado", px_per_m=90.0)
+    r.opening("W", 2.2, 1.4, 0.0, 2.2, "door", frame="metal_dark")
+    r.opening("N", -6.0, 1.1, 0.0, 2.1, "door", frame="metal_dark")
+    r.opening("N", 6.0, 1.1, 0.0, 2.1, "door", frame="metal_dark")
+    r.opening("E", 2.2, 1.6, 0.0, 2.3, "door", frame="metal_dark")
+    D = r.D
+    r.base += [tube([[-15.0, D - 0.15, 2.85], [15.0, D - 0.15, 2.85]], 0.08, "steel_grey"),
+               tube([[-15.0, D - 0.32, 2.7], [15.0, D - 0.32, 2.7]], 0.05, "red_paint"),
+               text("CONTROL", [-6.0, D - 0.03, 2.35], 0.16, "sign_white"),
+               text("CONTAINMENT", [6.0, D - 0.03, 2.35], 0.16, "sign_white"),
+               text("SITE 7  -  LEVEL B1", [-11.5, D - 0.03, 2.2], 0.2, "sign_white"),
+               box(13.6, 14.95, 0.0, D, 0.0, 0.01, "hazard")]
+    for x in (-12.0, -2.0, 10.0):
+        r.base.append(box(x - 0.12, x + 0.12, D - 0.1, D - 0.02, 2.5, 2.62, "red_lamp"))
+    r.base += growth_spill(9.5, 3.0, 0.9, 1311) + blood_smear(-14.0, 2.0, 5.5, 3.8, 1312, w=0.1)
+    r.build()
+
+    # Control room: CRT wall, the switchboard with its card reader.
+    r = Room("facility_control_room", "FacilityControlRoom",
+             "Site 7 control room: a wall of CRT monitors and the power switchboard with a card reader (concept).",
+             12.0, 8.0, 3.2, floor="concrete", wall="facility_paint", dado="facility_dado", px_per_m=110.0)
+    r.opening("S", -4.0, 1.1, 0.0, 2.1, "door", frame="metal_dark")
+    D = r.D
+    for k in range(8):
+        x = -5.4 + k * 0.62
+        if 1.2 < x < 3.8:
+            continue
+        for row in range(2):
+            z = 1.0 + row * 0.55
+            r.base += [box(x, x + 0.55, D - 0.5, D - 0.05, z, z + 0.5, "metal_dark"),
+                       box(x + 0.05, x + 0.5, D - 0.51, D - 0.5, z + 0.05, z + 0.45,
+                           "screen_glow" if (k + row) % 5 == 0 else "screen_static" if (k + row) % 5 == 2 else "screen_dark")]
+    r.base += [box(1.3, 3.7, D - 0.35, D, 0.6, 2.5, "steel_green"),
+               box(3.2, 3.5, D - 0.38, D - 0.35, 1.3, 1.6, "black_paint"),
+               box(3.3, 3.4, D - 0.39, D - 0.38, 1.5, 1.55, "red_lamp"),
+               text("FEED ROUTING", [2.5, D - 0.36, 2.3], 0.11, "sign_white")]
+    for k in range(6):
+        r.base.append(cyl([1.6 + k * 0.32, D - 0.36, 1.9], [1.6 + k * 0.32, D - 0.4, 1.9], 0.09, "chrome", sides=14))
+    r.base += [box(1.5, 3.0, D - 0.4, D - 0.36, 1.0, 1.15, "hazard")]
+    r.collision["Switchboard"] = [1.3, 3.7, D - 0.4, D]
+    r.collision["Monitors"] = [-5.5, 1.2, D - 0.55, D]
+    r.base += tube_light(0.0, D, 3.1) + loose_papers(-1.0, 3.0, 1321, 7)
+    r.build()
+
+    # Containment lab: tiled, a floor drain, the growth breaking out of a tank.
+    r = Room("facility_lab_room", "FacilityLabRoom",
+             "Site 7 containment lab: tiles, specimen tanks along the north wall, growth on the floor (concept).",
+             14.0, 10.0, 3.4, floor="tile_floor", wall="facility_paint", dado="facility_dado", px_per_m=100.0)
+    r.opening("S", 4.0, 1.1, 0.0, 2.1, "door", frame="metal_dark")
+    D = r.D
+    r.base += [box(-0.3, 0.3, 4.7, 5.3, 0.0, 0.008, "metal_dark"),
+               text("CONTAINMENT  -  ORGANISM 7", [0.0, D - 0.03, 2.7], 0.16, "sign_white")]
+    r.base += growth_spill(-3.5, 6.5, 1.6, 1331) + growth_spill(2.5, 4.0, 0.8, 1332) + blood_smear(4.0, 0.5, -1.0, 3.2, 1333)
+    r.base += tube_light(-3.5, D, 3.3) + tube_light(3.5, D, 3.3)
+    r.build()
+
+    # B2 chamber: the colony grown over two turbines behind a railing.
+    r = Room("facility_chamber_room", "FacilityChamberRoom",
+             "Site 7, level B2: a turbine hall the colony has grown over, a railing to stand behind (concept).",
+             22.0, 18.0, 8.0, floor="concrete_wet", wall="concrete", dado=None, px_per_m=70.0)
+    r.opening("W", 3.0, 1.8, 0.0, 2.4, "door", frame="metal_dark")
+    D = r.D
+    r.base += [cyl([-7.0, 14.0, 0.0], [-7.0, 14.0, 4.5], 1.7, "steel_grey", sides=28),
+               cyl([7.0, 14.0, 0.0], [7.0, 14.0, 4.5], 1.7, "steel_grey", sides=28),
+               blob(0.0, 13.0, 0.0, 6.5, 4.2, 3.6, "growth", lump=0.5, seed=1341, subdiv=4)]
+    import random as _r
+    rng = _r.Random(1342)
+    for k in range(26):
+        a = rng.uniform(0.0, 6.28)
+        d = rng.uniform(1.0, 5.5)
+        x, y = 0.0 + d * 1.1 * __import__("math").cos(a), 13.0 + d * 0.7 * __import__("math").sin(a)
+        r.base.append(blob(x, y, rng.uniform(0.5, 2.8), rng.uniform(0.25, 0.6), rng.uniform(0.25, 0.5),
+                           rng.uniform(0.25, 0.6), "growth_glow", lump=0.35, seed=1350 + k, subdiv=2))
+    for sx in (-1, 1):
+        for k in range(4):
+            z = 1.0 + k * 0.8
+            r.base.append(tube([[sx * 5.4, 14.0, z], [sx * 4.0, 13.4, z + 0.4], [sx * 2.5, 13.0, z + 0.2]],
+                               0.09, "growth"))
+    r.base += growth_spill(-4.0, 9.0, 1.4, 1361) + growth_spill(5.0, 8.5, 1.2, 1362) + growth_spill(0.0, 8.2, 1.0, 1363)
+    r.base += [box(-10.0, 10.0, 7.45, 7.55, 1.0, 1.06, "metal_dark"), box(-10.0, 10.0, 7.45, 7.55, 0.5, 0.54, "metal_dark")]
+    for k in range(21):
+        x = -10.0 + k
+        r.base.append(box(x - 0.025, x + 0.025, 7.47, 7.53, 0.0, 1.0, "metal_dark"))
+    r.collision["Railing"] = [-10.0, 10.0, 7.4, D]
+    r.build()
+
+
 def define():
     security_office()
     canteen()
@@ -803,6 +927,7 @@ def define():
     basketball_hall()
     verandas()
     campus_rooms()
+    facility_rooms()
 
 
 def main():

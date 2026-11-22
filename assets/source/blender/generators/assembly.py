@@ -178,12 +178,50 @@ def _pattern(nt, coords, spec, base):
         nt.links.new(coords, wave.inputs["Vector"])
         sharp = map_range(nt, wave.outputs["Fac"], 0.48, 0.52, 0.0, 1.0)
         return mix_color(nt, sharp, base, c2), None
+    if kind == "corrugated":
+        # Corrugated iron: a sine rib every `period` metres across `axis`; troughs a little darker, and the wave is
+        # also the bump height, so light rakes across the ribs. Keys: period (0.1), axis ("x"), depth (0.15).
+        wave = nt.nodes.new("ShaderNodeTexWave")
+        wave.wave_type = "BANDS"
+        wave.bands_direction = spec.get("axis", "x").upper()
+        wave.wave_profile = "SIN"
+        wave.inputs["Scale"].default_value = 1.0 / spec.get("period", 0.1)
+        wave.inputs["Distortion"].default_value = 0.0
+        nt.links.new(coords, wave.inputs["Vector"])
+        d = spec.get("depth", 0.15)
+        return multiply_color(nt, base, map_range(nt, wave.outputs["Fac"], 0.0, 1.0, 1.0 - d, 1.0 + d * 0.3)), \
+            wave.outputs["Fac"]
     if kind == "grain":
         mapping = nt.nodes.new("ShaderNodeMapping")
         mapping.inputs["Scale"].default_value = tuple(spec.get("scale", [0.6, 30.0, 30.0]))
         nt.links.new(coords, mapping.inputs["Vector"])
         g = noise(nt, mapping.outputs["Vector"], 3.0, detail=8.0, roughness=0.6)
         return multiply_color(nt, base, map_range(nt, g.outputs["Fac"], 0.3, 0.7, 0.72, 1.15)), None
+    if kind == "image":
+        # A CC0 photo texture (assets/source/textures, D46), box-projected per face (planar_coords), tinted by the
+        # base colour (white = the photo as is). Its luminance doubles as a height for bump: mortar joints and
+        # cracks recess. Keys: "albedo" (repo-relative path), "tile_m" (metres per tile), "rough_map" (optional).
+        root = __import__("pathlib").Path(__file__).resolve().parents[4]
+        img_node = nt.nodes.new("ShaderNodeTexImage")
+        img_node.image = bpy.data.images.load(str(root / spec["albedo"]), check_existing=True)
+        img_node.image.colorspace_settings.name = "sRGB"
+        img_node.extension = "REPEAT"
+        img_node.interpolation = "Cubic"
+        mapping = nt.nodes.new("ShaderNodeMapping")
+        tile = spec.get("tile_m", 1.0)
+        mapping.inputs["Scale"].default_value = (1.0 / tile, 1.0 / tile, 1.0 / tile)
+        mapping.inputs["Location"].default_value = tuple(spec.get("offset", [0.0, 0.0, 0.0]))
+        nt.links.new(planar_coords(nt, coords), mapping.inputs["Vector"])
+        nt.links.new(mapping.outputs["Vector"], img_node.inputs["Vector"])
+        tinted = nt.nodes.new("ShaderNodeMix")
+        tinted.data_type = "RGBA"
+        tinted.blend_type = "MULTIPLY"
+        socket(tinted.inputs, "Factor_Float").default_value = 1.0
+        nt.links.new(img_node.outputs["Color"], socket(tinted.inputs, "A_Color"))
+        nt.links.new(base, socket(tinted.inputs, "B_Color"))
+        bw = nt.nodes.new("ShaderNodeRGBToBW")
+        nt.links.new(img_node.outputs["Color"], bw.inputs["Color"])
+        return socket(tinted.outputs, "Result_Color"), bw.outputs["Val"]
     if kind == "checker":
         chk = nt.nodes.new("ShaderNodeTexChecker")
         chk.inputs["Scale"].default_value = 1.0 / spec.get("size", 0.3)
@@ -240,8 +278,8 @@ def make_material(name, spec):
     bump_amt = spec.get("bump", 0.0)
     if bump_amt or height is not None:
         bump = nt.nodes.new("ShaderNodeBump")
-        bump.inputs["Strength"].default_value = max(bump_amt, 0.25 if height is not None else 0.0)
-        bump.inputs["Distance"].default_value = 0.01
+        bump.inputs["Strength"].default_value = max(bump_amt, spec.get("height_strength", 0.25) if height is not None else 0.0)
+        bump.inputs["Distance"].default_value = spec.get("bump_distance", 0.01)
         h = height
         if bump_amt:
             bn = noise(nt, coords, spec.get("bump_scale", 40.0), detail=8.0, roughness=0.65)

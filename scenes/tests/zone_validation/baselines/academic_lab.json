@@ -59,7 +59,7 @@
 			"scene": "res://scenes/components/Door.tscn",
 			"script": {
 				"destination_spawn_id": "\"outside_academic_2\"",
-				"destination_zone_id": "\"academic_exterior\"",
+				"destination_zone_id": "\"campus\"",
 				"hold_seconds": "0.0",
 				"locked_message": "\"Locked.\"",
 				"path": "res://scripts/components/door.gd",
@@ -264,6 +264,9 @@
 		},
 		"./Objects/Lights/Tube0": {
 			"class": "PointLight2D",
+			"groups": [
+				"gameplay_lights"
+			],
 			"light": {
 				"color": [
 					0.949999988079071,
@@ -271,7 +274,7 @@
 					1.0,
 					1.0
 				],
-				"enabled": false,
+				"enabled": true,
 				"energy": 0.8,
 				"range_mask": 3,
 				"shadow_mask": 1,
@@ -300,6 +303,9 @@
 		},
 		"./Objects/Lights/Tube1": {
 			"class": "PointLight2D",
+			"groups": [
+				"gameplay_lights"
+			],
 			"light": {
 				"color": [
 					0.949999988079071,
@@ -307,7 +313,7 @@
 					1.0,
 					1.0
 				],
-				"enabled": false,
+				"enabled": true,
 				"energy": 0.8,
 				"range_mask": 3,
 				"shadow_mask": 1,
@@ -725,6 +731,42 @@
 			],
 			"z": 0
 		},
+		"./Objects/Props/KeyCabinet": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/furniture/KeyCabinet.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				179.1999969482422,
+				-202.67359924316406
+			],
+			"z": 0
+		},
+		"./Objects/Props/KeyCabinet/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-182.5,
+				-699.4754028320313
+			],
+			"texture": "res://assets/sprites/furniture/key_cabinet.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.07384621351957321,
+				0.0,
+				0.0,
+				0.07384621351957321,
+				179.1999969482422,
+				-202.67359924316406
+			],
+			"z": 0
+		},
 		"./Objects/Room": {
 			"class": "Node2D",
 			"light_mask": 1,
@@ -995,12 +1037,82 @@
 			"y_sort": true,
 			"z": 0
 		},
+		"./Objects/Story/KeyBox": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/components/Keypad.tscn",
+			"script": {
+				"code": "\"4501\"",
+				"not_ready_message": "\"\"",
+				"path": "res://scripts/components/keypad.gd",
+				"requires_flag": "\"\"",
+				"solved_flag": "\"keybox_open\"",
+				"solved_message": "\"The key box swings open. One key left, on a red tag: GENSET - GARAGE.\"",
+				"title": "\"LAB KEY BOX\"",
+				"verb": "\"Use\"",
+				"wrong_message": "\"Wrong code.\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				179.1999969482422,
+				-195.4720001220703
+			],
+			"z": 0
+		},
+		"./Objects/Story/KeyBox/Interactable": {
+			"class": "Area2D",
+			"layer": 4,
+			"light_mask": 1,
+			"mask": 0,
+			"monitorable": true,
+			"monitoring": false,
+			"scene": "res://scenes/components/Interactable.tscn",
+			"script": {
+				"hold_seconds": "0.0",
+				"object_name": "\"LAB KEY BOX\"",
+				"path": "res://scripts/components/interactable.gd",
+				"prompt_offset": "Vector2(0, -56)",
+				"verb": "\"Use\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				179.1999969482422,
+				-195.4720001220703
+			],
+			"z": 0
+		},
+		"./Objects/Story/KeyBox/Interactable/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"circle": 32.0
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				179.1999969482422,
+				-195.4720001220703
+			],
+			"z": 0
+		},
 		"./Objects/Story/Log": {
 			"class": "Node2D",
 			"light_mask": 1,
 			"scene": "res://scenes/components/Readable.tscn",
 			"script": {
-				"body": "\"EEE Lab 2, night shift log.\n\n22:40 Phase test on the generator feed from the workshops. The meters read power going DOWN into the ground, not out of it.\n\n23:10 Something is drawing current under the ME workshops. A lot of it.\n\n23:58 The scopes show a heartbeat on the mains.\"",
+				"body": "\"EEE Lab 2, night shift log.\n\n22:40 Phase test on the generator feed from the workshops. The meters read power going DOWN into the ground, not out of it.\n\n23:10 Something is drawing current under the ME workshops. A lot of it.\n\n23:58 The scopes show a heartbeat on the mains. I've locked the genset key in the key box. Code: the course number of my night class, room 304. Nobody runs that generator.\"",
 				"dark_message": "\"Too dark to read. Light the lantern.\"",
 				"note_id": "\"lab_logbook\"",
 				"path": "res://scripts/components/readable.gd",

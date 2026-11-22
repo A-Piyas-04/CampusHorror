@@ -13,12 +13,23 @@ const SAVE_PATH := "user://save.json"
 ## The file actually used. Tests point it elsewhere (and back) so they never touch the player's save.
 var save_path := SAVE_PATH
 ## Bump when the save format changes. Versions in READABLE_VERSIONS load; anything else is refused.
-const SAVE_VERSION := 2
-const READABLE_VERSIONS := [1, 2]
+## Version 3 = Map v2 (the campus rebuilt from the official board, D44): older saves point at retired zones and
+## old coordinates, so they are refused cleanly (Continue then starts a fresh walk).
+const SAVE_VERSION := 3
+const READABLE_VERSIONS := [3]
 
 
+## True when a save exists that this build can read (an unreadable old save does not count, so the title menu
+## doesn't offer a Continue that can't work).
 func has_save() -> bool:
-	return FileAccess.file_exists(save_path)
+	if not FileAccess.file_exists(save_path):
+		return false
+	var file := FileAccess.open(save_path, FileAccess.READ)
+	if file == null:
+		return false
+	var data: Variant = JSON.parse_string(file.get_as_text())
+	file.close()
+	return data is Dictionary and READABLE_VERSIONS.has(int(data.get("save_version", -1)))
 
 
 ## Autosave at a story beat or zone entry (no-op while a travel is running or no zone is loaded).

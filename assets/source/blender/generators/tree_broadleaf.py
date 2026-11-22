@@ -30,6 +30,11 @@ DEFAULT_PARAMS = {
     "leaf_width": 0.14,
     "leaf_density": 300.0,    # leaves per m2 of cluster surface
     "collision_half_m": 0.25,
+    # species variety (Map v2): leaf colour ramp [[pos, [r, g, b]], ...] (linear), crown cluster size, flowers
+    "leaf_stops": None,
+    "cluster_scale": 1.0,
+    "flower_density": 0.0,
+    "flower_color": [0.75, 0.12, 0.03],
 }
 
 LEAF_STOPS = (
@@ -48,18 +53,19 @@ def _curve(a, b, lift, n=6):
 
 def build(collection, rng, params):
     p = params
+    cs = p.get("cluster_scale", 1.0)
     crown = Vector((0.0, 0.0, p["crown_z"]))
-    blobs = [Blob(rng, crown, 1.15, squash=0.9),
-             Blob(rng, crown + Vector((rng.uniform(-0.2, 0.2), rng.uniform(-0.1, 0.2), 0.85)), 1.0, squash=0.9)]
+    blobs = [Blob(rng, crown, 1.15 * cs, squash=0.9),
+             Blob(rng, crown + Vector((rng.uniform(-0.2, 0.2), rng.uniform(-0.1, 0.2), 0.85 * cs)), 1.0 * cs, squash=0.9)]
     for k in range(p["ring_clusters"]):
         a = 2 * math.pi * k / p["ring_clusters"] + rng.uniform(-0.25, 0.25)
         rad = p["crown_rx"] * rng.uniform(0.85, 1.05)
         blobs.append(Blob(rng, (math.cos(a) * rad, math.sin(a) * rad, p["crown_z"] + rng.uniform(-0.2, 0.35)),
-                          rng.uniform(0.92, 1.12), squash=0.85))
+                          rng.uniform(0.92, 1.12) * cs, squash=0.85))
     for k in range(p["low_clusters"]):
         a = 2 * math.pi * (k + 0.5) / p["low_clusters"] + rng.uniform(-0.3, 0.3)
         rad = p["crown_rx"] * 0.6
-        blobs.append(Blob(rng, (math.cos(a) * rad, math.sin(a) * rad, p["crown_z"] - 0.75), 0.82, squash=0.8))
+        blobs.append(Blob(rng, (math.cos(a) * rad, math.sin(a) * rad, p["crown_z"] - 0.75 * cs), 0.82 * cs, squash=0.8))
 
     # Wood: trunk with a flared base, limbs to the ring clusters, twigs to the others.
     wood = bmesh.new()
@@ -97,9 +103,17 @@ def build(collection, rng, params):
     scatter_on_blobs(cards, rng, blobs, p["leaf_density"], p["leaf_length"], p["leaf_width"],
                      up_bias=0.45, depth=(0.94, 1.12), crown_center=crown + Vector((0, 0, 0.3)), crown_bias=0.8)
     leaf_count = cards.count
-    leaves = cards.to_object(collection, "Leaves", [leaf_material("Leaves", LEAF_STOPS, translucency=0.12)])
+    stops = tuple((s[0], tuple(s[1])) for s in p["leaf_stops"]) if p.get("leaf_stops") else LEAF_STOPS
+    leaves = cards.to_object(collection, "Leaves", [leaf_material("Leaves", stops, translucency=0.12)])
 
     objects = [trunk, canopy_inner, leaves]
+    if p.get("flower_density", 0.0) > 0.0:              # krishnachura in bloom: flame-red flower clusters
+        fc = p.get("flower_color", [0.75, 0.12, 0.03])
+        flowers = LeafCards()
+        scatter_on_blobs(flowers, rng, blobs, p["flower_density"], p["leaf_length"] * 1.1, p["leaf_width"] * 1.2,
+                         up_bias=0.7, depth=(1.02, 1.14), crown_center=crown + Vector((0, 0, 0.3)), crown_bias=0.9)
+        f_stops = ((0.0, (fc[0] * 0.5, fc[1] * 0.5, fc[2] * 0.5)), (0.6, tuple(fc)), (1.0, (min(1.0, fc[0] * 1.2), fc[1] * 1.6, fc[2] * 2.0)))
+        objects.append(flowers.to_object(collection, "Flowers", [leaf_material("Flowers", f_stops, translucency=0.2)]))
     h = p["collision_half_m"]
     return {
         "objects": objects,

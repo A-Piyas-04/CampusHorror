@@ -1,0 +1,17 @@
+{
+ "id": "dirt",
+ "resolution": "1k",
+ "files": [
+  "dirt_diffuse_1k.jpg",
+  "dirt_nor_gl_1k.jpg"
+ ],
+ "use": "ground: bare earth, plots, worn patches",
+ "dimensions_mm": [
+  2000,
+  2000
+ ],
+ "authors": [
+  "Charlotte Baglioni"
+ ],
+ "license": "CC0 1.0 (https://polyhaven.com/license)"
+}

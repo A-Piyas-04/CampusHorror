@@ -223,7 +223,7 @@ def student_props(x, y, patrol):
     return {"position": V(x, y), "patrol_points": PV2(patrol), "active": "false", "visible": "false",
             "sight_radius": "70.0", "close_sense_radius": "44.0", "light_sensitivity": "0.2", "hearing": "1.8",
             "patrol_speed": "30.0", "investigate_speed": "52.0", "chase_speed": "118.0",
-            "modulate": C(0.72, 0.86, 0.78), "metadata/role": S("patrol")}
+            "modulate": C(0.72, 0.86, 0.78), "metadata/role": S("patrol"), "metadata/chapter": "3"}
 
 
 def sleepwalker_props(x, y, patrol):
@@ -232,7 +232,16 @@ def sleepwalker_props(x, y, patrol):
     return {"position": V(x, y), "patrol_points": PV2(patrol), "active": "false", "visible": "false",
             "sight_radius": "110.0", "close_sense_radius": "40.0", "light_sensitivity": "2.2", "hearing": "0.6",
             "patrol_speed": "26.0", "investigate_speed": "60.0", "chase_speed": "128.0",
-            "modulate": C(0.86, 0.83, 0.96), "metadata/role": S("patrol")}
+            "modulate": C(0.86, 0.83, 0.96), "metadata/role": S("patrol"), "metadata/chapter": "4"}
+
+
+def technician_props(x, y, patrol):
+    """A "technician" (Chapter 5's host, Site 7's former staff): sees and hears about as well as the Night Guard,
+    a little faster. Dormant until Chapter 5's director wakes it."""
+    return {"position": V(x, y), "patrol_points": PV2(patrol), "active": "false", "visible": "false",
+            "sight_radius": "140.0", "close_sense_radius": "60.0", "light_sensitivity": "1.0", "hearing": "1.3",
+            "patrol_speed": "34.0", "investigate_speed": "60.0", "chase_speed": "132.0",
+            "modulate": C(0.8, 0.95, 0.85), "metadata/role": S("patrol"), "metadata/chapter": "5"}
 
 
 def write_profile(zone_id, *, zoom, limits, surface, ambience, vol=-6.0, room=0.15, damp=0.7, wet=0.05,

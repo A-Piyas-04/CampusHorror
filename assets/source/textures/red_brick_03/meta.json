@@ -1,0 +1,19 @@
+{
+ "id": "red_brick_03",
+ "resolution": "2k",
+ "files": [
+  "red_brick_03_diffuse_2k.jpg",
+  "red_brick_03_nor_gl_2k.jpg",
+  "red_brick_03_rough_2k.jpg",
+  "red_brick_03_ao_2k.jpg"
+ ],
+ "use": "buildings: IUT exposed red brick (Blender)",
+ "dimensions_mm": [
+  1000,
+  1000
+ ],
+ "authors": [
+  "Rob Tuytel"
+ ],
+ "license": "CC0 1.0 (https://polyhaven.com/license)"
+}

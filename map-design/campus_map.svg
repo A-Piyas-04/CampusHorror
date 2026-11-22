@@ -1,0 +1,600 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:xlink="http://www.w3.org/1999/xlink" width="3080" height="1636" viewBox="-26.00 -13.60 616.00 327.20">
+<title>IUT campus - map design (generated from the board layout; owner layers kept)</title>
+<g id="layer-ground" inkscape:groupmode="layer" inkscape:label="Ground">
+<rect x="-26.00" y="-13.60" width="524.00" height="327.20" fill="#2e3436" stroke="none" stroke-width="0.0"/>
+<polygon points="-14.00,10.60 14.00,10.00 100.00,7.40 200.00,4.60 300.00,1.80 414.00,-1.40 448.50,-1.60 469.00,151.80 486.00,283.00 380.00,287.60 341.00,290.40 324.00,292.60 308.00,299.00 230.00,301.40 92.00,301.60 57.00,298.00 33.00,291.00 21.00,276.00 16.00,250.00 14.30,200.00 14.00,87.00 12.70,80.50 0.00,79.60 -14.00,79.40" fill="#84ba4a" stroke="none" stroke-width="0.0"><title>campus_lawn (mown lawn)</title></polygon>
+<polygon points="140.80,242.20 326.00,242.20 344.00,269.20 486.00,269.20 486.00,283.00 380.00,287.60 341.00,290.40 140.80,294.00" fill="#568842" stroke="none" stroke-width="0.0"><title>Southern Field (rough field grass)</title></polygon>
+<polygon points="334.60,112.60 435.90,112.60 435.90,228.00 443.50,239.00 443.50,262.40 347.50,262.40 334.60,244.00" fill="#4a803a" stroke="none" stroke-width="0.0"><title>Central Field (sports turf)</title></polygon>
+<polygon points="96.20,110.90 162.10,110.90 162.10,236.00 96.20,236.00" fill="#689246" stroke="none" stroke-width="0.0"><title>Woods (around the substation) (leaf litter under trees)</title></polygon>
+<polygon points="23.50,233.00 76.50,233.00 76.50,242.20 140.80,242.20 140.80,294.00 126.50,293.60 92.00,290.30 57.50,285.60 40.00,282.00 30.70,271.40 27.10,248.40" fill="#6c625c" stroke="none" stroke-width="0.0"><title>female_hall_compound (residential paving)</title></polygon>
+<polygon points="167.40,111.10 326.40,111.10 326.40,236.40 167.40,236.40" fill="#965646" stroke="none" stroke-width="0.0"><title>Mosque plaza (brick pavers) (red brick pavers (herringbone))</title></polygon>
+<polygon points="198.40,52.80 262.00,52.80 262.00,104.00 198.40,104.00" fill="#70463c" stroke="none" stroke-width="0.0"><title>academic_forecourt (dark brick paving)</title></polygon>
+<polygon points="412.90,44.90 416.30,44.90 416.30,52.90 412.90,52.90" fill="#965646" stroke="none" stroke-width="0.0"><title>halls_plaza (red brick pavers (herringbone))</title></polygon>
+<polygon points="439.80,151.80 463.50,151.80 463.50,188.20 439.80,188.20" fill="#ceccc4" stroke="none" stroke-width="0.0"><title>tennis_pad (concrete)</title></polygon>
+<polygon points="444.40,189.30 468.00,189.30 468.00,225.40 444.40,225.40" fill="#ceccc4" stroke="none" stroke-width="0.0"><title>futsal_pad (concrete)</title></polygon>
+<polygon points="445.60,158.20 457.70,158.20 457.70,181.70 445.60,181.70" fill="#406e62" stroke="none" stroke-width="0.0"><title>tennis_court (tennis court)</title></polygon>
+<polygon points="450.00,195.50 462.30,195.50 462.30,219.20 450.00,219.20" fill="#3a5c54" stroke="none" stroke-width="0.0"><title>futsal_court (futsal court)</title></polygon>
+<polygon points="59.20,250.40 83.30,250.40 83.30,262.80 59.20,262.80" fill="#406e62" stroke="none" stroke-width="0.0"><title>female_hall_court (tennis court)</title></polygon>
+<polygon points="136.50,115.40 162.00,115.40 162.00,140.20 136.50,140.20" fill="#969084" stroke="none" stroke-width="0.0"><title>substation_yard (gravel)</title></polygon>
+<polygon points="26.00,13.80 92.00,13.80 92.00,48.40 26.00,48.40" fill="#a88a64" stroke="none" stroke-width="0.0"><title>new_male_hall_site (bare earth)</title></polygon>
+<polygon points="27.00,120.60 66.00,120.60 66.00,146.40 27.00,146.40" fill="#a88a64" stroke="none" stroke-width="0.0"><title>studio_apartments_plot (bare earth)</title></polygon>
+<polygon points="145.50,258.40 215.80,258.40 215.80,285.60 145.50,285.60" fill="#a88a64" stroke="none" stroke-width="0.0"><title>new_academic_plot (bare earth)</title></polygon>
+<rect x="353.00" y="151.00" width="64.00" height="102.00" fill="none" stroke="#f0f0f0" stroke-width="0.25"/>
+<path d="M353.0,202.0 H417.0" stroke="#f0f0f0" stroke-width="0.25"/>
+<circle cx="385.0" cy="202.0" r="9.15" fill="none" stroke="#f0f0f0" stroke-width="0.25"/>
+<rect x="236.00" y="262.00" width="10.00" height="20.00" fill="#a88a64" stroke="none" stroke-width="0.0"/>
+</g>
+<g id="layer-water" inkscape:groupmode="layer" inkscape:label="Water and canal">
+<polygon points="169.70,150.60 181.50,150.60 181.50,190.20 221.40,190.20 221.40,234.00 169.70,234.00" fill="#4a84b0" stroke="#8cbedc" stroke-width="0.5"><title>Lake (west)</title></polygon>
+<polygon points="226.80,207.20 283.20,207.20 309.80,234.00 226.80,234.00" fill="#4a84b0" stroke="#8cbedc" stroke-width="0.5"><title>Lake (south)</title></polygon>
+<polygon points="304.70,139.60 322.60,139.60 322.60,234.00 320.00,234.00 277.80,191.80 277.80,162.40 304.70,162.40" fill="#4a84b0" stroke="#8cbedc" stroke-width="0.5"><title>Lake (east)</title></polygon>
+<polyline points="-14.00,13.60 0.00,13.20 207.00,7.60 345.00,3.20 414.00,2.10 446.00,1.60" fill="none" stroke="#46aad7" stroke-width="2.6" stroke-linejoin="round"><title>Canal (canal_north)</title></polyline>
+<polyline points="446.00,1.60 447.00,46.00 449.30,69.00 450.00,79.00" fill="none" stroke="#46aad7" stroke-width="2.6" stroke-linejoin="round"><title>Canal (canal_east)</title></polyline>
+<polyline points="20.50,13.00 20.50,190.00 22.30,202.40 25.50,225.40 27.10,248.40 30.70,271.40 40.00,282.00 57.50,285.60 92.00,290.30 126.50,293.60 161.00,294.00 195.50,293.10 230.00,291.70 264.50,289.90 299.00,287.70 341.00,287.40" fill="none" stroke="#46aad7" stroke-width="2.6" stroke-linejoin="round"><title>Canal (canal_west)</title></polyline>
+</g>
+<g id="layer-roads" inkscape:groupmode="layer" inkscape:label="Roads and paths">
+<polyline points="91.50,108.10 441.60,108.10" fill="none" stroke="#e8d6c4" stroke-width="5.0" stroke-linejoin="round" stroke-linecap="butt"><title>R1: Spine road (red brick road, 5.0 m)</title></polyline>
+<polyline points="93.80,12.00 93.80,239.50" fill="none" stroke="#e8d6c4" stroke-width="5.0" stroke-linejoin="round" stroke-linecap="butt"><title>R2: West avenue (red brick road, 5.0 m)</title></polyline>
+<polyline points="76.50,239.50 327.80,239.50" fill="none" stroke="#e8d6c4" stroke-width="5.0" stroke-linejoin="round" stroke-linecap="butt"><title>R3: South boulevard (red brick road, 5.0 m)</title></polyline>
+<polyline points="327.80,239.50 346.00,266.80 486.00,266.80" fill="none" stroke="#5c5e62" stroke-width="6.4" stroke-linejoin="round" stroke-linecap="butt"><title>R4: Gate road (asphalt road, 6.4 m)</title></polyline>
+<polyline points="330.10,108.10 330.10,239.50" fill="none" stroke="#e8d6c4" stroke-width="4.6" stroke-linejoin="round" stroke-linecap="butt"><title>R5: Field road (red brick road, 4.6 m)</title></polyline>
+<polyline points="439.80,13.80 439.80,108.10" fill="none" stroke="#e8d6c4" stroke-width="3.6" stroke-linejoin="round" stroke-linecap="butt"><title>R6: East road (red brick road, 3.6 m)</title></polyline>
+<polyline points="164.80,108.10 164.80,239.50" fill="none" stroke="#e8d6c4" stroke-width="4.6" stroke-linejoin="round" stroke-linecap="butt"><title>R7: Woods road (red brick road, 4.6 m)</title></polyline>
+<polyline points="25.80,48.30 193.20,48.30" fill="none" stroke="#e8d6c4" stroke-width="3.6" stroke-linejoin="round" stroke-linecap="butt"><title>L1: Workshop lane (north) (red brick road, 3.6 m)</title></polyline>
+<polyline points="93.80,78.20 193.20,78.20" fill="none" stroke="#e8d6c4" stroke-width="3.6" stroke-linejoin="round" stroke-linecap="butt"><title>L2: Workshop lane (south) (red brick road, 3.6 m)</title></polyline>
+<polyline points="193.20,12.00 193.20,108.10" fill="none" stroke="#e8d6c4" stroke-width="3.6" stroke-linejoin="round" stroke-linecap="butt"><title>L3: Academic lane (red brick road, 3.6 m)</title></polyline>
+<polyline points="23.80,34.50 23.80,66.00" fill="none" stroke="#ceccc4" stroke-width="3.4" stroke-linejoin="round" stroke-linecap="butt"><title>L4: Canal-side path (concrete, 3.4 m)</title></polyline>
+<polyline points="61.40,152.00 93.80,152.00" fill="none" stroke="#e8d6c4" stroke-width="3.0" stroke-linejoin="round" stroke-linecap="butt"><title>L5: Staff quarters spur (north) (red brick road, 3.0 m)</title></polyline>
+<polyline points="61.40,194.50 93.80,194.50" fill="none" stroke="#e8d6c4" stroke-width="3.0" stroke-linejoin="round" stroke-linecap="butt"><title>L6: Staff quarters spur (south) (red brick road, 3.0 m)</title></polyline>
+<polyline points="196.00,17.70 412.00,17.70" fill="none" stroke="#c49680" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="butt"><title>L7: Halls service path (narrow brick path, 2.4 m)</title></polyline>
+<polyline points="25.80,48.30 14.40,48.30" fill="none" stroke="#e8d6c4" stroke-width="3.0" stroke-linejoin="round" stroke-linecap="butt"><title>L8: Bridge to the Medical Center (red brick road, 3.0 m)</title></polyline>
+<polyline points="261.00,51.20 414.60,51.20" fill="none" stroke="#ceccc4" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="butt"><title>P1: Halls palm avenue (concrete, 3.2 m)</title></polyline>
+<polyline points="324.30,20.70 324.30,105.80" fill="none" stroke="#ceccc4" stroke-width="4.0" stroke-linejoin="round" stroke-linecap="butt"><title>P2: Halls cross path (west) (concrete, 4.0 m)</title></polyline>
+<polyline points="374.90,20.70 374.90,105.80" fill="none" stroke="#ceccc4" stroke-width="4.0" stroke-linejoin="round" stroke-linecap="butt"><title>P3: Halls cross path (east) (concrete, 4.0 m)</title></polyline>
+<polyline points="261.00,85.40 277.80,85.40" fill="none" stroke="#ceccc4" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="butt"><title>P4: Academic 1 - South Hall link (concrete, 2.4 m)</title></polyline>
+<polyline points="260.10,26.40 277.40,26.40" fill="none" stroke="#ceccc4" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="butt"><title>P5: Academic 2 - North Hall link (concrete, 2.4 m)</title></polyline>
+<polyline points="261.00,82.80 261.00,105.80" fill="none" stroke="#ceccc4" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="butt"><title>P6: Academic 1 east path (concrete, 2.4 m)</title></polyline>
+<polyline points="452.00,264.50 471.00,251.90" fill="none" stroke="#ceccc4" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="butt"><title>P7: Gate garden path (concrete, 2.4 m)</title></polyline>
+<polyline points="275.00,194.20 314.50,233.80 327.80,239.50" fill="none" stroke="#965646" stroke-width="7.4" stroke-linejoin="round" stroke-linecap="butt"><title>C1: Diagonal causeway (red brick pavers (herringbone), 7.4 m)</title></polyline>
+<polyline points="224.10,190.20 224.10,234.00" fill="none" stroke="#965646" stroke-width="5.4" stroke-linejoin="round" stroke-linecap="butt"><title>C2: Lake causeway (north-south) (red brick pavers (herringbone), 5.4 m)</title></polyline>
+</g>
+<g id="layer-trees" inkscape:groupmode="layer" inkscape:label="Trees">
+<circle cx="147.0" cy="246.4" r="2.6" fill="#4e9646" opacity="0.9"><title>coconut palm (boulevard_palms_south)</title></circle>
+<circle cx="160.46" cy="246.4" r="2.6" fill="#4e9646" opacity="0.9"><title>coconut palm (boulevard_palms_south)</title></circle>
+<circle cx="173.92" cy="246.4" r="2.6" fill="#4e9646" opacity="0.9"><title>coconut palm (boulevard_palms_south)</title></circle>
+<circle cx="187.38" cy="246.4" r="2.6" fill="#4e9646" opacity="0.9"><title>coconut palm (boulevard_palms_south)</title></circle>
+<circle cx="200.85" cy="246.4" r="2.6" fill="#4e9646" opacity="0.9"><title>coconut palm (boulevard_palms_south)</title></circle>
+<circle cx="214.31" cy="246.4" r="2.6" fill="#4e9646" opacity="0.9"><title>coconut palm (boulevard_palms_south)</title></circle>
+<circle cx="227.77" cy="246.4" r="2.6" fill="#4e9646" opacity="0.9"><title>coconut palm (boulevard_palms_south)</title></circle>
+<circle cx="241.23" cy="246.4" r="2.6" fill="#4e9646" opacity="0.9"><title>coconut palm (boulevard_palms_south)</title></circle>
+<circle cx="254.69" cy="246.4" r="2.6" fill="#4e9646" opacity="0.9"><title>coconut palm (boulevard_palms_south)</title></circle>
+<circle cx="268.15" cy="246.4" r="2.6" fill="#4e9646" opacity="0.9"><title>coconut palm (boulevard_palms_south)</title></circle>
+<circle cx="281.62" cy="246.4" r="2.6" fill="#4e9646" opacity="0.9"><title>coconut palm (boulevard_palms_south)</title></circle>
+<circle cx="295.08" cy="246.4" r="2.6" fill="#4e9646" opacity="0.9"><title>coconut palm (boulevard_palms_south)</title></circle>
+<circle cx="308.54" cy="246.4" r="2.6" fill="#4e9646" opacity="0.9"><title>coconut palm (boulevard_palms_south)</title></circle>
+<circle cx="322.0" cy="246.4" r="2.6" fill="#4e9646" opacity="0.9"><title>coconut palm (boulevard_palms_south)</title></circle>
+<circle cx="176.0" cy="235.2" r="2.6" fill="#4e9646" opacity="0.9"><title>coconut palm (boulevard_palms_north)</title></circle>
+<circle cx="189.6" cy="235.2" r="2.6" fill="#4e9646" opacity="0.9"><title>coconut palm (boulevard_palms_north)</title></circle>
+<circle cx="203.2" cy="235.2" r="2.6" fill="#4e9646" opacity="0.9"><title>coconut palm (boulevard_palms_north)</title></circle>
+<circle cx="216.8" cy="235.2" r="2.6" fill="#4e9646" opacity="0.9"><title>coconut palm (boulevard_palms_north)</title></circle>
+<circle cx="230.4" cy="235.2" r="2.6" fill="#4e9646" opacity="0.9"><title>coconut palm (boulevard_palms_north)</title></circle>
+<circle cx="244.0" cy="235.2" r="2.6" fill="#4e9646" opacity="0.9"><title>coconut palm (boulevard_palms_north)</title></circle>
+<circle cx="257.6" cy="235.2" r="2.6" fill="#4e9646" opacity="0.9"><title>coconut palm (boulevard_palms_north)</title></circle>
+<circle cx="271.2" cy="235.2" r="2.6" fill="#4e9646" opacity="0.9"><title>coconut palm (boulevard_palms_north)</title></circle>
+<circle cx="284.8" cy="235.2" r="2.6" fill="#4e9646" opacity="0.9"><title>coconut palm (boulevard_palms_north)</title></circle>
+<circle cx="298.4" cy="235.2" r="2.6" fill="#4e9646" opacity="0.9"><title>coconut palm (boulevard_palms_north)</title></circle>
+<circle cx="312.0" cy="235.2" r="2.6" fill="#4e9646" opacity="0.9"><title>coconut palm (boulevard_palms_north)</title></circle>
+<circle cx="325.6" cy="126.0" r="2.6" fill="#4e9646" opacity="0.9"><title>areca palm (field_road_palms_w)</title></circle>
+<circle cx="325.6" cy="136.6" r="2.6" fill="#4e9646" opacity="0.9"><title>areca palm (field_road_palms_w)</title></circle>
+<circle cx="325.6" cy="147.2" r="2.6" fill="#4e9646" opacity="0.9"><title>areca palm (field_road_palms_w)</title></circle>
+<circle cx="325.6" cy="157.8" r="2.6" fill="#4e9646" opacity="0.9"><title>areca palm (field_road_palms_w)</title></circle>
+<circle cx="325.6" cy="168.4" r="2.6" fill="#4e9646" opacity="0.9"><title>areca palm (field_road_palms_w)</title></circle>
+<circle cx="325.6" cy="179.0" r="2.6" fill="#4e9646" opacity="0.9"><title>areca palm (field_road_palms_w)</title></circle>
+<circle cx="325.6" cy="189.6" r="2.6" fill="#4e9646" opacity="0.9"><title>areca palm (field_road_palms_w)</title></circle>
+<circle cx="325.6" cy="200.2" r="2.6" fill="#4e9646" opacity="0.9"><title>areca palm (field_road_palms_w)</title></circle>
+<circle cx="325.6" cy="210.8" r="2.6" fill="#4e9646" opacity="0.9"><title>areca palm (field_road_palms_w)</title></circle>
+<circle cx="325.6" cy="221.4" r="2.6" fill="#4e9646" opacity="0.9"><title>areca palm (field_road_palms_w)</title></circle>
+<circle cx="325.6" cy="232.0" r="2.6" fill="#4e9646" opacity="0.9"><title>areca palm (field_road_palms_w)</title></circle>
+<circle cx="336.6" cy="145.0" r="2.6" fill="#4e9646" opacity="0.9"><title>coconut palm (field_road_palms_e)</title></circle>
+<circle cx="336.6" cy="156.38" r="2.6" fill="#4e9646" opacity="0.9"><title>coconut palm (field_road_palms_e)</title></circle>
+<circle cx="336.6" cy="167.75" r="2.6" fill="#4e9646" opacity="0.9"><title>coconut palm (field_road_palms_e)</title></circle>
+<circle cx="336.6" cy="179.12" r="2.6" fill="#4e9646" opacity="0.9"><title>coconut palm (field_road_palms_e)</title></circle>
+<circle cx="336.6" cy="190.5" r="2.6" fill="#4e9646" opacity="0.9"><title>coconut palm (field_road_palms_e)</title></circle>
+<circle cx="336.6" cy="201.88" r="2.6" fill="#4e9646" opacity="0.9"><title>coconut palm (field_road_palms_e)</title></circle>
+<circle cx="336.6" cy="213.25" r="2.6" fill="#4e9646" opacity="0.9"><title>coconut palm (field_road_palms_e)</title></circle>
+<circle cx="336.6" cy="224.62" r="2.6" fill="#4e9646" opacity="0.9"><title>coconut palm (field_road_palms_e)</title></circle>
+<circle cx="336.6" cy="236.0" r="2.6" fill="#4e9646" opacity="0.9"><title>coconut palm (field_road_palms_e)</title></circle>
+<circle cx="268.0" cy="45.6" r="2.6" fill="#4e9646" opacity="0.9"><title>coconut palm (halls_avenue_n)</title></circle>
+<circle cx="279.83" cy="45.6" r="2.6" fill="#4e9646" opacity="0.9"><title>coconut palm (halls_avenue_n)</title></circle>
+<circle cx="291.67" cy="45.6" r="2.6" fill="#4e9646" opacity="0.9"><title>coconut palm (halls_avenue_n)</title></circle>
+<circle cx="303.5" cy="45.6" r="2.6" fill="#4e9646" opacity="0.9"><title>coconut palm (halls_avenue_n)</title></circle>
+<circle cx="315.33" cy="45.6" r="2.6" fill="#4e9646" opacity="0.9"><title>coconut palm (halls_avenue_n)</title></circle>
+<circle cx="327.17" cy="45.6" r="2.6" fill="#4e9646" opacity="0.9"><title>coconut palm (halls_avenue_n)</title></circle>
+<circle cx="339.0" cy="45.6" r="2.6" fill="#4e9646" opacity="0.9"><title>coconut palm (halls_avenue_n)</title></circle>
+<circle cx="350.83" cy="45.6" r="2.6" fill="#4e9646" opacity="0.9"><title>coconut palm (halls_avenue_n)</title></circle>
+<circle cx="362.67" cy="45.6" r="2.6" fill="#4e9646" opacity="0.9"><title>coconut palm (halls_avenue_n)</title></circle>
+<circle cx="374.5" cy="45.6" r="2.6" fill="#4e9646" opacity="0.9"><title>coconut palm (halls_avenue_n)</title></circle>
+<circle cx="386.33" cy="45.6" r="2.6" fill="#4e9646" opacity="0.9"><title>coconut palm (halls_avenue_n)</title></circle>
+<circle cx="398.17" cy="45.6" r="2.6" fill="#4e9646" opacity="0.9"><title>coconut palm (halls_avenue_n)</title></circle>
+<circle cx="410.0" cy="45.6" r="2.6" fill="#4e9646" opacity="0.9"><title>coconut palm (halls_avenue_n)</title></circle>
+<circle cx="268.0" cy="56.6" r="2.6" fill="#4e9646" opacity="0.9"><title>coconut palm (halls_avenue_s)</title></circle>
+<circle cx="279.83" cy="56.6" r="2.6" fill="#4e9646" opacity="0.9"><title>coconut palm (halls_avenue_s)</title></circle>
+<circle cx="291.67" cy="56.6" r="2.6" fill="#4e9646" opacity="0.9"><title>coconut palm (halls_avenue_s)</title></circle>
+<circle cx="303.5" cy="56.6" r="2.6" fill="#4e9646" opacity="0.9"><title>coconut palm (halls_avenue_s)</title></circle>
+<circle cx="315.33" cy="56.6" r="2.6" fill="#4e9646" opacity="0.9"><title>coconut palm (halls_avenue_s)</title></circle>
+<circle cx="327.17" cy="56.6" r="2.6" fill="#4e9646" opacity="0.9"><title>coconut palm (halls_avenue_s)</title></circle>
+<circle cx="339.0" cy="56.6" r="2.6" fill="#4e9646" opacity="0.9"><title>coconut palm (halls_avenue_s)</title></circle>
+<circle cx="350.83" cy="56.6" r="2.6" fill="#4e9646" opacity="0.9"><title>coconut palm (halls_avenue_s)</title></circle>
+<circle cx="362.67" cy="56.6" r="2.6" fill="#4e9646" opacity="0.9"><title>coconut palm (halls_avenue_s)</title></circle>
+<circle cx="374.5" cy="56.6" r="2.6" fill="#4e9646" opacity="0.9"><title>coconut palm (halls_avenue_s)</title></circle>
+<circle cx="386.33" cy="56.6" r="2.6" fill="#4e9646" opacity="0.9"><title>coconut palm (halls_avenue_s)</title></circle>
+<circle cx="398.17" cy="56.6" r="2.6" fill="#4e9646" opacity="0.9"><title>coconut palm (halls_avenue_s)</title></circle>
+<circle cx="410.0" cy="56.6" r="2.6" fill="#4e9646" opacity="0.9"><title>coconut palm (halls_avenue_s)</title></circle>
+<circle cx="352.0" cy="277.0" r="3.6" fill="#346832" opacity="0.9"><title>mahogany (gate_lawn_trees)</title></circle>
+<circle cx="361.0" cy="276.89" r="3.6" fill="#346832" opacity="0.9"><title>mahogany (gate_lawn_trees)</title></circle>
+<circle cx="370.0" cy="276.77" r="3.6" fill="#346832" opacity="0.9"><title>mahogany (gate_lawn_trees)</title></circle>
+<circle cx="379.0" cy="276.66" r="3.6" fill="#346832" opacity="0.9"><title>mahogany (gate_lawn_trees)</title></circle>
+<circle cx="388.0" cy="276.54" r="3.6" fill="#346832" opacity="0.9"><title>mahogany (gate_lawn_trees)</title></circle>
+<circle cx="397.0" cy="276.43" r="3.6" fill="#346832" opacity="0.9"><title>mahogany (gate_lawn_trees)</title></circle>
+<circle cx="406.0" cy="276.31" r="3.6" fill="#346832" opacity="0.9"><title>mahogany (gate_lawn_trees)</title></circle>
+<circle cx="415.0" cy="276.2" r="3.6" fill="#346832" opacity="0.9"><title>mahogany (gate_lawn_trees)</title></circle>
+<circle cx="424.0" cy="276.09" r="3.6" fill="#346832" opacity="0.9"><title>mahogany (gate_lawn_trees)</title></circle>
+<circle cx="433.0" cy="275.97" r="3.6" fill="#346832" opacity="0.9"><title>mahogany (gate_lawn_trees)</title></circle>
+<circle cx="442.0" cy="275.86" r="3.6" fill="#346832" opacity="0.9"><title>mahogany (gate_lawn_trees)</title></circle>
+<circle cx="451.0" cy="275.74" r="3.6" fill="#346832" opacity="0.9"><title>mahogany (gate_lawn_trees)</title></circle>
+<circle cx="460.0" cy="275.63" r="3.6" fill="#346832" opacity="0.9"><title>mahogany (gate_lawn_trees)</title></circle>
+<circle cx="469.0" cy="275.51" r="3.6" fill="#346832" opacity="0.9"><title>mahogany (gate_lawn_trees)</title></circle>
+<circle cx="478.0" cy="275.4" r="3.6" fill="#346832" opacity="0.9"><title>mahogany (gate_lawn_trees)</title></circle>
+<circle cx="468.0" cy="160.0" r="3.6" fill="#346832" opacity="0.9"><title>mango (east_wall_trees)</title></circle>
+<circle cx="468.38" cy="169.0" r="3.6" fill="#346832" opacity="0.9"><title>mango (east_wall_trees)</title></circle>
+<circle cx="468.75" cy="178.0" r="3.6" fill="#346832" opacity="0.9"><title>mango (east_wall_trees)</title></circle>
+<circle cx="469.12" cy="187.0" r="3.6" fill="#346832" opacity="0.9"><title>mango (east_wall_trees)</title></circle>
+<circle cx="469.5" cy="196.0" r="3.6" fill="#346832" opacity="0.9"><title>mango (east_wall_trees)</title></circle>
+<circle cx="469.88" cy="205.0" r="3.6" fill="#346832" opacity="0.9"><title>mango (east_wall_trees)</title></circle>
+<circle cx="470.25" cy="214.0" r="3.6" fill="#346832" opacity="0.9"><title>mango (east_wall_trees)</title></circle>
+<circle cx="470.62" cy="223.0" r="3.6" fill="#346832" opacity="0.9"><title>mango (east_wall_trees)</title></circle>
+<circle cx="471.0" cy="232.0" r="3.6" fill="#346832" opacity="0.9"><title>mango (east_wall_trees)</title></circle>
+<circle cx="140.16" cy="208.26" r="3.6" fill="#346832" opacity="0.9"><title>rain tree (substation_woods)</title></circle>
+<circle cx="129.72" cy="160.51" r="3.6" fill="#346832" opacity="0.9"><title>mango (substation_woods)</title></circle>
+<circle cx="134.34" cy="185.09" r="3.6" fill="#346832" opacity="0.9"><title>rain tree (substation_woods)</title></circle>
+<circle cx="113.91" cy="152.44" r="3.6" fill="#346832" opacity="0.9"><title>mango (substation_woods)</title></circle>
+<circle cx="150.07" cy="206.84" r="3.6" fill="#346832" opacity="0.9"><title>mango (substation_woods)</title></circle>
+<circle cx="98.94" cy="187.85" r="3.6" fill="#346832" opacity="0.9"><title>rain tree (substation_woods)</title></circle>
+<circle cx="126.2" cy="218.16" r="3.6" fill="#346832" opacity="0.9"><title>rain tree (substation_woods)</title></circle>
+<circle cx="148.09" cy="163.06" r="3.6" fill="#346832" opacity="0.9"><title>rain tree (substation_woods)</title></circle>
+<circle cx="159.82" cy="182.13" r="3.6" fill="#346832" opacity="0.9"><title>mahogany (substation_woods)</title></circle>
+<circle cx="147.39" cy="228.88" r="3.6" fill="#346832" opacity="0.9"><title>mahogany (substation_woods)</title></circle>
+<circle cx="146.31" cy="182.85" r="3.6" fill="#346832" opacity="0.9"><title>rain tree (substation_woods)</title></circle>
+<circle cx="106.23" cy="188.91" r="3.6" fill="#346832" opacity="0.9"><title>rain tree (substation_woods)</title></circle>
+<circle cx="131.97" cy="168.38" r="3.6" fill="#346832" opacity="0.9"><title>krishnachura (substation_woods)</title></circle>
+<circle cx="131.64" cy="134.89" r="3.6" fill="#346832" opacity="0.9"><title>rain tree (substation_woods)</title></circle>
+<circle cx="112.93" cy="115.66" r="3.6" fill="#346832" opacity="0.9"><title>krishnachura (substation_woods)</title></circle>
+<circle cx="125.96" cy="194.95" r="3.6" fill="#346832" opacity="0.9"><title>mango (substation_woods)</title></circle>
+<circle cx="156.43" cy="170.53" r="3.6" fill="#346832" opacity="0.9"><title>krishnachura (substation_woods)</title></circle>
+<circle cx="122.92" cy="202.22" r="3.6" fill="#346832" opacity="0.9"><title>krishnachura (substation_woods)</title></circle>
+<circle cx="125.14" cy="150.11" r="3.6" fill="#346832" opacity="0.9"><title>rain tree (substation_woods)</title></circle>
+<circle cx="102.37" cy="150.48" r="3.6" fill="#346832" opacity="0.9"><title>krishnachura (substation_woods)</title></circle>
+<circle cx="103.88" cy="120.61" r="3.6" fill="#346832" opacity="0.9"><title>krishnachura (substation_woods)</title></circle>
+<circle cx="102.86" cy="133.38" r="3.6" fill="#346832" opacity="0.9"><title>mango (substation_woods)</title></circle>
+<circle cx="153.13" cy="213.96" r="3.6" fill="#346832" opacity="0.9"><title>mahogany (substation_woods)</title></circle>
+<circle cx="136.58" cy="219.71" r="3.6" fill="#346832" opacity="0.9"><title>rain tree (substation_woods)</title></circle>
+<circle cx="124.52" cy="227.92" r="3.6" fill="#346832" opacity="0.9"><title>mahogany (substation_woods)</title></circle>
+<circle cx="98.05" cy="159.43" r="3.6" fill="#346832" opacity="0.9"><title>mango (substation_woods)</title></circle>
+<circle cx="157.36" cy="225.83" r="3.6" fill="#346832" opacity="0.9"><title>mango (substation_woods)</title></circle>
+<circle cx="129.58" cy="120.01" r="3.6" fill="#346832" opacity="0.9"><title>mango (substation_woods)</title></circle>
+<circle cx="109.92" cy="176.39" r="3.6" fill="#346832" opacity="0.9"><title>mahogany (substation_woods)</title></circle>
+<circle cx="159.73" cy="210.61" r="3.6" fill="#346832" opacity="0.9"><title>mango (substation_woods)</title></circle>
+<circle cx="132.91" cy="199.93" r="3.6" fill="#346832" opacity="0.9"><title>mango (substation_woods)</title></circle>
+<circle cx="137.88" cy="195.62" r="3.6" fill="#346832" opacity="0.9"><title>mango (substation_woods)</title></circle>
+<circle cx="99.97" cy="216.58" r="3.6" fill="#346832" opacity="0.9"><title>rain tree (substation_woods)</title></circle>
+<circle cx="113.91" cy="169.46" r="3.6" fill="#346832" opacity="0.9"><title>krishnachura (substation_woods)</title></circle>
+<circle cx="140.73" cy="152.71" r="3.6" fill="#346832" opacity="0.9"><title>mahogany (substation_woods)</title></circle>
+<circle cx="139.56" cy="177.02" r="3.6" fill="#346832" opacity="0.9"><title>krishnachura (substation_woods)</title></circle>
+<circle cx="103.4" cy="165.8" r="3.6" fill="#346832" opacity="0.9"><title>krishnachura (substation_woods)</title></circle>
+<circle cx="116.13" cy="145.96" r="3.6" fill="#346832" opacity="0.9"><title>mahogany (substation_woods)</title></circle>
+<circle cx="140.5" cy="187.31" r="3.6" fill="#346832" opacity="0.9"><title>mahogany (substation_woods)</title></circle>
+<circle cx="131.64" cy="179.05" r="3.6" fill="#346832" opacity="0.9"><title>rain tree (substation_woods)</title></circle>
+<circle cx="114.96" cy="130.61" r="3.6" fill="#346832" opacity="0.9"><title>mango (substation_woods)</title></circle>
+<circle cx="105.58" cy="197.27" r="3.6" fill="#346832" opacity="0.9"><title>mango (substation_woods)</title></circle>
+<circle cx="119.79" cy="208.3" r="3.6" fill="#346832" opacity="0.9"><title>mahogany (substation_woods)</title></circle>
+<circle cx="112.86" cy="208.64" r="3.6" fill="#346832" opacity="0.9"><title>krishnachura (substation_woods)</title></circle>
+<circle cx="142.56" cy="170.75" r="3.6" fill="#346832" opacity="0.9"><title>mango (substation_woods)</title></circle>
+<circle cx="158.07" cy="202.6" r="3.6" fill="#346832" opacity="0.9"><title>rain tree (substation_woods)</title></circle>
+<circle cx="158.41" cy="164.14" r="3.6" fill="#346832" opacity="0.9"><title>rain tree (substation_woods)</title></circle>
+<circle cx="148.41" cy="145.3" r="3.6" fill="#346832" opacity="0.9"><title>krishnachura (substation_woods)</title></circle>
+<circle cx="156.28" cy="232.88" r="3.6" fill="#346832" opacity="0.9"><title>mahogany (substation_woods)</title></circle>
+<circle cx="131.8" cy="149.64" r="3.6" fill="#346832" opacity="0.9"><title>rain tree (substation_woods)</title></circle>
+<circle cx="149.13" cy="196.48" r="3.6" fill="#346832" opacity="0.9"><title>mango (substation_woods)</title></circle>
+<circle cx="121.84" cy="114.69" r="3.6" fill="#346832" opacity="0.9"><title>krishnachura (substation_woods)</title></circle>
+<circle cx="151.8" cy="188.15" r="3.6" fill="#346832" opacity="0.9"><title>krishnachura (substation_woods)</title></circle>
+<circle cx="100.5" cy="204.69" r="3.6" fill="#346832" opacity="0.9"><title>mahogany (substation_woods)</title></circle>
+<circle cx="144.4" cy="215.45" r="3.6" fill="#346832" opacity="0.9"><title>mahogany (substation_woods)</title></circle>
+<circle cx="118.52" cy="220.51" r="3.6" fill="#346832" opacity="0.9"><title>mahogany (substation_woods)</title></circle>
+<circle cx="156.96" cy="194.19" r="3.6" fill="#346832" opacity="0.9"><title>mahogany (substation_woods)</title></circle>
+<circle cx="102.18" cy="176.48" r="3.6" fill="#346832" opacity="0.9"><title>mango (substation_woods)</title></circle>
+<circle cx="101.71" cy="229.25" r="3.6" fill="#346832" opacity="0.9"><title>mango (substation_woods)</title></circle>
+<circle cx="157.91" cy="145.83" r="3.6" fill="#346832" opacity="0.9"><title>krishnachura (substation_woods)</title></circle>
+<circle cx="119.75" cy="183.21" r="3.6" fill="#346832" opacity="0.9"><title>rain tree (substation_woods)</title></circle>
+<circle cx="137.51" cy="226.9" r="3.6" fill="#346832" opacity="0.9"><title>rain tree (substation_woods)</title></circle>
+<circle cx="114.77" cy="192.85" r="3.6" fill="#346832" opacity="0.9"><title>rain tree (substation_woods)</title></circle>
+<circle cx="120.47" cy="174.2" r="3.6" fill="#346832" opacity="0.9"><title>rain tree (substation_woods)</title></circle>
+<circle cx="54.09" cy="96.63" r="3.6" fill="#346832" opacity="0.9"><title>rain tree (nw_grove)</title></circle>
+<circle cx="46.27" cy="94.1" r="3.6" fill="#346832" opacity="0.9"><title>mahogany (nw_grove)</title></circle>
+<circle cx="72.35" cy="55.6" r="3.6" fill="#346832" opacity="0.9"><title>mahogany (nw_grove)</title></circle>
+<circle cx="56.36" cy="81.07" r="3.6" fill="#346832" opacity="0.9"><title>rain tree (nw_grove)</title></circle>
+<circle cx="63.64" cy="87.53" r="3.6" fill="#346832" opacity="0.9"><title>rain tree (nw_grove)</title></circle>
+<circle cx="44.69" cy="70.5" r="3.6" fill="#346832" opacity="0.9"><title>mango (nw_grove)</title></circle>
+<circle cx="76.01" cy="85.19" r="3.6" fill="#346832" opacity="0.9"><title>mahogany (nw_grove)</title></circle>
+<circle cx="63.97" cy="73.06" r="3.6" fill="#346832" opacity="0.9"><title>rain tree (nw_grove)</title></circle>
+<circle cx="39.33" cy="83.24" r="3.6" fill="#346832" opacity="0.9"><title>mahogany (nw_grove)</title></circle>
+<circle cx="450.42" cy="256.86" r="3.6" fill="#346832" opacity="0.9"><title>mango (gate_garden)</title></circle>
+<circle cx="452.59" cy="251.94" r="3.6" fill="#346832" opacity="0.9"><title>krishnachura (gate_garden)</title></circle>
+<circle cx="464.08" cy="250.46" r="3.6" fill="#346832" opacity="0.9"><title>mango (gate_garden)</title></circle>
+<circle cx="334.6" cy="115.0" r="3.6" fill="#346832" opacity="0.9"><title>mahogany (point)</title></circle>
+<circle cx="334.6" cy="124.2" r="3.6" fill="#346832" opacity="0.9"><title>mahogany (point)</title></circle>
+<circle cx="446.5" cy="111.0" r="3.6" fill="#346832" opacity="0.9"><title>mango (point)</title></circle>
+<circle cx="450.5" cy="114.5" r="3.6" fill="#346832" opacity="0.9"><title>mango (point)</title></circle>
+<circle cx="447.0" cy="118.5" r="3.6" fill="#346832" opacity="0.9"><title>mango (point)</title></circle>
+<circle cx="452.5" cy="120.5" r="3.6" fill="#346832" opacity="0.9"><title>rain tree (point)</title></circle>
+</g>
+<g id="layer-buildings" inkscape:groupmode="layer" inkscape:label="Buildings (numbered as on the board)">
+<polygon points="479.00,259.60 485.00,259.60 485.00,263.20 479.00,263.20" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>#1 IUT Main Gate - built; north pylon; height 8 m. Off the photo's east edge; the board's 'You are here' pin stands just south-west of it. The gate faces east (highway), so the camera sees its side.</title></polygon>
+<polygon points="479.00,270.40 485.00,270.40 485.00,274.00 479.00,274.00" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>#1 IUT Main Gate - built; south pylon; height 8 m. Off the photo's east edge; the board's 'You are here' pin stands just south-west of it. The gate faces east (highway), so the camera sees its side.</title></polygon>
+<polygon points="480.00,259.60 484.00,259.60 484.00,274.00 480.00,274.00" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>#1 IUT Main Gate - built; gate beam; height 9.5 m. Off the photo's east edge; the board's 'You are here' pin stands just south-west of it. The gate faces east (highway), so the camera sees its side.</title></polygon>
+<polygon points="470.50,271.00 476.50,271.00 476.50,277.00 470.50,277.00" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>#1 IUT Main Gate - built; security booth; height 3.4 m. Off the photo's east edge; the board's 'You are here' pin stands just south-west of it. The gate faces east (highway), so the camera sees its side.</title></polygon>
+<polygon points="300.56,213.49 297.81,216.25 298.44,216.89 301.20,214.13" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>#2 Five Fundamentals - built. Five parallel brick walls standing across the diagonal causeway (aerial 12: '5 pillars').</title></polygon>
+<polygon points="296.25,217.81 293.49,220.56 294.13,221.20 296.89,218.44" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>#2 Five Fundamentals - built. Five parallel brick walls standing across the diagonal causeway (aerial 12: '5 pillars').</title></polygon>
+<polygon points="302.19,215.12 299.43,217.88 300.07,218.51 302.83,215.76" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>#2 Five Fundamentals - built. Five parallel brick walls standing across the diagonal causeway (aerial 12: '5 pillars').</title></polygon>
+<polygon points="297.88,219.43 295.12,222.19 295.76,222.83 298.51,220.07" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>#2 Five Fundamentals - built. Five parallel brick walls standing across the diagonal causeway (aerial 12: '5 pillars').</title></polygon>
+<polygon points="303.82,216.75 301.06,219.50 301.70,220.14 304.45,217.38" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>#2 Five Fundamentals - built. Five parallel brick walls standing across the diagonal causeway (aerial 12: '5 pillars').</title></polygon>
+<polygon points="299.50,221.06 296.75,223.82 297.38,224.45 300.14,221.70" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>#2 Five Fundamentals - built. Five parallel brick walls standing across the diagonal causeway (aerial 12: '5 pillars').</title></polygon>
+<polygon points="305.44,218.37 302.69,221.13 303.32,221.77 306.08,219.01" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>#2 Five Fundamentals - built. Five parallel brick walls standing across the diagonal causeway (aerial 12: '5 pillars').</title></polygon>
+<polygon points="301.13,222.69 298.37,225.44 299.01,226.08 301.77,223.32" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>#2 Five Fundamentals - built. Five parallel brick walls standing across the diagonal causeway (aerial 12: '5 pillars').</title></polygon>
+<polygon points="307.07,220.00 304.31,222.76 304.95,223.39 307.71,220.64" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>#2 Five Fundamentals - built. Five parallel brick walls standing across the diagonal causeway (aerial 12: '5 pillars').</title></polygon>
+<polygon points="302.76,224.31 300.00,227.07 300.64,227.71 303.39,224.95" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>#2 Five Fundamentals - built. Five parallel brick walls standing across the diagonal causeway (aerial 12: '5 pillars').</title></polygon>
+<polygon points="232.09,171.39 260.11,176.59 254.91,204.61 226.89,199.41" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>#3 IUT Mosque - built; prayer hall; height 15 m. Stands in the lake; half-disc window on the south face above the three cylinders (aerial 12, photo 02).</title></polygon>
+<polygon points="256.50,172.00 260.40,172.00 260.40,176.00 256.50,176.00" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>#3 IUT Mosque - built; minaret; height 32 m. Stands in the lake; half-disc window on the south face above the three cylinders (aerial 12, photo 02).</title></polygon>
+<polygon points="231.80,185.60 231.67,186.40 231.30,187.13 230.73,187.70 230.00,188.07 229.20,188.20 228.40,188.07 227.67,187.70 227.10,187.13 226.73,186.40 226.60,185.60 226.73,184.80 227.10,184.07 227.67,183.50 228.40,183.13 229.20,183.00 230.00,183.13 230.73,183.50 231.30,184.07 231.67,184.80" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>#3 IUT Mosque - built; mihrab (west); height 9 m. Stands in the lake; half-disc window on the south face above the three cylinders (aerial 12, photo 02).</title></polygon>
+<polygon points="245.00,209.00 244.90,209.62 244.62,210.18 244.18,210.62 243.62,210.90 243.00,211.00 242.38,210.90 241.82,210.62 241.38,210.18 241.10,209.62 241.00,209.00 241.10,208.38 241.38,207.82 241.82,207.38 242.38,207.10 243.00,207.00 243.62,207.10 244.18,207.38 244.62,207.82 244.90,208.38" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>#3 IUT Mosque - built; cylinder; height 4.5 m. Stands in the lake; half-disc window on the south face above the three cylinders (aerial 12, photo 02).</title></polygon>
+<polygon points="251.70,209.00 251.60,209.62 251.32,210.18 250.88,210.62 250.32,210.90 249.70,211.00 249.08,210.90 248.52,210.62 248.08,210.18 247.80,209.62 247.70,209.00 247.80,208.38 248.08,207.82 248.52,207.38 249.08,207.10 249.70,207.00 250.32,207.10 250.88,207.38 251.32,207.82 251.60,208.38" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>#3 IUT Mosque - built; cylinder; height 4.5 m. Stands in the lake; half-disc window on the south face above the three cylinders (aerial 12, photo 02).</title></polygon>
+<polygon points="257.90,209.00 257.80,209.62 257.52,210.18 257.08,210.62 256.52,210.90 255.90,211.00 255.28,210.90 254.72,210.62 254.28,210.18 254.00,209.62 253.90,209.00 254.00,208.38 254.28,207.82 254.72,207.38 255.28,207.10 255.90,207.00 256.52,207.10 257.08,207.38 257.52,207.82 257.80,208.38" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>#3 IUT Mosque - built; cylinder; height 4.5 m. Stands in the lake; half-disc window on the south face above the three cylinders (aerial 12, photo 02).</title></polygon>
+<polygon points="181.50,149.70 222.60,149.70 222.60,190.20 181.50,190.20" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>#4 Auditorium - built; height 14 m. West and south sides stand in the lake; arcade of arches on the south face.</title></polygon>
+<polygon points="265.00,122.40 304.50,122.40 304.50,162.20 265.00,162.20" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>#5 Cafeteria / Library - built; height 13 m. Arches on the south face over the east lake; linked to Admin by a bridge.</title></polygon>
+<polygon points="265.00,122.40 273.20,122.40 273.20,135.70 265.00,135.70" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>#5 Cafeteria / Library - built; stair tower; height 16 m. Arches on the south face over the east lake; linked to Admin by a bridge.</title></polygon>
+<polygon points="295.00,153.00 304.50,153.00 304.50,162.20 295.00,162.20" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>#5 Cafeteria / Library - built; annex; height 7 m. Arches on the south face over the east lake; linked to Admin by a bridge.</title></polygon>
+<polygon points="210.00,121.90 255.30,121.90 255.30,141.90 210.00,141.90" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>#6 Administrative Building - built; height 13 m</title></polygon>
+<polygon points="255.30,129.30 265.00,129.30 265.00,131.10 255.30,131.10" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>#6 Administrative Building - built; bridge to #5; height 7 m</title></polygon>
+<polygon points="380.70,116.60 423.00,116.60 423.00,139.80 380.70,139.80" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>#7 Indoor Sports Ground - built; height 11 m</title></polygon>
+<polygon points="339.30,116.60 380.70,116.60 380.70,132.30 339.30,132.30" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>#8 CDS / Student Center - built; height 8 m</title></polygon>
+<polygon points="339.30,132.30 356.00,132.30 356.00,140.80 339.30,140.80" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>#8 CDS / Student Center - built; height 8 m</title></polygon>
+<polygon points="356.00,132.30 373.00,132.30 373.00,140.30 356.00,140.30" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>#8 CDS / Student Center - built; arcade veranda; height 4.2 m</title></polygon>
+<polygon points="420.90,20.70 434.70,20.70 434.70,85.10 420.90,85.10" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>#9 Male Common Facility Building - built; height 18 m</title></polygon>
+<polygon points="420.90,5.20 434.70,5.20 434.70,20.70 420.90,20.70" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>#9 Male Common Facility Building - built; north block; height 15 m</title></polygon>
+<polygon points="411.70,4.60 420.90,4.60 420.90,8.60 411.70,8.60" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>#9 Male Common Facility Building - built; gate canopy; height 4 m</title></polygon>
+<polygon points="277.40,77.30 322.30,77.30 322.30,86.00 277.40,86.00" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>#10 South Hall of Residence - built; west wing; height 18 m</title></polygon>
+<polygon points="277.40,86.00 283.50,86.00 283.50,90.30 277.40,90.30" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>#10 South Hall of Residence - built; stair tower; height 20 m</title></polygon>
+<polygon points="283.50,90.30 283.35,91.24 282.92,92.09 282.24,92.77 281.39,93.20 280.45,93.35 279.51,93.20 278.66,92.77 277.98,92.09 277.55,91.24 277.40,90.30 277.55,89.36 277.98,88.51 278.66,87.83 279.51,87.40 280.45,87.25 281.39,87.40 282.24,87.83 282.92,88.51 283.35,89.36" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>#10 South Hall of Residence - built; stair tower; height 20 m</title></polygon>
+<polygon points="316.20,86.00 322.30,86.00 322.30,90.30 316.20,90.30" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>#10 South Hall of Residence - built; stair tower; height 20 m</title></polygon>
+<polygon points="322.30,90.30 322.15,91.24 321.72,92.09 321.04,92.77 320.19,93.20 319.25,93.35 318.31,93.20 317.46,92.77 316.78,92.09 316.35,91.24 316.20,90.30 316.35,89.36 316.78,88.51 317.46,87.83 318.31,87.40 319.25,87.25 320.19,87.40 321.04,87.83 321.72,88.51 322.15,89.36" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>#10 South Hall of Residence - built; stair tower; height 20 m</title></polygon>
+<polygon points="327.60,77.30 372.40,77.30 372.40,86.00 327.60,86.00" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>#10 South Hall of Residence - built; middle wing; height 18 m</title></polygon>
+<polygon points="327.60,86.00 333.70,86.00 333.70,90.30 327.60,90.30" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>#10 South Hall of Residence - built; stair tower; height 20 m</title></polygon>
+<polygon points="333.70,90.30 333.55,91.24 333.12,92.09 332.44,92.77 331.59,93.20 330.65,93.35 329.71,93.20 328.86,92.77 328.18,92.09 327.75,91.24 327.60,90.30 327.75,89.36 328.18,88.51 328.86,87.83 329.71,87.40 330.65,87.25 331.59,87.40 332.44,87.83 333.12,88.51 333.55,89.36" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>#10 South Hall of Residence - built; stair tower; height 20 m</title></polygon>
+<polygon points="366.30,86.00 372.40,86.00 372.40,90.30 366.30,90.30" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>#10 South Hall of Residence - built; stair tower; height 20 m</title></polygon>
+<polygon points="372.40,90.30 372.25,91.24 371.82,92.09 371.14,92.77 370.29,93.20 369.35,93.35 368.41,93.20 367.56,92.77 366.88,92.09 366.45,91.24 366.30,90.30 366.45,89.36 366.88,88.51 367.56,87.83 368.41,87.40 369.35,87.25 370.29,87.40 371.14,87.83 371.82,88.51 372.25,89.36" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>#10 South Hall of Residence - built; stair tower; height 20 m</title></polygon>
+<polygon points="377.60,77.30 420.80,77.30 420.80,86.00 377.60,86.00" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>#10 South Hall of Residence - built; east wing; height 18 m</title></polygon>
+<polygon points="377.60,86.00 383.70,86.00 383.70,90.30 377.60,90.30" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>#10 South Hall of Residence - built; stair tower; height 20 m</title></polygon>
+<polygon points="383.70,90.30 383.55,91.24 383.12,92.09 382.44,92.77 381.59,93.20 380.65,93.35 379.71,93.20 378.86,92.77 378.18,92.09 377.75,91.24 377.60,90.30 377.75,89.36 378.18,88.51 378.86,87.83 379.71,87.40 380.65,87.25 381.59,87.40 382.44,87.83 383.12,88.51 383.55,89.36" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>#10 South Hall of Residence - built; stair tower; height 20 m</title></polygon>
+<polygon points="414.70,86.00 420.80,86.00 420.80,90.30 414.70,90.30" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>#10 South Hall of Residence - built; stair tower; height 20 m</title></polygon>
+<polygon points="420.80,90.30 420.65,91.24 420.22,92.09 419.54,92.77 418.69,93.20 417.75,93.35 416.81,93.20 415.96,92.77 415.28,92.09 414.85,91.24 414.70,90.30 414.85,89.36 415.28,88.51 415.96,87.83 416.81,87.40 417.75,87.25 418.69,87.40 419.54,87.83 420.22,88.51 420.65,89.36" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>#10 South Hall of Residence - built; stair tower; height 20 m</title></polygon>
+<polygon points="277.20,21.30 321.40,21.30 321.40,30.10 277.20,30.10" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>#11 North Hall of Residence - built; west wing; height 18 m</title></polygon>
+<polygon points="277.20,30.10 283.30,30.10 283.30,33.75 277.20,33.75" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>#11 North Hall of Residence - built; stair tower; height 20 m</title></polygon>
+<polygon points="283.30,33.75 283.15,34.69 282.72,35.54 282.04,36.22 281.19,36.65 280.25,36.80 279.31,36.65 278.46,36.22 277.78,35.54 277.35,34.69 277.20,33.75 277.35,32.81 277.78,31.96 278.46,31.28 279.31,30.85 280.25,30.70 281.19,30.85 282.04,31.28 282.72,31.96 283.15,32.81" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>#11 North Hall of Residence - built; stair tower; height 20 m</title></polygon>
+<polygon points="315.30,30.10 321.40,30.10 321.40,33.75 315.30,33.75" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>#11 North Hall of Residence - built; stair tower; height 20 m</title></polygon>
+<polygon points="321.40,33.75 321.25,34.69 320.82,35.54 320.14,36.22 319.29,36.65 318.35,36.80 317.41,36.65 316.56,36.22 315.88,35.54 315.45,34.69 315.30,33.75 315.45,32.81 315.88,31.96 316.56,31.28 317.41,30.85 318.35,30.70 319.29,30.85 320.14,31.28 320.82,31.96 321.25,32.81" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>#11 North Hall of Residence - built; stair tower; height 20 m</title></polygon>
+<polygon points="327.20,21.30 371.50,21.30 371.50,30.10 327.20,30.10" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>#11 North Hall of Residence - built; middle wing; height 18 m</title></polygon>
+<polygon points="327.20,30.10 333.30,30.10 333.30,33.75 327.20,33.75" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>#11 North Hall of Residence - built; stair tower; height 20 m</title></polygon>
+<polygon points="333.30,33.75 333.15,34.69 332.72,35.54 332.04,36.22 331.19,36.65 330.25,36.80 329.31,36.65 328.46,36.22 327.78,35.54 327.35,34.69 327.20,33.75 327.35,32.81 327.78,31.96 328.46,31.28 329.31,30.85 330.25,30.70 331.19,30.85 332.04,31.28 332.72,31.96 333.15,32.81" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>#11 North Hall of Residence - built; stair tower; height 20 m</title></polygon>
+<polygon points="365.40,30.10 371.50,30.10 371.50,33.75 365.40,33.75" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>#11 North Hall of Residence - built; stair tower; height 20 m</title></polygon>
+<polygon points="371.50,33.75 371.35,34.69 370.92,35.54 370.24,36.22 369.39,36.65 368.45,36.80 367.51,36.65 366.66,36.22 365.98,35.54 365.55,34.69 365.40,33.75 365.55,32.81 365.98,31.96 366.66,31.28 367.51,30.85 368.45,30.70 369.39,30.85 370.24,31.28 370.92,31.96 371.35,32.81" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>#11 North Hall of Residence - built; stair tower; height 20 m</title></polygon>
+<polygon points="377.20,21.30 420.90,21.30 420.90,30.10 377.20,30.10" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>#11 North Hall of Residence - built; east wing; height 18 m</title></polygon>
+<polygon points="377.20,30.10 383.30,30.10 383.30,33.75 377.20,33.75" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>#11 North Hall of Residence - built; stair tower; height 20 m</title></polygon>
+<polygon points="383.30,33.75 383.15,34.69 382.72,35.54 382.04,36.22 381.19,36.65 380.25,36.80 379.31,36.65 378.46,36.22 377.78,35.54 377.35,34.69 377.20,33.75 377.35,32.81 377.78,31.96 378.46,31.28 379.31,30.85 380.25,30.70 381.19,30.85 382.04,31.28 382.72,31.96 383.15,32.81" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>#11 North Hall of Residence - built; stair tower; height 20 m</title></polygon>
+<polygon points="414.80,30.10 420.90,30.10 420.90,33.75 414.80,33.75" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>#11 North Hall of Residence - built; stair tower; height 20 m</title></polygon>
+<polygon points="420.90,33.75 420.75,34.69 420.32,35.54 419.64,36.22 418.79,36.65 417.85,36.80 416.91,36.65 416.06,36.22 415.38,35.54 414.95,34.69 414.80,33.75 414.95,32.81 415.38,31.96 416.06,31.28 416.91,30.85 417.85,30.70 418.79,30.85 419.64,31.28 420.32,31.96 420.75,32.81" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>#11 North Hall of Residence - built; stair tower; height 20 m</title></polygon>
+<polygon points="204.70,75.90 258.10,75.90 258.10,90.20 204.70,90.20" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>#12 1st Academic Building - built; height 21 m</title></polygon>
+<polygon points="211.60,90.20 233.50,90.20 233.50,98.90 211.60,98.90" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>#12 1st Academic Building - built; height 21 m</title></polygon>
+<polygon points="245.00,90.20 258.10,90.20 258.10,98.90 245.00,98.90" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>#12 1st Academic Building - built; height 21 m</title></polygon>
+<polygon points="209.80,92.00 209.67,92.80 209.30,93.53 208.73,94.10 208.00,94.47 207.20,94.60 206.40,94.47 205.67,94.10 205.10,93.53 204.73,92.80 204.60,92.00 204.73,91.20 205.10,90.47 205.67,89.90 206.40,89.53 207.20,89.40 208.00,89.53 208.73,89.90 209.30,90.47 209.67,91.20" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>#12 1st Academic Building - built; stair tower; height 23 m</title></polygon>
+<polygon points="239.40,92.00 239.27,92.80 238.90,93.53 238.33,94.10 237.60,94.47 236.80,94.60 236.00,94.47 235.27,94.10 234.70,93.53 234.33,92.80 234.20,92.00 234.33,91.20 234.70,90.47 235.27,89.90 236.00,89.53 236.80,89.40 237.60,89.53 238.33,89.90 238.90,90.47 239.27,91.20" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>#12 1st Academic Building - built; stair tower; height 23 m</title></polygon>
+<polygon points="201.80,55.70 230.00,55.70 230.00,64.40 201.80,64.40" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>#13 Car Parking Area - built; height 3.6 m. Covered parking sheds (dark red roofs on the board).</title></polygon>
+<polygon points="231.20,55.70 258.10,55.70 258.10,64.40 231.20,64.40" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>#13 Car Parking Area - built; height 3.6 m. Covered parking sheds (dark red roofs on the board).</title></polygon>
+<polygon points="201.80,66.70 258.10,66.70 258.10,75.20 201.80,75.20" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>#13 Car Parking Area - built; height 3.6 m. Covered parking sheds (dark red roofs on the board).</title></polygon>
+<polygon points="204.70,21.20 258.10,21.20 258.10,32.20 204.70,32.20" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>#14 2nd Academic Building - built; height 22 m</title></polygon>
+<polygon points="211.60,32.20 233.50,32.20 233.50,44.30 211.60,44.30" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>#14 2nd Academic Building - built; height 22 m</title></polygon>
+<polygon points="245.00,32.20 258.10,32.20 258.10,44.30 245.00,44.30" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>#14 2nd Academic Building - built; height 22 m</title></polygon>
+<polygon points="209.80,34.40 209.67,35.20 209.30,35.93 208.73,36.50 208.00,36.87 207.20,37.00 206.40,36.87 205.67,36.50 205.10,35.93 204.73,35.20 204.60,34.40 204.73,33.60 205.10,32.87 205.67,32.30 206.40,31.93 207.20,31.80 208.00,31.93 208.73,32.30 209.30,32.87 209.67,33.60" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>#14 2nd Academic Building - built; stair tower; height 24 m</title></polygon>
+<polygon points="239.40,34.40 239.27,35.20 238.90,35.93 238.33,36.50 237.60,36.87 236.80,37.00 236.00,36.87 235.27,36.50 234.70,35.93 234.33,35.20 234.20,34.40 234.33,33.60 234.70,32.87 235.27,32.30 236.00,31.93 236.80,31.80 237.60,31.93 238.33,32.30 238.90,32.87 239.27,33.60" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>#14 2nd Academic Building - built; stair tower; height 24 m</title></polygon>
+<polygon points="103.00,86.90 139.20,86.90 139.20,101.20 103.00,101.20" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>#15 Southern Workshop - built; height 8 m</title></polygon>
+<polygon points="139.20,86.90 146.00,86.90 146.00,101.20 139.20,101.20" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>#15 Southern Workshop - built; link bay; height 6 m</title></polygon>
+<polygon points="146.00,86.90 182.20,86.90 182.20,101.20 146.00,101.20" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>#15 Southern Workshop - built; height 8 m</title></polygon>
+<polygon points="102.60,58.40 139.20,58.40 139.20,72.70 102.60,72.70" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>#16 Middle Workshop - built; height 8 m</title></polygon>
+<polygon points="139.20,58.40 146.00,58.40 146.00,72.70 139.20,72.70" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>#16 Middle Workshop - built; link bay; height 6 m</title></polygon>
+<polygon points="146.00,58.40 181.50,58.40 181.50,72.70 146.00,72.70" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>#16 Middle Workshop - built; height 8 m</title></polygon>
+<polygon points="102.80,29.20 139.20,29.20 139.20,43.50 102.80,43.50" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>#17 Northern Workshop - built; height 8 m</title></polygon>
+<polygon points="139.20,29.20 146.00,29.20 146.00,43.50 139.20,43.50" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>#17 Northern Workshop - built; link bay; height 6 m</title></polygon>
+<polygon points="146.00,29.20 181.70,29.20 181.70,43.50 146.00,43.50" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>#17 Northern Workshop - built; height 8 m</title></polygon>
+<polygon points="98.20,14.50 142.35,14.50 142.35,25.30 98.20,25.30" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>#18 3rd Academic Building - built; west half; height 15 m</title></polygon>
+<polygon points="142.35,14.50 186.50,14.50 186.50,25.30 142.35,25.30" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>#18 3rd Academic Building - built; east half; height 15 m</title></polygon>
+<polygon points="137.30,116.20 161.00,116.20 161.00,122.40 137.30,122.40" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>#19 Electrical Substation - built; height 5 m</title></polygon>
+<polygon points="137.30,122.40 147.20,122.40 147.20,127.00 137.30,127.00" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>#19 Electrical Substation - built; height 4 m</title></polygon>
+<polygon points="137.30,128.80 147.20,128.80 147.20,139.20 137.30,139.20" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>#19 Electrical Substation - built; transformer yard (fenced); height 2.4 m</title></polygon>
+<polygon points="108.10,246.00 131.60,246.00 131.60,265.40 108.10,265.40" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>#20 VC Residence - built; height 8 m</title></polygon>
+<polygon points="114.10,265.40 120.10,265.40 120.10,270.50 114.10,270.50" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>#20 VC Residence - built; porch; height 4 m</title></polygon>
+<polygon points="126.70,265.40 130.60,265.40 130.60,270.20 126.70,270.20" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>#20 VC Residence - built; porch; height 4 m</title></polygon>
+<polygon points="28.80,233.00 76.40,233.00 76.40,244.60 28.80,244.60" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>#21 Female Hall of Residence - built; north wing; height 15 m</title></polygon>
+<polygon points="35.00,245.60 34.85,246.53 34.43,247.36 33.76,248.03 32.93,248.45 32.00,248.60 31.07,248.45 30.24,248.03 29.57,247.36 29.15,246.53 29.00,245.60 29.15,244.67 29.57,243.84 30.24,243.17 31.07,242.75 32.00,242.60 32.93,242.75 33.76,243.17 34.43,243.84 34.85,244.67" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>#21 Female Hall of Residence - built; stair tower; height 17 m</title></polygon>
+<polygon points="76.20,245.60 76.05,246.53 75.63,247.36 74.96,248.03 74.13,248.45 73.20,248.60 72.27,248.45 71.44,248.03 70.77,247.36 70.35,246.53 70.20,245.60 70.35,244.67 70.77,243.84 71.44,243.17 72.27,242.75 73.20,242.60 74.13,242.75 74.96,243.17 75.63,243.84 76.05,244.67" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>#21 Female Hall of Residence - built; stair tower; height 17 m</title></polygon>
+<polygon points="41.40,265.20 95.50,265.20 95.50,278.50 41.40,278.50" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>#21 Female Hall of Residence - built; south wing; height 15 m</title></polygon>
+<polygon points="47.60,263.40 47.45,264.33 47.03,265.16 46.36,265.83 45.53,266.25 44.60,266.40 43.67,266.25 42.84,265.83 42.17,265.16 41.75,264.33 41.60,263.40 41.75,262.47 42.17,261.64 42.84,260.97 43.67,260.55 44.60,260.40 45.53,260.55 46.36,260.97 47.03,261.64 47.45,262.47" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>#21 Female Hall of Residence - built; stair tower; height 17 m</title></polygon>
+<polygon points="95.30,263.40 95.15,264.33 94.73,265.16 94.06,265.83 93.23,266.25 92.30,266.40 91.37,266.25 90.54,265.83 89.87,265.16 89.45,264.33 89.30,263.40 89.45,262.47 89.87,261.64 90.54,260.97 91.37,260.55 92.30,260.40 93.23,260.55 94.06,260.97 94.73,261.64 95.15,262.47" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>#21 Female Hall of Residence - built; stair tower; height 17 m</title></polygon>
+<polygon points="73.00,199.60 84.40,199.60 84.40,225.00 73.00,225.00" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>#22 F Type Bungalow - built; height 5 m</title></polygon>
+<polygon points="81.70,231.00 86.30,231.00 86.30,237.60 81.70,237.60" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>#22 F Type Bungalow - built; outbuilding; height 3 m</title></polygon>
+<polygon points="60.40,167.90 85.10,167.90 85.10,177.80 60.40,177.80" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>#23 D Type Building - built; height 12 m</title></polygon>
+<polygon points="-6.00,26.70 13.60,26.70 13.60,52.40 -6.00,52.40" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>#24 Medical Center / Laundry - built; medical center; height 8 m. Runs off the photo's west edge; its west half is a placeholder.</title></polygon>
+<polygon points="-6.00,52.40 13.60,52.40 13.60,71.30 -6.00,71.30" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>#24 Medical Center / Laundry - built; laundry; height 7 m. Runs off the photo's west edge; its west half is a placeholder.</title></polygon>
+<polygon points="39.00,16.10 79.40,16.10 79.40,25.80 39.00,25.80" fill="#c49654" stroke="#60342a" stroke-width="0.3"><title>#25 New Male Hall (Under Construction) - under construction; north bar; height 33 m. Courtyard ring ~10 storeys (the high-rise at the top-left of aerial 12), with scaffolding, site fence and a tower crane.</title></polygon>
+<polygon points="38.50,35.70 79.40,35.70 79.40,46.00 38.50,46.00" fill="#c49654" stroke="#60342a" stroke-width="0.3"><title>#25 New Male Hall (Under Construction) - under construction; south bar; height 33 m. Courtyard ring ~10 storeys (the high-rise at the top-left of aerial 12), with scaffolding, site fence and a tower crane.</title></polygon>
+<polygon points="29.30,19.60 38.50,19.60 38.50,42.60 29.30,42.60" fill="#c49654" stroke="#60342a" stroke-width="0.3"><title>#25 New Male Hall (Under Construction) - under construction; west block; height 33 m. Courtyard ring ~10 storeys (the high-rise at the top-left of aerial 12), with scaffolding, site fence and a tower crane.</title></polygon>
+<polygon points="79.40,20.00 88.60,20.00 88.60,43.00 79.40,43.00" fill="#c49654" stroke="#60342a" stroke-width="0.3"><title>#25 New Male Hall (Under Construction) - under construction; east block; height 33 m. Courtyard ring ~10 storeys (the high-rise at the top-left of aerial 12), with scaffolding, site fence and a tower crane.</title></polygon>
+<polygon points="28.20,122.40 64.40,122.40 64.40,144.20 28.20,144.20" fill="#ba78c8" stroke="#60342a" stroke-width="0.3" fill-opacity="0.55" stroke-dasharray="1.2,0.8"><title>#26 Studio Apartments (Proposed) - proposed. Board marks it proposed: a fenced, staked plot with a site board (D47).</title></polygon>
+<rect x="27.00" y="105.10" width="65.00" height="45.60" fill="none" stroke="#8c3ca0" stroke-width="0.35" stroke-dasharray="2,1.2"/>
+<polygon points="147.90,260.80 213.40,260.80 213.40,283.40 147.90,283.40" fill="#ba78c8" stroke="#60342a" stroke-width="0.3" fill-opacity="0.55" stroke-dasharray="1.2,0.8"><title>#27 New Academic Building (Proposed) - proposed. Board marks it proposed: a fenced, staked plot with a site board (D47).</title></polygon>
+<rect x="145.50" y="258.40" width="70.30" height="27.20" fill="none" stroke="#8c3ca0" stroke-width="0.35" stroke-dasharray="2,1.2"/>
+<polygon points="338.10,5.30 361.60,5.30 361.60,12.40 338.10,12.40" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>Staff block (unlabelled) - built; height 4 m</title></polygon>
+<polygon points="328.20,5.80 330.70,5.80 330.70,9.90 328.20,9.90" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>Small room (unlabelled) - built; height 3 m</title></polygon>
+<polygon points="365.00,5.80 368.20,5.80 368.20,9.90 365.00,9.90" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>Small room (unlabelled) - built; height 3 m</title></polygon>
+<polygon points="208.00,10.40 212.80,10.40 212.80,15.00 208.00,15.00" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>Pump house (unlabelled, by the canal) - built; height 3 m</title></polygon>
+<polygon points="269.00,288.20 303.00,288.20 303.00,296.20 269.00,296.20" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>South service gate (unlabelled) - built; height 3.5 m. Brown block straddling the south canal and wall on the board; read as a service gate with guard rooms.</title></polygon>
+<polygon points="446.00,135.00 453.60,135.00 453.60,149.50 446.00,149.50" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>Shelter by the courts (unlabelled) - built; height 3 m</title></polygon>
+<polygon points="14.00,15.40 18.40,15.40 18.40,21.20 14.00,21.20" fill="#b26856" stroke="#60342a" stroke-width="0.3"><title>Hut (unlabelled) - built; height 3 m</title></polygon>
+</g>
+<g id="layer-boundary" inkscape:groupmode="layer" inkscape:label="Campus wall">
+<polygon points="-14.00,10.60 14.00,10.00 100.00,7.40 200.00,4.60 300.00,1.80 414.00,-1.40 448.50,-1.60 469.00,151.80 486.00,283.00 380.00,287.60 341.00,290.40 324.00,292.60 308.00,299.00 230.00,301.40 92.00,301.60 57.00,298.00 33.00,291.00 21.00,276.00 16.00,250.00 14.30,200.00 14.00,87.00 12.70,80.50 0.00,79.60 -14.00,79.40" fill="none" stroke="#f0f0ec" stroke-width="1.0" stroke-dasharray="2.2,1.2"><title>Campus wall (east side: the Dhaka-Mymensingh highway)</title></polygon>
+</g>
+<g id="layer-reference" inkscape:groupmode="layer" inkscape:label="Reference: official board (photo, aligned; switch on to compare)" style="display:none">
+<image xlink:href="reference/board_north_up.jpg" href="reference/board_north_up.jpg" x="0.00" y="-32.20" width="471.04" height="353.28" preserveAspectRatio="none" opacity="0.55"><title>The official IUT campus board (photo), turned north-up and aligned</title></image>
+</g>
+<g id="layer-solids" inkscape:groupmode="layer" inkscape:label="Game: collision" style="display:none">
+<rect x="-14.00" y="11.38" width="14.00" height="4.04" fill="#000000" stroke="#000000" stroke-width="0.15" fill-opacity="0.22"><title>Bounds/Canal_canal_north_0_0/Shape</title></rect>
+<rect x="-0.02" y="8.38" width="207.04" height="4.04" fill="#000000" stroke="#000000" stroke-width="0.15" fill-opacity="0.22"><title>Bounds/Canal_canal_north_1_0/Shape</title></rect>
+<rect x="206.99" y="3.38" width="138.02" height="4.04" fill="#000000" stroke="#000000" stroke-width="0.15" fill-opacity="0.22"><title>Bounds/Canal_canal_north_2_0/Shape</title></rect>
+<rect x="345.00" y="0.63" width="69.00" height="4.04" fill="#000000" stroke="#000000" stroke-width="0.15" fill-opacity="0.22"><title>Bounds/Canal_canal_north_3_0/Shape</title></rect>
+<rect x="414.00" y="-0.17" width="32.00" height="4.04" fill="#000000" stroke="#000000" stroke-width="0.15" fill-opacity="0.22"><title>Bounds/Canal_canal_north_4_0/Shape</title></rect>
+<rect x="432.22" y="21.78" width="28.56" height="4.04" fill="#000000" stroke="#000000" stroke-width="0.15" fill-opacity="0.22"><title>Bounds/Canal_canal_east_0_0/Shape</title></rect>
+<rect x="440.67" y="55.48" width="14.96" height="4.04" fill="#000000" stroke="#000000" stroke-width="0.15" fill-opacity="0.22"><title>Bounds/Canal_canal_east_1_0/Shape</title></rect>
+<rect x="446.42" y="71.98" width="6.46" height="4.04" fill="#000000" stroke="#000000" stroke-width="0.15" fill-opacity="0.22"><title>Bounds/Canal_canal_east_2_0/Shape</title></rect>
+<rect x="9.83" y="27.58" width="21.34" height="4.04" fill="#000000" stroke="#000000" stroke-width="0.15" fill-opacity="0.22"><title>Bounds/Canal_canal_west_0_0/Shape</title></rect>
+<rect x="-24.38" y="118.18" width="89.76" height="4.04" fill="#000000" stroke="#000000" stroke-width="0.15" fill-opacity="0.22"><title>Bounds/Canal_canal_west_0_1/Shape</title></rect>
+<rect x="17.31" y="194.18" width="8.18" height="4.04" fill="#000000" stroke="#000000" stroke-width="0.15" fill-opacity="0.22"><title>Bounds/Canal_canal_west_1_0/Shape</title></rect>
+<rect x="16.33" y="211.88" width="15.14" height="4.04" fill="#000000" stroke="#000000" stroke-width="0.15" fill-opacity="0.22"><title>Bounds/Canal_canal_west_2_0/Shape</title></rect>
+<rect x="18.86" y="234.88" width="14.88" height="4.04" fill="#000000" stroke="#000000" stroke-width="0.15" fill-opacity="0.22"><title>Bounds/Canal_canal_west_3_0/Shape</title></rect>
+<rect x="21.29" y="257.88" width="15.22" height="4.04" fill="#000000" stroke="#000000" stroke-width="0.15" fill-opacity="0.22"><title>Bounds/Canal_canal_west_4_0/Shape</title></rect>
+<rect x="29.58" y="274.68" width="11.54" height="4.04" fill="#000000" stroke="#000000" stroke-width="0.15" fill-opacity="0.22"><title>Bounds/Canal_canal_west_5_0/Shape</title></rect>
+<rect x="39.92" y="281.78" width="17.66" height="4.04" fill="#000000" stroke="#000000" stroke-width="0.15" fill-opacity="0.22"><title>Bounds/Canal_canal_west_6_0/Shape</title></rect>
+<rect x="57.43" y="285.93" width="34.64" height="4.04" fill="#000000" stroke="#000000" stroke-width="0.15" fill-opacity="0.22"><title>Bounds/Canal_canal_west_7_0/Shape</title></rect>
+<rect x="91.97" y="289.93" width="34.56" height="4.04" fill="#000000" stroke="#000000" stroke-width="0.15" fill-opacity="0.22"><title>Bounds/Canal_canal_west_8_0/Shape</title></rect>
+<rect x="126.50" y="291.78" width="34.50" height="4.04" fill="#000000" stroke="#000000" stroke-width="0.15" fill-opacity="0.22"><title>Bounds/Canal_canal_west_9_0/Shape</title></rect>
+<rect x="161.00" y="291.53" width="34.50" height="4.04" fill="#000000" stroke="#000000" stroke-width="0.15" fill-opacity="0.22"><title>Bounds/Canal_canal_west_10_0/Shape</title></rect>
+<rect x="195.49" y="290.38" width="34.52" height="4.04" fill="#000000" stroke="#000000" stroke-width="0.15" fill-opacity="0.22"><title>Bounds/Canal_canal_west_11_0/Shape</title></rect>
+<rect x="229.99" y="288.78" width="34.52" height="4.04" fill="#000000" stroke="#000000" stroke-width="0.15" fill-opacity="0.22"><title>Bounds/Canal_canal_west_12_0/Shape</title></rect>
+<rect x="264.49" y="286.78" width="34.52" height="4.04" fill="#000000" stroke="#000000" stroke-width="0.15" fill-opacity="0.22"><title>Bounds/Canal_canal_west_13_0/Shape</title></rect>
+<rect x="299.00" y="285.53" width="42.00" height="4.04" fill="#000000" stroke="#000000" stroke-width="0.15" fill-opacity="0.22"><title>Bounds/Canal_canal_west_14_0/Shape</title></rect>
+<rect x="27.00" y="104.87" width="65.00" height="0.46" fill="#000000" stroke="#000000" stroke-width="0.15" fill-opacity="0.22"><title>Bounds/PlotFence_studio_apartments_0/Shape</title></rect>
+<rect x="77.34" y="127.67" width="29.32" height="0.46" fill="#000000" stroke="#000000" stroke-width="0.15" fill-opacity="0.22"><title>Bounds/PlotFence_studio_apartments_1/Shape</title></rect>
+<rect x="12.34" y="127.67" width="29.32" height="0.46" fill="#000000" stroke="#000000" stroke-width="0.15" fill-opacity="0.22"><title>Bounds/PlotFence_studio_apartments_2/Shape</title></rect>
+<rect x="27.00" y="150.47" width="30.50" height="0.46" fill="#000000" stroke="#000000" stroke-width="0.15" fill-opacity="0.22"><title>Bounds/PlotFence_studio_apartments_3/Shape</title></rect>
+<rect x="61.50" y="150.47" width="30.50" height="0.46" fill="#000000" stroke="#000000" stroke-width="0.15" fill-opacity="0.22"><title>Bounds/PlotFence_studio_apartments_4/Shape</title></rect>
+<rect x="145.50" y="258.17" width="70.30" height="0.46" fill="#000000" stroke="#000000" stroke-width="0.15" fill-opacity="0.22"><title>Bounds/PlotFence_new_academic_0/Shape</title></rect>
+<rect x="207.06" y="271.77" width="17.48" height="0.46" fill="#000000" stroke="#000000" stroke-width="0.15" fill-opacity="0.22"><title>Bounds/PlotFence_new_academic_1/Shape</title></rect>
+<rect x="136.76" y="271.77" width="17.48" height="0.46" fill="#000000" stroke="#000000" stroke-width="0.15" fill-opacity="0.22"><title>Bounds/PlotFence_new_academic_2/Shape</title></rect>
+<rect x="145.50" y="285.37" width="33.15" height="0.46" fill="#000000" stroke="#000000" stroke-width="0.15" fill-opacity="0.22"><title>Bounds/PlotFence_new_academic_3/Shape</title></rect>
+<rect x="182.65" y="285.37" width="33.15" height="0.46" fill="#000000" stroke="#000000" stroke-width="0.15" fill-opacity="0.22"><title>Bounds/PlotFence_new_academic_4/Shape</title></rect>
+</g>
+<g id="layer-doors" inkscape:groupmode="layer" inkscape:label="Entrances and game doors">
+<circle cx="473.5" cy="277.6" r="1.1" fill="#ffd23f" stroke="#000" stroke-width="0.2"><title>Entrance: #1 IUT Main Gate -> main_gate_security</title></circle>
+<circle cx="259.8" cy="191.4" r="1.1" fill="#ffd23f" stroke="#000" stroke-width="0.2"><title>Entrance: #3 IUT Mosque -> mosque_prayer_hall</title></circle>
+<circle cx="223.4" cy="162.0" r="1.1" fill="#ffd23f" stroke="#000" stroke-width="0.2"><title>Entrance: #4 Auditorium -> auditorium_hall</title></circle>
+<circle cx="271.0" cy="163.0" r="1.1" fill="#ffd23f" stroke="#000" stroke-width="0.2"><title>Entrance: #5 Cafeteria / Library -> central_cafe</title></circle>
+<circle cx="232.6" cy="142.6" r="1.1" fill="#ffd23f" stroke="#000" stroke-width="0.2"><title>Entrance: #6 Administrative Building -> admin_lobby</title></circle>
+<circle cx="364.5" cy="141.0" r="1.1" fill="#ffd23f" stroke="#000" stroke-width="0.2"><title>Entrance: #8 CDS / Student Center -> cds_veranda</title></circle>
+<circle cx="350.0" cy="86.7" r="1.1" fill="#ffd23f" stroke="#000" stroke-width="0.2"><title>Entrance: #10 South Hall of Residence -> hall_corridor</title></circle>
+<circle cx="349.3" cy="30.8" r="1.1" fill="#ffd23f" stroke="#000" stroke-width="0.2"><title>Entrance: #11 North Hall of Residence -> hall_common</title></circle>
+<circle cx="222.5" cy="99.6" r="1.1" fill="#ffd23f" stroke="#000" stroke-width="0.2"><title>Entrance: #12 1st Academic Building -> academic_corridor</title></circle>
+<circle cx="222.5" cy="44.9" r="1.1" fill="#ffd23f" stroke="#000" stroke-width="0.2"><title>Entrance: #14 2nd Academic Building -> academic_lab</title></circle>
+<circle cx="142.6" cy="73.3" r="1.1" fill="#ffd23f" stroke="#000" stroke-width="0.2"><title>Entrance: #16 Middle Workshop -> me_workshop</title></circle>
+<circle cx="473.5" cy="277.6" r="0.6" fill="#ff9f1c" stroke="#000" stroke-width="0.15"><title>Game door Door_main_gate_security -> main_gate_security:security_inside</title></circle>
+<circle cx="259.8" cy="191.4" r="0.6" fill="#ff9f1c" stroke="#000" stroke-width="0.15"><title>Game door Door_mosque_prayer_hall -> mosque_prayer_hall:mosque_from_plaza</title></circle>
+<circle cx="223.4" cy="162.0" r="0.6" fill="#ff9f1c" stroke="#000" stroke-width="0.15"><title>Game door Door_auditorium_hall -> auditorium_hall:auditorium_from_plaza</title></circle>
+<circle cx="271.0" cy="163.0" r="0.6" fill="#ff9f1c" stroke="#000" stroke-width="0.15"><title>Game door Door_central_cafe -> central_cafe:cafe_from_plaza</title></circle>
+<circle cx="232.6" cy="142.6" r="0.6" fill="#ff9f1c" stroke="#000" stroke-width="0.15"><title>Game door Door_admin_lobby -> admin_lobby:lobby_from_outside</title></circle>
+<circle cx="364.5" cy="141.0" r="0.6" fill="#ff9f1c" stroke="#000" stroke-width="0.15"><title>Game door Door_cds_veranda -> cds_veranda:inside_cds_entry</title></circle>
+<circle cx="350.0" cy="86.7" r="0.6" fill="#ff9f1c" stroke="#000" stroke-width="0.15"><title>Game door Door_hall_corridor -> hall_corridor:hallcorr_from_outside</title></circle>
+<circle cx="349.3" cy="30.8" r="0.6" fill="#ff9f1c" stroke="#000" stroke-width="0.15"><title>Game door Door_hall_common -> hall_common:common_from_outside</title></circle>
+<circle cx="222.5" cy="99.6" r="0.6" fill="#ff9f1c" stroke="#000" stroke-width="0.15"><title>Game door Door_academic_corridor -> academic_corridor:corridor_from_outside</title></circle>
+<circle cx="222.5" cy="44.9" r="0.6" fill="#ff9f1c" stroke="#000" stroke-width="0.15"><title>Game door Door_academic_lab -> academic_lab:lab_from_outside</title></circle>
+<circle cx="142.6" cy="73.3" r="0.6" fill="#ff9f1c" stroke="#000" stroke-width="0.15"><title>Game door Door_me_workshop -> me_workshop:workshop_from_outside</title></circle>
+</g>
+<g id="layer-spawns" inkscape:groupmode="layer" inkscape:label="Spawns">
+<path d="M465.2,266.8 h1.6 M466.0,266.0 v1.6" stroke="#ff4fd8" stroke-width="0.3"><title>explore_start</title></path>
+<path d="M472.7,279.4 h1.6 M473.5,278.59999999999997 v1.6" stroke="#ff4fd8" stroke-width="0.3"><title>outside_security</title></path>
+<path d="M260.8,191.4 h1.6 M261.6,190.6 v1.6" stroke="#ff4fd8" stroke-width="0.3"><title>outside_mosque</title></path>
+<path d="M224.39999999999998,162.0 h1.6 M225.2,161.2 v1.6" stroke="#ff4fd8" stroke-width="0.3"><title>outside_auditorium</title></path>
+<path d="M270.2,164.8 h1.6 M271.0,164.0 v1.6" stroke="#ff4fd8" stroke-width="0.3"><title>outside_cafe</title></path>
+<path d="M231.79999999999998,144.4 h1.6 M232.6,143.6 v1.6" stroke="#ff4fd8" stroke-width="0.3"><title>outside_admin</title></path>
+<path d="M363.7,142.8 h1.6 M364.5,142.0 v1.6" stroke="#ff4fd8" stroke-width="0.3"><title>outside_cds_entrance</title></path>
+<path d="M349.2,88.5 h1.6 M350.0,87.7 v1.6" stroke="#ff4fd8" stroke-width="0.3"><title>outside_south_hall</title></path>
+<path d="M348.5,32.6 h1.6 M349.3,31.8 v1.6" stroke="#ff4fd8" stroke-width="0.3"><title>outside_north_hall</title></path>
+<path d="M221.7,101.4 h1.6 M222.5,100.60000000000001 v1.6" stroke="#ff4fd8" stroke-width="0.3"><title>outside_academic_1</title></path>
+<path d="M221.7,46.7 h1.6 M222.5,45.900000000000006 v1.6" stroke="#ff4fd8" stroke-width="0.3"><title>outside_academic_2</title></path>
+<path d="M141.79999999999998,75.1 h1.6 M142.6,74.3 v1.6" stroke="#ff4fd8" stroke-width="0.3"><title>outside_workshop</title></path>
+<path d="M465.2,266.8 h1.6 M466.0,266.0 v1.6" stroke="#ff4fd8" stroke-width="0.3"><title>explore_start</title></path>
+</g>
+<g id="layer-labels" inkscape:groupmode="layer" inkscape:label="Labels and numbers">
+<text x="313.40" y="268.10" font-family="Arial, sans-serif" font-size="6" fill="#ffffff" text-anchor="middle" font-weight="bold" opacity="0.85">SOUTHERN FIELD</text>
+<text x="389.05" y="187.50" font-family="Arial, sans-serif" font-size="6" fill="#ffffff" text-anchor="middle" font-weight="bold" opacity="0.85">CENTRAL FIELD</text>
+<circle cx="477.75" cy="268.30" r="3.0" fill="#ffffff" stroke="#60301e" stroke-width="0.3"/>
+<text x="477.75" y="269.55" font-family="Arial, sans-serif" font-size="3.4" fill="#3c1e18" text-anchor="middle" font-weight="bold">1</text>
+<circle cx="300.60" cy="220.60" r="3.0" fill="#ffffff" stroke="#60301e" stroke-width="0.3"/>
+<text x="300.60" y="221.85" font-family="Arial, sans-serif" font-size="3.4" fill="#3c1e18" text-anchor="middle" font-weight="bold">2</text>
+<circle cx="243.50" cy="191.20" r="3.0" fill="#ffffff" stroke="#60301e" stroke-width="0.3"/>
+<text x="243.50" y="192.45" font-family="Arial, sans-serif" font-size="3.4" fill="#3c1e18" text-anchor="middle" font-weight="bold">3</text>
+<circle cx="202.05" cy="169.95" r="3.0" fill="#ffffff" stroke="#60301e" stroke-width="0.3"/>
+<text x="202.05" y="171.20" font-family="Arial, sans-serif" font-size="3.4" fill="#3c1e18" text-anchor="middle" font-weight="bold">4</text>
+<circle cx="284.75" cy="142.30" r="3.0" fill="#ffffff" stroke="#60301e" stroke-width="0.3"/>
+<text x="284.75" y="143.55" font-family="Arial, sans-serif" font-size="3.4" fill="#3c1e18" text-anchor="middle" font-weight="bold">5</text>
+<circle cx="237.50" cy="131.90" r="3.0" fill="#ffffff" stroke="#60301e" stroke-width="0.3"/>
+<text x="237.50" y="133.15" font-family="Arial, sans-serif" font-size="3.4" fill="#3c1e18" text-anchor="middle" font-weight="bold">6</text>
+<circle cx="401.85" cy="128.20" r="3.0" fill="#ffffff" stroke="#60301e" stroke-width="0.3"/>
+<text x="401.85" y="129.45" font-family="Arial, sans-serif" font-size="3.4" fill="#3c1e18" text-anchor="middle" font-weight="bold">7</text>
+<circle cx="360.00" cy="128.70" r="3.0" fill="#ffffff" stroke="#60301e" stroke-width="0.3"/>
+<text x="360.00" y="129.95" font-family="Arial, sans-serif" font-size="3.4" fill="#3c1e18" text-anchor="middle" font-weight="bold">8</text>
+<circle cx="423.20" cy="44.85" r="3.0" fill="#ffffff" stroke="#60301e" stroke-width="0.3"/>
+<text x="423.20" y="46.10" font-family="Arial, sans-serif" font-size="3.4" fill="#3c1e18" text-anchor="middle" font-weight="bold">9</text>
+<circle cx="349.10" cy="85.32" r="3.0" fill="#ffffff" stroke="#60301e" stroke-width="0.3"/>
+<text x="349.10" y="86.57" font-family="Arial, sans-serif" font-size="3.4" fill="#3c1e18" text-anchor="middle" font-weight="bold">10</text>
+<circle cx="349.05" cy="29.05" r="3.0" fill="#ffffff" stroke="#60301e" stroke-width="0.3"/>
+<text x="349.05" y="30.30" font-family="Arial, sans-serif" font-size="3.4" fill="#3c1e18" text-anchor="middle" font-weight="bold">11</text>
+<circle cx="231.35" cy="87.40" r="3.0" fill="#ffffff" stroke="#60301e" stroke-width="0.3"/>
+<text x="231.35" y="88.65" font-family="Arial, sans-serif" font-size="3.4" fill="#3c1e18" text-anchor="middle" font-weight="bold">12</text>
+<circle cx="229.95" cy="65.45" r="3.0" fill="#ffffff" stroke="#60301e" stroke-width="0.3"/>
+<text x="229.95" y="66.70" font-family="Arial, sans-serif" font-size="3.4" fill="#3c1e18" text-anchor="middle" font-weight="bold">13</text>
+<circle cx="231.35" cy="32.75" r="3.0" fill="#ffffff" stroke="#60301e" stroke-width="0.3"/>
+<text x="231.35" y="34.00" font-family="Arial, sans-serif" font-size="3.4" fill="#3c1e18" text-anchor="middle" font-weight="bold">14</text>
+<circle cx="142.60" cy="94.05" r="3.0" fill="#ffffff" stroke="#60301e" stroke-width="0.3"/>
+<text x="142.60" y="95.30" font-family="Arial, sans-serif" font-size="3.4" fill="#3c1e18" text-anchor="middle" font-weight="bold">15</text>
+<circle cx="142.05" cy="65.55" r="3.0" fill="#ffffff" stroke="#60301e" stroke-width="0.3"/>
+<text x="142.05" y="66.80" font-family="Arial, sans-serif" font-size="3.4" fill="#3c1e18" text-anchor="middle" font-weight="bold">16</text>
+<circle cx="142.25" cy="36.35" r="3.0" fill="#ffffff" stroke="#60301e" stroke-width="0.3"/>
+<text x="142.25" y="37.60" font-family="Arial, sans-serif" font-size="3.4" fill="#3c1e18" text-anchor="middle" font-weight="bold">17</text>
+<circle cx="142.35" cy="19.90" r="3.0" fill="#ffffff" stroke="#60301e" stroke-width="0.3"/>
+<text x="142.35" y="21.15" font-family="Arial, sans-serif" font-size="3.4" fill="#3c1e18" text-anchor="middle" font-weight="bold">18</text>
+<circle cx="149.15" cy="127.70" r="3.0" fill="#ffffff" stroke="#60301e" stroke-width="0.3"/>
+<text x="149.15" y="128.95" font-family="Arial, sans-serif" font-size="3.4" fill="#3c1e18" text-anchor="middle" font-weight="bold">19</text>
+<circle cx="119.85" cy="258.25" r="3.0" fill="#ffffff" stroke="#60301e" stroke-width="0.3"/>
+<text x="119.85" y="259.50" font-family="Arial, sans-serif" font-size="3.4" fill="#3c1e18" text-anchor="middle" font-weight="bold">20</text>
+<circle cx="62.15" cy="255.75" r="3.0" fill="#ffffff" stroke="#60301e" stroke-width="0.3"/>
+<text x="62.15" y="257.00" font-family="Arial, sans-serif" font-size="3.4" fill="#3c1e18" text-anchor="middle" font-weight="bold">21</text>
+<circle cx="79.65" cy="218.60" r="3.0" fill="#ffffff" stroke="#60301e" stroke-width="0.3"/>
+<text x="79.65" y="219.85" font-family="Arial, sans-serif" font-size="3.4" fill="#3c1e18" text-anchor="middle" font-weight="bold">22</text>
+<circle cx="72.75" cy="172.85" r="3.0" fill="#ffffff" stroke="#60301e" stroke-width="0.3"/>
+<text x="72.75" y="174.10" font-family="Arial, sans-serif" font-size="3.4" fill="#3c1e18" text-anchor="middle" font-weight="bold">23</text>
+<circle cx="3.80" cy="49.00" r="3.0" fill="#ffffff" stroke="#60301e" stroke-width="0.3"/>
+<text x="3.80" y="50.25" font-family="Arial, sans-serif" font-size="3.4" fill="#3c1e18" text-anchor="middle" font-weight="bold">24</text>
+<circle cx="58.95" cy="31.05" r="3.0" fill="#ffffff" stroke="#60301e" stroke-width="0.3"/>
+<text x="58.95" y="32.30" font-family="Arial, sans-serif" font-size="3.4" fill="#3c1e18" text-anchor="middle" font-weight="bold">25</text>
+<circle cx="46.30" cy="133.30" r="3.0" fill="#ffffff" stroke="#60301e" stroke-width="0.3"/>
+<text x="46.30" y="134.55" font-family="Arial, sans-serif" font-size="3.4" fill="#3c1e18" text-anchor="middle" font-weight="bold">26</text>
+<circle cx="180.65" cy="272.10" r="3.0" fill="#ffffff" stroke="#60301e" stroke-width="0.3"/>
+<text x="180.65" y="273.35" font-family="Arial, sans-serif" font-size="3.4" fill="#3c1e18" text-anchor="middle" font-weight="bold">27</text>
+</g>
+<g id="layer-grid" inkscape:groupmode="layer" inkscape:label="Grid (50 m)">
+<path d="M-50,-13.6 V313.6" stroke="#ffffff" stroke-width="0.15" opacity="0.3"/>
+<text x="-49.50" y="-10.60" font-family="Arial, sans-serif" font-size="1.8" fill="#ffffff" text-anchor="start" font-weight="normal">-50 m</text>
+<path d="M0,-13.6 V313.6" stroke="#ffffff" stroke-width="0.15" opacity="0.3"/>
+<text x="0.50" y="-10.60" font-family="Arial, sans-serif" font-size="1.8" fill="#ffffff" text-anchor="start" font-weight="normal">0 m</text>
+<path d="M50,-13.6 V313.6" stroke="#ffffff" stroke-width="0.15" opacity="0.3"/>
+<text x="50.50" y="-10.60" font-family="Arial, sans-serif" font-size="1.8" fill="#ffffff" text-anchor="start" font-weight="normal">50 m</text>
+<path d="M100,-13.6 V313.6" stroke="#ffffff" stroke-width="0.15" opacity="0.3"/>
+<text x="100.50" y="-10.60" font-family="Arial, sans-serif" font-size="1.8" fill="#ffffff" text-anchor="start" font-weight="normal">100 m</text>
+<path d="M150,-13.6 V313.6" stroke="#ffffff" stroke-width="0.15" opacity="0.3"/>
+<text x="150.50" y="-10.60" font-family="Arial, sans-serif" font-size="1.8" fill="#ffffff" text-anchor="start" font-weight="normal">150 m</text>
+<path d="M200,-13.6 V313.6" stroke="#ffffff" stroke-width="0.15" opacity="0.3"/>
+<text x="200.50" y="-10.60" font-family="Arial, sans-serif" font-size="1.8" fill="#ffffff" text-anchor="start" font-weight="normal">200 m</text>
+<path d="M250,-13.6 V313.6" stroke="#ffffff" stroke-width="0.15" opacity="0.3"/>
+<text x="250.50" y="-10.60" font-family="Arial, sans-serif" font-size="1.8" fill="#ffffff" text-anchor="start" font-weight="normal">250 m</text>
+<path d="M300,-13.6 V313.6" stroke="#ffffff" stroke-width="0.15" opacity="0.3"/>
+<text x="300.50" y="-10.60" font-family="Arial, sans-serif" font-size="1.8" fill="#ffffff" text-anchor="start" font-weight="normal">300 m</text>
+<path d="M350,-13.6 V313.6" stroke="#ffffff" stroke-width="0.15" opacity="0.3"/>
+<text x="350.50" y="-10.60" font-family="Arial, sans-serif" font-size="1.8" fill="#ffffff" text-anchor="start" font-weight="normal">350 m</text>
+<path d="M400,-13.6 V313.6" stroke="#ffffff" stroke-width="0.15" opacity="0.3"/>
+<text x="400.50" y="-10.60" font-family="Arial, sans-serif" font-size="1.8" fill="#ffffff" text-anchor="start" font-weight="normal">400 m</text>
+<path d="M450,-13.6 V313.6" stroke="#ffffff" stroke-width="0.15" opacity="0.3"/>
+<text x="450.50" y="-10.60" font-family="Arial, sans-serif" font-size="1.8" fill="#ffffff" text-anchor="start" font-weight="normal">450 m</text>
+<path d="M-26.0,-50 H498.0" stroke="#ffffff" stroke-width="0.15" opacity="0.3"/>
+<text x="-25.50" y="-50.50" font-family="Arial, sans-serif" font-size="1.8" fill="#ffffff" text-anchor="start" font-weight="normal">-50 m</text>
+<path d="M-26.0,0 H498.0" stroke="#ffffff" stroke-width="0.15" opacity="0.3"/>
+<text x="-25.50" y="-0.50" font-family="Arial, sans-serif" font-size="1.8" fill="#ffffff" text-anchor="start" font-weight="normal">0 m</text>
+<path d="M-26.0,50 H498.0" stroke="#ffffff" stroke-width="0.15" opacity="0.3"/>
+<text x="-25.50" y="49.50" font-family="Arial, sans-serif" font-size="1.8" fill="#ffffff" text-anchor="start" font-weight="normal">50 m</text>
+<path d="M-26.0,100 H498.0" stroke="#ffffff" stroke-width="0.15" opacity="0.3"/>
+<text x="-25.50" y="99.50" font-family="Arial, sans-serif" font-size="1.8" fill="#ffffff" text-anchor="start" font-weight="normal">100 m</text>
+<path d="M-26.0,150 H498.0" stroke="#ffffff" stroke-width="0.15" opacity="0.3"/>
+<text x="-25.50" y="149.50" font-family="Arial, sans-serif" font-size="1.8" fill="#ffffff" text-anchor="start" font-weight="normal">150 m</text>
+<path d="M-26.0,200 H498.0" stroke="#ffffff" stroke-width="0.15" opacity="0.3"/>
+<text x="-25.50" y="199.50" font-family="Arial, sans-serif" font-size="1.8" fill="#ffffff" text-anchor="start" font-weight="normal">200 m</text>
+<path d="M-26.0,250 H498.0" stroke="#ffffff" stroke-width="0.15" opacity="0.3"/>
+<text x="-25.50" y="249.50" font-family="Arial, sans-serif" font-size="1.8" fill="#ffffff" text-anchor="start" font-weight="normal">250 m</text>
+<path d="M-26.0,300 H498.0" stroke="#ffffff" stroke-width="0.15" opacity="0.3"/>
+<text x="-25.50" y="299.50" font-family="Arial, sans-serif" font-size="1.8" fill="#ffffff" text-anchor="start" font-weight="normal">300 m</text>
+</g>
+<g id="layer-legend" inkscape:groupmode="layer" inkscape:label="Legend">
+<rect x="502.00" y="-5.60" width="84.00" height="126.40" fill="#ffffff" stroke="#000" stroke-width="0.3" opacity="0.95"/>
+<text x="505.00" y="0.40" font-family="Arial, sans-serif" font-size="3.0" fill="#000" text-anchor="start" font-weight="bold">IUT campus - from the official board</text>
+<text x="505.00" y="6.40" font-family="Arial, sans-serif" font-size="2.4" fill="#000" text-anchor="start" font-weight="normal">1. IUT Main Gate</text>
+<text x="505.00" y="10.00" font-family="Arial, sans-serif" font-size="2.4" fill="#000" text-anchor="start" font-weight="normal">2. Five Fundamentals</text>
+<text x="505.00" y="13.60" font-family="Arial, sans-serif" font-size="2.4" fill="#000" text-anchor="start" font-weight="normal">3. IUT Mosque</text>
+<text x="505.00" y="17.20" font-family="Arial, sans-serif" font-size="2.4" fill="#000" text-anchor="start" font-weight="normal">4. Auditorium</text>
+<text x="505.00" y="20.80" font-family="Arial, sans-serif" font-size="2.4" fill="#000" text-anchor="start" font-weight="normal">5. Cafeteria / Library</text>
+<text x="505.00" y="24.40" font-family="Arial, sans-serif" font-size="2.4" fill="#000" text-anchor="start" font-weight="normal">6. Administrative Building</text>
+<text x="505.00" y="28.00" font-family="Arial, sans-serif" font-size="2.4" fill="#000" text-anchor="start" font-weight="normal">7. Indoor Sports Ground</text>
+<text x="505.00" y="31.60" font-family="Arial, sans-serif" font-size="2.4" fill="#000" text-anchor="start" font-weight="normal">8. CDS / Student Center</text>
+<text x="505.00" y="35.20" font-family="Arial, sans-serif" font-size="2.4" fill="#000" text-anchor="start" font-weight="normal">9. Male Common Facility Building</text>
+<text x="505.00" y="38.80" font-family="Arial, sans-serif" font-size="2.4" fill="#000" text-anchor="start" font-weight="normal">10. South Hall of Residence</text>
+<text x="505.00" y="42.40" font-family="Arial, sans-serif" font-size="2.4" fill="#000" text-anchor="start" font-weight="normal">11. North Hall of Residence</text>
+<text x="505.00" y="46.00" font-family="Arial, sans-serif" font-size="2.4" fill="#000" text-anchor="start" font-weight="normal">12. 1st Academic Building</text>
+<text x="505.00" y="49.60" font-family="Arial, sans-serif" font-size="2.4" fill="#000" text-anchor="start" font-weight="normal">13. Car Parking Area</text>
+<text x="505.00" y="53.20" font-family="Arial, sans-serif" font-size="2.4" fill="#000" text-anchor="start" font-weight="normal">14. 2nd Academic Building</text>
+<text x="505.00" y="56.80" font-family="Arial, sans-serif" font-size="2.4" fill="#000" text-anchor="start" font-weight="normal">15. Southern Workshop</text>
+<text x="505.00" y="60.40" font-family="Arial, sans-serif" font-size="2.4" fill="#000" text-anchor="start" font-weight="normal">16. Middle Workshop</text>
+<text x="505.00" y="64.00" font-family="Arial, sans-serif" font-size="2.4" fill="#000" text-anchor="start" font-weight="normal">17. Northern Workshop</text>
+<text x="505.00" y="67.60" font-family="Arial, sans-serif" font-size="2.4" fill="#000" text-anchor="start" font-weight="normal">18. 3rd Academic Building</text>
+<text x="505.00" y="71.20" font-family="Arial, sans-serif" font-size="2.4" fill="#000" text-anchor="start" font-weight="normal">19. Electrical Substation</text>
+<text x="505.00" y="74.80" font-family="Arial, sans-serif" font-size="2.4" fill="#000" text-anchor="start" font-weight="normal">20. VC Residence</text>
+<text x="505.00" y="78.40" font-family="Arial, sans-serif" font-size="2.4" fill="#000" text-anchor="start" font-weight="normal">21. Female Hall of Residence</text>
+<text x="505.00" y="82.00" font-family="Arial, sans-serif" font-size="2.4" fill="#000" text-anchor="start" font-weight="normal">22. F Type Bungalow</text>
+<text x="505.00" y="85.60" font-family="Arial, sans-serif" font-size="2.4" fill="#000" text-anchor="start" font-weight="normal">23. D Type Building</text>
+<text x="505.00" y="89.20" font-family="Arial, sans-serif" font-size="2.4" fill="#000" text-anchor="start" font-weight="normal">24. Medical Center / Laundry</text>
+<text x="505.00" y="92.80" font-family="Arial, sans-serif" font-size="2.4" fill="#000" text-anchor="start" font-weight="normal">25. New Male Hall (Under Construction)</text>
+<text x="505.00" y="96.40" font-family="Arial, sans-serif" font-size="2.4" fill="#000" text-anchor="start" font-weight="normal">26. Studio Apartments (Proposed)</text>
+<text x="505.00" y="100.00" font-family="Arial, sans-serif" font-size="2.4" fill="#000" text-anchor="start" font-weight="normal">27. New Academic Building (Proposed)</text>
+<rect x="505.00" y="103.40" width="3.00" height="2.60" fill="#b26856" stroke="#000" stroke-width="0.15"/>
+<text x="510.00" y="105.60" font-family="Arial, sans-serif" font-size="2.3" fill="#000" text-anchor="start" font-weight="normal">building</text>
+<rect x="505.00" y="107.00" width="3.00" height="2.60" fill="#c49654" stroke="#000" stroke-width="0.15"/>
+<text x="510.00" y="109.20" font-family="Arial, sans-serif" font-size="2.3" fill="#000" text-anchor="start" font-weight="normal">under construction</text>
+<rect x="505.00" y="110.60" width="3.00" height="2.60" fill="#ba78c8" stroke="#000" stroke-width="0.15"/>
+<text x="510.00" y="112.80" font-family="Arial, sans-serif" font-size="2.3" fill="#000" text-anchor="start" font-weight="normal">proposed (plot)</text>
+<rect x="505.00" y="114.20" width="3.00" height="2.60" fill="#ffd23f" stroke="#000" stroke-width="0.15"/>
+<text x="510.00" y="116.40" font-family="Arial, sans-serif" font-size="2.3" fill="#000" text-anchor="start" font-weight="normal">entrance into a building</text>
+<rect x="505.00" y="117.80" width="3.00" height="2.60" fill="#ff4fd8" stroke="#000" stroke-width="0.15"/>
+<text x="510.00" y="120.00" font-family="Arial, sans-serif" font-size="2.3" fill="#000" text-anchor="start" font-weight="normal">spawn (arrival point)</text>
+<rect x="505.00" y="121.40" width="3.00" height="2.60" fill="#46aad7" stroke="#000" stroke-width="0.15"/>
+<text x="510.00" y="123.60" font-family="Arial, sans-serif" font-size="2.3" fill="#000" text-anchor="start" font-weight="normal">canal</text>
+<path d="M505.0,131.19999999999993 h50" stroke="#fff" stroke-width="0.8"/>
+<text x="530.00" y="129.70" font-family="Arial, sans-serif" font-size="2.6" fill="#fff" text-anchor="middle" font-weight="normal">50 m</text>
+<path d="M573.0,145.19999999999993 l3,-9 l3,9 l-3,-2 z" fill="#fff"/>
+<text x="576.00" y="149.20" font-family="Arial, sans-serif" font-size="2.4" fill="#fff" text-anchor="middle" font-weight="normal">N (true north)</text>
+</g>
+<g xmlns="http://www.w3.org/2000/svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" id="owner-additions" inkscape:groupmode="layer" inkscape:label="Owner additions (yours: never overwritten)">
+<desc>Draw new areas, buildings and notes in this layer, or add more layers whose name starts with "owner".</desc>
+</g>
+
+
+
+
+
+
+
+
+
+</svg>

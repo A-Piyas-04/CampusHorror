@@ -1,0 +1,177 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/world/zone.gd" id="1_r"]
+[ext_resource type="Resource" path="res://data/zones/profiles/facility_corridor.tres" id="2_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/interiors/FacilityCorridorRoom.tscn" id="3_r"]
+[ext_resource type="PackedScene" path="res://scenes/components/Door.tscn" id="4_r"]
+[ext_resource type="PackedScene" path="res://scenes/components/SpawnMarker.tscn" id="5_r"]
+[ext_resource type="PackedScene" path="res://scenes/components/Readable.tscn" id="6_r"]
+[ext_resource type="PackedScene" path="res://scenes/creatures/NightGuard.tscn" id="7_r"]
+[ext_resource type="Texture2D" path="res://data/lighting/light_soft.tres" id="8_r"]
+[ext_resource type="Script" path="res://scripts/lighting/lamp_light.gd" id="9_r"]
+[ext_resource type="Script" path="res://scripts/world/glow_mark.gd" id="10_r"]
+
+[node name="FacilityCorridor" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_r")
+zone_id = "facility_corridor"
+profile = ExtResource("2_r")
+
+[node name="Objects" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Props" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="Story" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="Lights" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="Doors" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="SpawnMarkers" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="Glow" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="Room" parent="Objects" instance=ExtResource("3_r")]
+
+[node name="DoorLift" parent="Objects/Doors" instance=ExtResource("4_r")]
+position = Vector2(-470.4, -45.2672)
+destination_zone_id = "me_workshop"
+destination_spawn_id = "workshop_from_lift"
+verb = "Ride up"
+place_name = "ME workshop"
+show_placeholder = false
+
+[node name="Spawn_corridor_from_lift" parent="Objects/SpawnMarkers" instance=ExtResource("5_r")]
+position = Vector2(-441.6, -45.2672)
+spawn_id = "corridor_from_lift"
+
+[node name="DoorControl" parent="Objects/Doors" instance=ExtResource("4_r")]
+position = Vector2(-192, -86.4192)
+destination_zone_id = "facility_control"
+destination_spawn_id = "control_from_corridor"
+verb = "Enter"
+place_name = "Control room"
+show_placeholder = false
+
+[node name="Spawn_corridor_from_control" parent="Objects/SpawnMarkers" instance=ExtResource("5_r")]
+position = Vector2(-192, -65.8432)
+spawn_id = "corridor_from_control"
+
+[node name="DoorLab" parent="Objects/Doors" instance=ExtResource("4_r")]
+position = Vector2(192, -86.4192)
+destination_zone_id = "facility_lab"
+destination_spawn_id = "lab_from_corridor"
+verb = "Enter"
+place_name = "Containment"
+show_placeholder = false
+
+[node name="Spawn_corridor_from_lab" parent="Objects/SpawnMarkers" instance=ExtResource("5_r")]
+position = Vector2(192, -65.8432)
+spawn_id = "corridor_from_lab"
+
+[node name="DoorB2" parent="Objects/Doors" instance=ExtResource("4_r")]
+position = Vector2(470.4, -45.2672)
+destination_zone_id = "facility_chamber"
+destination_spawn_id = "chamber_from_lift"
+verb = "Ride down"
+place_name = "Lift to B2"
+show_placeholder = false
+requires_flag = "b2_lift_powered"
+locked_message = "The B2 lift is dead: no current reaches it. The control room routes the power."
+
+[node name="Spawn_corridor_from_b2" parent="Objects/SpawnMarkers" instance=ExtResource("5_r")]
+position = Vector2(441.6, -45.2672)
+spawn_id = "corridor_from_b2"
+
+[node name="Notice" parent="Objects/Story" instance=ExtResource("6_r")]
+position = Vector2(-368, -80.2464)
+note_id = "site7_notice"
+title = "Staff notice"
+body = "SITE 7 - STAFF NOTICE.\n\nLights on the colony side of B2 stay OFF at all times. It grows towards light. It feeds on current.\n\nIf the feed is ever interrupted it will reach for ANY other source."
+requires_light = true
+
+[node name="Technician1" parent="Objects/Story" instance=ExtResource("7_r")]
+position = Vector2(-128, -45.2672)
+patrol_points = PackedVector2Array(-352, -41.152, 352, -49.3824)
+active = false
+visible = false
+sight_radius = 140.0
+close_sense_radius = 60.0
+light_sensitivity = 1.0
+hearing = 1.3
+patrol_speed = 34.0
+investigate_speed = 60.0
+chase_speed = 132.0
+modulate = Color(0.8, 0.95, 0.85, 1)
+metadata/role = "patrol"
+metadata/chapter = 5
+
+[node name="Technician2" parent="Objects/Story" instance=ExtResource("7_r")]
+position = Vector2(320, -32.9216)
+patrol_points = PackedVector2Array(384, -30.864, 64, -32.9216)
+active = false
+visible = false
+sight_radius = 140.0
+close_sense_radius = 60.0
+light_sensitivity = 1.0
+hearing = 1.3
+patrol_speed = 34.0
+investigate_speed = 60.0
+chase_speed = 132.0
+modulate = Color(0.8, 0.95, 0.85, 1)
+metadata/role = "patrol"
+metadata/chapter = 5
+
+[node name="Red0" type="PointLight2D" parent="Objects/Lights"]
+position = Vector2(-384, -80.2464)
+color = Color(1.0, 0.18, 0.12, 1)
+energy = 0.5
+range_item_cull_mask = 3
+texture = ExtResource("8_r")
+texture_scale = 1.4
+script = ExtResource("9_r")
+mode = 0
+needs_power = false
+base_energy = 0.5
+gameplay = false
+
+[node name="Red1" type="PointLight2D" parent="Objects/Lights"]
+position = Vector2(-64, -80.2464)
+color = Color(1.0, 0.18, 0.12, 1)
+energy = 0.5
+range_item_cull_mask = 3
+texture = ExtResource("8_r")
+texture_scale = 1.4
+script = ExtResource("9_r")
+mode = 0
+needs_power = false
+base_energy = 0.5
+gameplay = false
+
+[node name="Red2" type="PointLight2D" parent="Objects/Lights"]
+position = Vector2(320, -80.2464)
+color = Color(1.0, 0.18, 0.12, 1)
+energy = 0.5
+range_item_cull_mask = 3
+texture = ExtResource("8_r")
+texture_scale = 1.4
+script = ExtResource("9_r")
+mode = 0
+needs_power = false
+base_energy = 0.5
+gameplay = false
+
+[node name="Growth" type="Node2D" parent="Objects/Glow"]
+position = Vector2(304, -61.728)
+script = ExtResource("10_r")
+color = Color(0.45, 1, 0.82, 1)
+intensity = 0.8
+pulse_speed = 0.5
+spots = PackedVector3Array(0, 0, 9, -16, 6, 6, 18, -4, 7)

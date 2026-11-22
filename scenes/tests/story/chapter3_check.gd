@@ -4,7 +4,7 @@ extends "res://scenes/tests/story/story_check_base.gd"
 ## and plays it through the real systems with real input: the students on the road, the dead workshop shutter, the
 ## empty generator key switch, the lab log (the key box), room 304's whiteboard (CSE 4501), the key box, the
 ## generator (the academic lights come on, the students come for the noise), a student hearing a sprint, and the
-## run east to the halls with the end card. Saves go to user://test_chapter3_save.json (removed afterwards).
+## run east to the halls, the end card and Chapter 4 taking over. Saves go to user://test_chapter3_save.json (removed afterwards).
 
 const TEST_SAVE_3 := "user://test_chapter3_save.json"
 
@@ -174,11 +174,10 @@ func _generator_and_escape() -> void:
 	check(card_open(), "the end card plays")
 	await skip_card(20)
 	var start := Time.get_ticks_msec()
-	while Time.get_ticks_msec() - start < 8000:
-		var cs := get_tree().current_scene
-		if cs != null and cs.name == "MainMenu":
+	while Time.get_ticks_msec() - start < 10000:
+		if is_instance_valid(main) and main.get_director() is Chapter4:
 			break
 		await get_tree().process_frame
-	await frames(5)
-	check(get_tree().current_scene != null and get_tree().current_scene.name == "MainMenu",
-		"after the last built chapter the game returns to the title screen")
+	check(is_instance_valid(main) and main.get_director() is Chapter4 and main.get_current_zone_id() == "halls_exterior"
+		and int(GameState.get_flag("chapter", 0)) == 4,
+		"after the end card Chapter 4 begins in the halls (chapter flag 4)")

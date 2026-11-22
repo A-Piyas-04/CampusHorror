@@ -146,8 +146,15 @@ func _lap(t: int, what: String) -> int:
 	return now
 
 
+## The self-test's fixture: the retired Chapter 1 exterior (Map v2, D44), kept with its manifest and baseline only
+## so every rule can still prove it catches a regression of its kind.
+const SELF_TEST_SCENE := "res://scenes/world/legacy/MainGateExterior.tscn"
+
+
 func _instantiate(zone_id: String) -> Zone:
 	var path := _registry.get_scene_path(zone_id)
+	if path.is_empty() and zone_id == "main_gate_exterior":
+		path = SELF_TEST_SCENE
 	if path.is_empty() or not ResourceLoader.exists(path):
 		return null
 	var zone := (load(path) as PackedScene).instantiate() as Zone

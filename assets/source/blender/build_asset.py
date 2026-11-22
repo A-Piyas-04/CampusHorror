@@ -530,7 +530,9 @@ def import_is_current(png):
     imp = png.with_name(png.name + ".import")
     if not imp.exists():
         return False
-    m = re.search(r'^dest_files=\["res://([^"]+)\.ctex"', imp.read_text(encoding="utf-8"), re.M)
+    # VRAM-compressed imports end in .<format>.ctex (e.g. .bptc.ctex, .s3tc.ctex); the .md5 drops that suffix.
+    m = re.search(r'^dest_files=\["res://([^"]+?)(?:\.(?:bptc|s3tc|etc2|astc|s3tc_bptc|etc2_astc))?\.ctex"',
+                  imp.read_text(encoding="utf-8"), re.M)
     md5_file = C.PROJECT_ROOT / (m.group(1) + ".md5") if m else None
     if md5_file is None or not md5_file.exists():
         return False

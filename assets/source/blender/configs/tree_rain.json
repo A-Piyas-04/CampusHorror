@@ -1,0 +1,75 @@
+{
+  "asset_id": "tree_rain",
+  "category": "vegetation",
+  "generator": "tree_broadleaf",
+  "description": "Rain tree: a wide umbrella crown on a thick trunk, the big shade trees of the woods. Map v2 species variety (D46).",
+  "seed": 41,
+  "generator_params": {
+    "trunk_height": 3.4,
+    "trunk_radius": 0.32,
+    "crown_z": 6.4,
+    "crown_rx": 3.0,
+    "ring_clusters": 9,
+    "low_clusters": 4,
+    "cluster_scale": 1.55,
+    "leaf_length": 0.16,
+    "leaf_width": 0.1,
+    "leaf_density": 260.0,
+    "leaf_stops": [
+      [
+        0.0,
+        [
+          0.025,
+          0.065,
+          0.012
+        ]
+      ],
+      [
+        0.4,
+        [
+          0.055,
+          0.125,
+          0.02
+        ]
+      ],
+      [
+        0.8,
+        [
+          0.1,
+          0.18,
+          0.03
+        ]
+      ],
+      [
+        1.0,
+        [
+          0.17,
+          0.22,
+          0.045
+        ]
+      ]
+    ],
+    "collision_half_m": 0.4
+  },
+  "render": {
+    "px_per_m": 150.0,
+    "samples": 160,
+    "elevation_deg": 40.0,
+    "azimuth_deg": 0.0
+  },
+  "godot": {
+    "scene_name": "TreeRain",
+    "z_index": 0,
+    "sprite_offset_adjust_px": [
+      0.0,
+      0.0
+    ],
+    "preview_scene": true,
+    "preview_tile_x": false
+  },
+  "collision": {
+    "enabled": true,
+    "source": "design_footprint",
+    "depth_mode": "projected"
+  }
+}

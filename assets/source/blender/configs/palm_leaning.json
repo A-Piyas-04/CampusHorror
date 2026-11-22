@@ -1,0 +1,35 @@
+{
+  "asset_id": "palm_leaning",
+  "category": "vegetation",
+  "generator": "tree_palm",
+  "description": "Coconut palm with a strong lean. Map v2 species variety (D46).",
+  "seed": 51,
+  "generator_params": {
+    "trunk_height": 8.2,
+    "lean_x": 1.1,
+    "lean_y": -0.2,
+    "fronds": 15,
+    "coconuts": 9
+  },
+  "render": {
+    "px_per_m": 150.0,
+    "samples": 160,
+    "elevation_deg": 40.0,
+    "azimuth_deg": 0.0
+  },
+  "godot": {
+    "scene_name": "PalmLeaning",
+    "z_index": 0,
+    "sprite_offset_adjust_px": [
+      0.0,
+      0.0
+    ],
+    "preview_scene": true,
+    "preview_tile_x": false
+  },
+  "collision": {
+    "enabled": true,
+    "source": "design_footprint",
+    "depth_mode": "projected"
+  }
+}

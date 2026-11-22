@@ -3,15 +3,16 @@ extends "res://scenes/tests/feel/feel_check_base.gd"
 ## state, clip modes, pool, zone changes, cost). Windowed (`--pixels`, no --headless): the rendering, by
 ## comparing screenshots with ghosts on and off.
 
-const TOWER := "Objects/Buildings/MainGateLandmark/Tower/Sprite"
-const TREE := "Objects/Vegetation/SouthTreeRow/Tree04/Sprite"
-const FIELD := Vector2(-1000, -200)
-const DEAD_BAND := Vector2(-1270, 1255)       # behind the gate tower's east pier (fully hidden before I6)
-const BEHIND_TREE := Vector2(-200, 1296)
-const FRONT_OF_TREE := Vector2(-200, 1330)
-const BEHIND_WALL := Vector2(300, 1392)
+const FIELD := Vector2(12320, 4300)
+## Map v2: a palm of the halls' palm avenue stands in for the occluding sprite; buildings are massing models
+## (scripts/world/campus_massing.gd) that fade instead of carrying ghosts until their rendered art lands.
+const AVENUE_PALM_AT := Vector2(11200, 938)     # (350 m, 45.6 m)
+const CDS := "Objects/Buildings/Cds/Part0"
+const BEHIND_CDS := Vector2(11520, 2346)        # (360 m, 114 m): between the spine road and the CDS's north face
 
 var ghosts: OcclusionGhosts
+var behind_tree := Vector2.ZERO
+var tree: CanvasItem
 
 
 func _run() -> void:
@@ -20,46 +21,55 @@ func _run() -> void:
 	var zone := main.get_current_zone()
 	var expected := _count_drawables(zone)
 	check(expected > 100 and ghosts.get_occluder_count() == expected,
-		"main_gate_exterior: indexed %d occluders = %d counted independently (textured sprites, polygons and blockout blocks at z >= 0, not contact shadows)" % [ghosts.get_occluder_count(), expected])
+		"campus: indexed %d occluders = %d counted independently (textured sprites, polygons and blockout blocks at z >= 0, not contact shadows)" % [ghosts.get_occluder_count(), expected])
 
 	await place(FIELD)
 	check(ghosts.get_attached_items().is_empty(), "in the open field nothing hides the player: no ghosts")
 
-	await place(DEAD_BAND)
-	var tower := zone.get_node(TOWER) as CanvasItem
-	var g := ghosts.get_ghost_for(tower)
+	var palm := _nearest_tree(zone, AVENUE_PALM_AT)
+	check(palm != null, "found the palm of the halls avenue nearest %s" % AVENUE_PALM_AT)
+	if palm == null:
+		return
+	tree = palm.get_node("Sprite") as CanvasItem
+	behind_tree = palm.global_position + Vector2(0, -24)
+	await place(behind_tree)
+	var g := ghosts.get_ghost_for(tree)
 	var sprite := player.get_node("Sprite") as AnimatedSprite2D
-	check(g != null and tower.clip_children == CanvasItem.CLIP_CHILDREN_AND_DRAW and g.get_parent() == tower,
-		"behind the gate tower (the old dead band) the tower carries a ghost and clips it to its own pixels")
+	check(g != null and tree.clip_children == CanvasItem.CLIP_CHILDREN_AND_DRAW and g.get_parent() == tree,
+		"behind a palm (north of the trunk) its sprite carries a ghost and clips it to its own pixels")
 	if g != null:
 		check(g.texture == sprite.sprite_frames.get_frame_texture(sprite.animation, sprite.frame)
 			and g.global_transform.is_equal_approx(sprite.global_transform) and g.light_mask == sprite.light_mask
 			and (g.material as ShaderMaterial).shader.resource_path.ends_with("player_silhouette.gdshader"),
 			"the ghost shows the player's current frame at the player's exact transform, lit like the player, with the silhouette shader")
-
-	await place(BEHIND_TREE)
-	var tree := zone.get_node(TREE) as CanvasItem
-	check(ghosts.get_ghost_for(tree) != null, "behind a tree (north of the trunk) its canopy and trunk carry a ghost")
-	await place(FRONT_OF_TREE)
+	await place(palm.global_position + Vector2(0, 30))
 	check(ghosts.get_ghost_for(tree) == null and tree.clip_children == CanvasItem.CLIP_CHILDREN_DISABLED,
-		"in front of the same tree it gets no ghost (no halo around a visible player) and its clip mode is restored")
-	await place(BEHIND_WALL)
-	var wall_items := ghosts.get_attached_items().filter(func(i): return String(zone.get_path_to(i)).contains("SouthWall"))
-	check(not wall_items.is_empty(), "just behind the south road wall a wall module carries a ghost (%d)" % wall_items.size())
+		"in front of the same palm it gets no ghost (no halo around a visible player) and its clip mode is restored")
 
-	# Animation: walking behind the tree, the ghost follows the frames.
-	await place(BEHIND_TREE + Vector2(-60, 0))
+	# Buildings: walking behind one fades it (D31), walking out restores it.
+	var cds := zone.get_node_or_null(CDS) as CanvasItem
+	await place(BEHIND_CDS)
+	await seconds(1.0)
+	var faded := cds.modulate.a if cds != null else 1.0
+	await place(FIELD)
+	await seconds(1.0)
+	var restored := cds.modulate.a if cds != null else 0.0
+	check(cds != null and faded < 0.5 and restored > 0.99,
+		"behind the CDS the building fades to %.2f, and comes back to %.2f once the player is in the open" % [faded, restored])
+
+	# Animation: walking behind the palm, the ghost follows the frames.
+	await place(behind_tree + Vector2(-60, 0))
 	var textures := {}
 	await hold(["move_right"], 60, 1.0, func(_i):
 		var gt := ghosts.get_ghost_for(tree)
 		if gt != null:
 			textures[gt.texture] = true)
-	check(textures.size() >= 4, "walking behind the tree, the ghost follows the walk cycle (%d distinct frames)" % textures.size())
+	check(textures.size() >= 4, "walking behind the palm, the ghost follows the walk cycle (%d distinct frames)" % textures.size())
 
 	# Pool and clip modes over repeated hide / show cycles.
 	var pool_before := ghosts.get_pool_size()
 	for i in 5:
-		await place(DEAD_BAND)
+		await place(behind_tree)
 		await place(FIELD)
 	var clipped := 0
 	for n in zone.find_children("*", "CanvasItem", true, false):
@@ -69,7 +79,7 @@ func _run() -> void:
 		"after 5 hide / show cycles: no ghost left, no item left clipping (%d), pool stable (%d -> %d)" % [clipped, pool_before, ghosts.get_pool_size()])
 
 	# Cost per tick with ghosts attached.
-	await place(DEAD_BAND)
+	await place(behind_tree)
 	var t := Time.get_ticks_usec()
 	for i in 200:
 		ghosts._physics_process(0.0)
@@ -82,18 +92,29 @@ func _run() -> void:
 	await await_travel()
 	check(main.get_current_zone_id() == "cds_veranda" and ghosts.get_pool_size() == pool and ghosts.get_occluder_count() > 0,
 		"after the trip the pool is intact (%d ghosts) and the veranda is indexed (%d occluders)" % [ghosts.get_pool_size(), ghosts.get_occluder_count()])
-	main.change_zone("main_gate_exterior", "main_gate_entry")
+	main.change_zone("campus", "explore_start")
 	await frames(3)
+	zone = main.get_current_zone()
+	palm = _nearest_tree(zone, AVENUE_PALM_AT)
+	tree = palm.get_node("Sprite") as CanvasItem
 
 	ghosts.enabled = false
-	await place(DEAD_BAND)
+	await place(behind_tree)
 	check(ghosts.get_attached_items().is_empty(), "with the system disabled no ghost is attached")
 	ghosts.enabled = true
-	await place(DEAD_BAND)
-	check(ghosts.get_ghost_for(main.get_current_zone().get_node(TOWER)) != null, "re-enabled, the ghost is back")
+	await place(behind_tree)
+	check(ghosts.get_ghost_for(tree) != null, "re-enabled, the ghost is back")
 
 	if OS.get_cmdline_user_args().has("--pixels"):
 		await _pixels()
+
+
+func _nearest_tree(zone: Node, at: Vector2) -> Node2D:
+	var best: Node2D = null
+	for n in zone.get_node("Objects/Vegetation").get_children():
+		if n is Node2D and (best == null or (n as Node2D).global_position.distance_to(at) < best.global_position.distance_to(at)):
+			best = n
+	return best
 
 
 ## Windowed only: renders the same view with ghosts on and off. The player's idle animation is frozen on one
@@ -104,7 +125,7 @@ func _pixels() -> void:
 	check(control != null, "found a spot just in front of a tree / palm with nothing in front of the player (%s)" % [control])
 	if control == null:
 		return
-	for spec in [["the old dead band behind the tower", DEAD_BAND, true], ["just in front of a tree that overlaps the player from behind", control, false]]:
+	for spec in [["behind the avenue palm", behind_tree, true], ["just in front of a tree that overlaps the player from behind", control, false]]:
 		await place(spec[1])
 		await seconds(0.6)            # roof fades and any depenetration settle before comparing
 		anim_sprite.pause()

@@ -1,0 +1,680 @@
+{
+ "schema": 1,
+ "title": "IUT Gazipur campus - layout traced from the official campus board",
+ "frame": {
+  "unit": "metre",
+  "x": "east",
+  "y": "south (as on screen and in SVG)",
+  "origin": "the board photo's west edge at the north boundary line (the photo crops the far NW corner, so a few metres are negative)",
+  "north_up": true,
+  "game_px": "x_px = x * 32, y_px = y * 20.576 (the 40 degree camera, D42/D43)"
+ },
+ "board": {
+  "image": "map-design/actual-map/campus_map_upscaled_4k.png",
+  "legend_image": "map-design/actual-map/149079ff-fd0f-4746-9ab1-0347d8684fc9.jpg",
+  "printed_orientation": "south-up (legend compass: S top, N bottom, E left, W right)",
+  "to_north_up": "rotate the photo 90 degrees anticlockwise (PIL Image.rotate(90, expand=True)), then halve it to 2048 x 1536",
+  "m_per_px": 0.23,
+  "origin_px": [0, 140],
+  "calibration": "tennis court 12.1 x 23.5 m and futsal court 12.3 x 23.7 m on the board; CDS + Indoor block 83.5 m (old game 82.6 m)",
+  "cut_off": ["NW corner: #24 Medical Center/Laundry runs off the photo's west edge (placeholder west of x 0)", "SE corner: the Main Gate (#1) is just beyond the photo's east edge (placeholder at x 478-486)"]
+ },
+ "boundary": {
+  "note": "The campus wall (white dashed line on the board). East side = the Dhaka-Mymensingh highway.",
+  "points": [[-14, 10.6], [14, 10.0], [100, 7.4], [200, 4.6], [300, 1.8], [414, -1.4], [448.5, -1.6], [469, 151.8], [486, 283], [380, 287.6], [341, 290.4], [324, 292.6], [308, 299.0], [230, 301.4], [92, 301.6], [57, 298.0], [33, 291.0], [21, 276], [16, 250], [14.3, 200], [14.0, 87], [12.7, 80.5], [0, 79.6], [-14, 79.4]]
+ },
+ "canal": [
+  {"id": "canal_north", "width": 2.6, "points": [[-14, 13.6], [0, 13.2], [207, 7.6], [345, 3.2], [414, 2.1], [446, 1.6]]},
+  {"id": "canal_east", "width": 2.6, "points": [[446, 1.6], [447, 46], [449.3, 69], [450, 79]]},
+  {
+   "id": "canal_west",
+   "width": 2.6,
+   "points": [[20.5, 13.0], [20.5, 190], [22.3, 202.4], [25.5, 225.4], [27.1, 248.4], [30.7, 271.4], [40, 282], [57.5, 285.6], [92, 290.3], [126.5, 293.6], [161, 294.0], [195.5, 293.1], [230, 291.7], [264.5, 289.9], [299, 287.7], [341, 287.4]]
+  }
+ ],
+ "ground": [
+  {"id": "campus_lawn", "surface": "grass", "poly": "boundary", "note": "everything inside the wall starts as mown lawn"},
+  {"id": "southern_field", "surface": "meadow", "name": "Southern Field", "poly": [[140.8, 242.2], [326.0, 242.2], [344.0, 269.2], [486, 269.2], [486, 283], [380, 287.6], [341, 290.4], [140.8, 294.0]]},
+  {"id": "central_field", "surface": "field", "name": "Central Field", "poly": [[334.6, 112.6], [435.9, 112.6], [435.9, 228], [443.5, 239], [443.5, 262.4], [347.5, 262.4], [334.6, 244.0]]},
+  {"id": "forest_floor", "surface": "forest_floor", "name": "Woods (around the substation)", "rect": [96.2, 110.9, 162.1, 236.0]},
+  {
+   "id": "female_hall_compound",
+   "surface": "compound",
+   "poly": [[23.5, 233.0], [76.5, 233.0], [76.5, 242.2], [140.8, 242.2], [140.8, 294.0], [126.5, 293.6], [92, 290.3], [57.5, 285.6], [40, 282], [30.7, 271.4], [27.1, 248.4]]
+  },
+  {"id": "lake_block", "surface": "pavers", "name": "Mosque plaza (brick pavers)", "rect": [167.4, 111.1, 326.4, 236.4]},
+  {"id": "academic_forecourt", "surface": "pavers_dark", "rect": [198.4, 52.8, 262.0, 104.0], "note": "1st Academic forecourt and the car-park yard"},
+  {"id": "halls_plaza", "surface": "pavers", "rect": [412.9, 44.9, 416.3, 52.9], "note": "small square where the palm avenue meets UB Hall"},
+  {"id": "tennis_pad", "surface": "concrete", "rect": [439.8, 151.8, 463.5, 188.2]},
+  {"id": "futsal_pad", "surface": "concrete", "rect": [444.4, 189.3, 468.0, 225.4]},
+  {"id": "tennis_court", "surface": "court_tennis", "rect": [445.6, 158.2, 457.7, 181.7]},
+  {"id": "futsal_court", "surface": "court_futsal", "rect": [450.0, 195.5, 462.3, 219.2]},
+  {"id": "female_hall_court", "surface": "court_tennis", "rect": [59.2, 250.4, 83.3, 262.8]},
+  {"id": "substation_yard", "surface": "gravel", "rect": [136.5, 115.4, 162.0, 140.2]},
+  {"id": "new_male_hall_site", "surface": "dirt", "rect": [26.0, 13.8, 92.0, 48.4], "note": "#25 construction site"},
+  {"id": "studio_apartments_plot", "surface": "dirt", "rect": [27.0, 120.6, 66.0, 146.4], "note": "#26 proposed plot"},
+  {"id": "new_academic_plot", "surface": "dirt", "rect": [145.5, 258.4, 215.8, 285.6], "note": "#27 proposed plot"},
+  {"id": "west_lake", "surface": "water", "name": "Lake (west)", "poly": [[169.7, 150.6], [181.5, 150.6], [181.5, 190.2], [221.4, 190.2], [221.4, 234.0], [169.7, 234.0]]},
+  {"id": "south_lake", "surface": "water", "name": "Lake (south)", "poly": [[226.8, 207.2], [283.2, 207.2], [309.8, 234.0], [226.8, 234.0]]},
+  {"id": "east_lake", "surface": "water", "name": "Lake (east)", "poly": [[304.7, 139.6], [322.6, 139.6], [322.6, 234.0], [320.0, 234.0], [277.8, 191.8], [277.8, 162.4], [304.7, 162.4]]}
+ ],
+ "roads": [
+  {"id": "R1", "name": "Spine road", "surface": "brick_road", "width": 5.0, "points": [[91.5, 108.1], [441.6, 108.1]]},
+  {"id": "R2", "name": "West avenue", "surface": "brick_road", "width": 5.0, "points": [[93.8, 12.0], [93.8, 239.5]]},
+  {"id": "R3", "name": "South boulevard", "surface": "brick_road", "width": 5.0, "points": [[76.5, 239.5], [327.8, 239.5]]},
+  {"id": "R4", "name": "Gate road", "surface": "asphalt", "width": 6.4, "points": [[327.8, 239.5], [346.0, 266.8], [486, 266.8]]},
+  {"id": "R5", "name": "Field road", "surface": "brick_road", "width": 4.6, "points": [[330.1, 108.1], [330.1, 239.5]]},
+  {"id": "R6", "name": "East road", "surface": "brick_road", "width": 3.6, "points": [[439.8, 13.8], [439.8, 108.1]]},
+  {"id": "R7", "name": "Woods road", "surface": "brick_road", "width": 4.6, "points": [[164.8, 108.1], [164.8, 239.5]]},
+  {"id": "L1", "name": "Workshop lane (north)", "surface": "brick_road", "width": 3.6, "points": [[25.8, 48.3], [193.2, 48.3]]},
+  {"id": "L2", "name": "Workshop lane (south)", "surface": "brick_road", "width": 3.6, "points": [[93.8, 78.2], [193.2, 78.2]]},
+  {"id": "L3", "name": "Academic lane", "surface": "brick_road", "width": 3.6, "points": [[193.2, 12.0], [193.2, 108.1]]},
+  {"id": "L4", "name": "Canal-side path", "surface": "concrete", "width": 3.4, "points": [[23.8, 34.5], [23.8, 66.0]]},
+  {"id": "L5", "name": "Staff quarters spur (north)", "surface": "brick_road", "width": 3.0, "points": [[61.4, 152.0], [93.8, 152.0]]},
+  {"id": "L6", "name": "Staff quarters spur (south)", "surface": "brick_road", "width": 3.0, "points": [[61.4, 194.5], [93.8, 194.5]]},
+  {"id": "L7", "name": "Halls service path", "surface": "brick_path", "width": 2.4, "points": [[196.0, 17.7], [412.0, 17.7]]},
+  {"id": "L8", "name": "Bridge to the Medical Center", "surface": "brick_road", "width": 3.0, "points": [[25.8, 48.3], [14.4, 48.3]]},
+  {"id": "P1", "name": "Halls palm avenue", "surface": "concrete", "width": 3.2, "points": [[261.0, 51.2], [414.6, 51.2]]},
+  {"id": "P2", "name": "Halls cross path (west)", "surface": "concrete", "width": 4.0, "points": [[324.3, 20.7], [324.3, 105.8]]},
+  {"id": "P3", "name": "Halls cross path (east)", "surface": "concrete", "width": 4.0, "points": [[374.9, 20.7], [374.9, 105.8]]},
+  {"id": "P4", "name": "Academic 1 - South Hall link", "surface": "concrete", "width": 2.4, "points": [[261.0, 85.4], [277.8, 85.4]]},
+  {"id": "P5", "name": "Academic 2 - North Hall link", "surface": "concrete", "width": 2.4, "points": [[260.1, 26.4], [277.4, 26.4]]},
+  {"id": "P6", "name": "Academic 1 east path", "surface": "concrete", "width": 2.4, "points": [[261.0, 82.8], [261.0, 105.8]]},
+  {"id": "P7", "name": "Gate garden path", "surface": "concrete", "width": 2.4, "points": [[452.0, 264.5], [471.0, 251.9]]},
+  {"id": "C1", "name": "Diagonal causeway", "surface": "pavers", "width": 7.4, "points": [[275.0, 194.2], [314.5, 233.8], [327.8, 239.5]]},
+  {"id": "C2", "name": "Lake causeway (north-south)", "surface": "pavers", "width": 5.4, "points": [[224.1, 190.2], [224.1, 234.0]]}
+ ],
+ "sites": [
+  {
+   "num": 1,
+   "id": "main_gate",
+   "name": "IUT Main Gate",
+   "status": "built",
+   "placeholder": true,
+   "style": "gate",
+   "parts": [{"rect": [479.0, 259.6, 485.0, 263.2], "h": 8.0, "role": "north pylon"}, {"rect": [479.0, 270.4, 485.0, 274.0], "h": 8.0, "role": "south pylon"}, {"rect": [480.0, 259.6, 484.0, 274.0], "h": 9.5, "role": "gate beam", "solid": false}, {"rect": [470.5, 271.0, 476.5, 277.0], "h": 3.4, "role": "security booth"}],
+   "note": "Off the photo's east edge; the board's 'You are here' pin stands just south-west of it. The gate faces east (highway), so the camera sees its side.",
+   "entrances": [
+    {"to": "main_gate_security", "at": [473.5, 277.6], "face": "south", "spawn": "security_inside", "exit_spawn": "outside_security", "verb": "Enter", "place": "Security office"}
+   ]
+  },
+  {
+   "num": 2,
+   "id": "five_fundamentals",
+   "name": "Five Fundamentals",
+   "status": "built",
+   "style": "monument",
+   "monument": {"centre": [300.6, 220.6], "walls": 5, "wall_len": 10.0, "wall_thick": 0.9, "spacing": 2.3, "h": 9.0, "axis_deg": 45, "passage": 2.2},
+   "note": "Five parallel brick walls standing across the diagonal causeway (aerial 12: '5 pillars')."
+  },
+  {
+   "num": 3,
+   "id": "mosque",
+   "name": "IUT Mosque",
+   "status": "built",
+   "style": "iut_brick",
+   "parts": [
+    {
+     "square": {"centre": [243.5, 188.0], "size": 28.5, "rot_deg": 10.5},
+     "h": 15.0,
+     "role": "prayer hall"
+    },
+    {"rect": [256.5, 172.0, 260.4, 176.0], "h": 32.0, "role": "minaret"},
+    {
+     "circle": {"centre": [229.2, 185.6], "r": 2.6},
+     "h": 9.0,
+     "role": "mihrab (west)"
+    },
+    {
+     "circle": {"centre": [243.0, 209.0], "r": 2.0},
+     "h": 4.5,
+     "role": "cylinder"
+    },
+    {
+     "circle": {"centre": [249.7, 209.0], "r": 2.0},
+     "h": 4.5,
+     "role": "cylinder"
+    },
+    {
+     "circle": {"centre": [255.9, 209.0], "r": 2.0},
+     "h": 4.5,
+     "role": "cylinder"
+    }
+   ],
+   "note": "Stands in the lake; half-disc window on the south face above the three cylinders (aerial 12, photo 02).",
+   "entrances": [
+    {"to": "mosque_prayer_hall", "at": [259.8, 191.4], "face": "east", "spawn": "mosque_from_plaza", "exit_spawn": "outside_mosque", "verb": "Enter", "place": "IUT Mosque"}
+   ]
+  },
+  {
+   "num": 4,
+   "id": "auditorium",
+   "name": "Auditorium",
+   "status": "built",
+   "style": "iut_brick",
+   "parts": [
+    {"rect": [181.5, 149.7, 222.6, 190.2], "h": 14.0}
+   ],
+   "note": "West and south sides stand in the lake; arcade of arches on the south face.",
+   "entrances": [
+    {"to": "auditorium_hall", "at": [223.4, 162.0], "face": "east", "spawn": "auditorium_from_plaza", "exit_spawn": "outside_auditorium", "verb": "Enter", "place": "Auditorium"}
+   ]
+  },
+  {
+   "num": 5,
+   "id": "cafeteria_library",
+   "name": "Cafeteria / Library",
+   "status": "built",
+   "style": "iut_brick",
+   "aka": "Central Cafe",
+   "parts": [
+    {"rect": [265.0, 122.4, 304.5, 162.2], "h": 13.0},
+    {"rect": [265.0, 122.4, 273.2, 135.7], "h": 16.0, "role": "stair tower"},
+    {"rect": [295.0, 153.0, 304.5, 162.2], "h": 7.0, "role": "annex"}
+   ],
+   "note": "Arches on the south face over the east lake; linked to Admin by a bridge.",
+   "entrances": [
+    {"to": "central_cafe", "at": [271.0, 163.0], "face": "south", "spawn": "cafe_from_plaza", "exit_spawn": "outside_cafe", "verb": "Enter", "place": "Cafeteria"}
+   ]
+  },
+  {
+   "num": 6,
+   "id": "admin",
+   "name": "Administrative Building",
+   "status": "built",
+   "style": "iut_brick",
+   "parts": [
+    {"rect": [210.0, 121.9, 255.3, 141.9], "h": 13.0},
+    {"rect": [255.3, 129.3, 265.0, 131.1], "h": 7.0, "role": "bridge to #5"}
+   ],
+   "entrances": [
+    {"to": "admin_lobby", "at": [232.6, 142.6], "face": "south", "spawn": "lobby_from_outside", "exit_spawn": "outside_admin", "verb": "Enter", "place": "Administrative Building"}
+   ]
+  },
+  {
+   "num": 7,
+   "id": "indoor_sports",
+   "name": "Indoor Sports Ground",
+   "status": "built",
+   "style": "iut_brick",
+   "parts": [
+    {"rect": [380.7, 116.6, 423.0, 139.8], "h": 11.0}
+   ],
+   "entrances": []
+  },
+  {
+   "num": 8,
+   "id": "cds",
+   "name": "CDS / Student Center",
+   "status": "built",
+   "style": "iut_brick",
+   "parts": [
+    {"rect": [339.3, 116.6, 380.7, 132.3], "h": 8.0},
+    {"rect": [339.3, 132.3, 356.0, 140.8], "h": 8.0},
+    {"rect": [356.0, 132.3, 373.0, 140.3], "h": 4.2, "role": "arcade veranda"}
+   ],
+   "entrances": [
+    {"to": "cds_veranda", "at": [364.5, 141.0], "face": "south", "spawn": "inside_cds_entry", "exit_spawn": "outside_cds_entrance", "verb": "Enter", "place": "CDS"}
+   ]
+  },
+  {
+   "num": 9,
+   "id": "ub_hall",
+   "name": "Male Common Facility Building",
+   "status": "built",
+   "style": "iut_brick",
+   "aka": "UB Hall",
+   "parts": [
+    {"rect": [420.9, 20.7, 434.7, 85.1], "h": 18.0},
+    {"rect": [420.9, 5.2, 434.7, 20.7], "h": 15.0, "role": "north block"},
+    {"rect": [411.7, 4.6, 420.9, 8.6], "h": 4.0, "role": "gate canopy"}
+   ],
+   "entrances": []
+  },
+  {
+   "num": 10,
+   "id": "south_hall",
+   "name": "South Hall of Residence",
+   "status": "built",
+   "style": "iut_brick",
+   "parts": [
+    {"rect": [277.4, 77.3, 322.3, 86.0], "h": 18.0, "role": "west wing"},
+    {"rect": [277.4, 86.0, 283.5, 90.3], "h": 20.0, "role": "stair tower"},
+    {
+     "circle": {"centre": [280.45, 90.3], "r": 3.05},
+     "h": 20.0,
+     "role": "stair tower"
+    },
+    {"rect": [316.2, 86.0, 322.3, 90.3], "h": 20.0, "role": "stair tower"},
+    {
+     "circle": {"centre": [319.25, 90.3], "r": 3.05},
+     "h": 20.0,
+     "role": "stair tower"
+    },
+    {"rect": [327.6, 77.3, 372.4, 86.0], "h": 18.0, "role": "middle wing"},
+    {"rect": [327.6, 86.0, 333.7, 90.3], "h": 20.0, "role": "stair tower"},
+    {
+     "circle": {"centre": [330.65, 90.3], "r": 3.05},
+     "h": 20.0,
+     "role": "stair tower"
+    },
+    {"rect": [366.3, 86.0, 372.4, 90.3], "h": 20.0, "role": "stair tower"},
+    {
+     "circle": {"centre": [369.35, 90.3], "r": 3.05},
+     "h": 20.0,
+     "role": "stair tower"
+    },
+    {"rect": [377.6, 77.3, 420.8, 86.0], "h": 18.0, "role": "east wing"},
+    {"rect": [377.6, 86.0, 383.7, 90.3], "h": 20.0, "role": "stair tower"},
+    {
+     "circle": {"centre": [380.65, 90.3], "r": 3.05},
+     "h": 20.0,
+     "role": "stair tower"
+    },
+    {"rect": [414.7, 86.0, 420.8, 90.3], "h": 20.0, "role": "stair tower"},
+    {
+     "circle": {"centre": [417.75, 90.3], "r": 3.05},
+     "h": 20.0,
+     "role": "stair tower"
+    }
+   ],
+   "entrances": [
+    {"to": "hall_corridor", "at": [350.0, 86.7], "face": "south", "spawn": "hallcorr_from_outside", "exit_spawn": "outside_south_hall", "verb": "Enter", "place": "South Hall"}
+   ]
+  },
+  {
+   "num": 11,
+   "id": "north_hall",
+   "name": "North Hall of Residence",
+   "status": "built",
+   "style": "iut_brick",
+   "parts": [
+    {"rect": [277.2, 21.3, 321.4, 30.1], "h": 18.0, "role": "west wing"},
+    {"rect": [277.2, 30.1, 283.3, 33.75], "h": 20.0, "role": "stair tower"},
+    {
+     "circle": {"centre": [280.25, 33.75], "r": 3.05},
+     "h": 20.0,
+     "role": "stair tower"
+    },
+    {"rect": [315.3, 30.1, 321.4, 33.75], "h": 20.0, "role": "stair tower"},
+    {
+     "circle": {"centre": [318.35, 33.75], "r": 3.05},
+     "h": 20.0,
+     "role": "stair tower"
+    },
+    {"rect": [327.2, 21.3, 371.5, 30.1], "h": 18.0, "role": "middle wing"},
+    {"rect": [327.2, 30.1, 333.3, 33.75], "h": 20.0, "role": "stair tower"},
+    {
+     "circle": {"centre": [330.25, 33.75], "r": 3.05},
+     "h": 20.0,
+     "role": "stair tower"
+    },
+    {"rect": [365.4, 30.1, 371.5, 33.75], "h": 20.0, "role": "stair tower"},
+    {
+     "circle": {"centre": [368.45, 33.75], "r": 3.05},
+     "h": 20.0,
+     "role": "stair tower"
+    },
+    {"rect": [377.2, 21.3, 420.9, 30.1], "h": 18.0, "role": "east wing"},
+    {"rect": [377.2, 30.1, 383.3, 33.75], "h": 20.0, "role": "stair tower"},
+    {
+     "circle": {"centre": [380.25, 33.75], "r": 3.05},
+     "h": 20.0,
+     "role": "stair tower"
+    },
+    {"rect": [414.8, 30.1, 420.9, 33.75], "h": 20.0, "role": "stair tower"},
+    {
+     "circle": {"centre": [417.85, 33.75], "r": 3.05},
+     "h": 20.0,
+     "role": "stair tower"
+    }
+   ],
+   "entrances": [
+    {"to": "hall_common", "at": [349.3, 30.8], "face": "south", "spawn": "common_from_outside", "exit_spawn": "outside_north_hall", "verb": "Enter", "place": "North Hall"}
+   ]
+  },
+  {
+   "num": 12,
+   "id": "academic_1",
+   "name": "1st Academic Building",
+   "status": "built",
+   "style": "iut_brick",
+   "parts": [
+    {"rect": [204.7, 75.9, 258.1, 90.2], "h": 21.0},
+    {"rect": [211.6, 90.2, 233.5, 98.9], "h": 21.0},
+    {"rect": [245.0, 90.2, 258.1, 98.9], "h": 21.0},
+    {
+     "circle": {"centre": [207.2, 92.0], "r": 2.6},
+     "h": 23.0,
+     "role": "stair tower"
+    },
+    {
+     "circle": {"centre": [236.8, 92.0], "r": 2.6},
+     "h": 23.0,
+     "role": "stair tower"
+    }
+   ],
+   "entrances": [
+    {"to": "academic_corridor", "at": [222.5, 99.6], "face": "south", "spawn": "corridor_from_outside", "exit_spawn": "outside_academic_1", "verb": "Enter", "place": "1st Academic Building"}
+   ]
+  },
+  {
+   "num": 13,
+   "id": "car_parking",
+   "name": "Car Parking Area",
+   "status": "built",
+   "style": "metal_canopy",
+   "parts": [
+    {"rect": [201.8, 55.7, 230.0, 64.4], "h": 3.6},
+    {"rect": [231.2, 55.7, 258.1, 64.4], "h": 3.6},
+    {"rect": [201.8, 66.7, 258.1, 75.2], "h": 3.6}
+   ],
+   "note": "Covered parking sheds (dark red roofs on the board)."
+  },
+  {
+   "num": 14,
+   "id": "academic_2",
+   "name": "2nd Academic Building",
+   "status": "built",
+   "style": "iut_brick",
+   "parts": [
+    {"rect": [204.7, 21.2, 258.1, 32.2], "h": 22.0},
+    {"rect": [211.6, 32.2, 233.5, 44.3], "h": 22.0},
+    {"rect": [245.0, 32.2, 258.1, 44.3], "h": 22.0},
+    {
+     "circle": {"centre": [207.2, 34.4], "r": 2.6},
+     "h": 24.0,
+     "role": "stair tower"
+    },
+    {
+     "circle": {"centre": [236.8, 34.4], "r": 2.6},
+     "h": 24.0,
+     "role": "stair tower"
+    }
+   ],
+   "entrances": [
+    {"to": "academic_lab", "at": [222.5, 44.9], "face": "south", "spawn": "lab_from_outside", "exit_spawn": "outside_academic_2", "verb": "Enter", "place": "2nd Academic Building"}
+   ]
+  },
+  {
+   "num": 15,
+   "id": "southern_workshop",
+   "name": "Southern Workshop",
+   "status": "built",
+   "style": "workshop_sawtooth",
+   "parts": [
+    {"rect": [103.0, 86.9, 139.2, 101.2], "h": 8.0},
+    {"rect": [139.2, 86.9, 146.0, 101.2], "h": 6.0, "role": "link bay"},
+    {"rect": [146.0, 86.9, 182.2, 101.2], "h": 8.0}
+   ]
+  },
+  {
+   "num": 16,
+   "id": "middle_workshop",
+   "name": "Middle Workshop",
+   "status": "built",
+   "style": "workshop_sawtooth",
+   "parts": [
+    {"rect": [102.6, 58.4, 139.2, 72.7], "h": 8.0},
+    {"rect": [139.2, 58.4, 146.0, 72.7], "h": 6.0, "role": "link bay"},
+    {"rect": [146.0, 58.4, 181.5, 72.7], "h": 8.0}
+   ],
+   "entrances": [
+    {"to": "me_workshop", "at": [142.6, 73.3], "face": "south", "spawn": "workshop_from_outside", "exit_spawn": "outside_workshop", "verb": "Enter", "place": "Middle Workshop"}
+   ]
+  },
+  {
+   "num": 17,
+   "id": "northern_workshop",
+   "name": "Northern Workshop",
+   "status": "built",
+   "style": "workshop_sawtooth",
+   "parts": [
+    {"rect": [102.8, 29.2, 139.2, 43.5], "h": 8.0},
+    {"rect": [139.2, 29.2, 146.0, 43.5], "h": 6.0, "role": "link bay"},
+    {"rect": [146.0, 29.2, 181.7, 43.5], "h": 8.0}
+   ]
+  },
+  {
+   "num": 18,
+   "id": "academic_3",
+   "name": "3rd Academic Building",
+   "status": "built",
+   "style": "brick_red_roof",
+   "parts": [
+    {"rect": [98.2, 14.5, 142.35, 25.3], "h": 15.0, "role": "west half"}, {"rect": [142.35, 14.5, 186.5, 25.3], "h": 15.0, "role": "east half"}
+   ]
+  },
+  {
+   "num": 19,
+   "id": "substation",
+   "name": "Electrical Substation",
+   "status": "built",
+   "style": "utility",
+   "parts": [
+    {"rect": [137.3, 116.2, 161.0, 122.4], "h": 5.0},
+    {"rect": [137.3, 122.4, 147.2, 127.0], "h": 4.0},
+    {"rect": [137.3, 128.8, 147.2, 139.2], "h": 2.4, "role": "transformer yard (fenced)"}
+   ]
+  },
+  {
+   "num": 20,
+   "id": "vc_residence",
+   "name": "VC Residence",
+   "status": "built",
+   "style": "residential",
+   "parts": [
+    {"rect": [108.1, 246.0, 131.6, 265.4], "h": 8.0},
+    {"rect": [114.1, 265.4, 120.1, 270.5], "h": 4.0, "role": "porch"},
+    {"rect": [126.7, 265.4, 130.6, 270.2], "h": 4.0, "role": "porch"}
+   ]
+  },
+  {
+   "num": 21,
+   "id": "female_hall",
+   "name": "Female Hall of Residence",
+   "status": "built",
+   "style": "iut_brick",
+   "parts": [
+    {"rect": [28.8, 233.0, 76.4, 244.6], "h": 15.0, "role": "north wing"},
+    {
+     "circle": {"centre": [32.0, 245.6], "r": 3.0},
+     "h": 17.0,
+     "role": "stair tower"
+    },
+    {
+     "circle": {"centre": [73.2, 245.6], "r": 3.0},
+     "h": 17.0,
+     "role": "stair tower"
+    },
+    {"rect": [41.4, 265.2, 95.5, 278.5], "h": 15.0, "role": "south wing"},
+    {
+     "circle": {"centre": [44.6, 263.4], "r": 3.0},
+     "h": 17.0,
+     "role": "stair tower"
+    },
+    {
+     "circle": {"centre": [92.3, 263.4], "r": 3.0},
+     "h": 17.0,
+     "role": "stair tower"
+    }
+   ]
+  },
+  {
+   "num": 22,
+   "id": "f_type_bungalow",
+   "name": "F Type Bungalow",
+   "status": "built",
+   "style": "residential",
+   "parts": [
+    {"rect": [73.0, 199.6, 84.4, 225.0], "h": 5.0},
+    {"rect": [81.7, 231.0, 86.3, 237.6], "h": 3.0, "role": "outbuilding"}
+   ]
+  },
+  {
+   "num": 23,
+   "id": "d_type_building",
+   "name": "D Type Building",
+   "status": "built",
+   "style": "residential",
+   "parts": [
+    {"rect": [60.4, 167.9, 85.1, 177.8], "h": 12.0}
+   ],
+   "walls": [
+    [[71.3, 154.0], [90.2, 154.0], [90.2, 190.4], [71.3, 190.4]]
+   ]
+  },
+  {
+   "num": 24,
+   "id": "medical_laundry",
+   "name": "Medical Center / Laundry",
+   "status": "built",
+   "placeholder": true,
+   "style": "plain_brick",
+   "parts": [
+    {"rect": [-6.0, 26.7, 13.6, 52.4], "h": 8.0, "role": "medical center"},
+    {"rect": [-6.0, 52.4, 13.6, 71.3], "h": 7.0, "role": "laundry"}
+   ],
+   "note": "Runs off the photo's west edge; its west half is a placeholder."
+  },
+  {
+   "num": 25,
+   "id": "new_male_hall",
+   "name": "New Male Hall (Under Construction)",
+   "status": "under_construction",
+   "style": "highrise_construction",
+   "parts": [
+    {"rect": [39.0, 16.1, 79.4, 25.8], "h": 33.0, "role": "north bar"},
+    {"rect": [38.5, 35.7, 79.4, 46.0], "h": 33.0, "role": "south bar"},
+    {"rect": [29.3, 19.6, 38.5, 42.6], "h": 33.0, "role": "west block"},
+    {"rect": [79.4, 20.0, 88.6, 43.0], "h": 33.0, "role": "east block"}
+   ],
+   "note": "Courtyard ring ~10 storeys (the high-rise at the top-left of aerial 12), with scaffolding, site fence and a tower crane."
+  },
+  {
+   "num": 26,
+   "id": "studio_apartments",
+   "name": "Studio Apartments (Proposed)",
+   "status": "proposed",
+   "style": "plot",
+   "parts": [
+    {"rect": [28.2, 122.4, 64.4, 144.2], "h": 0.0}
+   ],
+   "plot": [27.0, 105.1, 92.0, 150.7],
+   "note": "Board marks it proposed: a fenced, staked plot with a site board (D47)."
+  },
+  {
+   "num": 27,
+   "id": "new_academic",
+   "name": "New Academic Building (Proposed)",
+   "status": "proposed",
+   "style": "plot",
+   "parts": [
+    {"rect": [147.9, 260.8, 213.4, 283.4], "h": 0.0}
+   ],
+   "plot": [145.5, 258.4, 215.8, 285.6],
+   "note": "Board marks it proposed: a fenced, staked plot with a site board (D47)."
+  }
+ ],
+ "structures": [
+  {
+   "id": "north_strip_block",
+   "name": "Staff block (unlabelled)",
+   "parts": [
+    {"rect": [338.1, 5.3, 361.6, 12.4], "h": 4.0}
+   ]
+  },
+  {
+   "id": "north_strip_room_w",
+   "name": "Small room (unlabelled)",
+   "parts": [
+    {"rect": [328.2, 5.8, 330.7, 9.9], "h": 3.0}
+   ]
+  },
+  {
+   "id": "north_strip_room_e",
+   "name": "Small room (unlabelled)",
+   "parts": [
+    {"rect": [365.0, 5.8, 368.2, 9.9], "h": 3.0}
+   ]
+  },
+  {
+   "id": "pump_house",
+   "name": "Pump house (unlabelled, by the canal)",
+   "parts": [
+    {"rect": [208.0, 10.4, 212.8, 15.0], "h": 3.0}
+   ]
+  },
+  {
+   "id": "south_service_gate",
+   "name": "South service gate (unlabelled)",
+   "parts": [
+    {"rect": [269.0, 288.2, 303.0, 296.2], "h": 3.5}
+   ],
+   "note": "Brown block straddling the south canal and wall on the board; read as a service gate with guard rooms."
+  },
+  {
+   "id": "courts_shelter",
+   "name": "Shelter by the courts (unlabelled)",
+   "parts": [
+    {"rect": [446.0, 135.0, 453.6, 149.5], "h": 3.0}
+   ]
+  },
+  {
+   "id": "nw_hut",
+   "name": "Hut (unlabelled)",
+   "parts": [
+    {"rect": [14.0, 15.4, 18.4, 21.2], "h": 3.0}
+   ]
+  }
+ ],
+ "trees": {
+  "rows": [
+   {"id": "boulevard_palms_south", "species": "coconut_palm", "spacing": 13.5, "points": [[147.0, 246.4], [322.0, 246.4]], "note": "Southern Field edge of R3"},
+   {"id": "boulevard_palms_north", "species": "coconut_palm", "spacing": 13.5, "points": [[176.0, 235.2], [312.0, 235.2]], "note": "lake rim along R3"},
+   {"id": "field_road_palms_w", "species": "areca_palm", "spacing": 11.0, "points": [[325.6, 126.0], [325.6, 232.0]]},
+   {"id": "field_road_palms_e", "species": "coconut_palm", "spacing": 11.0, "points": [[336.6, 145.0], [336.6, 236.0]]},
+   {"id": "halls_avenue_n", "species": "coconut_palm", "spacing": 11.5, "points": [[268.0, 45.6], [410.0, 45.6]]},
+   {"id": "halls_avenue_s", "species": "coconut_palm", "spacing": 11.5, "points": [[268.0, 56.6], [410.0, 56.6]]},
+   {"id": "gate_lawn_trees", "species": "mahogany", "spacing": 9.0, "points": [[352.0, 277.0], [478.0, 275.4]], "note": "the hedge-and-tree line along the south wall by the gate"},
+   {"id": "east_wall_trees", "species": "mango", "spacing": 9.0, "points": [[468.0, 160.0], [471.0, 232.0]]}
+  ],
+  "groves": [
+   {
+    "id": "substation_woods",
+    "species": ["rain_tree", "mahogany", "mango", "krishnachura"],
+    "rect": [97.5, 112.5, 160.5, 234.5],
+    "count": 64,
+    "min_gap": 6.5,
+    "seed": 19,
+    "avoid": [[135.5, 114.4, 162.5, 141.0]]
+   },
+   {"id": "nw_grove", "species": ["rain_tree", "mango", "mahogany"], "rect": [36.0, 54.0, 84.0, 100.0], "count": 9, "min_gap": 7.5, "seed": 25},
+   {"id": "gate_garden", "species": ["mango", "krishnachura"], "rect": [448.0, 245.0, 466.0, 259.0], "count": 3, "min_gap": 5.0, "seed": 1}
+  ],
+  "points": [
+   {"species": "mahogany", "at": [334.6, 115.0]},
+   {"species": "mahogany", "at": [334.6, 124.2]},
+   {"species": "mango", "at": [446.5, 111.0]},
+   {"species": "mango", "at": [450.5, 114.5]},
+   {"species": "mango", "at": [447.0, 118.5]},
+   {"species": "rain_tree", "at": [452.5, 120.5]}
+  ]
+ },
+ "features": [
+  {"id": "football_pitch", "kind": "pitch", "rect": [353.0, 151.0, 417.0, 253.0], "goals": "north-south", "note": "Central Field"},
+  {"id": "southern_cricket_strip", "kind": "worn_strip", "rect": [236.0, 262.0, 246.0, 282.0], "note": "the bare cricket strip of aerial 12's foreground"},
+  {"id": "board_you_are_here", "kind": "campus_board", "at": [440.0, 271.4], "note": "the official campus board itself (the owner's photo) - examine it"},
+  {"id": "hedge_gate_garden", "kind": "hedge", "points": [[445.6, 238.0], [445.6, 262.0]]},
+  {
+   "id": "five_fundamentals_axis",
+   "kind": "note",
+   "points": [[486, 266.8], [346.0, 266.8], [327.8, 239.5], [275.0, 194.2], [243.5, 188.0]],
+   "note": "the ceremonial axis: Main Gate -> gate road -> diagonal -> Five Fundamentals -> causeway -> Mosque"
+  }
+ ],
+ "spawns": [
+  {"id": "explore_start", "at": [466.0, 266.8], "note": "just inside the Main Gate, facing west"}
+ ],
+ "owner_notes": []
+}
