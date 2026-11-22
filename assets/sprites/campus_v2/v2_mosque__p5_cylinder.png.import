@@ -4,15 +4,10 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://d1b4b7nq37pcr"
 path.bptc="res://.godot/imported/v2_mosque__p5_cylinder.png-41334945ef23e06692137eb617b1ca50.bptc.ctex"
-metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
-}
 
 [deps]
 
 source_file="res://assets/sprites/campus_v2/v2_mosque__p5_cylinder.png"
-dest_files=["res://.godot/imported/v2_mosque__p5_cylinder.png-41334945ef23e06692137eb617b1ca50.bptc.ctex"]
 
 [params]
 

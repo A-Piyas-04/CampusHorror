@@ -108,8 +108,19 @@ def main():
     print(f"ground masks: {lo.w} x {lo.h} px at {PPM:g} px/m (campus + {MARGIN:g} m)")
 
     # --- splat: painter's order into a label image, then soft one-hot weights --------------------------------
-    label = Image.new("L", (hi.w, hi.h), 5)            # beyond the wall: the town's worn asphalt
+    label = Image.new("L", (hi.w, hi.h), 1)            # beyond the wall: rough verge (earth patches added below)
     d = ImageDraw.Draw(label)
+    hw = lay.get("highway")
+    if hw:                                               # the highway outside the east wall: shoulders, asphalt, median
+        def strip(width, fill):
+            road = {"points": hw["points"], "width": width}
+            for seg in LAY.road_poly(road):
+                d.polygon(hi.P(seg), fill=fill)
+            for x, y in hw["points"][1:-1]:
+                d.polygon(hi.P(LAY.circle_poly((x, y), width / 2, 16)), fill=fill)
+        strip(hw["width"] + 2 * hw.get("shoulder", 2.5), 7)
+        strip(hw["width"], 5)
+        strip(hw.get("median", 1.4), 6)
     for g in lay["ground"]:
         d.polygon(hi.P(LAY.ground_poly(g, lay)), fill=SURF_LAYER[g["surface"]])
     for r in lay["roads"]:
@@ -120,8 +131,11 @@ def main():
     for f in lay.get("features", []):
         if f.get("kind") == "worn_strip":
             d.polygon(hi.P(LAY.rect_poly(f["rect"])), fill=7)
-    lab = np.asarray(label)
+    lab = np.asarray(label).copy()
     inside = poly_mask(hi, [lay["boundary"]["points"]]) > 0.5
+    # outside the wall the verge is patchy: trodden earth through the rough grass (never on the highway itself)
+    rough = noise(lab.shape, hi.sigma(4.0), 11)
+    lab[(~inside) & (lab == 1) & (rough > 0.6)] = 7
     paved = np.isin(lab, [3, 4, 5, 6])
     # wear: grass right beside paving is trodden to earth in a noisy band; a few desire paths cut the lawns
     grassy = np.isin(lab, [0, 1])
@@ -203,7 +217,7 @@ def main():
     Image.fromarray(to8(W[..., 4:8]), "RGBA").save(OUT / "campus_splat_b.png", optimize=True)
     Image.fromarray(to8(shade), "RGBA").save(OUT / "campus_shade.png", optimize=True)
     write_water(lay, hi, OUT)
-    write_kerbs(lab, water, hi, OUT)
+    write_kerbs(lab, water, hi, OUT, inside)
     meta = {"x0": x0, "y0": y0, "px_per_m": PPM, "size": [lo.w, lo.h], "layers": LAYERS, "water_px_per_m": PPM * SS,
             "water_size": [hi.w, hi.h],
             "source": "data/campus/campus_layout.json via tools/zones/ground_mask.py"}
@@ -218,10 +232,11 @@ def main():
     print("wrote campus_splat_a/b.png, campus_shade.png, campus_ground.json (+ map-design/reference/ground_masks_preview.png)")
 
 
-def write_kerbs(lab, water, r, out):
+def write_kerbs(lab, water, r, out, inside=None):
     """campus_kerb.png at the hi raster (8 px/m), the paving edges for the shader's modelled kerbs:
     R = signed distance to the nearest paving edge (+ into the paving, -0.5..+0.5 m), G / B = that edge's normal
-    (x, y; pointing into the paving; 0.5 = 0), A = the edge is water (the lake copings take over there)."""
+    (x, y; pointing into the paving; 0.5 = 0), A = no kerb here: the edge is water (the lake copings take over) or
+    outside the campus wall (the highway's asphalt just breaks into its earth shoulder)."""
     paved = np.isin(lab, [3, 4, 5, 6])
     din, (iy, ix) = ndimage.distance_transform_edt(paved, return_indices=True)
     dout, (oy, ox) = ndimage.distance_transform_edt(~paved, return_indices=True)
@@ -234,6 +249,8 @@ def write_kerbs(lab, water, r, out):
     ny /= ln
     sd = np.where(paved, din, -dout) / r.k
     wet = np.where(paved, water[iy, ix] > 0.5, water > 0.5)
+    if inside is not None:
+        wet |= ~inside
     rgba = np.stack([np.clip(sd + 0.5, 0, 1), nx * 0.5 + 0.5, ny * 0.5 + 0.5, wet.astype(np.float32)], -1)
     Image.fromarray((rgba * 255 + 0.5).astype(np.uint8), "RGBA").save(out / "campus_kerb.png", optimize=True)
 

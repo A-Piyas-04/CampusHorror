@@ -3,20 +3,21 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dq37tt11ids8t"
-path="res://.godot/imported/v2_bridge_se__wall.png-6ea0f1dd26e122ecea05e33478d963f4.ctex"
+path.bptc="res://.godot/imported/v2_bridge_se__wall.png-6ea0f1dd26e122ecea05e33478d963f4.bptc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/sprites/campus_v2/v2_bridge_se__wall.png"
-dest_files=["res://.godot/imported/v2_bridge_se__wall.png-6ea0f1dd26e122ecea05e33478d963f4.ctex"]
+dest_files=["res://.godot/imported/v2_bridge_se__wall.png-6ea0f1dd26e122ecea05e33478d963f4.bptc.ctex"]
 
 [params]
 
-compress/mode=0
-compress/high_quality=false
+compress/mode=2
+compress/high_quality=true
 compress/lossy_quality=0.7
 compress/uastc_level=0
 compress/rdo_quality_loss=0.0

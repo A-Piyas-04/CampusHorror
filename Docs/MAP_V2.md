@@ -159,3 +159,41 @@ Standing rules:
   - Next: finish rendering the buildings, infrastructure and trees; regenerate `campus`; captures; re-run the
     checks and re-dump baselines.
   - Later: night-window variants (lit rooms) and hedges and flower beds along building fronts.
+- 22 Nov 2026: Art batches and the first in-game review (v3 captures).
+  - **Rendered**: all 34 buildings, 12 edge modules (wall, parapet, bridge in four directions), 5 court assets,
+    7 tree species. `merge_embedded` joins a part standing mostly inside another into its layer.
+  - **Black faces found and fixed in the pipeline** (`assets/source/blender/pipeline/`).
+    - A layer partly buried in a layer behind it (a stair tower half inside its wing) rendered its buried faces
+      unlit and black, drawn over the wing. The new per-layer `holdouts` let the layer behind cut it.
+    - Wings standing against a main block left the block's hidden facade black. That only showed when a wing faded
+      over the player (D31). Such a layer now has `covered_by` and renders twice: the exposed surfaces with real
+      shadows, and the hidden ones lit as if open. `layer_fill.py` composites the first pass over the second.
+    - The author script computes both from footprint overlaps and sort order.
+  - **Stale-render tool**: `tools/campus/stale_renders.py` compares each config with its render record
+    (generator parameters, layers, holdouts and covered_by), not file times. The author script also no longer
+    rewrites every config on each run.
+  - **Orphaned sprites**: `tools/campus/clean_sprites.py` removes layer PNGs, masks and night PNGs that no config
+    renders any more.
+  - **Ground**:
+    - Brick paving is procedural, in real 240 × 115 mm bricks: herringbone on the plaza, 45° herringbone bond (the
+      LGED HBB road) on brick roads and paths. Mortar or dirt joints, per-brick colour (over-burnt and pale ones),
+      bevel normals; the photo is kept as grain. This removes the lattice of pale specks the non-stochastic photo
+      showed.
+    - Concrete is cast in 1.2 m slabs.
+    - A per-layer `contrast` setting calms the busy concrete and asphalt photos.
+  - **Roads**:
+    - The Dhaka–Mymensingh highway runs outside the east wall (layout `highway`): two lanes each way, a median and
+      earth shoulders.
+    - Worn road paint (`road_paint.gdshader`): lane and edge lines, a zebra crossing and a speed breaker inside the
+      Main Gate. Pitch lines use the same paint.
+    - Asphalt kerbs are painted black and white.
+    - Outside the wall is rough verge, not asphalt.
+  - **Workshops**: corrugated-iron roofs (a new `corrugated` pattern with real bump). Each sawtooth is a patchwork
+    of new, old and rusted sheets with translucent skylights, plus valley gutters, turbine ventilators and brick
+    gable ends stepped to the profile.
+  - **Five Fundamentals**:
+    - plinths, round-arched passages with brick voussoirs, string courses and panels;
+    - no fade, because the ghosts already show the player through thin fins.
+  - **Doors**: the flat brick "threshold slabs" in front of every entrance are gone. The art models the steps.
+  - **Capture tour**: three shots stood inside buildings (auditorium, Academic 1, South Hall), and that faded them.
+    They are re-aimed, and close-ups of the plaza and the workshop roofs were added.

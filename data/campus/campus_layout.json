@@ -34,7 +34,12 @@
  ],
  "ground": [
   {"id": "campus_lawn", "surface": "grass", "poly": "boundary", "note": "everything inside the wall starts as mown lawn"},
-  {"id": "southern_field", "surface": "meadow", "name": "Southern Field", "poly": [[140.8, 242.2], [326.0, 242.2], [344.0, 269.2], [486, 269.2], [486, 283], [380, 287.6], [341, 290.4], [140.8, 294.0]]},
+  {
+   "id": "southern_field",
+   "surface": "meadow",
+   "name": "Southern Field",
+   "poly": [[140.8, 242.2], [326.0, 242.2], [344.0, 269.2], [486, 269.2], [486, 283], [380, 287.6], [341, 290.4], [140.8, 294.0]]
+  },
   {"id": "central_field", "surface": "field", "name": "Central Field", "poly": [[334.6, 112.6], [435.9, 112.6], [435.9, 228], [443.5, 239], [443.5, 262.4], [347.5, 262.4], [334.6, 244.0]]},
   {"id": "forest_floor", "surface": "forest_floor", "name": "Woods (around the substation)", "rect": [96.2, 110.9, 162.1, 236.0]},
   {
@@ -62,7 +67,7 @@
   {"id": "R1", "name": "Spine road", "surface": "brick_road", "width": 5.0, "points": [[91.5, 108.1], [441.6, 108.1]]},
   {"id": "R2", "name": "West avenue", "surface": "brick_road", "width": 5.0, "points": [[93.8, 12.0], [93.8, 239.5]]},
   {"id": "R3", "name": "South boulevard", "surface": "brick_road", "width": 5.0, "points": [[76.5, 239.5], [327.8, 239.5]]},
-  {"id": "R4", "name": "Gate road", "surface": "asphalt", "width": 6.4, "points": [[327.8, 239.5], [346.0, 266.8], [486, 266.8]]},
+  {"id": "R4", "name": "Gate road", "surface": "asphalt", "width": 6.4, "points": [[327.8, 239.5], [346.0, 266.8], [490.0, 266.8]]},
   {"id": "R5", "name": "Field road", "surface": "brick_road", "width": 4.6, "points": [[330.1, 108.1], [330.1, 239.5]]},
   {"id": "R6", "name": "East road", "surface": "brick_road", "width": 3.6, "points": [[439.8, 13.8], [439.8, 108.1]]},
   {"id": "R7", "name": "Woods road", "surface": "brick_road", "width": 4.6, "points": [[164.8, 108.1], [164.8, 239.5]]},
@@ -92,7 +97,12 @@
    "status": "built",
    "placeholder": true,
    "style": "gate",
-   "parts": [{"rect": [479.0, 259.6, 485.0, 263.2], "h": 8.0, "role": "north pylon"}, {"rect": [479.0, 270.4, 485.0, 274.0], "h": 8.0, "role": "south pylon"}, {"rect": [480.0, 259.6, 484.0, 274.0], "h": 9.5, "role": "gate beam", "solid": false}, {"rect": [470.5, 271.0, 476.5, 277.0], "h": 3.4, "role": "security booth"}],
+   "parts": [
+    {"rect": [479.0, 259.6, 485.0, 263.2], "h": 8.0, "role": "north pylon"},
+    {"rect": [479.0, 270.4, 485.0, 274.0], "h": 8.0, "role": "south pylon"},
+    {"rect": [480.0, 259.6, 484.0, 274.0], "h": 9.5, "role": "gate beam", "solid": false},
+    {"rect": [470.5, 271.0, 476.5, 277.0], "h": 3.4, "role": "security booth"}
+   ],
    "note": "Off the photo's east edge; the board's 'You are here' pin stands just south-west of it. The gate faces east (highway), so the camera sees its side.",
    "entrances": [
     {"to": "main_gate_security", "at": [473.5, 277.6], "face": "south", "spawn": "security_inside", "exit_spawn": "outside_security", "verb": "Enter", "place": "Security office"}
@@ -442,7 +452,8 @@
    "status": "built",
    "style": "brick_red_roof",
    "parts": [
-    {"rect": [98.2, 14.5, 142.35, 25.3], "h": 15.0, "role": "west half"}, {"rect": [142.35, 14.5, 186.5, 25.3], "h": 15.0, "role": "east half"}
+    {"rect": [98.2, 14.5, 142.35, 25.3], "h": 15.0, "role": "west half"},
+    {"rect": [142.35, 14.5, 186.5, 25.3], "h": 15.0, "role": "east half"}
    ]
   },
   {
@@ -520,9 +531,7 @@
    "parts": [
     {"rect": [60.4, 167.9, 85.1, 177.8], "h": 12.0}
    ],
-   "walls": [
-    [[71.3, 154.0], [90.2, 154.0], [90.2, 190.4], [71.3, 190.4]]
-   ]
+   "walls": [[[71.3, 154.0], [90.2, 154.0], [90.2, 190.4], [71.3, 190.4]]]
   },
   {
    "num": 24,
@@ -676,5 +685,14 @@
  "spawns": [
   {"id": "explore_start", "at": [466.0, 266.8], "note": "just inside the Main Gate, facing west"}
  ],
- "owner_notes": []
+ "owner_notes": [],
+ "highway": {
+  "name": "Dhaka-Mymensingh highway (N3)",
+  "note": "outside the east wall: two lanes each way, a concrete median, earth shoulders; the gate road meets it. Not walkable (the campus wall); drawn for the view from the Main Gate.",
+  "points": [[457.3, -45.5], [462.9, -3.5], [483.4, 149.9], [500.4, 281.1], [506.7, 329.7]],
+  "width": 18.0,
+  "median": 1.4,
+  "lane_m": 3.65,
+  "shoulder": 2.5
+ }
 }

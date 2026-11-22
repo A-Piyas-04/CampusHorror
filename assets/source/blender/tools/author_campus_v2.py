@@ -822,18 +822,37 @@ def five_fundamentals(site):
     for i in range(n):
         o = (i - (n - 1) / 2.0) * sp
         heights = h - abs(i - (n - 1) / 2.0) * 0.6          # stepped: the middle fin stands tallest
-        wall = [box(-L / 2, -gap / 2, o - T / 2, o + T / 2, 0.0, heights, "v2_brick"),
-                box(gap / 2, L / 2, o - T / 2, o + T / 2, 0.0, heights, "v2_brick"),
-                box(-gap / 2, gap / 2, o - T / 2, o + T / 2, 3.4, heights, "v2_brick"),
-                box(-L / 2 - 0.05, L / 2 + 0.05, o - T / 2 - 0.05, o + T / 2 + 0.05, heights, heights + 0.12, "v2_coping")]
+        y0, y1 = o - T / 2, o + T / 2
+        r, zs = gap / 2, 2.5                                 # round-arched passage, springing at 2.5 m
+        arch = [(-r, heights), (-r, zs)] + [(r * math.cos(math.pi * (1 - k / 12)), zs + r * math.sin(math.pi * (1 - k / 12)))
+                                             for k in range(1, 12)] + [(r, zs), (r, heights)]
+        wall = [box(-L / 2 - 0.12, L / 2 + 0.12, y0 - 0.12, y1 + 0.12, 0.0, 0.45, "v2_concrete"),   # plinth
+                box(-L / 2, -r, y0, y1, 0.45, heights, "v2_brick"),
+                box(r, L / 2, y0, y1, 0.45, heights, "v2_brick"),
+                prism(arch, [y0, y1], "v2_brick", axis="y"),
+                prism([(-r - 0.22, zs - 0.05)] + [((r + 0.22) * math.cos(math.pi * (1 - k / 12)),
+                                                   zs + (r + 0.22) * math.sin(math.pi * (1 - k / 12))) for k in range(1, 12)]
+                      + [(r + 0.22, zs - 0.05), (r, zs)] + [(r * math.cos(math.pi * k / 12), zs + r * math.sin(math.pi * k / 12))
+                                                          for k in range(1, 12)] + [(-r, zs)],
+                      [y0 - 0.05, y1 + 0.05], "v2_brick_reveal", axis="y"),                      # brick voussoir ring
+                box(-L / 2 - 0.05, L / 2 + 0.05, y0 - 0.05, y1 + 0.05, heights, heights + 0.12, "v2_coping"),
+                box(-L / 2 - 0.12, L / 2 + 0.12, y0 - 0.12, y1 + 0.12, heights + 0.12, heights + 0.24, "v2_coping")]
+        for zc in (1.6, heights - 2.2):                      # projecting string courses
+            wall += [box(-L / 2 - 0.04, -r - 0.25, y0 - 0.04, y1 + 0.04, zc, zc + 0.1, "v2_coping"),
+                     box(r + 0.25, L / 2 + 0.04, y0 - 0.04, y1 + 0.04, zc, zc + 0.1, "v2_coping")]
+        for sx in (-1, 1):                                   # recessed panels either side of the passage, both faces
+            xa, xb = sorted((sx * (r + 0.7), sx * (L / 2 - 0.6)))
+            for yy in (y0 - 0.001, y1 - 0.06):
+                wall.append(box(xa, xb, yy, yy + 0.061, 2.0, heights - 2.6, "v2_brick_reveal"))
         P += wall
     P.append(box(-L / 2 - 0.5, L / 2 + 0.5, -(n * sp) / 2 - 0.5, (n * sp) / 2 + 0.5, -0.3, 0.05, "v2_floor_tile"))
     # the fins stand across the causeway: walls run along local x, the causeway along local y; turn to the axis
     deg = 90.0 - m["axis_deg"]             # layout axis (clockwise from east, y down) -> Blender
     P = rotated_z(P, -deg + 90.0)
     P = [dict(q, xf=q.get("xf", []) + [{"move": [round(C[0], 3), round(C[1], 3), 0]}]) for q in P]
-    add_asset(site, "", "Five Fundamentals: five stepped brick fins across the diagonal causeway, each pierced by a passage.",
-              [("Fins", P, (C[0] - 7, C[0] + 7, C[1] - 7, C[1] + 7), h)])
+    add_asset(site, "", "Five Fundamentals: five stepped brick fins across the diagonal causeway, each on a concrete "
+                        "plinth, pierced by a round-arched passage with a brick voussoir ring, string courses and "
+                        "recessed panels.", [("Fins", P, (C[0] - 7, C[0] + 7, C[1] - 7, C[1] + 7), h)], fade=False)
 
 
 def workshops(site):

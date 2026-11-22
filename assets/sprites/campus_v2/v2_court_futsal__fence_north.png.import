@@ -3,20 +3,21 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bqs36bao42a35"
-path="res://.godot/imported/v2_court_futsal__fence_north.png-4ea110419186be3a215707a9e534c131.ctex"
+path.bptc="res://.godot/imported/v2_court_futsal__fence_north.png-4ea110419186be3a215707a9e534c131.bptc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/sprites/campus_v2/v2_court_futsal__fence_north.png"
-dest_files=["res://.godot/imported/v2_court_futsal__fence_north.png-4ea110419186be3a215707a9e534c131.ctex"]
+dest_files=["res://.godot/imported/v2_court_futsal__fence_north.png-4ea110419186be3a215707a9e534c131.bptc.ctex"]
 
 [params]
 
-compress/mode=0
-compress/high_quality=false
+compress/mode=2
+compress/high_quality=true
 compress/lossy_quality=0.7
 compress/uastc_level=0
 compress/rdo_quality_loss=0.0

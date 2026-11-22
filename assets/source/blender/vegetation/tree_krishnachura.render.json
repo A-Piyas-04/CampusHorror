@@ -1,0 +1,415 @@
+{
+  "pipeline": "campus_asset_pipeline",
+  "pipeline_version": 1,
+  "asset": "tree_krishnachura",
+  "category": "vegetation",
+  "description": "Krishnachura (gulmohar) in bloom: a spreading crown of fine leaves and flame-red flowers. Map v2 species variety (D46).",
+  "config": "assets/source/blender/configs/tree_krishnachura.json",
+  "generator": "assets/source/blender/generators/tree_broadleaf.py",
+  "generator_params": {
+    "trunk_height": 3.0,
+    "trunk_radius": 0.24,
+    "crown_z": 5.4,
+    "crown_rx": 2.6,
+    "ring_clusters": 8,
+    "low_clusters": 3,
+    "leaf_length": 0.13,
+    "leaf_width": 0.08,
+    "leaf_density": 240.0,
+    "collision_half_m": 0.3,
+    "leaf_stops": [
+      [
+        0.0,
+        [
+          0.03,
+          0.075,
+          0.012
+        ]
+      ],
+      [
+        0.4,
+        [
+          0.07,
+          0.15,
+          0.022
+        ]
+      ],
+      [
+        0.8,
+        [
+          0.13,
+          0.21,
+          0.035
+        ]
+      ],
+      [
+        1.0,
+        [
+          0.21,
+          0.26,
+          0.05
+        ]
+      ]
+    ],
+    "cluster_scale": 1.15,
+    "flower_density": 130.0,
+    "flower_color": [
+      0.78,
+      0.13,
+      0.02
+    ]
+  },
+  "random_seed": 44,
+  "blender_version": "5.2.2 LTS",
+  "outputs": {
+    "blend": "assets/source/blender/vegetation/tree_krishnachura.blend",
+    "record": "assets/source/blender/vegetation/tree_krishnachura.render.json",
+    "png": "assets/sprites/vegetation/tree_krishnachura.png",
+    "scene": "scenes/props/vegetation/TreeKrishnachura.tscn",
+    "preview": "scenes/tests/asset_previews/TreeKrishnachuraPreview.tscn"
+  },
+  "origin": "ground-footprint origin at z = 0 (Blender world origin); front faces -Y",
+  "footprint_m": {
+    "x_min": -0.3,
+    "x_max": 0.3,
+    "y_min": -0.3,
+    "y_max": 0.3
+  },
+  "model": {
+    "design_size_m": {
+      "trunk_clear_height_approx": 3.83,
+      "crown_width_approx": 7.7
+    },
+    "leaf_cards": 35732,
+    "clusters": 13,
+    "footprint": "trunk only (collision); the canopy has none and Y-sorts with the trunk origin",
+    "materials": [
+      "Bark",
+      "CanopyShade",
+      "Leaves"
+    ],
+    "objects": [
+      {
+        "object": "Trunk",
+        "evaluated_bounds_m": {
+          "x": 4.8586,
+          "y": 4.8484,
+          "z": 6.1425
+        },
+        "evaluated_faces": 742
+      },
+      {
+        "object": "CanopyInner",
+        "evaluated_bounds_m": {
+          "x": 7.1934,
+          "y": 7.3663,
+          "z": 3.6077
+        },
+        "evaluated_faces": 4160
+      },
+      {
+        "object": "Leaves",
+        "evaluated_bounds_m": {
+          "x": 7.5156,
+          "y": 7.7277,
+          "z": 3.8718
+        },
+        "evaluated_faces": 35732
+      },
+      {
+        "object": "Flowers",
+        "evaluated_bounds_m": {
+          "x": 7.5742,
+          "y": 7.7654,
+          "z": 3.9185
+        },
+        "evaluated_faces": 19290
+      }
+    ]
+  },
+  "camera": {
+    "type": "ORTHO",
+    "elevation_deg": 40.0,
+    "azimuth_deg": 0.0,
+    "rotation_euler_deg": [
+      50.0,
+      0.0,
+      0.0
+    ],
+    "location_m": [
+      0.1206,
+      -18.0773,
+      19.5457
+    ],
+    "ortho_scale_m": 8.786667,
+    "sensor_fit": "HORIZONTAL",
+    "content_extent_m": [
+      7.5742,
+      7.4194
+    ],
+    "margin_m_each_side": 0.6059,
+    "pixels_per_metre_on_screen": 150.0
+  },
+  "lighting": {
+    "sun_elevation_deg": 55.0,
+    "sun_azimuth_deg_from_front": -35.0,
+    "sun_direction_to_light": [
+      -0.329,
+      -0.4698,
+      0.8192
+    ],
+    "sun_strength": 3.2,
+    "sun_angle_deg": 3.0,
+    "fill_lights_linked_to_asset_only": [
+      {
+        "name": "SkyFill",
+        "elevation_deg": 70.0,
+        "azimuth_deg_from_front": 20.0,
+        "strength": 0.8,
+        "angle_deg": 90.0,
+        "color": [
+          0.75,
+          0.85,
+          1.0
+        ]
+      },
+      {
+        "name": "GroundBounce",
+        "elevation_deg": -25.0,
+        "azimuth_deg_from_front": 10.0,
+        "strength": 0.35,
+        "angle_deg": 90.0,
+        "color": [
+          1.0,
+          0.8,
+          0.65
+        ]
+      }
+    ],
+    "world_light": "none (strength 0)",
+    "ground": "none (no shadow catcher; no cast shadow baked into the PNG)"
+  },
+  "render": {
+    "engine": "CYCLES",
+    "device": "GPU (OPTIX: NVIDIA GeForce RTX 3050 Laptop GPU)",
+    "samples": 160,
+    "adaptive_sampling": true,
+    "denoiser": "compositor OIDN on colour only (albedo + normal guides); raw render alpha kept",
+    "max_bounces": 6,
+    "film_transparent": true,
+    "filter_size_px": 1.5,
+    "view_transform": "Standard",
+    "output_format": "PNG RGBA 8-bit",
+    "resolution_px": [
+      1318,
+      1294
+    ],
+    "render_seconds": 12.8
+  },
+  "projection": {
+    "note": "texture px, top-left origin: x = W/2 + (p.right - cx)*ppm, y = H/2 - (p.up - cy)*ppm",
+    "image_px": [
+      1318,
+      1294
+    ],
+    "px_per_m": 150.0,
+    "right": [
+      1.0,
+      0.0,
+      0.0
+    ],
+    "up": [
+      0.0,
+      0.6427876353263855,
+      0.7660444378852844
+    ],
+    "center_m": [
+      0.12063002586364746,
+      3.3530308678746223
+    ],
+    "origin_px": [
+      640.9054961204529,
+      1149.9546301811934
+    ],
+    "footprint_corners_px": [
+      [
+        595.9054961204529,
+        1178.8800737708807
+      ],
+      [
+        685.9054961204529,
+        1178.8800737708807
+      ],
+      [
+        685.9054961204529,
+        1121.029186591506
+      ],
+      [
+        595.9054961204529,
+        1121.029186591506
+      ]
+    ],
+    "design_bounds_bbox_px": [
+      90.93259239196777,
+      90.54267867171018,
+      1227.0674076080322,
+      1203.4573487763626
+    ]
+  },
+  "tiling": null,
+  "layers": null,
+  "kind": "sprite",
+  "ground_tile": null,
+  "total_seconds": 23.1,
+  "blender_run": {
+    "exit_code": 0,
+    "seconds": 24.9,
+    "problem_lines": [
+      "00:11.250  cycles           | WARNING HIPEW initialization failed: Error opening HIP dynamic library"
+    ]
+  },
+  "verification": {
+    "png": {
+      "bit_depth": 8,
+      "png_color_type": 6,
+      "interlace": 0,
+      "file_bytes": 2140420,
+      "size_px": [
+        1318,
+        1294
+      ],
+      "opaque_pixels": 737477,
+      "partially_transparent_pixels": 18066,
+      "fully_transparent_pixels": 949949,
+      "content_bbox_px": [
+        91,
+        90,
+        1227,
+        1204
+      ],
+      "margins_px": {
+        "left": 91,
+        "right": 90,
+        "top": 90,
+        "bottom": 89
+      },
+      "max_alpha_on_image_border": 0.0
+    },
+    "bbox_deviation_px": [
+      0.07,
+      -0.54,
+      0.93,
+      1.54
+    ],
+    "minimum_margin_required_px": 16,
+    "tiling": null,
+    "layers": null,
+    "passed": true
+  },
+  "godot": {
+    "scene": "scenes/props/vegetation/TreeKrishnachura.tscn",
+    "scene_name": "TreeKrishnachura",
+    "scene_semantic_sha256": "4200f3ac47b757cdf8946edc575cdadc411f457c2c1924e4da31861dbea7d9e8",
+    "sprite_offset_adjust_px": [
+      0.0,
+      0.0
+    ],
+    "layout": {
+      "render_px_per_m": 150.0,
+      "game_px_per_m": 32.0,
+      "sprite_scale": 0.21333333333333335,
+      "sprite_offset_px": [
+        -640.9054961204529,
+        -1149.9546301811934
+      ],
+      "origin_px": [
+        640.9054961204529,
+        1149.9546301811934
+      ],
+      "sprite_rect_game_px": [
+        -136.72650583902995,
+        -245.3236544386546,
+        281.17333333333335,
+        276.05333333333334
+      ],
+      "footprint_game_px": [
+        [
+          -9.600000000000001,
+          6.170761299133301
+        ],
+        [
+          9.600000000000001,
+          6.170761299133301
+        ],
+        [
+          9.600000000000001,
+          -6.170761299133301
+        ],
+        [
+          -9.600000000000001,
+          -6.170761299133301
+        ]
+      ],
+      "ground_depth_factor": 0.6427876353263855,
+      "layers": null
+    },
+    "collision": {
+      "source": "design_footprint",
+      "depth_mode": "projected",
+      "layer": 1,
+      "mask": 0,
+      "shapes": [
+        {
+          "node": "Collision",
+          "resource_id": "RectangleShape2D_footprint",
+          "center": [
+            0.0,
+            -0.0
+          ],
+          "size": [
+            19.2,
+            12.341522598266602
+          ],
+          "metres": [
+            -0.3,
+            0.3,
+            -0.3,
+            0.3
+          ]
+        }
+      ],
+      "center": [
+        0.0,
+        -0.0
+      ],
+      "size": [
+        19.2,
+        12.341522598266602
+      ],
+      "metres": [
+        -0.3,
+        0.3,
+        -0.3,
+        0.3
+      ]
+    },
+    "preview_scene": "scenes/tests/asset_previews/TreeKrishnachuraPreview.tscn"
+  },
+  "godot_import": {
+    "exit_code": 0,
+    "problem_lines": [
+      "WARNING: Detected another project.godot at res://addons/godot_mcp/cache/undo/entry_000003/files. The folder will be ignored.",
+      "WARNING: UID duplicate detected between res://scenes/tests/MCPCheck.tscn and res://addons/godot_mcp/cache/undo/entry_000002/files/scenes/tests/MCPCheck.tscn."
+    ]
+  },
+  "godot_check": {
+    "scene": {
+      "exit_code": 0,
+      "problem_lines": []
+    },
+    "preview": {
+      "exit_code": 0,
+      "problem_lines": []
+    }
+  }
+}

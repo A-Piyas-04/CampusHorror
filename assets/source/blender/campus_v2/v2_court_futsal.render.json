@@ -2283,3 +2283,534 @@
   "kind": "sprite",
   "ground_tile": null,
   "total_seconds": 27.3,
+  "blender_run": {
+    "exit_code": 0,
+    "seconds": 28.4,
+    "problem_lines": [
+      "00:01.937  cycles           | WARNING HIPEW initialization failed: Error opening HIP dynamic library"
+    ]
+  },
+  "verification": {
+    "png": {
+      "bit_depth": 8,
+      "png_color_type": 6,
+      "interlace": 0,
+      "file_bytes": 3720605,
+      "size_px": [
+        1559,
+        1538
+      ],
+      "opaque_pixels": 2242039,
+      "partially_transparent_pixels": 12736,
+      "fully_transparent_pixels": 142967,
+      "content_bbox_px": [
+        23,
+        23,
+        1535,
+        1514
+      ],
+      "margins_px": {
+        "left": 23,
+        "right": 23,
+        "top": 23,
+        "bottom": 23
+      },
+      "max_alpha_on_image_border": 0.0
+    },
+    "bbox_deviation_px": [
+      -1.78,
+      -1.86,
+      1.78,
+      1.86
+    ],
+    "minimum_margin_required_px": 16,
+    "tiling": null,
+    "layers": {
+      "GoalSouth": {
+        "bit_depth": 8,
+        "png_color_type": 6,
+        "interlace": 0,
+        "file_bytes": 78815,
+        "size_px": [
+          241,
+          288
+        ],
+        "opaque_pixels": 31022,
+        "partially_transparent_pixels": 2986,
+        "fully_transparent_pixels": 35400,
+        "content_bbox_px": [
+          23,
+          23,
+          217,
+          264
+        ],
+        "margins_px": {
+          "left": 23,
+          "right": 23,
+          "top": 23,
+          "bottom": 23
+        },
+        "max_alpha_on_image_border": 0.0
+      },
+      "GoalNorth": {
+        "bit_depth": 8,
+        "png_color_type": 6,
+        "interlace": 0,
+        "file_bytes": 66010,
+        "size_px": [
+          241,
+          287
+        ],
+        "opaque_pixels": 23562,
+        "partially_transparent_pixels": 2507,
+        "fully_transparent_pixels": 43098,
+        "content_bbox_px": [
+          23,
+          24,
+          217,
+          263
+        ],
+        "margins_px": {
+          "left": 23,
+          "right": 23,
+          "top": 24,
+          "bottom": 23
+        },
+        "max_alpha_on_image_border": 0.0
+      },
+      "FenceSouth": {
+        "bit_depth": 8,
+        "png_color_type": 6,
+        "interlace": 0,
+        "file_bytes": 421062,
+        "size_px": [
+          1565,
+          210
+        ],
+        "opaque_pixels": 234024,
+        "partially_transparent_pixels": 7065,
+        "fully_transparent_pixels": 87561,
+        "content_bbox_px": [
+          23,
+          23,
+          1541,
+          185
+        ],
+        "margins_px": {
+          "left": 23,
+          "right": 23,
+          "top": 23,
+          "bottom": 24
+        },
+        "max_alpha_on_image_border": 0.0
+      },
+      "FenceNorth": {
+        "bit_depth": 8,
+        "png_color_type": 6,
+        "interlace": 0,
+        "file_bytes": 420940,
+        "size_px": [
+          1565,
+          210
+        ],
+        "opaque_pixels": 233372,
+        "partially_transparent_pixels": 7249,
+        "fully_transparent_pixels": 88029,
+        "content_bbox_px": [
+          23,
+          23,
+          1541,
+          185
+        ],
+        "margins_px": {
+          "left": 23,
+          "right": 23,
+          "top": 23,
+          "bottom": 24
+        },
+        "max_alpha_on_image_border": 0.0
+      },
+      "FenceWest": {
+        "bit_depth": 8,
+        "png_color_type": 6,
+        "interlace": 0,
+        "file_bytes": 61001,
+        "size_px": [
+          54,
+          1694
+        ],
+        "opaque_pixels": 4842,
+        "partially_transparent_pixels": 6811,
+        "fully_transparent_pixels": 79823,
+        "content_bbox_px": [
+          23,
+          23,
+          30,
+          1669
+        ],
+        "margins_px": {
+          "left": 23,
+          "right": 23,
+          "top": 23,
+          "bottom": 24
+        },
+        "max_alpha_on_image_border": 0.0
+      },
+      "FenceEast": {
+        "bit_depth": 8,
+        "png_color_type": 6,
+        "interlace": 0,
+        "file_bytes": 61500,
+        "size_px": [
+          54,
+          1694
+        ],
+        "opaque_pixels": 4849,
+        "partially_transparent_pixels": 6748,
+        "fully_transparent_pixels": 79879,
+        "content_bbox_px": [
+          23,
+          23,
+          30,
+          1669
+        ],
+        "margins_px": {
+          "left": 23,
+          "right": 23,
+          "top": 23,
+          "bottom": 24
+        },
+        "max_alpha_on_image_border": 0.0
+      }
+    },
+    "passed": true
+  },
+  "godot": {
+    "scene": "scenes/props/campus_v2/V2CourtFutsal.tscn",
+    "scene_name": "V2CourtFutsal",
+    "scene_semantic_sha256": "7c6f0fa96e7bfb34e4b4bcdfd948753ba8c27dad74b435dc877046366807cbfc",
+    "sprite_offset_adjust_px": [
+      0.0,
+      0.0
+    ],
+    "layout": {
+      "render_px_per_m": 64.0,
+      "game_px_per_m": 32.0,
+      "sprite_scale": 0.5,
+      "sprite_offset_px": [
+        -779.5,
+        -768.1450487375259
+      ],
+      "origin_px": [
+        889.5,
+        1033.145048737526
+      ],
+      "sprite_rect_game_px": [
+        -391.25,
+        -463.07252436876297,
+        782.5,
+        848.0
+      ],
+      "footprint_game_px": [
+        [
+          -377.60000000000036,
+          371.27413816451985
+        ],
+        [
+          377.60000000000036,
+          371.27413816451985
+        ],
+        [
+          377.60000000000036,
+          -371.2741381645205
+        ],
+        [
+          -377.60000000000036,
+          -371.2741381645205
+        ]
+      ],
+      "ground_depth_factor": 0.6427876353263855,
+      "layers": [
+        {
+          "name": "GoalSouth",
+          "position_game_px": [
+            0.0,
+            280.7696391105652
+          ],
+          "sprite_offset_px": [
+            -123.5,
+            -268.68432695865636
+          ],
+          "z_index": 0,
+          "fade": {
+            "node": "GoalSouthFade",
+            "alpha": 0.45,
+            "seconds": 0.3,
+            "shapes": [
+              {
+                "node": "ShapeBehind",
+                "resource_id": "RectangleShape2D_GoalSouthFadeBehind",
+                "center": [
+                  0.0,
+                  223.58725107192996
+                ],
+                "size": [
+                  787.2,
+                  97.90941261291503
+                ],
+                "metres": [
+                  -12.3,
+                  12.3,
+                  -13.25,
+                  -8.49
+                ]
+              }
+            ]
+          },
+          "crop_px": [
+            766,
+            1326,
+            241,
+            288
+          ]
+        },
+        {
+          "name": "GoalNorth",
+          "position_game_px": [
+            0.0,
+            -239.6312304496765
+          ],
+          "sprite_offset_px": [
+            -123.5,
+            -268.88258783817287
+          ],
+          "z_index": 0,
+          "fade": {
+            "node": "GoalNorthFade",
+            "alpha": 0.45,
+            "seconds": 0.3,
+            "shapes": [
+              {
+                "node": "ShapeBehind",
+                "resource_id": "RectangleShape2D_GoalNorthFadeBehind",
+                "center": [
+                  0.0,
+                  -296.81361848831176
+                ],
+                "size": [
+                  787.2,
+                  97.90941261291499
+                ],
+                "metres": [
+                  -12.3,
+                  12.3,
+                  12.05,
+                  16.81
+                ]
+              }
+            ]
+          },
+          "crop_px": [
+            766,
+            285,
+            241,
+            287
+          ]
+        },
+        {
+          "name": "FenceSouth",
+          "position_game_px": [
+            0.0,
+            371.27413816452025
+          ],
+          "sprite_offset_px": [
+            -782.5,
+            -183.69332506656656
+          ],
+          "z_index": 0,
+          "fade": {
+            "node": "FenceSouthFade",
+            "alpha": 0.45,
+            "seconds": 0.3,
+            "shapes": [
+              {
+                "node": "ShapeBehind",
+                "resource_id": "RectangleShape2D_FenceSouthFadeBehind",
+                "center": [
+                  0.0,
+                  323.88269138717646
+                ],
+                "size": [
+                  787.2,
+                  78.32753009033199
+                ],
+                "metres": [
+                  -12.3,
+                  12.3,
+                  -17.65,
+                  -13.842
+                ]
+              }
+            ]
+          },
+          "crop_px": [
+            107,
+            1592,
+            1565,
+            210
+          ]
+        },
+        {
+          "name": "FenceNorth",
+          "position_game_px": [
+            0.0,
+            -370.24567794799805
+          ],
+          "sprite_offset_px": [
+            -782.5,
+            -185.65369284152985
+          ],
+          "z_index": 0,
+          "fade": {
+            "node": "FenceNorthFade",
+            "alpha": 0.45,
+            "seconds": 0.3,
+            "shapes": [
+              {
+                "node": "ShapeBehind",
+                "resource_id": "RectangleShape2D_FenceNorthFadeBehind",
+                "center": [
+                  0.0,
+                  -417.6371247253418
+                ],
+                "size": [
+                  787.2,
+                  78.32753009033203
+                ],
+                "metres": [
+                  -12.3,
+                  12.3,
+                  18.4,
+                  22.208
+                ]
+              }
+            ]
+          },
+          "crop_px": [
+            107,
+            107,
+            1565,
+            210
+          ]
+        },
+        {
+          "name": "FenceWest",
+          "position_game_px": [
+            0.0,
+            370.8627540779114
+          ],
+          "sprite_offset_px": [
+            -782.5,
+            -1666.8705568933487
+          ],
+          "z_index": 0,
+          "fade": {
+            "node": "FenceWestFade",
+            "alpha": 0.45,
+            "seconds": 0.3,
+            "shapes": [
+              {
+                "node": "ShapeBehind",
+                "resource_id": "RectangleShape2D_FenceWestFadeBehind",
+                "center": [
+                  0.0,
+                  323.4713073005676
+                ],
+                "size": [
+                  787.2,
+                  78.32753009033203
+                ],
+                "metres": [
+                  -12.3,
+                  12.3,
+                  -17.63,
+                  -13.822
+                ]
+              }
+            ]
+          },
+          "crop_px": [
+            107,
+            108,
+            54,
+            1694
+          ]
+        },
+        {
+          "name": "FenceEast",
+          "position_game_px": [
+            0.0,
+            370.65706203460695
+          ],
+          "sprite_offset_px": [
+            728.5,
+            -1666.4591728067398
+          ],
+          "z_index": 0,
+          "fade": {
+            "node": "FenceEastFade",
+            "alpha": 0.45,
+            "seconds": 0.3,
+            "shapes": [
+              {
+                "node": "ShapeBehind",
+                "resource_id": "RectangleShape2D_FenceEastFadeBehind",
+                "center": [
+                  0.0,
+                  323.2656152572632
+                ],
+                "size": [
+                  787.2,
+                  78.32753009033206
+                ],
+                "metres": [
+                  -12.3,
+                  12.3,
+                  -17.62,
+                  -13.812
+                ]
+              }
+            ]
+          },
+          "crop_px": [
+            1618,
+            108,
+            54,
+            1694
+          ]
+        }
+      ],
+      "crop_px": [
+        110,
+        265,
+        1559,
+        1538
+      ]
+    },
+    "collision": null,
+    "preview_scene": null
+  },
+  "godot_import": {
+    "exit_code": 0,
+    "problem_lines": [
+      "WARNING: Detected another project.godot at res://addons/godot_mcp/cache/undo/entry_000003/files. The folder will be ignored.",
+      "WARNING: UID duplicate detected between res://scenes/tests/MCPCheck.tscn and res://addons/godot_mcp/cache/undo/entry_000002/files/scenes/tests/MCPCheck.tscn."
+    ]
+  },
+  "godot_check": {
+    "scene": {
+      "exit_code": 0,
+      "problem_lines": []
+    }
+  }
+}

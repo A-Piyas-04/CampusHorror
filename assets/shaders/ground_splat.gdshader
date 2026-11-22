@@ -300,6 +300,11 @@ void fragment() {
 		vec2 tng = vec2(-kn.y, kn.x);
 		float joints = smoothstep(0.46, 0.485, abs(fract(dot(world_m, tng) / 0.6) - 0.5));
 		vec3 kerb_col = mix(vec3(0.46, 0.22, 0.16), vec3(0.70, 0.68, 0.63), clamp((w[5] + w[6]) * 2.4, 0.0, 1.0));
+		// asphalt roads: the kerbs are painted in alternating black and white metre lengths, worn and chipped
+		float seg = floor(dot(world_m, tng) / 1.0);
+		vec3 kpaint = mod(seg, 2.0) < 0.5 ? vec3(0.86, 0.86, 0.82) : vec3(0.09, 0.09, 0.09);
+		float kkeep = smoothstep(0.3, 0.42, texture(noise_tex, world_m / 0.8).g * 0.6 + texture(noise_tex, world_m / 3.0).r * 0.4);
+		kerb_col = mix(kerb_col, kpaint, smoothstep(0.3, 0.6, w[5]) * kkeep);
 		vec3 sun = normalize(vec3(-0.57, 0.82, 0.0));
 		vec3 top_col = kerb_col * (0.96 - 0.25 * (1.0 - joints));
 		vec3 face_col = kerb_col * (0.72 + 0.32 * max(dot(vec3(kn, 0.0), sun), 0.0)) * (0.92 - 0.2 * (1.0 - joints));

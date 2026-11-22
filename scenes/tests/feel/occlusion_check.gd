@@ -4,10 +4,10 @@ extends "res://scenes/tests/feel/feel_check_base.gd"
 ## comparing screenshots with ghosts on and off.
 
 const FIELD := Vector2(12320, 4300)
-## Map v2: a palm of the halls' palm avenue stands in for the occluding sprite; buildings are massing models
-## (scripts/world/campus_massing.gd) that fade instead of carrying ghosts until their rendered art lands.
+## Map v2: a palm of the halls' palm avenue stands in for the occluding sprite. Buildings are rendered art
+## (author_campus_v2.py): each footprint part is its own Y-sorted layer that fades (D31) while the player is behind.
 const AVENUE_PALM_AT := Vector2(11200, 938)     # (350 m, 45.6 m)
-const CDS := "Objects/Buildings/Cds/Part0"
+const CDS := "Objects/Buildings/Cds/Art/P0Part0"     # the CDS main block's layer sprite
 const BEHIND_CDS := Vector2(11520, 2346)        # (360 m, 114 m): between the spine road and the CDS's north face
 
 var ghosts: OcclusionGhosts

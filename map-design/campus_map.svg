@@ -37,7 +37,7 @@
 <polyline points="91.50,108.10 441.60,108.10" fill="none" stroke="#e8d6c4" stroke-width="5.0" stroke-linejoin="round" stroke-linecap="butt"><title>R1: Spine road (red brick road, 5.0 m)</title></polyline>
 <polyline points="93.80,12.00 93.80,239.50" fill="none" stroke="#e8d6c4" stroke-width="5.0" stroke-linejoin="round" stroke-linecap="butt"><title>R2: West avenue (red brick road, 5.0 m)</title></polyline>
 <polyline points="76.50,239.50 327.80,239.50" fill="none" stroke="#e8d6c4" stroke-width="5.0" stroke-linejoin="round" stroke-linecap="butt"><title>R3: South boulevard (red brick road, 5.0 m)</title></polyline>
-<polyline points="327.80,239.50 346.00,266.80 486.00,266.80" fill="none" stroke="#5c5e62" stroke-width="6.4" stroke-linejoin="round" stroke-linecap="butt"><title>R4: Gate road (asphalt road, 6.4 m)</title></polyline>
+<polyline points="327.80,239.50 346.00,266.80 490.00,266.80" fill="none" stroke="#5c5e62" stroke-width="6.4" stroke-linejoin="round" stroke-linecap="butt"><title>R4: Gate road (asphalt road, 6.4 m)</title></polyline>
 <polyline points="330.10,108.10 330.10,239.50" fill="none" stroke="#e8d6c4" stroke-width="4.6" stroke-linejoin="round" stroke-linecap="butt"><title>R5: Field road (red brick road, 4.6 m)</title></polyline>
 <polyline points="439.80,13.80 439.80,108.10" fill="none" stroke="#e8d6c4" stroke-width="3.6" stroke-linejoin="round" stroke-linecap="butt"><title>R6: East road (red brick road, 3.6 m)</title></polyline>
 <polyline points="164.80,108.10 164.80,239.50" fill="none" stroke="#e8d6c4" stroke-width="4.6" stroke-linejoin="round" stroke-linecap="butt"><title>R7: Woods road (red brick road, 4.6 m)</title></polyline>
@@ -588,6 +588,7 @@
 <g xmlns="http://www.w3.org/2000/svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" id="owner-additions" inkscape:groupmode="layer" inkscape:label="Owner additions (yours: never overwritten)">
 <desc>Draw new areas, buildings and notes in this layer, or add more layers whose name starts with "owner".</desc>
 </g>
+
 
 
 

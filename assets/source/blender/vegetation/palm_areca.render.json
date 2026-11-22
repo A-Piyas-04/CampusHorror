@@ -1,0 +1,380 @@
+{
+  "pipeline": "campus_asset_pipeline",
+  "pipeline_version": 1,
+  "asset": "palm_areca",
+  "category": "vegetation",
+  "description": "Areca (betel-nut) palm: a slim straight stem and a small tuft, planted in rows. Map v2 species variety (D46).",
+  "config": "assets/source/blender/configs/palm_areca.json",
+  "generator": "assets/source/blender/generators/tree_palm.py",
+  "generator_params": {
+    "trunk_height": 7.6,
+    "base_radius": 0.11,
+    "top_radius": 0.08,
+    "lean_x": 0.12,
+    "lean_y": 0.05,
+    "fronds": 10,
+    "frond_length": 2.3,
+    "leaflet_step": 0.019,
+    "leaflet_length": 0.7,
+    "leaflet_width": 0.05,
+    "dead_fronds": 1,
+    "coconuts": 0,
+    "collision_half_m": 0.12
+  },
+  "random_seed": 53,
+  "blender_version": "5.2.2 LTS",
+  "outputs": {
+    "blend": "assets/source/blender/vegetation/palm_areca.blend",
+    "record": "assets/source/blender/vegetation/palm_areca.render.json",
+    "png": "assets/sprites/vegetation/palm_areca.png",
+    "scene": "scenes/props/vegetation/PalmAreca.tscn",
+    "preview": "scenes/tests/asset_previews/PalmArecaPreview.tscn"
+  },
+  "origin": "ground-footprint origin at z = 0 (Blender world origin); front faces -Y",
+  "footprint_m": {
+    "x_min": -0.12,
+    "x_max": 0.12,
+    "y_min": -0.12,
+    "y_max": 0.12
+  },
+  "model": {
+    "design_size_m": {
+      "trunk_height": 7.6,
+      "frond_length": 2.3
+    },
+    "fronds": 10,
+    "dead_fronds": 1,
+    "leaflets": 986,
+    "footprint": "trunk base only (collision); fronds have none and Y-sort with the trunk origin",
+    "materials": [
+      "PalmBark",
+      "Rachis",
+      "PalmFronds",
+      "PalmDeadFronds",
+      "Coconut"
+    ],
+    "objects": [
+      {
+        "object": "Trunk",
+        "evaluated_bounds_m": {
+          "x": 0.3587,
+          "y": 0.33,
+          "z": 7.6078
+        },
+        "evaluated_faces": 128
+      },
+      {
+        "object": "Rachises",
+        "evaluated_bounds_m": {
+          "x": 4.176,
+          "y": 3.9808,
+          "z": 3.8007
+        },
+        "evaluated_faces": 726
+      },
+      {
+        "object": "Fronds",
+        "evaluated_bounds_m": {
+          "x": 4.177,
+          "y": 4.0094,
+          "z": 3.79
+        },
+        "evaluated_faces": 2958
+      },
+      {
+        "object": "Coconuts",
+        "evaluated_bounds_m": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "evaluated_faces": 0
+      }
+    ]
+  },
+  "camera": {
+    "type": "ORTHO",
+    "elevation_deg": 40.0,
+    "azimuth_deg": 0.0,
+    "rotation_euler_deg": [
+      50.0,
+      0.0,
+      0.0
+    ],
+    "location_m": [
+      -0.013,
+      -17.3391,
+      19.1889
+    ],
+    "ortho_scale_m": 5.386667,
+    "sensor_fit": "HORIZONTAL",
+    "content_extent_m": [
+      4.2129,
+      7.3204
+    ],
+    "margin_m_each_side": 0.5856,
+    "pixels_per_metre_on_screen": 150.0
+  },
+  "lighting": {
+    "sun_elevation_deg": 55.0,
+    "sun_azimuth_deg_from_front": -35.0,
+    "sun_direction_to_light": [
+      -0.329,
+      -0.4698,
+      0.8192
+    ],
+    "sun_strength": 3.2,
+    "sun_angle_deg": 3.0,
+    "fill_lights_linked_to_asset_only": [
+      {
+        "name": "SkyFill",
+        "elevation_deg": 70.0,
+        "azimuth_deg_from_front": 20.0,
+        "strength": 0.8,
+        "angle_deg": 90.0,
+        "color": [
+          0.75,
+          0.85,
+          1.0
+        ]
+      },
+      {
+        "name": "GroundBounce",
+        "elevation_deg": -25.0,
+        "azimuth_deg_from_front": 10.0,
+        "strength": 0.35,
+        "angle_deg": 90.0,
+        "color": [
+          1.0,
+          0.8,
+          0.65
+        ]
+      }
+    ],
+    "world_light": "none (strength 0)",
+    "ground": "none (no shadow catcher; no cast shadow baked into the PNG)"
+  },
+  "render": {
+    "engine": "CYCLES",
+    "device": "GPU (OPTIX: NVIDIA GeForce RTX 3050 Laptop GPU)",
+    "samples": 160,
+    "adaptive_sampling": true,
+    "denoiser": "compositor OIDN on colour only (albedo + normal guides); raw render alpha kept",
+    "max_bounces": 6,
+    "film_transparent": true,
+    "filter_size_px": 1.5,
+    "view_transform": "Standard",
+    "output_format": "PNG RGBA 8-bit",
+    "resolution_px": [
+      808,
+      1274
+    ],
+    "render_seconds": 3.8
+  },
+  "projection": {
+    "note": "texture px, top-left origin: x = W/2 + (p.right - cx)*ppm, y = H/2 - (p.up - cy)*ppm",
+    "image_px": [
+      808,
+      1274
+    ],
+    "px_per_m": 150.0,
+    "right": [
+      1.0,
+      0.0,
+      0.0
+    ],
+    "up": [
+      0.0,
+      0.6427876353263855,
+      0.7660444378852844
+    ],
+    "center_m": [
+      -0.012997984886169434,
+      3.554191480773625
+    ],
+    "origin_px": [
+      405.9496977329254,
+      1170.1287221160437
+    ],
+    "footprint_corners_px": [
+      [
+        387.9496977329254,
+        1181.6988995519187
+      ],
+      [
+        423.9496977329254,
+        1181.6988995519187
+      ],
+      [
+        423.9496977329254,
+        1158.5585446801688
+      ],
+      [
+        387.9496977329254,
+        1158.5585446801688
+      ]
+    ],
+    "design_bounds_bbox_px": [
+      88.03189778327942,
+      87.96676660340472,
+      719.9681022167206,
+      1186.0332353627318
+    ]
+  },
+  "tiling": null,
+  "layers": null,
+  "kind": "sprite",
+  "ground_tile": null,
+  "total_seconds": 5.3,
+  "blender_run": {
+    "exit_code": 0,
+    "seconds": 6.5,
+    "problem_lines": [
+      "00:02.000  cycles           | WARNING HIPEW initialization failed: Error opening HIP dynamic library"
+    ]
+  },
+  "verification": {
+    "png": {
+      "bit_depth": 8,
+      "png_color_type": 6,
+      "interlace": 0,
+      "file_bytes": 745711,
+      "size_px": [
+        808,
+        1274
+      ],
+      "opaque_pixels": 113520,
+      "partially_transparent_pixels": 61411,
+      "fully_transparent_pixels": 854461,
+      "content_bbox_px": [
+        87,
+        87,
+        720,
+        1186
+      ],
+      "margins_px": {
+        "left": 87,
+        "right": 87,
+        "top": 87,
+        "bottom": 87
+      },
+      "max_alpha_on_image_border": 0.0
+    },
+    "bbox_deviation_px": [
+      -1.03,
+      -0.97,
+      1.03,
+      0.97
+    ],
+    "minimum_margin_required_px": 16,
+    "tiling": null,
+    "layers": null,
+    "passed": true
+  },
+  "godot": {
+    "scene": "scenes/props/vegetation/PalmAreca.tscn",
+    "scene_name": "PalmAreca",
+    "scene_semantic_sha256": "a068754781c29be303aabb9bf9b5278eec5bef76f157946c6a9701e3daff69da",
+    "sprite_offset_adjust_px": [
+      0.0,
+      0.0
+    ],
+    "layout": {
+      "render_px_per_m": 150.0,
+      "game_px_per_m": 32.0,
+      "sprite_scale": 0.21333333333333335,
+      "sprite_offset_px": [
+        -405.9496977329254,
+        -1170.1287221160437
+      ],
+      "origin_px": [
+        405.9496977329254,
+        1170.1287221160437
+      ],
+      "sprite_rect_game_px": [
+        -86.60260218302409,
+        -249.62746071808934,
+        172.37333333333333,
+        271.7866666666667
+      ],
+      "footprint_game_px": [
+        [
+          -3.8400000000000003,
+          2.4683045196533207
+        ],
+        [
+          3.8400000000000003,
+          2.4683045196533207
+        ],
+        [
+          3.8400000000000003,
+          -2.4683045196533207
+        ],
+        [
+          -3.8400000000000003,
+          -2.4683045196533207
+        ]
+      ],
+      "ground_depth_factor": 0.6427876353263855,
+      "layers": null
+    },
+    "collision": {
+      "source": "design_footprint",
+      "depth_mode": "projected",
+      "layer": 1,
+      "mask": 0,
+      "shapes": [
+        {
+          "node": "Collision",
+          "resource_id": "RectangleShape2D_footprint",
+          "center": [
+            0.0,
+            -0.0
+          ],
+          "size": [
+            7.68,
+            4.93660903930664
+          ],
+          "metres": [
+            -0.12,
+            0.12,
+            -0.12,
+            0.12
+          ]
+        }
+      ],
+      "center": [
+        0.0,
+        -0.0
+      ],
+      "size": [
+        7.68,
+        4.93660903930664
+      ],
+      "metres": [
+        -0.12,
+        0.12,
+        -0.12,
+        0.12
+      ]
+    },
+    "preview_scene": "scenes/tests/asset_previews/PalmArecaPreview.tscn"
+  },
+  "godot_import": {
+    "exit_code": 0,
+    "problem_lines": [
+      "WARNING: Detected another project.godot at res://addons/godot_mcp/cache/undo/entry_000003/files. The folder will be ignored.",
+      "WARNING: UID duplicate detected between res://scenes/tests/MCPCheck.tscn and res://addons/godot_mcp/cache/undo/entry_000002/files/scenes/tests/MCPCheck.tscn."
+    ]
+  },
+  "godot_check": {
+    "scene": {
+      "exit_code": 0,
+      "problem_lines": []
+    },
+    "preview": {
+      "exit_code": 0,
+      "problem_lines": []
+    }
+  }
+}

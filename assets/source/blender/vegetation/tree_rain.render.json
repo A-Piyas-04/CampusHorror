@@ -1,0 +1,406 @@
+{
+  "pipeline": "campus_asset_pipeline",
+  "pipeline_version": 1,
+  "asset": "tree_rain",
+  "category": "vegetation",
+  "description": "Rain tree: a wide umbrella crown on a thick trunk, the big shade trees of the woods. Map v2 species variety (D46).",
+  "config": "assets/source/blender/configs/tree_rain.json",
+  "generator": "assets/source/blender/generators/tree_broadleaf.py",
+  "generator_params": {
+    "trunk_height": 3.4,
+    "trunk_radius": 0.32,
+    "crown_z": 6.4,
+    "crown_rx": 3.0,
+    "ring_clusters": 9,
+    "low_clusters": 4,
+    "leaf_length": 0.16,
+    "leaf_width": 0.1,
+    "leaf_density": 260.0,
+    "collision_half_m": 0.4,
+    "leaf_stops": [
+      [
+        0.0,
+        [
+          0.025,
+          0.065,
+          0.012
+        ]
+      ],
+      [
+        0.4,
+        [
+          0.055,
+          0.125,
+          0.02
+        ]
+      ],
+      [
+        0.8,
+        [
+          0.1,
+          0.18,
+          0.03
+        ]
+      ],
+      [
+        1.0,
+        [
+          0.17,
+          0.22,
+          0.045
+        ]
+      ]
+    ],
+    "cluster_scale": 1.55,
+    "flower_density": 0.0,
+    "flower_color": [
+      0.75,
+      0.12,
+      0.03
+    ]
+  },
+  "random_seed": 41,
+  "blender_version": "5.2.2 LTS",
+  "outputs": {
+    "blend": "assets/source/blender/vegetation/tree_rain.blend",
+    "record": "assets/source/blender/vegetation/tree_rain.render.json",
+    "png": "assets/sprites/vegetation/tree_rain.png",
+    "scene": "scenes/props/vegetation/TreeRain.tscn",
+    "preview": "scenes/tests/asset_previews/TreeRainPreview.tscn"
+  },
+  "origin": "ground-footprint origin at z = 0 (Blender world origin); front faces -Y",
+  "footprint_m": {
+    "x_min": -0.4,
+    "x_max": 0.4,
+    "y_min": -0.4,
+    "y_max": 0.4
+  },
+  "model": {
+    "design_size_m": {
+      "trunk_clear_height_approx": 4.83,
+      "crown_width_approx": 8.54
+    },
+    "leaf_cards": 56062,
+    "clusters": 15,
+    "footprint": "trunk only (collision); the canopy has none and Y-sorts with the trunk origin",
+    "materials": [
+      "Bark",
+      "CanopyShade",
+      "Leaves"
+    ],
+    "objects": [
+      {
+        "object": "Trunk",
+        "evaluated_bounds_m": {
+          "x": 6.1199,
+          "y": 5.4696,
+          "z": 7.1771
+        },
+        "evaluated_faces": 843
+      },
+      {
+        "object": "CanopyInner",
+        "evaluated_bounds_m": {
+          "x": 8.7426,
+          "y": 8.8344,
+          "z": 5.0257
+        },
+        "evaluated_faces": 4800
+      },
+      {
+        "object": "Leaves",
+        "evaluated_bounds_m": {
+          "x": 9.2008,
+          "y": 9.4013,
+          "z": 5.407
+        },
+        "evaluated_faces": 56062
+      }
+    ]
+  },
+  "camera": {
+    "type": "ORTHO",
+    "elevation_deg": 40.0,
+    "azimuth_deg": 0.0,
+    "rotation_euler_deg": [
+      50.0,
+      0.0,
+      0.0
+    ],
+    "location_m": [
+      0.1861,
+      -18.6315,
+      20.9521
+    ],
+    "ortho_scale_m": 10.673333,
+    "sensor_fit": "HORIZONTAL",
+    "content_extent_m": [
+      9.2008,
+      8.9606
+    ],
+    "margin_m_each_side": 0.7361,
+    "pixels_per_metre_on_screen": 150.0
+  },
+  "lighting": {
+    "sun_elevation_deg": 55.0,
+    "sun_azimuth_deg_from_front": -35.0,
+    "sun_direction_to_light": [
+      -0.329,
+      -0.4698,
+      0.8192
+    ],
+    "sun_strength": 3.2,
+    "sun_angle_deg": 3.0,
+    "fill_lights_linked_to_asset_only": [
+      {
+        "name": "SkyFill",
+        "elevation_deg": 70.0,
+        "azimuth_deg_from_front": 20.0,
+        "strength": 0.8,
+        "angle_deg": 90.0,
+        "color": [
+          0.75,
+          0.85,
+          1.0
+        ]
+      },
+      {
+        "name": "GroundBounce",
+        "elevation_deg": -25.0,
+        "azimuth_deg_from_front": 10.0,
+        "strength": 0.35,
+        "angle_deg": 90.0,
+        "color": [
+          1.0,
+          0.8,
+          0.65
+        ]
+      }
+    ],
+    "world_light": "none (strength 0)",
+    "ground": "none (no shadow catcher; no cast shadow baked into the PNG)"
+  },
+  "render": {
+    "engine": "CYCLES",
+    "device": "GPU (OPTIX: NVIDIA GeForce RTX 3050 Laptop GPU)",
+    "samples": 160,
+    "adaptive_sampling": true,
+    "denoiser": "compositor OIDN on colour only (albedo + normal guides); raw render alpha kept",
+    "max_bounces": 6,
+    "film_transparent": true,
+    "filter_size_px": 1.5,
+    "view_transform": "Standard",
+    "output_format": "PNG RGBA 8-bit",
+    "resolution_px": [
+      1601,
+      1564
+    ],
+    "render_seconds": 12.7
+  },
+  "projection": {
+    "note": "texture px, top-left origin: x = W/2 + (p.right - cx)*ppm, y = H/2 - (p.up - cy)*ppm",
+    "image_px": [
+      1601,
+      1564
+    ],
+    "px_per_m": 150.0,
+    "right": [
+      1.0,
+      0.0,
+      0.0
+    ],
+    "up": [
+      0.0,
+      0.6427876353263855,
+      0.7660444378852844
+    ],
+    "center_m": [
+      0.18605566024780273,
+      4.074135594069958
+    ],
+    "origin_px": [
+      772.5916509628296,
+      1393.1203391104937
+    ],
+    "footprint_corners_px": [
+      [
+        712.5916509628296,
+        1431.6875972300768
+      ],
+      [
+        832.5916509628296,
+        1431.6875972300768
+      ],
+      [
+        832.5916509628296,
+        1354.5530809909105
+      ],
+      [
+        712.5916509628296,
+        1354.5530809909105
+      ]
+    ],
+    "design_bounds_bbox_px": [
+      110.44143486022949,
+      109.95782320966828,
+      1490.5585651397705,
+      1454.0421604047508
+    ]
+  },
+  "tiling": null,
+  "layers": null,
+  "kind": "sprite",
+  "ground_tile": null,
+  "total_seconds": 19.5,
+  "blender_run": {
+    "exit_code": 0,
+    "seconds": 21.2,
+    "problem_lines": [
+      "00:07.625  cycles           | WARNING HIPEW initialization failed: Error opening HIP dynamic library"
+    ]
+  },
+  "verification": {
+    "png": {
+      "bit_depth": 8,
+      "png_color_type": 6,
+      "interlace": 0,
+      "file_bytes": 2764200,
+      "size_px": [
+        1601,
+        1564
+      ],
+      "opaque_pixels": 1107399,
+      "partially_transparent_pixels": 22995,
+      "fully_transparent_pixels": 1373570,
+      "content_bbox_px": [
+        110,
+        109,
+        1490,
+        1454
+      ],
+      "margins_px": {
+        "left": 110,
+        "right": 110,
+        "top": 109,
+        "bottom": 109
+      },
+      "max_alpha_on_image_border": 0.0
+    },
+    "bbox_deviation_px": [
+      -0.44,
+      -0.96,
+      0.44,
+      0.96
+    ],
+    "minimum_margin_required_px": 16,
+    "tiling": null,
+    "layers": null,
+    "passed": true
+  },
+  "godot": {
+    "scene": "scenes/props/vegetation/TreeRain.tscn",
+    "scene_name": "TreeRain",
+    "scene_semantic_sha256": "72a96e1dea3b5b0323260b9658f8687769a4ee1ff4d8cf3cfd82fab792436b9a",
+    "sprite_offset_adjust_px": [
+      0.0,
+      0.0
+    ],
+    "layout": {
+      "render_px_per_m": 150.0,
+      "game_px_per_m": 32.0,
+      "sprite_scale": 0.21333333333333335,
+      "sprite_offset_px": [
+        -772.5916509628296,
+        -1393.1203391104937
+      ],
+      "origin_px": [
+        772.5916509628296,
+        1393.1203391104937
+      ],
+      "sprite_rect_game_px": [
+        -164.81955220540365,
+        -297.19900567690536,
+        341.5466666666667,
+        333.65333333333336
+      ],
+      "footprint_game_px": [
+        [
+          -12.8,
+          8.227681732177734
+        ],
+        [
+          12.8,
+          8.227681732177734
+        ],
+        [
+          12.8,
+          -8.227681732177734
+        ],
+        [
+          -12.8,
+          -8.227681732177734
+        ]
+      ],
+      "ground_depth_factor": 0.6427876353263855,
+      "layers": null
+    },
+    "collision": {
+      "source": "design_footprint",
+      "depth_mode": "projected",
+      "layer": 1,
+      "mask": 0,
+      "shapes": [
+        {
+          "node": "Collision",
+          "resource_id": "RectangleShape2D_footprint",
+          "center": [
+            0.0,
+            -0.0
+          ],
+          "size": [
+            25.6,
+            16.455363464355468
+          ],
+          "metres": [
+            -0.4,
+            0.4,
+            -0.4,
+            0.4
+          ]
+        }
+      ],
+      "center": [
+        0.0,
+        -0.0
+      ],
+      "size": [
+        25.6,
+        16.455363464355468
+      ],
+      "metres": [
+        -0.4,
+        0.4,
+        -0.4,
+        0.4
+      ]
+    },
+    "preview_scene": "scenes/tests/asset_previews/TreeRainPreview.tscn"
+  },
+  "godot_import": {
+    "exit_code": 0,
+    "problem_lines": [
+      "WARNING: Detected another project.godot at res://addons/godot_mcp/cache/undo/entry_000003/files. The folder will be ignored.",
+      "WARNING: UID duplicate detected between res://scenes/tests/MCPCheck.tscn and res://addons/godot_mcp/cache/undo/entry_000002/files/scenes/tests/MCPCheck.tscn."
+    ]
+  },
+  "godot_check": {
+    "scene": {
+      "exit_code": 0,
+      "problem_lines": []
+    },
+    "preview": {
+      "exit_code": 0,
+      "problem_lines": []
+    }
+  }
+}

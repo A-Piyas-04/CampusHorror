@@ -73,6 +73,59 @@ def pts_px(points):
     return [px(x, y) for x, y in points]
 
 
+def offset_line(points, d):
+    """The polyline moved d metres to the left of its direction of travel (mitred at the bends)."""
+    def nrm(a, b):
+        dx, dy = b[0] - a[0], b[1] - a[1]
+        L = math.hypot(dx, dy) or 1.0
+        return (-dy / L, dx / L)
+    out = []
+    for i, p in enumerate(points):
+        if i == 0:
+            nx, ny = nrm(points[0], points[1])
+        elif i == len(points) - 1:
+            nx, ny = nrm(points[-2], points[-1])
+        else:
+            a, b = nrm(points[i - 1], p), nrm(p, points[i + 1])
+            mx, my = a[0] + b[0], a[1] + b[1]
+            ml = math.hypot(mx, my) or 1.0
+            mx, my = mx / ml, my / ml
+            k = 1.0 / max(mx * a[0] + my * a[1], 0.3)
+            nx, ny = mx * k, my * k
+        out.append((p[0] + nx * d, p[1] + ny * d))
+    return out
+
+
+def stripes(points, width, dash=None, gap=None, trim=(0.0, 0.0)):
+    """Quads (metres) along a polyline: one per segment if continuous, else dash / gap by arc length (a dash over a
+    bend splits in two). trim: metres left bare at the start and the end."""
+    segs, total = [], 0.0
+    for a, b in zip(points, points[1:]):
+        L = math.dist(a, b)
+        segs.append((a, b, total, L))
+        total += L
+    s0, s1 = trim[0], total - trim[1]
+    if dash is None:
+        spans = [(s0, s1)]
+    else:
+        spans, s = [], s0
+        while s < s1:
+            spans.append((s, min(s + dash, s1)))
+            s += dash + gap
+    quads = []
+    for a, b, t0, L in segs:
+        ux, uy = (b[0] - a[0]) / L, (b[1] - a[1]) / L
+        nx, ny = -uy * width / 2, ux * width / 2
+        for u0, u1 in spans:
+            lo, hi = max(u0, t0), min(u1, t0 + L)
+            if hi - lo < 0.05:
+                continue
+            p0 = (a[0] + ux * (lo - t0), a[1] + uy * (lo - t0))
+            p1 = (a[0] + ux * (hi - t0), a[1] + uy * (hi - t0))
+            quads.append([(p0[0] + nx, p0[1] + ny), (p1[0] + nx, p1[1] + ny), (p1[0] - nx, p1[1] - ny), (p0[0] - nx, p0[1] - ny)])
+    return quads
+
+
 class Campus:
     def __init__(self, lay):
         self.lay = lay
@@ -183,9 +236,62 @@ class Campus:
                 self.line("Court", [(x0, y0), (x1, y0), (x1, y1), (x0, y1)], white, 2.0, closed=True)
                 cy = (y0 + y1) / 2
                 self.line("CourtNet" if g["surface"] == "court_tennis" else "CourtHalf", [(x0, cy), (x1, cy)], white, 2.0)
+        self.road_paint()
+
+    def paint(self, name, quads_m, color):
+        """One antialiased Polygon2D holding many painted quads (metres), in worn road paint."""
+        if not quads_m:
+            return
+        verts, polys = [], []
+        for q in quads_m:
+            polys.append("PackedInt32Array(" + ", ".join(str(len(verts) + k) for k in range(len(q))) + ")")
+            verts += q
+        self.s.node(name, "Polygon2D", "Ground/Markings", props={
+            "polygon": PV2(pts_px(verts)), "polygons": "[" + ", ".join(polys) + "]", "color": C(*color),
+            "antialiased": "true", "material": self.paint_mat(), "light_mask": "1"})
+
+    def road_paint(self):
+        """Paint on the asphalt (the gate road and the highway outside the wall): lane and edge lines, a zebra
+        crossing and a speed breaker just inside the Main Gate. Brick roads carry no paint."""
+        white, yellow, black = (0.93, 0.93, 0.88, 0.92), (0.93, 0.72, 0.12, 0.92), (0.07, 0.07, 0.07, 0.9)
+        for r in self.lay["roads"]:
+            if r["surface"] != "asphalt":
+                continue
+            pts, hw = r["points"], r["width"] / 2
+            self.paint(f"Paint_{r['id']}_centre", stripes(pts, 0.12, 3.0, 4.5, trim=(5.0, 3.0)), white)
+            edges = stripes(offset_line(pts, hw - 0.3), 0.1, trim=(5.0, 3.0)) + \
+                stripes(offset_line(pts, -(hw - 0.3)), 0.1, trim=(5.0, 3.0))
+            self.paint(f"Paint_{r['id']}_edges", edges, white)
+        r4 = next((r for r in self.lay["roads"] if r["id"] == "R4"), None)
+        if r4:
+            y, hw = r4["points"][-1][1], r4["width"] / 2
+            zx = 457.0                                            # zebra crossing in front of the security booth
+            zebra = [[(zx, y + o - 0.25), (zx + 3.0, y + o - 0.25), (zx + 3.0, y + o + 0.25), (zx, y + o + 0.25)]
+                     for o in [k - (hw - 0.6) for k in range(int(2 * (hw - 0.6)) + 1)]]
+            self.paint("Paint_R4_zebra", zebra, white)
+            bx = 449.0                                            # speed breaker: yellow and black bands
+            ys = [y - hw + 0.2 + k * 0.6 for k in range(int((2 * hw - 0.4) / 0.6))]
+            self.paint("Paint_R4_breaker_y", [[(bx, a), (bx + 1.2, a), (bx + 1.2, a + 0.6), (bx, a + 0.6)] for a in ys[0::2]], yellow)
+            self.paint("Paint_R4_breaker_k", [[(bx, a), (bx + 1.2, a), (bx + 1.2, a + 0.6), (bx, a + 0.6)] for a in ys[1::2]], black)
+        hwy = self.lay.get("highway")
+        if hwy:
+            pts, W, M = hwy["points"], hwy["width"] / 2, hwy.get("median", 1.4) / 2
+            c = (hwy["width"] - hwy.get("median", 1.4)) / 2
+            for s, side in ((1, "E"), (-1, "W")):
+                self.paint(f"Paint_HWY_median_{side}", stripes(offset_line(pts, s * (M + 0.25)), 0.12), yellow)
+                self.paint(f"Paint_HWY_lanes_{side}", stripes(offset_line(pts, s * (M + c / 2)), 0.15, 3.0, 6.0), white)
+                self.paint(f"Paint_HWY_edge_{side}", stripes(offset_line(pts, s * (W - 0.3)), 0.15), white)
+
+    def paint_mat(self):
+        if getattr(self, "_paint_mat", None) is None:
+            self._paint_mat = self.s.sub("ShaderMaterial", {
+                "shader": self.s.res("res://assets/shaders/road_paint.gdshader"),
+                "shader_parameter/noise_tex": self.s.res("res://assets/textures/ground/ground_noise.png", "Texture2D")})
+        return self._paint_mat
 
     def line(self, base, points_m, color, width, closed=False):
-        props = {"points": PV2(pts_px(points_m)), "width": fnum(width), "default_color": C(*color), "light_mask": "1"}
+        props = {"points": PV2(pts_px(points_m)), "width": fnum(width), "default_color": C(*color), "light_mask": "1",
+                 "material": self.paint_mat(), "antialiased": "true"}
         if closed:
             props["closed"] = "true"
         self.s.node(self.uid(base), "Line2D", "Ground/Markings", props=props)
@@ -385,9 +491,7 @@ class Campus:
                     "position": V(*px(x, y)), "destination_zone_id": S(e["to"]), "destination_spawn_id": S(e["spawn"]),
                     "verb": S(e.get("verb", "Enter")), "place_name": S(e.get("place", st["name"])), "show_placeholder": "false"})
                 self.spawn(e["exit_spawn"], x + ox, y + oy)
-                # a darker threshold slab on the ground marks the door
-                self.poly("Ground/Markings", "Step_" + e["to"], LAY.rect_poly([x - 1.4, y - 0.4, x + 1.4, y + 0.9]) if e.get("face", "south") in ("south", "north")
-                          else LAY.rect_poly([x - 0.4, y - 1.4, x + 0.9, y + 1.4]), "pavers_dark")
+                # (no threshold slab: every entrance is modelled in the building art, with its own stepped plinth)
         for sp in self.lay.get("spawns", []):
             self.spawn(sp["id"], *sp["at"])
 

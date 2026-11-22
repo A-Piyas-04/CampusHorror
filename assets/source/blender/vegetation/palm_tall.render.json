@@ -1,0 +1,380 @@
+{
+  "pipeline": "campus_asset_pipeline",
+  "pipeline_version": 1,
+  "asset": "palm_tall",
+  "category": "vegetation",
+  "description": "Tall coconut palm, nearly straight. Map v2 species variety (D46).",
+  "config": "assets/source/blender/configs/palm_tall.json",
+  "generator": "assets/source/blender/generators/tree_palm.py",
+  "generator_params": {
+    "trunk_height": 10.5,
+    "base_radius": 0.2,
+    "top_radius": 0.14,
+    "lean_x": -0.35,
+    "lean_y": 0.1,
+    "fronds": 17,
+    "frond_length": 3.8,
+    "leaflet_step": 0.019,
+    "leaflet_length": 0.95,
+    "leaflet_width": 0.05,
+    "dead_fronds": 2,
+    "coconuts": 6,
+    "collision_half_m": 0.175
+  },
+  "random_seed": 52,
+  "blender_version": "5.2.2 LTS",
+  "outputs": {
+    "blend": "assets/source/blender/vegetation/palm_tall.blend",
+    "record": "assets/source/blender/vegetation/palm_tall.render.json",
+    "png": "assets/sprites/vegetation/palm_tall.png",
+    "scene": "scenes/props/vegetation/PalmTall.tscn",
+    "preview": "scenes/tests/asset_previews/PalmTallPreview.tscn"
+  },
+  "origin": "ground-footprint origin at z = 0 (Blender world origin); front faces -Y",
+  "footprint_m": {
+    "x_min": -0.175,
+    "x_max": 0.175,
+    "y_min": -0.175,
+    "y_max": 0.175
+  },
+  "model": {
+    "design_size_m": {
+      "trunk_height": 10.5,
+      "frond_length": 3.8
+    },
+    "fronds": 17,
+    "dead_fronds": 2,
+    "leaflets": 1716,
+    "footprint": "trunk base only (collision); fronds have none and Y-sort with the trunk origin",
+    "materials": [
+      "PalmBark",
+      "Rachis",
+      "PalmFronds",
+      "PalmDeadFronds",
+      "Coconut"
+    ],
+    "objects": [
+      {
+        "object": "Trunk",
+        "evaluated_bounds_m": {
+          "x": 0.7788,
+          "y": 0.6,
+          "z": 10.5109
+        },
+        "evaluated_faces": 128
+      },
+      {
+        "object": "Rachises",
+        "evaluated_bounds_m": {
+          "x": 7.1233,
+          "y": 6.7982,
+          "z": 5.9248
+        },
+        "evaluated_faces": 1254
+      },
+      {
+        "object": "Fronds",
+        "evaluated_bounds_m": {
+          "x": 7.078,
+          "y": 6.8185,
+          "z": 5.8698
+        },
+        "evaluated_faces": 5148
+      },
+      {
+        "object": "Coconuts",
+        "evaluated_bounds_m": {
+          "x": 0.6062,
+          "y": 0.5628,
+          "z": 0.367
+        },
+        "evaluated_faces": 480
+      }
+    ]
+  },
+  "camera": {
+    "type": "ORTHO",
+    "elevation_deg": 40.0,
+    "azimuth_deg": 0.0,
+    "rotation_euler_deg": [
+      50.0,
+      0.0,
+      0.0
+    ],
+    "location_m": [
+      -0.4512,
+      -18.8709,
+      22.68
+    ],
+    "ortho_scale_m": 8.86,
+    "sensor_fit": "HORIZONTAL",
+    "content_extent_m": [
+      7.1233,
+      10.8734
+    ],
+    "margin_m_each_side": 0.8699,
+    "pixels_per_metre_on_screen": 150.0
+  },
+  "lighting": {
+    "sun_elevation_deg": 55.0,
+    "sun_azimuth_deg_from_front": -35.0,
+    "sun_direction_to_light": [
+      -0.329,
+      -0.4698,
+      0.8192
+    ],
+    "sun_strength": 3.2,
+    "sun_angle_deg": 3.0,
+    "fill_lights_linked_to_asset_only": [
+      {
+        "name": "SkyFill",
+        "elevation_deg": 70.0,
+        "azimuth_deg_from_front": 20.0,
+        "strength": 0.8,
+        "angle_deg": 90.0,
+        "color": [
+          0.75,
+          0.85,
+          1.0
+        ]
+      },
+      {
+        "name": "GroundBounce",
+        "elevation_deg": -25.0,
+        "azimuth_deg_from_front": 10.0,
+        "strength": 0.35,
+        "angle_deg": 90.0,
+        "color": [
+          1.0,
+          0.8,
+          0.65
+        ]
+      }
+    ],
+    "world_light": "none (strength 0)",
+    "ground": "none (no shadow catcher; no cast shadow baked into the PNG)"
+  },
+  "render": {
+    "engine": "CYCLES",
+    "device": "GPU (OPTIX: NVIDIA GeForce RTX 3050 Laptop GPU)",
+    "samples": 160,
+    "adaptive_sampling": true,
+    "denoiser": "compositor OIDN on colour only (albedo + normal guides); raw render alpha kept",
+    "max_bounces": 6,
+    "film_transparent": true,
+    "filter_size_px": 1.5,
+    "view_transform": "Standard",
+    "output_format": "PNG RGBA 8-bit",
+    "resolution_px": [
+      1329,
+      1892
+    ],
+    "render_seconds": 7.4
+  },
+  "projection": {
+    "note": "texture px, top-left origin: x = W/2 + (p.right - cx)*ppm, y = H/2 - (p.up - cy)*ppm",
+    "image_px": [
+      1329,
+      1892
+    ],
+    "px_per_m": 150.0,
+    "right": [
+      1.0,
+      0.0,
+      0.0
+    ],
+    "up": [
+      0.0,
+      0.6427876353263855,
+      0.7660444378852844
+    ],
+    "center_m": [
+      -0.45118701457977295,
+      5.2439221715139865
+    ],
+    "origin_px": [
+      732.1780521869659,
+      1732.588325727098
+    ],
+    "footprint_corners_px": [
+      [
+        705.9280521869659,
+        1749.4615011544156
+      ],
+      [
+        758.4280521869659,
+        1749.4615011544156
+      ],
+      [
+        758.4280521869659,
+        1715.7151502997804
+      ],
+      [
+        705.9280521869659,
+        1715.7151502997804
+      ]
+    ],
+    "design_bounds_bbox_px": [
+      130.25265526771545,
+      130.49541766464392,
+      1198.7473447322845,
+      1761.5045779331567
+    ]
+  },
+  "tiling": null,
+  "layers": null,
+  "kind": "sprite",
+  "ground_tile": null,
+  "total_seconds": 9.0,
+  "blender_run": {
+    "exit_code": 0,
+    "seconds": 10.2,
+    "problem_lines": [
+      "00:02.140  cycles           | WARNING HIPEW initialization failed: Error opening HIP dynamic library"
+    ]
+  },
+  "verification": {
+    "png": {
+      "bit_depth": 8,
+      "png_color_type": 6,
+      "interlace": 0,
+      "file_bytes": 2052759,
+      "size_px": [
+        1329,
+        1892
+      ],
+      "opaque_pixels": 277313,
+      "partially_transparent_pixels": 219520,
+      "fully_transparent_pixels": 2017635,
+      "content_bbox_px": [
+        129,
+        129,
+        1199,
+        1762
+      ],
+      "margins_px": {
+        "left": 129,
+        "right": 129,
+        "top": 129,
+        "bottom": 129
+      },
+      "max_alpha_on_image_border": 0.0
+    },
+    "bbox_deviation_px": [
+      -1.25,
+      -1.5,
+      1.25,
+      1.5
+    ],
+    "minimum_margin_required_px": 16,
+    "tiling": null,
+    "layers": null,
+    "passed": true
+  },
+  "godot": {
+    "scene": "scenes/props/vegetation/PalmTall.tscn",
+    "scene_name": "PalmTall",
+    "scene_semantic_sha256": "2fac56cc03ea6566201c131282b8ea5470ffb7d63c252acbc84f1c8d79ad8b8f",
+    "sprite_offset_adjust_px": [
+      0.0,
+      0.0
+    ],
+    "layout": {
+      "render_px_per_m": 150.0,
+      "game_px_per_m": 32.0,
+      "sprite_scale": 0.21333333333333335,
+      "sprite_offset_px": [
+        -732.1780521869659,
+        -1732.588325727098
+      ],
+      "origin_px": [
+        732.1780521869659,
+        1732.588325727098
+      ],
+      "sprite_rect_game_px": [
+        -156.19798446655275,
+        -369.6188428217809,
+        283.52000000000004,
+        403.62666666666667
+      ],
+      "footprint_game_px": [
+        [
+          -5.6000000000000005,
+          3.599610757827759
+        ],
+        [
+          5.6000000000000005,
+          3.599610757827759
+        ],
+        [
+          5.6000000000000005,
+          -3.599610757827759
+        ],
+        [
+          -5.6000000000000005,
+          -3.599610757827759
+        ]
+      ],
+      "ground_depth_factor": 0.6427876353263855,
+      "layers": null
+    },
+    "collision": {
+      "source": "design_footprint",
+      "depth_mode": "projected",
+      "layer": 1,
+      "mask": 0,
+      "shapes": [
+        {
+          "node": "Collision",
+          "resource_id": "RectangleShape2D_footprint",
+          "center": [
+            0.0,
+            -0.0
+          ],
+          "size": [
+            11.2,
+            7.199221515655517
+          ],
+          "metres": [
+            -0.175,
+            0.175,
+            -0.175,
+            0.175
+          ]
+        }
+      ],
+      "center": [
+        0.0,
+        -0.0
+      ],
+      "size": [
+        11.2,
+        7.199221515655517
+      ],
+      "metres": [
+        -0.175,
+        0.175,
+        -0.175,
+        0.175
+      ]
+    },
+    "preview_scene": "scenes/tests/asset_previews/PalmTallPreview.tscn"
+  },
+  "godot_import": {
+    "exit_code": 0,
+    "problem_lines": [
+      "WARNING: Detected another project.godot at res://addons/godot_mcp/cache/undo/entry_000003/files. The folder will be ignored.",
+      "WARNING: UID duplicate detected between res://scenes/tests/MCPCheck.tscn and res://addons/godot_mcp/cache/undo/entry_000002/files/scenes/tests/MCPCheck.tscn."
+    ]
+  },
+  "godot_check": {
+    "scene": {
+      "exit_code": 0,
+      "problem_lines": []
+    },
+    "preview": {
+      "exit_code": 0,
+      "problem_lines": []
+    }
+  }
+}

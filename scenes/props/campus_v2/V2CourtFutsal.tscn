@@ -168,4 +168,8 @@ monitorable = false
 script = ExtResource("overhead_visibility")
 target_paths = Array[NodePath]([NodePath("../FenceEast")])
 faded_alpha = 0.45
-fade
+fade_seconds = 0.3
+
+[node name="ShapeBehind" type="CollisionShape2D" parent="FenceEastFade"]
+position = Vector2(0, 323.26562)
+shape = SubResource("RectangleShape2D_FenceEastFadeBehind")
