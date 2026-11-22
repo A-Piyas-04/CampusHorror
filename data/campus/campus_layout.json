@@ -694,5 +694,27 @@
   "median": 1.4,
   "lane_m": 3.65,
   "shoulder": 2.5
+ },
+ "hedges": {
+  "note": "Clipped hedges (2 m modules, assets/sprites/vegetation/hedge_section_2m; east-west runs only: a 2.5D sprite can't turn). Not on the board: planting detail, edit freely. y = the hedge's centre line; a 2 m opening every gap_every metres and at each listed gap.",
+  "runs": [
+   {
+    "id": "halls_avenue_n",
+    "y": 49.0,
+    "x": [262.0, 414.0],
+    "gaps": [[321.8, 326.8], [372.4, 377.4], [298.4, 301.6], [348.4, 351.6], [393.4, 396.6]],
+    "gap_every": 23.0,
+    "note": "gaps: the two cross paths, then a niche for each avenue bench (x 300, 350, 395)"
+   },
+   {
+    "id": "halls_avenue_s",
+    "y": 53.4,
+    "x": [262.0, 414.0],
+    "gaps": [[321.8, 326.8], [372.4, 377.4], [298.4, 301.6], [348.4, 351.6], [393.4, 396.6]],
+    "gap_every": 23.0,
+    "note": "gaps: the two cross paths, then a niche for each avenue bench (x 300, 350, 395)"
+   },
+   {"id": "field_south", "y": 262.95, "x": [350.0, 442.0], "gaps": [], "gap_every": 30.0}
+  ]
  }
 }

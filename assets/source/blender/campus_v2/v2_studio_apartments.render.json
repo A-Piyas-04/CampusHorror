@@ -138,15 +138,12 @@
           0.18
         ],
         "pattern": {
-          "type": "stripes",
-          "period": 0.16,
-          "color2": [
-            0.16,
-            0.3,
-            0.46
-          ],
+          "type": "corrugated",
+          "period": 0.1,
           "axis": "x"
-        }
+        },
+        "height_strength": 0.9,
+        "bump_distance": 0.02
       },
       "v2_steel": {
         "color": [
@@ -1632,7 +1629,7 @@
       4833,
       2656
     ],
-    "render_seconds": 19.8
+    "render_seconds": 21.4
   },
   "projection": {
     "note": "texture px, top-left origin: x = W/2 + (p.right - cx)*ppm, y = H/2 - (p.up - cy)*ppm",
@@ -1712,7 +1709,10 @@
         "alpha": 0.3,
         "seconds": 0.35
       },
-      "render_seconds": 18.5,
+      "holdouts": [],
+      "covered_by": [],
+      "covered_fill": null,
+      "render_seconds": 19.9,
       "crop_px": [
         309,
         309,
@@ -1723,12 +1723,12 @@
   ],
   "kind": "sprite",
   "ground_tile": null,
-  "total_seconds": 24.0,
+  "total_seconds": 26.0,
   "blender_run": {
     "exit_code": 0,
-    "seconds": 25.0,
+    "seconds": 27.1,
     "problem_lines": [
-      "00:02.000  cycles           | WARNING HIPEW initialization failed: Error opening HIP dynamic library"
+      "00:02.094  cycles           | WARNING HIPEW initialization failed: Error opening HIP dynamic library"
     ]
   },
   "verification": {
@@ -1736,7 +1736,7 @@
       "bit_depth": 8,
       "png_color_type": 6,
       "interlace": 0,
-      "file_bytes": 5461,
+      "file_bytes": 5450,
       "size_px": [
         87,
         74
@@ -1771,14 +1771,14 @@
         "bit_depth": 8,
         "png_color_type": 6,
         "interlace": 0,
-        "file_bytes": 4176111,
+        "file_bytes": 4064274,
         "size_px": [
           4215,
           2038
         ],
-        "opaque_pixels": 985836,
-        "partially_transparent_pixels": 60148,
-        "fully_transparent_pixels": 7544186,
+        "opaque_pixels": 985511,
+        "partially_transparent_pixels": 60416,
+        "fully_transparent_pixels": 7544243,
         "content_bbox_px": [
           23,
           23,

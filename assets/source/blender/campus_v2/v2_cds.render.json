@@ -6009,7 +6009,7 @@
       3091,
       1906
     ],
-    "render_seconds": 53.4
+    "render_seconds": 83.4
   },
   "projection": {
     "note": "texture px, top-left origin: x = W/2 + (p.right - cx)*ppm, y = H/2 - (p.up - cy)*ppm",
@@ -6089,7 +6089,13 @@
         "alpha": 0.3,
         "seconds": 0.35
       },
-      "render_seconds": 31.4,
+      "holdouts": [],
+      "covered_by": [
+        "P1Part1",
+        "P2ArcadeVeranda"
+      ],
+      "covered_fill": 0.2444,
+      "render_seconds": 56.8,
       "crop_px": [
         189,
         189,
@@ -6117,6 +6123,9 @@
         "alpha": 0.3,
         "seconds": 0.35
       },
+      "holdouts": [],
+      "covered_by": [],
+      "covered_fill": null,
       "render_seconds": 11.3,
       "crop_px": [
         189,
@@ -6145,7 +6154,12 @@
         "alpha": 0.3,
         "seconds": 0.35
       },
-      "render_seconds": 9.1,
+      "holdouts": [],
+      "covered_by": [
+        "P1Part1"
+      ],
+      "covered_fill": 0.0085,
+      "render_seconds": 13.8,
       "crop_px": [
         1248,
         1065,
@@ -6156,12 +6170,12 @@
   ],
   "kind": "sprite",
   "ground_tile": null,
-  "total_seconds": 57.3,
+  "total_seconds": 87.4,
   "blender_run": {
     "exit_code": 0,
-    "seconds": 58.4,
+    "seconds": 88.5,
     "problem_lines": [
-      "00:02.125  cycles           | WARNING HIPEW initialization failed: Error opening HIP dynamic library"
+      "00:02.141  cycles           | WARNING HIPEW initialization failed: Error opening HIP dynamic library"
     ]
   },
   "verification": {
@@ -6204,14 +6218,14 @@
         "bit_depth": 8,
         "png_color_type": 6,
         "interlace": 0,
-        "file_bytes": 3674403,
+        "file_bytes": 4531500,
         "size_px": [
           2713,
           1161
         ],
-        "opaque_pixels": 2953860,
-        "partially_transparent_pixels": 16162,
-        "fully_transparent_pixels": 179771,
+        "opaque_pixels": 2954316,
+        "partially_transparent_pixels": 15824,
+        "fully_transparent_pixels": 179653,
         "content_bbox_px": [
           23,
           23,
@@ -6230,7 +6244,7 @@
         "bit_depth": 8,
         "png_color_type": 6,
         "interlace": 0,
-        "file_bytes": 1511900,
+        "file_bytes": 1511503,
         "size_px": [
           1133,
           927
@@ -6256,14 +6270,14 @@
         "bit_depth": 8,
         "png_color_type": 6,
         "interlace": 0,
-        "file_bytes": 957679,
+        "file_bytes": 924147,
         "size_px": [
           1171,
           652
         ],
-        "opaque_pixels": 621929,
-        "partially_transparent_pixels": 7152,
-        "fully_transparent_pixels": 134411,
+        "opaque_pixels": 623494,
+        "partially_transparent_pixels": 5624,
+        "fully_transparent_pixels": 134374,
         "content_bbox_px": [
           23,
           23,
@@ -6464,7 +6478,8 @@
         74
       ]
     },
-    "collision": null
+    "collision": null,
+    "preview_scene": null
   },
   "godot_import": {
     "exit_code": 0,
@@ -6472,5 +6487,11 @@
       "WARNING: Detected another project.godot at res://addons/godot_mcp/cache/undo/entry_000003/files. The folder will be ignored.",
       "WARNING: UID duplicate detected between res://scenes/tests/MCPCheck.tscn and res://addons/godot_mcp/cache/undo/entry_000002/files/scenes/tests/MCPCheck.tscn."
     ]
+  },
+  "godot_check": {
+    "scene": {
+      "exit_code": 0,
+      "problem_lines": []
+    }
   }
 }

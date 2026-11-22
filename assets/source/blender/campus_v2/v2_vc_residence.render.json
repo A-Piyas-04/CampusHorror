@@ -2353,7 +2353,7 @@
       1762,
       1702
     ],
-    "render_seconds": 23.0
+    "render_seconds": 37.1
   },
   "projection": {
     "note": "texture px, top-left origin: x = W/2 + (p.right - cx)*ppm, y = H/2 - (p.up - cy)*ppm",
@@ -2433,7 +2433,13 @@
         "alpha": 0.3,
         "seconds": 0.35
       },
-      "render_seconds": 17.9,
+      "holdouts": [],
+      "covered_by": [
+        "P1Porch",
+        "P2Porch"
+      ],
+      "covered_fill": 0.0683,
+      "render_seconds": 31.8,
       "crop_px": [
         97,
         97,
@@ -2461,6 +2467,9 @@
         "alpha": 0.3,
         "seconds": 0.35
       },
+      "holdouts": [],
+      "covered_by": [],
+      "covered_fill": null,
       "render_seconds": 2.2,
       "crop_px": [
         472,
@@ -2489,6 +2498,9 @@
         "alpha": 0.3,
         "seconds": 0.35
       },
+      "holdouts": [],
+      "covered_by": [],
+      "covered_fill": null,
       "render_seconds": 1.6,
       "crop_px": [
         1278,
@@ -2500,12 +2512,12 @@
   ],
   "kind": "sprite",
   "ground_tile": null,
-  "total_seconds": 26.0,
+  "total_seconds": 40.3,
   "blender_run": {
     "exit_code": 0,
-    "seconds": 27.0,
+    "seconds": 41.3,
     "problem_lines": [
-      "00:01.938  cycles           | WARNING HIPEW initialization failed: Error opening HIP dynamic library"
+      "00:02.047  cycles           | WARNING HIPEW initialization failed: Error opening HIP dynamic library"
     ]
   },
   "verification": {
@@ -2548,14 +2560,14 @@
         "bit_depth": 8,
         "png_color_type": 6,
         "interlace": 0,
-        "file_bytes": 2575312,
+        "file_bytes": 2617293,
         "size_px": [
           1568,
           1299
         ],
-        "opaque_pixels": 1890576,
-        "partially_transparent_pixels": 11592,
-        "fully_transparent_pixels": 134664,
+        "opaque_pixels": 1891090,
+        "partially_transparent_pixels": 11080,
+        "fully_transparent_pixels": 134662,
         "content_bbox_px": [
           23,
           23,
@@ -2574,7 +2586,7 @@
         "bit_depth": 8,
         "png_color_type": 6,
         "interlace": 0,
-        "file_bytes": 265549,
+        "file_bytes": 265637,
         "size_px": [
           466,
           470
@@ -2600,7 +2612,7 @@
         "bit_depth": 8,
         "png_color_type": 6,
         "interlace": 0,
-        "file_bytes": 177438,
+        "file_bytes": 177412,
         "size_px": [
           332,
           458

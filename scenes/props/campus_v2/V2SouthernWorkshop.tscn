@@ -27,7 +27,7 @@ texture_filter = 4
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_sprite")
 centered = false
-offset = Vector2(-1419.5, -37.02574)
+offset = Vector2(-1420, -37.463867)
 
 [node name="P0" type="Sprite2D" parent="."]
 light_mask = 2
@@ -36,7 +36,7 @@ texture_filter = 4
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_P0")
 centered = false
-offset = Vector2(-2574.5, -1055.1654)
+offset = Vector2(-2576, -1101.6035)
 
 [node name="P1" type="Sprite2D" parent="."]
 light_mask = 2
@@ -45,7 +45,7 @@ texture_filter = 4
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("3_P1")
 centered = false
-offset = Vector2(-249.5, -961.16534)
+offset = Vector2(-250, -961.6035)
 
 [node name="P2" type="Sprite2D" parent="."]
 light_mask = 2
@@ -54,7 +54,7 @@ texture_filter = 4
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("4_P2")
 centered = false
-offset = Vector2(177.5, -1055.1654)
+offset = Vector2(176, -1101.6035)
 
 [node name="P0Fade" type="Area2D" parent="."]
 collision_layer = 0

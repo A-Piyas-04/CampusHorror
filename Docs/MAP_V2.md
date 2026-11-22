@@ -88,7 +88,7 @@ Standing rules:
   - ×0.643 foreshortening.
 - [x] `water.gdshader` v2, with reflection sprites.
 - [ ] Foliage:
-  - species set;
+  - [x] species set (seven configs rendered);
   - `foliage_sway.gdshader`;
   - canopy / trunk split.
 - [ ] Atmosphere:
@@ -99,15 +99,14 @@ Standing rules:
 
 ### M4: The campus world
 - [x] `tools/zones/campus_world.py` → `scenes/world/Campus.tscn`, plus its profile, manifest and registry entry. Buildings are massing models (`scripts/world/campus_massing.gd`) until their art lands.
-- [ ] Ground, water, canal, wall and gates, roads, buildings (collision + fade), trees, props, doors, spawns.
+- [x] Ground, water, canal, wall and gates, roads, buildings (collision + fade), trees, props, doors, spawns.
+- [x] Highway outside the east wall, road paint, hedges (D49).
 - [x] Old exteriors retired:
   - unregistered;
   - scenes, manifests and baselines moved to `legacy/`;
   - `campus_zones.py` moved to `tools/zones/legacy/`.
-- [ ] Building art in `author_campus.py` v2:
-  - Tier A (photo-backed);
-  - Tier B (from the aerials);
-  - Tier C (plots).
+- [x] Building art in `author_campus_v2.py`: Tier A (photo-backed), Tier B (from the aerials), Tier C (plots), all
+  34 assets; touching volumes handled by layer holdouts and covered_by fills (D48).
 
 ### M5: Interiors reconnected
 - [x] `campus_interiors.py` exits → `campus:<spawn>`; Chapter 1 rooms patched.
@@ -158,7 +157,7 @@ Standing rules:
   - **Post-processing**: grade, bloom, vignette, grain, with a Settings toggle.
   - Next: finish rendering the buildings, infrastructure and trees; regenerate `campus`; captures; re-run the
     checks and re-dump baselines.
-  - Later: night-window variants (lit rooms) and hedges and flower beds along building fronts.
+  - Later: night-window variants (lit rooms) and flower beds along building fronts.
 - 22 Nov 2026: Art batches and the first in-game review (v3 captures).
   - **Rendered**: all 34 buildings, 12 edge modules (wall, parapet, bridge in four directions), 5 court assets,
     7 tree species. `merge_embedded` joins a part standing mostly inside another into its layer.
@@ -197,3 +196,6 @@ Standing rules:
   - **Doors**: the flat brick "threshold slabs" in front of every entrance are gone. The art models the steps.
   - **Capture tour**: three shots stood inside buildings (auditorium, Academic 1, South Hall), and that faded them.
     They are re-aimed, and close-ups of the plaza and the workshop roofs were added.
+  - **Hedges**: the existing 2 m hedge module, in east–west runs from the layout (`hedges`). They line the halls
+    avenue, with niches for its six benches, and the Central Field's south edge.
+  - **Decisions**: D48 (touching volumes in layered sprites), D49 (detail beyond the board, kept in the layout).

@@ -288,9 +288,9 @@
       },
       "v2_sheet_red": {
         "color": [
-          0.55,
-          0.15,
-          0.12
+          0.58,
+          0.17,
+          0.13
         ],
         "rough": 0.5,
         "metal": 0.3,
@@ -301,15 +301,12 @@
           0.1
         ],
         "pattern": {
-          "type": "stripes",
-          "period": 0.2,
-          "color2": [
-            0.44,
-            0.11,
-            0.09
-          ],
+          "type": "corrugated",
+          "period": 0.1,
           "axis": "y"
-        }
+        },
+        "height_strength": 0.9,
+        "bump_distance": 0.02
       },
       "v2_steel": {
         "color": [
@@ -5462,7 +5459,7 @@
       2152,
       4734
     ],
-    "render_seconds": 49.3
+    "render_seconds": 55.3
   },
   "projection": {
     "note": "texture px, top-left origin: x = W/2 + (p.right - cx)*ppm, y = H/2 - (p.up - cy)*ppm",
@@ -5542,7 +5539,10 @@
         "alpha": 0.3,
         "seconds": 0.35
       },
-      "render_seconds": 31.9,
+      "holdouts": [],
+      "covered_by": [],
+      "covered_fill": null,
+      "render_seconds": 28.5,
       "crop_px": [
         902,
         792,
@@ -5570,7 +5570,12 @@
         "alpha": 0.3,
         "seconds": 0.35
       },
-      "render_seconds": 12.8,
+      "holdouts": [],
+      "covered_by": [
+        "P0Part0"
+      ],
+      "covered_fill": 0.5973,
+      "render_seconds": 19.4,
       "crop_px": [
         902,
         302,
@@ -5598,7 +5603,12 @@
         "alpha": 0.3,
         "seconds": 0.35
       },
-      "render_seconds": 2.7,
+      "holdouts": [],
+      "covered_by": [
+        "P1NorthBlock"
+      ],
+      "covered_fill": 0.0199,
+      "render_seconds": 6.0,
       "crop_px": [
         302,
         852,
@@ -5609,12 +5619,12 @@
   ],
   "kind": "sprite",
   "ground_tile": null,
-  "total_seconds": 52.1,
+  "total_seconds": 59.2,
   "blender_run": {
     "exit_code": 0,
-    "seconds": 53.1,
+    "seconds": 60.3,
     "problem_lines": [
-      "00:00.953  cycles           | WARNING HIPEW initialization failed: Error opening HIP dynamic library"
+      "00:02.156  cycles           | WARNING HIPEW initialization failed: Error opening HIP dynamic library"
     ]
   },
   "verification": {
@@ -5657,7 +5667,7 @@
         "bit_depth": 8,
         "png_color_type": 6,
         "interlace": 0,
-        "file_bytes": 4851872,
+        "file_bytes": 4850928,
         "size_px": [
           948,
           3640
@@ -5683,14 +5693,14 @@
         "bit_depth": 8,
         "png_color_type": 6,
         "interlace": 0,
-        "file_bytes": 1145499,
+        "file_bytes": 2088319,
         "size_px": [
           948,
           1481
         ],
-        "opaque_pixels": 1275245,
-        "partially_transparent_pixels": 9923,
-        "fully_transparent_pixels": 118820,
+        "opaque_pixels": 1276369,
+        "partially_transparent_pixels": 8904,
+        "fully_transparent_pixels": 118715,
         "content_bbox_px": [
           23,
           23,
@@ -5709,14 +5719,14 @@
         "bit_depth": 8,
         "png_color_type": 6,
         "interlace": 0,
-        "file_bytes": 382205,
+        "file_bytes": 362473,
         "size_px": [
           676,
           432
         ],
-        "opaque_pixels": 231355,
-        "partially_transparent_pixels": 4159,
-        "fully_transparent_pixels": 56518,
+        "opaque_pixels": 231977,
+        "partially_transparent_pixels": 3690,
+        "fully_transparent_pixels": 56365,
         "content_bbox_px": [
           23,
           23,
@@ -5917,7 +5927,8 @@
         74
       ]
     },
-    "collision": null
+    "collision": null,
+    "preview_scene": null
   },
   "godot_import": {
     "exit_code": 0,
@@ -5925,5 +5936,11 @@
       "WARNING: Detected another project.godot at res://addons/godot_mcp/cache/undo/entry_000003/files. The folder will be ignored.",
       "WARNING: UID duplicate detected between res://scenes/tests/MCPCheck.tscn and res://addons/godot_mcp/cache/undo/entry_000002/files/scenes/tests/MCPCheck.tscn."
     ]
+  },
+  "godot_check": {
+    "scene": {
+      "exit_code": 0,
+      "problem_lines": []
+    }
   }
 }

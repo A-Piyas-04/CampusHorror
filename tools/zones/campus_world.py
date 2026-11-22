@@ -675,8 +675,35 @@ class Campus:
                                                             and 'parent="Ground/Markings"' in n)]
         print(f"campus: {placed} courts")
 
+    def hedges(self):
+        """Clipped hedge runs from the layout (2 m modules, seamless along x): an opening at every listed gap and
+        every gap_every metres, so the lawns behind them stay reachable."""
+        scene = "res://scenes/props/vegetation/HedgeSection2m.tscn"
+        if not (ROOT / scene[6:]).exists():
+            return 0
+        n = 0
+        for run in self.lay.get("hedges", {}).get("runs", []):
+            x0, x1 = run["x"]
+            y = run["y"]
+            gaps = [tuple(g) for g in run.get("gaps", [])]
+            every = run.get("gap_every", 0.0)
+            x, since = x0, 0.0
+            while x + 2.0 <= x1 + 1e-6:
+                if any(x < g1 and x + 2.0 > g0 for g0, g1 in gaps):
+                    x, since = x + 0.5, 0.0
+                    continue
+                if every and since >= every:
+                    x, since = x + 2.0, 0.0                       # an opening
+                    continue
+                n += 1
+                self.s.node(f"Hedge_{run['id']}_{n}", None, "Objects/Vegetation", instance=scene,
+                            props={"position": V(*px(x + 1.0, y))})
+                x += 2.0
+                since += 2.0
+        return n
+
     def benches(self):
-        spots = [(300, 47.0), (350, 47.0), (395, 47.0), (300, 55.4), (350, 55.4), (395, 55.4),  # halls avenue
+        spots = [(300, 49.0), (350, 49.0), (395, 49.0), (300, 53.4), (350, 53.4), (395, 53.4),  # halls avenue, in hedge niches
                  (190, 246.5), (240, 246.5), (290, 246.5),                                       # boulevard
                  (215, 118.0), (285, 117.5)]                                                     # plaza
         for k, (x, y) in enumerate(spots):
@@ -767,6 +794,7 @@ def main():
     z.solids()
     z.buildings()
     z.trees()
+    print(f"campus: {z.hedges()} hedge modules")
     z.lamps()
     z.benches()
     z.infra()

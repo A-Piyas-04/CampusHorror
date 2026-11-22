@@ -36,6 +36,12 @@ def save_rgba(path, w, h, px, colorspace="sRGB"):
 
 def png_over(top, bottom, out):
     """out = top over bottom (straight alpha, same size). Returns the share of pixels the bottom filled in."""
+    import os
+    dbg = os.environ.get("LAYER_FILL_DEBUG")
+    if dbg:                                                  # keep both passes for inspection
+        import shutil
+        shutil.copy(top, Path(dbg) / ("H_" + Path(out).name))
+        shutil.copy(bottom, Path(dbg) / ("B_" + Path(out).name))
     w, h, t, cs = _load(top)
     w2, h2, b, _ = _load(bottom)
     if (w, h) != (w2, h2):

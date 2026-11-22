@@ -15925,7 +15925,7 @@
       3991,
       2712
     ],
-    "render_seconds": 120.6
+    "render_seconds": 154.3
   },
   "projection": {
     "note": "texture px, top-left origin: x = W/2 + (p.right - cx)*ppm, y = H/2 - (p.up - cy)*ppm",
@@ -16005,7 +16005,15 @@
         "alpha": 0.3,
         "seconds": 0.35
       },
-      "render_seconds": 62.2,
+      "holdouts": [],
+      "covered_by": [
+        "P1Part1",
+        "P2Part2",
+        "P3StairTower",
+        "P4StairTower"
+      ],
+      "covered_fill": 0.5804,
+      "render_seconds": 95.2,
       "crop_px": [
         258,
         250,
@@ -16033,7 +16041,10 @@
         "alpha": 0.3,
         "seconds": 0.35
       },
-      "render_seconds": 27.5,
+      "holdouts": [],
+      "covered_by": [],
+      "covered_fill": null,
+      "render_seconds": 27.4,
       "crop_px": [
         700,
         724,
@@ -16061,7 +16072,10 @@
         "alpha": 0.3,
         "seconds": 0.35
       },
-      "render_seconds": 16.9,
+      "holdouts": [],
+      "covered_by": [],
+      "covered_fill": null,
+      "render_seconds": 17.1,
       "crop_px": [
         2838,
         695,
@@ -16089,7 +16103,12 @@
         "alpha": 0.3,
         "seconds": 0.35
       },
-      "render_seconds": 6.0,
+      "holdouts": [
+        "P0Part0"
+      ],
+      "covered_by": [],
+      "covered_fill": null,
+      "render_seconds": 6.1,
       "crop_px": [
         251,
         647,
@@ -16117,7 +16136,12 @@
         "alpha": 0.3,
         "seconds": 0.35
       },
-      "render_seconds": 5.9,
+      "holdouts": [
+        "P0Part0"
+      ],
+      "covered_by": [],
+      "covered_fill": null,
+      "render_seconds": 6.3,
       "crop_px": [
         2145,
         647,
@@ -16128,12 +16152,12 @@
   ],
   "kind": "sprite",
   "ground_tile": null,
-  "total_seconds": 128.2,
+  "total_seconds": 162.4,
   "blender_run": {
     "exit_code": 0,
-    "seconds": 129.2,
+    "seconds": 163.5,
     "problem_lines": [
-      "00:02.579  cycles           | WARNING HIPEW initialization failed: Error opening HIP dynamic library"
+      "00:02.687  cycles           | WARNING HIPEW initialization failed: Error opening HIP dynamic library"
     ]
   },
   "verification": {
@@ -16176,14 +16200,14 @@
         "bit_depth": 8,
         "png_color_type": 6,
         "interlace": 0,
-        "file_bytes": 4887592,
+        "file_bytes": 8760657,
         "size_px": [
           3482,
           1661
         ],
-        "opaque_pixels": 5442731,
-        "partially_transparent_pixels": 20806,
-        "fully_transparent_pixels": 320065,
+        "opaque_pixels": 5442877,
+        "partially_transparent_pixels": 21238,
+        "fully_transparent_pixels": 319487,
         "content_bbox_px": [
           23,
           23,
@@ -16202,7 +16226,7 @@
         "bit_depth": 8,
         "png_color_type": 6,
         "interlace": 0,
-        "file_bytes": 3876613,
+        "file_bytes": 3876497,
         "size_px": [
           1466,
           1738
@@ -16228,7 +16252,7 @@
         "bit_depth": 8,
         "png_color_type": 6,
         "interlace": 0,
-        "file_bytes": 2361022,
+        "file_bytes": 2361035,
         "size_px": [
           902,
           1714
@@ -16254,7 +16278,7 @@
         "bit_depth": 8,
         "png_color_type": 6,
         "interlace": 0,
-        "file_bytes": 946812,
+        "file_bytes": 946750,
         "size_px": [
           399,
           1461
@@ -16280,7 +16304,7 @@
         "bit_depth": 8,
         "png_color_type": 6,
         "interlace": 0,
-        "file_bytes": 855413,
+        "file_bytes": 855420,
         "size_px": [
           400,
           1461
@@ -16574,7 +16598,8 @@
         74
       ]
     },
-    "collision": null
+    "collision": null,
+    "preview_scene": null
   },
   "godot_import": {
     "exit_code": 0,
@@ -16582,5 +16607,11 @@
       "WARNING: Detected another project.godot at res://addons/godot_mcp/cache/undo/entry_000003/files. The folder will be ignored.",
       "WARNING: UID duplicate detected between res://scenes/tests/MCPCheck.tscn and res://addons/godot_mcp/cache/undo/entry_000002/files/scenes/tests/MCPCheck.tscn."
     ]
+  },
+  "godot_check": {
+    "scene": {
+      "exit_code": 0,
+      "problem_lines": []
+    }
   }
 }

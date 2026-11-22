@@ -4,10 +4,15 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://dsf7y24gll2yh"
 path.bptc="res://.godot/imported/v2_new_academic__plot.png-dbd196921f6895fcb86a8c36bcdc1b61.bptc.ctex"
+metadata={
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
+}
 
 [deps]
 
 source_file="res://assets/sprites/campus_v2/v2_new_academic__plot.png"
+dest_files=["res://.godot/imported/v2_new_academic__plot.png-dbd196921f6895fcb86a8c36bcdc1b61.bptc.ctex"]
 
 [params]
 

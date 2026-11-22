@@ -65,133 +65,124 @@
 [ext_resource type="PackedScene" path="res://scenes/props/vegetation/TreeMango.tscn" id="63_r"]
 [ext_resource type="PackedScene" path="res://scenes/props/vegetation/TreeRain.tscn" id="64_r"]
 [ext_resource type="PackedScene" path="res://scenes/props/vegetation/TreeKrishnachura.tscn" id="65_r"]
-[ext_resource type="PackedScene" path="res://scenes/props/campus/StreetLampTall.tscn" id="66_r"]
-[ext_resource type="Texture2D" path="res://data/lighting/light_soft.tres" id="67_r"]
-[ext_resource type="Script" path="res://scripts/lighting/lamp_light.gd" id="68_r"]
-[ext_resource type="PackedScene" path="res://scenes/props/campus/PlazaLamp.tscn" id="69_r"]
-[ext_resource type="PackedScene" path="res://scenes/props/street_furniture/OutdoorBench.tscn" id="70_r"]
-[ext_resource type="PackedScene" path="res://scenes/props/campus_v2/V2ParapetEw.tscn" id="71_r"]
-[ext_resource type="PackedScene" path="res://scenes/props/campus_v2/V2BridgeNs.tscn" id="72_r"]
-[ext_resource type="PackedScene" path="res://scenes/props/campus_v2/V2ParapetNs.tscn" id="73_r"]
-[ext_resource type="PackedScene" path="res://scenes/props/campus_v2/V2BridgeSe.tscn" id="74_r"]
-[ext_resource type="PackedScene" path="res://scenes/props/campus_v2/V2BridgeEw.tscn" id="75_r"]
-[ext_resource type="Shader" path="res://assets/shaders/reflection.gdshader" id="76_r"]
-[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_mosque__mosque.png" id="77_r"]
-[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_mosque__minaret.png" id="78_r"]
-[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_mosque__p2_mihrab_west.png" id="79_r"]
-[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_mosque__p3_cylinder.png" id="80_r"]
-[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_mosque__p4_cylinder.png" id="81_r"]
-[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_mosque__p5_cylinder.png" id="82_r"]
-[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_five_fundamentals__fins.png" id="83_r"]
-[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_cafeteria_library__cafeteria.png" id="84_r"]
-[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_cafeteria_library__p1_stair_tower.png" id="85_r"]
-[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_cafeteria_library__p2_annex.png" id="86_r"]
-[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_auditorium__auditorium.png" id="87_r"]
-[ext_resource type="Shader" path="res://assets/shaders/night_windows.gdshader" id="88_r"]
-[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_main_gate__p0_north_pylon_night.png" id="89_r"]
-[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_main_gate__p1_south_pylon_night.png" id="90_r"]
-[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_main_gate__p2_gate_beam_night.png" id="91_r"]
-[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_main_gate__p3_security_booth_night.png" id="92_r"]
-[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_five_fundamentals__fins_night.png" id="93_r"]
-[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_mosque__mosque_night.png" id="94_r"]
-[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_mosque__minaret_night.png" id="95_r"]
-[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_mosque__p2_mihrab_west_night.png" id="96_r"]
-[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_mosque__p3_cylinder_night.png" id="97_r"]
-[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_mosque__p4_cylinder_night.png" id="98_r"]
-[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_mosque__p5_cylinder_night.png" id="99_r"]
-[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_auditorium__auditorium_night.png" id="100_r"]
-[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_cafeteria_library__cafeteria_night.png" id="101_r"]
-[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_cafeteria_library__p1_stair_tower_night.png" id="102_r"]
-[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_cafeteria_library__p2_annex_night.png" id="103_r"]
-[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_admin__p0_part0_night.png" id="104_r"]
-[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_admin__p1_bridge_to5_night.png" id="105_r"]
-[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_indoor_sports__p0_part0_night.png" id="106_r"]
-[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_cds__p0_part0_night.png" id="107_r"]
-[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_cds__p1_part1_night.png" id="108_r"]
-[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_cds__p2_arcade_veranda_night.png" id="109_r"]
-[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_ub_hall__p0_part0_night.png" id="110_r"]
-[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_ub_hall__p1_north_block_night.png" id="111_r"]
-[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_ub_hall__p2_gate_canopy_night.png" id="112_r"]
-[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_south_hall__p0_west_wing_night.png" id="113_r"]
-[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_south_hall__p2_stair_tower_night.png" id="114_r"]
-[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_south_hall__p4_stair_tower_night.png" id="115_r"]
-[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_south_hall__p5_middle_wing_night.png" id="116_r"]
-[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_south_hall__p7_stair_tower_night.png" id="117_r"]
-[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_south_hall__p9_stair_tower_night.png" id="118_r"]
-[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_south_hall__p10_east_wing_night.png" id="119_r"]
-[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_south_hall__p12_stair_tower_night.png" id="120_r"]
-[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_south_hall__p14_stair_tower_night.png" id="121_r"]
-[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_north_hall__p0_west_wing_night.png" id="122_r"]
-[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_north_hall__p2_stair_tower_night.png" id="123_r"]
-[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_north_hall__p4_stair_tower_night.png" id="124_r"]
-[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_north_hall__p5_middle_wing_night.png" id="125_r"]
-[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_north_hall__p7_stair_tower_night.png" id="126_r"]
-[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_north_hall__p9_stair_tower_night.png" id="127_r"]
-[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_north_hall__p10_east_wing_night.png" id="128_r"]
-[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_north_hall__p12_stair_tower_night.png" id="129_r"]
-[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_north_hall__p14_stair_tower_night.png" id="130_r"]
-[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_academic_1__p0_part0_night.png" id="131_r"]
-[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_academic_1__p1_part1_night.png" id="132_r"]
-[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_academic_1__p2_part2_night.png" id="133_r"]
-[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_academic_1__p3_stair_tower_night.png" id="134_r"]
-[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_academic_1__p4_stair_tower_night.png" id="135_r"]
-[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_car_parking__shed0_night.png" id="136_r"]
-[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_car_parking__shed1_night.png" id="137_r"]
-[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_car_parking__shed2_night.png" id="138_r"]
-[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_academic_2__p0_part0_night.png" id="139_r"]
-[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_academic_2__p1_part1_night.png" id="140_r"]
-[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_academic_2__p2_part2_night.png" id="141_r"]
-[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_academic_2__p3_stair_tower_night.png" id="142_r"]
-[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_academic_2__p4_stair_tower_night.png" id="143_r"]
-[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_southern_workshop__p0_night.png" id="144_r"]
-[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_southern_workshop__p1_night.png" id="145_r"]
-[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_southern_workshop__p2_night.png" id="146_r"]
-[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_middle_workshop__p0_night.png" id="147_r"]
-[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_middle_workshop__p1_night.png" id="148_r"]
-[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_middle_workshop__p2_night.png" id="149_r"]
-[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_northern_workshop__p0_night.png" id="150_r"]
-[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_northern_workshop__p1_night.png" id="151_r"]
-[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_northern_workshop__p2_night.png" id="152_r"]
-[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_academic_3__p0_west_half_night.png" id="153_r"]
-[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_academic_3__p1_east_half_night.png" id="154_r"]
-[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_substation__p0_night.png" id="155_r"]
-[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_substation__p1_night.png" id="156_r"]
-[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_substation__p2_night.png" id="157_r"]
-[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_vc_residence__p0_part0_night.png" id="158_r"]
-[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_vc_residence__p1_porch_night.png" id="159_r"]
-[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_vc_residence__p2_porch_night.png" id="160_r"]
-[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_female_hall__p0_north_wing_night.png" id="161_r"]
-[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_female_hall__p1_stair_tower_night.png" id="162_r"]
-[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_female_hall__p2_stair_tower_night.png" id="163_r"]
-[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_female_hall__p3_south_wing_night.png" id="164_r"]
-[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_female_hall__p4_stair_tower_night.png" id="165_r"]
-[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_female_hall__p5_stair_tower_night.png" id="166_r"]
-[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_f_type_bungalow__p0_part0_night.png" id="167_r"]
-[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_f_type_bungalow__p1_outbuilding_night.png" id="168_r"]
-[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_d_type_building__p0_part0_night.png" id="169_r"]
-[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_medical_laundry__p0_medical_center_night.png" id="170_r"]
-[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_medical_laundry__p1_laundry_night.png" id="171_r"]
-[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_new_male_hall__p0_night.png" id="172_r"]
-[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_new_male_hall__p1_night.png" id="173_r"]
-[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_new_male_hall__p2_night.png" id="174_r"]
-[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_new_male_hall__p3_night.png" id="175_r"]
-[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_studio_apartments__plot_night.png" id="176_r"]
-[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_new_academic__plot_night.png" id="177_r"]
-[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_north_strip_block__p0_part0_night.png" id="178_r"]
-[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_north_strip_room_w__p0_part0_night.png" id="179_r"]
-[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_north_strip_room_e__p0_part0_night.png" id="180_r"]
-[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_pump_house__p0_part0_night.png" id="181_r"]
-[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_south_service_gate__p0_part0_night.png" id="182_r"]
-[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_courts_shelter__p0_part0_night.png" id="183_r"]
-[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_nw_hut__p0_part0_night.png" id="184_r"]
-[ext_resource type="Script" path="res://scripts/world/ambient_particles.gd" id="185_r"]
-[ext_resource type="PackedScene" path="res://scenes/props/campus_v2/V2CourtTennis.tscn" id="186_r"]
-[ext_resource type="PackedScene" path="res://scenes/props/campus_v2/V2CourtFutsal.tscn" id="187_r"]
-[ext_resource type="PackedScene" path="res://scenes/props/campus_v2/V2CourtBadminton.tscn" id="188_r"]
-[ext_resource type="PackedScene" path="res://scenes/props/campus_v2/V2GoalNorth.tscn" id="189_r"]
-[ext_resource type="PackedScene" path="res://scenes/props/campus_v2/V2GoalSouth.tscn" id="190_r"]
-[ext_resource type="PackedScene" path="res://scenes/components/Door.tscn" id="191_r"]
-[ext_resource type="PackedScene" path="res://scenes/components/SpawnMarker.tscn" id="192_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/vegetation/HedgeSection2m.tscn" id="66_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/campus/StreetLampTall.tscn" id="67_r"]
+[ext_resource type="Texture2D" path="res://data/lighting/light_soft.tres" id="68_r"]
+[ext_resource type="Script" path="res://scripts/lighting/lamp_light.gd" id="69_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/campus/PlazaLamp.tscn" id="70_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/street_furniture/OutdoorBench.tscn" id="71_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/campus_v2/V2ParapetEw.tscn" id="72_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/campus_v2/V2BridgeNs.tscn" id="73_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/campus_v2/V2ParapetNs.tscn" id="74_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/campus_v2/V2BridgeSe.tscn" id="75_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/campus_v2/V2BridgeEw.tscn" id="76_r"]
+[ext_resource type="Shader" path="res://assets/shaders/reflection.gdshader" id="77_r"]
+[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_mosque__mosque.png" id="78_r"]
+[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_mosque__p3_cylinder.png" id="79_r"]
+[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_mosque__p4_cylinder.png" id="80_r"]
+[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_mosque__p5_cylinder.png" id="81_r"]
+[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_five_fundamentals__fins.png" id="82_r"]
+[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_cafeteria_library__cafeteria.png" id="83_r"]
+[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_auditorium__auditorium.png" id="84_r"]
+[ext_resource type="Shader" path="res://assets/shaders/night_windows.gdshader" id="85_r"]
+[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_main_gate__p2_gate_beam_night.png" id="86_r"]
+[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_main_gate__p3_security_booth_night.png" id="87_r"]
+[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_five_fundamentals__fins_night.png" id="88_r"]
+[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_mosque__mosque_night.png" id="89_r"]
+[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_mosque__p3_cylinder_night.png" id="90_r"]
+[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_mosque__p4_cylinder_night.png" id="91_r"]
+[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_mosque__p5_cylinder_night.png" id="92_r"]
+[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_auditorium__auditorium_night.png" id="93_r"]
+[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_cafeteria_library__cafeteria_night.png" id="94_r"]
+[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_admin__p0_part0_night.png" id="95_r"]
+[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_admin__p1_bridge_to5_night.png" id="96_r"]
+[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_indoor_sports__p0_part0_night.png" id="97_r"]
+[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_cds__p0_part0_night.png" id="98_r"]
+[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_cds__p1_part1_night.png" id="99_r"]
+[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_cds__p2_arcade_veranda_night.png" id="100_r"]
+[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_ub_hall__p0_part0_night.png" id="101_r"]
+[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_ub_hall__p1_north_block_night.png" id="102_r"]
+[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_ub_hall__p2_gate_canopy_night.png" id="103_r"]
+[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_south_hall__p0_west_wing_night.png" id="104_r"]
+[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_south_hall__p2_stair_tower_night.png" id="105_r"]
+[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_south_hall__p4_stair_tower_night.png" id="106_r"]
+[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_south_hall__p5_middle_wing_night.png" id="107_r"]
+[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_south_hall__p7_stair_tower_night.png" id="108_r"]
+[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_south_hall__p9_stair_tower_night.png" id="109_r"]
+[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_south_hall__p10_east_wing_night.png" id="110_r"]
+[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_south_hall__p12_stair_tower_night.png" id="111_r"]
+[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_south_hall__p14_stair_tower_night.png" id="112_r"]
+[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_north_hall__p0_west_wing_night.png" id="113_r"]
+[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_north_hall__p2_stair_tower_night.png" id="114_r"]
+[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_north_hall__p4_stair_tower_night.png" id="115_r"]
+[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_north_hall__p5_middle_wing_night.png" id="116_r"]
+[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_north_hall__p7_stair_tower_night.png" id="117_r"]
+[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_north_hall__p9_stair_tower_night.png" id="118_r"]
+[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_north_hall__p10_east_wing_night.png" id="119_r"]
+[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_north_hall__p12_stair_tower_night.png" id="120_r"]
+[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_north_hall__p14_stair_tower_night.png" id="121_r"]
+[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_academic_1__p0_part0_night.png" id="122_r"]
+[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_academic_1__p1_part1_night.png" id="123_r"]
+[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_academic_1__p2_part2_night.png" id="124_r"]
+[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_academic_1__p3_stair_tower_night.png" id="125_r"]
+[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_academic_1__p4_stair_tower_night.png" id="126_r"]
+[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_car_parking__shed0_night.png" id="127_r"]
+[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_car_parking__shed1_night.png" id="128_r"]
+[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_car_parking__shed2_night.png" id="129_r"]
+[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_academic_2__p0_part0_night.png" id="130_r"]
+[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_academic_2__p1_part1_night.png" id="131_r"]
+[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_academic_2__p2_part2_night.png" id="132_r"]
+[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_academic_2__p3_stair_tower_night.png" id="133_r"]
+[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_academic_2__p4_stair_tower_night.png" id="134_r"]
+[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_southern_workshop__p0_night.png" id="135_r"]
+[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_southern_workshop__p1_night.png" id="136_r"]
+[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_southern_workshop__p2_night.png" id="137_r"]
+[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_middle_workshop__p0_night.png" id="138_r"]
+[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_middle_workshop__p1_night.png" id="139_r"]
+[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_middle_workshop__p2_night.png" id="140_r"]
+[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_northern_workshop__p0_night.png" id="141_r"]
+[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_northern_workshop__p1_night.png" id="142_r"]
+[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_northern_workshop__p2_night.png" id="143_r"]
+[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_academic_3__p0_west_half_night.png" id="144_r"]
+[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_academic_3__p1_east_half_night.png" id="145_r"]
+[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_substation__p0_night.png" id="146_r"]
+[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_substation__p1_night.png" id="147_r"]
+[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_substation__p2_night.png" id="148_r"]
+[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_vc_residence__p0_part0_night.png" id="149_r"]
+[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_vc_residence__p1_porch_night.png" id="150_r"]
+[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_vc_residence__p2_porch_night.png" id="151_r"]
+[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_female_hall__p0_north_wing_night.png" id="152_r"]
+[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_female_hall__p1_stair_tower_night.png" id="153_r"]
+[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_female_hall__p2_stair_tower_night.png" id="154_r"]
+[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_female_hall__p3_south_wing_night.png" id="155_r"]
+[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_female_hall__p4_stair_tower_night.png" id="156_r"]
+[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_female_hall__p5_stair_tower_night.png" id="157_r"]
+[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_f_type_bungalow__p0_part0_night.png" id="158_r"]
+[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_f_type_bungalow__p1_outbuilding_night.png" id="159_r"]
+[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_d_type_building__p0_part0_night.png" id="160_r"]
+[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_medical_laundry__p0_medical_center_night.png" id="161_r"]
+[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_medical_laundry__p1_laundry_night.png" id="162_r"]
+[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_new_male_hall__p0_night.png" id="163_r"]
+[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_new_male_hall__p1_night.png" id="164_r"]
+[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_new_male_hall__p2_night.png" id="165_r"]
+[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_new_male_hall__p3_night.png" id="166_r"]
+[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_studio_apartments__plot_night.png" id="167_r"]
+[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_new_academic__plot_night.png" id="168_r"]
+[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_north_strip_block__p0_part0_night.png" id="169_r"]
+[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_north_strip_room_w__p0_part0_night.png" id="170_r"]
+[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_north_strip_room_e__p0_part0_night.png" id="171_r"]
+[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_pump_house__p0_part0_night.png" id="172_r"]
+[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_south_service_gate__p0_part0_night.png" id="173_r"]
+[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_courts_shelter__p0_part0_night.png" id="174_r"]
+[ext_resource type="Texture2D" path="res://assets/sprites/campus_v2/v2_nw_hut__p0_part0_night.png" id="175_r"]
+[ext_resource type="Script" path="res://scripts/world/ambient_particles.gd" id="176_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/campus_v2/V2CourtTennis.tscn" id="177_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/campus_v2/V2CourtFutsal.tscn" id="178_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/campus_v2/V2CourtBadminton.tscn" id="179_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/campus_v2/V2GoalNorth.tscn" id="180_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/campus_v2/V2GoalSouth.tscn" id="181_r"]
+[ext_resource type="PackedScene" path="res://scenes/components/Door.tscn" id="182_r"]
+[ext_resource type="PackedScene" path="res://scenes/components/SpawnMarker.tscn" id="183_r"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1"]
 shader = ExtResource("4_r")
@@ -320,10 +311,10 @@ size = Vector2(1060.8, 9.6)
 size = Vector2(1060.8, 9.6)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_38"]
-shader = ExtResource("76_r")
+shader = ExtResource("77_r")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_39"]
-shader = ExtResource("88_r")
+shader = ExtResource("85_r")
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_40"]
 blend_mode = 1
@@ -875,6 +866,8 @@ points = PackedVector2Array(11296, 3106.976, 13344, 3106.976, 13344, 5205.728, 1
 width = 2.5
 default_color = Color(0.95, 0.95, 0.92, 0.85)
 light_mask = 1
+material = SubResource("ShaderMaterial_3")
+antialiased = true
 closed = true
 
 [node name="PitchHalf2" type="Line2D" parent="Ground/Markings"]
@@ -882,12 +875,16 @@ points = PackedVector2Array(11296, 4156.352, 13344, 4156.352)
 width = 2.5
 default_color = Color(0.95, 0.95, 0.92, 0.85)
 light_mask = 1
+material = SubResource("ShaderMaterial_3")
+antialiased = true
 
 [node name="PitchCircle3" type="Line2D" parent="Ground/Markings"]
 points = PackedVector2Array(12612.8, 4156.352, 12605.4589, 4198.2461, 12583.8037, 4238.0395, 12548.9203, 4273.7367, 12502.5578, 4303.5477, 12447.0412, 4325.9778, 12385.1541, 4339.9021, 12320, 4344.6224, 12254.8459, 4339.9021, 12192.9588, 4325.9778, 12137.4422, 4303.5477, 12091.0797, 4273.7367, 12056.1963, 4238.0395, 12034.5411, 4198.2461, 12027.2, 4156.352, 12034.5411, 4114.4579, 12056.1963, 4074.6645, 12091.0797, 4038.9673, 12137.4422, 4009.1563, 12192.9588, 3986.7262, 12254.8459, 3972.8019, 12320, 3968.0816, 12385.1541, 3972.8019, 12447.0412, 3986.7262, 12502.5578, 4009.1563, 12548.9203, 4038.9673, 12583.8037, 4074.6645, 12605.4589, 4114.4579)
 width = 2.5
 default_color = Color(0.95, 0.95, 0.92, 0.85)
 light_mask = 1
+material = SubResource("ShaderMaterial_3")
+antialiased = true
 closed = true
 
 [node name="Box4" type="Line2D" parent="Ground/Markings"]
@@ -895,12 +892,16 @@ points = PackedVector2Array(11675.2, 3106.976, 11675.2, 3446.48, 12964.8, 3446.4
 width = 2.5
 default_color = Color(0.95, 0.95, 0.92, 0.85)
 light_mask = 1
+material = SubResource("ShaderMaterial_3")
+antialiased = true
 
 [node name="Box6" type="Line2D" parent="Ground/Markings"]
 points = PackedVector2Array(11675.2, 5205.728, 11675.2, 4866.224, 12964.8, 4866.224, 12964.8, 5205.728)
 width = 2.5
 default_color = Color(0.95, 0.95, 0.92, 0.85)
 light_mask = 1
+material = SubResource("ShaderMaterial_3")
+antialiased = true
 
 [node name="CricketStrip" type="Polygon2D" parent="Ground/SurfaceLookup/Surfaces"]
 polygon = PackedVector2Array(7552, 5390.912, 7872, 5390.912, 7872, 5802.432, 7552, 5802.432)
@@ -4142,7 +4143,505 @@ scale = Vector2(0.9468, 0.9468)
 position = Vector2(14480, 2479.408)
 scale = Vector2(-0.9405, 0.9405)
 
-[node name="Lamp1" parent="Objects/Props" instance=ExtResource("66_r")]
+[node name="Hedge_halls_avenue_n_1" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(8416, 1008.224)
+
+[node name="Hedge_halls_avenue_n_2" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(8480, 1008.224)
+
+[node name="Hedge_halls_avenue_n_3" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(8544, 1008.224)
+
+[node name="Hedge_halls_avenue_n_4" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(8608, 1008.224)
+
+[node name="Hedge_halls_avenue_n_5" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(8672, 1008.224)
+
+[node name="Hedge_halls_avenue_n_6" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(8736, 1008.224)
+
+[node name="Hedge_halls_avenue_n_7" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(8800, 1008.224)
+
+[node name="Hedge_halls_avenue_n_8" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(8864, 1008.224)
+
+[node name="Hedge_halls_avenue_n_9" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(8928, 1008.224)
+
+[node name="Hedge_halls_avenue_n_10" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(8992, 1008.224)
+
+[node name="Hedge_halls_avenue_n_11" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(9056, 1008.224)
+
+[node name="Hedge_halls_avenue_n_12" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(9120, 1008.224)
+
+[node name="Hedge_halls_avenue_n_13" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(9248, 1008.224)
+
+[node name="Hedge_halls_avenue_n_14" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(9312, 1008.224)
+
+[node name="Hedge_halls_avenue_n_15" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(9376, 1008.224)
+
+[node name="Hedge_halls_avenue_n_16" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(9440, 1008.224)
+
+[node name="Hedge_halls_avenue_n_17" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(9504, 1008.224)
+
+[node name="Hedge_halls_avenue_n_18" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(9696, 1008.224)
+
+[node name="Hedge_halls_avenue_n_19" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(9760, 1008.224)
+
+[node name="Hedge_halls_avenue_n_20" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(9824, 1008.224)
+
+[node name="Hedge_halls_avenue_n_21" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(9888, 1008.224)
+
+[node name="Hedge_halls_avenue_n_22" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(9952, 1008.224)
+
+[node name="Hedge_halls_avenue_n_23" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(10016, 1008.224)
+
+[node name="Hedge_halls_avenue_n_24" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(10080, 1008.224)
+
+[node name="Hedge_halls_avenue_n_25" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(10144, 1008.224)
+
+[node name="Hedge_halls_avenue_n_26" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(10208, 1008.224)
+
+[node name="Hedge_halls_avenue_n_27" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(10496, 1008.224)
+
+[node name="Hedge_halls_avenue_n_28" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(10560, 1008.224)
+
+[node name="Hedge_halls_avenue_n_29" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(10624, 1008.224)
+
+[node name="Hedge_halls_avenue_n_30" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(10688, 1008.224)
+
+[node name="Hedge_halls_avenue_n_31" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(10752, 1008.224)
+
+[node name="Hedge_halls_avenue_n_32" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(10816, 1008.224)
+
+[node name="Hedge_halls_avenue_n_33" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(10880, 1008.224)
+
+[node name="Hedge_halls_avenue_n_34" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(10944, 1008.224)
+
+[node name="Hedge_halls_avenue_n_35" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(11008, 1008.224)
+
+[node name="Hedge_halls_avenue_n_36" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(11072, 1008.224)
+
+[node name="Hedge_halls_avenue_n_37" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(11296, 1008.224)
+
+[node name="Hedge_halls_avenue_n_38" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(11360, 1008.224)
+
+[node name="Hedge_halls_avenue_n_39" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(11424, 1008.224)
+
+[node name="Hedge_halls_avenue_n_40" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(11488, 1008.224)
+
+[node name="Hedge_halls_avenue_n_41" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(11552, 1008.224)
+
+[node name="Hedge_halls_avenue_n_42" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(11616, 1008.224)
+
+[node name="Hedge_halls_avenue_n_43" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(11680, 1008.224)
+
+[node name="Hedge_halls_avenue_n_44" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(11744, 1008.224)
+
+[node name="Hedge_halls_avenue_n_45" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(11808, 1008.224)
+
+[node name="Hedge_halls_avenue_n_46" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(11872, 1008.224)
+
+[node name="Hedge_halls_avenue_n_47" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(12112, 1008.224)
+
+[node name="Hedge_halls_avenue_n_48" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(12176, 1008.224)
+
+[node name="Hedge_halls_avenue_n_49" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(12240, 1008.224)
+
+[node name="Hedge_halls_avenue_n_50" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(12304, 1008.224)
+
+[node name="Hedge_halls_avenue_n_51" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(12368, 1008.224)
+
+[node name="Hedge_halls_avenue_n_52" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(12432, 1008.224)
+
+[node name="Hedge_halls_avenue_n_53" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(12496, 1008.224)
+
+[node name="Hedge_halls_avenue_n_54" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(12736, 1008.224)
+
+[node name="Hedge_halls_avenue_n_55" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(12800, 1008.224)
+
+[node name="Hedge_halls_avenue_n_56" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(12864, 1008.224)
+
+[node name="Hedge_halls_avenue_n_57" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(12928, 1008.224)
+
+[node name="Hedge_halls_avenue_n_58" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(12992, 1008.224)
+
+[node name="Hedge_halls_avenue_n_59" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(13056, 1008.224)
+
+[node name="Hedge_halls_avenue_n_60" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(13120, 1008.224)
+
+[node name="Hedge_halls_avenue_n_61" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(13184, 1008.224)
+
+[node name="Hedge_halls_avenue_s_62" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(8416, 1098.7584)
+
+[node name="Hedge_halls_avenue_s_63" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(8480, 1098.7584)
+
+[node name="Hedge_halls_avenue_s_64" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(8544, 1098.7584)
+
+[node name="Hedge_halls_avenue_s_65" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(8608, 1098.7584)
+
+[node name="Hedge_halls_avenue_s_66" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(8672, 1098.7584)
+
+[node name="Hedge_halls_avenue_s_67" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(8736, 1098.7584)
+
+[node name="Hedge_halls_avenue_s_68" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(8800, 1098.7584)
+
+[node name="Hedge_halls_avenue_s_69" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(8864, 1098.7584)
+
+[node name="Hedge_halls_avenue_s_70" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(8928, 1098.7584)
+
+[node name="Hedge_halls_avenue_s_71" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(8992, 1098.7584)
+
+[node name="Hedge_halls_avenue_s_72" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(9056, 1098.7584)
+
+[node name="Hedge_halls_avenue_s_73" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(9120, 1098.7584)
+
+[node name="Hedge_halls_avenue_s_74" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(9248, 1098.7584)
+
+[node name="Hedge_halls_avenue_s_75" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(9312, 1098.7584)
+
+[node name="Hedge_halls_avenue_s_76" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(9376, 1098.7584)
+
+[node name="Hedge_halls_avenue_s_77" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(9440, 1098.7584)
+
+[node name="Hedge_halls_avenue_s_78" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(9504, 1098.7584)
+
+[node name="Hedge_halls_avenue_s_79" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(9696, 1098.7584)
+
+[node name="Hedge_halls_avenue_s_80" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(9760, 1098.7584)
+
+[node name="Hedge_halls_avenue_s_81" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(9824, 1098.7584)
+
+[node name="Hedge_halls_avenue_s_82" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(9888, 1098.7584)
+
+[node name="Hedge_halls_avenue_s_83" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(9952, 1098.7584)
+
+[node name="Hedge_halls_avenue_s_84" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(10016, 1098.7584)
+
+[node name="Hedge_halls_avenue_s_85" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(10080, 1098.7584)
+
+[node name="Hedge_halls_avenue_s_86" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(10144, 1098.7584)
+
+[node name="Hedge_halls_avenue_s_87" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(10208, 1098.7584)
+
+[node name="Hedge_halls_avenue_s_88" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(10496, 1098.7584)
+
+[node name="Hedge_halls_avenue_s_89" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(10560, 1098.7584)
+
+[node name="Hedge_halls_avenue_s_90" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(10624, 1098.7584)
+
+[node name="Hedge_halls_avenue_s_91" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(10688, 1098.7584)
+
+[node name="Hedge_halls_avenue_s_92" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(10752, 1098.7584)
+
+[node name="Hedge_halls_avenue_s_93" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(10816, 1098.7584)
+
+[node name="Hedge_halls_avenue_s_94" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(10880, 1098.7584)
+
+[node name="Hedge_halls_avenue_s_95" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(10944, 1098.7584)
+
+[node name="Hedge_halls_avenue_s_96" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(11008, 1098.7584)
+
+[node name="Hedge_halls_avenue_s_97" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(11072, 1098.7584)
+
+[node name="Hedge_halls_avenue_s_98" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(11296, 1098.7584)
+
+[node name="Hedge_halls_avenue_s_99" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(11360, 1098.7584)
+
+[node name="Hedge_halls_avenue_s_100" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(11424, 1098.7584)
+
+[node name="Hedge_halls_avenue_s_101" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(11488, 1098.7584)
+
+[node name="Hedge_halls_avenue_s_102" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(11552, 1098.7584)
+
+[node name="Hedge_halls_avenue_s_103" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(11616, 1098.7584)
+
+[node name="Hedge_halls_avenue_s_104" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(11680, 1098.7584)
+
+[node name="Hedge_halls_avenue_s_105" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(11744, 1098.7584)
+
+[node name="Hedge_halls_avenue_s_106" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(11808, 1098.7584)
+
+[node name="Hedge_halls_avenue_s_107" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(11872, 1098.7584)
+
+[node name="Hedge_halls_avenue_s_108" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(12112, 1098.7584)
+
+[node name="Hedge_halls_avenue_s_109" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(12176, 1098.7584)
+
+[node name="Hedge_halls_avenue_s_110" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(12240, 1098.7584)
+
+[node name="Hedge_halls_avenue_s_111" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(12304, 1098.7584)
+
+[node name="Hedge_halls_avenue_s_112" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(12368, 1098.7584)
+
+[node name="Hedge_halls_avenue_s_113" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(12432, 1098.7584)
+
+[node name="Hedge_halls_avenue_s_114" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(12496, 1098.7584)
+
+[node name="Hedge_halls_avenue_s_115" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(12736, 1098.7584)
+
+[node name="Hedge_halls_avenue_s_116" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(12800, 1098.7584)
+
+[node name="Hedge_halls_avenue_s_117" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(12864, 1098.7584)
+
+[node name="Hedge_halls_avenue_s_118" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(12928, 1098.7584)
+
+[node name="Hedge_halls_avenue_s_119" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(12992, 1098.7584)
+
+[node name="Hedge_halls_avenue_s_120" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(13056, 1098.7584)
+
+[node name="Hedge_halls_avenue_s_121" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(13120, 1098.7584)
+
+[node name="Hedge_halls_avenue_s_122" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(13184, 1098.7584)
+
+[node name="Hedge_field_south_123" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(11232, 5410.4592)
+
+[node name="Hedge_field_south_124" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(11296, 5410.4592)
+
+[node name="Hedge_field_south_125" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(11360, 5410.4592)
+
+[node name="Hedge_field_south_126" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(11424, 5410.4592)
+
+[node name="Hedge_field_south_127" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(11488, 5410.4592)
+
+[node name="Hedge_field_south_128" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(11552, 5410.4592)
+
+[node name="Hedge_field_south_129" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(11616, 5410.4592)
+
+[node name="Hedge_field_south_130" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(11680, 5410.4592)
+
+[node name="Hedge_field_south_131" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(11744, 5410.4592)
+
+[node name="Hedge_field_south_132" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(11808, 5410.4592)
+
+[node name="Hedge_field_south_133" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(11872, 5410.4592)
+
+[node name="Hedge_field_south_134" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(11936, 5410.4592)
+
+[node name="Hedge_field_south_135" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(12000, 5410.4592)
+
+[node name="Hedge_field_south_136" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(12064, 5410.4592)
+
+[node name="Hedge_field_south_137" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(12128, 5410.4592)
+
+[node name="Hedge_field_south_138" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(12256, 5410.4592)
+
+[node name="Hedge_field_south_139" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(12320, 5410.4592)
+
+[node name="Hedge_field_south_140" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(12384, 5410.4592)
+
+[node name="Hedge_field_south_141" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(12448, 5410.4592)
+
+[node name="Hedge_field_south_142" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(12512, 5410.4592)
+
+[node name="Hedge_field_south_143" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(12576, 5410.4592)
+
+[node name="Hedge_field_south_144" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(12640, 5410.4592)
+
+[node name="Hedge_field_south_145" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(12704, 5410.4592)
+
+[node name="Hedge_field_south_146" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(12768, 5410.4592)
+
+[node name="Hedge_field_south_147" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(12832, 5410.4592)
+
+[node name="Hedge_field_south_148" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(12896, 5410.4592)
+
+[node name="Hedge_field_south_149" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(12960, 5410.4592)
+
+[node name="Hedge_field_south_150" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(13024, 5410.4592)
+
+[node name="Hedge_field_south_151" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(13088, 5410.4592)
+
+[node name="Hedge_field_south_152" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(13152, 5410.4592)
+
+[node name="Hedge_field_south_153" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(13280, 5410.4592)
+
+[node name="Hedge_field_south_154" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(13344, 5410.4592)
+
+[node name="Hedge_field_south_155" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(13408, 5410.4592)
+
+[node name="Hedge_field_south_156" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(13472, 5410.4592)
+
+[node name="Hedge_field_south_157" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(13536, 5410.4592)
+
+[node name="Hedge_field_south_158" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(13600, 5410.4592)
+
+[node name="Hedge_field_south_159" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(13664, 5410.4592)
+
+[node name="Hedge_field_south_160" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(13728, 5410.4592)
+
+[node name="Hedge_field_south_161" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(13792, 5410.4592)
+
+[node name="Hedge_field_south_162" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(13856, 5410.4592)
+
+[node name="Hedge_field_south_163" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(13920, 5410.4592)
+
+[node name="Hedge_field_south_164" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(13984, 5410.4592)
+
+[node name="Hedge_field_south_165" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(14048, 5410.4592)
+
+[node name="Hedge_field_south_166" parent="Objects/Vegetation" instance=ExtResource("66_r")]
+position = Vector2(14112, 5410.4592)
+
+[node name="Lamp1" parent="Objects/Props" instance=ExtResource("67_r")]
 position = Vector2(3789.7846, 2294.224)
 
 [node name="Lamp1Light" type="PointLight2D" parent="Objects/Lights"]
@@ -4151,13 +4650,13 @@ position = Vector2(3789.7846, 2294.224)
 color = Color(1, 0.8, 0.55, 1)
 energy = 0.95
 range_item_cull_mask = 3
-texture = ExtResource("67_r")
+texture = ExtResource("68_r")
 texture_scale = 3
-script = ExtResource("68_r")
+script = ExtResource("69_r")
 needs_power = false
 base_energy = 0.95
 
-[node name="Lamp2" parent="Objects/Props" instance=ExtResource("66_r")]
+[node name="Lamp2" parent="Objects/Props" instance=ExtResource("67_r")]
 position = Vector2(4651.5692, 2154.3072)
 
 [node name="Lamp2Light" type="PointLight2D" parent="Objects/Lights"]
@@ -4166,13 +4665,13 @@ position = Vector2(4651.5692, 2154.3072)
 color = Color(1, 0.8, 0.55, 1)
 energy = 0.95
 range_item_cull_mask = 3
-texture = ExtResource("67_r")
+texture = ExtResource("68_r")
 texture_scale = 3
-script = ExtResource("68_r")
+script = ExtResource("69_r")
 needs_power = false
 base_energy = 0.95
 
-[node name="Lamp3" parent="Objects/Props" instance=ExtResource("66_r")]
+[node name="Lamp3" parent="Objects/Props" instance=ExtResource("67_r")]
 position = Vector2(5513.3538, 2294.224)
 
 [node name="Lamp3Light" type="PointLight2D" parent="Objects/Lights"]
@@ -4181,13 +4680,13 @@ position = Vector2(5513.3538, 2294.224)
 color = Color(1, 0.8, 0.55, 1)
 energy = 0.95
 range_item_cull_mask = 3
-texture = ExtResource("67_r")
+texture = ExtResource("68_r")
 texture_scale = 3
-script = ExtResource("68_r")
+script = ExtResource("69_r")
 needs_power = false
 base_energy = 0.95
 
-[node name="Lamp4" parent="Objects/Props" instance=ExtResource("66_r")]
+[node name="Lamp4" parent="Objects/Props" instance=ExtResource("67_r")]
 position = Vector2(6375.1385, 2154.3072)
 
 [node name="Lamp4Light" type="PointLight2D" parent="Objects/Lights"]
@@ -4196,13 +4695,13 @@ position = Vector2(6375.1385, 2154.3072)
 color = Color(1, 0.8, 0.55, 1)
 energy = 0.95
 range_item_cull_mask = 3
-texture = ExtResource("67_r")
+texture = ExtResource("68_r")
 texture_scale = 3
-script = ExtResource("68_r")
+script = ExtResource("69_r")
 needs_power = false
 base_energy = 0.95
 
-[node name="Lamp5" parent="Objects/Props" instance=ExtResource("66_r")]
+[node name="Lamp5" parent="Objects/Props" instance=ExtResource("67_r")]
 position = Vector2(7236.9231, 2294.224)
 
 [node name="Lamp5Light" type="PointLight2D" parent="Objects/Lights"]
@@ -4211,13 +4710,13 @@ position = Vector2(7236.9231, 2294.224)
 color = Color(1, 0.8, 0.55, 1)
 energy = 0.95
 range_item_cull_mask = 3
-texture = ExtResource("67_r")
+texture = ExtResource("68_r")
 texture_scale = 3
-script = ExtResource("68_r")
+script = ExtResource("69_r")
 needs_power = false
 base_energy = 0.95
 
-[node name="Lamp6" parent="Objects/Props" instance=ExtResource("66_r")]
+[node name="Lamp6" parent="Objects/Props" instance=ExtResource("67_r")]
 position = Vector2(8098.7077, 2154.3072)
 
 [node name="Lamp6Light" type="PointLight2D" parent="Objects/Lights"]
@@ -4226,13 +4725,13 @@ position = Vector2(8098.7077, 2154.3072)
 color = Color(1, 0.8, 0.55, 1)
 energy = 0.95
 range_item_cull_mask = 3
-texture = ExtResource("67_r")
+texture = ExtResource("68_r")
 texture_scale = 3
-script = ExtResource("68_r")
+script = ExtResource("69_r")
 needs_power = false
 base_energy = 0.95
 
-[node name="Lamp7" parent="Objects/Props" instance=ExtResource("66_r")]
+[node name="Lamp7" parent="Objects/Props" instance=ExtResource("67_r")]
 position = Vector2(8960.4923, 2294.224)
 
 [node name="Lamp7Light" type="PointLight2D" parent="Objects/Lights"]
@@ -4241,13 +4740,13 @@ position = Vector2(8960.4923, 2294.224)
 color = Color(1, 0.8, 0.55, 1)
 energy = 0.95
 range_item_cull_mask = 3
-texture = ExtResource("67_r")
+texture = ExtResource("68_r")
 texture_scale = 3
-script = ExtResource("68_r")
+script = ExtResource("69_r")
 needs_power = false
 base_energy = 0.95
 
-[node name="Lamp8" parent="Objects/Props" instance=ExtResource("66_r")]
+[node name="Lamp8" parent="Objects/Props" instance=ExtResource("67_r")]
 position = Vector2(9822.2769, 2154.3072)
 
 [node name="Lamp8Light" type="PointLight2D" parent="Objects/Lights"]
@@ -4256,13 +4755,13 @@ position = Vector2(9822.2769, 2154.3072)
 color = Color(1, 0.8, 0.55, 1)
 energy = 0.95
 range_item_cull_mask = 3
-texture = ExtResource("67_r")
+texture = ExtResource("68_r")
 texture_scale = 3
-script = ExtResource("68_r")
+script = ExtResource("69_r")
 needs_power = false
 base_energy = 0.95
 
-[node name="Lamp9" parent="Objects/Props" instance=ExtResource("66_r")]
+[node name="Lamp9" parent="Objects/Props" instance=ExtResource("67_r")]
 position = Vector2(10684.0615, 2294.224)
 
 [node name="Lamp9Light" type="PointLight2D" parent="Objects/Lights"]
@@ -4271,13 +4770,13 @@ position = Vector2(10684.0615, 2294.224)
 color = Color(1, 0.8, 0.55, 1)
 energy = 0.95
 range_item_cull_mask = 3
-texture = ExtResource("67_r")
+texture = ExtResource("68_r")
 texture_scale = 3
-script = ExtResource("68_r")
+script = ExtResource("69_r")
 needs_power = false
 base_energy = 0.95
 
-[node name="Lamp10" parent="Objects/Props" instance=ExtResource("66_r")]
+[node name="Lamp10" parent="Objects/Props" instance=ExtResource("67_r")]
 position = Vector2(11545.8462, 2154.3072)
 
 [node name="Lamp10Light" type="PointLight2D" parent="Objects/Lights"]
@@ -4286,13 +4785,13 @@ position = Vector2(11545.8462, 2154.3072)
 color = Color(1, 0.8, 0.55, 1)
 energy = 0.95
 range_item_cull_mask = 3
-texture = ExtResource("67_r")
+texture = ExtResource("68_r")
 texture_scale = 3
-script = ExtResource("68_r")
+script = ExtResource("69_r")
 needs_power = false
 base_energy = 0.95
 
-[node name="Lamp11" parent="Objects/Props" instance=ExtResource("66_r")]
+[node name="Lamp11" parent="Objects/Props" instance=ExtResource("67_r")]
 position = Vector2(12407.6308, 2294.224)
 
 [node name="Lamp11Light" type="PointLight2D" parent="Objects/Lights"]
@@ -4301,13 +4800,13 @@ position = Vector2(12407.6308, 2294.224)
 color = Color(1, 0.8, 0.55, 1)
 energy = 0.95
 range_item_cull_mask = 3
-texture = ExtResource("67_r")
+texture = ExtResource("68_r")
 texture_scale = 3
-script = ExtResource("68_r")
+script = ExtResource("69_r")
 needs_power = false
 base_energy = 0.95
 
-[node name="Lamp12" parent="Objects/Props" instance=ExtResource("66_r")]
+[node name="Lamp12" parent="Objects/Props" instance=ExtResource("67_r")]
 position = Vector2(13269.4154, 2154.3072)
 
 [node name="Lamp12Light" type="PointLight2D" parent="Objects/Lights"]
@@ -4316,13 +4815,13 @@ position = Vector2(13269.4154, 2154.3072)
 color = Color(1, 0.8, 0.55, 1)
 energy = 0.95
 range_item_cull_mask = 3
-texture = ExtResource("67_r")
+texture = ExtResource("68_r")
 texture_scale = 3
-script = ExtResource("68_r")
+script = ExtResource("69_r")
 needs_power = false
 base_energy = 0.95
 
-[node name="Lamp13" parent="Objects/Props" instance=ExtResource("66_r")]
+[node name="Lamp13" parent="Objects/Props" instance=ExtResource("67_r")]
 position = Vector2(2892.8, 767.0276)
 
 [node name="Lamp13Light" type="PointLight2D" parent="Objects/Lights"]
@@ -4331,13 +4830,13 @@ position = Vector2(2892.8, 767.0276)
 color = Color(1, 0.8, 0.55, 1)
 energy = 0.95
 range_item_cull_mask = 3
-texture = ExtResource("67_r")
+texture = ExtResource("68_r")
 texture_scale = 3
-script = ExtResource("68_r")
+script = ExtResource("69_r")
 needs_power = false
 base_energy = 0.95
 
-[node name="Lamp14" parent="Objects/Props" instance=ExtResource("66_r")]
+[node name="Lamp14" parent="Objects/Props" instance=ExtResource("67_r")]
 position = Vector2(3110.4, 1287.1431)
 
 [node name="Lamp14Light" type="PointLight2D" parent="Objects/Lights"]
@@ -4346,13 +4845,13 @@ position = Vector2(3110.4, 1287.1431)
 color = Color(1, 0.8, 0.55, 1)
 energy = 0.95
 range_item_cull_mask = 3
-texture = ExtResource("67_r")
+texture = ExtResource("68_r")
 texture_scale = 3
-script = ExtResource("68_r")
+script = ExtResource("69_r")
 needs_power = false
 base_energy = 0.95
 
-[node name="Lamp15" parent="Objects/Props" instance=ExtResource("66_r")]
+[node name="Lamp15" parent="Objects/Props" instance=ExtResource("67_r")]
 position = Vector2(2892.8, 1807.2587)
 
 [node name="Lamp15Light" type="PointLight2D" parent="Objects/Lights"]
@@ -4361,13 +4860,13 @@ position = Vector2(2892.8, 1807.2587)
 color = Color(1, 0.8, 0.55, 1)
 energy = 0.95
 range_item_cull_mask = 3
-texture = ExtResource("67_r")
+texture = ExtResource("68_r")
 texture_scale = 3
-script = ExtResource("68_r")
+script = ExtResource("69_r")
 needs_power = false
 base_energy = 0.95
 
-[node name="Lamp16" parent="Objects/Props" instance=ExtResource("66_r")]
+[node name="Lamp16" parent="Objects/Props" instance=ExtResource("67_r")]
 position = Vector2(3110.4, 2327.3742)
 
 [node name="Lamp16Light" type="PointLight2D" parent="Objects/Lights"]
@@ -4376,13 +4875,13 @@ position = Vector2(3110.4, 2327.3742)
 color = Color(1, 0.8, 0.55, 1)
 energy = 0.95
 range_item_cull_mask = 3
-texture = ExtResource("67_r")
+texture = ExtResource("68_r")
 texture_scale = 3
-script = ExtResource("68_r")
+script = ExtResource("69_r")
 needs_power = false
 base_energy = 0.95
 
-[node name="Lamp17" parent="Objects/Props" instance=ExtResource("66_r")]
+[node name="Lamp17" parent="Objects/Props" instance=ExtResource("67_r")]
 position = Vector2(2892.8, 2847.4898)
 
 [node name="Lamp17Light" type="PointLight2D" parent="Objects/Lights"]
@@ -4391,13 +4890,13 @@ position = Vector2(2892.8, 2847.4898)
 color = Color(1, 0.8, 0.55, 1)
 energy = 0.95
 range_item_cull_mask = 3
-texture = ExtResource("67_r")
+texture = ExtResource("68_r")
 texture_scale = 3
-script = ExtResource("68_r")
+script = ExtResource("69_r")
 needs_power = false
 base_energy = 0.95
 
-[node name="Lamp18" parent="Objects/Props" instance=ExtResource("66_r")]
+[node name="Lamp18" parent="Objects/Props" instance=ExtResource("67_r")]
 position = Vector2(3110.4, 3367.6053)
 
 [node name="Lamp18Light" type="PointLight2D" parent="Objects/Lights"]
@@ -4406,13 +4905,13 @@ position = Vector2(3110.4, 3367.6053)
 color = Color(1, 0.8, 0.55, 1)
 energy = 0.95
 range_item_cull_mask = 3
-texture = ExtResource("67_r")
+texture = ExtResource("68_r")
 texture_scale = 3
-script = ExtResource("68_r")
+script = ExtResource("69_r")
 needs_power = false
 base_energy = 0.95
 
-[node name="Lamp19" parent="Objects/Props" instance=ExtResource("66_r")]
+[node name="Lamp19" parent="Objects/Props" instance=ExtResource("67_r")]
 position = Vector2(2892.8, 3887.7209)
 
 [node name="Lamp19Light" type="PointLight2D" parent="Objects/Lights"]
@@ -4421,13 +4920,13 @@ position = Vector2(2892.8, 3887.7209)
 color = Color(1, 0.8, 0.55, 1)
 energy = 0.95
 range_item_cull_mask = 3
-texture = ExtResource("67_r")
+texture = ExtResource("68_r")
 texture_scale = 3
-script = ExtResource("68_r")
+script = ExtResource("69_r")
 needs_power = false
 base_energy = 0.95
 
-[node name="Lamp20" parent="Objects/Props" instance=ExtResource("66_r")]
+[node name="Lamp20" parent="Objects/Props" instance=ExtResource("67_r")]
 position = Vector2(3110.4, 4407.8364)
 
 [node name="Lamp20Light" type="PointLight2D" parent="Objects/Lights"]
@@ -4436,13 +4935,13 @@ position = Vector2(3110.4, 4407.8364)
 color = Color(1, 0.8, 0.55, 1)
 energy = 0.95
 range_item_cull_mask = 3
-texture = ExtResource("67_r")
+texture = ExtResource("68_r")
 texture_scale = 3
-script = ExtResource("68_r")
+script = ExtResource("69_r")
 needs_power = false
 base_energy = 0.95
 
-[node name="Lamp21" parent="Objects/Props" instance=ExtResource("66_r")]
+[node name="Lamp21" parent="Objects/Props" instance=ExtResource("67_r")]
 position = Vector2(3252.16, 4997.9104)
 
 [node name="Lamp21Light" type="PointLight2D" parent="Objects/Lights"]
@@ -4451,13 +4950,13 @@ position = Vector2(3252.16, 4997.9104)
 color = Color(1, 0.8, 0.55, 1)
 energy = 0.95
 range_item_cull_mask = 3
-texture = ExtResource("67_r")
+texture = ExtResource("68_r")
 texture_scale = 3
-script = ExtResource("68_r")
+script = ExtResource("69_r")
 needs_power = false
 base_energy = 0.95
 
-[node name="Lamp22" parent="Objects/Props" instance=ExtResource("66_r")]
+[node name="Lamp22" parent="Objects/Props" instance=ExtResource("67_r")]
 position = Vector2(4056.32, 4857.9936)
 
 [node name="Lamp22Light" type="PointLight2D" parent="Objects/Lights"]
@@ -4466,13 +4965,13 @@ position = Vector2(4056.32, 4857.9936)
 color = Color(1, 0.8, 0.55, 1)
 energy = 0.95
 range_item_cull_mask = 3
-texture = ExtResource("67_r")
+texture = ExtResource("68_r")
 texture_scale = 3
-script = ExtResource("68_r")
+script = ExtResource("69_r")
 needs_power = false
 base_energy = 0.95
 
-[node name="Lamp23" parent="Objects/Props" instance=ExtResource("66_r")]
+[node name="Lamp23" parent="Objects/Props" instance=ExtResource("67_r")]
 position = Vector2(4860.48, 4997.9104)
 
 [node name="Lamp23Light" type="PointLight2D" parent="Objects/Lights"]
@@ -4481,13 +4980,13 @@ position = Vector2(4860.48, 4997.9104)
 color = Color(1, 0.8, 0.55, 1)
 energy = 0.95
 range_item_cull_mask = 3
-texture = ExtResource("67_r")
+texture = ExtResource("68_r")
 texture_scale = 3
-script = ExtResource("68_r")
+script = ExtResource("69_r")
 needs_power = false
 base_energy = 0.95
 
-[node name="Lamp24" parent="Objects/Props" instance=ExtResource("66_r")]
+[node name="Lamp24" parent="Objects/Props" instance=ExtResource("67_r")]
 position = Vector2(5664.64, 4857.9936)
 
 [node name="Lamp24Light" type="PointLight2D" parent="Objects/Lights"]
@@ -4496,13 +4995,13 @@ position = Vector2(5664.64, 4857.9936)
 color = Color(1, 0.8, 0.55, 1)
 energy = 0.95
 range_item_cull_mask = 3
-texture = ExtResource("67_r")
+texture = ExtResource("68_r")
 texture_scale = 3
-script = ExtResource("68_r")
+script = ExtResource("69_r")
 needs_power = false
 base_energy = 0.95
 
-[node name="Lamp25" parent="Objects/Props" instance=ExtResource("66_r")]
+[node name="Lamp25" parent="Objects/Props" instance=ExtResource("67_r")]
 position = Vector2(6468.8, 4997.9104)
 
 [node name="Lamp25Light" type="PointLight2D" parent="Objects/Lights"]
@@ -4511,13 +5010,13 @@ position = Vector2(6468.8, 4997.9104)
 color = Color(1, 0.8, 0.55, 1)
 energy = 0.95
 range_item_cull_mask = 3
-texture = ExtResource("67_r")
+texture = ExtResource("68_r")
 texture_scale = 3
-script = ExtResource("68_r")
+script = ExtResource("69_r")
 needs_power = false
 base_energy = 0.95
 
-[node name="Lamp26" parent="Objects/Props" instance=ExtResource("66_r")]
+[node name="Lamp26" parent="Objects/Props" instance=ExtResource("67_r")]
 position = Vector2(7272.96, 4857.9936)
 
 [node name="Lamp26Light" type="PointLight2D" parent="Objects/Lights"]
@@ -4526,13 +5025,13 @@ position = Vector2(7272.96, 4857.9936)
 color = Color(1, 0.8, 0.55, 1)
 energy = 0.95
 range_item_cull_mask = 3
-texture = ExtResource("67_r")
+texture = ExtResource("68_r")
 texture_scale = 3
-script = ExtResource("68_r")
+script = ExtResource("69_r")
 needs_power = false
 base_energy = 0.95
 
-[node name="Lamp27" parent="Objects/Props" instance=ExtResource("66_r")]
+[node name="Lamp27" parent="Objects/Props" instance=ExtResource("67_r")]
 position = Vector2(8077.12, 4997.9104)
 
 [node name="Lamp27Light" type="PointLight2D" parent="Objects/Lights"]
@@ -4541,13 +5040,13 @@ position = Vector2(8077.12, 4997.9104)
 color = Color(1, 0.8, 0.55, 1)
 energy = 0.95
 range_item_cull_mask = 3
-texture = ExtResource("67_r")
+texture = ExtResource("68_r")
 texture_scale = 3
-script = ExtResource("68_r")
+script = ExtResource("69_r")
 needs_power = false
 base_energy = 0.95
 
-[node name="Lamp28" parent="Objects/Props" instance=ExtResource("66_r")]
+[node name="Lamp28" parent="Objects/Props" instance=ExtResource("67_r")]
 position = Vector2(8881.28, 4857.9936)
 
 [node name="Lamp28Light" type="PointLight2D" parent="Objects/Lights"]
@@ -4556,13 +5055,13 @@ position = Vector2(8881.28, 4857.9936)
 color = Color(1, 0.8, 0.55, 1)
 energy = 0.95
 range_item_cull_mask = 3
-texture = ExtResource("67_r")
+texture = ExtResource("68_r")
 texture_scale = 3
-script = ExtResource("68_r")
+script = ExtResource("69_r")
 needs_power = false
 base_energy = 0.95
 
-[node name="Lamp29" parent="Objects/Props" instance=ExtResource("66_r")]
+[node name="Lamp29" parent="Objects/Props" instance=ExtResource("67_r")]
 position = Vector2(9685.44, 4997.9104)
 
 [node name="Lamp29Light" type="PointLight2D" parent="Objects/Lights"]
@@ -4571,13 +5070,13 @@ position = Vector2(9685.44, 4997.9104)
 color = Color(1, 0.8, 0.55, 1)
 energy = 0.95
 range_item_cull_mask = 3
-texture = ExtResource("67_r")
+texture = ExtResource("68_r")
 texture_scale = 3
-script = ExtResource("68_r")
+script = ExtResource("69_r")
 needs_power = false
 base_energy = 0.95
 
-[node name="Lamp30" parent="Objects/Props" instance=ExtResource("66_r")]
+[node name="Lamp30" parent="Objects/Props" instance=ExtResource("67_r")]
 position = Vector2(10828.7862, 5407.1821)
 
 [node name="Lamp30Light" type="PointLight2D" parent="Objects/Lights"]
@@ -4586,13 +5085,13 @@ position = Vector2(10828.7862, 5407.1821)
 color = Color(1, 0.8, 0.55, 1)
 energy = 0.95
 range_item_cull_mask = 3
-texture = ExtResource("67_r")
+texture = ExtResource("68_r")
 texture_scale = 3
-script = ExtResource("68_r")
+script = ExtResource("69_r")
 needs_power = false
 base_energy = 0.95
 
-[node name="Lamp31" parent="Objects/Props" instance=ExtResource("66_r")]
+[node name="Lamp31" parent="Objects/Props" instance=ExtResource("67_r")]
 position = Vector2(11747.7818, 5442.8814)
 
 [node name="Lamp31Light" type="PointLight2D" parent="Objects/Lights"]
@@ -4601,13 +5100,13 @@ position = Vector2(11747.7818, 5442.8814)
 color = Color(1, 0.8, 0.55, 1)
 energy = 0.95
 range_item_cull_mask = 3
-texture = ExtResource("67_r")
+texture = ExtResource("68_r")
 texture_scale = 3
-script = ExtResource("68_r")
+script = ExtResource("69_r")
 needs_power = false
 base_energy = 0.95
 
-[node name="Lamp32" parent="Objects/Props" instance=ExtResource("66_r")]
+[node name="Lamp32" parent="Objects/Props" instance=ExtResource("67_r")]
 position = Vector2(12446.8934, 5574.0384)
 
 [node name="Lamp32Light" type="PointLight2D" parent="Objects/Lights"]
@@ -4616,13 +5115,13 @@ position = Vector2(12446.8934, 5574.0384)
 color = Color(1, 0.8, 0.55, 1)
 energy = 0.95
 range_item_cull_mask = 3
-texture = ExtResource("67_r")
+texture = ExtResource("68_r")
 texture_scale = 3
-script = ExtResource("68_r")
+script = ExtResource("69_r")
 needs_power = false
 base_energy = 0.95
 
-[node name="Lamp33" parent="Objects/Props" instance=ExtResource("66_r")]
+[node name="Lamp33" parent="Objects/Props" instance=ExtResource("67_r")]
 position = Vector2(13255.1701, 5405.3152)
 
 [node name="Lamp33Light" type="PointLight2D" parent="Objects/Lights"]
@@ -4631,13 +5130,13 @@ position = Vector2(13255.1701, 5405.3152)
 color = Color(1, 0.8, 0.55, 1)
 energy = 0.95
 range_item_cull_mask = 3
-texture = ExtResource("67_r")
+texture = ExtResource("68_r")
 texture_scale = 3
-script = ExtResource("68_r")
+script = ExtResource("69_r")
 needs_power = false
 base_energy = 0.95
 
-[node name="Lamp34" parent="Objects/Props" instance=ExtResource("66_r")]
+[node name="Lamp34" parent="Objects/Props" instance=ExtResource("67_r")]
 position = Vector2(14063.4467, 5574.0384)
 
 [node name="Lamp34Light" type="PointLight2D" parent="Objects/Lights"]
@@ -4646,13 +5145,13 @@ position = Vector2(14063.4467, 5574.0384)
 color = Color(1, 0.8, 0.55, 1)
 energy = 0.95
 range_item_cull_mask = 3
-texture = ExtResource("67_r")
+texture = ExtResource("68_r")
 texture_scale = 3
-script = ExtResource("68_r")
+script = ExtResource("69_r")
 needs_power = false
 base_energy = 0.95
 
-[node name="Lamp35" parent="Objects/Props" instance=ExtResource("66_r")]
+[node name="Lamp35" parent="Objects/Props" instance=ExtResource("67_r")]
 position = Vector2(14871.7234, 5405.3152)
 
 [node name="Lamp35Light" type="PointLight2D" parent="Objects/Lights"]
@@ -4661,13 +5160,13 @@ position = Vector2(14871.7234, 5405.3152)
 color = Color(1, 0.8, 0.55, 1)
 energy = 0.95
 range_item_cull_mask = 3
-texture = ExtResource("67_r")
+texture = ExtResource("68_r")
 texture_scale = 3
-script = ExtResource("68_r")
+script = ExtResource("69_r")
 needs_power = false
 base_energy = 0.95
 
-[node name="Lamp36" parent="Objects/Props" instance=ExtResource("66_r")]
+[node name="Lamp36" parent="Objects/Props" instance=ExtResource("67_r")]
 position = Vector2(10460.8, 2765.0029)
 
 [node name="Lamp36Light" type="PointLight2D" parent="Objects/Lights"]
@@ -4676,13 +5175,13 @@ position = Vector2(10460.8, 2765.0029)
 color = Color(1, 0.8, 0.55, 1)
 energy = 0.95
 range_item_cull_mask = 3
-texture = ExtResource("67_r")
+texture = ExtResource("68_r")
 texture_scale = 3
-script = ExtResource("68_r")
+script = ExtResource("69_r")
 needs_power = false
 base_energy = 0.95
 
-[node name="Lamp37" parent="Objects/Props" instance=ExtResource("66_r")]
+[node name="Lamp37" parent="Objects/Props" instance=ExtResource("67_r")]
 position = Vector2(10665.6, 3305.7402)
 
 [node name="Lamp37Light" type="PointLight2D" parent="Objects/Lights"]
@@ -4691,13 +5190,13 @@ position = Vector2(10665.6, 3305.7402)
 color = Color(1, 0.8, 0.55, 1)
 energy = 0.95
 range_item_cull_mask = 3
-texture = ExtResource("67_r")
+texture = ExtResource("68_r")
 texture_scale = 3
-script = ExtResource("68_r")
+script = ExtResource("69_r")
 needs_power = false
 base_energy = 0.95
 
-[node name="Lamp38" parent="Objects/Props" instance=ExtResource("66_r")]
+[node name="Lamp38" parent="Objects/Props" instance=ExtResource("67_r")]
 position = Vector2(10460.8, 3846.4774)
 
 [node name="Lamp38Light" type="PointLight2D" parent="Objects/Lights"]
@@ -4706,13 +5205,13 @@ position = Vector2(10460.8, 3846.4774)
 color = Color(1, 0.8, 0.55, 1)
 energy = 0.95
 range_item_cull_mask = 3
-texture = ExtResource("67_r")
+texture = ExtResource("68_r")
 texture_scale = 3
-script = ExtResource("68_r")
+script = ExtResource("69_r")
 needs_power = false
 base_energy = 0.95
 
-[node name="Lamp39" parent="Objects/Props" instance=ExtResource("66_r")]
+[node name="Lamp39" parent="Objects/Props" instance=ExtResource("67_r")]
 position = Vector2(10665.6, 4387.2147)
 
 [node name="Lamp39Light" type="PointLight2D" parent="Objects/Lights"]
@@ -4721,13 +5220,13 @@ position = Vector2(10665.6, 4387.2147)
 color = Color(1, 0.8, 0.55, 1)
 energy = 0.95
 range_item_cull_mask = 3
-texture = ExtResource("67_r")
+texture = ExtResource("68_r")
 texture_scale = 3
-script = ExtResource("68_r")
+script = ExtResource("69_r")
 needs_power = false
 base_energy = 0.95
 
-[node name="Lamp40" parent="Objects/Props" instance=ExtResource("66_r")]
+[node name="Lamp40" parent="Objects/Props" instance=ExtResource("67_r")]
 position = Vector2(13987.2, 769.028)
 
 [node name="Lamp40Light" type="PointLight2D" parent="Objects/Lights"]
@@ -4736,13 +5235,13 @@ position = Vector2(13987.2, 769.028)
 color = Color(1, 0.8, 0.55, 1)
 energy = 0.95
 range_item_cull_mask = 3
-texture = ExtResource("67_r")
+texture = ExtResource("68_r")
 texture_scale = 3
-script = ExtResource("68_r")
+script = ExtResource("69_r")
 needs_power = false
 base_energy = 0.95
 
-[node name="Lamp41" parent="Objects/Props" instance=ExtResource("66_r")]
+[node name="Lamp41" parent="Objects/Props" instance=ExtResource("67_r")]
 position = Vector2(14160, 1254.1072)
 
 [node name="Lamp41Light" type="PointLight2D" parent="Objects/Lights"]
@@ -4751,13 +5250,13 @@ position = Vector2(14160, 1254.1072)
 color = Color(1, 0.8, 0.55, 1)
 energy = 0.95
 range_item_cull_mask = 3
-texture = ExtResource("67_r")
+texture = ExtResource("68_r")
 texture_scale = 3
-script = ExtResource("68_r")
+script = ExtResource("69_r")
 needs_power = false
 base_energy = 0.95
 
-[node name="Lamp42" parent="Objects/Props" instance=ExtResource("66_r")]
+[node name="Lamp42" parent="Objects/Props" instance=ExtResource("67_r")]
 position = Vector2(13987.2, 1739.1864)
 
 [node name="Lamp42Light" type="PointLight2D" parent="Objects/Lights"]
@@ -4766,13 +5265,13 @@ position = Vector2(13987.2, 1739.1864)
 color = Color(1, 0.8, 0.55, 1)
 energy = 0.95
 range_item_cull_mask = 3
-texture = ExtResource("67_r")
+texture = ExtResource("68_r")
 texture_scale = 3
-script = ExtResource("68_r")
+script = ExtResource("69_r")
 needs_power = false
 base_energy = 0.95
 
-[node name="Lamp43" parent="Objects/Props" instance=ExtResource("66_r")]
+[node name="Lamp43" parent="Objects/Props" instance=ExtResource("67_r")]
 position = Vector2(5171.2, 2765.0029)
 
 [node name="Lamp43Light" type="PointLight2D" parent="Objects/Lights"]
@@ -4781,13 +5280,13 @@ position = Vector2(5171.2, 2765.0029)
 color = Color(1, 0.8, 0.55, 1)
 energy = 0.95
 range_item_cull_mask = 3
-texture = ExtResource("67_r")
+texture = ExtResource("68_r")
 texture_scale = 3
-script = ExtResource("68_r")
+script = ExtResource("69_r")
 needs_power = false
 base_energy = 0.95
 
-[node name="Lamp44" parent="Objects/Props" instance=ExtResource("66_r")]
+[node name="Lamp44" parent="Objects/Props" instance=ExtResource("67_r")]
 position = Vector2(5376, 3305.7402)
 
 [node name="Lamp44Light" type="PointLight2D" parent="Objects/Lights"]
@@ -4796,13 +5295,13 @@ position = Vector2(5376, 3305.7402)
 color = Color(1, 0.8, 0.55, 1)
 energy = 0.95
 range_item_cull_mask = 3
-texture = ExtResource("67_r")
+texture = ExtResource("68_r")
 texture_scale = 3
-script = ExtResource("68_r")
+script = ExtResource("69_r")
 needs_power = false
 base_energy = 0.95
 
-[node name="Lamp45" parent="Objects/Props" instance=ExtResource("66_r")]
+[node name="Lamp45" parent="Objects/Props" instance=ExtResource("67_r")]
 position = Vector2(5171.2, 3846.4774)
 
 [node name="Lamp45Light" type="PointLight2D" parent="Objects/Lights"]
@@ -4811,13 +5310,13 @@ position = Vector2(5171.2, 3846.4774)
 color = Color(1, 0.8, 0.55, 1)
 energy = 0.95
 range_item_cull_mask = 3
-texture = ExtResource("67_r")
+texture = ExtResource("68_r")
 texture_scale = 3
-script = ExtResource("68_r")
+script = ExtResource("69_r")
 needs_power = false
 base_energy = 0.95
 
-[node name="Lamp46" parent="Objects/Props" instance=ExtResource("66_r")]
+[node name="Lamp46" parent="Objects/Props" instance=ExtResource("67_r")]
 position = Vector2(5376, 4387.2147)
 
 [node name="Lamp46Light" type="PointLight2D" parent="Objects/Lights"]
@@ -4826,13 +5325,13 @@ position = Vector2(5376, 4387.2147)
 color = Color(1, 0.8, 0.55, 1)
 energy = 0.95
 range_item_cull_mask = 3
-texture = ExtResource("67_r")
+texture = ExtResource("68_r")
 texture_scale = 3
-script = ExtResource("68_r")
+script = ExtResource("69_r")
 needs_power = false
 base_energy = 0.95
 
-[node name="Lamp47" parent="Objects/Props" instance=ExtResource("66_r")]
+[node name="Lamp47" parent="Objects/Props" instance=ExtResource("67_r")]
 position = Vector2(1896.96, 1049.376)
 
 [node name="Lamp47Light" type="PointLight2D" parent="Objects/Lights"]
@@ -4841,13 +5340,13 @@ position = Vector2(1896.96, 1049.376)
 color = Color(1, 0.8, 0.55, 1)
 energy = 0.95
 range_item_cull_mask = 3
-texture = ExtResource("67_r")
+texture = ExtResource("68_r")
 texture_scale = 3
-script = ExtResource("68_r")
+script = ExtResource("69_r")
 needs_power = false
 base_energy = 0.95
 
-[node name="Lamp48" parent="Objects/Props" instance=ExtResource("66_r")]
+[node name="Lamp48" parent="Objects/Props" instance=ExtResource("67_r")]
 position = Vector2(2968.32, 938.2656)
 
 [node name="Lamp48Light" type="PointLight2D" parent="Objects/Lights"]
@@ -4856,13 +5355,13 @@ position = Vector2(2968.32, 938.2656)
 color = Color(1, 0.8, 0.55, 1)
 energy = 0.95
 range_item_cull_mask = 3
-texture = ExtResource("67_r")
+texture = ExtResource("68_r")
 texture_scale = 3
-script = ExtResource("68_r")
+script = ExtResource("69_r")
 needs_power = false
 base_energy = 0.95
 
-[node name="Lamp49" parent="Objects/Props" instance=ExtResource("66_r")]
+[node name="Lamp49" parent="Objects/Props" instance=ExtResource("67_r")]
 position = Vector2(4039.68, 1049.376)
 
 [node name="Lamp49Light" type="PointLight2D" parent="Objects/Lights"]
@@ -4871,13 +5370,13 @@ position = Vector2(4039.68, 1049.376)
 color = Color(1, 0.8, 0.55, 1)
 energy = 0.95
 range_item_cull_mask = 3
-texture = ExtResource("67_r")
+texture = ExtResource("68_r")
 texture_scale = 3
-script = ExtResource("68_r")
+script = ExtResource("69_r")
 needs_power = false
 base_energy = 0.95
 
-[node name="Lamp50" parent="Objects/Props" instance=ExtResource("66_r")]
+[node name="Lamp50" parent="Objects/Props" instance=ExtResource("67_r")]
 position = Vector2(5111.04, 938.2656)
 
 [node name="Lamp50Light" type="PointLight2D" parent="Objects/Lights"]
@@ -4886,13 +5385,13 @@ position = Vector2(5111.04, 938.2656)
 color = Color(1, 0.8, 0.55, 1)
 energy = 0.95
 range_item_cull_mask = 3
-texture = ExtResource("67_r")
+texture = ExtResource("68_r")
 texture_scale = 3
-script = ExtResource("68_r")
+script = ExtResource("69_r")
 needs_power = false
 base_energy = 0.95
 
-[node name="Lamp51" parent="Objects/Props" instance=ExtResource("66_r")]
+[node name="Lamp51" parent="Objects/Props" instance=ExtResource("67_r")]
 position = Vector2(4061.8667, 1664.5984)
 
 [node name="Lamp51Light" type="PointLight2D" parent="Objects/Lights"]
@@ -4901,13 +5400,13 @@ position = Vector2(4061.8667, 1664.5984)
 color = Color(1, 0.8, 0.55, 1)
 energy = 0.95
 range_item_cull_mask = 3
-texture = ExtResource("67_r")
+texture = ExtResource("68_r")
 texture_scale = 3
-script = ExtResource("68_r")
+script = ExtResource("69_r")
 needs_power = false
 base_energy = 0.95
 
-[node name="Lamp52" parent="Objects/Props" instance=ExtResource("66_r")]
+[node name="Lamp52" parent="Objects/Props" instance=ExtResource("67_r")]
 position = Vector2(5122.1333, 1553.488)
 
 [node name="Lamp52Light" type="PointLight2D" parent="Objects/Lights"]
@@ -4916,13 +5415,13 @@ position = Vector2(5122.1333, 1553.488)
 color = Color(1, 0.8, 0.55, 1)
 energy = 0.95
 range_item_cull_mask = 3
-texture = ExtResource("67_r")
+texture = ExtResource("68_r")
 texture_scale = 3
-script = ExtResource("68_r")
+script = ExtResource("69_r")
 needs_power = false
 base_energy = 0.95
 
-[node name="Lamp53" parent="Objects/Props" instance=ExtResource("66_r")]
+[node name="Lamp53" parent="Objects/Props" instance=ExtResource("67_r")]
 position = Vector2(6096, 906.0299)
 
 [node name="Lamp53Light" type="PointLight2D" parent="Objects/Lights"]
@@ -4931,13 +5430,13 @@ position = Vector2(6096, 906.0299)
 color = Color(1, 0.8, 0.55, 1)
 energy = 0.95
 range_item_cull_mask = 3
-texture = ExtResource("67_r")
+texture = ExtResource("68_r")
 texture_scale = 3
-script = ExtResource("68_r")
+script = ExtResource("69_r")
 needs_power = false
 base_energy = 0.95
 
-[node name="Lamp54" parent="Objects/Props" instance=ExtResource("66_r")]
+[node name="Lamp54" parent="Objects/Props" instance=ExtResource("67_r")]
 position = Vector2(6268.8, 1565.1477)
 
 [node name="Lamp54Light" type="PointLight2D" parent="Objects/Lights"]
@@ -4946,13 +5445,13 @@ position = Vector2(6268.8, 1565.1477)
 color = Color(1, 0.8, 0.55, 1)
 energy = 0.95
 range_item_cull_mask = 3
-texture = ExtResource("67_r")
+texture = ExtResource("68_r")
 texture_scale = 3
-script = ExtResource("68_r")
+script = ExtResource("69_r")
 needs_power = false
 base_energy = 0.95
 
-[node name="Lamp55" parent="Objects/Props" instance=ExtResource("66_r")]
+[node name="Lamp55" parent="Objects/Props" instance=ExtResource("67_r")]
 position = Vector2(7424, 407.4048)
 
 [node name="Lamp55Light" type="PointLight2D" parent="Objects/Lights"]
@@ -4961,13 +5460,13 @@ position = Vector2(7424, 407.4048)
 color = Color(1, 0.8, 0.55, 1)
 energy = 0.95
 range_item_cull_mask = 3
-texture = ExtResource("67_r")
+texture = ExtResource("68_r")
 texture_scale = 3
-script = ExtResource("68_r")
+script = ExtResource("69_r")
 needs_power = false
 base_energy = 0.95
 
-[node name="Lamp56" parent="Objects/Props" instance=ExtResource("66_r")]
+[node name="Lamp56" parent="Objects/Props" instance=ExtResource("67_r")]
 position = Vector2(8576, 320.9856)
 
 [node name="Lamp56Light" type="PointLight2D" parent="Objects/Lights"]
@@ -4976,13 +5475,13 @@ position = Vector2(8576, 320.9856)
 color = Color(1, 0.8, 0.55, 1)
 energy = 0.95
 range_item_cull_mask = 3
-texture = ExtResource("67_r")
+texture = ExtResource("68_r")
 texture_scale = 3
-script = ExtResource("68_r")
+script = ExtResource("69_r")
 needs_power = false
 base_energy = 0.95
 
-[node name="Lamp57" parent="Objects/Props" instance=ExtResource("66_r")]
+[node name="Lamp57" parent="Objects/Props" instance=ExtResource("67_r")]
 position = Vector2(9728, 407.4048)
 
 [node name="Lamp57Light" type="PointLight2D" parent="Objects/Lights"]
@@ -4991,13 +5490,13 @@ position = Vector2(9728, 407.4048)
 color = Color(1, 0.8, 0.55, 1)
 energy = 0.95
 range_item_cull_mask = 3
-texture = ExtResource("67_r")
+texture = ExtResource("68_r")
 texture_scale = 3
-script = ExtResource("68_r")
+script = ExtResource("69_r")
 needs_power = false
 base_energy = 0.95
 
-[node name="Lamp58" parent="Objects/Props" instance=ExtResource("66_r")]
+[node name="Lamp58" parent="Objects/Props" instance=ExtResource("67_r")]
 position = Vector2(10880, 320.9856)
 
 [node name="Lamp58Light" type="PointLight2D" parent="Objects/Lights"]
@@ -5006,13 +5505,13 @@ position = Vector2(10880, 320.9856)
 color = Color(1, 0.8, 0.55, 1)
 energy = 0.95
 range_item_cull_mask = 3
-texture = ExtResource("67_r")
+texture = ExtResource("68_r")
 texture_scale = 3
-script = ExtResource("68_r")
+script = ExtResource("69_r")
 needs_power = false
 base_energy = 0.95
 
-[node name="Lamp59" parent="Objects/Props" instance=ExtResource("66_r")]
+[node name="Lamp59" parent="Objects/Props" instance=ExtResource("67_r")]
 position = Vector2(12032, 407.4048)
 
 [node name="Lamp59Light" type="PointLight2D" parent="Objects/Lights"]
@@ -5021,13 +5520,13 @@ position = Vector2(12032, 407.4048)
 color = Color(1, 0.8, 0.55, 1)
 energy = 0.95
 range_item_cull_mask = 3
-texture = ExtResource("67_r")
+texture = ExtResource("68_r")
 texture_scale = 3
-script = ExtResource("68_r")
+script = ExtResource("69_r")
 needs_power = false
 base_energy = 0.95
 
-[node name="PlazaLamp0" parent="Objects/Props" instance=ExtResource("69_r")]
+[node name="PlazaLamp0" parent="Objects/Props" instance=ExtResource("70_r")]
 position = Vector2(6560, 2572)
 
 [node name="PlazaLamp0Light" type="PointLight2D" parent="Objects/Lights"]
@@ -5036,13 +5535,13 @@ position = Vector2(6560, 2572)
 color = Color(1, 0.86, 0.66, 1)
 energy = 0.8
 range_item_cull_mask = 3
-texture = ExtResource("67_r")
+texture = ExtResource("68_r")
 texture_scale = 2.2
-script = ExtResource("68_r")
+script = ExtResource("69_r")
 needs_power = false
 base_energy = 0.8
 
-[node name="PlazaLamp1" parent="Objects/Props" instance=ExtResource("69_r")]
+[node name="PlazaLamp1" parent="Objects/Props" instance=ExtResource("70_r")]
 position = Vector2(8384, 3024.672)
 
 [node name="PlazaLamp1Light" type="PointLight2D" parent="Objects/Lights"]
@@ -5051,13 +5550,13 @@ position = Vector2(8384, 3024.672)
 color = Color(1, 0.86, 0.66, 1)
 energy = 0.8
 range_item_cull_mask = 3
-texture = ExtResource("67_r")
+texture = ExtResource("68_r")
 texture_scale = 2.2
-script = ExtResource("68_r")
+script = ExtResource("69_r")
 needs_power = false
 base_energy = 0.8
 
-[node name="PlazaLamp2" parent="Objects/Props" instance=ExtResource("69_r")]
+[node name="PlazaLamp2" parent="Objects/Props" instance=ExtResource("70_r")]
 position = Vector2(8576, 3806.56)
 
 [node name="PlazaLamp2Light" type="PointLight2D" parent="Objects/Lights"]
@@ -5066,13 +5565,13 @@ position = Vector2(8576, 3806.56)
 color = Color(1, 0.86, 0.66, 1)
 energy = 0.8
 range_item_cull_mask = 3
-texture = ExtResource("67_r")
+texture = ExtResource("68_r")
 texture_scale = 2.2
-script = ExtResource("68_r")
+script = ExtResource("69_r")
 needs_power = false
 base_energy = 0.8
 
-[node name="PlazaLamp3" parent="Objects/Props" instance=ExtResource("69_r")]
+[node name="PlazaLamp3" parent="Objects/Props" instance=ExtResource("70_r")]
 position = Vector2(7456, 3209.856)
 
 [node name="PlazaLamp3Light" type="PointLight2D" parent="Objects/Lights"]
@@ -5081,13 +5580,13 @@ position = Vector2(7456, 3209.856)
 color = Color(1, 0.86, 0.66, 1)
 energy = 0.8
 range_item_cull_mask = 3
-texture = ExtResource("67_r")
+texture = ExtResource("68_r")
 texture_scale = 2.2
-script = ExtResource("68_r")
+script = ExtResource("69_r")
 needs_power = false
 base_energy = 0.8
 
-[node name="PlazaLamp4" parent="Objects/Props" instance=ExtResource("69_r")]
+[node name="PlazaLamp4" parent="Objects/Props" instance=ExtResource("70_r")]
 position = Vector2(6080, 2880.64)
 
 [node name="PlazaLamp4Light" type="PointLight2D" parent="Objects/Lights"]
@@ -5096,13 +5595,13 @@ position = Vector2(6080, 2880.64)
 color = Color(1, 0.86, 0.66, 1)
 energy = 0.8
 range_item_cull_mask = 3
-texture = ExtResource("67_r")
+texture = ExtResource("68_r")
 texture_scale = 2.2
-script = ExtResource("68_r")
+script = ExtResource("69_r")
 needs_power = false
 base_energy = 0.8
 
-[node name="PlazaLamp5" parent="Objects/Props" instance=ExtResource("69_r")]
+[node name="PlazaLamp5" parent="Objects/Props" instance=ExtResource("70_r")]
 position = Vector2(9600, 2427.968)
 
 [node name="PlazaLamp5Light" type="PointLight2D" parent="Objects/Lights"]
@@ -5111,9 +5610,9 @@ position = Vector2(9600, 2427.968)
 color = Color(1, 0.86, 0.66, 1)
 energy = 0.8
 range_item_cull_mask = 3
-texture = ExtResource("67_r")
+texture = ExtResource("68_r")
 texture_scale = 2.2
-script = ExtResource("68_r")
+script = ExtResource("69_r")
 needs_power = false
 base_energy = 0.8
 
@@ -5123,9 +5622,9 @@ height = 110
 color = Color(1, 0.88, 0.68, 1)
 energy = 0.7
 range_item_cull_mask = 3
-texture = ExtResource("67_r")
+texture = ExtResource("68_r")
 texture_scale = 1.3
-script = ExtResource("68_r")
+script = ExtResource("69_r")
 needs_power = false
 base_energy = 0.7
 gameplay = false
@@ -5136,9 +5635,9 @@ height = 110
 color = Color(1, 0.88, 0.68, 1)
 energy = 0.7
 range_item_cull_mask = 3
-texture = ExtResource("67_r")
+texture = ExtResource("68_r")
 texture_scale = 1.3
-script = ExtResource("68_r")
+script = ExtResource("69_r")
 needs_power = false
 base_energy = 0.7
 gameplay = false
@@ -5149,9 +5648,9 @@ height = 110
 color = Color(1, 0.88, 0.68, 1)
 energy = 0.7
 range_item_cull_mask = 3
-texture = ExtResource("67_r")
+texture = ExtResource("68_r")
 texture_scale = 1.3
-script = ExtResource("68_r")
+script = ExtResource("69_r")
 needs_power = false
 base_energy = 0.7
 gameplay = false
@@ -5162,9 +5661,9 @@ height = 110
 color = Color(1, 0.88, 0.68, 1)
 energy = 0.7
 range_item_cull_mask = 3
-texture = ExtResource("67_r")
+texture = ExtResource("68_r")
 texture_scale = 1.3
-script = ExtResource("68_r")
+script = ExtResource("69_r")
 needs_power = false
 base_energy = 0.7
 gameplay = false
@@ -5175,9 +5674,9 @@ height = 110
 color = Color(1, 0.88, 0.68, 1)
 energy = 0.7
 range_item_cull_mask = 3
-texture = ExtResource("67_r")
+texture = ExtResource("68_r")
 texture_scale = 1.3
-script = ExtResource("68_r")
+script = ExtResource("69_r")
 needs_power = false
 base_energy = 0.7
 gameplay = false
@@ -5188,9 +5687,9 @@ height = 110
 color = Color(1, 0.88, 0.68, 1)
 energy = 0.7
 range_item_cull_mask = 3
-texture = ExtResource("67_r")
+texture = ExtResource("68_r")
 texture_scale = 1.3
-script = ExtResource("68_r")
+script = ExtResource("69_r")
 needs_power = false
 base_energy = 0.7
 gameplay = false
@@ -5201,9 +5700,9 @@ height = 110
 color = Color(1, 0.88, 0.68, 1)
 energy = 0.7
 range_item_cull_mask = 3
-texture = ExtResource("67_r")
+texture = ExtResource("68_r")
 texture_scale = 1.3
-script = ExtResource("68_r")
+script = ExtResource("69_r")
 needs_power = false
 base_energy = 0.7
 gameplay = false
@@ -5214,9 +5713,9 @@ height = 110
 color = Color(1, 0.88, 0.68, 1)
 energy = 0.7
 range_item_cull_mask = 3
-texture = ExtResource("67_r")
+texture = ExtResource("68_r")
 texture_scale = 1.3
-script = ExtResource("68_r")
+script = ExtResource("69_r")
 needs_power = false
 base_energy = 0.7
 gameplay = false
@@ -5227,9 +5726,9 @@ height = 110
 color = Color(1, 0.88, 0.68, 1)
 energy = 0.7
 range_item_cull_mask = 3
-texture = ExtResource("67_r")
+texture = ExtResource("68_r")
 texture_scale = 1.3
-script = ExtResource("68_r")
+script = ExtResource("69_r")
 needs_power = false
 base_energy = 0.7
 gameplay = false
@@ -5240,9 +5739,9 @@ height = 110
 color = Color(1, 0.88, 0.68, 1)
 energy = 0.7
 range_item_cull_mask = 3
-texture = ExtResource("67_r")
+texture = ExtResource("68_r")
 texture_scale = 1.3
-script = ExtResource("68_r")
+script = ExtResource("69_r")
 needs_power = false
 base_energy = 0.7
 gameplay = false
@@ -5253,520 +5752,520 @@ height = 110
 color = Color(1, 0.88, 0.68, 1)
 energy = 0.7
 range_item_cull_mask = 3
-texture = ExtResource("67_r")
+texture = ExtResource("68_r")
 texture_scale = 1.3
-script = ExtResource("68_r")
+script = ExtResource("69_r")
 needs_power = false
 base_energy = 0.7
 gameplay = false
 
-[node name="Bench0" parent="Objects/Props" instance=ExtResource("70_r")]
-position = Vector2(9600, 967.072)
+[node name="Bench0" parent="Objects/Props" instance=ExtResource("71_r")]
+position = Vector2(9600, 1008.224)
 
-[node name="Bench1" parent="Objects/Props" instance=ExtResource("70_r")]
-position = Vector2(11200, 967.072)
+[node name="Bench1" parent="Objects/Props" instance=ExtResource("71_r")]
+position = Vector2(11200, 1008.224)
 
-[node name="Bench2" parent="Objects/Props" instance=ExtResource("70_r")]
-position = Vector2(12640, 967.072)
+[node name="Bench2" parent="Objects/Props" instance=ExtResource("71_r")]
+position = Vector2(12640, 1008.224)
 
-[node name="Bench3" parent="Objects/Props" instance=ExtResource("70_r")]
-position = Vector2(9600, 1139.9104)
+[node name="Bench3" parent="Objects/Props" instance=ExtResource("71_r")]
+position = Vector2(9600, 1098.7584)
 
-[node name="Bench4" parent="Objects/Props" instance=ExtResource("70_r")]
-position = Vector2(11200, 1139.9104)
+[node name="Bench4" parent="Objects/Props" instance=ExtResource("71_r")]
+position = Vector2(11200, 1098.7584)
 
-[node name="Bench5" parent="Objects/Props" instance=ExtResource("70_r")]
-position = Vector2(12640, 1139.9104)
+[node name="Bench5" parent="Objects/Props" instance=ExtResource("71_r")]
+position = Vector2(12640, 1098.7584)
 
-[node name="Bench6" parent="Objects/Props" instance=ExtResource("70_r")]
+[node name="Bench6" parent="Objects/Props" instance=ExtResource("71_r")]
 position = Vector2(6080, 5071.984)
 
-[node name="Bench7" parent="Objects/Props" instance=ExtResource("70_r")]
+[node name="Bench7" parent="Objects/Props" instance=ExtResource("71_r")]
 position = Vector2(7680, 5071.984)
 
-[node name="Bench8" parent="Objects/Props" instance=ExtResource("70_r")]
+[node name="Bench8" parent="Objects/Props" instance=ExtResource("71_r")]
 position = Vector2(9280, 5071.984)
 
-[node name="Bench9" parent="Objects/Props" instance=ExtResource("70_r")]
+[node name="Bench9" parent="Objects/Props" instance=ExtResource("71_r")]
 position = Vector2(6880, 2427.968)
 
-[node name="Bench10" parent="Objects/Props" instance=ExtResource("70_r")]
+[node name="Bench10" parent="Objects/Props" instance=ExtResource("71_r")]
 position = Vector2(9120, 2417.68)
 
-[node name="Edge1" parent="Objects/Walls" instance=ExtResource("71_r")]
+[node name="Edge1" parent="Objects/Walls" instance=ExtResource("72_r")]
 position = Vector2(5493.3333, 3094.2189)
 
-[node name="Edge2" parent="Objects/Walls" instance=ExtResource("71_r")]
+[node name="Edge2" parent="Objects/Walls" instance=ExtResource("72_r")]
 position = Vector2(5619.2, 3094.2189)
 
-[node name="Edge3" parent="Objects/Walls" instance=ExtResource("71_r")]
+[node name="Edge3" parent="Objects/Walls" instance=ExtResource("72_r")]
 position = Vector2(5745.0667, 3094.2189)
 
-[node name="Edge4" parent="Objects/Walls" instance=ExtResource("72_r")]
+[node name="Edge4" parent="Objects/Walls" instance=ExtResource("73_r")]
 position = Vector2(7091.84, 3954.5201)
 
-[node name="Edge5" parent="Objects/Walls" instance=ExtResource("72_r")]
+[node name="Edge5" parent="Objects/Walls" instance=ExtResource("73_r")]
 position = Vector2(7091.84, 4036.45)
 
-[node name="Edge6" parent="Objects/Walls" instance=ExtResource("72_r")]
+[node name="Edge6" parent="Objects/Walls" instance=ExtResource("73_r")]
 position = Vector2(7091.84, 4118.3799)
 
-[node name="Edge7" parent="Objects/Walls" instance=ExtResource("72_r")]
+[node name="Edge7" parent="Objects/Walls" instance=ExtResource("73_r")]
 position = Vector2(7091.84, 4200.3098)
 
-[node name="Edge8" parent="Objects/Walls" instance=ExtResource("72_r")]
+[node name="Edge8" parent="Objects/Walls" instance=ExtResource("73_r")]
 position = Vector2(7091.84, 4282.2397)
 
-[node name="Edge9" parent="Objects/Walls" instance=ExtResource("72_r")]
+[node name="Edge9" parent="Objects/Walls" instance=ExtResource("73_r")]
 position = Vector2(7091.84, 4364.1696)
 
-[node name="Edge10" parent="Objects/Walls" instance=ExtResource("72_r")]
+[node name="Edge10" parent="Objects/Walls" instance=ExtResource("73_r")]
 position = Vector2(7091.84, 4446.0995)
 
-[node name="Edge11" parent="Objects/Walls" instance=ExtResource("72_r")]
+[node name="Edge11" parent="Objects/Walls" instance=ExtResource("73_r")]
 position = Vector2(7091.84, 4528.0294)
 
-[node name="Edge12" parent="Objects/Walls" instance=ExtResource("72_r")]
+[node name="Edge12" parent="Objects/Walls" instance=ExtResource("73_r")]
 position = Vector2(7091.84, 4609.9593)
 
-[node name="Edge13" parent="Objects/Walls" instance=ExtResource("72_r")]
+[node name="Edge13" parent="Objects/Walls" instance=ExtResource("73_r")]
 position = Vector2(7091.84, 4691.8892)
 
-[node name="Edge14" parent="Objects/Walls" instance=ExtResource("72_r")]
+[node name="Edge14" parent="Objects/Walls" instance=ExtResource("73_r")]
 position = Vector2(7091.84, 4773.8191)
 
-[node name="Edge15" parent="Objects/Walls" instance=ExtResource("71_r")]
+[node name="Edge15" parent="Objects/Walls" instance=ExtResource("72_r")]
 position = Vector2(7021.1692, 4819.3107)
 
-[node name="Edge16" parent="Objects/Walls" instance=ExtResource("71_r")]
+[node name="Edge16" parent="Objects/Walls" instance=ExtResource("72_r")]
 position = Vector2(6893.9077, 4819.3107)
 
-[node name="Edge17" parent="Objects/Walls" instance=ExtResource("71_r")]
+[node name="Edge17" parent="Objects/Walls" instance=ExtResource("72_r")]
 position = Vector2(6766.6462, 4819.3107)
 
-[node name="Edge18" parent="Objects/Walls" instance=ExtResource("71_r")]
+[node name="Edge18" parent="Objects/Walls" instance=ExtResource("72_r")]
 position = Vector2(6639.3846, 4819.3107)
 
-[node name="Edge19" parent="Objects/Walls" instance=ExtResource("71_r")]
+[node name="Edge19" parent="Objects/Walls" instance=ExtResource("72_r")]
 position = Vector2(6512.1231, 4819.3107)
 
-[node name="Edge20" parent="Objects/Walls" instance=ExtResource("71_r")]
+[node name="Edge20" parent="Objects/Walls" instance=ExtResource("72_r")]
 position = Vector2(6384.8615, 4819.3107)
 
-[node name="Edge21" parent="Objects/Walls" instance=ExtResource("71_r")]
+[node name="Edge21" parent="Objects/Walls" instance=ExtResource("72_r")]
 position = Vector2(6257.6, 4819.3107)
 
-[node name="Edge22" parent="Objects/Walls" instance=ExtResource("71_r")]
+[node name="Edge22" parent="Objects/Walls" instance=ExtResource("72_r")]
 position = Vector2(6130.3385, 4819.3107)
 
-[node name="Edge23" parent="Objects/Walls" instance=ExtResource("71_r")]
+[node name="Edge23" parent="Objects/Walls" instance=ExtResource("72_r")]
 position = Vector2(6003.0769, 4819.3107)
 
-[node name="Edge24" parent="Objects/Walls" instance=ExtResource("71_r")]
+[node name="Edge24" parent="Objects/Walls" instance=ExtResource("72_r")]
 position = Vector2(5875.8154, 4819.3107)
 
-[node name="Edge25" parent="Objects/Walls" instance=ExtResource("71_r")]
+[node name="Edge25" parent="Objects/Walls" instance=ExtResource("72_r")]
 position = Vector2(5748.5538, 4819.3107)
 
-[node name="Edge26" parent="Objects/Walls" instance=ExtResource("71_r")]
+[node name="Edge26" parent="Objects/Walls" instance=ExtResource("72_r")]
 position = Vector2(5621.2923, 4819.3107)
 
-[node name="Edge27" parent="Objects/Walls" instance=ExtResource("71_r")]
+[node name="Edge27" parent="Objects/Walls" instance=ExtResource("72_r")]
 position = Vector2(5494.0308, 4819.3107)
 
-[node name="Edge28" parent="Objects/Walls" instance=ExtResource("73_r")]
+[node name="Edge28" parent="Objects/Walls" instance=ExtResource("74_r")]
 position = Vector2(5423.36, 4773.9259)
 
-[node name="Edge29" parent="Objects/Walls" instance=ExtResource("73_r")]
+[node name="Edge29" parent="Objects/Walls" instance=ExtResource("74_r")]
 position = Vector2(5423.36, 4692.2098)
 
-[node name="Edge30" parent="Objects/Walls" instance=ExtResource("73_r")]
+[node name="Edge30" parent="Objects/Walls" instance=ExtResource("74_r")]
 position = Vector2(5423.36, 4610.4937)
 
-[node name="Edge31" parent="Objects/Walls" instance=ExtResource("73_r")]
+[node name="Edge31" parent="Objects/Walls" instance=ExtResource("74_r")]
 position = Vector2(5423.36, 4528.7776)
 
-[node name="Edge32" parent="Objects/Walls" instance=ExtResource("73_r")]
+[node name="Edge32" parent="Objects/Walls" instance=ExtResource("74_r")]
 position = Vector2(5423.36, 4447.0615)
 
-[node name="Edge33" parent="Objects/Walls" instance=ExtResource("73_r")]
+[node name="Edge33" parent="Objects/Walls" instance=ExtResource("74_r")]
 position = Vector2(5423.36, 4365.3454)
 
-[node name="Edge34" parent="Objects/Walls" instance=ExtResource("73_r")]
+[node name="Edge34" parent="Objects/Walls" instance=ExtResource("74_r")]
 position = Vector2(5423.36, 4283.6293)
 
-[node name="Edge35" parent="Objects/Walls" instance=ExtResource("73_r")]
+[node name="Edge35" parent="Objects/Walls" instance=ExtResource("74_r")]
 position = Vector2(5423.36, 4201.9131)
 
-[node name="Edge36" parent="Objects/Walls" instance=ExtResource("73_r")]
+[node name="Edge36" parent="Objects/Walls" instance=ExtResource("74_r")]
 position = Vector2(5423.36, 4120.197)
 
-[node name="Edge37" parent="Objects/Walls" instance=ExtResource("73_r")]
+[node name="Edge37" parent="Objects/Walls" instance=ExtResource("74_r")]
 position = Vector2(5423.36, 4038.4809)
 
-[node name="Edge38" parent="Objects/Walls" instance=ExtResource("73_r")]
+[node name="Edge38" parent="Objects/Walls" instance=ExtResource("74_r")]
 position = Vector2(5423.36, 3956.7648)
 
-[node name="Edge39" parent="Objects/Walls" instance=ExtResource("73_r")]
+[node name="Edge39" parent="Objects/Walls" instance=ExtResource("74_r")]
 position = Vector2(5423.36, 3875.0487)
 
-[node name="Edge40" parent="Objects/Walls" instance=ExtResource("73_r")]
+[node name="Edge40" parent="Objects/Walls" instance=ExtResource("74_r")]
 position = Vector2(5423.36, 3793.3326)
 
-[node name="Edge41" parent="Objects/Walls" instance=ExtResource("73_r")]
+[node name="Edge41" parent="Objects/Walls" instance=ExtResource("74_r")]
 position = Vector2(5423.36, 3711.6165)
 
-[node name="Edge42" parent="Objects/Walls" instance=ExtResource("73_r")]
+[node name="Edge42" parent="Objects/Walls" instance=ExtResource("74_r")]
 position = Vector2(5423.36, 3629.9003)
 
-[node name="Edge43" parent="Objects/Walls" instance=ExtResource("73_r")]
+[node name="Edge43" parent="Objects/Walls" instance=ExtResource("74_r")]
 position = Vector2(5423.36, 3548.1842)
 
-[node name="Edge44" parent="Objects/Walls" instance=ExtResource("73_r")]
+[node name="Edge44" parent="Objects/Walls" instance=ExtResource("74_r")]
 position = Vector2(5423.36, 3466.4681)
 
-[node name="Edge45" parent="Objects/Walls" instance=ExtResource("73_r")]
+[node name="Edge45" parent="Objects/Walls" instance=ExtResource("74_r")]
 position = Vector2(5423.36, 3384.752)
 
-[node name="Edge46" parent="Objects/Walls" instance=ExtResource("73_r")]
+[node name="Edge46" parent="Objects/Walls" instance=ExtResource("74_r")]
 position = Vector2(5423.36, 3303.0359)
 
-[node name="Edge47" parent="Objects/Walls" instance=ExtResource("73_r")]
+[node name="Edge47" parent="Objects/Walls" instance=ExtResource("74_r")]
 position = Vector2(5423.36, 3221.3198)
 
-[node name="Edge48" parent="Objects/Walls" instance=ExtResource("73_r")]
+[node name="Edge48" parent="Objects/Walls" instance=ExtResource("74_r")]
 position = Vector2(5423.36, 3139.6037)
 
-[node name="Edge49" parent="Objects/Walls" instance=ExtResource("71_r")]
+[node name="Edge49" parent="Objects/Walls" instance=ExtResource("72_r")]
 position = Vector2(7317.76, 4258.8205)
 
-[node name="Edge50" parent="Objects/Walls" instance=ExtResource("71_r")]
+[node name="Edge50" parent="Objects/Walls" instance=ExtResource("72_r")]
 position = Vector2(7438.08, 4258.8205)
 
-[node name="Edge51" parent="Objects/Walls" instance=ExtResource("71_r")]
+[node name="Edge51" parent="Objects/Walls" instance=ExtResource("72_r")]
 position = Vector2(7558.4, 4258.8205)
 
-[node name="Edge52" parent="Objects/Walls" instance=ExtResource("71_r")]
+[node name="Edge52" parent="Objects/Walls" instance=ExtResource("72_r")]
 position = Vector2(7678.72, 4258.8205)
 
-[node name="Edge53" parent="Objects/Walls" instance=ExtResource("71_r")]
+[node name="Edge53" parent="Objects/Walls" instance=ExtResource("72_r")]
 position = Vector2(7799.04, 4258.8205)
 
-[node name="Edge54" parent="Objects/Walls" instance=ExtResource("71_r")]
+[node name="Edge54" parent="Objects/Walls" instance=ExtResource("72_r")]
 position = Vector2(7919.36, 4258.8205)
 
-[node name="Edge55" parent="Objects/Walls" instance=ExtResource("71_r")]
+[node name="Edge55" parent="Objects/Walls" instance=ExtResource("72_r")]
 position = Vector2(8039.68, 4258.8205)
 
-[node name="Edge56" parent="Objects/Walls" instance=ExtResource("71_r")]
+[node name="Edge56" parent="Objects/Walls" instance=ExtResource("72_r")]
 position = Vector2(8160, 4258.8205)
 
-[node name="Edge57" parent="Objects/Walls" instance=ExtResource("71_r")]
+[node name="Edge57" parent="Objects/Walls" instance=ExtResource("72_r")]
 position = Vector2(8280.32, 4258.8205)
 
-[node name="Edge58" parent="Objects/Walls" instance=ExtResource("71_r")]
+[node name="Edge58" parent="Objects/Walls" instance=ExtResource("72_r")]
 position = Vector2(8400.64, 4258.8205)
 
-[node name="Edge59" parent="Objects/Walls" instance=ExtResource("71_r")]
+[node name="Edge59" parent="Objects/Walls" instance=ExtResource("72_r")]
 position = Vector2(8520.96, 4258.8205)
 
-[node name="Edge60" parent="Objects/Walls" instance=ExtResource("71_r")]
+[node name="Edge60" parent="Objects/Walls" instance=ExtResource("72_r")]
 position = Vector2(8641.28, 4258.8205)
 
-[node name="Edge61" parent="Objects/Walls" instance=ExtResource("71_r")]
+[node name="Edge61" parent="Objects/Walls" instance=ExtResource("72_r")]
 position = Vector2(8761.6, 4258.8205)
 
-[node name="Edge62" parent="Objects/Walls" instance=ExtResource("71_r")]
+[node name="Edge62" parent="Objects/Walls" instance=ExtResource("72_r")]
 position = Vector2(8881.92, 4258.8205)
 
-[node name="Edge63" parent="Objects/Walls" instance=ExtResource("71_r")]
+[node name="Edge63" parent="Objects/Walls" instance=ExtResource("72_r")]
 position = Vector2(9002.24, 4258.8205)
 
-[node name="Edge64" parent="Objects/Walls" instance=ExtResource("74_r")]
+[node name="Edge64" parent="Objects/Walls" instance=ExtResource("75_r")]
 position = Vector2(9109.9566, 4287.7302)
 
-[node name="Edge65" parent="Objects/Walls" instance=ExtResource("74_r")]
+[node name="Edge65" parent="Objects/Walls" instance=ExtResource("75_r")]
 position = Vector2(9195.0766, 4342.8739)
 
-[node name="Edge66" parent="Objects/Walls" instance=ExtResource("74_r")]
+[node name="Edge66" parent="Objects/Walls" instance=ExtResource("75_r")]
 position = Vector2(9280.1966, 4398.0175)
 
-[node name="Edge67" parent="Objects/Walls" instance=ExtResource("74_r")]
+[node name="Edge67" parent="Objects/Walls" instance=ExtResource("75_r")]
 position = Vector2(9365.3166, 4453.1612)
 
-[node name="Edge68" parent="Objects/Walls" instance=ExtResource("74_r")]
+[node name="Edge68" parent="Objects/Walls" instance=ExtResource("75_r")]
 position = Vector2(9450.4366, 4508.3049)
 
-[node name="Edge69" parent="Objects/Walls" instance=ExtResource("74_r")]
+[node name="Edge69" parent="Objects/Walls" instance=ExtResource("75_r")]
 position = Vector2(9535.5566, 4563.4486)
 
-[node name="Edge70" parent="Objects/Walls" instance=ExtResource("74_r")]
+[node name="Edge70" parent="Objects/Walls" instance=ExtResource("75_r")]
 position = Vector2(9620.6766, 4618.5923)
 
-[node name="Edge71" parent="Objects/Walls" instance=ExtResource("74_r")]
+[node name="Edge71" parent="Objects/Walls" instance=ExtResource("75_r")]
 position = Vector2(9705.7966, 4673.7359)
 
-[node name="Edge72" parent="Objects/Walls" instance=ExtResource("74_r")]
+[node name="Edge72" parent="Objects/Walls" instance=ExtResource("75_r")]
 position = Vector2(9790.9166, 4728.8796)
 
-[node name="Edge73" parent="Objects/Walls" instance=ExtResource("74_r")]
+[node name="Edge73" parent="Objects/Walls" instance=ExtResource("75_r")]
 position = Vector2(9876.0366, 4784.0233)
 
-[node name="Edge74" parent="Objects/Walls" instance=ExtResource("71_r")]
+[node name="Edge74" parent="Objects/Walls" instance=ExtResource("72_r")]
 position = Vector2(9850.3619, 4819.3107)
 
-[node name="Edge75" parent="Objects/Walls" instance=ExtResource("71_r")]
+[node name="Edge75" parent="Objects/Walls" instance=ExtResource("72_r")]
 position = Vector2(9723.8857, 4819.3107)
 
-[node name="Edge76" parent="Objects/Walls" instance=ExtResource("71_r")]
+[node name="Edge76" parent="Objects/Walls" instance=ExtResource("72_r")]
 position = Vector2(9597.4095, 4819.3107)
 
-[node name="Edge77" parent="Objects/Walls" instance=ExtResource("71_r")]
+[node name="Edge77" parent="Objects/Walls" instance=ExtResource("72_r")]
 position = Vector2(9470.9333, 4819.3107)
 
-[node name="Edge78" parent="Objects/Walls" instance=ExtResource("71_r")]
+[node name="Edge78" parent="Objects/Walls" instance=ExtResource("72_r")]
 position = Vector2(9344.4571, 4819.3107)
 
-[node name="Edge79" parent="Objects/Walls" instance=ExtResource("71_r")]
+[node name="Edge79" parent="Objects/Walls" instance=ExtResource("72_r")]
 position = Vector2(9217.981, 4819.3107)
 
-[node name="Edge80" parent="Objects/Walls" instance=ExtResource("71_r")]
+[node name="Edge80" parent="Objects/Walls" instance=ExtResource("72_r")]
 position = Vector2(9091.5048, 4819.3107)
 
-[node name="Edge81" parent="Objects/Walls" instance=ExtResource("71_r")]
+[node name="Edge81" parent="Objects/Walls" instance=ExtResource("72_r")]
 position = Vector2(8965.0286, 4819.3107)
 
-[node name="Edge82" parent="Objects/Walls" instance=ExtResource("71_r")]
+[node name="Edge82" parent="Objects/Walls" instance=ExtResource("72_r")]
 position = Vector2(8838.5524, 4819.3107)
 
-[node name="Edge83" parent="Objects/Walls" instance=ExtResource("71_r")]
+[node name="Edge83" parent="Objects/Walls" instance=ExtResource("72_r")]
 position = Vector2(8712.0762, 4819.3107)
 
-[node name="Edge84" parent="Objects/Walls" instance=ExtResource("71_r")]
+[node name="Edge84" parent="Objects/Walls" instance=ExtResource("72_r")]
 position = Vector2(8585.6, 4819.3107)
 
-[node name="Edge85" parent="Objects/Walls" instance=ExtResource("71_r")]
+[node name="Edge85" parent="Objects/Walls" instance=ExtResource("72_r")]
 position = Vector2(8459.1238, 4819.3107)
 
-[node name="Edge86" parent="Objects/Walls" instance=ExtResource("71_r")]
+[node name="Edge86" parent="Objects/Walls" instance=ExtResource("72_r")]
 position = Vector2(8332.6476, 4819.3107)
 
-[node name="Edge87" parent="Objects/Walls" instance=ExtResource("71_r")]
+[node name="Edge87" parent="Objects/Walls" instance=ExtResource("72_r")]
 position = Vector2(8206.1714, 4819.3107)
 
-[node name="Edge88" parent="Objects/Walls" instance=ExtResource("71_r")]
+[node name="Edge88" parent="Objects/Walls" instance=ExtResource("72_r")]
 position = Vector2(8079.6952, 4819.3107)
 
-[node name="Edge89" parent="Objects/Walls" instance=ExtResource("71_r")]
+[node name="Edge89" parent="Objects/Walls" instance=ExtResource("72_r")]
 position = Vector2(7953.219, 4819.3107)
 
-[node name="Edge90" parent="Objects/Walls" instance=ExtResource("71_r")]
+[node name="Edge90" parent="Objects/Walls" instance=ExtResource("72_r")]
 position = Vector2(7826.7429, 4819.3107)
 
-[node name="Edge91" parent="Objects/Walls" instance=ExtResource("71_r")]
+[node name="Edge91" parent="Objects/Walls" instance=ExtResource("72_r")]
 position = Vector2(7700.2667, 4819.3107)
 
-[node name="Edge92" parent="Objects/Walls" instance=ExtResource("71_r")]
+[node name="Edge92" parent="Objects/Walls" instance=ExtResource("72_r")]
 position = Vector2(7573.7905, 4819.3107)
 
-[node name="Edge93" parent="Objects/Walls" instance=ExtResource("71_r")]
+[node name="Edge93" parent="Objects/Walls" instance=ExtResource("72_r")]
 position = Vector2(7447.3143, 4819.3107)
 
-[node name="Edge94" parent="Objects/Walls" instance=ExtResource("71_r")]
+[node name="Edge94" parent="Objects/Walls" instance=ExtResource("72_r")]
 position = Vector2(7320.8381, 4819.3107)
 
-[node name="Edge95" parent="Objects/Walls" instance=ExtResource("72_r")]
+[node name="Edge95" parent="Objects/Walls" instance=ExtResource("73_r")]
 position = Vector2(7250.56, 4775.3957)
 
-[node name="Edge96" parent="Objects/Walls" instance=ExtResource("72_r")]
+[node name="Edge96" parent="Objects/Walls" instance=ExtResource("73_r")]
 position = Vector2(7250.56, 4696.619)
 
-[node name="Edge97" parent="Objects/Walls" instance=ExtResource("72_r")]
+[node name="Edge97" parent="Objects/Walls" instance=ExtResource("73_r")]
 position = Vector2(7250.56, 4617.8423)
 
-[node name="Edge98" parent="Objects/Walls" instance=ExtResource("72_r")]
+[node name="Edge98" parent="Objects/Walls" instance=ExtResource("73_r")]
 position = Vector2(7250.56, 4539.0656)
 
-[node name="Edge99" parent="Objects/Walls" instance=ExtResource("72_r")]
+[node name="Edge99" parent="Objects/Walls" instance=ExtResource("73_r")]
 position = Vector2(7250.56, 4460.2889)
 
-[node name="Edge100" parent="Objects/Walls" instance=ExtResource("72_r")]
+[node name="Edge100" parent="Objects/Walls" instance=ExtResource("73_r")]
 position = Vector2(7250.56, 4381.5122)
 
-[node name="Edge101" parent="Objects/Walls" instance=ExtResource("72_r")]
+[node name="Edge101" parent="Objects/Walls" instance=ExtResource("73_r")]
 position = Vector2(7250.56, 4302.7355)
 
-[node name="Edge102" parent="Objects/Walls" instance=ExtResource("71_r")]
+[node name="Edge102" parent="Objects/Walls" instance=ExtResource("72_r")]
 position = Vector2(9807.68, 2867.8829)
 
-[node name="Edge103" parent="Objects/Walls" instance=ExtResource("71_r")]
+[node name="Edge103" parent="Objects/Walls" instance=ExtResource("72_r")]
 position = Vector2(9922.24, 2867.8829)
 
-[node name="Edge104" parent="Objects/Walls" instance=ExtResource("71_r")]
+[node name="Edge104" parent="Objects/Walls" instance=ExtResource("72_r")]
 position = Vector2(10036.8, 2867.8829)
 
-[node name="Edge105" parent="Objects/Walls" instance=ExtResource("71_r")]
+[node name="Edge105" parent="Objects/Walls" instance=ExtResource("72_r")]
 position = Vector2(10151.36, 2867.8829)
 
-[node name="Edge106" parent="Objects/Walls" instance=ExtResource("71_r")]
+[node name="Edge106" parent="Objects/Walls" instance=ExtResource("72_r")]
 position = Vector2(10265.92, 2867.8829)
 
-[node name="Edge107" parent="Objects/Walls" instance=ExtResource("73_r")]
+[node name="Edge107" parent="Objects/Walls" instance=ExtResource("74_r")]
 position = Vector2(10330.24, 2912.8757)
 
-[node name="Edge108" parent="Objects/Walls" instance=ExtResource("73_r")]
+[node name="Edge108" parent="Objects/Walls" instance=ExtResource("74_r")]
 position = Vector2(10330.24, 2993.808)
 
-[node name="Edge109" parent="Objects/Walls" instance=ExtResource("73_r")]
+[node name="Edge109" parent="Objects/Walls" instance=ExtResource("74_r")]
 position = Vector2(10330.24, 3074.7403)
 
-[node name="Edge110" parent="Objects/Walls" instance=ExtResource("73_r")]
+[node name="Edge110" parent="Objects/Walls" instance=ExtResource("74_r")]
 position = Vector2(10330.24, 3155.6725)
 
-[node name="Edge111" parent="Objects/Walls" instance=ExtResource("73_r")]
+[node name="Edge111" parent="Objects/Walls" instance=ExtResource("74_r")]
 position = Vector2(10330.24, 3236.6048)
 
-[node name="Edge112" parent="Objects/Walls" instance=ExtResource("73_r")]
+[node name="Edge112" parent="Objects/Walls" instance=ExtResource("74_r")]
 position = Vector2(10330.24, 3317.5371)
 
-[node name="Edge113" parent="Objects/Walls" instance=ExtResource("73_r")]
+[node name="Edge113" parent="Objects/Walls" instance=ExtResource("74_r")]
 position = Vector2(10330.24, 3398.4693)
 
-[node name="Edge114" parent="Objects/Walls" instance=ExtResource("73_r")]
+[node name="Edge114" parent="Objects/Walls" instance=ExtResource("74_r")]
 position = Vector2(10330.24, 3479.4016)
 
-[node name="Edge115" parent="Objects/Walls" instance=ExtResource("73_r")]
+[node name="Edge115" parent="Objects/Walls" instance=ExtResource("74_r")]
 position = Vector2(10330.24, 3560.3339)
 
-[node name="Edge116" parent="Objects/Walls" instance=ExtResource("73_r")]
+[node name="Edge116" parent="Objects/Walls" instance=ExtResource("74_r")]
 position = Vector2(10330.24, 3641.2661)
 
-[node name="Edge117" parent="Objects/Walls" instance=ExtResource("73_r")]
+[node name="Edge117" parent="Objects/Walls" instance=ExtResource("74_r")]
 position = Vector2(10330.24, 3722.1984)
 
-[node name="Edge118" parent="Objects/Walls" instance=ExtResource("73_r")]
+[node name="Edge118" parent="Objects/Walls" instance=ExtResource("74_r")]
 position = Vector2(10330.24, 3803.1307)
 
-[node name="Edge119" parent="Objects/Walls" instance=ExtResource("73_r")]
+[node name="Edge119" parent="Objects/Walls" instance=ExtResource("74_r")]
 position = Vector2(10330.24, 3884.0629)
 
-[node name="Edge120" parent="Objects/Walls" instance=ExtResource("73_r")]
+[node name="Edge120" parent="Objects/Walls" instance=ExtResource("74_r")]
 position = Vector2(10330.24, 3964.9952)
 
-[node name="Edge121" parent="Objects/Walls" instance=ExtResource("73_r")]
+[node name="Edge121" parent="Objects/Walls" instance=ExtResource("74_r")]
 position = Vector2(10330.24, 4045.9275)
 
-[node name="Edge122" parent="Objects/Walls" instance=ExtResource("73_r")]
+[node name="Edge122" parent="Objects/Walls" instance=ExtResource("74_r")]
 position = Vector2(10330.24, 4126.8597)
 
-[node name="Edge123" parent="Objects/Walls" instance=ExtResource("73_r")]
+[node name="Edge123" parent="Objects/Walls" instance=ExtResource("74_r")]
 position = Vector2(10330.24, 4207.792)
 
-[node name="Edge124" parent="Objects/Walls" instance=ExtResource("73_r")]
+[node name="Edge124" parent="Objects/Walls" instance=ExtResource("74_r")]
 position = Vector2(10330.24, 4288.7243)
 
-[node name="Edge125" parent="Objects/Walls" instance=ExtResource("73_r")]
+[node name="Edge125" parent="Objects/Walls" instance=ExtResource("74_r")]
 position = Vector2(10330.24, 4369.6565)
 
-[node name="Edge126" parent="Objects/Walls" instance=ExtResource("73_r")]
+[node name="Edge126" parent="Objects/Walls" instance=ExtResource("74_r")]
 position = Vector2(10330.24, 4450.5888)
 
-[node name="Edge127" parent="Objects/Walls" instance=ExtResource("73_r")]
+[node name="Edge127" parent="Objects/Walls" instance=ExtResource("74_r")]
 position = Vector2(10330.24, 4531.5211)
 
-[node name="Edge128" parent="Objects/Walls" instance=ExtResource("73_r")]
+[node name="Edge128" parent="Objects/Walls" instance=ExtResource("74_r")]
 position = Vector2(10330.24, 4612.4533)
 
-[node name="Edge129" parent="Objects/Walls" instance=ExtResource("73_r")]
+[node name="Edge129" parent="Objects/Walls" instance=ExtResource("74_r")]
 position = Vector2(10330.24, 4693.3856)
 
-[node name="Edge130" parent="Objects/Walls" instance=ExtResource("73_r")]
+[node name="Edge130" parent="Objects/Walls" instance=ExtResource("74_r")]
 position = Vector2(10330.24, 4774.3179)
 
-[node name="Edge131" parent="Objects/Walls" instance=ExtResource("75_r")]
+[node name="Edge131" parent="Objects/Walls" instance=ExtResource("76_r")]
 position = Vector2(10281.6, 4819.3107)
 
-[node name="Edge132" parent="Objects/Walls" instance=ExtResource("74_r")]
+[node name="Edge132" parent="Objects/Walls" instance=ExtResource("75_r")]
 position = Vector2(10190.0086, 4789.0413)
 
-[node name="Edge133" parent="Objects/Walls" instance=ExtResource("74_r")]
+[node name="Edge133" parent="Objects/Walls" instance=ExtResource("75_r")]
 position = Vector2(10099.982, 4731.1542)
 
-[node name="Edge134" parent="Objects/Walls" instance=ExtResource("74_r")]
+[node name="Edge134" parent="Objects/Walls" instance=ExtResource("75_r")]
 position = Vector2(10009.9553, 4673.267)
 
-[node name="Edge135" parent="Objects/Walls" instance=ExtResource("74_r")]
+[node name="Edge135" parent="Objects/Walls" instance=ExtResource("75_r")]
 position = Vector2(9919.9286, 4615.3799)
 
-[node name="Edge136" parent="Objects/Walls" instance=ExtResource("74_r")]
+[node name="Edge136" parent="Objects/Walls" instance=ExtResource("75_r")]
 position = Vector2(9829.902, 4557.4927)
 
-[node name="Edge137" parent="Objects/Walls" instance=ExtResource("74_r")]
+[node name="Edge137" parent="Objects/Walls" instance=ExtResource("75_r")]
 position = Vector2(9739.8753, 4499.6056)
 
-[node name="Edge138" parent="Objects/Walls" instance=ExtResource("74_r")]
+[node name="Edge138" parent="Objects/Walls" instance=ExtResource("75_r")]
 position = Vector2(9649.8486, 4441.7184)
 
-[node name="Edge139" parent="Objects/Walls" instance=ExtResource("74_r")]
+[node name="Edge139" parent="Objects/Walls" instance=ExtResource("75_r")]
 position = Vector2(9559.822, 4383.8313)
 
-[node name="Edge140" parent="Objects/Walls" instance=ExtResource("74_r")]
+[node name="Edge140" parent="Objects/Walls" instance=ExtResource("75_r")]
 position = Vector2(9469.7953, 4325.9441)
 
-[node name="Edge141" parent="Objects/Walls" instance=ExtResource("74_r")]
+[node name="Edge141" parent="Objects/Walls" instance=ExtResource("75_r")]
 position = Vector2(9379.7686, 4268.057)
 
-[node name="Edge142" parent="Objects/Walls" instance=ExtResource("74_r")]
+[node name="Edge142" parent="Objects/Walls" instance=ExtResource("75_r")]
 position = Vector2(9289.742, 4210.1698)
 
-[node name="Edge143" parent="Objects/Walls" instance=ExtResource("74_r")]
+[node name="Edge143" parent="Objects/Walls" instance=ExtResource("75_r")]
 position = Vector2(9199.7153, 4152.2827)
 
-[node name="Edge144" parent="Objects/Walls" instance=ExtResource("74_r")]
+[node name="Edge144" parent="Objects/Walls" instance=ExtResource("75_r")]
 position = Vector2(9109.6886, 4094.3955)
 
-[node name="Edge145" parent="Objects/Walls" instance=ExtResource("74_r")]
+[node name="Edge145" parent="Objects/Walls" instance=ExtResource("75_r")]
 position = Vector2(9019.662, 4036.5084)
 
-[node name="Edge146" parent="Objects/Walls" instance=ExtResource("74_r")]
+[node name="Edge146" parent="Objects/Walls" instance=ExtResource("75_r")]
 position = Vector2(8929.6353, 3978.6212)
 
-[node name="Edge147" parent="Objects/Walls" instance=ExtResource("73_r")]
+[node name="Edge147" parent="Objects/Walls" instance=ExtResource("74_r")]
 position = Vector2(8882.56, 3908.6684)
 
-[node name="Edge148" parent="Objects/Walls" instance=ExtResource("73_r")]
+[node name="Edge148" parent="Objects/Walls" instance=ExtResource("74_r")]
 position = Vector2(8882.56, 3833.0516)
 
-[node name="Edge149" parent="Objects/Walls" instance=ExtResource("73_r")]
+[node name="Edge149" parent="Objects/Walls" instance=ExtResource("74_r")]
 position = Vector2(8882.56, 3757.4348)
 
-[node name="Edge150" parent="Objects/Walls" instance=ExtResource("73_r")]
+[node name="Edge150" parent="Objects/Walls" instance=ExtResource("74_r")]
 position = Vector2(8882.56, 3681.818)
 
-[node name="Edge151" parent="Objects/Walls" instance=ExtResource("73_r")]
+[node name="Edge151" parent="Objects/Walls" instance=ExtResource("74_r")]
 position = Vector2(8882.56, 3606.2012)
 
-[node name="Edge152" parent="Objects/Walls" instance=ExtResource("73_r")]
+[node name="Edge152" parent="Objects/Walls" instance=ExtResource("74_r")]
 position = Vector2(8882.56, 3530.5844)
 
-[node name="Edge153" parent="Objects/Walls" instance=ExtResource("73_r")]
+[node name="Edge153" parent="Objects/Walls" instance=ExtResource("74_r")]
 position = Vector2(8882.56, 3454.9676)
 
-[node name="Edge154" parent="Objects/Walls" instance=ExtResource("73_r")]
+[node name="Edge154" parent="Objects/Walls" instance=ExtResource("74_r")]
 position = Vector2(8882.56, 3379.3508)
 
-[node name="Edge155" parent="Objects/Walls" instance=ExtResource("75_r")]
+[node name="Edge155" parent="Objects/Walls" instance=ExtResource("76_r")]
 position = Vector2(656, 957.8128)
 
-[node name="Edge156" parent="Objects/Walls" instance=ExtResource("75_r")]
+[node name="Edge156" parent="Objects/Walls" instance=ExtResource("76_r")]
 position = Vector2(656, 1029.8288)
 
 [node name="Reflection1" type="Sprite2D" parent="Ground/Water/G_west_lake"]
 position = Vector2(7792, 4234.7767)
 scale = Vector2(0.5, -0.5)
 centered = false
-offset = Vector2(-1117, -2179.6064)
-texture = ExtResource("77_r")
+offset = Vector2(-1117, -2936.6658)
+texture = ExtResource("78_r")
 material = SubResource("ShaderMaterial_38")
 light_mask = 1
 texture_filter = 4
@@ -5775,871 +6274,769 @@ texture_filter = 4
 position = Vector2(7792, 4234.7767)
 scale = Vector2(0.5, -0.5)
 centered = false
-offset = Vector2(-1117, -2179.6064)
-texture = ExtResource("77_r")
+offset = Vector2(-1117, -2936.6658)
+texture = ExtResource("78_r")
 material = SubResource("ShaderMaterial_38")
 light_mask = 1
 texture_filter = 4
 
 [node name="Reflection3" type="Sprite2D" parent="Ground/Water/G_west_lake"]
-position = Vector2(7792, 3650.8786)
+position = Vector2(7792, 4370.8008)
 scale = Vector2(0.5, -0.5)
 centered = false
-offset = Vector2(798, -1768.8104)
-texture = ExtResource("78_r")
-material = SubResource("ShaderMaterial_38")
-light_mask = 1
-texture_filter = 4
-
-[node name="Reflection4" type="Sprite2D" parent="Ground/Water/G_south_lake"]
-position = Vector2(7792, 3650.8786)
-scale = Vector2(0.5, -0.5)
-centered = false
-offset = Vector2(798, -1768.8104)
-texture = ExtResource("78_r")
-material = SubResource("ShaderMaterial_38")
-light_mask = 1
-texture_filter = 4
-
-[node name="Reflection5" type="Sprite2D" parent="Ground/Water/G_west_lake"]
-position = Vector2(7792, 3901.8229)
-scale = Vector2(0.5, -0.5)
-centered = false
-offset = Vector2(-1112, -693.699)
+offset = Vector2(-192, -424.7141)
 texture = ExtResource("79_r")
 material = SubResource("ShaderMaterial_38")
 light_mask = 1
 texture_filter = 4
 
-[node name="Reflection6" type="Sprite2D" parent="Ground/Water/G_west_lake"]
+[node name="Reflection4" type="Sprite2D" parent="Ground/Water/G_south_lake"]
 position = Vector2(7792, 4370.8008)
 scale = Vector2(0.5, -0.5)
 centered = false
-offset = Vector2(-192, -424.6547)
+offset = Vector2(-192, -424.7141)
+texture = ExtResource("79_r")
+material = SubResource("ShaderMaterial_38")
+light_mask = 1
+texture_filter = 4
+
+[node name="Reflection5" type="Sprite2D" parent="Ground/Water/G_west_lake"]
+position = Vector2(7792, 4370.8008)
+scale = Vector2(0.5, -0.5)
+centered = false
+offset = Vector2(237, -424.7141)
 texture = ExtResource("80_r")
 material = SubResource("ShaderMaterial_38")
 light_mask = 1
 texture_filter = 4
 
-[node name="Reflection7" type="Sprite2D" parent="Ground/Water/G_south_lake"]
+[node name="Reflection6" type="Sprite2D" parent="Ground/Water/G_south_lake"]
 position = Vector2(7792, 4370.8008)
 scale = Vector2(0.5, -0.5)
 centered = false
-offset = Vector2(-192, -424.6547)
+offset = Vector2(237, -424.7141)
 texture = ExtResource("80_r")
 material = SubResource("ShaderMaterial_38")
 light_mask = 1
 texture_filter = 4
 
-[node name="Reflection8" type="Sprite2D" parent="Ground/Water/G_west_lake"]
+[node name="Reflection7" type="Sprite2D" parent="Ground/Water/G_west_lake"]
 position = Vector2(7792, 4370.8008)
 scale = Vector2(0.5, -0.5)
 centered = false
-offset = Vector2(237, -424.6547)
+offset = Vector2(633, -424.7141)
 texture = ExtResource("81_r")
 material = SubResource("ShaderMaterial_38")
 light_mask = 1
 texture_filter = 4
 
-[node name="Reflection9" type="Sprite2D" parent="Ground/Water/G_south_lake"]
+[node name="Reflection8" type="Sprite2D" parent="Ground/Water/G_south_lake"]
 position = Vector2(7792, 4370.8008)
 scale = Vector2(0.5, -0.5)
 centered = false
-offset = Vector2(237, -424.6547)
+offset = Vector2(633, -424.7141)
 texture = ExtResource("81_r")
 material = SubResource("ShaderMaterial_38")
 light_mask = 1
 texture_filter = 4
 
-[node name="Reflection10" type="Sprite2D" parent="Ground/Water/G_west_lake"]
-position = Vector2(7792, 4370.8008)
+[node name="Reflection9" type="Sprite2D" parent="Ground/Water/G_west_lake"]
+position = Vector2(9619.2, 4712.4656)
 scale = Vector2(0.5, -0.5)
 centered = false
-offset = Vector2(633, -424.6547)
+offset = Vector2(-555.5, -1005.4676)
 texture = ExtResource("82_r")
 material = SubResource("ShaderMaterial_38")
 light_mask = 1
 texture_filter = 4
 
-[node name="Reflection11" type="Sprite2D" parent="Ground/Water/G_south_lake"]
-position = Vector2(7792, 4370.8008)
+[node name="Reflection10" type="Sprite2D" parent="Ground/Water/G_south_lake"]
+position = Vector2(9619.2, 4712.4656)
 scale = Vector2(0.5, -0.5)
 centered = false
-offset = Vector2(633, -424.6547)
+offset = Vector2(-555.5, -1005.4676)
+texture = ExtResource("82_r")
+material = SubResource("ShaderMaterial_38")
+light_mask = 1
+texture_filter = 4
+
+[node name="Reflection11" type="Sprite2D" parent="Ground/Water/G_east_lake"]
+position = Vector2(9619.2, 4712.4656)
+scale = Vector2(0.5, -0.5)
+centered = false
+offset = Vector2(-555.5, -1005.4676)
 texture = ExtResource("82_r")
 material = SubResource("ShaderMaterial_38")
 light_mask = 1
 texture_filter = 4
 
 [node name="Reflection12" type="Sprite2D" parent="Ground/Water/G_west_lake"]
-position = Vector2(9619.2, 4712.4656)
+position = Vector2(9112, 3366.7076)
 scale = Vector2(0.5, -0.5)
 centered = false
-offset = Vector2(-555.5, -995.4897)
+offset = Vector2(-1301.56, -2500.5356)
 texture = ExtResource("83_r")
 material = SubResource("ShaderMaterial_38")
 light_mask = 1
 texture_filter = 4
 
 [node name="Reflection13" type="Sprite2D" parent="Ground/Water/G_south_lake"]
-position = Vector2(9619.2, 4712.4656)
+position = Vector2(9112, 3366.7076)
 scale = Vector2(0.5, -0.5)
 centered = false
-offset = Vector2(-555.5, -995.4897)
+offset = Vector2(-1301.56, -2500.5356)
 texture = ExtResource("83_r")
 material = SubResource("ShaderMaterial_38")
 light_mask = 1
 texture_filter = 4
 
 [node name="Reflection14" type="Sprite2D" parent="Ground/Water/G_east_lake"]
-position = Vector2(9619.2, 4712.4656)
+position = Vector2(9112, 3366.7076)
 scale = Vector2(0.5, -0.5)
 centered = false
-offset = Vector2(-555.5, -995.4897)
+offset = Vector2(-1301.56, -2500.5356)
 texture = ExtResource("83_r")
 material = SubResource("ShaderMaterial_38")
 light_mask = 1
 texture_filter = 4
 
 [node name="Reflection15" type="Sprite2D" parent="Ground/Water/G_west_lake"]
-position = Vector2(9112, 3366.7076)
-scale = Vector2(0.5, -0.5)
-centered = false
-offset = Vector2(-1292.56, -2353.4814)
-texture = ExtResource("84_r")
-material = SubResource("ShaderMaterial_38")
-light_mask = 1
-texture_filter = 4
-
-[node name="Reflection16" type="Sprite2D" parent="Ground/Water/G_south_lake"]
-position = Vector2(9112, 3366.7076)
-scale = Vector2(0.5, -0.5)
-centered = false
-offset = Vector2(-1292.56, -2353.4814)
-texture = ExtResource("84_r")
-material = SubResource("ShaderMaterial_38")
-light_mask = 1
-texture_filter = 4
-
-[node name="Reflection17" type="Sprite2D" parent="Ground/Water/G_east_lake"]
-position = Vector2(9112, 3366.7076)
-scale = Vector2(0.5, -0.5)
-centered = false
-offset = Vector2(-1292.56, -2353.4814)
-texture = ExtResource("84_r")
-material = SubResource("ShaderMaterial_38")
-light_mask = 1
-texture_filter = 4
-
-[node name="Reflection18" type="Sprite2D" parent="Ground/Water/G_west_lake"]
-position = Vector2(9112, 2821.6237)
-scale = Vector2(0.5, -0.5)
-centered = false
-offset = Vector2(-1301.56, -1410.3137)
-texture = ExtResource("85_r")
-material = SubResource("ShaderMaterial_38")
-light_mask = 1
-texture_filter = 4
-
-[node name="Reflection19" type="Sprite2D" parent="Ground/Water/G_east_lake"]
-position = Vector2(9112, 2821.6237)
-scale = Vector2(0.5, -0.5)
-centered = false
-offset = Vector2(-1301.56, -1410.3137)
-texture = ExtResource("85_r")
-material = SubResource("ShaderMaterial_38")
-light_mask = 1
-texture_filter = 4
-
-[node name="Reflection20" type="Sprite2D" parent="Ground/Water/G_west_lake"]
-position = Vector2(9112, 3366.7076)
-scale = Vector2(0.5, -0.5)
-centered = false
-offset = Vector2(623.44, -851.4816)
-texture = ExtResource("86_r")
-material = SubResource("ShaderMaterial_38")
-light_mask = 1
-texture_filter = 4
-
-[node name="Reflection21" type="Sprite2D" parent="Ground/Water/G_west_lake"]
 position = Vector2(6465.6, 3942.8332)
 scale = Vector2(0.5, -0.5)
 centered = false
 offset = Vector2(-1352.5, -2721.876)
-texture = ExtResource("87_r")
+texture = ExtResource("84_r")
 material = SubResource("ShaderMaterial_38")
 light_mask = 1
 texture_filter = 4
 
-[node name="NightWindows" type="Sprite2D" parent="Objects/Buildings/MainGate/Art/P0NorthPylon"]
-centered = false
-offset = Vector2(42.3, -570.254)
-texture = ExtResource("89_r")
-material = SubResource("ShaderMaterial_39")
-texture_filter = 4
-
-[node name="NightWindows" type="Sprite2D" parent="Objects/Buildings/MainGate/Art/P1SouthPylon"]
-centered = false
-offset = Vector2(42.3, -570.5488)
-texture = ExtResource("90_r")
-material = SubResource("ShaderMaterial_39")
-texture_filter = 4
-
 [node name="NightWindows" type="Sprite2D" parent="Objects/Buildings/MainGate/Art/P2GateBeam"]
 centered = false
-offset = Vector2(-8.7, -1089.5487)
-texture = ExtResource("91_r")
+offset = Vector2(-8.7, -1089.704)
+texture = ExtResource("86_r")
 material = SubResource("ShaderMaterial_39")
 texture_filter = 4
 
 [node name="NightWindows" type="Sprite2D" parent="Objects/Buildings/MainGate/Art/P3SecurityBooth"]
 centered = false
-offset = Vector2(-507.7, -447.964)
-texture = ExtResource("92_r")
+offset = Vector2(-507.7, -448.1192)
+texture = ExtResource("87_r")
 material = SubResource("ShaderMaterial_39")
 texture_filter = 4
 
 [node name="NightWindows" type="Sprite2D" parent="Objects/Buildings/FiveFundamentals/Art/Fins"]
 centered = false
-offset = Vector2(-555.5, -995.4897)
-texture = ExtResource("93_r")
+offset = Vector2(-555.5, -1005.4676)
+texture = ExtResource("88_r")
 material = SubResource("ShaderMaterial_39")
 texture_filter = 4
 
 [node name="NightWindows" type="Sprite2D" parent="Objects/Buildings/Mosque/Art/Mosque"]
 centered = false
-offset = Vector2(-1117, -2179.6064)
-texture = ExtResource("94_r")
-material = SubResource("ShaderMaterial_39")
-texture_filter = 4
-
-[node name="NightWindows" type="Sprite2D" parent="Objects/Buildings/Mosque/Art/Minaret"]
-centered = false
-offset = Vector2(798, -1768.8104)
-texture = ExtResource("95_r")
-material = SubResource("ShaderMaterial_39")
-texture_filter = 4
-
-[node name="NightWindows" type="Sprite2D" parent="Objects/Buildings/Mosque/Art/P2MihrabWest"]
-centered = false
-offset = Vector2(-1112, -693.699)
-texture = ExtResource("96_r")
+offset = Vector2(-1117, -2936.6658)
+texture = ExtResource("89_r")
 material = SubResource("ShaderMaterial_39")
 texture_filter = 4
 
 [node name="NightWindows" type="Sprite2D" parent="Objects/Buildings/Mosque/Art/P3Cylinder"]
 centered = false
-offset = Vector2(-192, -424.6547)
-texture = ExtResource("97_r")
+offset = Vector2(-192, -424.7141)
+texture = ExtResource("90_r")
 material = SubResource("ShaderMaterial_39")
 texture_filter = 4
 
 [node name="NightWindows" type="Sprite2D" parent="Objects/Buildings/Mosque/Art/P4Cylinder"]
 centered = false
-offset = Vector2(237, -424.6547)
-texture = ExtResource("98_r")
+offset = Vector2(237, -424.7141)
+texture = ExtResource("91_r")
 material = SubResource("ShaderMaterial_39")
 texture_filter = 4
 
 [node name="NightWindows" type="Sprite2D" parent="Objects/Buildings/Mosque/Art/P5Cylinder"]
 centered = false
-offset = Vector2(633, -424.6547)
-texture = ExtResource("99_r")
+offset = Vector2(633, -424.7141)
+texture = ExtResource("92_r")
 material = SubResource("ShaderMaterial_39")
 texture_filter = 4
 
 [node name="NightWindows" type="Sprite2D" parent="Objects/Buildings/Auditorium/Art/Auditorium"]
 centered = false
 offset = Vector2(-1352.5, -2721.876)
-texture = ExtResource("100_r")
+texture = ExtResource("93_r")
 material = SubResource("ShaderMaterial_39")
 texture_filter = 4
 
 [node name="NightWindows" type="Sprite2D" parent="Objects/Buildings/CafeteriaLibrary/Art/Cafeteria"]
 centered = false
-offset = Vector2(-1292.56, -2353.4814)
-texture = ExtResource("101_r")
-material = SubResource("ShaderMaterial_39")
-texture_filter = 4
-
-[node name="NightWindows" type="Sprite2D" parent="Objects/Buildings/CafeteriaLibrary/Art/P1StairTower"]
-centered = false
-offset = Vector2(-1301.56, -1410.3137)
-texture = ExtResource("102_r")
-material = SubResource("ShaderMaterial_39")
-texture_filter = 4
-
-[node name="NightWindows" type="Sprite2D" parent="Objects/Buildings/CafeteriaLibrary/Art/P2Annex"]
-centered = false
-offset = Vector2(623.44, -851.4816)
-texture = ExtResource("103_r")
+offset = Vector2(-1301.56, -2500.5356)
+texture = ExtResource("94_r")
 material = SubResource("ShaderMaterial_39")
 texture_filter = 4
 
 [node name="NightWindows" type="Sprite2D" parent="Objects/Buildings/Admin/Art/P0Part0"]
 centered = false
 offset = Vector2(-1791.8401, -1539.7252)
-texture = ExtResource("104_r")
+texture = ExtResource("95_r")
 material = SubResource("ShaderMaterial_39")
 texture_filter = 4
 
 [node name="NightWindows" type="Sprite2D" parent="Objects/Buildings/Admin/Art/P1BridgeTo5"]
 centered = false
 offset = Vector2(1115.1599, -433.4304)
-texture = ExtResource("105_r")
+texture = ExtResource("96_r")
 material = SubResource("ShaderMaterial_39")
 texture_filter = 4
 
 [node name="NightWindows" type="Sprite2D" parent="Objects/Buildings/IndoorSports/Art/P0Part0"]
 centered = false
 offset = Vector2(-1386, -1572.469)
-texture = ExtResource("106_r")
+texture = ExtResource("97_r")
 material = SubResource("ShaderMaterial_39")
 texture_filter = 4
 
 [node name="NightWindows" type="Sprite2D" parent="Objects/Buildings/Cds/Art/P0Part0"]
 centered = false
 offset = Vector2(-1356.5, -1117.1183)
-texture = ExtResource("107_r")
+texture = ExtResource("98_r")
 material = SubResource("ShaderMaterial_39")
 texture_filter = 4
 
 [node name="NightWindows" type="Sprite2D" parent="Objects/Buildings/Cds/Art/P1Part1"]
 centered = false
 offset = Vector2(-1356.5, -882.7947)
-texture = ExtResource("108_r")
+texture = ExtResource("99_r")
 material = SubResource("ShaderMaterial_39")
 texture_filter = 4
 
 [node name="NightWindows" type="Sprite2D" parent="Objects/Buildings/Cds/Art/P2ArcadeVeranda"]
 centered = false
 offset = Vector2(-297.5, -570.2255)
-texture = ExtResource("109_r")
+texture = ExtResource("100_r")
 material = SubResource("ShaderMaterial_39")
 texture_filter = 4
 
 [node name="NightWindows" type="Sprite2D" parent="Objects/Buildings/UbHall/Art/P0Part0"]
 centered = false
 offset = Vector2(-179.76, -3611.1428)
-texture = ExtResource("110_r")
+texture = ExtResource("101_r")
 material = SubResource("ShaderMaterial_39")
 texture_filter = 4
 
 [node name="NightWindows" type="Sprite2D" parent="Objects/Buildings/UbHall/Art/P1NorthBlock"]
 centered = false
 offset = Vector2(-179.76, -1451.8293)
-texture = ExtResource("111_r")
+texture = ExtResource("102_r")
 material = SubResource("ShaderMaterial_39")
 texture_filter = 4
 
 [node name="NightWindows" type="Sprite2D" parent="Objects/Buildings/UbHall/Art/P2GateCanopy"]
 centered = false
 offset = Vector2(-779.76, -404.0546)
-texture = ExtResource("112_r")
+texture = ExtResource("103_r")
 material = SubResource("ShaderMaterial_39")
 texture_filter = 4
 
 [node name="NightWindows" type="Sprite2D" parent="Objects/Buildings/SouthHall/Art/P0WestWing"]
 centered = false
 offset = Vector2(-4620.5, -1330.5007)
-texture = ExtResource("113_r")
+texture = ExtResource("104_r")
 material = SubResource("ShaderMaterial_39")
 texture_filter = 4
 
 [node name="NightWindows" type="Sprite2D" parent="Objects/Buildings/SouthHall/Art/P2StairTower"]
 centered = false
 offset = Vector2(-4622.5, -1318.868)
-texture = ExtResource("114_r")
+texture = ExtResource("105_r")
 material = SubResource("ShaderMaterial_39")
 texture_filter = 4
 
 [node name="NightWindows" type="Sprite2D" parent="Objects/Buildings/SouthHall/Art/P4StairTower"]
 centered = false
 offset = Vector2(-2139.5, -1318.868)
-texture = ExtResource("115_r")
+texture = ExtResource("106_r")
 material = SubResource("ShaderMaterial_39")
 texture_filter = 4
 
 [node name="NightWindows" type="Sprite2D" parent="Objects/Buildings/SouthHall/Art/P5MiddleWing"]
 centered = false
 offset = Vector2(-1408.5, -1330.5007)
-texture = ExtResource("116_r")
+texture = ExtResource("107_r")
 material = SubResource("ShaderMaterial_39")
 texture_filter = 4
 
 [node name="NightWindows" type="Sprite2D" parent="Objects/Buildings/SouthHall/Art/P7StairTower"]
 centered = false
 offset = Vector2(-1409.5, -1318.868)
-texture = ExtResource("117_r")
+texture = ExtResource("108_r")
 material = SubResource("ShaderMaterial_39")
 texture_filter = 4
 
 [node name="NightWindows" type="Sprite2D" parent="Objects/Buildings/SouthHall/Art/P9StairTower"]
 centered = false
 offset = Vector2(1067.5, -1318.868)
-texture = ExtResource("118_r")
+texture = ExtResource("109_r")
 material = SubResource("ShaderMaterial_39")
 texture_filter = 4
 
 [node name="NightWindows" type="Sprite2D" parent="Objects/Buildings/SouthHall/Art/P10EastWing"]
 centered = false
 offset = Vector2(1791.5, -1383.5007)
-texture = ExtResource("119_r")
+texture = ExtResource("110_r")
 material = SubResource("ShaderMaterial_39")
 texture_filter = 4
 
 [node name="NightWindows" type="Sprite2D" parent="Objects/Buildings/SouthHall/Art/P12StairTower"]
 centered = false
 offset = Vector2(1790.5, -1318.868)
-texture = ExtResource("120_r")
+texture = ExtResource("111_r")
 material = SubResource("ShaderMaterial_39")
 texture_filter = 4
 
 [node name="NightWindows" type="Sprite2D" parent="Objects/Buildings/SouthHall/Art/P14StairTower"]
 centered = false
 offset = Vector2(4164.5, -1318.868)
-texture = ExtResource("121_r")
+texture = ExtResource("112_r")
 material = SubResource("ShaderMaterial_39")
 texture_filter = 4
 
 [node name="NightWindows" type="Sprite2D" parent="Objects/Buildings/NorthHall/Art/P0WestWing"]
 centered = false
 offset = Vector2(-4630.5, -1393.7189)
-texture = ExtResource("122_r")
+texture = ExtResource("113_r")
 material = SubResource("ShaderMaterial_39")
 texture_filter = 4
 
 [node name="NightWindows" type="Sprite2D" parent="Objects/Buildings/NorthHall/Art/P2StairTower"]
 centered = false
 offset = Vector2(-4631.5, -1292.3462)
-texture = ExtResource("123_r")
+texture = ExtResource("114_r")
 material = SubResource("ShaderMaterial_39")
 texture_filter = 4
 
 [node name="NightWindows" type="Sprite2D" parent="Objects/Buildings/NorthHall/Art/P4StairTower"]
 centered = false
 offset = Vector2(-2193.5, -1292.3462)
-texture = ExtResource("124_r")
+texture = ExtResource("115_r")
 material = SubResource("ShaderMaterial_39")
 texture_filter = 4
 
 [node name="NightWindows" type="Sprite2D" parent="Objects/Buildings/NorthHall/Art/P5MiddleWing"]
 centered = false
 offset = Vector2(-1430.5, -1375.7189)
-texture = ExtResource("125_r")
+texture = ExtResource("116_r")
 material = SubResource("ShaderMaterial_39")
 texture_filter = 4
 
 [node name="NightWindows" type="Sprite2D" parent="Objects/Buildings/NorthHall/Art/P7StairTower"]
 centered = false
 offset = Vector2(-1431.5, -1292.3462)
-texture = ExtResource("126_r")
+texture = ExtResource("117_r")
 material = SubResource("ShaderMaterial_39")
 texture_filter = 4
 
 [node name="NightWindows" type="Sprite2D" parent="Objects/Buildings/NorthHall/Art/P9StairTower"]
 centered = false
 offset = Vector2(1012.5, -1292.3462)
-texture = ExtResource("127_r")
+texture = ExtResource("118_r")
 material = SubResource("ShaderMaterial_39")
 texture_filter = 4
 
 [node name="NightWindows" type="Sprite2D" parent="Objects/Buildings/NorthHall/Art/P10EastWing"]
 centered = false
 offset = Vector2(1769.5, -1340.7189)
-texture = ExtResource("128_r")
+texture = ExtResource("119_r")
 material = SubResource("ShaderMaterial_39")
 texture_filter = 4
 
 [node name="NightWindows" type="Sprite2D" parent="Objects/Buildings/NorthHall/Art/P12StairTower"]
 centered = false
 offset = Vector2(1768.5, -1292.3462)
-texture = ExtResource("129_r")
+texture = ExtResource("120_r")
 material = SubResource("ShaderMaterial_39")
 texture_filter = 4
 
 [node name="NightWindows" type="Sprite2D" parent="Objects/Buildings/NorthHall/Art/P14StairTower"]
 centered = false
 offset = Vector2(4174.5, -1292.3462)
-texture = ExtResource("130_r")
+texture = ExtResource("121_r")
 material = SubResource("ShaderMaterial_39")
 texture_filter = 4
 
 [node name="NightWindows" type="Sprite2D" parent="Objects/Buildings/Academic1/Art/P0Part0"]
 centered = false
 offset = Vector2(-1738.1399, -1697.5413)
-texture = ExtResource("131_r")
+texture = ExtResource("122_r")
 material = SubResource("ShaderMaterial_39")
 texture_filter = 4
 
 [node name="NightWindows" type="Sprite2D" parent="Objects/Buildings/Academic1/Art/P1Part1"]
 centered = false
 offset = Vector2(-1296.1399, -1472.4453)
-texture = ExtResource("132_r")
+texture = ExtResource("123_r")
 material = SubResource("ShaderMaterial_39")
 texture_filter = 4
 
 [node name="NightWindows" type="Sprite2D" parent="Objects/Buildings/Academic1/Art/P2Part2"]
 centered = false
 offset = Vector2(841.8601, -1551.4453)
-texture = ExtResource("133_r")
+texture = ExtResource("124_r")
 material = SubResource("ShaderMaterial_39")
 texture_filter = 4
 
 [node name="NightWindows" type="Sprite2D" parent="Objects/Buildings/Academic1/Art/P3StairTower"]
 centered = false
 offset = Vector2(-1745.1399, -1383.5502)
-texture = ExtResource("134_r")
+texture = ExtResource("125_r")
 material = SubResource("ShaderMaterial_39")
 texture_filter = 4
 
 [node name="NightWindows" type="Sprite2D" parent="Objects/Buildings/Academic1/Art/P4StairTower"]
 centered = false
 offset = Vector2(148.8601, -1383.5502)
-texture = ExtResource("135_r")
+texture = ExtResource("126_r")
 material = SubResource("ShaderMaterial_39")
 texture_filter = 4
 
 [node name="NightWindows" type="Sprite2D" parent="Objects/Buildings/CarParking/Art/Shed0"]
 centered = false
 offset = Vector2(-1845, -578.8419)
-texture = ExtResource("136_r")
+texture = ExtResource("127_r")
 material = SubResource("ShaderMaterial_39")
 texture_filter = 4
 
 [node name="NightWindows" type="Sprite2D" parent="Objects/Buildings/CarParking/Art/Shed1"]
 centered = false
 offset = Vector2(36, -578.8419)
-texture = ExtResource("137_r")
+texture = ExtResource("128_r")
 material = SubResource("ShaderMaterial_39")
 texture_filter = 4
 
 [node name="NightWindows" type="Sprite2D" parent="Objects/Buildings/CarParking/Art/Shed2"]
 centered = false
 offset = Vector2(-1845, -570.1367)
-texture = ExtResource("138_r")
+texture = ExtResource("129_r")
 material = SubResource("ShaderMaterial_39")
 texture_filter = 4
 
 [node name="NightWindows" type="Sprite2D" parent="Objects/Buildings/Academic2/Art/P0Part0"]
 centered = false
 offset = Vector2(-1738.1399, -1631.8198)
-texture = ExtResource("139_r")
+texture = ExtResource("130_r")
 material = SubResource("ShaderMaterial_39")
 texture_filter = 4
 
 [node name="NightWindows" type="Sprite2D" parent="Objects/Buildings/Academic2/Art/P1Part1"]
 centered = false
 offset = Vector2(-1296.1399, -1655.5946)
-texture = ExtResource("140_r")
+texture = ExtResource("131_r")
 material = SubResource("ShaderMaterial_39")
 texture_filter = 4
 
 [node name="NightWindows" type="Sprite2D" parent="Objects/Buildings/Academic2/Art/P2Part2"]
 centered = false
 offset = Vector2(841.8601, -1684.5946)
-texture = ExtResource("141_r")
+texture = ExtResource("132_r")
 material = SubResource("ShaderMaterial_39")
 texture_filter = 4
 
 [node name="NightWindows" type="Sprite2D" parent="Objects/Buildings/Academic2/Art/P3StairTower"]
 centered = false
 offset = Vector2(-1745.1399, -1432.2842)
-texture = ExtResource("142_r")
+texture = ExtResource("133_r")
 material = SubResource("ShaderMaterial_39")
 texture_filter = 4
 
 [node name="NightWindows" type="Sprite2D" parent="Objects/Buildings/Academic2/Art/P4StairTower"]
 centered = false
 offset = Vector2(148.8601, -1432.2842)
-texture = ExtResource("143_r")
+texture = ExtResource("134_r")
 material = SubResource("ShaderMaterial_39")
 texture_filter = 4
 
 [node name="NightWindows" type="Sprite2D" parent="Objects/Buildings/SouthernWorkshop/Art/P0"]
 centered = false
-offset = Vector2(-2574.5, -1055.1654)
-texture = ExtResource("144_r")
+offset = Vector2(-2576, -1101.6035)
+texture = ExtResource("135_r")
 material = SubResource("ShaderMaterial_39")
 texture_filter = 4
 
 [node name="NightWindows" type="Sprite2D" parent="Objects/Buildings/SouthernWorkshop/Art/P1"]
 centered = false
-offset = Vector2(-249.5, -961.1653)
-texture = ExtResource("145_r")
+offset = Vector2(-250, -961.6035)
+texture = ExtResource("136_r")
 material = SubResource("ShaderMaterial_39")
 texture_filter = 4
 
 [node name="NightWindows" type="Sprite2D" parent="Objects/Buildings/SouthernWorkshop/Art/P2"]
 centered = false
-offset = Vector2(177.5, -1055.1654)
-texture = ExtResource("146_r")
+offset = Vector2(176, -1101.6035)
+texture = ExtResource("137_r")
 material = SubResource("ShaderMaterial_39")
 texture_filter = 4
 
 [node name="NightWindows" type="Sprite2D" parent="Objects/Buildings/MiddleWorkshop/Art/P0"]
 centered = false
-offset = Vector2(-2562.5, -1055.1654)
-texture = ExtResource("147_r")
+offset = Vector2(-2567, -1101.6035)
+texture = ExtResource("138_r")
 material = SubResource("ShaderMaterial_39")
 texture_filter = 4
 
 [node name="NightWindows" type="Sprite2D" parent="Objects/Buildings/MiddleWorkshop/Art/P1"]
 centered = false
-offset = Vector2(-214.5, -961.1653)
-texture = ExtResource("148_r")
+offset = Vector2(-215, -961.6035)
+texture = ExtResource("139_r")
 material = SubResource("ShaderMaterial_39")
 texture_filter = 4
 
 [node name="NightWindows" type="Sprite2D" parent="Objects/Buildings/MiddleWorkshop/Art/P2"]
 centered = false
-offset = Vector2(215.5, -1055.1654)
-texture = ExtResource("149_r")
+offset = Vector2(211, -1101.6035)
+texture = ExtResource("140_r")
 material = SubResource("ShaderMaterial_39")
 texture_filter = 4
 
 [node name="NightWindows" type="Sprite2D" parent="Objects/Buildings/NorthernWorkshop/Art/P0"]
 centered = false
-offset = Vector2(-2562.5, -1055.1654)
-texture = ExtResource("150_r")
+offset = Vector2(-2567, -1101.6035)
+texture = ExtResource("141_r")
 material = SubResource("ShaderMaterial_39")
 texture_filter = 4
 
 [node name="NightWindows" type="Sprite2D" parent="Objects/Buildings/NorthernWorkshop/Art/P1"]
 centered = false
-offset = Vector2(-227.5, -961.1653)
-texture = ExtResource("151_r")
+offset = Vector2(-227, -961.6035)
+texture = ExtResource("142_r")
 material = SubResource("ShaderMaterial_39")
 texture_filter = 4
 
 [node name="NightWindows" type="Sprite2D" parent="Objects/Buildings/NorthernWorkshop/Art/P2"]
 centered = false
-offset = Vector2(202.5, -1055.1654)
-texture = ExtResource("152_r")
+offset = Vector2(198, -1101.6035)
+texture = ExtResource("143_r")
 material = SubResource("ShaderMaterial_39")
 texture_filter = 4
 
 [node name="NightWindows" type="Sprite2D" parent="Objects/Buildings/Academic3/Art/P0WestHalf"]
 centered = false
 offset = Vector2(-2875.5, -1226.9557)
-texture = ExtResource("153_r")
+texture = ExtResource("144_r")
 material = SubResource("ShaderMaterial_39")
 texture_filter = 4
 
 [node name="NightWindows" type="Sprite2D" parent="Objects/Buildings/Academic3/Art/P1EastHalf"]
 centered = false
 offset = Vector2(-50.5, -1226.9557)
-texture = ExtResource("154_r")
+texture = ExtResource("145_r")
 material = SubResource("ShaderMaterial_39")
 texture_filter = 4
 
 [node name="NightWindows" type="Sprite2D" parent="Objects/Buildings/Substation/Art/P0"]
 centered = false
 offset = Vector2(-800, -534.8987)
-texture = ExtResource("155_r")
+texture = ExtResource("146_r")
 material = SubResource("ShaderMaterial_39")
 texture_filter = 4
 
 [node name="NightWindows" type="Sprite2D" parent="Objects/Buildings/Substation/Art/P1"]
 centered = false
 offset = Vector2(-800, -420.1354)
-texture = ExtResource("156_r")
+texture = ExtResource("147_r")
 material = SubResource("ShaderMaterial_39")
 texture_filter = 4
 
 [node name="NightWindows" type="Sprite2D" parent="Objects/Buildings/Substation/Art/P2"]
 centered = false
 offset = Vector2(-786, -572.0239)
-texture = ExtResource("157_r")
+texture = ExtResource("148_r")
 material = SubResource("ShaderMaterial_39")
 texture_filter = 4
 
 [node name="NightWindows" type="Sprite2D" parent="Objects/Buildings/VcResidence/Art/P0Part0"]
 centered = false
 offset = Vector2(-784, -1269.2751)
-texture = ExtResource("158_r")
+texture = ExtResource("149_r")
 material = SubResource("ShaderMaterial_39")
 texture_filter = 4
 
 [node name="NightWindows" type="Sprite2D" parent="Objects/Buildings/VcResidence/Art/P1Porch"]
 centered = false
 offset = Vector2(-409, -441.0811)
-texture = ExtResource("159_r")
+texture = ExtResource("150_r")
 material = SubResource("ShaderMaterial_39")
 texture_filter = 4
 
 [node name="NightWindows" type="Sprite2D" parent="Objects/Buildings/VcResidence/Art/P2Porch"]
 centered = false
 offset = Vector2(397, -428.7396)
-texture = ExtResource("160_r")
+texture = ExtResource("151_r")
 material = SubResource("ShaderMaterial_39")
 texture_filter = 4
 
 [node name="NightWindows" type="Sprite2D" parent="Objects/Buildings/FemaleHall/Art/P0NorthWing"]
 centered = false
 offset = Vector2(-2167, -1292.0033)
-texture = ExtResource("161_r")
+texture = ExtResource("152_r")
 material = SubResource("ShaderMaterial_39")
 texture_filter = 4
 
 [node name="NightWindows" type="Sprite2D" parent="Objects/Buildings/FemaleHall/Art/P1StairTower"]
 centered = false
 offset = Vector2(-2155, -1122.557)
-texture = ExtResource("162_r")
+texture = ExtResource("153_r")
 material = SubResource("ShaderMaterial_39")
 texture_filter = 4
 
 [node name="NightWindows" type="Sprite2D" parent="Objects/Buildings/FemaleHall/Art/P2StairTower"]
 centered = false
 offset = Vector2(482, -1122.557)
-texture = ExtResource("163_r")
+texture = ExtResource("154_r")
 material = SubResource("ShaderMaterial_39")
 texture_filter = 4
 
 [node name="NightWindows" type="Sprite2D" parent="Objects/Buildings/FemaleHall/Art/P3SouthWing"]
 centered = false
 offset = Vector2(-1360, -1361.5953)
-texture = ExtResource("164_r")
+texture = ExtResource("155_r")
 material = SubResource("ShaderMaterial_39")
 texture_filter = 4
 
 [node name="NightWindows" type="Sprite2D" parent="Objects/Buildings/FemaleHall/Art/P4StairTower"]
 centered = false
 offset = Vector2(-1349, -1122.8207)
-texture = ExtResource("165_r")
+texture = ExtResource("156_r")
 material = SubResource("ShaderMaterial_39")
 texture_filter = 4
 
 [node name="NightWindows" type="Sprite2D" parent="Objects/Buildings/FemaleHall/Art/P5StairTower"]
 centered = false
 offset = Vector2(1704, -1122.8207)
-texture = ExtResource("166_r")
+texture = ExtResource("157_r")
 material = SubResource("ShaderMaterial_39")
 texture_filter = 4
 
 [node name="NightWindows" type="Sprite2D" parent="Objects/Buildings/FTypeBungalow/Art/P0Part0"]
 centered = false
 offset = Vector2(-457.52, -1368.8812)
-texture = ExtResource("167_r")
+texture = ExtResource("158_r")
 material = SubResource("ShaderMaterial_39")
 texture_filter = 4
 
 [node name="NightWindows" type="Sprite2D" parent="Objects/Buildings/FTypeBungalow/Art/P1Outbuilding"]
 centered = false
 offset = Vector2(90.48, -453.2251)
-texture = ExtResource("168_r")
+texture = ExtResource("159_r")
 material = SubResource("ShaderMaterial_39")
 texture_filter = 4
 
 [node name="NightWindows" type="Sprite2D" parent="Objects/Buildings/DTypeBuilding/Art/P0Part0"]
 centered = false
 offset = Vector2(-823, -1118.3563)
-texture = ExtResource("169_r")
+texture = ExtResource("160_r")
 material = SubResource("ShaderMaterial_39")
 texture_filter = 4
 
 [node name="NightWindows" type="Sprite2D" parent="Objects/Buildings/MedicalLaundry/Art/P0MedicalCenter"]
 centered = false
 offset = Vector2(-659.8232, -1528.9731)
-texture = ExtResource("170_r")
+texture = ExtResource("161_r")
 material = SubResource("ShaderMaterial_39")
 texture_filter = 4
 
 [node name="NightWindows" type="Sprite2D" parent="Objects/Buildings/MedicalLaundry/Art/P1Laundry"]
 centered = false
 offset = Vector2(-659.8232, -1199.4891)
-texture = ExtResource("171_r")
+texture = ExtResource("162_r")
 material = SubResource("ShaderMaterial_39")
 texture_filter = 4
 
 [node name="NightWindows" type="Sprite2D" parent="Objects/Buildings/NewMaleHall/Art/P0"]
 centered = false
 offset = Vector2(-1672.3757, -2922.5425)
-texture = ExtResource("172_r")
+texture = ExtResource("163_r")
 material = SubResource("ShaderMaterial_39")
 texture_filter = 4
 
 [node name="NightWindows" type="Sprite2D" parent="Objects/Buildings/NewMaleHall/Art/P1"]
 centered = false
 offset = Vector2(-1336.3757, -2115.5383)
-texture = ExtResource("173_r")
+texture = ExtResource("164_r")
 material = SubResource("ShaderMaterial_39")
 texture_filter = 4
 
 [node name="NightWindows" type="Sprite2D" parent="Objects/Buildings/NewMaleHall/Art/P2"]
 centered = false
 offset = Vector2(-1924.3757, -2637.6677)
-texture = ExtResource("174_r")
+texture = ExtResource("165_r")
 material = SubResource("ShaderMaterial_39")
 texture_filter = 4
 
 [node name="NightWindows" type="Sprite2D" parent="Objects/Buildings/NewMaleHall/Art/P3"]
 centered = false
 offset = Vector2(1281.6243, -2638.123)
-texture = ExtResource("175_r")
+texture = ExtResource("166_r")
 material = SubResource("ShaderMaterial_39")
 texture_filter = 4
 
 [node name="NightWindows" type="Sprite2D" parent="Objects/Buildings/StudioApartments/Art/Plot"]
 centered = false
 offset = Vector2(-1262.7, -2001.4403)
-texture = ExtResource("176_r")
+texture = ExtResource("167_r")
 material = SubResource("ShaderMaterial_39")
 texture_filter = 4
 
 [node name="NightWindows" type="Sprite2D" parent="Objects/Buildings/NewAcademic/Art/Plot"]
 centered = false
 offset = Vector2(-2277, -1244.967)
-texture = ExtResource("177_r")
+texture = ExtResource("168_r")
 material = SubResource("ShaderMaterial_39")
 texture_filter = 4
 
 [node name="NightWindows" type="Sprite2D" parent="Objects/Buildings/NorthStripBlock/Art/P0Part0"]
 centered = false
 offset = Vector2(-793.5, -522.9662)
-texture = ExtResource("178_r")
+texture = ExtResource("169_r")
 material = SubResource("ShaderMaterial_39")
 texture_filter = 4
 
 [node name="NightWindows" type="Sprite2D" parent="Objects/Buildings/NorthStripRoomW/Art/P0Part0"]
 centered = false
 offset = Vector2(-121, -350.7452)
-texture = ExtResource("179_r")
+texture = ExtResource("170_r")
 material = SubResource("ShaderMaterial_39")
 texture_filter = 4
 
 [node name="NightWindows" type="Sprite2D" parent="Objects/Buildings/NorthStripRoomE/Art/P0Part0"]
 centered = false
 offset = Vector2(-143.5, -350.7452)
-texture = ExtResource("180_r")
+texture = ExtResource("171_r")
 material = SubResource("ShaderMaterial_39")
 texture_filter = 4
 
 [node name="NightWindows" type="Sprite2D" parent="Objects/Buildings/PumpHouse/Art/P0Part0"]
 centered = false
 offset = Vector2(-194.5, -371.0298)
-texture = ExtResource("181_r")
+texture = ExtResource("172_r")
 material = SubResource("ShaderMaterial_39")
 texture_filter = 4
 
 [node name="NightWindows" type="Sprite2D" parent="Objects/Buildings/SouthServiceGate/Art/P0Part0"]
 centered = false
 offset = Vector2(-1129.5, -535.2218)
-texture = ExtResource("182_r")
+texture = ExtResource("173_r")
 material = SubResource("ShaderMaterial_39")
 texture_filter = 4
 
 [node name="NightWindows" type="Sprite2D" parent="Objects/Buildings/CourtsShelter/Art/P0Part0"]
 centered = false
 offset = Vector2(-284.5, -778.6649)
-texture = ExtResource("183_r")
+texture = ExtResource("174_r")
 material = SubResource("ShaderMaterial_39")
 texture_filter = 4
 
 [node name="NightWindows" type="Sprite2D" parent="Objects/Buildings/NwHut/Art/P0Part0"]
 centered = false
 offset = Vector2(-181.5, -420.7129)
-texture = ExtResource("184_r")
+texture = ExtResource("175_r")
 material = SubResource("ShaderMaterial_39")
 texture_filter = 4
 
@@ -6650,7 +7047,7 @@ material = SubResource("CanvasItemMaterial_40")
 amount = 70
 lifetime = 7.0
 preprocess = 7.0
-texture = ExtResource("67_r")
+texture = ExtResource("68_r")
 emission_shape = 3
 emission_rect_extents = Vector2(960, 1193.408)
 direction = Vector2(0, -1)
@@ -6663,7 +7060,7 @@ angular_velocity_max = 30.0
 scale_amount_min = 0.025
 scale_amount_max = 0.05
 color_ramp = SubResource("Gradient_42")
-script = ExtResource("185_r")
+script = ExtResource("176_r")
 when = 0
 
 [node name="Fireflies1" type="CPUParticles2D" parent="Objects/Props"]
@@ -6673,7 +7070,7 @@ material = SubResource("CanvasItemMaterial_40")
 amount = 24
 lifetime = 7.0
 preprocess = 7.0
-texture = ExtResource("67_r")
+texture = ExtResource("68_r")
 emission_shape = 3
 emission_rect_extents = Vector2(768, 452.672)
 direction = Vector2(0, -1)
@@ -6686,7 +7083,7 @@ angular_velocity_max = 30.0
 scale_amount_min = 0.025
 scale_amount_max = 0.05
 color_ramp = SubResource("Gradient_42")
-script = ExtResource("185_r")
+script = ExtResource("176_r")
 when = 0
 
 [node name="Fireflies2" type="CPUParticles2D" parent="Objects/Props"]
@@ -6696,7 +7093,7 @@ material = SubResource("CanvasItemMaterial_40")
 amount = 30
 lifetime = 7.0
 preprocess = 7.0
-texture = ExtResource("67_r")
+texture = ExtResource("68_r")
 emission_shape = 3
 emission_rect_extents = Vector2(2240, 61.728)
 direction = Vector2(0, -1)
@@ -6709,7 +7106,7 @@ angular_velocity_max = 30.0
 scale_amount_min = 0.025
 scale_amount_max = 0.05
 color_ramp = SubResource("Gradient_42")
-script = ExtResource("185_r")
+script = ExtResource("176_r")
 when = 0
 
 [node name="Fireflies3" type="CPUParticles2D" parent="Objects/Props"]
@@ -6719,7 +7116,7 @@ material = SubResource("CanvasItemMaterial_40")
 amount = 16
 lifetime = 7.0
 preprocess = 7.0
-texture = ExtResource("67_r")
+texture = ExtResource("68_r")
 emission_shape = 3
 emission_rect_extents = Vector2(640, 82.304)
 direction = Vector2(0, -1)
@@ -6732,7 +7129,7 @@ angular_velocity_max = 30.0
 scale_amount_min = 0.025
 scale_amount_max = 0.05
 color_ramp = SubResource("Gradient_42")
-script = ExtResource("185_r")
+script = ExtResource("176_r")
 when = 0
 
 [node name="Fireflies4" type="CPUParticles2D" parent="Objects/Props"]
@@ -6742,7 +7139,7 @@ material = SubResource("CanvasItemMaterial_40")
 amount = 34
 lifetime = 7.0
 preprocess = 7.0
-texture = ExtResource("67_r")
+texture = ExtResource("68_r")
 emission_shape = 3
 emission_rect_extents = Vector2(2240, 123.456)
 direction = Vector2(0, -1)
@@ -6755,7 +7152,7 @@ angular_velocity_max = 30.0
 scale_amount_min = 0.025
 scale_amount_max = 0.05
 color_ramp = SubResource("Gradient_42")
-script = ExtResource("185_r")
+script = ExtResource("176_r")
 when = 0
 
 [node name="Fireflies5" type="CPUParticles2D" parent="Objects/Props"]
@@ -6765,7 +7162,7 @@ material = SubResource("CanvasItemMaterial_40")
 amount = 30
 lifetime = 7.0
 preprocess = 7.0
-texture = ExtResource("67_r")
+texture = ExtResource("68_r")
 emission_shape = 3
 emission_rect_extents = Vector2(1440, 925.92)
 direction = Vector2(0, -1)
@@ -6778,7 +7175,7 @@ angular_velocity_max = 30.0
 scale_amount_min = 0.025
 scale_amount_max = 0.05
 color_ramp = SubResource("Gradient_42")
-script = ExtResource("185_r")
+script = ExtResource("176_r")
 when = 0
 
 [node name="Fireflies6" type="CPUParticles2D" parent="Objects/Props"]
@@ -6788,7 +7185,7 @@ material = SubResource("CanvasItemMaterial_40")
 amount = 18
 lifetime = 7.0
 preprocess = 7.0
-texture = ExtResource("67_r")
+texture = ExtResource("68_r")
 emission_shape = 3
 emission_rect_extents = Vector2(960, 308.64)
 direction = Vector2(0, -1)
@@ -6801,7 +7198,7 @@ angular_velocity_max = 30.0
 scale_amount_min = 0.025
 scale_amount_max = 0.05
 color_ramp = SubResource("Gradient_42")
-script = ExtResource("185_r")
+script = ExtResource("176_r")
 when = 0
 
 [node name="Leaves0" type="CPUParticles2D" parent="Objects/Props"]
@@ -6811,7 +7208,7 @@ material = SubResource("CanvasItemMaterial_41")
 amount = 10
 lifetime = 9.0
 preprocess = 9.0
-texture = ExtResource("67_r")
+texture = ExtResource("68_r")
 emission_shape = 3
 emission_rect_extents = Vector2(448, 123.456)
 direction = Vector2(0.4, 1)
@@ -6824,7 +7221,7 @@ angular_velocity_max = 90.0
 scale_amount_min = 0.02
 scale_amount_max = 0.035
 color_ramp = SubResource("Gradient_43")
-script = ExtResource("185_r")
+script = ExtResource("176_r")
 when = 1
 
 [node name="Leaves1" type="CPUParticles2D" parent="Objects/Props"]
@@ -6834,7 +7231,7 @@ material = SubResource("CanvasItemMaterial_41")
 amount = 10
 lifetime = 9.0
 preprocess = 9.0
-texture = ExtResource("67_r")
+texture = ExtResource("68_r")
 emission_shape = 3
 emission_rect_extents = Vector2(448, 123.456)
 direction = Vector2(0.4, 1)
@@ -6847,7 +7244,7 @@ angular_velocity_max = 90.0
 scale_amount_min = 0.02
 scale_amount_max = 0.035
 color_ramp = SubResource("Gradient_43")
-script = ExtResource("185_r")
+script = ExtResource("176_r")
 when = 1
 
 [node name="Leaves2" type="CPUParticles2D" parent="Objects/Props"]
@@ -6857,7 +7254,7 @@ material = SubResource("CanvasItemMaterial_41")
 amount = 10
 lifetime = 9.0
 preprocess = 9.0
-texture = ExtResource("67_r")
+texture = ExtResource("68_r")
 emission_shape = 3
 emission_rect_extents = Vector2(448, 123.456)
 direction = Vector2(0.4, 1)
@@ -6870,7 +7267,7 @@ angular_velocity_max = 90.0
 scale_amount_min = 0.02
 scale_amount_max = 0.035
 color_ramp = SubResource("Gradient_43")
-script = ExtResource("185_r")
+script = ExtResource("176_r")
 when = 1
 
 [node name="Leaves3" type="CPUParticles2D" parent="Objects/Props"]
@@ -6880,7 +7277,7 @@ material = SubResource("CanvasItemMaterial_41")
 amount = 10
 lifetime = 9.0
 preprocess = 9.0
-texture = ExtResource("67_r")
+texture = ExtResource("68_r")
 emission_shape = 3
 emission_rect_extents = Vector2(448, 123.456)
 direction = Vector2(0.4, 1)
@@ -6893,7 +7290,7 @@ angular_velocity_max = 90.0
 scale_amount_min = 0.02
 scale_amount_max = 0.035
 color_ramp = SubResource("Gradient_43")
-script = ExtResource("185_r")
+script = ExtResource("176_r")
 when = 1
 
 [node name="Leaves4" type="CPUParticles2D" parent="Objects/Props"]
@@ -6903,7 +7300,7 @@ material = SubResource("CanvasItemMaterial_41")
 amount = 10
 lifetime = 9.0
 preprocess = 9.0
-texture = ExtResource("67_r")
+texture = ExtResource("68_r")
 emission_shape = 3
 emission_rect_extents = Vector2(448, 123.456)
 direction = Vector2(0.4, 1)
@@ -6916,25 +7313,25 @@ angular_velocity_max = 90.0
 scale_amount_min = 0.02
 scale_amount_max = 0.035
 color_ramp = SubResource("Gradient_43")
-script = ExtResource("185_r")
+script = ExtResource("176_r")
 when = 1
 
-[node name="CourtTennis" parent="Objects/Props" instance=ExtResource("186_r")]
+[node name="CourtTennis" parent="Objects/Props" instance=ExtResource("177_r")]
 position = Vector2(14452.8, 3497.92)
 
-[node name="CourtFutsal" parent="Objects/Props" instance=ExtResource("187_r")]
+[node name="CourtFutsal" parent="Objects/Props" instance=ExtResource("178_r")]
 position = Vector2(14598.4, 4266.4336)
 
-[node name="CourtBadminton" parent="Objects/Props" instance=ExtResource("188_r")]
+[node name="CourtBadminton" parent="Objects/Props" instance=ExtResource("179_r")]
 position = Vector2(2280, 5279.8016)
 
-[node name="GoalNorth" parent="Objects/Props" instance=ExtResource("189_r")]
+[node name="GoalNorth" parent="Objects/Props" instance=ExtResource("180_r")]
 position = Vector2(12320, 3106.976)
 
-[node name="GoalSouth" parent="Objects/Props" instance=ExtResource("190_r")]
+[node name="GoalSouth" parent="Objects/Props" instance=ExtResource("181_r")]
 position = Vector2(12320, 5205.728)
 
-[node name="Door_main_gate_security" parent="Objects/Doors" instance=ExtResource("191_r")]
+[node name="Door_main_gate_security" parent="Objects/Doors" instance=ExtResource("182_r")]
 position = Vector2(15152, 5711.8976)
 destination_zone_id = "main_gate_security"
 destination_spawn_id = "security_inside"
@@ -6942,19 +7339,11 @@ verb = "Enter"
 place_name = "Security office"
 show_placeholder = false
 
-[node name="Spawn_outside_security" parent="Objects/SpawnMarkers" instance=ExtResource("192_r")]
+[node name="Spawn_outside_security" parent="Objects/SpawnMarkers" instance=ExtResource("183_r")]
 position = Vector2(15152, 5748.9344)
 spawn_id = "outside_security"
 
-[node name="Step_main_gate_security" type="Polygon2D" parent="Ground/Markings"]
-polygon = PackedVector2Array(15107.2, 5703.6672, 15196.8, 5703.6672, 15196.8, 5730.416, 15107.2, 5730.416)
-color = Color(0.8, 0.7, 0.68, 1)
-light_mask = 1
-texture = ExtResource("16_r")
-texture_repeat = 2
-texture_scale = Vector2(4, 4)
-
-[node name="Door_mosque_prayer_hall" parent="Objects/Doors" instance=ExtResource("191_r")]
+[node name="Door_mosque_prayer_hall" parent="Objects/Doors" instance=ExtResource("182_r")]
 position = Vector2(8313.6, 3938.2464)
 destination_zone_id = "mosque_prayer_hall"
 destination_spawn_id = "mosque_from_plaza"
@@ -6962,19 +7351,11 @@ verb = "Enter"
 place_name = "IUT Mosque"
 show_placeholder = false
 
-[node name="Spawn_outside_mosque" parent="Objects/SpawnMarkers" instance=ExtResource("192_r")]
+[node name="Spawn_outside_mosque" parent="Objects/SpawnMarkers" instance=ExtResource("183_r")]
 position = Vector2(8371.2, 3938.2464)
 spawn_id = "outside_mosque"
 
-[node name="Step_mosque_prayer_hall" type="Polygon2D" parent="Ground/Markings"]
-polygon = PackedVector2Array(8300.8, 3909.44, 8342.4, 3909.44, 8342.4, 3967.0528, 8300.8, 3967.0528)
-color = Color(0.8, 0.7, 0.68, 1)
-light_mask = 1
-texture = ExtResource("16_r")
-texture_repeat = 2
-texture_scale = Vector2(4, 4)
-
-[node name="Door_auditorium_hall" parent="Objects/Doors" instance=ExtResource("191_r")]
+[node name="Door_auditorium_hall" parent="Objects/Doors" instance=ExtResource("182_r")]
 position = Vector2(7148.8, 3333.312)
 destination_zone_id = "auditorium_hall"
 destination_spawn_id = "auditorium_from_plaza"
@@ -6982,19 +7363,11 @@ verb = "Enter"
 place_name = "Auditorium"
 show_placeholder = false
 
-[node name="Spawn_outside_auditorium" parent="Objects/SpawnMarkers" instance=ExtResource("192_r")]
+[node name="Spawn_outside_auditorium" parent="Objects/SpawnMarkers" instance=ExtResource("183_r")]
 position = Vector2(7206.4, 3333.312)
 spawn_id = "outside_auditorium"
 
-[node name="Step_auditorium_hall" type="Polygon2D" parent="Ground/Markings"]
-polygon = PackedVector2Array(7136, 3304.5056, 7177.6, 3304.5056, 7177.6, 3362.1184, 7136, 3362.1184)
-color = Color(0.8, 0.7, 0.68, 1)
-light_mask = 1
-texture = ExtResource("16_r")
-texture_repeat = 2
-texture_scale = Vector2(4, 4)
-
-[node name="Door_central_cafe" parent="Objects/Doors" instance=ExtResource("191_r")]
+[node name="Door_central_cafe" parent="Objects/Doors" instance=ExtResource("182_r")]
 position = Vector2(8672, 3353.888)
 destination_zone_id = "central_cafe"
 destination_spawn_id = "cafe_from_plaza"
@@ -7002,19 +7375,11 @@ verb = "Enter"
 place_name = "Cafeteria"
 show_placeholder = false
 
-[node name="Spawn_outside_cafe" parent="Objects/SpawnMarkers" instance=ExtResource("192_r")]
+[node name="Spawn_outside_cafe" parent="Objects/SpawnMarkers" instance=ExtResource("183_r")]
 position = Vector2(8672, 3390.9248)
 spawn_id = "outside_cafe"
 
-[node name="Step_central_cafe" type="Polygon2D" parent="Ground/Markings"]
-polygon = PackedVector2Array(8627.2, 3345.6576, 8716.8, 3345.6576, 8716.8, 3372.4064, 8627.2, 3372.4064)
-color = Color(0.8, 0.7, 0.68, 1)
-light_mask = 1
-texture = ExtResource("16_r")
-texture_repeat = 2
-texture_scale = Vector2(4, 4)
-
-[node name="Door_admin_lobby" parent="Objects/Doors" instance=ExtResource("191_r")]
+[node name="Door_admin_lobby" parent="Objects/Doors" instance=ExtResource("182_r")]
 position = Vector2(7443.2, 2934.1376)
 destination_zone_id = "admin_lobby"
 destination_spawn_id = "lobby_from_outside"
@@ -7022,19 +7387,11 @@ verb = "Enter"
 place_name = "Administrative Building"
 show_placeholder = false
 
-[node name="Spawn_outside_admin" parent="Objects/SpawnMarkers" instance=ExtResource("192_r")]
+[node name="Spawn_outside_admin" parent="Objects/SpawnMarkers" instance=ExtResource("183_r")]
 position = Vector2(7443.2, 2971.1744)
 spawn_id = "outside_admin"
 
-[node name="Step_admin_lobby" type="Polygon2D" parent="Ground/Markings"]
-polygon = PackedVector2Array(7398.4, 2925.9072, 7488, 2925.9072, 7488, 2952.656, 7398.4, 2952.656)
-color = Color(0.8, 0.7, 0.68, 1)
-light_mask = 1
-texture = ExtResource("16_r")
-texture_repeat = 2
-texture_scale = Vector2(4, 4)
-
-[node name="Door_cds_veranda" parent="Objects/Doors" instance=ExtResource("191_r")]
+[node name="Door_cds_veranda" parent="Objects/Doors" instance=ExtResource("182_r")]
 position = Vector2(11664, 2901.216)
 destination_zone_id = "cds_veranda"
 destination_spawn_id = "inside_cds_entry"
@@ -7042,19 +7399,11 @@ verb = "Enter"
 place_name = "CDS"
 show_placeholder = false
 
-[node name="Spawn_outside_cds_entrance" parent="Objects/SpawnMarkers" instance=ExtResource("192_r")]
+[node name="Spawn_outside_cds_entrance" parent="Objects/SpawnMarkers" instance=ExtResource("183_r")]
 position = Vector2(11664, 2938.2528)
 spawn_id = "outside_cds_entrance"
 
-[node name="Step_cds_veranda" type="Polygon2D" parent="Ground/Markings"]
-polygon = PackedVector2Array(11619.2, 2892.9856, 11708.8, 2892.9856, 11708.8, 2919.7344, 11619.2, 2919.7344)
-color = Color(0.8, 0.7, 0.68, 1)
-light_mask = 1
-texture = ExtResource("16_r")
-texture_repeat = 2
-texture_scale = Vector2(4, 4)
-
-[node name="Door_hall_corridor" parent="Objects/Doors" instance=ExtResource("191_r")]
+[node name="Door_hall_corridor" parent="Objects/Doors" instance=ExtResource("182_r")]
 position = Vector2(11200, 1783.9392)
 destination_zone_id = "hall_corridor"
 destination_spawn_id = "hallcorr_from_outside"
@@ -7062,19 +7411,11 @@ verb = "Enter"
 place_name = "South Hall"
 show_placeholder = false
 
-[node name="Spawn_outside_south_hall" parent="Objects/SpawnMarkers" instance=ExtResource("192_r")]
+[node name="Spawn_outside_south_hall" parent="Objects/SpawnMarkers" instance=ExtResource("183_r")]
 position = Vector2(11200, 1820.976)
 spawn_id = "outside_south_hall"
 
-[node name="Step_hall_corridor" type="Polygon2D" parent="Ground/Markings"]
-polygon = PackedVector2Array(11155.2, 1775.7088, 11244.8, 1775.7088, 11244.8, 1802.4576, 11155.2, 1802.4576)
-color = Color(0.8, 0.7, 0.68, 1)
-light_mask = 1
-texture = ExtResource("16_r")
-texture_repeat = 2
-texture_scale = Vector2(4, 4)
-
-[node name="Door_hall_common" parent="Objects/Doors" instance=ExtResource("191_r")]
+[node name="Door_hall_common" parent="Objects/Doors" instance=ExtResource("182_r")]
 position = Vector2(11177.6, 633.7408)
 destination_zone_id = "hall_common"
 destination_spawn_id = "common_from_outside"
@@ -7082,19 +7423,11 @@ verb = "Enter"
 place_name = "North Hall"
 show_placeholder = false
 
-[node name="Spawn_outside_north_hall" parent="Objects/SpawnMarkers" instance=ExtResource("192_r")]
+[node name="Spawn_outside_north_hall" parent="Objects/SpawnMarkers" instance=ExtResource("183_r")]
 position = Vector2(11177.6, 670.7776)
 spawn_id = "outside_north_hall"
 
-[node name="Step_hall_common" type="Polygon2D" parent="Ground/Markings"]
-polygon = PackedVector2Array(11132.8, 625.5104, 11222.4, 625.5104, 11222.4, 652.2592, 11132.8, 652.2592)
-color = Color(0.8, 0.7, 0.68, 1)
-light_mask = 1
-texture = ExtResource("16_r")
-texture_repeat = 2
-texture_scale = Vector2(4, 4)
-
-[node name="Door_academic_corridor" parent="Objects/Doors" instance=ExtResource("191_r")]
+[node name="Door_academic_corridor" parent="Objects/Doors" instance=ExtResource("182_r")]
 position = Vector2(7120, 2049.3696)
 destination_zone_id = "academic_corridor"
 destination_spawn_id = "corridor_from_outside"
@@ -7102,19 +7435,11 @@ verb = "Enter"
 place_name = "1st Academic Building"
 show_placeholder = false
 
-[node name="Spawn_outside_academic_1" parent="Objects/SpawnMarkers" instance=ExtResource("192_r")]
+[node name="Spawn_outside_academic_1" parent="Objects/SpawnMarkers" instance=ExtResource("183_r")]
 position = Vector2(7120, 2086.4064)
 spawn_id = "outside_academic_1"
 
-[node name="Step_academic_corridor" type="Polygon2D" parent="Ground/Markings"]
-polygon = PackedVector2Array(7075.2, 2041.1392, 7164.8, 2041.1392, 7164.8, 2067.888, 7075.2, 2067.888)
-color = Color(0.8, 0.7, 0.68, 1)
-light_mask = 1
-texture = ExtResource("16_r")
-texture_repeat = 2
-texture_scale = Vector2(4, 4)
-
-[node name="Door_academic_lab" parent="Objects/Doors" instance=ExtResource("191_r")]
+[node name="Door_academic_lab" parent="Objects/Doors" instance=ExtResource("182_r")]
 position = Vector2(7120, 923.8624)
 destination_zone_id = "academic_lab"
 destination_spawn_id = "lab_from_outside"
@@ -7122,19 +7447,11 @@ verb = "Enter"
 place_name = "2nd Academic Building"
 show_placeholder = false
 
-[node name="Spawn_outside_academic_2" parent="Objects/SpawnMarkers" instance=ExtResource("192_r")]
+[node name="Spawn_outside_academic_2" parent="Objects/SpawnMarkers" instance=ExtResource("183_r")]
 position = Vector2(7120, 960.8992)
 spawn_id = "outside_academic_2"
 
-[node name="Step_academic_lab" type="Polygon2D" parent="Ground/Markings"]
-polygon = PackedVector2Array(7075.2, 915.632, 7164.8, 915.632, 7164.8, 942.3808, 7075.2, 942.3808)
-color = Color(0.8, 0.7, 0.68, 1)
-light_mask = 1
-texture = ExtResource("16_r")
-texture_repeat = 2
-texture_scale = Vector2(4, 4)
-
-[node name="Door_me_workshop" parent="Objects/Doors" instance=ExtResource("191_r")]
+[node name="Door_me_workshop" parent="Objects/Doors" instance=ExtResource("182_r")]
 position = Vector2(4563.2, 1508.2208)
 destination_zone_id = "me_workshop"
 destination_spawn_id = "workshop_from_outside"
@@ -7142,18 +7459,10 @@ verb = "Enter"
 place_name = "Middle Workshop"
 show_placeholder = false
 
-[node name="Spawn_outside_workshop" parent="Objects/SpawnMarkers" instance=ExtResource("192_r")]
+[node name="Spawn_outside_workshop" parent="Objects/SpawnMarkers" instance=ExtResource("183_r")]
 position = Vector2(4563.2, 1545.2576)
 spawn_id = "outside_workshop"
 
-[node name="Step_me_workshop" type="Polygon2D" parent="Ground/Markings"]
-polygon = PackedVector2Array(4518.4, 1499.9904, 4608, 1499.9904, 4608, 1526.7392, 4518.4, 1526.7392)
-color = Color(0.8, 0.7, 0.68, 1)
-light_mask = 1
-texture = ExtResource("16_r")
-texture_repeat = 2
-texture_scale = Vector2(4, 4)
-
-[node name="Spawn_explore_start" parent="Objects/SpawnMarkers" instance=ExtResource("192_r")]
+[node name="Spawn_explore_start" parent="Objects/SpawnMarkers" instance=ExtResource("183_r")]
 position = Vector2(14912, 5489.6768)
 spawn_id = "explore_start"

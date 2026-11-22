@@ -189,9 +189,9 @@
       },
       "v2_sheet_red": {
         "color": [
-          0.55,
-          0.15,
-          0.12
+          0.58,
+          0.17,
+          0.13
         ],
         "rough": 0.5,
         "metal": 0.3,
@@ -202,15 +202,12 @@
           0.1
         ],
         "pattern": {
-          "type": "stripes",
-          "period": 0.2,
-          "color2": [
-            0.44,
-            0.11,
-            0.09
-          ],
+          "type": "corrugated",
+          "period": 0.1,
           "axis": "y"
-        }
+        },
+        "height_strength": 0.9,
+        "bump_distance": 0.02
       },
       "v2_steel": {
         "color": [
@@ -8697,7 +8694,7 @@
       6615,
       2120
     ],
-    "render_seconds": 57.5
+    "render_seconds": 62.1
   },
   "projection": {
     "note": "texture px, top-left origin: x = W/2 + (p.right - cx)*ppm, y = H/2 - (p.up - cy)*ppm",
@@ -8777,7 +8774,10 @@
         "alpha": 0.3,
         "seconds": 0.35
       },
-      "render_seconds": 27.5,
+      "holdouts": [],
+      "covered_by": [],
+      "covered_fill": null,
+      "render_seconds": 29.3,
       "crop_px": [
         432,
         432,
@@ -8805,7 +8805,10 @@
         "alpha": 0.3,
         "seconds": 0.35
       },
-      "render_seconds": 28.0,
+      "holdouts": [],
+      "covered_by": [],
+      "covered_fill": null,
+      "render_seconds": 30.4,
       "crop_px": [
         3257,
         432,
@@ -8816,12 +8819,12 @@
   ],
   "kind": "sprite",
   "ground_tile": null,
-  "total_seconds": 61.6,
+  "total_seconds": 66.4,
   "blender_run": {
     "exit_code": 0,
-    "seconds": 62.6,
+    "seconds": 67.4,
     "problem_lines": [
-      "00:02.172  cycles           | WARNING HIPEW initialization failed: Error opening HIP dynamic library"
+      "00:02.266  cycles           | WARNING HIPEW initialization failed: Error opening HIP dynamic library"
     ]
   },
   "verification": {
@@ -8864,14 +8867,14 @@
         "bit_depth": 8,
         "png_color_type": 6,
         "interlace": 0,
-        "file_bytes": 5271192,
+        "file_bytes": 5481105,
         "size_px": [
           2926,
           1256
         ],
-        "opaque_pixels": 3436542,
-        "partially_transparent_pixels": 17427,
-        "fully_transparent_pixels": 221087,
+        "opaque_pixels": 3436266,
+        "partially_transparent_pixels": 17845,
+        "fully_transparent_pixels": 220945,
         "content_bbox_px": [
           23,
           23,
@@ -8890,14 +8893,14 @@
         "bit_depth": 8,
         "png_color_type": 6,
         "interlace": 0,
-        "file_bytes": 5259940,
+        "file_bytes": 5468458,
         "size_px": [
           2926,
           1256
         ],
-        "opaque_pixels": 3436651,
-        "partially_transparent_pixels": 17270,
-        "fully_transparent_pixels": 221135,
+        "opaque_pixels": 3436364,
+        "partially_transparent_pixels": 17719,
+        "fully_transparent_pixels": 220973,
         "content_bbox_px": [
           23,
           23,

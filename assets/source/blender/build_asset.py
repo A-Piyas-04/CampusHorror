@@ -650,6 +650,43 @@ def build_one(asset, steps, args):
     return not rep.failed
 
 
+LOCK = C.LOG_DIR / "build_asset.lock"
+
+
+def _pid_alive(pid):
+    """Whether a process with this PID is running (tasklist on Windows: os.kill(pid, 0) sends Ctrl+C there)."""
+    if os.name == "nt":
+        out = subprocess.run(["tasklist", "/FI", f"PID eq {pid}", "/NH"], capture_output=True, text=True).stdout
+        return str(pid) in out
+    try:
+        os.kill(pid, 0)
+        return True
+    except OSError:
+        return False
+
+
+def take_lock():
+    """One batch at a time: two batches rendering the same assets overwrite each other's layer passes (the
+    covered_by fill composites one batch's pass over the other's). A lock left by a dead process is taken over."""
+    C.LOG_DIR.mkdir(parents=True, exist_ok=True)
+    if LOCK.exists():
+        try:
+            pid = int(LOCK.read_text().split()[0])
+        except (ValueError, IndexError):
+            pid = -1
+        if pid > 0 and pid != os.getpid() and _pid_alive(pid):
+            raise SystemExit(f"build_asset: another batch (PID {pid}) is running; wait for it or delete {LOCK}")
+    LOCK.write_text(f"{os.getpid()} {' '.join(sys.argv[1:])[:400]}\n")
+
+
+def release_lock():
+    try:
+        if LOCK.exists() and LOCK.read_text().split()[0] == str(os.getpid()):
+            LOCK.unlink()
+    except OSError:
+        pass
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("assets", nargs="*", help="asset_id(s) (configs/<asset_id>.json) or config paths")
@@ -676,7 +713,11 @@ def main():
     if args.compare_to and len(assets) > 1:
         ap.error("--compare-to works with one asset only")
 
-    results = {a: build_one(a, steps, args) for a in dict.fromkeys(assets)}
+    take_lock()
+    try:
+        results = {a: build_one(a, steps, args) for a in dict.fromkeys(assets)}
+    finally:
+        release_lock()
     if len(results) > 1:
         say("batch: " + ", ".join(f"{a} {'PASS' if ok else 'FAILED'}" for a, ok in results.items()))
     return 0 if all(results.values()) else 1

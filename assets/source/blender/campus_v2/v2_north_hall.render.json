@@ -25486,7 +25486,7 @@
       10689,
       3122
     ],
-    "render_seconds": 166.5
+    "render_seconds": 259.4
   },
   "projection": {
     "note": "texture px, top-left origin: x = W/2 + (p.right - cx)*ppm, y = H/2 - (p.up - cy)*ppm",
@@ -25566,7 +25566,13 @@
         "alpha": 0.3,
         "seconds": 0.35
       },
-      "render_seconds": 40.6,
+      "holdouts": [],
+      "covered_by": [
+        "P2StairTower",
+        "P4StairTower"
+      ],
+      "covered_fill": 0.1899,
+      "render_seconds": 71.9,
       "crop_px": [
         714,
         712,
@@ -25594,7 +25600,10 @@
         "alpha": 0.3,
         "seconds": 0.35
       },
-      "render_seconds": 5.5,
+      "holdouts": [],
+      "covered_by": [],
+      "covered_fill": null,
+      "render_seconds": 5.4,
       "crop_px": [
         713,
         1089,
@@ -25622,7 +25631,10 @@
         "alpha": 0.3,
         "seconds": 0.35
       },
-      "render_seconds": 6.0,
+      "holdouts": [],
+      "covered_by": [],
+      "covered_fill": null,
+      "render_seconds": 5.5,
       "crop_px": [
         3151,
         1089,
@@ -25650,7 +25662,13 @@
         "alpha": 0.3,
         "seconds": 0.35
       },
-      "render_seconds": 48.2,
+      "holdouts": [],
+      "covered_by": [
+        "P7StairTower",
+        "P9StairTower"
+      ],
+      "covered_fill": 0.185,
+      "render_seconds": 78.6,
       "crop_px": [
         3914,
         730,
@@ -25678,7 +25696,10 @@
         "alpha": 0.3,
         "seconds": 0.35
       },
-      "render_seconds": 5.4,
+      "holdouts": [],
+      "covered_by": [],
+      "covered_fill": null,
+      "render_seconds": 5.5,
       "crop_px": [
         3913,
         1089,
@@ -25706,7 +25727,10 @@
         "alpha": 0.3,
         "seconds": 0.35
       },
-      "render_seconds": 5.5,
+      "holdouts": [],
+      "covered_by": [],
+      "covered_fill": null,
+      "render_seconds": 5.7,
       "crop_px": [
         6357,
         1089,
@@ -25734,7 +25758,13 @@
         "alpha": 0.3,
         "seconds": 0.35
       },
-      "render_seconds": 41.8,
+      "holdouts": [],
+      "covered_by": [
+        "P12StairTower",
+        "P14StairTower"
+      ],
+      "covered_fill": 0.1996,
+      "render_seconds": 73.1,
       "crop_px": [
         7114,
         765,
@@ -25762,6 +25792,9 @@
         "alpha": 0.3,
         "seconds": 0.35
       },
+      "holdouts": [],
+      "covered_by": [],
+      "covered_fill": null,
       "render_seconds": 5.8,
       "crop_px": [
         7113,
@@ -25790,7 +25823,10 @@
         "alpha": 0.3,
         "seconds": 0.35
       },
-      "render_seconds": 5.7,
+      "holdouts": [],
+      "covered_by": [],
+      "covered_fill": null,
+      "render_seconds": 5.6,
       "crop_px": [
         9519,
         1089,
@@ -25801,12 +25837,12 @@
   ],
   "kind": "sprite",
   "ground_tile": null,
-  "total_seconds": 179.1,
+  "total_seconds": 271.4,
   "blender_run": {
     "exit_code": 0,
-    "seconds": 180.2,
+    "seconds": 272.5,
     "problem_lines": [
-      "00:03.156  cycles           | WARNING HIPEW initialization failed: Error opening HIP dynamic library"
+      "00:03.078  cycles           | WARNING HIPEW initialization failed: Error opening HIP dynamic library"
     ]
   },
   "verification": {
@@ -25849,14 +25885,14 @@
         "bit_depth": 8,
         "png_color_type": 6,
         "interlace": 0,
-        "file_bytes": 5199562,
+        "file_bytes": 5917233,
         "size_px": [
           2893,
           1423
         ],
-        "opaque_pixels": 3707969,
-        "partially_transparent_pixels": 19441,
-        "fully_transparent_pixels": 389329,
+        "opaque_pixels": 3711826,
+        "partially_transparent_pixels": 15765,
+        "fully_transparent_pixels": 389148,
         "content_bbox_px": [
           23,
           23,
@@ -25875,7 +25911,7 @@
         "bit_depth": 8,
         "png_color_type": 6,
         "interlace": 0,
-        "file_bytes": 977008,
+        "file_bytes": 976945,
         "size_px": [
           457,
           1321
@@ -25901,7 +25937,7 @@
         "bit_depth": 8,
         "png_color_type": 6,
         "interlace": 0,
-        "file_bytes": 978672,
+        "file_bytes": 978712,
         "size_px": [
           457,
           1321
@@ -25927,14 +25963,14 @@
         "bit_depth": 8,
         "png_color_type": 6,
         "interlace": 0,
-        "file_bytes": 5268627,
+        "file_bytes": 5975313,
         "size_px": [
           2899,
           1458
         ],
-        "opaque_pixels": 3726660,
-        "partially_transparent_pixels": 19320,
-        "fully_transparent_pixels": 480762,
+        "opaque_pixels": 3729530,
+        "partially_transparent_pixels": 16664,
+        "fully_transparent_pixels": 480548,
         "content_bbox_px": [
           23,
           23,
@@ -25953,7 +25989,7 @@
         "bit_depth": 8,
         "png_color_type": 6,
         "interlace": 0,
-        "file_bytes": 976199,
+        "file_bytes": 976425,
         "size_px": [
           457,
           1321
@@ -25979,7 +26015,7 @@
         "bit_depth": 8,
         "png_color_type": 6,
         "interlace": 0,
-        "file_bytes": 979000,
+        "file_bytes": 978957,
         "size_px": [
           458,
           1321
@@ -26005,14 +26041,14 @@
         "bit_depth": 8,
         "png_color_type": 6,
         "interlace": 0,
-        "file_bytes": 5101768,
+        "file_bytes": 5831967,
         "size_px": [
           2861,
           1370
         ],
-        "opaque_pixels": 3653426,
-        "partially_transparent_pixels": 19047,
-        "fully_transparent_pixels": 247097,
+        "opaque_pixels": 3657205,
+        "partially_transparent_pixels": 15419,
+        "fully_transparent_pixels": 246946,
         "content_bbox_px": [
           23,
           23,
@@ -26031,7 +26067,7 @@
         "bit_depth": 8,
         "png_color_type": 6,
         "interlace": 0,
-        "file_bytes": 987265,
+        "file_bytes": 986807,
         "size_px": [
           457,
           1321
@@ -26057,7 +26093,7 @@
         "bit_depth": 8,
         "png_color_type": 6,
         "interlace": 0,
-        "file_bytes": 984516,
+        "file_bytes": 984784,
         "size_px": [
           457,
           1321
@@ -26523,7 +26559,8 @@
         75
       ]
     },
-    "collision": null
+    "collision": null,
+    "preview_scene": null
   },
   "godot_import": {
     "exit_code": 0,
@@ -26531,5 +26568,11 @@
       "WARNING: Detected another project.godot at res://addons/godot_mcp/cache/undo/entry_000003/files. The folder will be ignored.",
       "WARNING: UID duplicate detected between res://scenes/tests/MCPCheck.tscn and res://addons/godot_mcp/cache/undo/entry_000002/files/scenes/tests/MCPCheck.tscn."
     ]
+  },
+  "godot_check": {
+    "scene": {
+      "exit_code": 0,
+      "problem_lines": []
+    }
   }
 }

@@ -3302,12 +3302,7 @@
                 ]
               }
             ]
-          }
-        ],
-        "bevel": 0.012
-      },
-      "Minaret": {
-        "parts": [
+          },
           {
             "cyl": {
               "a": [
@@ -3545,12 +3540,7 @@
               "sides": 12
             },
             "mat": "v2_lamp"
-          }
-        ],
-        "bevel": 0.012
-      },
-      "P2MihrabWest": {
-        "parts": [
+          },
           {
             "cyl": {
               "a": [
@@ -3760,8 +3750,8 @@
         "parts": [
           {
             "box": [
-              -0.3,
-              0.3,
+              -0.275,
+              0.325,
               0.51,
               1.11,
               0.0,
@@ -3805,27 +3795,9 @@
         "evaluated_bounds_m": {
           "x": 34.1461,
           "y": 34.1461,
-          "z": 20.4
-        },
-        "evaluated_faces": 4959
-      },
-      {
-        "object": "Minaret",
-        "evaluated_bounds_m": {
-          "x": 4.2,
-          "y": 4.2,
           "z": 32.15
         },
-        "evaluated_faces": 907
-      },
-      {
-        "object": "P2MihrabWest",
-        "evaluated_bounds_m": {
-          "x": 5.4,
-          "y": 5.4,
-          "z": 9.2
-        },
-        "evaluated_faces": 324
+        "evaluated_faces": 6190
       },
       {
         "object": "P3Cylinder",
@@ -3892,16 +3864,16 @@
     ],
     "location_m": [
       0.0,
-      -23.9578,
-      33.6627
+      -23.9572,
+      33.6635
     ],
     "ortho_scale_m": 42.1875,
     "sensor_fit": "HORIZONTAL",
     "content_extent_m": [
       34.1461,
-      50.211
+      50.2129
     ],
-    "margin_m_each_side": 4.0169,
+    "margin_m_each_side": 4.017,
     "pixels_per_metre_on_screen": 64.0
   },
   "lighting": {
@@ -3958,7 +3930,7 @@
       2700,
       3728
     ],
-    "render_seconds": 65.7
+    "render_seconds": 63.8
   },
   "projection": {
     "note": "texture px, top-left origin: x = W/2 + (p.right - cx)*ppm, y = H/2 - (p.up - cy)*ppm",
@@ -3979,40 +3951,40 @@
     ],
     "center_m": [
       0.0,
-      10.387397736310959
+      10.388325184583664
     ],
     "origin_px": [
       1350.0,
-      2528.7934551239014
+      2528.8528118133545
     ],
     "footprint_corners_px": [
       [
         1286.0,
-        2569.93186378479
+        2569.991220474243
       ],
       [
         1414.0,
-        2569.93186378479
+        2569.991220474243
       ],
       [
         1414.0,
-        2487.6550464630127
+        2487.714403152466
       ],
       [
         1286.0,
-        2487.6550464630127
+        2487.714403152466
       ]
     ],
     "design_bounds_bbox_px": [
       257.3238525390625,
-      257.246720053583,
+      257.1873344434571,
       2442.6761474609375,
-      3470.7533040084395
+      3470.8126606978926
     ],
     "crop_px": [
-      1306,
+      1308,
       2458,
-      88,
+      87,
       74
     ]
   },
@@ -4029,77 +4001,24 @@
       "fade": {
         "rects_m": {
           "Behind": [
-            -16.887,
-            16.887,
-            -14.977,
-            42.188
-          ]
-        },
-        "alpha": 0.3,
-        "seconds": 0.35
-      },
-      "render_seconds": 50.7,
-      "crop_px": [
-        233,
-        990,
-        2234,
-        2232
-      ]
-    },
-    {
-      "name": "Minaret",
-      "png": "assets/sprites/campus_v2/v2_mosque__minaret.png",
-      "objects": [
-        "Minaret"
-      ],
-      "sort_y_m": 12.81,
-      "z_index": 0,
-      "fade": {
-        "rects_m": {
-          "Behind": [
-            12.45,
-            17.45,
-            13.41,
-            54.89
-          ]
-        },
-        "alpha": 0.3,
-        "seconds": 0.35
-      },
-      "render_seconds": 5.4,
-      "crop_px": [
-        2148,
-        233,
-        318,
-        1793
-      ]
-    },
-    {
-      "name": "P2MihrabWest",
-      "png": "assets/sprites/campus_v2/v2_mosque__p2_mihrab_west.png",
-      "objects": [
-        "P2MihrabWest"
-      ],
-      "sort_y_m": 0.61,
-      "z_index": 0,
-      "fade": {
-        "rects_m": {
-          "Behind": [
             -17.4,
-            -11.2,
-            1.21,
-            16.52
+            17.45,
+            -14.977,
+            55.278
           ]
         },
         "alpha": 0.3,
         "seconds": 0.35
       },
-      "render_seconds": 3.1,
+      "holdouts": [],
+      "covered_by": [],
+      "covered_fill": null,
+      "render_seconds": 57.1,
       "crop_px": [
-        238,
-        1810,
-        394,
-        718
+        233,
+        233,
+        2234,
+        2989
       ]
     },
     {
@@ -4122,7 +4041,10 @@
         "alpha": 0.3,
         "seconds": 0.35
       },
-      "render_seconds": 1.7,
+      "holdouts": [],
+      "covered_by": [],
+      "covered_fill": null,
+      "render_seconds": 1.8,
       "crop_px": [
         1158,
         3017,
@@ -4150,7 +4072,10 @@
         "alpha": 0.3,
         "seconds": 0.35
       },
-      "render_seconds": 1.7,
+      "holdouts": [],
+      "covered_by": [],
+      "covered_fill": null,
+      "render_seconds": 1.6,
       "crop_px": [
         1587,
         3017,
@@ -4178,7 +4103,10 @@
         "alpha": 0.3,
         "seconds": 0.35
       },
-      "render_seconds": 1.7,
+      "holdouts": [],
+      "covered_by": [],
+      "covered_fill": null,
+      "render_seconds": 1.6,
       "crop_px": [
         1983,
         3017,
@@ -4189,12 +4117,12 @@
   ],
   "kind": "sprite",
   "ground_tile": null,
-  "total_seconds": 70.2,
+  "total_seconds": 68.9,
   "blender_run": {
     "exit_code": 0,
-    "seconds": 72.0,
+    "seconds": 70.0,
     "problem_lines": [
-      "00:00.766  cycles           | WARNING HIPEW initialization failed: Error opening HIP dynamic library"
+      "00:02.062  cycles           | WARNING HIPEW initialization failed: Error opening HIP dynamic library"
     ]
   },
   "verification": {
@@ -4202,18 +4130,18 @@
       "bit_depth": 8,
       "png_color_type": 6,
       "interlace": 0,
-      "file_bytes": 3016,
+      "file_bytes": 2976,
       "size_px": [
-        88,
+        87,
         74
       ],
-      "opaque_pixels": 827,
-      "partially_transparent_pixels": 260,
-      "fully_transparent_pixels": 5425,
+      "opaque_pixels": 843,
+      "partially_transparent_pixels": 258,
+      "fully_transparent_pixels": 5337,
       "content_bbox_px": [
         23,
         23,
-        64,
+        63,
         50
       ],
       "margins_px": {
@@ -4226,9 +4154,9 @@
     },
     "bbox_deviation_px": [
       -1.32,
-      -1.25,
+      -1.19,
       1.32,
-      1.25
+      1.19
     ],
     "minimum_margin_required_px": 16,
     "tiling": null,
@@ -4237,77 +4165,25 @@
         "bit_depth": 8,
         "png_color_type": 6,
         "interlace": 0,
-        "file_bytes": 6797120,
+        "file_bytes": 7767512,
         "size_px": [
           2234,
-          2232
+          2989
         ],
-        "opaque_pixels": 3913044,
-        "partially_transparent_pixels": 16964,
-        "fully_transparent_pixels": 1056280,
+        "opaque_pixels": 4163380,
+        "partially_transparent_pixels": 21474,
+        "fully_transparent_pixels": 2492572,
         "content_bbox_px": [
           23,
           23,
           2210,
-          2208
+          2965
         ],
         "margins_px": {
           "left": 23,
           "right": 23,
           "top": 23,
           "bottom": 23
-        },
-        "max_alpha_on_image_border": 0.0
-      },
-      "Minaret": {
-        "bit_depth": 8,
-        "png_color_type": 6,
-        "interlace": 0,
-        "file_bytes": 771166,
-        "size_px": [
-          318,
-          1793
-        ],
-        "opaque_pixels": 393646,
-        "partially_transparent_pixels": 8319,
-        "fully_transparent_pixels": 168209,
-        "content_bbox_px": [
-          23,
-          23,
-          294,
-          1769
-        ],
-        "margins_px": {
-          "left": 23,
-          "right": 23,
-          "top": 23,
-          "bottom": 23
-        },
-        "max_alpha_on_image_border": 0.0
-      },
-      "P2MihrabWest": {
-        "bit_depth": 8,
-        "png_color_type": 6,
-        "interlace": 0,
-        "file_bytes": 276110,
-        "size_px": [
-          394,
-          718
-        ],
-        "opaque_pixels": 206071,
-        "partially_transparent_pixels": 3767,
-        "fully_transparent_pixels": 73054,
-        "content_bbox_px": [
-          23,
-          24,
-          370,
-          693
-        ],
-        "margins_px": {
-          "left": 23,
-          "right": 23,
-          "top": 24,
-          "bottom": 24
         },
         "max_alpha_on_image_border": 0.0
       },
@@ -4315,14 +4191,14 @@
         "bit_depth": 8,
         "png_color_type": 6,
         "interlace": 0,
-        "file_bytes": 215553,
+        "file_bytes": 215202,
         "size_px": [
           320,
           478
         ],
-        "opaque_pixels": 100624,
-        "partially_transparent_pixels": 2565,
-        "fully_transparent_pixels": 49771,
+        "opaque_pixels": 100629,
+        "partially_transparent_pixels": 2576,
+        "fully_transparent_pixels": 49755,
         "content_bbox_px": [
           23,
           23,
@@ -4341,14 +4217,14 @@
         "bit_depth": 8,
         "png_color_type": 6,
         "interlace": 0,
-        "file_bytes": 214666,
+        "file_bytes": 215116,
         "size_px": [
           320,
           478
         ],
         "opaque_pixels": 100608,
-        "partially_transparent_pixels": 2597,
-        "fully_transparent_pixels": 49755,
+        "partially_transparent_pixels": 2605,
+        "fully_transparent_pixels": 49747,
         "content_bbox_px": [
           23,
           23,
@@ -4367,14 +4243,14 @@
         "bit_depth": 8,
         "png_color_type": 6,
         "interlace": 0,
-        "file_bytes": 216831,
+        "file_bytes": 216806,
         "size_px": [
           321,
           478
         ],
-        "opaque_pixels": 100593,
-        "partially_transparent_pixels": 2605,
-        "fully_transparent_pixels": 50240,
+        "opaque_pixels": 100600,
+        "partially_transparent_pixels": 2597,
+        "fully_transparent_pixels": 50241,
         "content_bbox_px": [
           24,
           23,
@@ -4395,7 +4271,7 @@
   "godot": {
     "scene": "scenes/props/campus_v2/V2Mosque.tscn",
     "scene_name": "V2Mosque",
-    "scene_semantic_sha256": "db1f860164eab8e0871045d2ac7c8c9e3d437ca91950a452bfd447092733b38f",
+    "scene_semantic_sha256": "70f8f73e707b17764aca189847267bc04de0f00010cabb13b84c0fd70dff19a4",
     "sprite_offset_adjust_px": [
       0.0,
       0.0
@@ -4405,16 +4281,16 @@
       "game_px_per_m": 32.0,
       "sprite_scale": 0.5,
       "sprite_offset_px": [
-        -44.0,
-        -70.79345512390137
+        -42.0,
+        -70.85281181335449
       ],
       "origin_px": [
         1350.0,
-        2528.7934551239014
+        2528.8528118133545
       ],
       "sprite_rect_game_px": [
         -558.5,
-        -1147.8967275619507,
+        -1147.9264059066772,
         1117.0,
         1631.0
       ],
@@ -4446,7 +4322,7 @@
           ],
           "sprite_offset_px": [
             -1117.0,
-            -2179.606446834564
+            -2936.665803524017
           ],
           "z_index": 0,
           "fade": {
@@ -4458,113 +4334,27 @@
                 "node": "ShapeBehind",
                 "resource_id": "RectangleShape2D_MosqueFadeBehind",
                 "center": [
-                  0.0,
-                  -279.85430951786043
+                  0.8000000000000114,
+                  -414.4797518606186
                 ],
                 "size": [
-                  1080.768,
-                  1175.8385655498505
-                ],
-                "metres": [
-                  -16.887,
-                  16.887,
-                  -14.977,
-                  42.188
-                ]
-              }
-            ]
-          },
-          "crop_px": [
-            233,
-            990,
-            2234,
-            2232
-          ]
-        },
-        {
-          "name": "Minaret",
-          "position_game_px": [
-            0.0,
-            -263.49150747299194
-          ],
-          "sprite_offset_px": [
-            798.0,
-            -1768.8104401779174
-          ],
-          "z_index": 0,
-          "fade": {
-            "node": "MinaretFade",
-            "alpha": 0.3,
-            "seconds": 0.35,
-            "shapes": [
-              {
-                "node": "ShapeBehind",
-                "resource_id": "RectangleShape2D_MinaretFadeBehind",
-                "center": [
-                  478.4,
-                  -702.4383278846741
-                ],
-                "size": [
-                  160.0,
-                  853.2105956268312
-                ],
-                "metres": [
-                  12.45,
-                  17.45,
-                  13.41,
-                  54.89
-                ]
-              }
-            ]
-          },
-          "crop_px": [
-            2148,
-            233,
-            318,
-            1793
-          ]
-        },
-        {
-          "name": "P2MihrabWest",
-          "position_game_px": [
-            0.0,
-            -12.547214641571045
-          ],
-          "sprite_offset_px": [
-            -1112.0,
-            -693.6990258407591
-          ],
-          "z_index": 0,
-          "fade": {
-            "node": "P2MihrabWestFade",
-            "alpha": 0.3,
-            "seconds": 0.35,
-            "shapes": [
-              {
-                "node": "ShapeBehind",
-                "resource_id": "RectangleShape2D_P2MihrabWestFadeBehind",
-                "center": [
-                  -457.59999999999997,
-                  -182.34599638938903
-                ],
-                "size": [
-                  198.39999999999998,
-                  314.9145182991028
+                  1115.1999999999998,
+                  1445.0894502353667
                 ],
                 "metres": [
                   -17.4,
-                  -11.2,
-                  1.21,
-                  16.52
+                  17.45,
+                  -14.977,
+                  55.278
                 ]
               }
             ]
           },
           "crop_px": [
-            238,
-            1810,
-            394,
-            718
+            233,
+            233,
+            2234,
+            2989
           ]
         },
         {
@@ -4575,7 +4365,7 @@
           ],
           "sprite_offset_px": [
             -192.0,
-            -424.6547433090209
+            -424.714099998474
           ],
           "z_index": 0,
           "fade": {
@@ -4618,7 +4408,7 @@
           ],
           "sprite_offset_px": [
             237.0,
-            -424.6547433090209
+            -424.714099998474
           ],
           "z_index": 0,
           "fade": {
@@ -4661,7 +4451,7 @@
           ],
           "sprite_offset_px": [
             633.0,
-            -424.6547433090209
+            -424.714099998474
           ],
           "z_index": 0,
           "fade": {
@@ -4698,13 +4488,14 @@
         }
       ],
       "crop_px": [
-        1306,
+        1308,
         2458,
-        88,
+        87,
         74
       ]
     },
-    "collision": null
+    "collision": null,
+    "preview_scene": null
   },
   "godot_import": {
     "exit_code": 0,
@@ -4712,5 +4503,11 @@
       "WARNING: Detected another project.godot at res://addons/godot_mcp/cache/undo/entry_000003/files. The folder will be ignored.",
       "WARNING: UID duplicate detected between res://scenes/tests/MCPCheck.tscn and res://addons/godot_mcp/cache/undo/entry_000002/files/scenes/tests/MCPCheck.tscn."
     ]
+  },
+  "godot_check": {
+    "scene": {
+      "exit_code": 0,
+      "problem_lines": []
+    }
   }
 }

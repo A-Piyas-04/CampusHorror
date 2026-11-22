@@ -277,8 +277,151 @@
       }
     },
     "objects": {
-      "P0NorthPylon": {
+      "P2GateBeam": {
         "parts": [
+          {
+            "box": [
+              2.25,
+              6.25,
+              -5.7,
+              8.7,
+              7.9,
+              9.5
+            ],
+            "mat": "v2_brick"
+          },
+          {
+            "box": [
+              2.13,
+              6.37,
+              -5.7,
+              8.7,
+              7.75,
+              7.9
+            ],
+            "mat": "v2_coping"
+          },
+          {
+            "box": [
+              2.13,
+              6.37,
+              -5.7,
+              8.7,
+              9.5,
+              9.65
+            ],
+            "mat": "v2_coping"
+          },
+          {
+            "box": [
+              2.23,
+              6.27,
+              -4.5,
+              -3.9,
+              8.2,
+              9.2
+            ],
+            "mat": "v2_brick_reveal"
+          },
+          {
+            "box": [
+              2.23,
+              6.27,
+              -2.22,
+              -1.62,
+              8.2,
+              9.2
+            ],
+            "mat": "v2_brick_reveal"
+          },
+          {
+            "box": [
+              2.23,
+              6.27,
+              0.06,
+              0.66,
+              8.2,
+              9.2
+            ],
+            "mat": "v2_brick_reveal"
+          },
+          {
+            "box": [
+              2.23,
+              6.27,
+              2.34,
+              2.94,
+              8.2,
+              9.2
+            ],
+            "mat": "v2_brick_reveal"
+          },
+          {
+            "box": [
+              2.23,
+              6.27,
+              4.62,
+              5.22,
+              8.2,
+              9.2
+            ],
+            "mat": "v2_brick_reveal"
+          },
+          {
+            "box": [
+              2.23,
+              6.27,
+              6.9,
+              7.5,
+              8.2,
+              9.2
+            ],
+            "mat": "v2_brick_reveal"
+          },
+          {
+            "box": [
+              2.55,
+              2.65,
+              -2.1,
+              0.5,
+              0.0,
+              2.2
+            ],
+            "mat": "v2_rail"
+          },
+          {
+            "box": [
+              2.55,
+              2.65,
+              2.5,
+              5.1,
+              0.0,
+              2.2
+            ],
+            "mat": "v2_rail"
+          },
+          {
+            "box": [
+              0.25,
+              0.65,
+              -2.1,
+              -1.7,
+              0.0,
+              1.1
+            ],
+            "mat": "v2_crane"
+          },
+          {
+            "box": [
+              0.4,
+              0.5,
+              -1.7,
+              4.9,
+              0.95,
+              1.05
+            ],
+            "mat": "v2_crane"
+          },
           {
             "box": [
               1.25,
@@ -455,12 +598,7 @@
               "sides": 12
             },
             "mat": "v2_lamp"
-          }
-        ],
-        "bevel": 0.012
-      },
-      "P1SouthPylon": {
-        "parts": [
+          },
           {
             "box": [
               1.25,
@@ -687,154 +825,6 @@
               "sides": 12
             },
             "mat": "v2_lamp"
-          }
-        ],
-        "bevel": 0.012
-      },
-      "P2GateBeam": {
-        "parts": [
-          {
-            "box": [
-              2.25,
-              6.25,
-              -5.7,
-              8.7,
-              7.9,
-              9.5
-            ],
-            "mat": "v2_brick"
-          },
-          {
-            "box": [
-              2.13,
-              6.37,
-              -5.7,
-              8.7,
-              7.75,
-              7.9
-            ],
-            "mat": "v2_coping"
-          },
-          {
-            "box": [
-              2.13,
-              6.37,
-              -5.7,
-              8.7,
-              9.5,
-              9.65
-            ],
-            "mat": "v2_coping"
-          },
-          {
-            "box": [
-              2.23,
-              6.27,
-              -4.5,
-              -3.9,
-              8.2,
-              9.2
-            ],
-            "mat": "v2_brick_reveal"
-          },
-          {
-            "box": [
-              2.23,
-              6.27,
-              -2.22,
-              -1.62,
-              8.2,
-              9.2
-            ],
-            "mat": "v2_brick_reveal"
-          },
-          {
-            "box": [
-              2.23,
-              6.27,
-              0.06,
-              0.66,
-              8.2,
-              9.2
-            ],
-            "mat": "v2_brick_reveal"
-          },
-          {
-            "box": [
-              2.23,
-              6.27,
-              2.34,
-              2.94,
-              8.2,
-              9.2
-            ],
-            "mat": "v2_brick_reveal"
-          },
-          {
-            "box": [
-              2.23,
-              6.27,
-              4.62,
-              5.22,
-              8.2,
-              9.2
-            ],
-            "mat": "v2_brick_reveal"
-          },
-          {
-            "box": [
-              2.23,
-              6.27,
-              6.9,
-              7.5,
-              8.2,
-              9.2
-            ],
-            "mat": "v2_brick_reveal"
-          },
-          {
-            "box": [
-              2.55,
-              2.65,
-              -2.1,
-              0.5,
-              0.0,
-              2.2
-            ],
-            "mat": "v2_rail"
-          },
-          {
-            "box": [
-              2.55,
-              2.65,
-              2.5,
-              5.1,
-              0.0,
-              2.2
-            ],
-            "mat": "v2_rail"
-          },
-          {
-            "box": [
-              0.25,
-              0.65,
-              -2.1,
-              -1.7,
-              0.0,
-              1.1
-            ],
-            "mat": "v2_crane"
-          },
-          {
-            "box": [
-              0.4,
-              0.5,
-              -1.7,
-              4.9,
-              0.95,
-              1.05
-            ],
-            "mat": "v2_crane"
           }
         ],
         "bevel": 0.012
@@ -1186,8 +1176,8 @@
             "box": [
               3.95,
               4.55,
-              6.6,
-              7.2,
+              1.2,
+              1.8,
               0.0,
               0.01
             ],
@@ -1225,31 +1215,13 @@
   "model": {
     "objects": [
       {
-        "object": "P0NorthPylon",
-        "evaluated_bounds_m": {
-          "x": 6.4,
-          "y": 4.2,
-          "z": 8.0
-        },
-        "evaluated_faces": 429
-      },
-      {
-        "object": "P1SouthPylon",
-        "evaluated_bounds_m": {
-          "x": 6.4,
-          "y": 4.2,
-          "z": 8.0
-        },
-        "evaluated_faces": 4554
-      },
-      {
         "object": "P2GateBeam",
         "evaluated_bounds_m": {
-          "x": 6.12,
-          "y": 14.4,
+          "x": 7.2,
+          "y": 15.0,
           "z": 9.65
         },
-        "evaluated_faces": 702
+        "evaluated_faces": 5685
       },
       {
         "object": "P3SecurityBooth",
@@ -1304,16 +1276,16 @@
     ],
     "location_m": [
       -0.05,
-      -21.0596,
-      22.4453
+      -21.065,
+      22.4529
     ],
     "ortho_scale_m": 17.984375,
     "sensor_fit": "HORIZONTAL",
     "content_extent_m": [
       15.0,
-      18.6449
+      18.6497
     ],
-    "margin_m_each_side": 1.4916,
+    "margin_m_each_side": 1.492,
     "pixels_per_metre_on_screen": 64.0
   },
   "lighting": {
@@ -1370,7 +1342,7 @@
       1151,
       1384
     ],
-    "render_seconds": 13.3
+    "render_seconds": 9.2
   },
   "projection": {
     "note": "texture px, top-left origin: x = W/2 + (p.right - cx)*ppm, y = H/2 - (p.up - cy)*ppm",
@@ -1391,101 +1363,45 @@
     ],
     "center_m": [
       -0.05000019073486328,
-      3.6571849519386888
+      3.65961014572531
     ],
     "origin_px": [
       578.7000122070312,
-      926.0598369240761
+      926.2150493264198
     ],
     "footprint_corners_px": [
       [
         514.7000122070312,
-        967.1982455849648
+        967.3534579873085
       ],
       [
         642.7000122070312,
-        967.1982455849648
+        967.3534579873085
       ],
       [
         642.7000122070312,
-        884.9214282631874
+        885.0766406655312
       ],
       [
         514.7000122070312,
-        884.9214282631874
+        885.0766406655312
       ]
     ],
     "design_bounds_bbox_px": [
       95.5,
-      95.36349088540737,
+      95.20827805330919,
       1055.5,
-      1288.636505685937
+      1288.7917180882807
     ],
     "crop_px": [
       807,
-      605,
+      827,
       87,
       74
     ]
   },
   "tiling": null,
   "layers": [
-    {
-      "name": "P0NorthPylon",
-      "png": "assets/sprites/campus_v2/v2_main_gate__p0_north_pylon.png",
-      "objects": [
-        "P0NorthPylon"
-      ],
-      "sort_y_m": 5.1,
-      "z_index": 0,
-      "fade": {
-        "rects_m": {
-          "Behind": [
-            0.75,
-            7.75,
-            5.7,
-            18.22
-          ]
-        },
-        "alpha": 0.3,
-        "seconds": 0.35
-      },
-      "render_seconds": 3.3,
-      "crop_px": [
-        621,
-        146,
-        459,
-        603
-      ]
-    },
-    {
-      "name": "P1SouthPylon",
-      "png": "assets/sprites/campus_v2/v2_main_gate__p1_south_pylon.png",
-      "objects": [
-        "P1SouthPylon"
-      ],
-      "sort_y_m": -5.7,
-      "z_index": 0,
-      "fade": {
-        "rects_m": {
-          "Behind": [
-            0.75,
-            7.75,
-            -5.1,
-            7.42
-          ]
-        },
-        "alpha": 0.3,
-        "seconds": 0.35
-      },
-      "render_seconds": 3.0,
-      "crop_px": [
-        621,
-        590,
-        459,
-        603
-      ]
-    },
     {
       "name": "P2GateBeam",
       "png": "assets/sprites/campus_v2/v2_main_gate__p2_gate_beam.png",
@@ -1497,8 +1413,8 @@
       "fade": {
         "rects_m": {
           "Behind": [
-            1.75,
-            6.75,
+            0.75,
+            7.75,
             -5.1,
             20.005
           ]
@@ -1506,12 +1422,15 @@
         "alpha": 0.3,
         "seconds": 0.35
       },
-      "render_seconds": 2.6,
+      "holdouts": [],
+      "covered_by": [],
+      "covered_fill": null,
+      "render_seconds": 5.1,
       "crop_px": [
         570,
         71,
-        441,
-        966
+        510,
+        1122
       ]
     },
     {
@@ -1534,7 +1453,10 @@
         "alpha": 0.3,
         "seconds": 0.35
       },
-      "render_seconds": 2.8,
+      "holdouts": [],
+      "covered_by": [],
+      "covered_fill": null,
+      "render_seconds": 2.7,
       "crop_px": [
         71,
         836,
@@ -1545,12 +1467,12 @@
   ],
   "kind": "sprite",
   "ground_tile": null,
-  "total_seconds": 16.8,
+  "total_seconds": 11.7,
   "blender_run": {
     "exit_code": 0,
-    "seconds": 17.8,
+    "seconds": 12.8,
     "problem_lines": [
-      "00:02.079  cycles           | WARNING HIPEW initialization failed: Error opening HIP dynamic library"
+      "00:02.063  cycles           | WARNING HIPEW initialization failed: Error opening HIP dynamic library"
     ]
   },
   "verification": {
@@ -1558,14 +1480,14 @@
       "bit_depth": 8,
       "png_color_type": 6,
       "interlace": 0,
-      "file_bytes": 2949,
+      "file_bytes": 4745,
       "size_px": [
         87,
         74
       ],
-      "opaque_pixels": 858,
-      "partially_transparent_pixels": 253,
-      "fully_transparent_pixels": 5327,
+      "opaque_pixels": 825,
+      "partially_transparent_pixels": 278,
+      "fully_transparent_pixels": 5335,
       "content_bbox_px": [
         23,
         23,
@@ -1582,82 +1504,30 @@
     },
     "bbox_deviation_px": [
       -1.5,
-      -1.36,
+      -1.21,
       1.5,
-      1.36
+      1.21
     ],
     "minimum_margin_required_px": 16,
     "tiling": null,
     "layers": {
-      "P0NorthPylon": {
-        "bit_depth": 8,
-        "png_color_type": 6,
-        "interlace": 0,
-        "file_bytes": 348012,
-        "size_px": [
-          459,
-          603
-        ],
-        "opaque_pixels": 219029,
-        "partially_transparent_pixels": 4120,
-        "fully_transparent_pixels": 53628,
-        "content_bbox_px": [
-          23,
-          23,
-          435,
-          579
-        ],
-        "margins_px": {
-          "left": 23,
-          "right": 23,
-          "top": 23,
-          "bottom": 23
-        },
-        "max_alpha_on_image_border": 0.0
-      },
-      "P1SouthPylon": {
-        "bit_depth": 8,
-        "png_color_type": 6,
-        "interlace": 0,
-        "file_bytes": 370245,
-        "size_px": [
-          459,
-          603
-        ],
-        "opaque_pixels": 219398,
-        "partially_transparent_pixels": 4167,
-        "fully_transparent_pixels": 53212,
-        "content_bbox_px": [
-          23,
-          23,
-          435,
-          579
-        ],
-        "margins_px": {
-          "left": 23,
-          "right": 23,
-          "top": 23,
-          "bottom": 23
-        },
-        "max_alpha_on_image_border": 0.0
-      },
       "P2GateBeam": {
         "bit_depth": 8,
         "png_color_type": 6,
         "interlace": 0,
-        "file_bytes": 373102,
+        "file_bytes": 762455,
         "size_px": [
-          441,
-          966
+          510,
+          1122
         ],
-        "opaque_pixels": 187403,
-        "partially_transparent_pixels": 6618,
-        "fully_transparent_pixels": 231985,
+        "opaque_pixels": 418166,
+        "partially_transparent_pixels": 8085,
+        "fully_transparent_pixels": 145969,
         "content_bbox_px": [
           23,
           23,
-          417,
-          942
+          486,
+          1098
         ],
         "margins_px": {
           "left": 23,
@@ -1671,14 +1541,14 @@
         "bit_depth": 8,
         "png_color_type": 6,
         "interlace": 0,
-        "file_bytes": 278116,
+        "file_bytes": 277664,
         "size_px": [
           471,
           477
         ],
-        "opaque_pixels": 174790,
-        "partially_transparent_pixels": 3702,
-        "fully_transparent_pixels": 46175,
+        "opaque_pixels": 174806,
+        "partially_transparent_pixels": 3695,
+        "fully_transparent_pixels": 46166,
         "content_bbox_px": [
           23,
           23,
@@ -1699,7 +1569,7 @@
   "godot": {
     "scene": "scenes/props/campus_v2/V2MainGate.tscn",
     "scene_name": "V2MainGate",
-    "scene_semantic_sha256": "331a52fc7fc2b318082b6145aa299169f2e72fd3b6cd4ee0fa1235e8dea27084",
+    "scene_semantic_sha256": "2340331d1db453be05deb87297265dc85ac2077744e82f414965d7f4a07a2aa8",
     "sprite_offset_adjust_px": [
       0.0,
       0.0
@@ -1710,15 +1580,15 @@
       "sprite_scale": 0.5,
       "sprite_offset_px": [
         228.29998779296875,
-        -321.0598369240761
+        -99.21504932641983
       ],
       "origin_px": [
         578.7000122070312,
-        926.0598369240761
+        926.2150493264198
       ],
       "sprite_rect_game_px": [
         -253.85000610351562,
-        -427.52991846203804,
+        -427.6075246632099,
         504.5,
         621.0
       ],
@@ -1743,92 +1613,6 @@
       "ground_depth_factor": 0.6427876353263855,
       "layers": [
         {
-          "name": "P0NorthPylon",
-          "position_game_px": [
-            0.0,
-            -104.9029420852661
-          ],
-          "sprite_offset_px": [
-            42.29998779296875,
-            -570.2539527535439
-          ],
-          "z_index": 0,
-          "fade": {
-            "node": "P0NorthPylonFade",
-            "alpha": 0.3,
-            "seconds": 0.35,
-            "shapes": [
-              {
-                "node": "ShapeBehind",
-                "resource_id": "RectangleShape2D_P0NorthPylonFadeBehind",
-                "center": [
-                  136.0,
-                  -246.00768379211425
-                ],
-                "size": [
-                  224.0,
-                  257.5264382171631
-                ],
-                "metres": [
-                  0.75,
-                  7.75,
-                  5.7,
-                  18.22
-                ]
-              }
-            ]
-          },
-          "crop_px": [
-            621,
-            146,
-            459,
-            603
-          ]
-        },
-        {
-          "name": "P1SouthPylon",
-          "position_game_px": [
-            0.0,
-            117.24446468353271
-          ],
-          "sprite_offset_px": [
-            42.29998779296875,
-            -570.5487662911414
-          ],
-          "z_index": 0,
-          "fade": {
-            "node": "P1SouthPylonFade",
-            "alpha": 0.3,
-            "seconds": 0.35,
-            "shapes": [
-              {
-                "node": "ShapeBehind",
-                "resource_id": "RectangleShape2D_P1SouthPylonFadeBehind",
-                "center": [
-                  136.0,
-                  -23.860277023315433
-                ],
-                "size": [
-                  224.0,
-                  257.5264382171631
-                ],
-                "metres": [
-                  0.75,
-                  7.75,
-                  -5.1,
-                  7.42
-                ]
-              }
-            ]
-          },
-          "crop_px": [
-            621,
-            590,
-            459,
-            603
-          ]
-        },
-        {
           "name": "P2GateBeam",
           "position_game_px": [
             0.0,
@@ -1836,7 +1620,7 @@
           ],
           "sprite_offset_px": [
             -8.70001220703125,
-            -1089.5487662911414
+            -1089.7039786934852
           ],
           "z_index": 0,
           "fade": {
@@ -1852,12 +1636,12 @@
                   -153.2919952726364
                 ],
                 "size": [
-                  160.0,
+                  224.0,
                   516.389874715805
                 ],
                 "metres": [
-                  1.75,
-                  6.75,
+                  0.75,
+                  7.75,
                   -5.1,
                   20.005
                 ]
@@ -1867,8 +1651,8 @@
           "crop_px": [
             570,
             71,
-            441,
-            966
+            510,
+            1122
           ]
         },
         {
@@ -1879,7 +1663,7 @@
           ],
           "sprite_offset_px": [
             -507.70001220703125,
-            -447.96399227380743
+            -448.1192046761512
           ],
           "z_index": 0,
           "fade": {
@@ -1917,12 +1701,13 @@
       ],
       "crop_px": [
         807,
-        605,
+        827,
         87,
         74
       ]
     },
-    "collision": null
+    "collision": null,
+    "preview_scene": null
   },
   "godot_import": {
     "exit_code": 0,
@@ -1930,5 +1715,11 @@
       "WARNING: Detected another project.godot at res://addons/godot_mcp/cache/undo/entry_000003/files. The folder will be ignored.",
       "WARNING: UID duplicate detected between res://scenes/tests/MCPCheck.tscn and res://addons/godot_mcp/cache/undo/entry_000002/files/scenes/tests/MCPCheck.tscn."
     ]
+  },
+  "godot_check": {
+    "scene": {
+      "exit_code": 0,
+      "problem_lines": []
+    }
   }
 }

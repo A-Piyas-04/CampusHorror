@@ -5677,12 +5677,7 @@
               "sides": 12
             },
             "mat": "v2_lamp"
-          }
-        ],
-        "bevel": 0.012
-      },
-      "P1StairTower": {
-        "parts": [
+          },
           {
             "box": [
               -19.75,
@@ -7495,12 +7490,7 @@
               "sides": 8
             },
             "mat": "v2_pipe"
-          }
-        ],
-        "bevel": 0.012
-      },
-      "P2Annex": {
-        "parts": [
+          },
           {
             "box": [
               10.25,
@@ -8655,29 +8645,11 @@
       {
         "object": "Cafeteria",
         "evaluated_bounds_m": {
-          "x": 39.62,
-          "y": 41.604,
-          "z": 16.05
+          "x": 39.82,
+          "y": 41.664,
+          "z": 19.05
         },
-        "evaluated_faces": 24770
-      },
-      {
-        "object": "P1StairTower",
-        "evaluated_bounds_m": {
-          "x": 8.6,
-          "y": 13.77,
-          "z": 18.9
-        },
-        "evaluated_faces": 8902
-      },
-      {
-        "object": "P2Annex",
-        "evaluated_bounds_m": {
-          "x": 9.74,
-          "y": 9.67,
-          "z": 9.9
-        },
-        "evaluated_faces": 5444
+        "evaluated_faces": 39116
       },
       {
         "object": "Base",
@@ -8731,14 +8703,14 @@
     ],
     "location_m": [
       -0.04,
-      -26.2752,
-      30.0192
+      -26.2747,
+      30.0199
     ],
     "ortho_scale_m": 46.1875,
     "sensor_fit": "HORIZONTAL",
     "content_extent_m": [
       39.82,
-      39.5912
+      39.5929
     ],
     "margin_m_each_side": 3.1856,
     "pixels_per_metre_on_screen": 64.0
@@ -8797,7 +8769,7 @@
       2956,
       2942
     ],
-    "render_seconds": 80.5
+    "render_seconds": 68.1
   },
   "projection": {
     "note": "texture px, top-left origin: x = W/2 + (p.right - cx)*ppm, y = H/2 - (p.up - cy)*ppm",
@@ -8818,41 +8790,41 @@
     ],
     "center_m": [
       -0.039999961853027344,
-      6.106675543473102
+      6.107520498917438
     ],
     "origin_px": [
       1480.5599975585938,
-      1861.8272347822785
+      1861.881311930716
     ],
     "footprint_corners_px": [
       [
         1416.5599975585938,
-        1902.9656434431672
+        1903.0197205916047
       ],
       [
         1544.5599975585938,
-        1902.9656434431672
+        1903.0197205916047
       ],
       [
         1544.5599975585938,
-        1820.6888261213899
+        1820.7429032698274
       ],
       [
         1416.5599975585938,
-        1820.6888261213899
+        1820.7429032698274
       ]
     ],
     "design_bounds_bbox_px": [
       203.75994873046875,
-      204.08065751418326,
+      204.0265613991869,
       2752.2400512695312,
-      2737.919372443481
+      2737.9734495919183
     ],
     "crop_px": [
       1437,
-      1824,
+      1825,
       87,
-      75
+      74
     ]
   },
   "tiling": null,
@@ -8871,85 +8843,32 @@
             -20.25,
             20.25,
             -19.3,
-            35.37
-          ]
-        },
-        "alpha": 0.3,
-        "seconds": 0.35
-      },
-      "render_seconds": 63.1,
-      "crop_px": [
-        188,
-        327,
-        2585,
-        2435
-      ]
-    },
-    {
-      "name": "P1StairTower",
-      "png": "assets/sprites/campus_v2/v2_cafeteria_library__p1_stair_tower.png",
-      "objects": [
-        "P1StairTower"
-      ],
-      "sort_y_m": 6.6,
-      "z_index": 0,
-      "fade": {
-        "rects_m": {
-          "Behind": [
-            -20.25,
-            -11.05,
-            7.2,
             38.94
           ]
         },
         "alpha": 0.3,
         "seconds": 0.35
       },
-      "render_seconds": 9.0,
+      "holdouts": [],
+      "covered_by": [],
+      "covered_fill": null,
+      "render_seconds": 66.0,
       "crop_px": [
         179,
         180,
-        600,
-        1439
-      ]
-    },
-    {
-      "name": "P2Annex",
-      "png": "assets/sprites/campus_v2/v2_cafeteria_library__p2_annex.png",
-      "objects": [
-        "P2Annex"
-      ],
-      "sort_y_m": -19.9,
-      "z_index": 0,
-      "fade": {
-        "rects_m": {
-          "Behind": [
-            9.75,
-            20.25,
-            -19.3,
-            -2.37
-          ]
-        },
-        "alpha": 0.3,
-        "seconds": 0.35
-      },
-      "render_seconds": 6.3,
-      "crop_px": [
-        2104,
-        1829,
-        673,
-        881
+        2598,
+        2582
       ]
     }
   ],
   "kind": "sprite",
   "ground_tile": null,
-  "total_seconds": 86.1,
+  "total_seconds": 72.6,
   "blender_run": {
     "exit_code": 0,
-    "seconds": 87.0,
+    "seconds": 73.6,
     "problem_lines": [
-      "00:02.235  cycles           | WARNING HIPEW initialization failed: Error opening HIP dynamic library"
+      "00:02.297  cycles           | WARNING HIPEW initialization failed: Error opening HIP dynamic library"
     ]
   },
   "verification": {
@@ -8957,33 +8876,33 @@
       "bit_depth": 8,
       "png_color_type": 6,
       "interlace": 0,
-      "file_bytes": 2961,
+      "file_bytes": 2945,
       "size_px": [
         87,
-        75
+        74
       ],
-      "opaque_pixels": 842,
-      "partially_transparent_pixels": 260,
-      "fully_transparent_pixels": 5423,
+      "opaque_pixels": 841,
+      "partially_transparent_pixels": 262,
+      "fully_transparent_pixels": 5335,
       "content_bbox_px": [
         23,
-        24,
+        23,
         63,
-        51
+        50
       ],
       "margins_px": {
         "left": 23,
         "right": 23,
-        "top": 24,
+        "top": 23,
         "bottom": 23
       },
       "max_alpha_on_image_border": 0.0
     },
     "bbox_deviation_px": [
       -1.76,
-      -1.08,
+      -1.03,
       1.76,
-      1.08
+      1.03
     ],
     "minimum_margin_required_px": 16,
     "tiling": null,
@@ -8992,71 +8911,19 @@
         "bit_depth": 8,
         "png_color_type": 6,
         "interlace": 0,
-        "file_bytes": 8472337,
+        "file_bytes": 9223014,
         "size_px": [
-          2585,
-          2435
+          2598,
+          2582
         ],
-        "opaque_pixels": 5947434,
-        "partially_transparent_pixels": 23949,
-        "fully_transparent_pixels": 323092,
+        "opaque_pixels": 6036613,
+        "partially_transparent_pixels": 23851,
+        "fully_transparent_pixels": 647572,
         "content_bbox_px": [
           23,
           23,
-          2561,
-          2411
-        ],
-        "margins_px": {
-          "left": 23,
-          "right": 23,
-          "top": 23,
-          "bottom": 23
-        },
-        "max_alpha_on_image_border": 0.0
-      },
-      "P1StairTower": {
-        "bit_depth": 8,
-        "png_color_type": 6,
-        "interlace": 0,
-        "file_bytes": 805422,
-        "size_px": [
-          600,
-          1439
-        ],
-        "opaque_pixels": 748470,
-        "partially_transparent_pixels": 8323,
-        "fully_transparent_pixels": 106607,
-        "content_bbox_px": [
-          23,
-          23,
-          576,
-          1415
-        ],
-        "margins_px": {
-          "left": 23,
-          "right": 23,
-          "top": 23,
-          "bottom": 23
-        },
-        "max_alpha_on_image_border": 0.0
-      },
-      "P2Annex": {
-        "bit_depth": 8,
-        "png_color_type": 6,
-        "interlace": 0,
-        "file_bytes": 551472,
-        "size_px": [
-          673,
-          881
-        ],
-        "opaque_pixels": 490716,
-        "partially_transparent_pixels": 6098,
-        "fully_transparent_pixels": 96099,
-        "content_bbox_px": [
-          23,
-          23,
-          649,
-          857
+          2574,
+          2558
         ],
         "margins_px": {
           "left": 23,
@@ -9072,7 +8939,7 @@
   "godot": {
     "scene": "scenes/props/campus_v2/V2CafeteriaLibrary.tscn",
     "scene_name": "V2CafeteriaLibrary",
-    "scene_semantic_sha256": "8a9fa71f993032e934be43952b1b42505f28d38f22fc9c0584fc96b5f5cdc9af",
+    "scene_semantic_sha256": "49c93b98a7ad67700222426f2e1c77c637bdd8eaa4417909749eede04e174b50",
     "sprite_offset_adjust_px": [
       0.0,
       0.0
@@ -9083,15 +8950,15 @@
       "sprite_scale": 0.5,
       "sprite_offset_px": [
         -43.55999755859375,
-        -37.82723478227854
+        -36.88131193071604
       ],
       "origin_px": [
         1480.5599975585938,
-        1861.8272347822785
+        1861.881311930716
       ],
       "sprite_rect_game_px": [
         -650.7799987792969,
-        -840.9136173911393,
+        -840.940655965358,
         1299.0,
         1291.0
       ],
@@ -9122,8 +8989,8 @@
             409.32716617584225
           ],
           "sprite_offset_px": [
-            -1292.5599975585938,
-            -2353.481567133963
+            -1301.5599975585938,
+            -2500.5356442824004
           ],
           "z_index": 0,
           "fade": {
@@ -9136,59 +9003,16 @@
                 "resource_id": "RectangleShape2D_CafeteriaFadeBehind",
                 "center": [
                   0.0,
-                  -165.27355679512021
+                  -201.98958652496336
                 ],
                 "size": [
                   1296.0,
-                  1124.5184007453918
+                  1197.9504602050781
                 ],
                 "metres": [
                   -20.25,
                   20.25,
                   -19.3,
-                  35.37
-                ]
-              }
-            ]
-          },
-          "crop_px": [
-            188,
-            327,
-            2585,
-            2435
-          ]
-        },
-        {
-          "name": "P1StairTower",
-          "position_game_px": [
-            0.0,
-            -135.75674858093262
-          ],
-          "sprite_offset_px": [
-            -1301.5599975585938,
-            -1410.3137376204133
-          ],
-          "z_index": 0,
-          "fade": {
-            "node": "P1StairTowerFade",
-            "alpha": 0.3,
-            "seconds": 0.35,
-            "shapes": [
-              {
-                "node": "ShapeBehind",
-                "resource_id": "RectangleShape2D_P1StairTowerFadeBehind",
-                "center": [
-                  -500.8,
-                  -474.53154390335084
-                ],
-                "size": [
-                  294.4,
-                  652.8665454483032
-                ],
-                "metres": [
-                  -20.25,
-                  -11.05,
-                  7.2,
                   38.94
                 ]
               }
@@ -9197,62 +9021,20 @@
           "crop_px": [
             179,
             180,
-            600,
-            1439
-          ]
-        },
-        {
-          "name": "P2Annex",
-          "position_game_px": [
-            0.0,
-            409.32716617584225
-          ],
-          "sprite_offset_px": [
-            623.4400024414062,
-            -851.4815671339629
-          ],
-          "z_index": 0,
-          "fade": {
-            "node": "P2AnnexFade",
-            "alpha": 0.3,
-            "seconds": 0.35,
-            "shapes": [
-              {
-                "node": "ShapeBehind",
-                "resource_id": "RectangleShape2D_P2AnnexFadeBehind",
-                "center": [
-                  480.0,
-                  222.8673289203644
-                ],
-                "size": [
-                  336.0,
-                  348.2366293144226
-                ],
-                "metres": [
-                  9.75,
-                  20.25,
-                  -19.3,
-                  -2.37
-                ]
-              }
-            ]
-          },
-          "crop_px": [
-            2104,
-            1829,
-            673,
-            881
+            2598,
+            2582
           ]
         }
       ],
       "crop_px": [
         1437,
-        1824,
+        1825,
         87,
-        75
+        74
       ]
     },
-    "collision": null
+    "collision": null,
+    "preview_scene": null
   },
   "godot_import": {
     "exit_code": 0,
@@ -9260,5 +9042,11 @@
       "WARNING: Detected another project.godot at res://addons/godot_mcp/cache/undo/entry_000003/files. The folder will be ignored.",
       "WARNING: UID duplicate detected between res://scenes/tests/MCPCheck.tscn and res://addons/godot_mcp/cache/undo/entry_000002/files/scenes/tests/MCPCheck.tscn."
     ]
+  },
+  "godot_check": {
+    "scene": {
+      "exit_code": 0,
+      "problem_lines": []
+    }
   }
 }

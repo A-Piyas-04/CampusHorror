@@ -3239,7 +3239,7 @@
       1643,
       2652
     ],
-    "render_seconds": 33.3
+    "render_seconds": 46.4
   },
   "projection": {
     "note": "texture px, top-left origin: x = W/2 + (p.right - cx)*ppm, y = H/2 - (p.up - cy)*ppm",
@@ -3319,7 +3319,12 @@
         "alpha": 0.3,
         "seconds": 0.35
       },
-      "render_seconds": 17.8,
+      "holdouts": [],
+      "covered_by": [
+        "P1Laundry"
+      ],
+      "covered_fill": 0.2461,
+      "render_seconds": 30.3,
       "crop_px": [
         158,
         158,
@@ -3347,7 +3352,10 @@
         "alpha": 0.3,
         "seconds": 0.35
       },
-      "render_seconds": 14.1,
+      "holdouts": [],
+      "covered_by": [],
+      "covered_fill": null,
+      "render_seconds": 14.6,
       "crop_px": [
         158,
         1265,
@@ -3358,12 +3366,12 @@
   ],
   "kind": "sprite",
   "ground_tile": null,
-  "total_seconds": 35.6,
+  "total_seconds": 49.4,
   "blender_run": {
     "exit_code": 0,
-    "seconds": 36.5,
+    "seconds": 50.5,
     "problem_lines": [
-      "00:01.297  cycles           | WARNING HIPEW initialization failed: Error opening HIP dynamic library"
+      "00:02.078  cycles           | WARNING HIPEW initialization failed: Error opening HIP dynamic library"
     ]
   },
   "verification": {
@@ -3406,14 +3414,14 @@
         "bit_depth": 8,
         "png_color_type": 6,
         "interlace": 0,
-        "file_bytes": 2177622,
+        "file_bytes": 2623170,
         "size_px": [
           1319,
           1558
         ],
-        "opaque_pixels": 1907235,
-        "partially_transparent_pixels": 11586,
-        "fully_transparent_pixels": 136181,
+        "opaque_pixels": 1908904,
+        "partially_transparent_pixels": 9921,
+        "fully_transparent_pixels": 136177,
         "content_bbox_px": [
           23,
           23,
@@ -3432,7 +3440,7 @@
         "bit_depth": 8,
         "png_color_type": 6,
         "interlace": 0,
-        "file_bytes": 2122204,
+        "file_bytes": 2121571,
         "size_px": [
           1327,
           1229

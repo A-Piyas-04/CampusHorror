@@ -15647,7 +15647,7 @@
       4970,
       3352
     ],
-    "render_seconds": 99.0
+    "render_seconds": 134.4
   },
   "projection": {
     "note": "texture px, top-left origin: x = W/2 + (p.right - cx)*ppm, y = H/2 - (p.up - cy)*ppm",
@@ -15727,7 +15727,13 @@
         "alpha": 0.3,
         "seconds": 0.35
       },
-      "render_seconds": 37.1,
+      "holdouts": [],
+      "covered_by": [
+        "P1StairTower",
+        "P2StairTower"
+      ],
+      "covered_fill": 0.1714,
+      "render_seconds": 66.3,
       "crop_px": [
         318,
         318,
@@ -15755,7 +15761,12 @@
         "alpha": 0.3,
         "seconds": 0.35
       },
-      "render_seconds": 4.3,
+      "holdouts": [
+        "P0NorthWing"
+      ],
+      "covered_by": [],
+      "covered_fill": null,
+      "render_seconds": 4.6,
       "crop_px": [
         330,
         652,
@@ -15783,7 +15794,12 @@
         "alpha": 0.3,
         "seconds": 0.35
       },
-      "render_seconds": 4.6,
+      "holdouts": [
+        "P0NorthWing"
+      ],
+      "covered_by": [],
+      "covered_fill": null,
+      "render_seconds": 4.8,
       "crop_px": [
         2967,
         652,
@@ -15811,7 +15827,13 @@
         "alpha": 0.3,
         "seconds": 0.35
       },
-      "render_seconds": 42.1,
+      "holdouts": [
+        "P4StairTower",
+        "P5StairTower"
+      ],
+      "covered_by": [],
+      "covered_fill": null,
+      "render_seconds": 43.0,
       "crop_px": [
         1125,
         1643,
@@ -15839,7 +15861,12 @@
         "alpha": 0.3,
         "seconds": 0.35
       },
-      "render_seconds": 4.5,
+      "holdouts": [],
+      "covered_by": [
+        "P3SouthWing"
+      ],
+      "covered_fill": 0.5583,
+      "render_seconds": 6.8,
       "crop_px": [
         1136,
         1384,
@@ -15867,7 +15894,12 @@
         "alpha": 0.3,
         "seconds": 0.35
       },
-      "render_seconds": 4.4,
+      "holdouts": [],
+      "covered_by": [
+        "P3SouthWing"
+      ],
+      "covered_fill": 0.5584,
+      "render_seconds": 6.8,
       "crop_px": [
         4189,
         1384,
@@ -15878,12 +15910,12 @@
   ],
   "kind": "sprite",
   "ground_tile": null,
-  "total_seconds": 106.0,
+  "total_seconds": 142.6,
   "blender_run": {
     "exit_code": 0,
-    "seconds": 106.9,
+    "seconds": 143.7,
     "problem_lines": [
-      "00:01.828  cycles           | WARNING HIPEW initialization failed: Error opening HIP dynamic library"
+      "00:02.594  cycles           | WARNING HIPEW initialization failed: Error opening HIP dynamic library"
     ]
   },
   "verification": {
@@ -15926,14 +15958,14 @@
         "bit_depth": 8,
         "png_color_type": 6,
         "interlace": 0,
-        "file_bytes": 5454929,
+        "file_bytes": 6063074,
         "size_px": [
           3111,
           1321
         ],
-        "opaque_pixels": 3877453,
-        "partially_transparent_pixels": 18495,
-        "fully_transparent_pixels": 213683,
+        "opaque_pixels": 3881595,
+        "partially_transparent_pixels": 14356,
+        "fully_transparent_pixels": 213680,
         "content_bbox_px": [
           23,
           23,
@@ -15952,7 +15984,7 @@
         "bit_depth": 8,
         "png_color_type": 6,
         "interlace": 0,
-        "file_bytes": 825443,
+        "file_bytes": 825397,
         "size_px": [
           451,
           1151
@@ -15978,7 +16010,7 @@
         "bit_depth": 8,
         "png_color_type": 6,
         "interlace": 0,
-        "file_bytes": 816471,
+        "file_bytes": 815909,
         "size_px": [
           451,
           1151
@@ -16004,14 +16036,14 @@
         "bit_depth": 8,
         "png_color_type": 6,
         "interlace": 0,
-        "file_bytes": 7250103,
+        "file_bytes": 7252998,
         "size_px": [
           3527,
           1391
         ],
-        "opaque_pixels": 4649390,
-        "partially_transparent_pixels": 20753,
-        "fully_transparent_pixels": 235914,
+        "opaque_pixels": 4598847,
+        "partially_transparent_pixels": 21429,
+        "fully_transparent_pixels": 285781,
         "content_bbox_px": [
           23,
           23,
@@ -16030,14 +16062,14 @@
         "bit_depth": 8,
         "png_color_type": 6,
         "interlace": 0,
-        "file_bytes": 413745,
+        "file_bytes": 778988,
         "size_px": [
           451,
           1151
         ],
-        "opaque_pixels": 402987,
-        "partially_transparent_pixels": 5749,
-        "fully_transparent_pixels": 110365,
+        "opaque_pixels": 403246,
+        "partially_transparent_pixels": 5501,
+        "fully_transparent_pixels": 110354,
         "content_bbox_px": [
           23,
           24,
@@ -16056,14 +16088,14 @@
         "bit_depth": 8,
         "png_color_type": 6,
         "interlace": 0,
-        "file_bytes": 407948,
+        "file_bytes": 787854,
         "size_px": [
           451,
           1151
         ],
-        "opaque_pixels": 402922,
-        "partially_transparent_pixels": 5804,
-        "fully_transparent_pixels": 110375,
+        "opaque_pixels": 403258,
+        "partially_transparent_pixels": 5500,
+        "fully_transparent_pixels": 110343,
         "content_bbox_px": [
           23,
           24,

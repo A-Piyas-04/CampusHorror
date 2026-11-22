@@ -7253,7 +7253,7 @@
       4092,
       2138
     ],
-    "render_seconds": 53.3
+    "render_seconds": 54.6
   },
   "projection": {
     "note": "texture px, top-left origin: x = W/2 + (p.right - cx)*ppm, y = H/2 - (p.up - cy)*ppm",
@@ -7333,7 +7333,10 @@
         "alpha": 0.3,
         "seconds": 0.35
       },
-      "render_seconds": 49.4,
+      "holdouts": [],
+      "covered_by": [],
+      "covered_fill": null,
+      "render_seconds": 49.6,
       "crop_px": [
         258,
         258,
@@ -7361,7 +7364,12 @@
         "alpha": 0.3,
         "seconds": 0.35
       },
-      "render_seconds": 1.7,
+      "holdouts": [],
+      "covered_by": [
+        "P0Part0"
+      ],
+      "covered_fill": 0.0042,
+      "render_seconds": 2.9,
       "crop_px": [
         3165,
         920,
@@ -7372,12 +7380,12 @@
   ],
   "kind": "sprite",
   "ground_tile": null,
-  "total_seconds": 57.6,
+  "total_seconds": 58.3,
   "blender_run": {
     "exit_code": 0,
-    "seconds": 58.6,
+    "seconds": 59.3,
     "problem_lines": [
-      "00:02.172  cycles           | WARNING HIPEW initialization failed: Error opening HIP dynamic library"
+      "00:01.625  cycles           | WARNING HIPEW initialization failed: Error opening HIP dynamic library"
     ]
   },
   "verification": {
@@ -7420,7 +7428,7 @@
         "bit_depth": 8,
         "png_color_type": 6,
         "interlace": 0,
-        "file_bytes": 7066901,
+        "file_bytes": 7067036,
         "size_px": [
           2963,
           1622
@@ -7446,14 +7454,14 @@
         "bit_depth": 8,
         "png_color_type": 6,
         "interlace": 0,
-        "file_bytes": 148072,
+        "file_bytes": 138863,
         "size_px": [
           669,
           165
         ],
-        "opaque_pixels": 70209,
-        "partially_transparent_pixels": 3205,
-        "fully_transparent_pixels": 36971,
+        "opaque_pixels": 71175,
+        "partially_transparent_pixels": 2259,
+        "fully_transparent_pixels": 36951,
         "content_bbox_px": [
           23,
           23,
@@ -7611,7 +7619,8 @@
         74
       ]
     },
-    "collision": null
+    "collision": null,
+    "preview_scene": null
   },
   "godot_import": {
     "exit_code": 0,
@@ -7619,5 +7628,11 @@
       "WARNING: Detected another project.godot at res://addons/godot_mcp/cache/undo/entry_000003/files. The folder will be ignored.",
       "WARNING: UID duplicate detected between res://scenes/tests/MCPCheck.tscn and res://addons/godot_mcp/cache/undo/entry_000002/files/scenes/tests/MCPCheck.tscn."
     ]
+  },
+  "godot_check": {
+    "scene": {
+      "exit_code": 0,
+      "problem_lines": []
+    }
   }
 }

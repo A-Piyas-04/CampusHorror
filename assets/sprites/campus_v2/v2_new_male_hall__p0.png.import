@@ -4,10 +4,15 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://d1revbhfk1uh4"
 path.bptc="res://.godot/imported/v2_new_male_hall__p0.png-82776ddb685e8dba9a52cae34ce2be60.bptc.ctex"
+metadata={
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
+}
 
 [deps]
 
 source_file="res://assets/sprites/campus_v2/v2_new_male_hall__p0.png"
+dest_files=["res://.godot/imported/v2_new_male_hall__p0.png-82776ddb685e8dba9a52cae34ce2be60.bptc.ctex"]
 
 [params]
 

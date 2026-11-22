@@ -5,7 +5,8 @@
 #   STAGES="infra trees post" tools/campus/build_art.sh
 #
 # Stages: buildings (author_campus_v2 + render all), infra (walls / parapets / balustrades), trees (species),
-# post (night windows, import settings, regenerate the campus zone, Godot import). Logs: tools/.check-logs/art/.
+# post (night windows, import settings, ground masks, regenerate the campus zone, Godot import). Logs:
+# tools/.check-logs/art/.
 set -u
 cd "$(dirname "$0")/../.."
 G="${GODOT:-/f/App Installers/Godot_v4.7.2-stable_win64.exe/Godot_v4.7.2-stable_win64_console.exe}"
@@ -33,6 +34,7 @@ for stage in ${STAGES:-buildings infra courts trees post}; do
     post)
       python tools/campus/night_windows.py | tail -1
       python tools/campus/import_settings.py
+      python tools/zones/ground_mask.py | tail -1
       python tools/zones/campus_world.py > "$LOG/campus_world.log" 2>&1; grep -E "^campus:|registry:" "$LOG/campus_world.log"
       timeout 900 "$G" --headless --path . --import > "$LOG/import.log" 2>&1
       echo "godot import exit $?" ;;
