@@ -179,6 +179,25 @@ Chapters 2–4 are buildable from these references; 5–6 need a facility art se
 
 ## 8. Log
 
+- 22 Nov 2026 (PAUSED by the owner mid-Chapter 4; resume only when they say "continue"):
+  DONE + passing: Chapter 3 "Lecture Hall" (`scripts/story/chapter_3.gd`, D36: workshop shutter -> generator needs
+  key -> lab log -> room 304 board CSE 4501 -> lab key box -> generator lights `power_academic` -> run to the halls;
+  students = NightGuard with `light_sensitivity` 0.2 / `hearing` 1.8), `Chapter3Check` 27/27, Chapter2Check now
+  expects Chapter 3 after its end card, title menu "Chapters" lists 1–3, lamp circuits (`LampLight.power_flag`:
+  power_on = CDS, power_plaza / power_academic / power_halls), diesel_generator prop built. Checkpoint
+  `chapter3-playable`.
+  IN PROGRESS (Chapter 4 "The Halls", D37: sleepwalkers drawn to light instead of a dog pack, no quadruped sprite):
+  world content GENERATED (campus_zones `chapter4_layer`: 3 sleepwalkers, Rafi + LiftKey pickup (sets
+  lift_key_found, item lift_key), UbBackStair examine (requires lift_key_found, sets ch4_survivors), crows, glow;
+  interiors: diary/radio notes rewritten to carry the trail, a sleepwalker in the hall corridor).
+  NEXT: write `scripts/story/chapter_4.gd` (flags ch4_started, radio_heard <- common_radio, diary_read <- dorm_diary,
+  lift_key_found, ch4_survivors -> chapter4_done -> end card -> title), add 4 to Main.CHAPTERS + menu titles,
+  `Chapter4Check`, record D36/D37 in DECISIONS.md; re-dump validator baselines after review (changed since the
+  last dump: mosque rugs, academic/halls/plaza layers, corridor creatures, lab/dorm/radio notes); run the full
+  `bash tools/run_checks.sh x`; then docs (STATUS/ROADMAP/NEXT_ACTIONS/TESTING/CONVENTIONS/ASSET_PIPELINE).
+  Known side effect until chapter_4.gd exists: Ch2/Ch3 directors wake the halls' sleepwalkers if the player
+  wanders into the halls early (harmless, but unplanned).
+
 - 22 Nov 2026 (late): fades rebuilt (13/13); props + rooms built (2 failures fixed); interiors generated; room doors
   in the exteriors; map registry generator; GAME_DESIGN/CAMPUS_MAP refreshed; StoryDirector refactor + Chapter 2
   director + plaza Chapter 2 layer + interior puzzle content; ZoneEdge shared-shape bug found and fixed (D35);

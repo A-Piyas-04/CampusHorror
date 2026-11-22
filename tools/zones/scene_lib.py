@@ -226,6 +226,15 @@ def student_props(x, y, patrol):
             "modulate": C(0.72, 0.86, 0.78), "metadata/role": S("patrol")}
 
 
+def sleepwalker_props(x, y, patrol):
+    """A "sleepwalker" (Chapter 4's host): hall residents drawn to light (D37): very light-sensitive, hard of
+    hearing, slow until they see a light, then fast. Dormant until a chapter's _patrol_active() wakes it."""
+    return {"position": V(x, y), "patrol_points": PV2(patrol), "active": "false", "visible": "false",
+            "sight_radius": "110.0", "close_sense_radius": "40.0", "light_sensitivity": "2.2", "hearing": "0.6",
+            "patrol_speed": "26.0", "investigate_speed": "60.0", "chase_speed": "128.0",
+            "modulate": C(0.86, 0.83, 0.96), "metadata/role": S("patrol")}
+
+
 def write_profile(zone_id, *, zoom, limits, surface, ambience, vol=-6.0, room=0.15, damp=0.7, wet=0.05,
                   night=(0.18, 0.2, 0.3), look=48.0):
     text = ('[gd_resource type="Resource" script_class="ZoneProfile" format=3]\n\n'

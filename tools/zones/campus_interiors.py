@@ -13,7 +13,7 @@ from pathlib import Path
 
 sys.dont_write_bytecode = True
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from scene_lib import DOOR, P, PV2, ROOT, S, SPAWN, STUDENT, V, Scene, register_zones, student_props, write_profile  # noqa: E402
+from scene_lib import DOOR, P, PV2, ROOT, S, SPAWN, STUDENT, V, Scene, register_zones, sleepwalker_props, student_props, write_profile  # noqa: E402
 
 DEPTH = 20.576
 SHADOW = "res://scenes/props/common/ContactShadow.tscn"
@@ -104,6 +104,11 @@ class Room:
         x, y = xm * 32.0, -ym * DEPTH
         pts = [(a * 32.0, -b * DEPTH) for a, b in patrol_m]
         self.s.node(name, None, "Objects/Story", instance=STUDENT, props=student_props(x, y, pts))
+
+    def sleepwalker(self, name, xm, ym, patrol_m):
+        x, y = xm * 32.0, -ym * DEPTH
+        pts = [(a * 32.0, -b * DEPTH) for a, b in patrol_m]
+        self.s.node(name, None, "Objects/Story", instance=STUDENT, props=sleepwalker_props(x, y, pts))
 
     def write(self):
         self.s.write(f"scenes/world/{self.scene_name}.tscn")
@@ -287,6 +292,7 @@ def rooms():
     r.door("DoorOut", -12.7, 2.2, "halls_exterior", "outside_south_hall", "Go out", "South Hall entrance")
     r.spawn("hallcorr_from_outside", -11.8, 2.2)
     r.door("DoorRoom", 0.0, 4.2, "hall_room", "room_from_corridor", "Enter", "Room 203")
+    r.sleepwalker("Sleeper", 8.0, 2.2, [(4.0, 2.2), (12.0, 2.3)])
     r.spawn("hallcorr_from_room", 0.0, 3.2)
     r.prop("Drum", "WaterDrum", 12.0, 3.9, (0.4, 0.3))
     r.light("Exit", -12.0, 3.0, (0.35, 1.0, 0.5), 0.45, 0.6, gameplay=False)
@@ -303,8 +309,9 @@ def rooms():
     r.prop("Almirah", "SteelAlmirah", 2.3, 1.0, (0.55, 0.3))
     r.note("Diary", 0.0, 4.15, "dorm_diary", "A diary open on the desk",
            "Nov 20. The dogs behind UB Hall have stopped barking. They just stand at the fence and look at the "
-           "lights. Rafi says they follow the torch beams.\n\nNov 21. Rafi went out to the courtyard with his phone "
-           "torch. He hasn't come back.")
+           "lights.\n\nNov 21. Dr. Karim gave Rafi the key to the workshop lift ('if anything happens, it goes to "
+           "the roof people'). Tonight the residents started walking in their sleep, all towards the light. Rafi "
+           "went out to the courtyard with his phone torch to find his roommate. He hasn't come back.")
     r.light("Moon", 0.0, 4.4, MOON, 0.35, 1.2, gameplay=False)
     r.write()
     out[r.zone_id] = r
@@ -317,8 +324,9 @@ def rooms():
     for k, (x, y) in enumerate(((-2.0, 5.5), (-3.5, 3.5), (4.0, 6.5))):
         r.prop(f"Chair{k}", "ChairStack" if k == 2 else "CanteenTableSetB", x, y, (0.9, 0.5) if k < 2 else (0.4, 0.3))
     r.note("Radio", 0.0, 7.9, "common_radio", "A walkie-talkie on the TV",
-           "It crackles. A voice, very faint: '...anyone in the halls, the UB roof... we can see the lights from up "
-           "here... don't come through the courtyard with a light...'", light=False)
+           "It crackles. A voice, very faint: '...anyone in the halls, we're on the UB roof, back stair... the "
+           "sleepwalkers go for any light, keep it OFF... Rafi from South Hall, room 203, has the workshop lift key. "
+           "He went out an hour ago. If you find him, bring the key. Knock three short, three long.'", light=False)
     r.light("TvGlow", 0.0, 7.8, (0.6, 0.8, 1.0), 0.5, 1.4, gameplay=False)
     r.write()
     out[r.zone_id] = r

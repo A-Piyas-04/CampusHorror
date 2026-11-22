@@ -89,7 +89,7 @@ scale = Vector2(0.4, 0.3)
 position = Vector2(0, -162.5504)
 note_id = "common_radio"
 title = "A walkie-talkie on the TV"
-body = "It crackles. A voice, very faint: '...anyone in the halls, the UB roof... we can see the lights from up here... don't come through the courtyard with a light...'"
+body = "It crackles. A voice, very faint: '...anyone in the halls, we're on the UB roof, back stair... the sleepwalkers go for any light, keep it OFF... Rafi from South Hall, room 203, has the workshop lift key. He went out an hour ago. If you find him, bring the key. Knock three short, three long.'"
 requires_light = false
 
 [node name="TvGlow" type="PointLight2D" parent="Objects/Lights"]

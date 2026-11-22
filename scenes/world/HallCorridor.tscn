@@ -5,10 +5,11 @@
 [ext_resource type="PackedScene" path="res://scenes/props/interiors/HallCorridorRoom.tscn" id="3_r"]
 [ext_resource type="PackedScene" path="res://scenes/components/Door.tscn" id="4_r"]
 [ext_resource type="PackedScene" path="res://scenes/components/SpawnMarker.tscn" id="5_r"]
-[ext_resource type="PackedScene" path="res://scenes/props/furniture/WaterDrum.tscn" id="6_r"]
-[ext_resource type="PackedScene" path="res://scenes/props/common/ContactShadow.tscn" id="7_r"]
-[ext_resource type="Texture2D" path="res://data/lighting/light_soft.tres" id="8_r"]
-[ext_resource type="Script" path="res://scripts/lighting/lamp_light.gd" id="9_r"]
+[ext_resource type="PackedScene" path="res://scenes/creatures/NightGuard.tscn" id="6_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/furniture/WaterDrum.tscn" id="7_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/common/ContactShadow.tscn" id="8_r"]
+[ext_resource type="Texture2D" path="res://data/lighting/light_soft.tres" id="9_r"]
+[ext_resource type="Script" path="res://scripts/lighting/lamp_light.gd" id="10_r"]
 
 [node name="HallCorridor" type="Node2D"]
 y_sort_enabled = true
@@ -59,14 +60,29 @@ verb = "Enter"
 place_name = "Room 203"
 show_placeholder = false
 
+[node name="Sleeper" parent="Objects/Story" instance=ExtResource("6_r")]
+position = Vector2(256, -45.2672)
+patrol_points = PackedVector2Array(128, -45.2672, 384, -47.3248)
+active = false
+visible = false
+sight_radius = 110.0
+close_sense_radius = 40.0
+light_sensitivity = 2.2
+hearing = 0.6
+patrol_speed = 26.0
+investigate_speed = 60.0
+chase_speed = 128.0
+modulate = Color(0.86, 0.83, 0.96, 1)
+metadata/role = "patrol"
+
 [node name="Spawn_hallcorr_from_room" parent="Objects/SpawnMarkers" instance=ExtResource("5_r")]
 position = Vector2(0, -65.8432)
 spawn_id = "hallcorr_from_room"
 
-[node name="Drum" parent="Objects/Props" instance=ExtResource("6_r")]
+[node name="Drum" parent="Objects/Props" instance=ExtResource("7_r")]
 position = Vector2(384, -80.2464)
 
-[node name="ContactShadow" parent="Objects/Props/Drum" instance=ExtResource("7_r")]
+[node name="ContactShadow" parent="Objects/Props/Drum" instance=ExtResource("8_r")]
 scale = Vector2(0.4, 0.3)
 
 [node name="Exit" type="PointLight2D" parent="Objects/Lights"]
@@ -74,9 +90,9 @@ position = Vector2(-384, -61.728)
 color = Color(0.35, 1.0, 0.5, 1)
 energy = 0.45
 range_item_cull_mask = 3
-texture = ExtResource("8_r")
+texture = ExtResource("9_r")
 texture_scale = 0.6
-script = ExtResource("9_r")
+script = ExtResource("10_r")
 mode = 0
 needs_power = false
 base_energy = 0.45
@@ -87,9 +103,9 @@ position = Vector2(192, -74.0736)
 color = Color(0.95, 0.97, 1.0, 1)
 energy = 0.8
 range_item_cull_mask = 3
-texture = ExtResource("8_r")
+texture = ExtResource("9_r")
 texture_scale = 2.0
-script = ExtResource("9_r")
+script = ExtResource("10_r")
 mode = 1
 needs_power = true
 base_energy = 0.8

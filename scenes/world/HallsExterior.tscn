@@ -19,6 +19,13 @@
 [ext_resource type="PackedScene" path="res://scenes/components/ZoneEdge.tscn" id="17_r"]
 [ext_resource type="PackedScene" path="res://scenes/components/SpawnMarker.tscn" id="18_r"]
 [ext_resource type="PackedScene" path="res://scenes/components/Door.tscn" id="19_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/horror/CoveredShape.tscn" id="20_r"]
+[ext_resource type="PackedScene" path="res://scenes/components/Examine.tscn" id="21_r"]
+[ext_resource type="PackedScene" path="res://scenes/components/Pickup.tscn" id="22_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/furniture/MasterKey.tscn" id="23_r"]
+[ext_resource type="PackedScene" path="res://scenes/creatures/NightGuard.tscn" id="24_r"]
+[ext_resource type="Script" path="res://scripts/world/crow_flock.gd" id="25_r"]
+[ext_resource type="Script" path="res://scripts/world/glow_mark.gd" id="26_r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1"]
 size = Vector2(40, 4760)
@@ -550,3 +557,114 @@ show_placeholder = false
 [node name="Spawn_outside_north_hall" parent="Objects/SpawnMarkers" instance=ExtResource("18_r")]
 position = Vector2(4935, 672)
 spawn_id = "outside_north_hall"
+
+[node name="Chapter4" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+editor_description = "Chapter 4 night layer: sleepwalkers, Rafi and the lift key, UB back stair, crows, glow."
+
+[node name="Story" type="Node2D" parent="Objects/Chapter4"]
+y_sort_enabled = true
+
+[node name="Creatures" type="Node2D" parent="Objects/Chapter4"]
+y_sort_enabled = true
+
+[node name="Rafi" parent="Objects/Chapter4/Story" instance=ExtResource("20_r")]
+position = Vector2(4150, -1080)
+
+[node name="RafiLook" parent="Objects/Chapter4/Story" instance=ExtResource("21_r")]
+position = Vector2(4150, -1070)
+verb = "Look"
+object_name = "Under the sheet"
+message = "Someone covered him with a bedsheet. A phone lies by his hand, its torch still on, the battery almost gone. The grass around him is trampled flat in a perfect circle."
+
+[node name="LiftKey" parent="Objects/Chapter4/Story" instance=ExtResource("22_r")]
+position = Vector2(4205, -1052)
+pickup_id = "rafi_lift_key"
+verb = "Take"
+item_name = "Workshop lift key"
+item_id = "lift_key"
+sets_flag = "lift_key_found"
+show_placeholder = false
+y_sort_enabled = true
+
+[node name="Visual" parent="Objects/Chapter4/Story/LiftKey" instance=ExtResource("23_r")]
+position = Vector2(0, -6)
+
+[node name="PhoneGlow" type="PointLight2D" parent="Objects/Chapter4/Story"]
+position = Vector2(4180, -1060)
+color = Color(0.85, 0.9, 1, 1)
+energy = 0.45
+range_item_cull_mask = 3
+texture = ExtResource("15_r")
+texture_scale = 0.7
+script = ExtResource("16_r")
+mode = 1
+needs_power = false
+base_energy = 0.45
+gameplay = false
+
+[node name="UbBackStair" parent="Objects/Chapter4/Story" instance=ExtResource("21_r")]
+position = Vector2(4170, 700)
+verb = "Knock"
+object_name = "UB Hall back stair"
+requires_flag = "lift_key_found"
+not_ready_message = "The back stair door is barricaded from inside. A voice hisses through the gap: 'Not without Rafi. He has the lift key. And put that light OUT.'"
+sets_flag = "ch4_survivors"
+message = "Three short, three long. The barricade shifts, hands pull you into the dark stairwell, and up."
+
+[node name="Sleepwalker1" parent="Objects/Chapter4/Creatures" instance=ExtResource("24_r")]
+position = Vector2(4170, -2000)
+patrol_points = PackedVector2Array(4170, -2200, 4170, -300)
+active = false
+visible = false
+sight_radius = 110.0
+close_sense_radius = 40.0
+light_sensitivity = 2.2
+hearing = 0.6
+patrol_speed = 26.0
+investigate_speed = 60.0
+chase_speed = 128.0
+modulate = Color(0.86, 0.83, 0.96, 1)
+metadata/role = "patrol"
+
+[node name="Sleepwalker2" parent="Objects/Chapter4/Creatures" instance=ExtResource("24_r")]
+position = Vector2(4470, 200)
+patrol_points = PackedVector2Array(4470, 400, 4470, -1800)
+active = false
+visible = false
+sight_radius = 110.0
+close_sense_radius = 40.0
+light_sensitivity = 2.2
+hearing = 0.6
+patrol_speed = 26.0
+investigate_speed = 60.0
+chase_speed = 128.0
+modulate = Color(0.86, 0.83, 0.96, 1)
+metadata/role = "patrol"
+
+[node name="Sleepwalker3" parent="Objects/Chapter4/Creatures" instance=ExtResource("24_r")]
+position = Vector2(3870, -1500)
+patrol_points = PackedVector2Array(3870, -1800, 3870, 400)
+active = false
+visible = false
+sight_radius = 110.0
+close_sense_radius = 40.0
+light_sensitivity = 2.2
+hearing = 0.6
+patrol_speed = 26.0
+investigate_speed = 60.0
+chase_speed = 128.0
+modulate = Color(0.86, 0.83, 0.96, 1)
+metadata/role = "patrol"
+
+[node name="Crows1" type="Node2D" parent="Objects/Chapter4/Creatures"]
+position = Vector2(4170, -2500)
+script = ExtResource("25_r")
+
+[node name="RafiGlow" type="Node2D" parent="Objects/Glow"]
+position = Vector2(4150, -1080)
+script = ExtResource("26_r")
+color = Color(0.45, 1, 0.82, 1)
+intensity = 0.7
+pulse_speed = 0.5
+spots = PackedVector3Array(0, 0, 9, -30, 12, 6, 34, -8, 7, 10, 26, 5)

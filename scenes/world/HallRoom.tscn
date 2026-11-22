@@ -82,7 +82,7 @@ scale = Vector2(0.55, 0.3)
 position = Vector2(0, -85.3904)
 note_id = "dorm_diary"
 title = "A diary open on the desk"
-body = "Nov 20. The dogs behind UB Hall have stopped barking. They just stand at the fence and look at the lights. Rafi says they follow the torch beams.\n\nNov 21. Rafi went out to the courtyard with his phone torch. He hasn't come back."
+body = "Nov 20. The dogs behind UB Hall have stopped barking. They just stand at the fence and look at the lights.\n\nNov 21. Dr. Karim gave Rafi the key to the workshop lift ('if anything happens, it goes to the roof people'). Tonight the residents started walking in their sleep, all towards the light. Rafi went out to the courtyard with his phone torch to find his roommate. He hasn't come back."
 requires_light = true
 
 [node name="Moon" type="PointLight2D" parent="Objects/Lights"]

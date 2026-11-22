@@ -14,7 +14,7 @@ from pathlib import Path
 
 sys.dont_write_bytecode = True
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from scene_lib import (ASPHALT, C, EDGE, GRASS, ROOT, S, SPAWN, STUDENT, student_props, V, WALKWAY, WATER, ZoneScene, campus, register_zones,  # noqa: E402
+from scene_lib import (ASPHALT, C, EDGE, GRASS, ROOT, S, SPAWN, STUDENT, sleepwalker_props, student_props, V, WALKWAY, WATER, ZoneScene, campus, register_zones,  # noqa: E402
                        veg, write_profile)
 
 MANIFESTS = ROOT / "scenes/tests/zone_validation/manifests"
@@ -280,11 +280,52 @@ def halls_exterior():
     z.spawn("outside_south_hall", 3400, 672)
     z.door("DoorNorthHall", 4935, 625, "hall_common", "common_from_outside", "Enter", "North Hall")
     z.spawn("outside_north_hall", 4935, 672)
+    chapter4_layer(z)
     z.write()
     write_profile("halls_exterior", zoom=2.0, limits=(2300, -3240, 3800, 4830), surface="grass",
                   ambience="night_field", vol=-5.0, night=(0.18, 0.2, 0.3))
     manifest("halls_exterior", "Halls: South Hall and North Hall (four 30 m segments each), the palm courtyard, UB "
              "Hall, the halls' gate. Campus frame.", [2800, -2950, 2800, 4250])
+
+
+def chapter4_layer(z):
+    """Chapter 4 "The Halls" night layer (scripts/story/chapter_4.gd): sleepwalkers in the courtyard (drawn to
+    light), Rafi under a sheet on the path with the workshop lift key, the barricaded UB back stair, crows."""
+    s = z.s
+    s.node("Chapter4", "Node2D", "Objects", props={"y_sort_enabled": "true", "editor_description": S(
+        "Chapter 4 night layer: sleepwalkers, Rafi and the lift key, UB back stair, crows, glow.")})
+    for g in ("Story", "Creatures"):
+        s.node(g, "Node2D", "Objects/Chapter4", props={"y_sort_enabled": "true"})
+    z.place("Rafi", "res://scenes/props/horror/CoveredShape.tscn", 4150, -1080, parent="Objects/Chapter4/Story")
+    s.node("RafiLook", None, "Objects/Chapter4/Story", instance="res://scenes/components/Examine.tscn", props={
+        "position": V(4150, -1070), "verb": S("Look"), "object_name": S("Under the sheet"),
+        "message": S("Someone covered him with a bedsheet. A phone lies by his hand, its torch still on, the battery "
+                     "almost gone. The grass around him is trampled flat in a perfect circle.")})
+    s.node("LiftKey", None, "Objects/Chapter4/Story", instance="res://scenes/components/Pickup.tscn", props={
+        "position": V(4205, -1052), "pickup_id": S("rafi_lift_key"), "verb": S("Take"),
+        "item_name": S("Workshop lift key"), "item_id": S("lift_key"), "sets_flag": S("lift_key_found"),
+        "show_placeholder": "false", "y_sort_enabled": "true"})
+    s.node("Visual", None, "Objects/Chapter4/Story/LiftKey", instance="res://scenes/props/furniture/MasterKey.tscn",
+           props={"position": V(0, -6)})
+    s.node("PhoneGlow", "PointLight2D", "Objects/Chapter4/Story", props={
+        "position": V(4180, -1060), "color": C(0.85, 0.9, 1.0), "energy": "0.45", "range_item_cull_mask": "3",
+        "texture": s.res("res://data/lighting/light_soft.tres", "Texture2D"), "texture_scale": "0.7",
+        "script": s.res("res://scripts/lighting/lamp_light.gd"), "mode": "1", "needs_power": "false",
+        "base_energy": "0.45", "gameplay": "false"})
+    s.node("UbBackStair", None, "Objects/Chapter4/Story", instance="res://scenes/components/Examine.tscn", props={
+        "position": V(4170, 700), "verb": S("Knock"), "object_name": S("UB Hall back stair"),
+        "requires_flag": S("lift_key_found"),
+        "not_ready_message": S("The back stair door is barricaded from inside. A voice hisses through the gap: 'Not "
+                               "without Rafi. He has the lift key. And put that light OUT.'"),
+        "sets_flag": S("ch4_survivors"),
+        "message": S("Three short, three long. The barricade shifts, hands pull you into the dark stairwell, and up.")})
+    for name, x, y, patrol in (("Sleepwalker1", 4170, -2000, [(4170, -2200), (4170, -300)]),
+                               ("Sleepwalker2", 4470, 200, [(4470, 400), (4470, -1800)]),
+                               ("Sleepwalker3", 3870, -1500, [(3870, -1800), (3870, 400)])):
+        s.node(name, None, "Objects/Chapter4/Creatures", instance=STUDENT, props=sleepwalker_props(x, y, patrol))
+    s.node("Crows1", "Node2D", "Objects/Chapter4/Creatures",
+           props={"position": V(4170, -2500), "script": s.res("res://scripts/world/crow_flock.gd")})
+    z.glow("RafiGlow", 4150, -1080, spots=((0, 0, 9), (-30, 12, 6), (34, -8, 7), (10, 26, 5)), intensity=0.7)
 
 
 # --- Academic area ------------------------------------------------------------------------------------------------
