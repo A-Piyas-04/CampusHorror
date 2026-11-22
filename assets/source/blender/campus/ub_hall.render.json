@@ -86,7 +86,23 @@
       }
     },
     "objects": {
-      "Main": {
+      "Plinth": {
+        "parts": [
+          {
+            "box": [
+              -35.5,
+              35.5,
+              -8.5,
+              8.5,
+              0.0,
+              0.04
+            ],
+            "mat": "roof_slab"
+          }
+        ],
+        "bevel": 0.0
+      },
+      "Building": {
         "parts": [
           {
             "box": [
@@ -7172,7 +7188,16 @@
   "model": {
     "objects": [
       {
-        "object": "Main",
+        "object": "Plinth",
+        "evaluated_bounds_m": {
+          "x": 71.0,
+          "y": 17.0,
+          "z": 0.04
+        },
+        "evaluated_faces": 6
+      },
+      {
+        "object": "Building",
         "evaluated_bounds_m": {
           "x": 75.4,
           "y": 20.7,
@@ -7267,7 +7292,7 @@
       3499,
       1534
     ],
-    "render_seconds": 21.5
+    "render_seconds": 31.8
   },
   "projection": {
     "note": "texture px, top-left origin: x = W/2 + (p.right - cx)*ppm, y = H/2 - (p.up - cy)*ppm",
@@ -7317,18 +7342,53 @@
       241.6686580370374,
       3257.500030517578,
       1292.3313309107496
+    ],
+    "crop_px": [
+      305,
+      747,
+      2889,
+      488
     ]
   },
   "tiling": null,
-  "layers": null,
+  "layers": [
+    {
+      "name": "Building",
+      "png": "assets/sprites/campus/ub_hall__building.png",
+      "objects": [
+        "Building"
+      ],
+      "sort_y_m": -9,
+      "z_index": 0,
+      "fade": {
+        "rects_m": {
+          "Behind": [
+            -36.5,
+            36.5,
+            -8.4,
+            29.29
+          ]
+        },
+        "alpha": 0.3,
+        "seconds": 0.3
+      },
+      "render_seconds": 21.5,
+      "crop_px": [
+        217,
+        217,
+        3065,
+        1100
+      ]
+    }
+  ],
   "kind": "sprite",
   "ground_tile": null,
-  "total_seconds": 22.9,
+  "total_seconds": 34.2,
   "blender_run": {
     "exit_code": 0,
-    "seconds": 24.0,
+    "seconds": 35.1,
     "problem_lines": [
-      "00:01.906  cycles           | WARNING HIPEW initialization failed: Error opening HIP dynamic library"
+      "00:01.859  cycles           | WARNING HIPEW initialization failed: Error opening HIP dynamic library"
     ]
   },
   "verification": {
@@ -7336,25 +7396,25 @@
       "bit_depth": 8,
       "png_color_type": 6,
       "interlace": 0,
-      "file_bytes": 5209896,
+      "file_bytes": 426072,
       "size_px": [
-        3499,
-        1534
+        2889,
+        488
       ],
-      "opaque_pixels": 2881272,
-      "partially_transparent_pixels": 17662,
-      "fully_transparent_pixels": 2468532,
+      "opaque_pixels": 1237228,
+      "partially_transparent_pixels": 13610,
+      "fully_transparent_pixels": 158994,
       "content_bbox_px": [
-        240,
-        240,
-        3258,
-        1293
+        23,
+        23,
+        2865,
+        464
       ],
       "margins_px": {
-        "left": 240,
-        "right": 240,
-        "top": 240,
-        "bottom": 240
+        "left": 23,
+        "right": 23,
+        "top": 23,
+        "bottom": 23
       },
       "max_alpha_on_image_border": 0.0
     },
@@ -7366,13 +7426,40 @@
     ],
     "minimum_margin_required_px": 16,
     "tiling": null,
-    "layers": null,
+    "layers": {
+      "Building": {
+        "bit_depth": 8,
+        "png_color_type": 6,
+        "interlace": 0,
+        "file_bytes": 4691055,
+        "size_px": [
+          3065,
+          1100
+        ],
+        "opaque_pixels": 2881286,
+        "partially_transparent_pixels": 17626,
+        "fully_transparent_pixels": 472588,
+        "content_bbox_px": [
+          23,
+          23,
+          3041,
+          1076
+        ],
+        "margins_px": {
+          "left": 23,
+          "right": 23,
+          "top": 23,
+          "bottom": 23
+        },
+        "max_alpha_on_image_border": 0.0
+      }
+    },
     "passed": true
   },
   "godot": {
     "scene": "scenes/props/campus/UbHall.tscn",
     "scene_name": "UbHall",
-    "scene_semantic_sha256": "90d7bc21c9b830e3726db2af7a5638c5ee0eebc11470ccf904f7917445c9682c",
+    "scene_semantic_sha256": "a4c2dbb76ebfc7846a28a06947d8ae7173ebd66d90384fb3381b0a1afac39ac4",
     "sprite_offset_adjust_px": [
       0.0,
       0.0
@@ -7382,18 +7469,18 @@
       "game_px_per_m": 32.0,
       "sprite_scale": 0.8,
       "sprite_offset_px": [
-        -1749.5,
-        -991.672436453402
+        -1444.5,
+        -244.67243645340204
       ],
       "origin_px": [
         1749.5,
         991.672436453402
       ],
       "sprite_rect_game_px": [
-        -1399.6000000000001,
-        -793.3379491627217,
-        2799.2000000000003,
-        1227.2
+        -1226.0,
+        -619.7379491627216,
+        2452.0,
+        880.0
       ],
       "footprint_game_px": [
         [
@@ -7414,7 +7501,57 @@
         ]
       ],
       "ground_depth_factor": 0.6427876353263855,
-      "layers": null
+      "layers": [
+        {
+          "name": "Building",
+          "position_game_px": [
+            0.0,
+            185.12283897399902
+          ],
+          "sprite_offset_px": [
+            -1532.5,
+            -1006.0759851709008
+          ],
+          "z_index": 0,
+          "fade": {
+            "node": "BuildingFade",
+            "alpha": 0.3,
+            "seconds": 0.3,
+            "shapes": [
+              {
+                "node": "ShapeBehind",
+                "resource_id": "RectangleShape2D_BuildingFadeBehind",
+                "center": [
+                  0.0,
+                  -214.8453392314911
+                ],
+                "size": [
+                  2336.0,
+                  775.253311214447
+                ],
+                "metres": [
+                  -36.5,
+                  36.5,
+                  -8.4,
+                  29.29
+                ]
+              }
+            ]
+          },
+          "crop_px": [
+            217,
+            217,
+            3065,
+            1100
+          ]
+        }
+      ],
+      "crop_px": [
+        305,
+        747,
+        2889,
+        488
+      ]
     },
     "collision": {
       "source": "rects_m",

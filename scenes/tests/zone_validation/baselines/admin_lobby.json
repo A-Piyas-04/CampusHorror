@@ -1,0 +1,1282 @@
+{
+	"format": 1,
+	"ground_lattice": {},
+	"nodes": {
+		".": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/world/AdminLobby.tscn",
+			"script": {
+				"path": "res://scripts/world/zone.gd",
+				"profile": "Resource(\"res://data/zones/profiles/admin_lobby.tres\")",
+				"zone_id": "\"admin_lobby\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"y_sort": true,
+			"z": 0
+		},
+		"./Objects": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"y_sort": true,
+			"z": 0
+		},
+		"./Objects/Doors": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"y_sort": true,
+			"z": 0
+		},
+		"./Objects/Doors/DoorOffice": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/components/Door.tscn",
+			"script": {
+				"destination_spawn_id": "\"office_from_lobby\"",
+				"destination_zone_id": "\"admin_office\"",
+				"hold_seconds": "0.0",
+				"locked_message": "\"Locked.\"",
+				"path": "res://scripts/components/door.gd",
+				"place_name": "\"Registrar\"",
+				"required_item": "\"\"",
+				"requires_flag": "\"\"",
+				"show_placeholder": "false",
+				"unlock_message": "\"\"",
+				"unlocked_flag": "\"door_unlocked_DoorOffice\"",
+				"verb": "\"Enter\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				246.39999389648438,
+				-144.03199768066406
+			],
+			"z": 0
+		},
+		"./Objects/Doors/DoorOffice/Body": {
+			"class": "Polygon2D",
+			"color": [
+				0.44999998807907104,
+				0.2800000011920929,
+				0.15000000596046448,
+				1.0
+			],
+			"light_mask": 1,
+			"polygon": [
+				[
+					-24.0,
+					-64.0
+				],
+				[
+					24.0,
+					-64.0
+				],
+				[
+					24.0,
+					0.0
+				],
+				[
+					-24.0,
+					0.0
+				]
+			],
+			"visible": false,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				246.39999389648438,
+				-144.03199768066406
+			],
+			"z": 0
+		},
+		"./Objects/Doors/DoorOffice/Interactable": {
+			"class": "Area2D",
+			"layer": 4,
+			"light_mask": 1,
+			"mask": 0,
+			"monitorable": true,
+			"monitoring": false,
+			"scene": "res://scenes/components/Interactable.tscn",
+			"script": {
+				"hold_seconds": "0.0",
+				"object_name": "\"Registrar\"",
+				"path": "res://scripts/components/interactable.gd",
+				"prompt_offset": "Vector2(0, -56)",
+				"verb": "\"Enter\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				246.39999389648438,
+				-144.03199768066406
+			],
+			"z": 0
+		},
+		"./Objects/Doors/DoorOffice/Interactable/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"circle": 32.0
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				246.39999389648438,
+				-144.03199768066406
+			],
+			"z": 0
+		},
+		"./Objects/Doors/DoorOut": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/components/Door.tscn",
+			"script": {
+				"destination_spawn_id": "\"outside_admin\"",
+				"destination_zone_id": "\"central_plaza\"",
+				"hold_seconds": "0.0",
+				"locked_message": "\"Locked.\"",
+				"path": "res://scripts/components/door.gd",
+				"place_name": "\"Central Plaza\"",
+				"required_item": "\"\"",
+				"requires_flag": "\"\"",
+				"show_placeholder": "false",
+				"unlock_message": "\"\"",
+				"unlocked_flag": "\"door_unlocked_DoorOut\"",
+				"verb": "\"Go out\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				-7.201600074768066
+			],
+			"z": 0
+		},
+		"./Objects/Doors/DoorOut/Body": {
+			"class": "Polygon2D",
+			"color": [
+				0.44999998807907104,
+				0.2800000011920929,
+				0.15000000596046448,
+				1.0
+			],
+			"light_mask": 1,
+			"polygon": [
+				[
+					-24.0,
+					-64.0
+				],
+				[
+					24.0,
+					-64.0
+				],
+				[
+					24.0,
+					0.0
+				],
+				[
+					-24.0,
+					0.0
+				]
+			],
+			"visible": false,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				-7.201600074768066
+			],
+			"z": 0
+		},
+		"./Objects/Doors/DoorOut/Interactable": {
+			"class": "Area2D",
+			"layer": 4,
+			"light_mask": 1,
+			"mask": 0,
+			"monitorable": true,
+			"monitoring": false,
+			"scene": "res://scenes/components/Interactable.tscn",
+			"script": {
+				"hold_seconds": "0.0",
+				"object_name": "\"Central Plaza\"",
+				"path": "res://scripts/components/interactable.gd",
+				"prompt_offset": "Vector2(0, -56)",
+				"verb": "\"Go out\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				-7.201600074768066
+			],
+			"z": 0
+		},
+		"./Objects/Doors/DoorOut/Interactable/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"circle": 32.0
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				-7.201600074768066
+			],
+			"z": 0
+		},
+		"./Objects/Glow": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"y_sort": true,
+			"z": 0
+		},
+		"./Objects/Lights": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"y_sort": true,
+			"z": 0
+		},
+		"./Objects/Lights/Exit": {
+			"class": "PointLight2D",
+			"light": {
+				"color": [
+					0.3499999940395355,
+					1.0,
+					0.5,
+					1.0
+				],
+				"enabled": true,
+				"energy": 0.45,
+				"range_mask": 3,
+				"shadow_mask": 1,
+				"shadows": false
+			},
+			"light_mask": 1,
+			"script": {
+				"base_energy": "0.45",
+				"gameplay": "false",
+				"gameplay_radius": "0.0",
+				"mode": "0",
+				"needs_power": "false",
+				"path": "res://scripts/lighting/lamp_light.gd",
+				"power_flag": "\"power_on\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				-20.576000213623047
+			],
+			"z": 0
+		},
+		"./Objects/Lights/TubeE": {
+			"class": "PointLight2D",
+			"light": {
+				"color": [
+					0.949999988079071,
+					0.9700000286102295,
+					1.0,
+					1.0
+				],
+				"enabled": false,
+				"energy": 0.8,
+				"range_mask": 3,
+				"shadow_mask": 1,
+				"shadows": false
+			},
+			"light_mask": 1,
+			"script": {
+				"base_energy": "0.8",
+				"gameplay": "true",
+				"gameplay_radius": "0.0",
+				"mode": "0",
+				"needs_power": "true",
+				"path": "res://scripts/lighting/lamp_light.gd",
+				"power_flag": "\"power_plaza\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				128.0,
+				-144.03199768066406
+			],
+			"z": 0
+		},
+		"./Objects/Lights/TubeW": {
+			"class": "PointLight2D",
+			"light": {
+				"color": [
+					0.949999988079071,
+					0.9700000286102295,
+					1.0,
+					1.0
+				],
+				"enabled": false,
+				"energy": 0.8,
+				"range_mask": 3,
+				"shadow_mask": 1,
+				"shadows": false
+			},
+			"light_mask": 1,
+			"script": {
+				"base_energy": "0.8",
+				"gameplay": "true",
+				"gameplay_radius": "0.0",
+				"mode": "0",
+				"needs_power": "true",
+				"path": "res://scripts/lighting/lamp_light.gd",
+				"power_flag": "\"power_plaza\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-128.0,
+				-144.03199768066406
+			],
+			"z": 0
+		},
+		"./Objects/Props": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"y_sort": true,
+			"z": 0
+		},
+		"./Objects/Props/Bench0": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/furniture/PlazaBench.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-176.0,
+				-53.49760055541992
+			],
+			"z": 0
+		},
+		"./Objects/Props/Bench0/Body": {
+			"class": "StaticBody2D",
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-176.0,
+				-53.49760055541992
+			],
+			"z": 0
+		},
+		"./Objects/Props/Bench0/Body/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					57.599998474121094,
+					9.050450325012207
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-176.0,
+				-53.49760055541992
+			],
+			"z": 0
+		},
+		"./Objects/Props/Bench0/ContactShadow": {
+			"centered": true,
+			"class": "Sprite2D",
+			"light_mask": 1,
+			"offset": [
+				0.0,
+				0.0
+			],
+			"scene": "res://scenes/props/common/ContactShadow.tscn",
+			"texture": "embedded:GradientTexture2D",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				0.25,
+				-176.0,
+				-53.49760055541992
+			],
+			"z": -9
+		},
+		"./Objects/Props/Bench0/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-156.5,
+				-139.79945373535156
+			],
+			"texture": "res://assets/sprites/furniture/plaza_bench.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.21333333849906921,
+				0.0,
+				0.0,
+				0.21333333849906921,
+				-176.0,
+				-53.49760055541992
+			],
+			"z": 0
+		},
+		"./Objects/Props/Bench1": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/furniture/PlazaBench.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-96.0,
+				-53.49760055541992
+			],
+			"z": 0
+		},
+		"./Objects/Props/Bench1/Body": {
+			"class": "StaticBody2D",
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-96.0,
+				-53.49760055541992
+			],
+			"z": 0
+		},
+		"./Objects/Props/Bench1/Body/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					57.599998474121094,
+					9.050450325012207
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-96.0,
+				-53.49760055541992
+			],
+			"z": 0
+		},
+		"./Objects/Props/Bench1/ContactShadow": {
+			"centered": true,
+			"class": "Sprite2D",
+			"light_mask": 1,
+			"offset": [
+				0.0,
+				0.0
+			],
+			"scene": "res://scenes/props/common/ContactShadow.tscn",
+			"texture": "embedded:GradientTexture2D",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				0.25,
+				-96.0,
+				-53.49760055541992
+			],
+			"z": -9
+		},
+		"./Objects/Props/Bench1/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-156.5,
+				-139.79945373535156
+			],
+			"texture": "res://assets/sprites/furniture/plaza_bench.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.21333333849906921,
+				0.0,
+				0.0,
+				0.21333333849906921,
+				-96.0,
+				-53.49760055541992
+			],
+			"z": 0
+		},
+		"./Objects/Props/Bench2": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/furniture/PlazaBench.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				96.0,
+				-53.49760055541992
+			],
+			"z": 0
+		},
+		"./Objects/Props/Bench2/Body": {
+			"class": "StaticBody2D",
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				96.0,
+				-53.49760055541992
+			],
+			"z": 0
+		},
+		"./Objects/Props/Bench2/Body/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					57.599998474121094,
+					9.050450325012207
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				96.0,
+				-53.49760055541992
+			],
+			"z": 0
+		},
+		"./Objects/Props/Bench2/ContactShadow": {
+			"centered": true,
+			"class": "Sprite2D",
+			"light_mask": 1,
+			"offset": [
+				0.0,
+				0.0
+			],
+			"scene": "res://scenes/props/common/ContactShadow.tscn",
+			"texture": "embedded:GradientTexture2D",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				0.25,
+				96.0,
+				-53.49760055541992
+			],
+			"z": -9
+		},
+		"./Objects/Props/Bench2/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-156.5,
+				-139.79945373535156
+			],
+			"texture": "res://assets/sprites/furniture/plaza_bench.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.21333333849906921,
+				0.0,
+				0.0,
+				0.21333333849906921,
+				96.0,
+				-53.49760055541992
+			],
+			"z": 0
+		},
+		"./Objects/Props/Bench3": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/furniture/PlazaBench.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				176.0,
+				-53.49760055541992
+			],
+			"z": 0
+		},
+		"./Objects/Props/Bench3/Body": {
+			"class": "StaticBody2D",
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				176.0,
+				-53.49760055541992
+			],
+			"z": 0
+		},
+		"./Objects/Props/Bench3/Body/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					57.599998474121094,
+					9.050450325012207
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				176.0,
+				-53.49760055541992
+			],
+			"z": 0
+		},
+		"./Objects/Props/Bench3/ContactShadow": {
+			"centered": true,
+			"class": "Sprite2D",
+			"light_mask": 1,
+			"offset": [
+				0.0,
+				0.0
+			],
+			"scene": "res://scenes/props/common/ContactShadow.tscn",
+			"texture": "embedded:GradientTexture2D",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				0.25,
+				176.0,
+				-53.49760055541992
+			],
+			"z": -9
+		},
+		"./Objects/Props/Bench3/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-156.5,
+				-139.79945373535156
+			],
+			"texture": "res://assets/sprites/furniture/plaza_bench.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.21333333849906921,
+				0.0,
+				0.0,
+				0.21333333849906921,
+				176.0,
+				-53.49760055541992
+			],
+			"z": 0
+		},
+		"./Objects/Props/Reception": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/furniture/ReceptionCounter.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				-123.45600128173828
+			],
+			"z": 0
+		},
+		"./Objects/Props/Reception/Body": {
+			"class": "StaticBody2D",
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				-123.45600128173828
+			],
+			"z": 0
+		},
+		"./Objects/Props/Reception/Body/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					131.1999969482422,
+					18.512283325195313
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				-123.45600128173828
+			],
+			"z": 0
+		},
+		"./Objects/Props/Reception/ContactShadow": {
+			"centered": true,
+			"class": "Sprite2D",
+			"light_mask": 1,
+			"offset": [
+				0.0,
+				0.0
+			],
+			"scene": "res://scenes/props/common/ContactShadow.tscn",
+			"texture": "embedded:GradientTexture2D",
+			"visible": true,
+			"xform": [
+				2.200000047683716,
+				0.0,
+				0.0,
+				0.44999998807907104,
+				0.0,
+				-123.45600128173828
+			],
+			"z": -9
+		},
+		"./Objects/Props/Reception/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-356.5,
+				-218.60911560058594
+			],
+			"texture": "res://assets/sprites/furniture/reception_counter.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.21333333849906921,
+				0.0,
+				0.0,
+				0.21333333849906921,
+				0.0,
+				-123.45600128173828
+			],
+			"z": 0
+		},
+		"./Objects/Room": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/interiors/AdminLobbyRoom.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"y_sort": true,
+			"z": 0
+		},
+		"./Objects/Room/Body": {
+			"class": "StaticBody2D",
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"z": 0
+		},
+		"./Objects/Room/Body/CollisionDoorStopE1": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					16.0,
+					28.796886444091797
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				272.0,
+				-143.98443603515625
+			],
+			"z": 0
+		},
+		"./Objects/Room/Body/CollisionDoorStopS1": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					83.19999694824219,
+					10.284602165222168
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				10.284602165222168
+			],
+			"z": 0
+		},
+		"./Objects/Room/Body/CollisionWallE1": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					8.0,
+					136.7852020263672
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				260.0,
+				-63.25030517578125
+			],
+			"z": 0
+		},
+		"./Objects/Room/Body/CollisionWallE2": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					8.0,
+					54.508392333984375
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				260.0,
+				-183.5801544189453
+			],
+			"z": 0
+		},
+		"./Objects/Room/Body/CollisionWallN": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					528.0,
+					5.142301082611084
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				-208.26319885253906
+			],
+			"z": 0
+		},
+		"./Objects/Room/Body/CollisionWallS1": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					225.60000610351563,
+					5.142301082611084
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-151.1999969482422,
+				2.571150541305542
+			],
+			"z": 0
+		},
+		"./Objects/Room/Body/CollisionWallS2": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					225.60000610351563,
+					5.142301082611084
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				151.1999969482422,
+				2.571150541305542
+			],
+			"z": 0
+		},
+		"./Objects/Room/Body/CollisionWallW1": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					8.0,
+					215.9766387939453
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-260.0,
+				-102.84602355957031
+			],
+			"z": 0
+		},
+		"./Objects/Room/SouthWall": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-810.5750122070313,
+				-110.12586212158203
+			],
+			"texture": "res://assets/sprites/interiors/admin_lobby_room__south_wall.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.3368421196937561,
+				0.0,
+				0.0,
+				0.3368421196937561,
+				0.0,
+				5.142301082611084
+			],
+			"z": 0
+		},
+		"./Objects/Room/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-808.5750122070313,
+				-912.8596801757813
+			],
+			"texture": "res://assets/sprites/interiors/admin_lobby_room.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.3368421196937561,
+				0.0,
+				0.0,
+				0.3368421196937561,
+				0.0,
+				0.0
+			],
+			"z": -10
+		},
+		"./Objects/SpawnMarkers": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"y_sort": true,
+			"z": 0
+		},
+		"./Objects/SpawnMarkers/Spawn_lobby_from_office": {
+			"class": "Marker2D",
+			"light_mask": 1,
+			"scene": "res://scenes/components/SpawnMarker.tscn",
+			"script": {
+				"path": "res://scripts/components/spawn_marker.gd",
+				"spawn_id": "\"lobby_from_office\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				217.60000610351563,
+				-144.03199768066406
+			],
+			"z": 0
+		},
+		"./Objects/SpawnMarkers/Spawn_lobby_from_outside": {
+			"class": "Marker2D",
+			"light_mask": 1,
+			"scene": "res://scenes/components/SpawnMarker.tscn",
+			"script": {
+				"path": "res://scripts/components/spawn_marker.gd",
+				"spawn_id": "\"lobby_from_outside\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				-28.806400299072266
+			],
+			"z": 0
+		},
+		"./Objects/Story": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"y_sort": true,
+			"z": 0
+		},
+		"./Objects/Story/Visitors": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/components/Readable.tscn",
+			"script": {
+				"body": "\"The last entry, 23:20, signed by the night guard:\n\n'Delivered the hall breaker code to the registrar's safe as ordered. The plant room under CDS is not ours. It was never ours.'\"",
+				"dark_message": "\"Too dark to read. Light the lantern.\"",
+				"note_id": "\"admin_visitors\"",
+				"path": "res://scripts/components/readable.gd",
+				"requires_light": "true",
+				"sets_flag": "\"\"",
+				"title": "\"Visitors' register\"",
+				"verb": "\"Read\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-25.600000381469727,
+				-113.16799926757813
+			],
+			"z": 0
+		},
+		"./Objects/Story/Visitors/Interactable": {
+			"class": "Area2D",
+			"layer": 4,
+			"light_mask": 1,
+			"mask": 0,
+			"monitorable": true,
+			"monitoring": false,
+			"scene": "res://scenes/components/Interactable.tscn",
+			"script": {
+				"hold_seconds": "0.0",
+				"object_name": "\"Visitors' register\"",
+				"path": "res://scripts/components/interactable.gd",
+				"prompt_offset": "Vector2(0, -56)",
+				"verb": "\"Read\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-25.600000381469727,
+				-113.16799926757813
+			],
+			"z": 0
+		},
+		"./Objects/Story/Visitors/Interactable/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"circle": 32.0
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-25.600000381469727,
+				-113.16799926757813
+			],
+			"z": 0
+		}
+	},
+	"zone_id": "admin_lobby"
+}

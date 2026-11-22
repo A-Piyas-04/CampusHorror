@@ -102,7 +102,23 @@
       }
     },
     "objects": {
-      "Main": {
+      "Plinth": {
+        "parts": [
+          {
+            "box": [
+              -14.5,
+              14.5,
+              -7.5,
+              7.5,
+              0.0,
+              0.04
+            ],
+            "mat": "roof_slab"
+          }
+        ],
+        "bevel": 0.0
+      },
+      "Building": {
         "parts": [
           {
             "box": [
@@ -709,7 +725,8 @@
     "px_per_m": 48.0,
     "samples": 192,
     "elevation_deg": 40.0,
-    "azimuth_deg": 0.0
+    "azimuth_deg": 0.0,
+    "crop_layers": true
   },
   "godot": {
     "scene_name": "PlazaCentralCafe",
@@ -744,5 +761,26 @@
       ]
     },
     "depth_mode": "projected"
-  }
+  },
+  "layers": [
+    {
+      "name": "Building",
+      "objects": [
+        "Building"
+      ],
+      "sort_y_m": -8,
+      "fade": {
+        "rects_m": {
+          "Behind": [
+            -15.5,
+            15.5,
+            -7.4,
+            19.959
+          ]
+        },
+        "alpha": 0.3,
+        "seconds": 0.3
+      }
+    }
+  ]
 }

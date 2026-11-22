@@ -220,25 +220,28 @@ speeds, physics interpolation, frame-time budgets.
 Buildings branch off it. Locked doors, dead power and blocked paths open up over time, so you return
 through known spaces by new routes. Shortcuts keep backtracking quick.
 
-| Ch | Title | Where | New verb or threat | Approx. |
-|---|---|---|---|---|
-| 0 | Quiet Hours | Main Gate at dusk, CDS | Walk, interact, lantern; the power fails | 10 min |
-| 1 | Lights Out | Main Gate at night, field, CDS veranda and one CDS room | Light discipline, hiding, **the Night Guard** | 25 min |
-| 2 | Lecture Hall | An academic building, 2–3 floors | Restoring power, sound, the crows | 30 min |
-| 3 | The Halls | A hall of residence and the medical centre | Composure under pressure, **the strays** | 30 min |
-| 4 | Below | Into the facility through the medical centre's service level, 2 facility levels | The truth: what the organism is | 35 min |
-| 5 | The Turning | **Back to the surface, into the Mirror Campus**: Main Gate, CDS, academic building, colonised | Every known route changed; heavy backtracking | 35 min |
-| 6 | Source | The deepest facility level, then the Mirror Main Gate | **The source**: final chase and endings | 25 min |
+**Revised 22 November 2026 (D29) for the whole campus** (`Docs/CAMPUS_BUILD.md` section 5). The hub is still the
+Main Gate and field; the spokes are now the real places the owner photographed: the lake plaza north of the field,
+the halls east of the CDS, the academic area beyond the lake. Each chapter opens one spoke and brings one new threat.
 
-**Total: about 3 h 10 min**, inside the 2–4 h target, with room to cut or grow. Two or three endings,
+| Ch | Title | Where | Goal / new verb or threat | Approx. |
+|---|---|---|---|---|
+| 1 | Lights Out (built) | CDS canteen, veranda, field, Main Gate, security office, indoor games hall | find a light; the gate is chained; the breaker; the hatch under CDS. **The Night Guard** | 25 min |
+| 2 | The Plaza | Five Pillars bridge, Central Plaza, Mosque, Admin, Auditorium + AV hall, Central Cafe | the hatch's service tunnel surfaces at the lake; the Mosque is the safe room (the muezzin's note); the registrar's memo shows the tunnel plan; the AV hall's last slide names the organism. **The crows** (spotters that call the Guard) | 30 min |
+| 3 | Lecture Hall | Academic 1 corridor + room 304, Academic 2 electronics lab, the garage | power the academic wing from the garage generator; the lab log traces the current under the ME workshops; **the students** (sound-hunting hosts) | 30 min |
+| 4 | The Halls | South Hall corridor + room 203, the courtyard, North Hall common room, UB Hall roof | the survivors' radio; cross the courtyard without a light; **the strays** (a dog pack that follows torch beams) | 30 min |
+| 5 | Below | the facility under the ME workshops (the workshop pit lift), 2 levels | the truth: what the organism is and what it feeds on (the campus power) | 35 min |
+| 6 | The Turning / Source | the **Mirror Campus** (plaza, halls, field reused, colonised), then the Main Gate | every known route changed; **the source**; final chase and endings | 35 min |
+
+**Total: about 3 h 5 min**, inside the 2–4 h target, with room to cut or grow. Two or three endings,
 keyed to what you discovered and who you helped.
 
 **Scope this implies (it keeps the game finishable):**
 
 | Zone type | Count | Notes |
 |---|---|---|
-| Exterior zones | ~5 | Main Gate and field (built), plus mosque / Five Pillars approach, academic quad, halls area, lakeside. Exteriors are cheaper to build and are where exploration happens. |
-| Interior zones | ~10–14 | **Curated**: only the buildings the story enters. Other buildings stand on the map, recognisable but dark and locked (natural for a campus at night). |
+| Exterior zones | 4 (built) | `main_gate_exterior` (field, CDS, gate), `central_plaza` (lake, Mosque, Admin, Auditorium, Cafe, Five Pillars), `halls_exterior`, `academic_exterior`, all in one shared campus frame (D28). Exteriors are where exploration happens. |
+| Interior zones | 18 (built as concepts) | Chapter 1: CDS veranda, canteen, table tennis, indoor basketball, security office. Whole campus: academic corridor, classroom 304, electronics lab, admin lobby, registrar's office, mosque prayer hall, auditorium, AV hall, central cafeteria, hall corridor, dorm room 203, North Hall common room. **Curated**: other buildings (Academic 3, UB Hall, the workshops) stand on the map, dark and locked. |
 | Facility levels | 3–4 | New art set: concrete, steel, labs, containment |
 | Mirror variants | ~4–5 | Reuse geometry |
 | **Total zone scenes** | **~25–30** | |

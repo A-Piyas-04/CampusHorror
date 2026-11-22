@@ -10324,7 +10324,8 @@
 				"gameplay_radius": "0.0",
 				"mode": "0",
 				"needs_power": "false",
-				"path": "res://scripts/lighting/lamp_light.gd"
+				"path": "res://scripts/lighting/lamp_light.gd",
+				"power_flag": "\"power_on\""
 			},
 			"visible": true,
 			"xform": [
@@ -11157,6 +11158,297 @@
 				0.14499999582767487,
 				-1390.0,
 				1407.0
+			],
+			"z": 0
+		},
+		"./Objects/CampusEdges": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"y_sort": true,
+			"z": 0
+		},
+		"./Objects/CampusEdges/EdgeToHalls": {
+			"class": "Area2D",
+			"layer": 16,
+			"light_mask": 1,
+			"mask": 2,
+			"monitorable": false,
+			"monitoring": true,
+			"scene": "res://scenes/components/ZoneEdge.tscn",
+			"script": {
+				"destination_spawn_id": "\"halls_from_field\"",
+				"destination_zone_id": "\"halls_exterior\"",
+				"locked_message": "\"The way is blocked.\"",
+				"path": "res://scripts/components/zone_edge.gd",
+				"place_name": "\"The halls\"",
+				"required_item": "\"\"",
+				"requires_flag": "\"\"",
+				"size": "Vector2(50, 1500)"
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				2215.0,
+				-150.0
+			],
+			"z": 0
+		},
+		"./Objects/CampusEdges/EdgeToHalls/Shape": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					50.0,
+					1500.0
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				2215.0,
+				-150.0
+			],
+			"z": 0
+		},
+		"./Objects/CampusEdges/EdgeToPlaza1": {
+			"class": "Area2D",
+			"layer": 16,
+			"light_mask": 1,
+			"mask": 2,
+			"monitorable": false,
+			"monitoring": true,
+			"scene": "res://scenes/components/ZoneEdge.tscn",
+			"script": {
+				"destination_spawn_id": "\"plaza_from_field_1\"",
+				"destination_zone_id": "\"central_plaza\"",
+				"locked_message": "\"The way is blocked.\"",
+				"path": "res://scripts/components/zone_edge.gd",
+				"place_name": "\"Central Plaza\"",
+				"required_item": "\"\"",
+				"requires_flag": "\"\"",
+				"size": "Vector2(1580, 50)"
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1090.0,
+				-1330.0
+			],
+			"z": 0
+		},
+		"./Objects/CampusEdges/EdgeToPlaza1/Shape": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					1580.0,
+					50.0
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1090.0,
+				-1330.0
+			],
+			"z": 0
+		},
+		"./Objects/CampusEdges/EdgeToPlaza2": {
+			"class": "Area2D",
+			"layer": 16,
+			"light_mask": 1,
+			"mask": 2,
+			"monitorable": false,
+			"monitoring": true,
+			"scene": "res://scenes/components/ZoneEdge.tscn",
+			"script": {
+				"destination_spawn_id": "\"plaza_from_field_2\"",
+				"destination_zone_id": "\"central_plaza\"",
+				"locked_message": "\"The way is blocked.\"",
+				"path": "res://scripts/components/zone_edge.gd",
+				"place_name": "\"Central Plaza\"",
+				"required_item": "\"\"",
+				"requires_flag": "\"\"",
+				"size": "Vector2(1000, 50)"
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				200.0,
+				-1330.0
+			],
+			"z": 0
+		},
+		"./Objects/CampusEdges/EdgeToPlaza2/Shape": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					1000.0,
+					50.0
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				200.0,
+				-1330.0
+			],
+			"z": 0
+		},
+		"./Objects/CampusEdges/EdgeToPlaza3": {
+			"class": "Area2D",
+			"layer": 16,
+			"light_mask": 1,
+			"mask": 2,
+			"monitorable": false,
+			"monitoring": true,
+			"scene": "res://scenes/components/ZoneEdge.tscn",
+			"script": {
+				"destination_spawn_id": "\"plaza_from_field_3\"",
+				"destination_zone_id": "\"central_plaza\"",
+				"locked_message": "\"The way is blocked.\"",
+				"path": "res://scripts/components/zone_edge.gd",
+				"place_name": "\"Central Plaza\"",
+				"required_item": "\"\"",
+				"requires_flag": "\"\"",
+				"size": "Vector2(1540, 50)"
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				1470.0,
+				-1330.0
+			],
+			"z": 0
+		},
+		"./Objects/CampusEdges/EdgeToPlaza3/Shape": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					1540.0,
+					50.0
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				1470.0,
+				-1330.0
+			],
+			"z": 0
+		},
+		"./Objects/CampusEdges/SpawnFieldFromHalls": {
+			"class": "Marker2D",
+			"light_mask": 1,
+			"scene": "res://scenes/components/SpawnMarker.tscn",
+			"script": {
+				"path": "res://scripts/components/spawn_marker.gd",
+				"spawn_id": "\"field_from_halls\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				2110.0,
+				-150.0
+			],
+			"z": 0
+		},
+		"./Objects/CampusEdges/SpawnFieldFromPlaza1": {
+			"class": "Marker2D",
+			"light_mask": 1,
+			"scene": "res://scenes/components/SpawnMarker.tscn",
+			"script": {
+				"path": "res://scripts/components/spawn_marker.gd",
+				"spawn_id": "\"field_from_plaza_1\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-500.0,
+				-1200.0
+			],
+			"z": 0
+		},
+		"./Objects/CampusEdges/SpawnFieldFromPlaza2": {
+			"class": "Marker2D",
+			"light_mask": 1,
+			"scene": "res://scenes/components/SpawnMarker.tscn",
+			"script": {
+				"path": "res://scripts/components/spawn_marker.gd",
+				"spawn_id": "\"field_from_plaza_2\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				200.0,
+				-1200.0
+			],
+			"z": 0
+		},
+		"./Objects/CampusEdges/SpawnFieldFromPlaza3": {
+			"class": "Marker2D",
+			"light_mask": 1,
+			"scene": "res://scenes/components/SpawnMarker.tscn",
+			"script": {
+				"path": "res://scripts/components/spawn_marker.gd",
+				"spawn_id": "\"field_from_plaza_3\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				1470.0,
+				-1200.0
 			],
 			"z": 0
 		},
@@ -14580,7 +14872,8 @@
 				"gameplay_radius": "0.0",
 				"mode": "0",
 				"needs_power": "true",
-				"path": "res://scripts/lighting/lamp_light.gd"
+				"path": "res://scripts/lighting/lamp_light.gd",
+				"power_flag": "\"power_on\""
 			},
 			"visible": true,
 			"xform": [
@@ -14712,7 +15005,8 @@
 				"gameplay_radius": "0.0",
 				"mode": "0",
 				"needs_power": "false",
-				"path": "res://scripts/lighting/lamp_light.gd"
+				"path": "res://scripts/lighting/lamp_light.gd",
+				"power_flag": "\"power_on\""
 			},
 			"visible": true,
 			"xform": [
@@ -14844,7 +15138,8 @@
 				"gameplay_radius": "0.0",
 				"mode": "1",
 				"needs_power": "false",
-				"path": "res://scripts/lighting/lamp_light.gd"
+				"path": "res://scripts/lighting/lamp_light.gd",
+				"power_flag": "\"power_on\""
 			},
 			"visible": true,
 			"xform": [
@@ -14976,7 +15271,8 @@
 				"gameplay_radius": "0.0",
 				"mode": "1",
 				"needs_power": "false",
-				"path": "res://scripts/lighting/lamp_light.gd"
+				"path": "res://scripts/lighting/lamp_light.gd",
+				"power_flag": "\"power_on\""
 			},
 			"visible": true,
 			"xform": [
@@ -15105,7 +15401,8 @@
 				"gameplay_radius": "0.0",
 				"mode": "0",
 				"needs_power": "true",
-				"path": "res://scripts/lighting/lamp_light.gd"
+				"path": "res://scripts/lighting/lamp_light.gd",
+				"power_flag": "\"power_on\""
 			},
 			"visible": true,
 			"xform": [
@@ -15237,7 +15534,8 @@
 				"gameplay_radius": "0.0",
 				"mode": "0",
 				"needs_power": "false",
-				"path": "res://scripts/lighting/lamp_light.gd"
+				"path": "res://scripts/lighting/lamp_light.gd",
+				"power_flag": "\"power_on\""
 			},
 			"visible": true,
 			"xform": [
@@ -15366,7 +15664,8 @@
 				"gameplay_radius": "0.0",
 				"mode": "0",
 				"needs_power": "true",
-				"path": "res://scripts/lighting/lamp_light.gd"
+				"path": "res://scripts/lighting/lamp_light.gd",
+				"power_flag": "\"power_on\""
 			},
 			"visible": true,
 			"xform": [
@@ -15638,7 +15937,7 @@
 			"light_mask": 1,
 			"scene": "res://scenes/components/Readable.tscn",
 			"script": {
-				"body": "\"ISLAMIC UNIVERSITY OF TECHNOLOGY\nStudent identity card\n\nDept. of CSE. The name is smeared with something dark and the photo has been scratched away, as if by fingernails.\n\nThe lanyard is still knotted around something under the sheet.\"",
+				"body": "\"ISLAMIC UNIVERSITY OF TECHNOLOGY\r\nStudent identity card\r\n\r\nDept. of CSE. The name is smeared with something dark and the photo has been scratched away, as if by fingernails.\r\n\r\nThe lanyard is still knotted around something under the sheet.\"",
 				"dark_message": "\"Too dark to read. Light the lantern.\"",
 				"note_id": "\"field_id_card\"",
 				"path": "res://scripts/components/readable.gd",

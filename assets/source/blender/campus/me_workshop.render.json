@@ -52,6 +52,24 @@
         "var": 0.0,
         "part_var": 0.0
       },
+      "roof_slab": {
+        "color": [
+          0.42,
+          0.4,
+          0.37
+        ],
+        "rough": 0.9,
+        "var": 0.25,
+        "var_scale": 1.5,
+        "stains": 0.5,
+        "stain_color": [
+          0.26,
+          0.25,
+          0.23
+        ],
+        "stain_scale": 0.5,
+        "bump": 0.2
+      },
       "steel_grey": {
         "color": [
           0.52,
@@ -92,7 +110,23 @@
       }
     },
     "objects": {
-      "Main": {
+      "Plinth": {
+        "parts": [
+          {
+            "box": [
+              -24.9,
+              24.9,
+              -7.0,
+              7.0,
+              0.0,
+              0.04
+            ],
+            "mat": "roof_slab"
+          }
+        ],
+        "bevel": 0.0
+      },
+      "Building": {
         "parts": [
           {
             "box": [
@@ -282,7 +316,16 @@
   "model": {
     "objects": [
       {
-        "object": "Main",
+        "object": "Plinth",
+        "evaluated_bounds_m": {
+          "x": 49.8,
+          "y": 14.0,
+          "z": 0.04
+        },
+        "evaluated_faces": 6
+      },
+      {
+        "object": "Building",
         "evaluated_bounds_m": {
           "x": 50.8,
           "y": 14.9994,
@@ -294,6 +337,7 @@
     "materials": [
       "brick_wall",
       "glass",
+      "roof_slab",
       "steel_grey",
       "tin_roof",
       "white_paint"
@@ -378,7 +422,7 @@
       2357,
       852
     ],
-    "render_seconds": 7.5
+    "render_seconds": 13.1
   },
   "projection": {
     "note": "texture px, top-left origin: x = W/2 + (p.right - cx)*ppm, y = H/2 - (p.up - cy)*ppm",
@@ -428,18 +472,53 @@
       162.35146145356202,
       2194.499984741211,
       689.6485374394792
+    ],
+    "crop_px": [
+      158,
+      303,
+      2041,
+      410
     ]
   },
   "tiling": null,
-  "layers": null,
+  "layers": [
+    {
+      "name": "Building",
+      "png": "assets/sprites/campus/me_workshop__building.png",
+      "objects": [
+        "Building"
+      ],
+      "sort_y_m": -7.5,
+      "z_index": 0,
+      "fade": {
+        "rects_m": {
+          "Behind": [
+            -25.9,
+            25.9,
+            -6.9,
+            16.306
+          ]
+        },
+        "alpha": 0.3,
+        "seconds": 0.3
+      },
+      "render_seconds": 6.7,
+      "crop_px": [
+        138,
+        138,
+        2081,
+        576
+      ]
+    }
+  ],
   "kind": "sprite",
   "ground_tile": null,
-  "total_seconds": 8.9,
+  "total_seconds": 15.2,
   "blender_run": {
     "exit_code": 0,
-    "seconds": 9.9,
+    "seconds": 16.1,
     "problem_lines": [
-      "00:01.891  cycles           | WARNING HIPEW initialization failed: Error opening HIP dynamic library"
+      "00:01.890  cycles           | WARNING HIPEW initialization failed: Error opening HIP dynamic library"
     ]
   },
   "verification": {
@@ -447,25 +526,25 @@
       "bit_depth": 8,
       "png_color_type": 6,
       "interlace": 0,
-      "file_bytes": 1657157,
+      "file_bytes": 210879,
       "size_px": [
-        2357,
-        852
+        2041,
+        410
       ],
-      "opaque_pixels": 1060115,
-      "partially_transparent_pixels": 11287,
-      "fully_transparent_pixels": 936762,
+      "opaque_pixels": 714326,
+      "partially_transparent_pixels": 9937,
+      "fully_transparent_pixels": 112547,
       "content_bbox_px": [
-        161,
-        161,
-        2195,
-        690
+        23,
+        23,
+        2017,
+        386
       ],
       "margins_px": {
-        "left": 161,
-        "right": 161,
-        "top": 161,
-        "bottom": 161
+        "left": 23,
+        "right": 23,
+        "top": 23,
+        "bottom": 23
       },
       "max_alpha_on_image_border": 0.0
     },
@@ -477,13 +556,40 @@
     ],
     "minimum_margin_required_px": 16,
     "tiling": null,
-    "layers": null,
+    "layers": {
+      "Building": {
+        "bit_depth": 8,
+        "png_color_type": 6,
+        "interlace": 0,
+        "file_bytes": 1456869,
+        "size_px": [
+          2081,
+          576
+        ],
+        "opaque_pixels": 1060133,
+        "partially_transparent_pixels": 11301,
+        "fully_transparent_pixels": 127222,
+        "content_bbox_px": [
+          23,
+          23,
+          2057,
+          552
+        ],
+        "margins_px": {
+          "left": 23,
+          "right": 23,
+          "top": 23,
+          "bottom": 23
+        },
+        "max_alpha_on_image_border": 0.0
+      }
+    },
     "passed": true
   },
   "godot": {
     "scene": "scenes/props/campus/MeWorkshop.tscn",
     "scene_name": "MeWorkshop",
-    "scene_semantic_sha256": "d277faf527b85ee6580f053bf809c19fd2ffdd98c4473555e105232995e64633",
+    "scene_semantic_sha256": "acf942485147e26b974853b010284a19fcb3accbe23942cb2e4ee6e351a224f0",
     "sprite_offset_adjust_px": [
       0.0,
       0.0
@@ -493,18 +599,18 @@
       "game_px_per_m": 32.0,
       "sprite_scale": 0.8,
       "sprite_offset_px": [
-        -1178.5,
-        -508.3906569548126
+        -1020.5,
+        -205.39065695481258
       ],
       "origin_px": [
         1178.5,
         508.3906569548126
       ],
       "sprite_rect_game_px": [
-        -942.8000000000001,
-        -406.7125255638501,
-        1885.6000000000001,
-        681.6
+        -832.4000000000001,
+        -296.3125255638501,
+        1664.8000000000002,
+        460.8
       ],
       "footprint_game_px": [
         [
@@ -525,7 +631,57 @@
         ]
       ],
       "ground_depth_factor": 0.6427876353263855,
-      "layers": null
+      "layers": [
+        {
+          "name": "Building",
+          "position_game_px": [
+            0.0,
+            154.26903247833252
+          ],
+          "sprite_offset_px": [
+            -1040.5,
+            -563.2269475527282
+          ],
+          "z_index": 0,
+          "fade": {
+            "node": "BuildingFade",
+            "alpha": 0.3,
+            "seconds": 0.3,
+            "shapes": [
+              {
+                "node": "ShapeBehind",
+                "resource_id": "RectangleShape2D_BuildingFadeBehind",
+                "center": [
+                  0.0,
+                  -96.73696796607972
+                ],
+                "size": [
+                  1657.6,
+                  477.32895569229134
+                ],
+                "metres": [
+                  -25.9,
+                  25.9,
+                  -6.9,
+                  16.306
+                ]
+              }
+            ]
+          },
+          "crop_px": [
+            138,
+            138,
+            2081,
+            576
+          ]
+        }
+      ],
+      "crop_px": [
+        158,
+        303,
+        2041,
+        410
+      ]
     },
     "collision": {
       "source": "rects_m",

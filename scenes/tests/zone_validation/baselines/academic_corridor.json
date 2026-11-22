@@ -1,0 +1,1110 @@
+{
+	"format": 1,
+	"ground_lattice": {},
+	"nodes": {
+		".": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/world/AcademicCorridor.tscn",
+			"script": {
+				"path": "res://scripts/world/zone.gd",
+				"profile": "Resource(\"res://data/zones/profiles/academic_corridor.tres\")",
+				"zone_id": "\"academic_corridor\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"y_sort": true,
+			"z": 0
+		},
+		"./Objects": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"y_sort": true,
+			"z": 0
+		},
+		"./Objects/Doors": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"y_sort": true,
+			"z": 0
+		},
+		"./Objects/Doors/DoorClassroom": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/components/Door.tscn",
+			"script": {
+				"destination_spawn_id": "\"classroom_from_corridor\"",
+				"destination_zone_id": "\"academic_classroom\"",
+				"hold_seconds": "0.0",
+				"locked_message": "\"Locked.\"",
+				"path": "res://scripts/components/door.gd",
+				"place_name": "\"Room 304\"",
+				"required_item": "\"\"",
+				"requires_flag": "\"\"",
+				"show_placeholder": "false",
+				"unlock_message": "\"\"",
+				"unlocked_flag": "\"door_unlocked_DoorClassroom\"",
+				"verb": "\"Enter\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				144.0,
+				-96.70719909667969
+			],
+			"z": 0
+		},
+		"./Objects/Doors/DoorClassroom/Body": {
+			"class": "Polygon2D",
+			"color": [
+				0.44999998807907104,
+				0.2800000011920929,
+				0.15000000596046448,
+				1.0
+			],
+			"light_mask": 1,
+			"polygon": [
+				[
+					-24.0,
+					-64.0
+				],
+				[
+					24.0,
+					-64.0
+				],
+				[
+					24.0,
+					0.0
+				],
+				[
+					-24.0,
+					0.0
+				]
+			],
+			"visible": false,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				144.0,
+				-96.70719909667969
+			],
+			"z": 0
+		},
+		"./Objects/Doors/DoorClassroom/Interactable": {
+			"class": "Area2D",
+			"layer": 4,
+			"light_mask": 1,
+			"mask": 0,
+			"monitorable": true,
+			"monitoring": false,
+			"scene": "res://scenes/components/Interactable.tscn",
+			"script": {
+				"hold_seconds": "0.0",
+				"object_name": "\"Room 304\"",
+				"path": "res://scripts/components/interactable.gd",
+				"prompt_offset": "Vector2(0, -56)",
+				"verb": "\"Enter\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				144.0,
+				-96.70719909667969
+			],
+			"z": 0
+		},
+		"./Objects/Doors/DoorClassroom/Interactable/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"circle": 32.0
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				144.0,
+				-96.70719909667969
+			],
+			"z": 0
+		},
+		"./Objects/Doors/DoorOut": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/components/Door.tscn",
+			"script": {
+				"destination_spawn_id": "\"outside_academic_1\"",
+				"destination_zone_id": "\"academic_exterior\"",
+				"hold_seconds": "0.0",
+				"locked_message": "\"Locked.\"",
+				"path": "res://scripts/components/door.gd",
+				"place_name": "\"The road\"",
+				"required_item": "\"\"",
+				"requires_flag": "\"\"",
+				"show_placeholder": "false",
+				"unlock_message": "\"\"",
+				"unlocked_flag": "\"door_unlocked_DoorOut\"",
+				"verb": "\"Go out\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-384.0,
+				-7.201600074768066
+			],
+			"z": 0
+		},
+		"./Objects/Doors/DoorOut/Body": {
+			"class": "Polygon2D",
+			"color": [
+				0.44999998807907104,
+				0.2800000011920929,
+				0.15000000596046448,
+				1.0
+			],
+			"light_mask": 1,
+			"polygon": [
+				[
+					-24.0,
+					-64.0
+				],
+				[
+					24.0,
+					-64.0
+				],
+				[
+					24.0,
+					0.0
+				],
+				[
+					-24.0,
+					0.0
+				]
+			],
+			"visible": false,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-384.0,
+				-7.201600074768066
+			],
+			"z": 0
+		},
+		"./Objects/Doors/DoorOut/Interactable": {
+			"class": "Area2D",
+			"layer": 4,
+			"light_mask": 1,
+			"mask": 0,
+			"monitorable": true,
+			"monitoring": false,
+			"scene": "res://scenes/components/Interactable.tscn",
+			"script": {
+				"hold_seconds": "0.0",
+				"object_name": "\"The road\"",
+				"path": "res://scripts/components/interactable.gd",
+				"prompt_offset": "Vector2(0, -56)",
+				"verb": "\"Go out\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-384.0,
+				-7.201600074768066
+			],
+			"z": 0
+		},
+		"./Objects/Doors/DoorOut/Interactable/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"circle": 32.0
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-384.0,
+				-7.201600074768066
+			],
+			"z": 0
+		},
+		"./Objects/Doors/DoorStairs": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/components/Door.tscn",
+			"script": {
+				"destination_spawn_id": "\"outside_academic_1\"",
+				"destination_zone_id": "\"academic_exterior\"",
+				"hold_seconds": "0.0",
+				"locked_message": "\"The stairwell doors are chained shut from inside.\"",
+				"path": "res://scripts/components/door.gd",
+				"place_name": "\"Stairwell\"",
+				"required_item": "\"\"",
+				"requires_flag": "\"academic_stairs_open\"",
+				"show_placeholder": "false",
+				"unlock_message": "\"\"",
+				"unlocked_flag": "\"door_unlocked_DoorStairs\"",
+				"verb": "\"Open\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				470.3999938964844,
+				-51.439998626708984
+			],
+			"z": 0
+		},
+		"./Objects/Doors/DoorStairs/Body": {
+			"class": "Polygon2D",
+			"color": [
+				0.44999998807907104,
+				0.2800000011920929,
+				0.15000000596046448,
+				1.0
+			],
+			"light_mask": 1,
+			"polygon": [
+				[
+					-24.0,
+					-64.0
+				],
+				[
+					24.0,
+					-64.0
+				],
+				[
+					24.0,
+					0.0
+				],
+				[
+					-24.0,
+					0.0
+				]
+			],
+			"visible": false,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				470.3999938964844,
+				-51.439998626708984
+			],
+			"z": 0
+		},
+		"./Objects/Doors/DoorStairs/Interactable": {
+			"class": "Area2D",
+			"layer": 4,
+			"light_mask": 1,
+			"mask": 0,
+			"monitorable": true,
+			"monitoring": false,
+			"scene": "res://scenes/components/Interactable.tscn",
+			"script": {
+				"hold_seconds": "0.0",
+				"object_name": "\"Stairwell\"",
+				"path": "res://scripts/components/interactable.gd",
+				"prompt_offset": "Vector2(0, -56)",
+				"verb": "\"Open\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				470.3999938964844,
+				-51.439998626708984
+			],
+			"z": 0
+		},
+		"./Objects/Doors/DoorStairs/Interactable/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"circle": 32.0
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				470.3999938964844,
+				-51.439998626708984
+			],
+			"z": 0
+		},
+		"./Objects/Glow": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"y_sort": true,
+			"z": 0
+		},
+		"./Objects/Glow/Trail": {
+			"class": "Node2D",
+			"groups": [
+				"glow_marks"
+			],
+			"light_mask": 1,
+			"script": {
+				"color": "Color(0.45, 1, 0.82, 1)",
+				"intensity": "0.8",
+				"note_body": "\"\"",
+				"note_id": "\"\"",
+				"note_title": "\"\"",
+				"path": "res://scripts/world/glow_mark.gd",
+				"pulse_speed": "0.5",
+				"spots": "PackedVector3Array()",
+				"trail_spacing": "22.0",
+				"trail_to": "Vector2(-60, -60)",
+				"writing": "\"\"",
+				"writing_offset": "Vector2(0, 0)",
+				"writing_size": "26"
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				166.39999389648438,
+				-28.806400299072266
+			],
+			"z": 0
+		},
+		"./Objects/Lights": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"y_sort": true,
+			"z": 0
+		},
+		"./Objects/Lights/Exit": {
+			"class": "PointLight2D",
+			"light": {
+				"color": [
+					0.3499999940395355,
+					1.0,
+					0.5,
+					1.0
+				],
+				"enabled": true,
+				"energy": 0.45,
+				"range_mask": 3,
+				"shadow_mask": 1,
+				"shadows": false
+			},
+			"light_mask": 1,
+			"script": {
+				"base_energy": "0.45",
+				"gameplay": "false",
+				"gameplay_radius": "0.0",
+				"mode": "0",
+				"needs_power": "false",
+				"path": "res://scripts/lighting/lamp_light.gd",
+				"power_flag": "\"power_on\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-384.0,
+				-20.576000213623047
+			],
+			"z": 0
+		},
+		"./Objects/Lights/Tube0": {
+			"class": "PointLight2D",
+			"light": {
+				"color": [
+					0.949999988079071,
+					0.9700000286102295,
+					1.0,
+					1.0
+				],
+				"enabled": false,
+				"energy": 0.8,
+				"range_mask": 3,
+				"shadow_mask": 1,
+				"shadows": false
+			},
+			"light_mask": 1,
+			"script": {
+				"base_energy": "0.8",
+				"gameplay": "true",
+				"gameplay_radius": "0.0",
+				"mode": "0",
+				"needs_power": "true",
+				"path": "res://scripts/lighting/lamp_light.gd",
+				"power_flag": "\"power_academic\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-384.0,
+				-72.01599884033203
+			],
+			"z": 0
+		},
+		"./Objects/Lights/Tube1": {
+			"class": "PointLight2D",
+			"light": {
+				"color": [
+					0.949999988079071,
+					0.9700000286102295,
+					1.0,
+					1.0
+				],
+				"enabled": false,
+				"energy": 0.8,
+				"range_mask": 3,
+				"shadow_mask": 1,
+				"shadows": false
+			},
+			"light_mask": 1,
+			"script": {
+				"base_energy": "0.8",
+				"gameplay": "true",
+				"gameplay_radius": "0.0",
+				"mode": "0",
+				"needs_power": "true",
+				"path": "res://scripts/lighting/lamp_light.gd",
+				"power_flag": "\"power_academic\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-96.0,
+				-72.01599884033203
+			],
+			"z": 0
+		},
+		"./Objects/Lights/Tube2": {
+			"class": "PointLight2D",
+			"light": {
+				"color": [
+					0.949999988079071,
+					0.9700000286102295,
+					1.0,
+					1.0
+				],
+				"enabled": false,
+				"energy": 0.8,
+				"range_mask": 3,
+				"shadow_mask": 1,
+				"shadows": false
+			},
+			"light_mask": 1,
+			"script": {
+				"base_energy": "0.8",
+				"gameplay": "true",
+				"gameplay_radius": "0.0",
+				"mode": "0",
+				"needs_power": "true",
+				"path": "res://scripts/lighting/lamp_light.gd",
+				"power_flag": "\"power_academic\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				192.0,
+				-72.01599884033203
+			],
+			"z": 0
+		},
+		"./Objects/Props": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"y_sort": true,
+			"z": 0
+		},
+		"./Objects/Props/Bench": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/furniture/GymBench.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				288.0,
+				-90.5344009399414
+			],
+			"z": 0
+		},
+		"./Objects/Props/Bench/Body": {
+			"class": "StaticBody2D",
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				288.0,
+				-90.5344009399414
+			],
+			"z": 0
+		},
+		"./Objects/Props/Bench/Body/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					64.0,
+					6.1707611083984375
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				288.0,
+				-90.5344009399414
+			],
+			"z": 0
+		},
+		"./Objects/Props/Bench/ContactShadow": {
+			"centered": true,
+			"class": "Sprite2D",
+			"light_mask": 1,
+			"offset": [
+				0.0,
+				0.0
+			],
+			"scene": "res://scenes/props/common/ContactShadow.tscn",
+			"texture": "embedded:GradientTexture2D",
+			"visible": true,
+			"xform": [
+				1.2000000476837158,
+				0.0,
+				0.0,
+				0.25,
+				288.0,
+				-90.5344009399414
+			],
+			"z": -9
+		},
+		"./Objects/Props/Bench/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-174.0,
+				-91.39271545410156
+			],
+			"texture": "res://assets/sprites/furniture/gym_bench.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.21333333849906921,
+				0.0,
+				0.0,
+				0.21333333849906921,
+				288.0,
+				-90.5344009399414
+			],
+			"z": 0
+		},
+		"./Objects/Props/Bin": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/furniture/TrashBin.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-192.0,
+				-92.59200286865234
+			],
+			"z": 0
+		},
+		"./Objects/Props/Bin/Body": {
+			"class": "StaticBody2D",
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-192.0,
+				-92.59200286865234
+			],
+			"z": 0
+		},
+		"./Objects/Props/Bin/Body/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					12.800000190734863,
+					8.227682113647461
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-192.0,
+				-92.59200286865234
+			],
+			"z": 0
+		},
+		"./Objects/Props/Bin/ContactShadow": {
+			"centered": true,
+			"class": "Sprite2D",
+			"light_mask": 1,
+			"offset": [
+				0.0,
+				0.0
+			],
+			"scene": "res://scenes/props/common/ContactShadow.tscn",
+			"texture": "embedded:GradientTexture2D",
+			"visible": true,
+			"xform": [
+				0.3499999940395355,
+				0.0,
+				0.0,
+				0.25,
+				-192.0,
+				-92.59200286865234
+			],
+			"z": -9
+		},
+		"./Objects/Props/Bin/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-161.5,
+				-382.0125732421875
+			],
+			"texture": "res://assets/sprites/furniture/trash_bin.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.05169227719306946,
+				0.0,
+				0.0,
+				0.05169227719306946,
+				-192.0,
+				-92.59200286865234
+			],
+			"z": 0
+		},
+		"./Objects/Room": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/interiors/AcademicCorridorRoom.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"y_sort": true,
+			"z": 0
+		},
+		"./Objects/Room/Body": {
+			"class": "StaticBody2D",
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"z": 0
+		},
+		"./Objects/Room/Body/CollisionDoorStopE1": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					16.0,
+					37.024566650390625
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				496.0,
+				-51.423011779785156
+			],
+			"z": 0
+		},
+		"./Objects/Room/Body/CollisionDoorStopS1": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					70.4000015258789,
+					10.284602165222168
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-384.0,
+				10.284602165222168
+			],
+			"z": 0
+		},
+		"./Objects/Room/Body/CollisionWallE1": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					8.0,
+					40.109947204589844
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				484.0,
+				-14.912672996520996
+			],
+			"z": 0
+		},
+		"./Objects/Room/Body/CollisionWallE2": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					8.0,
+					40.109947204589844
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				484.0,
+				-87.933349609375
+			],
+			"z": 0
+		},
+		"./Objects/Room/Body/CollisionWallN": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					976.0,
+					5.142301082611084
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				-105.41717529296875
+			],
+			"z": 0
+		},
+		"./Objects/Room/Body/CollisionWallS1": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					72.0,
+					5.142301082611084
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-452.0,
+				2.571150541305542
+			],
+			"z": 0
+		},
+		"./Objects/Room/Body/CollisionWallS2": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					840.0,
+					5.142301082611084
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				68.0,
+				2.571150541305542
+			],
+			"z": 0
+		},
+		"./Objects/Room/Body/CollisionWallW1": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					8.0,
+					113.13062286376953
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-484.0,
+				-51.423011779785156
+			],
+			"z": 0
+		},
+		"./Objects/Room/SouthWall": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-1398.6500244140625,
+				-105.12393188476563
+			],
+			"texture": "res://assets/sprites/interiors/academic_corridor_room__south_wall.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.35555556416511536,
+				0.0,
+				0.0,
+				0.35555556416511536,
+				0.0,
+				5.142301082611084
+			],
+			"z": 0
+		},
+		"./Objects/Room/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-1396.6500244140625,
+				-562.6611938476563
+			],
+			"texture": "res://assets/sprites/interiors/academic_corridor_room.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.35555556416511536,
+				0.0,
+				0.0,
+				0.35555556416511536,
+				0.0,
+				0.0
+			],
+			"z": -10
+		},
+		"./Objects/SpawnMarkers": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"y_sort": true,
+			"z": 0
+		},
+		"./Objects/SpawnMarkers/Spawn_corridor_from_classroom": {
+			"class": "Marker2D",
+			"light_mask": 1,
+			"scene": "res://scenes/components/SpawnMarker.tscn",
+			"script": {
+				"path": "res://scripts/components/spawn_marker.gd",
+				"spawn_id": "\"corridor_from_classroom\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				144.0,
+				-74.07360076904297
+			],
+			"z": 0
+		},
+		"./Objects/SpawnMarkers/Spawn_corridor_from_outside": {
+			"class": "Marker2D",
+			"light_mask": 1,
+			"scene": "res://scenes/components/SpawnMarker.tscn",
+			"script": {
+				"path": "res://scripts/components/spawn_marker.gd",
+				"spawn_id": "\"corridor_from_outside\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-384.0,
+				-28.806400299072266
+			],
+			"z": 0
+		},
+		"./Objects/Story": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"y_sort": true,
+			"z": 0
+		}
+	},
+	"zone_id": "academic_corridor"
+}

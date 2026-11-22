@@ -1,0 +1,148 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/world/zone.gd" id="1_r"]
+[ext_resource type="Resource" path="res://data/zones/profiles/mosque_prayer_hall.tres" id="2_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/interiors/MosquePrayerHallRoom.tscn" id="3_r"]
+[ext_resource type="PackedScene" path="res://scenes/components/Door.tscn" id="4_r"]
+[ext_resource type="PackedScene" path="res://scenes/components/SpawnMarker.tscn" id="5_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/furniture/PrayerRugs.tscn" id="6_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/furniture/Minbar.tscn" id="7_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/common/ContactShadow.tscn" id="8_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/furniture/Rehal.tscn" id="9_r"]
+[ext_resource type="PackedScene" path="res://scenes/components/Readable.tscn" id="10_r"]
+[ext_resource type="Texture2D" path="res://data/lighting/light_soft.tres" id="11_r"]
+[ext_resource type="Script" path="res://scripts/lighting/lamp_light.gd" id="12_r"]
+
+[node name="MosquePrayerHall" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_r")
+zone_id = "mosque_prayer_hall"
+profile = ExtResource("2_r")
+
+[node name="Objects" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Props" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="Story" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="Lights" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="Doors" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="SpawnMarkers" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="Glow" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="Room" parent="Objects" instance=ExtResource("3_r")]
+
+[node name="DoorOut" parent="Objects/Doors" instance=ExtResource("4_r")]
+position = Vector2(0, -7.2016)
+destination_zone_id = "central_plaza"
+destination_spawn_id = "outside_mosque"
+verb = "Go out"
+place_name = "Central Plaza"
+show_placeholder = false
+
+[node name="Spawn_mosque_from_plaza" parent="Objects/SpawnMarkers" instance=ExtResource("5_r")]
+position = Vector2(0, -32.9216)
+spawn_id = "mosque_from_plaza"
+
+[node name="Rugs0_0" parent="Objects/Props" instance=ExtResource("6_r")]
+position = Vector2(-198.4, -82.304)
+
+[node name="Rugs0_1" parent="Objects/Props" instance=ExtResource("6_r")]
+position = Vector2(0, -82.304)
+
+[node name="Rugs0_2" parent="Objects/Props" instance=ExtResource("6_r")]
+position = Vector2(198.4, -82.304)
+
+[node name="Rugs1_0" parent="Objects/Props" instance=ExtResource("6_r")]
+position = Vector2(-198.4, -123.456)
+
+[node name="Rugs1_1" parent="Objects/Props" instance=ExtResource("6_r")]
+position = Vector2(0, -123.456)
+
+[node name="Rugs1_2" parent="Objects/Props" instance=ExtResource("6_r")]
+position = Vector2(198.4, -123.456)
+
+[node name="Rugs2_0" parent="Objects/Props" instance=ExtResource("6_r")]
+position = Vector2(-198.4, -164.608)
+
+[node name="Rugs2_1" parent="Objects/Props" instance=ExtResource("6_r")]
+position = Vector2(0, -164.608)
+
+[node name="Rugs2_2" parent="Objects/Props" instance=ExtResource("6_r")]
+position = Vector2(198.4, -164.608)
+
+[node name="Rugs3_0" parent="Objects/Props" instance=ExtResource("6_r")]
+position = Vector2(-198.4, -205.76)
+
+[node name="Rugs3_1" parent="Objects/Props" instance=ExtResource("6_r")]
+position = Vector2(0, -205.76)
+
+[node name="Rugs3_2" parent="Objects/Props" instance=ExtResource("6_r")]
+position = Vector2(198.4, -205.76)
+
+[node name="Rugs4_0" parent="Objects/Props" instance=ExtResource("6_r")]
+position = Vector2(-198.4, -246.912)
+
+[node name="Rugs4_1" parent="Objects/Props" instance=ExtResource("6_r")]
+position = Vector2(0, -246.912)
+
+[node name="Rugs4_2" parent="Objects/Props" instance=ExtResource("6_r")]
+position = Vector2(198.4, -246.912)
+
+[node name="Minbar" parent="Objects/Props" instance=ExtResource("7_r")]
+position = Vector2(83.2, -300.4096)
+
+[node name="ContactShadow" parent="Objects/Props/Minbar" instance=ExtResource("8_r")]
+scale = Vector2(0.6, 0.4)
+
+[node name="Rehal0" parent="Objects/Props" instance=ExtResource("9_r")]
+position = Vector2(-192, -51.44)
+
+[node name="Rehal1" parent="Objects/Props" instance=ExtResource("9_r")]
+position = Vector2(-64, -51.44)
+
+[node name="Rehal2" parent="Objects/Props" instance=ExtResource("9_r")]
+position = Vector2(192, -51.44)
+
+[node name="Imam" parent="Objects/Story" instance=ExtResource("10_r")]
+position = Vector2(-64, -47.3248)
+note_id = "imam_note"
+title = "A note tucked in a Quran stand"
+body = "To whoever comes in after me: stay. They do not come in here. I have watched them stop at the door, like the light from the great window holds them back.\n\nRest. Then go and find the others in the halls. - the muezzin"
+requires_light = true
+
+[node name="GreatWindow" type="PointLight2D" parent="Objects/Lights"]
+position = Vector2(0, -61.728)
+color = Color(0.6, 0.7, 1.0, 1)
+energy = 0.7
+range_item_cull_mask = 3
+texture = ExtResource("11_r")
+texture_scale = 3.2
+script = ExtResource("12_r")
+mode = 0
+needs_power = false
+base_energy = 0.7
+gameplay = true
+
+[node name="Mihrab" type="PointLight2D" parent="Objects/Lights"]
+position = Vector2(0, -304.5248)
+color = Color(1.0, 0.85, 0.6, 1)
+energy = 0.5
+range_item_cull_mask = 3
+texture = ExtResource("11_r")
+texture_scale = 1.2
+script = ExtResource("12_r")
+mode = 0
+needs_power = false
+base_energy = 0.5
+gameplay = true

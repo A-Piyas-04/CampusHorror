@@ -105,7 +105,23 @@
       }
     },
     "objects": {
-      "Main": {
+      "Plinth": {
+        "parts": [
+          {
+            "box": [
+              -22.5,
+              22.5,
+              -13.5,
+              13.5,
+              0.0,
+              0.04
+            ],
+            "mat": "roof_slab"
+          }
+        ],
+        "bevel": 0.0
+      },
+      "Building": {
         "parts": [
           {
             "box": [
@@ -1692,7 +1708,16 @@
   "model": {
     "objects": [
       {
-        "object": "Main",
+        "object": "Plinth",
+        "evaluated_bounds_m": {
+          "x": 45.0,
+          "y": 27.0,
+          "z": 0.04
+        },
+        "evaluated_faces": 6
+      },
+      {
+        "object": "Building",
         "evaluated_bounds_m": {
           "x": 46.7,
           "y": 27.95,
@@ -1722,17 +1747,17 @@
       0.0
     ],
     "location_m": [
-      -3.1,
+      -1.975,
       -34.6332,
       42.0504
     ],
-    "ortho_scale_m": 54.1875,
+    "ortho_scale_m": 56.78125,
     "sensor_fit": "HORIZONTAL",
     "content_extent_m": [
-      46.7,
+      48.95,
       41.6193
     ],
-    "margin_m_each_side": 3.736,
+    "margin_m_each_side": 3.916,
     "pixels_per_metre_on_screen": 32.0
   },
   "lighting": {
@@ -1786,16 +1811,16 @@
     "view_transform": "Standard",
     "output_format": "PNG RGBA 8-bit",
     "resolution_px": [
-      1734,
-      1570
+      1817,
+      1582
     ],
-    "render_seconds": 13.3
+    "render_seconds": 22.1
   },
   "projection": {
     "note": "texture px, top-left origin: x = W/2 + (p.right - cx)*ppm, y = H/2 - (p.up - cy)*ppm",
     "image_px": [
-      1734,
-      1570
+      1817,
+      1582
     ],
     "px_per_m": 32.0,
     "right": [
@@ -1809,46 +1834,81 @@
       0.7660444378852844
     ],
     "center_m": [
-      -3.1000003814697266,
+      -1.9750003814697266,
       9.950659864582121
     ],
     "origin_px": [
-      966.2000122070312,
-      1103.4211156666279
+      971.7000122070312,
+      1109.4211156666279
     ],
     "footprint_corners_px": [
       [
-        230.20001220703125,
-        1391.3899762928486
+        235.70001220703125,
+        1397.3899762928486
       ],
       [
-        1702.2000122070312,
-        1391.3899762928486
+        1707.7000122070312,
+        1397.3899762928486
       ],
       [
-        1702.2000122070312,
-        815.4522550404072
+        1707.7000122070312,
+        821.4522550404072
       ],
       [
-        230.20001220703125,
-        815.4522550404072
+        235.70001220703125,
+        821.4522550404072
       ]
     ],
     "design_bounds_bbox_px": [
-      119.79998779296875,
-      119.09172934439812,
-      1614.2000122070312,
-      1450.908246758127
+      125.29998779296875,
+      125.09172934439812,
+      1691.7000122070312,
+      1456.908246758127
+    ],
+    "crop_px": [
+      227,
+      806,
+      1489,
+      606
     ]
   },
   "tiling": null,
-  "layers": null,
+  "layers": [
+    {
+      "name": "Building",
+      "png": "assets/sprites/campus/academic_2__building.png",
+      "objects": [
+        "Building"
+      ],
+      "sort_y_m": -14.0,
+      "z_index": 0,
+      "fade": {
+        "rects_m": {
+          "Behind": [
+            -23.5,
+            23.5,
+            -13.4,
+            52.675
+          ]
+        },
+        "alpha": 0.3,
+        "seconds": 0.3
+      },
+      "render_seconds": 14.5,
+      "crop_px": [
+        101,
+        101,
+        1543,
+        1380
+      ]
+    }
+  ],
   "kind": "sprite",
   "ground_tile": null,
-  "total_seconds": 14.7,
+  "total_seconds": 24.3,
   "blender_run": {
     "exit_code": 0,
-    "seconds": 15.8,
+    "seconds": 25.2,
     "problem_lines": [
       "00:01.907  cycles           | WARNING HIPEW initialization failed: Error opening HIP dynamic library"
     ]
@@ -1858,43 +1918,70 @@
       "bit_depth": 8,
       "png_color_type": 6,
       "interlace": 0,
-      "file_bytes": 3072330,
+      "file_bytes": 517653,
       "size_px": [
-        1734,
-        1570
+        1489,
+        606
       ],
-      "opaque_pixels": 1763830,
-      "partially_transparent_pixels": 11875,
-      "fully_transparent_pixels": 946675,
+      "opaque_pixels": 796578,
+      "partially_transparent_pixels": 8345,
+      "fully_transparent_pixels": 97411,
       "content_bbox_px": [
-        118,
-        118,
-        1615,
-        1451
+        23,
+        23,
+        1465,
+        582
       ],
       "margins_px": {
-        "left": 118,
-        "right": 118,
-        "top": 118,
-        "bottom": 118
+        "left": 23,
+        "right": 23,
+        "top": 23,
+        "bottom": 23
       },
       "max_alpha_on_image_border": 0.0
     },
     "bbox_deviation_px": [
-      -1.8,
+      -1.3,
       -1.09,
-      1.8,
+      1.3,
       1.09
     ],
     "minimum_margin_required_px": 16,
     "tiling": null,
-    "layers": null,
+    "layers": {
+      "Building": {
+        "bit_depth": 8,
+        "png_color_type": 6,
+        "interlace": 0,
+        "file_bytes": 2859926,
+        "size_px": [
+          1543,
+          1380
+        ],
+        "opaque_pixels": 1763988,
+        "partially_transparent_pixels": 11714,
+        "fully_transparent_pixels": 353638,
+        "content_bbox_px": [
+          23,
+          23,
+          1519,
+          1356
+        ],
+        "margins_px": {
+          "left": 23,
+          "right": 23,
+          "top": 23,
+          "bottom": 23
+        },
+        "max_alpha_on_image_border": 0.0
+      }
+    },
     "passed": true
   },
   "godot": {
     "scene": "scenes/props/campus/Academic2.tscn",
     "scene_name": "Academic2",
-    "scene_semantic_sha256": "c2e214b960f38c5709122c3f1f7a16b373ea60bb505d52228387bbbec0f176eb",
+    "scene_semantic_sha256": "019e45ed8d42139d74af51c73eb981b9a517041f7ab0da1fc5394a5d173a1389",
     "sprite_offset_adjust_px": [
       0.0,
       0.0
@@ -1904,18 +1991,18 @@
       "game_px_per_m": 32.0,
       "sprite_scale": 1.0,
       "sprite_offset_px": [
-        -966.2000122070312,
-        -1103.4211156666279
+        -744.7000122070312,
+        -303.4211156666279
       ],
       "origin_px": [
-        966.2000122070312,
-        1103.4211156666279
+        971.7000122070312,
+        1109.4211156666279
       ],
       "sprite_rect_game_px": [
-        -966.2000122070312,
-        -1103.4211156666279,
-        1734.0,
-        1570.0
+        -870.7000122070312,
+        -1008.4211156666279,
+        1615.0,
+        1380.0
       ],
       "footprint_game_px": [
         [
@@ -1936,7 +2023,57 @@
         ]
       ],
       "ground_depth_factor": 0.6427876353263855,
-      "layers": null
+      "layers": [
+        {
+          "name": "Building",
+          "position_game_px": [
+            0.0,
+            287.9688606262207
+          ],
+          "sprite_offset_px": [
+            -870.7000122070312,
+            -1296.3899762928486
+          ],
+          "z_index": 0,
+          "fade": {
+            "node": "BuildingFade",
+            "alpha": 0.3,
+            "seconds": 0.3,
+            "shapes": [
+              {
+                "node": "ShapeBehind",
+                "resource_id": "RectangleShape2D_BuildingFadeBehind",
+                "center": [
+                  0.0,
+                  -403.92775003910066
+                ],
+                "size": [
+                  1504.0,
+                  1359.1101761341095
+                ],
+                "metres": [
+                  -23.5,
+                  23.5,
+                  -13.4,
+                  52.675
+                ]
+              }
+            ]
+          },
+          "crop_px": [
+            101,
+            101,
+            1543,
+            1380
+          ]
+        }
+      ],
+      "crop_px": [
+        227,
+        806,
+        1489,
+        606
+      ]
     },
     "collision": {
       "source": "rects_m",

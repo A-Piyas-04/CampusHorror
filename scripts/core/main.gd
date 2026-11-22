@@ -33,7 +33,13 @@ var _current_zone: Zone
 var _transitioning := false
 ## Most recently used last: [scene_path, PackedScene].
 var _kept_scenes: Array = []
-var _director: Chapter1
+var _director: StoryDirector
+## The chapter directors by number (D32). Continue starts the one the save is in (GameState flag `chapter`).
+const CHAPTERS := {
+	1: "res://scripts/story/chapter_1.gd",
+	2: "res://scripts/story/chapter_2.gd",
+	3: "res://scripts/story/chapter_3.gd",
+}
 
 @onready var _world: Node2D = $World
 @onready var _player: Player = $World/Player
@@ -55,21 +61,49 @@ func _ready() -> void:
 				_start_story(false)
 			else:
 				_start_story(true)
-		_:
-			change_zone(start_zone_id, start_spawn_id)
+		var mode:
+			# "chapter:N" (chapter select, tests): a fresh start of chapter N with what earlier chapters grant.
+			if String(mode).begins_with("chapter:") and has_chapter(int(String(mode).get_slice(":", 1))):
+				_start_story_at(int(String(mode).get_slice(":", 1)))
+			else:
+				change_zone(start_zone_id, start_spawn_id)
 
 
 func _start_story(new_game: bool) -> void:
-	var lantern := _player.get_node("Lantern")
-	lantern.set("burns_fuel", true)
-	_director = Chapter1.new()
-	_director.name = "Chapter1"
-	add_child(_director)
-	_director.setup(self)
+	var chapter := 1 if new_game else int(GameState.get_flag("chapter", 1))
+	_director = _make_director(chapter if has_chapter(chapter) else 1)
 	if new_game:
 		_director.begin_new()
 	else:
 		_director.begin_continue()
+
+
+func _start_story_at(chapter: int) -> void:
+	_director = _make_director(chapter)
+	_director.begin_new()
+
+
+func has_chapter(chapter: int) -> bool:
+	return CHAPTERS.has(chapter)
+
+
+## Ends the running chapter's director and begins `chapter` in this session (called by a director's end card).
+func start_chapter(chapter: int) -> void:
+	if _director != null:
+		_director.queue_free()
+	_director = _make_director(chapter)
+	_director.begin_from_previous()
+
+
+func _make_director(chapter: int) -> StoryDirector:
+	var lantern := _player.get_node("Lantern")
+	lantern.set("burns_fuel", true)
+	var d := (load(CHAPTERS[chapter]) as GDScript).new() as StoryDirector
+	d.name = "Chapter%d" % chapter
+	add_child(d)
+	d.setup(self)
+	GameState.set_flag("chapter", chapter)
+	return d
 
 
 # --- Instant (synchronous) zone changes ---------------------------------------------------------------------
@@ -129,7 +163,7 @@ func get_current_zone_id() -> String:
 
 
 ## The story director in story mode, or null in the sandbox (debug tools and tests ask for it).
-func get_director() -> Chapter1:
+func get_director() -> StoryDirector:
 	return _director
 
 

@@ -44,6 +44,8 @@ MATS = {
     "mattress": {"color": [0.55, 0.5, 0.38], "rough": 0.9, "stains": 0.5, "stain_color": [0.4, 0.33, 0.2]},
     "screen_dark": {"color": [0.02, 0.025, 0.03], "rough": 0.1, "spec": 0.8},
     "screen_glow": {"color": [0.05, 0.1, 0.08], "rough": 0.2, "emit": [0.4, 0.75, 0.55], "emit_strength": 1.2},
+    "screen_static": {"color": [0.13, 0.14, 0.16], "rough": 0.25, "emit": [0.32, 0.38, 0.48], "emit_strength": 0.45,
+                      "var": 0.6, "var_scale": 420, "part_var": 0.0},
     "glass": {"color": [0.05, 0.07, 0.1], "glass": True, "var": 0.0, "part_var": 0.0},
     "exit_green": {"color": [0.1, 0.6, 0.25], "rough": 0.3, "emit": [0.2, 1.0, 0.4], "emit_strength": 2.5},
     "blood": {"color": [0.30, 0.015, 0.015], "rough": 0.15, "var": 0.25, "var_scale": 12, "spec": 0.7},

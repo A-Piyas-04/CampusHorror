@@ -1,0 +1,167 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/world/zone.gd" id="1_r"]
+[ext_resource type="Resource" path="res://data/zones/profiles/academic_corridor.tres" id="2_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/interiors/AcademicCorridorRoom.tscn" id="3_r"]
+[ext_resource type="PackedScene" path="res://scenes/components/Door.tscn" id="4_r"]
+[ext_resource type="PackedScene" path="res://scenes/components/SpawnMarker.tscn" id="5_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/furniture/TrashBin.tscn" id="6_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/common/ContactShadow.tscn" id="7_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/furniture/GymBench.tscn" id="8_r"]
+[ext_resource type="Texture2D" path="res://data/lighting/light_soft.tres" id="9_r"]
+[ext_resource type="Script" path="res://scripts/lighting/lamp_light.gd" id="10_r"]
+[ext_resource type="Script" path="res://scripts/world/glow_mark.gd" id="11_r"]
+[ext_resource type="PackedScene" path="res://scenes/creatures/NightGuard.tscn" id="12_r"]
+
+[node name="AcademicCorridor" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_r")
+zone_id = "academic_corridor"
+profile = ExtResource("2_r")
+
+[node name="Objects" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Props" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="Story" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="Lights" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="Doors" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="SpawnMarkers" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="Glow" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="Room" parent="Objects" instance=ExtResource("3_r")]
+
+[node name="DoorOut" parent="Objects/Doors" instance=ExtResource("4_r")]
+position = Vector2(-384, -7.2016)
+destination_zone_id = "academic_exterior"
+destination_spawn_id = "outside_academic_1"
+verb = "Go out"
+place_name = "The road"
+show_placeholder = false
+
+[node name="Spawn_corridor_from_outside" parent="Objects/SpawnMarkers" instance=ExtResource("5_r")]
+position = Vector2(-384, -28.8064)
+spawn_id = "corridor_from_outside"
+
+[node name="DoorClassroom" parent="Objects/Doors" instance=ExtResource("4_r")]
+position = Vector2(144, -96.7072)
+destination_zone_id = "academic_classroom"
+destination_spawn_id = "classroom_from_corridor"
+verb = "Enter"
+place_name = "Room 304"
+show_placeholder = false
+
+[node name="Spawn_corridor_from_classroom" parent="Objects/SpawnMarkers" instance=ExtResource("5_r")]
+position = Vector2(144, -74.0736)
+spawn_id = "corridor_from_classroom"
+
+[node name="DoorStairs" parent="Objects/Doors" instance=ExtResource("4_r")]
+position = Vector2(470.4, -51.44)
+destination_zone_id = "academic_exterior"
+destination_spawn_id = "outside_academic_1"
+verb = "Open"
+place_name = "Stairwell"
+show_placeholder = false
+requires_flag = "academic_stairs_open"
+locked_message = "The stairwell doors are chained shut from inside."
+
+[node name="Bin" parent="Objects/Props" instance=ExtResource("6_r")]
+position = Vector2(-192, -92.592)
+
+[node name="ContactShadow" parent="Objects/Props/Bin" instance=ExtResource("7_r")]
+scale = Vector2(0.35, 0.25)
+
+[node name="Bench" parent="Objects/Props" instance=ExtResource("8_r")]
+position = Vector2(288, -90.5344)
+
+[node name="ContactShadow" parent="Objects/Props/Bench" instance=ExtResource("7_r")]
+scale = Vector2(1.2, 0.25)
+
+[node name="Exit" type="PointLight2D" parent="Objects/Lights"]
+position = Vector2(-384, -20.576)
+color = Color(0.35, 1.0, 0.5, 1)
+energy = 0.45
+range_item_cull_mask = 3
+texture = ExtResource("9_r")
+texture_scale = 0.6
+script = ExtResource("10_r")
+mode = 0
+needs_power = false
+base_energy = 0.45
+gameplay = false
+
+[node name="Tube0" type="PointLight2D" parent="Objects/Lights"]
+position = Vector2(-384, -72.016)
+color = Color(0.95, 0.97, 1.0, 1)
+energy = 0.8
+range_item_cull_mask = 3
+texture = ExtResource("9_r")
+texture_scale = 2.0
+script = ExtResource("10_r")
+mode = 0
+needs_power = true
+base_energy = 0.8
+gameplay = true
+power_flag = "power_academic"
+
+[node name="Tube1" type="PointLight2D" parent="Objects/Lights"]
+position = Vector2(-96, -72.016)
+color = Color(0.95, 0.97, 1.0, 1)
+energy = 0.8
+range_item_cull_mask = 3
+texture = ExtResource("9_r")
+texture_scale = 2.0
+script = ExtResource("10_r")
+mode = 0
+needs_power = true
+base_energy = 0.8
+gameplay = true
+power_flag = "power_academic"
+
+[node name="Tube2" type="PointLight2D" parent="Objects/Lights"]
+position = Vector2(192, -72.016)
+color = Color(0.95, 0.97, 1.0, 1)
+energy = 0.8
+range_item_cull_mask = 3
+texture = ExtResource("9_r")
+texture_scale = 2.0
+script = ExtResource("10_r")
+mode = 0
+needs_power = true
+base_energy = 0.8
+gameplay = true
+power_flag = "power_academic"
+
+[node name="Trail" type="Node2D" parent="Objects/Glow"]
+position = Vector2(166.4, -28.8064)
+script = ExtResource("11_r")
+color = Color(0.45, 1, 0.82, 1)
+intensity = 0.8
+pulse_speed = 0.5
+trail_to = Vector2(-60, -60)
+
+[node name="Student" parent="Objects/Story" instance=ExtResource("12_r")]
+position = Vector2(256, -51.44)
+patrol_points = PackedVector2Array(-320, -53.4976, 384, -49.3824)
+active = false
+visible = false
+sight_radius = 70.0
+close_sense_radius = 44.0
+light_sensitivity = 0.2
+hearing = 1.8
+patrol_speed = 30.0
+investigate_speed = 52.0
+chase_speed = 118.0
+modulate = Color(0.72, 0.86, 0.78, 1)
+metadata/role = "patrol"

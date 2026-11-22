@@ -84,7 +84,23 @@
       }
     },
     "objects": {
-      "Main": {
+      "Plinth": {
+        "parts": [
+          {
+            "box": [
+              -12.1,
+              12.1,
+              -14.5,
+              14.5,
+              0.0,
+              0.04
+            ],
+            "mat": "roof_slab"
+          }
+        ],
+        "bevel": 0.0
+      },
+      "Building": {
         "parts": [
           {
             "box": [
@@ -1585,7 +1601,8 @@
     "px_per_m": 40.0,
     "samples": 192,
     "elevation_deg": 40.0,
-    "azimuth_deg": 0.0
+    "azimuth_deg": 0.0,
+    "crop_layers": true
   },
   "godot": {
     "scene_name": "SouthHallWing",
@@ -1608,5 +1625,26 @@
       ]
     },
     "depth_mode": "projected"
-  }
+  },
+  "layers": [
+    {
+      "name": "Building",
+      "objects": [
+        "Building"
+      ],
+      "sort_y_m": -15.0,
+      "fade": {
+        "rects_m": {
+          "Behind": [
+            -13.1,
+            13.1,
+            -14.4,
+            35.468
+          ]
+        },
+        "alpha": 0.3,
+        "seconds": 0.3
+      }
+    }
+  ]
 }

@@ -1,0 +1,11 @@
+{
+	"zone_id": "mosque_prayer_hall",
+	"notes": "Interior concept (Docs/CAMPUS_BUILD.md S9), 18 x 16 m.",
+	"playable_bounds": [
+		-288,
+		-329,
+		576,
+		337
+	],
+	"walks": []
+}

@@ -519,9 +519,151 @@ def horror():
          [-0.09, 0.09, -0.05, 0.05], px_per_m=260.0, z_index=-1)
 
 
+def campus_props():
+    """Furniture for the whole-campus interiors (Docs/CAMPUS_BUILD.md section 4): concepts, no references."""
+    from author_lib import prism, pointed_arch
+    # Classroom bench-desk: a long shared desk with an attached bench, for three students (faces north).
+    bd = [box(-0.9, 0.9, 0.05, 0.45, 0.72, 0.76, "wood"), box(-0.9, 0.9, 0.42, 0.45, 0.45, 0.72, "wood"),
+          box(-0.9, 0.9, -0.4, -0.12, 0.43, 0.47, "wood"), box(-0.9, 0.9, -0.42, -0.38, 0.47, 0.8, "wood")]
+    for x in (-0.85, 0.85):
+        bd += [box(x - 0.03, x + 0.03, -0.42, 0.45, 0.0, 0.05, "steel_grey"),
+               leg(x, 0.4, 0.05, 0.72, 0.02, "steel_grey"), leg(x, -0.3, 0.05, 0.43, 0.02, "steel_grey")]
+    prop("bench_desk", "BenchDesk", "furniture", "Classroom bench-desk for three, facing north (the board).",
+         one(bd), [-0.9, 0.9, -0.45, 0.45], collision_rect=[-0.9, 0.9, -0.42, 0.45])
+    wb = [box(-1.8, 1.8, -0.03, 0.0, 0.0, 0.09, "metal_dark"), box(-1.8, 1.8, -0.05, 0.0, 0.9, 2.1, "chrome"),
+          box(-1.75, 1.75, -0.06, -0.05, 0.95, 2.05, "white_paint"),
+          box(-1.75, 1.75, -0.14, -0.05, 0.86, 0.9, "chrome"),
+          text("CSE 4501  DIGITAL SYSTEMS", [-0.9, -0.065, 1.8], 0.09, "black_paint"),
+          text("x(t) = A exp(-kt)", [-0.6, -0.065, 1.45], 0.12, "red_paint"),
+          text("DO NOT TURN OFF THE LIGHTS", [0.6, -0.065, 1.1], 0.08, "red_paint")]
+    prop("whiteboard", "Whiteboard", "furniture", "Classroom whiteboard (north wall), the last lecture still on it.",
+         one(wb, 0.002), [-1.8, 1.8, -0.15, 0.0], px_per_m=200.0)
+    lab = [box(-1.5, 1.5, -0.45, 0.45, 0.85, 0.9, "black_paint"), box(-1.45, 1.45, -0.4, 0.4, 0.0, 0.85, "wood_dark")]
+    for x in (-0.9, 0.0, 0.9):
+        lab += [box(x - 0.22, x + 0.22, 0.05, 0.35, 0.9, 1.16, "steel_grey"),
+                box(x - 0.17, x + 0.12, 0.04, 0.05, 0.96, 1.12, "screen_glow" if x == 0.0 else "screen_dark"),
+                box(x - 0.2, x + 0.2, -0.3, -0.1, 0.9, 0.95, "plastic_blue")]
+    lab += [tube([[-1.2, -0.2, 0.91], [-0.6, -0.35, 0.91], [0.2, -0.25, 0.91]], 0.006, "red_paint")]
+    prop("lab_bench", "LabBench", "furniture", "Electronics lab bench: oscilloscopes (one still glowing), "
+         "breadboards, a red lead.", one(lab, 0.004), [-1.5, 1.5, -0.45, 0.45],
+         collision_rect=[-1.5, 1.5, -0.45, 0.45])
+    od = [box(-0.8, 0.8, -0.4, 0.4, 0.72, 0.76, "wood_dark"), box(-0.78, -0.3, -0.38, 0.38, 0.0, 0.72, "wood_dark"),
+          box(0.3, 0.78, -0.38, 0.38, 0.0, 0.72, "wood_dark")]
+    rng = random.Random(7)
+    for k in range(4):
+        od.append(box(-0.7 + k * 0.18, -0.55 + k * 0.18, -0.25, 0.1, 0.76, 0.8 + rng.uniform(0.02, 0.12),
+                      "paper_old" if k % 2 else "plastic_blue"))
+    od += [box(0.2, 0.6, -0.1, 0.25, 0.76, 0.77, "paper"), cbox(0.55, 0.25, 0.08, 0.06, 0.76, 0.92, "black_paint")]
+    prop("office_desk", "OfficeDesk", "furniture", "An officer's desk with stacked files.", one(od),
+         [-0.8, 0.8, -0.4, 0.4], collision_rect=[-0.8, 0.8, -0.4, 0.4])
+    fc = [box(-0.25, 0.25, -0.3, 0.3, 0.0, 1.35, "steel_green")]
+    for k in range(4):
+        fc += [box(-0.23, 0.23, -0.31, -0.3, 0.05 + k * 0.33, 0.35 + k * 0.33, "steel_green"),
+               box(-0.06, 0.06, -0.33, -0.31, 0.25 + k * 0.33, 0.28 + k * 0.33, "chrome")]
+    prop("file_cabinet", "FileCabinet", "furniture", "Four-drawer steel file cabinet.", one(fc, 0.003),
+         [-0.25, 0.25, -0.33, 0.3], collision_rect=[-0.25, 0.25, -0.3, 0.3], tall=True, min_px=175.0)
+    sf = [box(-0.4, 0.4, -0.35, 0.35, 0.0, 1.0, "metal_dark"), box(-0.36, 0.36, -0.36, -0.35, 0.06, 0.94, "metal_dark"),
+          cyl([0.05, -0.36, 0.55], [0.05, -0.42, 0.55], 0.09, "chrome", sides=16),
+          box(-0.25, -0.12, -0.38, -0.36, 0.45, 0.65, "chrome")]
+    prop("office_safe", "OfficeSafe", "furniture", "The registrar's safe with a combination dial.", one(sf, 0.004),
+         [-0.42, 0.42, -0.42, 0.35], collision_rect=[-0.4, 0.4, -0.35, 0.35])
+    rc = [box(-2.0, 2.0, -0.4, 0.4, 0.0, 1.05, "wood_dark"), box(-2.05, 2.05, -0.45, 0.45, 1.05, 1.1, "laminate"),
+          box(-1.9, 1.9, -0.42, -0.4, 0.15, 0.95, "wood"), text("RECEPTION", [0.0, -0.43, 0.6], 0.13, "brass")]
+    prop("reception_counter", "ReceptionCounter", "furniture", "Admin reception counter.", one(rc),
+         [-2.05, 2.05, -0.45, 0.45], collision_rect=[-2.05, 2.05, -0.45, 0.45])
+    rug = []
+    for k in range(6):
+        x = -2.5 + k * 1.0
+        rug += [box(x - 0.45, x + 0.45, -0.6, 0.6, 0.0, 0.012, "rug_green" if k % 2 else "fabric_red"),
+                box(x - 0.4, x + 0.4, -0.55, -0.5, 0.012, 0.016, "brass"),
+                prism(pointed_arch(x, 0.56, 0.05, 0.3, 0.52), [0.012, 0.016], "brass", axis="z"),
+                prism(pointed_arch(x, 0.44, 0.08, 0.3, 0.46), [0.016, 0.02],
+                      "fabric_red" if k % 2 else "rug_green", axis="z")]
+    prop("prayer_rugs", "PrayerRugs", "furniture", "A row of prayer rugs, each with its arch woven at the head.",
+         one(rug, 0.0), [-3.0, 3.0, -0.6, 0.6], z_index=-1)
+    rh = [box(-0.18, 0.18, -0.02, 0.02, 0.0, 0.32, "wood", rot=[30, 0, 0], pivot=[0, 0, 0]),
+          box(-0.18, 0.18, -0.02, 0.02, 0.0, 0.32, "wood", rot=[-30, 0, 0], pivot=[0, 0, 0]),
+          box(-0.15, 0.15, -0.12, 0.05, 0.27, 0.31, "fabric_red", rot=[-20, 0, 0], pivot=[0, 0, 0.29])]
+    prop("rehal", "Rehal", "furniture", "Folding Quran stand (rehal) with a closed book.", one(rh, 0.002),
+         [-0.2, 0.2, -0.15, 0.15])
+    mb = []
+    for k in range(5):
+        mb.append(box(-0.5, 0.5, -0.9 + k * 0.3, 0.6, 0.0, 0.25 + k * 0.25, "wood_dark"))
+    mb += [box(-0.55, -0.48, -0.9, 0.6, 0.0, 2.0, "wood_dark"), box(0.48, 0.55, -0.9, 0.6, 0.0, 2.0, "wood_dark"),
+           box(-0.55, 0.55, 0.4, 0.6, 2.0, 2.6, "wood_dark")]
+    prop("minbar", "Minbar", "furniture", "Stepped wooden minbar (pulpit).", one(mb), [-0.55, 0.55, -0.9, 0.6],
+         collision_rect=[-0.55, 0.55, -0.9, 0.6], tall=True)
+    seats = []
+    for k in range(8):
+        x = -2.8 + k * 0.8
+        seats += [box(x - 0.36, x + 0.36, -0.25, 0.2, 0.42, 0.48, "fabric_red"),
+                  box(x - 0.36, x + 0.36, 0.15, 0.25, 0.48, 1.0, "fabric_red", rot=[-12, 0, 0], pivot=[x, 0.2, 0.48]),
+                  box(x - 0.4, x - 0.36, -0.2, 0.2, 0.0, 0.68, "metal_dark")]
+    seats.append(box(3.04, 3.08, -0.2, 0.2, 0.0, 0.68, "metal_dark"))
+    prop("seat_row", "SeatRow", "furniture", "Auditorium seat row, eight red folding seats.", one(seats),
+         [-3.2, 3.2, -0.3, 0.3], collision_rect=[-3.2, 3.2, -0.3, 0.3], tall=True)
+    bed = [box(-0.95, 0.95, -0.45, 0.45, 0.38, 0.42, "steel_blue"),
+           box(-0.92, 0.92, -0.42, 0.42, 0.42, 0.55, "mattress"),
+           blob(0.5, 0.0, 0.6, 0.35, 0.3, 0.06, "fabric_blue", lump=0.3, seed=12, floor=0.55),
+           box(-0.92, -0.62, -0.38, 0.38, 0.55, 0.65, "plastic_white")]
+    for x in (-0.9, 0.9):
+        for y in (-0.4, 0.4):
+            bed += [leg(x, y, 0.0, 0.42, 0.02, "steel_blue"), leg(x, y, 0.42, 1.9, 0.01, "steel_blue")]
+    bed += [tube([[-0.9, -0.4, 1.9], [0.9, -0.4, 1.9], [0.9, 0.4, 1.9], [-0.9, 0.4, 1.9], [-0.9, -0.4, 1.9]], 0.01,
+                 "steel_blue", cap=False)]
+    prop("dorm_bed", "DormBed", "furniture", "Hall dorm bed: steel frame, mattress, pillow, mosquito-net frame.",
+         one(bed), [-0.95, 0.95, -0.45, 0.45], collision_rect=[-0.95, 0.95, -0.45, 0.45], tall=True)
+    st = [box(-0.6, 0.6, -0.3, 0.3, 0.72, 0.76, "wood"), box(-0.58, -0.52, -0.28, 0.28, 0.0, 0.72, "wood"),
+          box(0.52, 0.58, -0.28, 0.28, 0.0, 0.72, "wood"), box(-0.5, 0.0, -0.1, 0.25, 0.76, 0.82, "paper_old"),
+          cbox(0.3, 0.1, 0.12, 0.12, 0.76, 1.1, "yellow")]
+    prop("study_table", "StudyTable", "furniture", "Student study table with books and a desk lamp.", one(st),
+         [-0.6, 0.6, -0.3, 0.3], collision_rect=[-0.6, 0.6, -0.3, 0.3])
+    cb = [box(-0.45, 0.45, -0.45, 0.45, 0.62, 0.68, "wood"), box(-0.4, 0.4, -0.4, 0.4, 0.68, 0.682, "laminate")]
+    for x in (-0.4, 0.4):
+        for y in (-0.4, 0.4):
+            cb.append(leg(x * 0.9, y * 0.9, 0.0, 0.62, 0.025, "wood_dark"))
+    for k in range(9):
+        cx, cy = -0.2 + (k % 3) * 0.2, -0.2 + (k // 3) * 0.2
+        cb.append(cyl([cx, cy, 0.682], [cx, cy, 0.69], 0.03, "black_paint" if k % 2 else "white_paint", sides=12))
+    prop("carrom_board", "CarromBoard", "furniture", "Carrom board on a stand, a game abandoned mid-play.", one(cb),
+         [-0.45, 0.45, -0.45, 0.45], collision_rect=[-0.45, 0.45, -0.45, 0.45])
+    tv = [box(-0.5, 0.5, -0.25, 0.25, 0.0, 0.7, "wood_dark"), box(-0.55, 0.55, -0.06, 0.04, 0.7, 1.35, "metal_dark"),
+          box(-0.5, 0.5, -0.07, -0.06, 0.74, 1.31, "screen_static")]
+    prop("tv_stand", "TvStand", "furniture", "Common-room TV on a cabinet, showing static.", one(tv),
+         [-0.55, 0.55, -0.25, 0.25], collision_rect=[-0.55, 0.55, -0.25, 0.25])
+    sp = [box(-3.5, 3.5, -1.5, 1.5, 0.0, 0.9, "wood_dark"), box(-3.55, 3.55, -1.55, -1.45, 0.0, 0.92, "wood")]
+    prop("stage_platform", "StagePlatform", "furniture", "Auditorium stage platform.", one(sp),
+         [-3.6, 3.6, -1.6, 1.5], collision_rect=[-3.55, 3.55, -1.55, 1.5])
+    pj = [box(-3.0, 3.0, -0.05, 0.0, 0.0, 0.09, "metal_dark"), box(-3.0, 3.0, -0.08, -0.05, 1.0, 3.6, "white_paint"),
+          box(-3.05, 3.05, -0.1, -0.05, 3.6, 3.75, "metal_dark")]
+    prop("projector_screen", "ProjectorScreen", "furniture", "Pull-down projector screen (north wall).",
+         one(pj, 0.002), [-3.05, 3.05, -0.12, 0.0], px_per_m=160.0)
+    pb = [box(-0.9, 0.9, -0.22, 0.22, 0.42, 0.47, "steel_grey"), box(-0.9, 0.9, 0.15, 0.22, 0.47, 0.85, "steel_grey")]
+    for x in (-0.8, 0.8):
+        pb.append(box(x - 0.04, x + 0.04, -0.2, 0.2, 0.0, 0.42, "metal_dark"))
+    prop("plaza_bench", "PlazaBench", "furniture", "Steel plaza bench.", one(pb), [-0.9, 0.9, -0.22, 0.22],
+         collision_rect=[-0.9, 0.9, -0.22, 0.22])
+    # Diesel generator on a skid (the academic wing's standby supply by the garage): canopy, panel, exhaust.
+    dg = [box(-1.3, 1.3, -0.6, 0.6, 0.0, 0.12, "metal_dark"),
+          box(-1.2, 1.2, -0.55, 0.55, 0.12, 1.25, "steel_green"),
+          box(-1.25, 1.25, -0.6, 0.6, 1.25, 1.32, "steel_green"),
+          box(-1.0, -0.2, -0.57, -0.55, 0.3, 1.05, "metal_dark"),
+          box(0.3, 1.0, -0.57, -0.55, 0.55, 1.05, "black_paint"),
+          box(0.42, 0.88, -0.58, -0.57, 0.7, 0.95, "screen_dark"),
+          box(0.45, 0.6, -0.59, -0.57, 0.6, 0.66, "exit_green"),
+          cyl([0.9, 0.3, 1.32], [0.9, 0.3, 1.75], 0.07, "metal_dark", sides=12),
+          cyl([0.9, 0.3, 1.75], [0.9, 0.3, 1.8], 0.09, "rubber", sides=12),
+          text("DANGER 415 V", [-0.6, -0.565, 1.12], 0.07, "white_paint")]
+    for x in (-0.9, -0.5, -0.1):
+        dg.append(box(x, x + 0.28, -0.56, -0.555, 0.35, 1.0, "metal_dark"))
+    prop("diesel_generator", "DieselGenerator", "furniture", "Standby diesel generator on a skid, by the garage.",
+         one(dg, 0.006), [-1.3, 1.3, -0.6, 0.6], collision_rect=[-1.3, 1.3, -0.6, 0.6])
+
+
 def define():
     furniture()
     horror()
+    campus_props()
 
 
 def main():

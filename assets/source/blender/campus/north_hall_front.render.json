@@ -103,7 +103,23 @@
       }
     },
     "objects": {
-      "Main": {
+      "Plinth": {
+        "parts": [
+          {
+            "box": [
+              -12.1,
+              12.1,
+              -14.5,
+              14.5,
+              0.0,
+              0.04
+            ],
+            "mat": "roof_slab"
+          }
+        ],
+        "bevel": 0.0
+      },
+      "Building": {
         "parts": [
           {
             "box": [
@@ -1333,7 +1349,16 @@
   "model": {
     "objects": [
       {
-        "object": "Main",
+        "object": "Plinth",
+        "evaluated_bounds_m": {
+          "x": 24.2,
+          "y": 29.0,
+          "z": 0.04
+        },
+        "evaluated_faces": 6
+      },
+      {
+        "object": "Building",
         "evaluated_bounds_m": {
           "x": 25.3,
           "y": 31.664,
@@ -1430,7 +1455,7 @@
       1225,
       1544
     ],
-    "render_seconds": 9.2
+    "render_seconds": 17.1
   },
   "projection": {
     "note": "texture px, top-left origin: x = W/2 + (p.right - cx)*ppm, y = H/2 - (p.up - cy)*ppm",
@@ -1480,18 +1505,53 @@
       106.41569405054452,
       1118.499984741211,
       1437.5843273532844
+    ],
+    "crop_px": [
+      104,
+      612,
+      1017,
+      796
     ]
   },
   "tiling": null,
-  "layers": null,
+  "layers": [
+    {
+      "name": "Building",
+      "png": "assets/sprites/campus/north_hall_front__building.png",
+      "objects": [
+        "Building"
+      ],
+      "sort_y_m": -15.0,
+      "z_index": 0,
+      "fade": {
+        "rects_m": {
+          "Behind": [
+            -13.1,
+            13.1,
+            -14.4,
+            35.468
+          ]
+        },
+        "alpha": 0.3,
+        "seconds": 0.3
+      },
+      "render_seconds": 10.0,
+      "crop_px": [
+        82,
+        82,
+        1061,
+        1380
+      ]
+    }
+  ],
   "kind": "sprite",
   "ground_tile": null,
-  "total_seconds": 10.6,
+  "total_seconds": 18.7,
   "blender_run": {
     "exit_code": 0,
-    "seconds": 11.6,
+    "seconds": 19.9,
     "problem_lines": [
-      "00:01.906  cycles           | WARNING HIPEW initialization failed: Error opening HIP dynamic library"
+      "00:01.562  cycles           | WARNING HIPEW initialization failed: Error opening HIP dynamic library"
     ]
   },
   "verification": {
@@ -1499,25 +1559,25 @@
       "bit_depth": 8,
       "png_color_type": 6,
       "interlace": 0,
-      "file_bytes": 2181756,
+      "file_bytes": 404830,
       "size_px": [
-        1225,
-        1544
+        1017,
+        796
       ],
-      "opaque_pixels": 1236624,
-      "partially_transparent_pixels": 10175,
-      "fully_transparent_pixels": 644601,
+      "opaque_pixels": 719357,
+      "partially_transparent_pixels": 7418,
+      "fully_transparent_pixels": 82757,
       "content_bbox_px": [
-        105,
-        105,
-        1119,
-        1438
+        23,
+        23,
+        993,
+        772
       ],
       "margins_px": {
-        "left": 105,
-        "right": 105,
-        "top": 105,
-        "bottom": 105
+        "left": 23,
+        "right": 23,
+        "top": 23,
+        "bottom": 23
       },
       "max_alpha_on_image_border": 0.0
     },
@@ -1529,13 +1589,40 @@
     ],
     "minimum_margin_required_px": 16,
     "tiling": null,
-    "layers": null,
+    "layers": {
+      "Building": {
+        "bit_depth": 8,
+        "png_color_type": 6,
+        "interlace": 0,
+        "file_bytes": 2033093,
+        "size_px": [
+          1061,
+          1380
+        ],
+        "opaque_pixels": 1236602,
+        "partially_transparent_pixels": 10214,
+        "fully_transparent_pixels": 217364,
+        "content_bbox_px": [
+          23,
+          23,
+          1037,
+          1356
+        ],
+        "margins_px": {
+          "left": 23,
+          "right": 23,
+          "top": 23,
+          "bottom": 23
+        },
+        "max_alpha_on_image_border": 0.0
+      }
+    },
     "passed": true
   },
   "godot": {
     "scene": "scenes/props/campus/NorthHallFront.tscn",
     "scene_name": "NorthHallFront",
-    "scene_semantic_sha256": "a9180a2cb8a1dc25ba669fc7ab97bfd18dd6031b84fdeac7643c31acbc6a1650",
+    "scene_semantic_sha256": "ade9b328786c161843425a38b435550d8f8ed47246a92a90fa76de9d5211d1f9",
     "sprite_offset_adjust_px": [
       0.0,
       0.0
@@ -1545,18 +1632,18 @@
       "game_px_per_m": 32.0,
       "sprite_scale": 0.8,
       "sprite_offset_px": [
-        -612.5,
-        -1010.8134368543979
+        -508.5,
+        -398.8134368543979
       ],
       "origin_px": [
         612.5,
         1010.8134368543979
       ],
       "sprite_rect_game_px": [
-        -490.0,
-        -808.6507494835183,
-        980.0,
-        1235.2
+        -424.40000000000003,
+        -743.0507494835183,
+        848.8000000000001,
+        1104.0
       ],
       "footprint_game_px": [
         [
@@ -1577,7 +1664,57 @@
         ]
       ],
       "ground_depth_factor": 0.6427876353263855,
-      "layers": null
+      "layers": [
+        {
+          "name": "Building",
+          "position_game_px": [
+            0.0,
+            308.53806495666504
+          ],
+          "sprite_offset_px": [
+            -530.5,
+            -1314.4860180502292
+          ],
+          "z_index": 0,
+          "fade": {
+            "node": "BuildingFade",
+            "alpha": 0.3,
+            "seconds": 0.3,
+            "shapes": [
+              {
+                "node": "ShapeBehind",
+                "resource_id": "RectangleShape2D_BuildingFadeBehind",
+                "center": [
+                  0.0,
+                  -216.67599841690068
+                ],
+                "size": [
+                  838.4,
+                  1025.7450815505981
+                ],
+                "metres": [
+                  -13.1,
+                  13.1,
+                  -14.4,
+                  35.468
+                ]
+              }
+            ]
+          },
+          "crop_px": [
+            82,
+            82,
+            1061,
+            1380
+          ]
+        }
+      ],
+      "crop_px": [
+        104,
+        612,
+        1017,
+        796
+      ]
     },
     "collision": {
       "source": "rects_m",

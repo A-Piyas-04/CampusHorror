@@ -1,0 +1,11 @@
+{
+	"zone_id": "auditorium_hall",
+	"notes": "Interior concept (Docs/CAMPUS_BUILD.md S9), 24 x 20 m.",
+	"playable_bounds": [
+		-384,
+		-412,
+		768,
+		420
+	],
+	"walks": []
+}

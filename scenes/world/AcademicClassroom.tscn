@@ -1,0 +1,160 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/world/zone.gd" id="1_r"]
+[ext_resource type="Resource" path="res://data/zones/profiles/academic_classroom.tres" id="2_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/interiors/AcademicClassroomRoom.tscn" id="3_r"]
+[ext_resource type="PackedScene" path="res://scenes/components/Door.tscn" id="4_r"]
+[ext_resource type="PackedScene" path="res://scenes/components/SpawnMarker.tscn" id="5_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/furniture/Whiteboard.tscn" id="6_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/furniture/BenchDesk.tscn" id="7_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/common/ContactShadow.tscn" id="8_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/horror/PapersScattered.tscn" id="9_r"]
+[ext_resource type="PackedScene" path="res://scenes/components/Readable.tscn" id="10_r"]
+[ext_resource type="Texture2D" path="res://data/lighting/light_soft.tres" id="11_r"]
+[ext_resource type="Script" path="res://scripts/lighting/lamp_light.gd" id="12_r"]
+
+[node name="AcademicClassroom" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_r")
+zone_id = "academic_classroom"
+profile = ExtResource("2_r")
+
+[node name="Objects" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Props" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="Story" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="Lights" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="Doors" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="SpawnMarkers" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="Glow" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="Room" parent="Objects" instance=ExtResource("3_r")]
+
+[node name="DoorOut" parent="Objects/Doors" instance=ExtResource("4_r")]
+position = Vector2(-198.4, -30.864)
+destination_zone_id = "academic_corridor"
+destination_spawn_id = "corridor_from_classroom"
+verb = "Go out"
+place_name = "Corridor"
+show_placeholder = false
+
+[node name="Spawn_classroom_from_corridor" parent="Objects/SpawnMarkers" instance=ExtResource("5_r")]
+position = Vector2(-169.6, -30.864)
+spawn_id = "classroom_from_corridor"
+
+[node name="Whiteboard" parent="Objects/Props" instance=ExtResource("6_r")]
+position = Vector2(0, -205.76)
+
+[node name="Desk0_-32" parent="Objects/Props" instance=ExtResource("7_r")]
+position = Vector2(-102.4, -41.152)
+
+[node name="ContactShadow" parent="Objects/Props/Desk0_-32" instance=ExtResource("8_r")]
+scale = Vector2(0.9, 0.35)
+
+[node name="Desk0_0" parent="Objects/Props" instance=ExtResource("7_r")]
+position = Vector2(0, -41.152)
+
+[node name="ContactShadow" parent="Objects/Props/Desk0_0" instance=ExtResource("8_r")]
+scale = Vector2(0.9, 0.35)
+
+[node name="Desk0_32" parent="Objects/Props" instance=ExtResource("7_r")]
+position = Vector2(102.4, -41.152)
+
+[node name="ContactShadow" parent="Objects/Props/Desk0_32" instance=ExtResource("8_r")]
+scale = Vector2(0.9, 0.35)
+
+[node name="Desk1_-32" parent="Objects/Props" instance=ExtResource("7_r")]
+position = Vector2(-102.4, -76.1312)
+
+[node name="ContactShadow" parent="Objects/Props/Desk1_-32" instance=ExtResource("8_r")]
+scale = Vector2(0.9, 0.35)
+
+[node name="Desk1_0" parent="Objects/Props" instance=ExtResource("7_r")]
+position = Vector2(0, -76.1312)
+
+[node name="ContactShadow" parent="Objects/Props/Desk1_0" instance=ExtResource("8_r")]
+scale = Vector2(0.9, 0.35)
+
+[node name="Desk1_32" parent="Objects/Props" instance=ExtResource("7_r")]
+position = Vector2(102.4, -76.1312)
+
+[node name="ContactShadow" parent="Objects/Props/Desk1_32" instance=ExtResource("8_r")]
+scale = Vector2(0.9, 0.35)
+
+[node name="Desk2_-32" parent="Objects/Props" instance=ExtResource("7_r")]
+position = Vector2(-102.4, -111.1104)
+
+[node name="ContactShadow" parent="Objects/Props/Desk2_-32" instance=ExtResource("8_r")]
+scale = Vector2(0.9, 0.35)
+
+[node name="Desk2_0" parent="Objects/Props" instance=ExtResource("7_r")]
+position = Vector2(0, -111.1104)
+
+[node name="ContactShadow" parent="Objects/Props/Desk2_0" instance=ExtResource("8_r")]
+scale = Vector2(0.9, 0.35)
+
+[node name="Desk3_-32" parent="Objects/Props" instance=ExtResource("7_r")]
+position = Vector2(-102.4, -146.0896)
+
+[node name="ContactShadow" parent="Objects/Props/Desk3_-32" instance=ExtResource("8_r")]
+scale = Vector2(0.9, 0.35)
+
+[node name="Desk3_0" parent="Objects/Props" instance=ExtResource("7_r")]
+position = Vector2(0, -146.0896)
+
+[node name="ContactShadow" parent="Objects/Props/Desk3_0" instance=ExtResource("8_r")]
+scale = Vector2(0.9, 0.35)
+
+[node name="Desk3_32" parent="Objects/Props" instance=ExtResource("7_r")]
+position = Vector2(102.4, -146.0896)
+
+[node name="ContactShadow" parent="Objects/Props/Desk3_32" instance=ExtResource("8_r")]
+scale = Vector2(0.9, 0.35)
+
+[node name="Papers" parent="Objects/Props" instance=ExtResource("9_r")]
+position = Vector2(96, -115.2256)
+
+[node name="Board" parent="Objects/Story" instance=ExtResource("10_r")]
+position = Vector2(0, -195.472)
+note_id = "classroom_board"
+title = "The whiteboard"
+body = "CSE 4501, Digital Systems.\n\nUnder the lecture, in a different hand, pressed so hard the marker tore:\n\nDO NOT TURN OFF THE LIGHTS\nIT CAN'T SEE YOU IN THE LIGHT\nNO\nIT SEES THE LIGHT"
+requires_light = true
+
+[node name="MoonW" type="PointLight2D" parent="Objects/Lights"]
+position = Vector2(-144, -181.0688)
+color = Color(0.55, 0.65, 1.0, 1)
+energy = 0.35
+range_item_cull_mask = 3
+texture = ExtResource("11_r")
+texture_scale = 1.6
+script = ExtResource("12_r")
+mode = 0
+needs_power = false
+base_energy = 0.35
+gameplay = false
+
+[node name="MoonE" type="PointLight2D" parent="Objects/Lights"]
+position = Vector2(144, -181.0688)
+color = Color(0.55, 0.65, 1.0, 1)
+energy = 0.35
+range_item_cull_mask = 3
+texture = ExtResource("11_r")
+texture_scale = 1.6
+script = ExtResource("12_r")
+mode = 0
+needs_power = false
+base_energy = 0.35
+gameplay = false

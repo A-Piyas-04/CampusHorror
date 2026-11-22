@@ -23,7 +23,7 @@ run() { # name scene args...
   printf '%-14s exit=%s  err/warn-lines=%-3s %s\n' "$name" "$ec" "$errs" "$res"
 }
 
-for c in ${CHECKS:-Scripts Validator GameSession Character Movement Audio Camera Transition Occlusion Interaction Chapter1 DebugKeys}; do
+for c in ${CHECKS:-Scripts Validator GameSession Character Movement Audio Camera Transition Occlusion Interaction Chapter1 Chapter2 Chapter3 DebugKeys Campus}; do
   case $c in
     Scripts)     run Scripts     res://scenes/tests/scripts/ScriptCompileCheck.tscn ;;
     Validator)   run Validator   res://scenes/tests/zone_validation/ZoneValidator.tscn -- --quit-after-checks ${VARGS:-} ;;
@@ -36,7 +36,10 @@ for c in ${CHECKS:-Scripts Validator GameSession Character Movement Audio Camera
     Occlusion)   run Occlusion   res://scenes/tests/feel/OcclusionCheck.tscn -- --quit-after-checks ;;
     Interaction) run Interaction res://scenes/tests/feel/InteractionCheck.tscn -- --quit-after-checks ;;
     Chapter1)    run Chapter1    res://scenes/tests/story/Chapter1Check.tscn -- --quit-after-checks ;;
+    Chapter2)    run Chapter2    res://scenes/tests/story/Chapter2Check.tscn -- --quit-after-checks ;;
+    Chapter3)    run Chapter3    res://scenes/tests/story/Chapter3Check.tscn -- --quit-after-checks ;;
     DebugKeys)   run DebugKeys   res://scenes/tests/story/DebugKeysCheck.tscn -- --quit-after-checks ;;
+    Campus)      run Campus      res://scenes/tests/story/CampusTraversalCheck.tscn -- --quit-after-checks ;;
     *)           echo "unknown suite: $c" ;;
   esac
 done

@@ -1,0 +1,1688 @@
+{
+	"format": 1,
+	"ground_lattice": {},
+	"nodes": {
+		".": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/world/AuditoriumHall.tscn",
+			"script": {
+				"path": "res://scripts/world/zone.gd",
+				"profile": "Resource(\"res://data/zones/profiles/auditorium_hall.tres\")",
+				"zone_id": "\"auditorium_hall\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"y_sort": true,
+			"z": 0
+		},
+		"./Objects": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"y_sort": true,
+			"z": 0
+		},
+		"./Objects/Doors": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"y_sort": true,
+			"z": 0
+		},
+		"./Objects/Doors/DoorAv": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/components/Door.tscn",
+			"script": {
+				"destination_spawn_id": "\"av_from_auditorium\"",
+				"destination_zone_id": "\"av_hall\"",
+				"hold_seconds": "0.0",
+				"locked_message": "\"Locked.\"",
+				"path": "res://scripts/components/door.gd",
+				"place_name": "\"AV hall\"",
+				"required_item": "\"\"",
+				"requires_flag": "\"\"",
+				"show_placeholder": "false",
+				"unlock_message": "\"\"",
+				"unlocked_flag": "\"door_unlocked_DoorAv\"",
+				"verb": "\"Enter\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-374.3999938964844,
+				-82.30400085449219
+			],
+			"z": 0
+		},
+		"./Objects/Doors/DoorAv/Body": {
+			"class": "Polygon2D",
+			"color": [
+				0.44999998807907104,
+				0.2800000011920929,
+				0.15000000596046448,
+				1.0
+			],
+			"light_mask": 1,
+			"polygon": [
+				[
+					-24.0,
+					-64.0
+				],
+				[
+					24.0,
+					-64.0
+				],
+				[
+					24.0,
+					0.0
+				],
+				[
+					-24.0,
+					0.0
+				]
+			],
+			"visible": false,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-374.3999938964844,
+				-82.30400085449219
+			],
+			"z": 0
+		},
+		"./Objects/Doors/DoorAv/Interactable": {
+			"class": "Area2D",
+			"layer": 4,
+			"light_mask": 1,
+			"mask": 0,
+			"monitorable": true,
+			"monitoring": false,
+			"scene": "res://scenes/components/Interactable.tscn",
+			"script": {
+				"hold_seconds": "0.0",
+				"object_name": "\"AV hall\"",
+				"path": "res://scripts/components/interactable.gd",
+				"prompt_offset": "Vector2(0, -56)",
+				"verb": "\"Enter\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-374.3999938964844,
+				-82.30400085449219
+			],
+			"z": 0
+		},
+		"./Objects/Doors/DoorAv/Interactable/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"circle": 32.0
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-374.3999938964844,
+				-82.30400085449219
+			],
+			"z": 0
+		},
+		"./Objects/Doors/DoorOut": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/components/Door.tscn",
+			"script": {
+				"destination_spawn_id": "\"outside_auditorium\"",
+				"destination_zone_id": "\"central_plaza\"",
+				"hold_seconds": "0.0",
+				"locked_message": "\"Locked.\"",
+				"path": "res://scripts/components/door.gd",
+				"place_name": "\"Central Plaza\"",
+				"required_item": "\"\"",
+				"requires_flag": "\"\"",
+				"show_placeholder": "false",
+				"unlock_message": "\"\"",
+				"unlocked_flag": "\"door_unlocked_DoorOut\"",
+				"verb": "\"Go out\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-128.0,
+				-7.201600074768066
+			],
+			"z": 0
+		},
+		"./Objects/Doors/DoorOut/Body": {
+			"class": "Polygon2D",
+			"color": [
+				0.44999998807907104,
+				0.2800000011920929,
+				0.15000000596046448,
+				1.0
+			],
+			"light_mask": 1,
+			"polygon": [
+				[
+					-24.0,
+					-64.0
+				],
+				[
+					24.0,
+					-64.0
+				],
+				[
+					24.0,
+					0.0
+				],
+				[
+					-24.0,
+					0.0
+				]
+			],
+			"visible": false,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-128.0,
+				-7.201600074768066
+			],
+			"z": 0
+		},
+		"./Objects/Doors/DoorOut/Interactable": {
+			"class": "Area2D",
+			"layer": 4,
+			"light_mask": 1,
+			"mask": 0,
+			"monitorable": true,
+			"monitoring": false,
+			"scene": "res://scenes/components/Interactable.tscn",
+			"script": {
+				"hold_seconds": "0.0",
+				"object_name": "\"Central Plaza\"",
+				"path": "res://scripts/components/interactable.gd",
+				"prompt_offset": "Vector2(0, -56)",
+				"verb": "\"Go out\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-128.0,
+				-7.201600074768066
+			],
+			"z": 0
+		},
+		"./Objects/Doors/DoorOut/Interactable/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"circle": 32.0
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-128.0,
+				-7.201600074768066
+			],
+			"z": 0
+		},
+		"./Objects/Glow": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"y_sort": true,
+			"z": 0
+		},
+		"./Objects/Glow/Curtain": {
+			"class": "Node2D",
+			"groups": [
+				"glow_marks"
+			],
+			"light_mask": 1,
+			"script": {
+				"color": "Color(0.45, 1, 0.82, 1)",
+				"intensity": "0.8",
+				"note_body": "\"\"",
+				"note_id": "\"\"",
+				"note_title": "\"\"",
+				"path": "res://scripts/world/glow_mark.gd",
+				"pulse_speed": "0.5",
+				"spots": "PackedVector3Array(0, -10, 9, 14, -30, 6, -8, -44, 7, 20, -60, 5)",
+				"trail_spacing": "22.0",
+				"trail_to": "Vector2(0, 0)",
+				"writing": "\"\"",
+				"writing_offset": "Vector2(0, 0)",
+				"writing_size": "26"
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				96.0,
+				-380.656005859375
+			],
+			"z": 0
+		},
+		"./Objects/Lights": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"y_sort": true,
+			"z": 0
+		},
+		"./Objects/Lights/Exit": {
+			"class": "PointLight2D",
+			"light": {
+				"color": [
+					0.3499999940395355,
+					1.0,
+					0.5,
+					1.0
+				],
+				"enabled": true,
+				"energy": 0.45,
+				"range_mask": 3,
+				"shadow_mask": 1,
+				"shadows": false
+			},
+			"light_mask": 1,
+			"script": {
+				"base_energy": "0.45",
+				"gameplay": "false",
+				"gameplay_radius": "0.0",
+				"mode": "0",
+				"needs_power": "false",
+				"path": "res://scripts/lighting/lamp_light.gd",
+				"power_flag": "\"power_on\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-128.0,
+				-20.576000213623047
+			],
+			"z": 0
+		},
+		"./Objects/Lights/StageSpot": {
+			"class": "PointLight2D",
+			"light": {
+				"color": [
+					1.0,
+					0.8999999761581421,
+					0.699999988079071,
+					1.0
+				],
+				"enabled": false,
+				"energy": 0.6,
+				"range_mask": 3,
+				"shadow_mask": 1,
+				"shadows": false
+			},
+			"light_mask": 1,
+			"script": {
+				"base_energy": "0.6",
+				"gameplay": "true",
+				"gameplay_radius": "0.0",
+				"mode": "1",
+				"needs_power": "true",
+				"path": "res://scripts/lighting/lamp_light.gd",
+				"power_flag": "\"power_plaza\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				-349.7919921875
+			],
+			"z": 0
+		},
+		"./Objects/Props": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"y_sort": true,
+			"z": 0
+		},
+		"./Objects/Props/SeatsE0": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/furniture/SeatRow.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				160.0,
+				-82.30400085449219
+			],
+			"z": 0
+		},
+		"./Objects/Props/SeatsE0/Body": {
+			"class": "StaticBody2D",
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				160.0,
+				-82.30400085449219
+			],
+			"z": 0
+		},
+		"./Objects/Props/SeatsE0/Body/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					204.8000030517578,
+					12.341522216796875
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				160.0,
+				-82.30400085449219
+			],
+			"z": 0
+		},
+		"./Objects/Props/SeatsE0/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-556.5,
+				-222.77923583984375
+			],
+			"texture": "res://assets/sprites/furniture/seat_row.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.21333333849906921,
+				0.0,
+				0.0,
+				0.21333333849906921,
+				160.0,
+				-82.30400085449219
+			],
+			"z": 0
+		},
+		"./Objects/Props/SeatsE1": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/furniture/SeatRow.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				160.0,
+				-119.3407974243164
+			],
+			"z": 0
+		},
+		"./Objects/Props/SeatsE1/Body": {
+			"class": "StaticBody2D",
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				160.0,
+				-119.3407974243164
+			],
+			"z": 0
+		},
+		"./Objects/Props/SeatsE1/Body/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					204.8000030517578,
+					12.341522216796875
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				160.0,
+				-119.3407974243164
+			],
+			"z": 0
+		},
+		"./Objects/Props/SeatsE1/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-556.5,
+				-222.77923583984375
+			],
+			"texture": "res://assets/sprites/furniture/seat_row.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.21333333849906921,
+				0.0,
+				0.0,
+				0.21333333849906921,
+				160.0,
+				-119.3407974243164
+			],
+			"z": 0
+		},
+		"./Objects/Props/SeatsE2": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/furniture/SeatRow.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				160.0,
+				-156.37759399414063
+			],
+			"z": 0
+		},
+		"./Objects/Props/SeatsE2/Body": {
+			"class": "StaticBody2D",
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				160.0,
+				-156.37759399414063
+			],
+			"z": 0
+		},
+		"./Objects/Props/SeatsE2/Body/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					204.8000030517578,
+					12.341522216796875
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				160.0,
+				-156.37759399414063
+			],
+			"z": 0
+		},
+		"./Objects/Props/SeatsE2/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-556.5,
+				-222.77923583984375
+			],
+			"texture": "res://assets/sprites/furniture/seat_row.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.21333333849906921,
+				0.0,
+				0.0,
+				0.21333333849906921,
+				160.0,
+				-156.37759399414063
+			],
+			"z": 0
+		},
+		"./Objects/Props/SeatsE3": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/furniture/SeatRow.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				160.0,
+				-193.41439819335938
+			],
+			"z": 0
+		},
+		"./Objects/Props/SeatsE3/Body": {
+			"class": "StaticBody2D",
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				160.0,
+				-193.41439819335938
+			],
+			"z": 0
+		},
+		"./Objects/Props/SeatsE3/Body/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					204.8000030517578,
+					12.341522216796875
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				160.0,
+				-193.41439819335938
+			],
+			"z": 0
+		},
+		"./Objects/Props/SeatsE3/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-556.5,
+				-222.77923583984375
+			],
+			"texture": "res://assets/sprites/furniture/seat_row.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.21333333849906921,
+				0.0,
+				0.0,
+				0.21333333849906921,
+				160.0,
+				-193.41439819335938
+			],
+			"z": 0
+		},
+		"./Objects/Props/SeatsE4": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/furniture/SeatRow.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				160.0,
+				-230.45120239257813
+			],
+			"z": 0
+		},
+		"./Objects/Props/SeatsE4/Body": {
+			"class": "StaticBody2D",
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				160.0,
+				-230.45120239257813
+			],
+			"z": 0
+		},
+		"./Objects/Props/SeatsE4/Body/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					204.8000030517578,
+					12.341522216796875
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				160.0,
+				-230.45120239257813
+			],
+			"z": 0
+		},
+		"./Objects/Props/SeatsE4/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-556.5,
+				-222.77923583984375
+			],
+			"texture": "res://assets/sprites/furniture/seat_row.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.21333333849906921,
+				0.0,
+				0.0,
+				0.21333333849906921,
+				160.0,
+				-230.45120239257813
+			],
+			"z": 0
+		},
+		"./Objects/Props/SeatsE5": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/furniture/SeatRow.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				160.0,
+				-267.4880065917969
+			],
+			"z": 0
+		},
+		"./Objects/Props/SeatsE5/Body": {
+			"class": "StaticBody2D",
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				160.0,
+				-267.4880065917969
+			],
+			"z": 0
+		},
+		"./Objects/Props/SeatsE5/Body/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					204.8000030517578,
+					12.341522216796875
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				160.0,
+				-267.4880065917969
+			],
+			"z": 0
+		},
+		"./Objects/Props/SeatsE5/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-556.5,
+				-222.77923583984375
+			],
+			"texture": "res://assets/sprites/furniture/seat_row.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.21333333849906921,
+				0.0,
+				0.0,
+				0.21333333849906921,
+				160.0,
+				-267.4880065917969
+			],
+			"z": 0
+		},
+		"./Objects/Props/SeatsW0": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/furniture/SeatRow.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-160.0,
+				-82.30400085449219
+			],
+			"z": 0
+		},
+		"./Objects/Props/SeatsW0/Body": {
+			"class": "StaticBody2D",
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-160.0,
+				-82.30400085449219
+			],
+			"z": 0
+		},
+		"./Objects/Props/SeatsW0/Body/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					204.8000030517578,
+					12.341522216796875
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-160.0,
+				-82.30400085449219
+			],
+			"z": 0
+		},
+		"./Objects/Props/SeatsW0/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-556.5,
+				-222.77923583984375
+			],
+			"texture": "res://assets/sprites/furniture/seat_row.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.21333333849906921,
+				0.0,
+				0.0,
+				0.21333333849906921,
+				-160.0,
+				-82.30400085449219
+			],
+			"z": 0
+		},
+		"./Objects/Props/SeatsW1": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/furniture/SeatRow.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-160.0,
+				-119.3407974243164
+			],
+			"z": 0
+		},
+		"./Objects/Props/SeatsW1/Body": {
+			"class": "StaticBody2D",
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-160.0,
+				-119.3407974243164
+			],
+			"z": 0
+		},
+		"./Objects/Props/SeatsW1/Body/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					204.8000030517578,
+					12.341522216796875
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-160.0,
+				-119.3407974243164
+			],
+			"z": 0
+		},
+		"./Objects/Props/SeatsW1/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-556.5,
+				-222.77923583984375
+			],
+			"texture": "res://assets/sprites/furniture/seat_row.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.21333333849906921,
+				0.0,
+				0.0,
+				0.21333333849906921,
+				-160.0,
+				-119.3407974243164
+			],
+			"z": 0
+		},
+		"./Objects/Props/SeatsW2": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/furniture/SeatRow.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-160.0,
+				-156.37759399414063
+			],
+			"z": 0
+		},
+		"./Objects/Props/SeatsW2/Body": {
+			"class": "StaticBody2D",
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-160.0,
+				-156.37759399414063
+			],
+			"z": 0
+		},
+		"./Objects/Props/SeatsW2/Body/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					204.8000030517578,
+					12.341522216796875
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-160.0,
+				-156.37759399414063
+			],
+			"z": 0
+		},
+		"./Objects/Props/SeatsW2/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-556.5,
+				-222.77923583984375
+			],
+			"texture": "res://assets/sprites/furniture/seat_row.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.21333333849906921,
+				0.0,
+				0.0,
+				0.21333333849906921,
+				-160.0,
+				-156.37759399414063
+			],
+			"z": 0
+		},
+		"./Objects/Props/SeatsW3": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/furniture/SeatRow.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-160.0,
+				-193.41439819335938
+			],
+			"z": 0
+		},
+		"./Objects/Props/SeatsW3/Body": {
+			"class": "StaticBody2D",
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-160.0,
+				-193.41439819335938
+			],
+			"z": 0
+		},
+		"./Objects/Props/SeatsW3/Body/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					204.8000030517578,
+					12.341522216796875
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-160.0,
+				-193.41439819335938
+			],
+			"z": 0
+		},
+		"./Objects/Props/SeatsW3/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-556.5,
+				-222.77923583984375
+			],
+			"texture": "res://assets/sprites/furniture/seat_row.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.21333333849906921,
+				0.0,
+				0.0,
+				0.21333333849906921,
+				-160.0,
+				-193.41439819335938
+			],
+			"z": 0
+		},
+		"./Objects/Props/SeatsW4": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/furniture/SeatRow.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-160.0,
+				-230.45120239257813
+			],
+			"z": 0
+		},
+		"./Objects/Props/SeatsW4/Body": {
+			"class": "StaticBody2D",
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-160.0,
+				-230.45120239257813
+			],
+			"z": 0
+		},
+		"./Objects/Props/SeatsW4/Body/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					204.8000030517578,
+					12.341522216796875
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-160.0,
+				-230.45120239257813
+			],
+			"z": 0
+		},
+		"./Objects/Props/SeatsW4/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-556.5,
+				-222.77923583984375
+			],
+			"texture": "res://assets/sprites/furniture/seat_row.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.21333333849906921,
+				0.0,
+				0.0,
+				0.21333333849906921,
+				-160.0,
+				-230.45120239257813
+			],
+			"z": 0
+		},
+		"./Objects/Props/SeatsW5": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/furniture/SeatRow.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-160.0,
+				-267.4880065917969
+			],
+			"z": 0
+		},
+		"./Objects/Props/SeatsW5/Body": {
+			"class": "StaticBody2D",
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-160.0,
+				-267.4880065917969
+			],
+			"z": 0
+		},
+		"./Objects/Props/SeatsW5/Body/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					204.8000030517578,
+					12.341522216796875
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-160.0,
+				-267.4880065917969
+			],
+			"z": 0
+		},
+		"./Objects/Props/SeatsW5/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-556.5,
+				-222.77923583984375
+			],
+			"texture": "res://assets/sprites/furniture/seat_row.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.21333333849906921,
+				0.0,
+				0.0,
+				0.21333333849906921,
+				-160.0,
+				-267.4880065917969
+			],
+			"z": 0
+		},
+		"./Objects/Props/Stage": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/furniture/StagePlatform.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				-366.2528076171875
+			],
+			"z": 0
+		},
+		"./Objects/Props/Stage/Body": {
+			"class": "StaticBody2D",
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				-366.2528076171875
+			],
+			"z": 0
+		},
+		"./Objects/Props/Stage/Body/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					227.1999969482422,
+					62.7360725402832
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				-365.73858642578125
+			],
+			"z": 0
+		},
+		"./Objects/Props/Stage/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-617.5,
+				-333.29754638671875
+			],
+			"texture": "res://assets/sprites/furniture/stage_platform.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.21333333849906921,
+				0.0,
+				0.0,
+				0.21333333849906921,
+				0.0,
+				-366.2528076171875
+			],
+			"z": 0
+		},
+		"./Objects/Room": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/interiors/AuditoriumHallRoom.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"y_sort": true,
+			"z": 0
+		},
+		"./Objects/Room/Body": {
+			"class": "StaticBody2D",
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"z": 0
+		},
+		"./Objects/Room/Body/CollisionDoorStopS1": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					83.19999694824219,
+					10.284602165222168
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-128.0,
+				10.284602165222168
+			],
+			"z": 0
+		},
+		"./Objects/Room/Body/CollisionDoorStopW1": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					16.0,
+					32.910728454589844
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-400.0,
+				-82.27681732177734
+			],
+			"z": 0
+		},
+		"./Objects/Room/Body/CollisionWallE1": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					8.0,
+					421.668701171875
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				388.0,
+				-205.69204711914063
+			],
+			"z": 0
+		},
+		"./Objects/Room/Body/CollisionWallN": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					784.0,
+					5.142301082611084
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				-413.9552307128906
+			],
+			"z": 0
+		},
+		"./Objects/Room/Body/CollisionWallS1": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					225.60000610351563,
+					5.142301082611084
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-279.20001220703125,
+				2.571150541305542
+			],
+			"z": 0
+		},
+		"./Objects/Room/Body/CollisionWallS2": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					481.6000061035156,
+					5.142301082611084
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				151.1999969482422,
+				2.571150541305542
+			],
+			"z": 0
+		},
+		"./Objects/Room/Body/CollisionWallW1": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					8.0,
+					73.02067565917969
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-388.0,
+				-31.3680362701416
+			],
+			"z": 0
+		},
+		"./Objects/Room/Body/CollisionWallW2": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					8.0,
+					319.85113525390625
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-388.0,
+				-256.600830078125
+			],
+			"z": 0
+		},
+		"./Objects/Room/SouthWall": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-883.5499877929688,
+				-103.67081451416016
+			],
+			"texture": "res://assets/sprites/interiors/auditorium_hall_room__south_wall.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.4571428596973419,
+				0.0,
+				0.0,
+				0.4571428596973419,
+				0.0,
+				5.142301082611084
+			],
+			"z": 0
+		},
+		"./Objects/Room/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-885.5499877929688,
+				-1364.4219970703125
+			],
+			"texture": "res://assets/sprites/interiors/auditorium_hall_room.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.4571428596973419,
+				0.0,
+				0.0,
+				0.4571428596973419,
+				0.0,
+				0.0
+			],
+			"z": -10
+		},
+		"./Objects/SpawnMarkers": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"y_sort": true,
+			"z": 0
+		},
+		"./Objects/SpawnMarkers/Spawn_auditorium_from_av": {
+			"class": "Marker2D",
+			"light_mask": 1,
+			"scene": "res://scenes/components/SpawnMarker.tscn",
+			"script": {
+				"path": "res://scripts/components/spawn_marker.gd",
+				"spawn_id": "\"auditorium_from_av\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-345.6000061035156,
+				-82.30400085449219
+			],
+			"z": 0
+		},
+		"./Objects/SpawnMarkers/Spawn_auditorium_from_plaza": {
+			"class": "Marker2D",
+			"light_mask": 1,
+			"scene": "res://scenes/components/SpawnMarker.tscn",
+			"script": {
+				"path": "res://scripts/components/spawn_marker.gd",
+				"spawn_id": "\"auditorium_from_plaza\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-128.0,
+				-32.921600341796875
+			],
+			"z": 0
+		},
+		"./Objects/Story": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"y_sort": true,
+			"z": 0
+		}
+	},
+	"zone_id": "auditorium_hall"
+}

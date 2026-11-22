@@ -18,6 +18,7 @@
 [ext_resource type="Script" path="res://scripts/lighting/lamp_light.gd" id="16_r"]
 [ext_resource type="PackedScene" path="res://scenes/components/ZoneEdge.tscn" id="17_r"]
 [ext_resource type="PackedScene" path="res://scenes/components/SpawnMarker.tscn" id="18_r"]
+[ext_resource type="PackedScene" path="res://scenes/components/Door.tscn" id="19_r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1"]
 size = Vector2(40, 4760)
@@ -33,6 +34,9 @@ size = Vector2(1520, 60)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5"]
 size = Vector2(1660, 60)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6"]
+size = Vector2(560, 47)
 
 [node name="HallsExterior" type="Node2D"]
 y_sort_enabled = true
@@ -74,7 +78,7 @@ y_sort_enabled = true
 y_sort_enabled = true
 
 [node name="Grass" type="Polygon2D" parent="Ground"]
-polygon = PackedVector2Array(2280, -3260, 6120, -3260, 6120, 1570, 2280, 1570)
+polygon = PackedVector2Array(2280, -3260, 6120, -3260, 6120, 1600, 2280, 1600)
 texture = ExtResource("3_r")
 texture_repeat = 2
 texture_scale = Vector2(4, 4)
@@ -352,6 +356,7 @@ script = ExtResource("16_r")
 mode = 0
 needs_power = true
 base_energy = 0.9
+power_flag = "power_halls"
 
 [node name="StreetLamp3" parent="Objects/Props" instance=ExtResource("14_r")]
 position = Vector2(2920, -400)
@@ -370,6 +375,7 @@ script = ExtResource("16_r")
 mode = 1
 needs_power = true
 base_energy = 0.9
+power_flag = "power_halls"
 
 [node name="StreetLamp4" parent="Objects/Props" instance=ExtResource("14_r")]
 position = Vector2(2920, 600)
@@ -388,6 +394,7 @@ script = ExtResource("16_r")
 mode = 0
 needs_power = true
 base_energy = 0.9
+power_flag = "power_halls"
 
 [node name="StreetLamp5" parent="Objects/Props" instance=ExtResource("14_r")]
 position = Vector2(4170, -2400)
@@ -424,6 +431,7 @@ script = ExtResource("16_r")
 mode = 0
 needs_power = true
 base_energy = 0.9
+power_flag = "power_halls"
 
 [node name="StreetLamp7" parent="Objects/Props" instance=ExtResource("14_r")]
 position = Vector2(4270, 300)
@@ -442,6 +450,7 @@ script = ExtResource("16_r")
 mode = 0
 needs_power = true
 base_energy = 0.9
+power_flag = "power_halls"
 
 [node name="BoundWestEdge" type="StaticBody2D" parent="Objects/Bounds"]
 collision_mask = 0
@@ -478,6 +487,13 @@ collision_mask = 0
 position = Vector2(5270, -2980)
 shape = SubResource("RectangleShape2D_5")
 
+[node name="BoundNorthGap" type="StaticBody2D" parent="Objects/Bounds"]
+collision_mask = 0
+
+[node name="Shape" type="CollisionShape2D" parent="Objects/Bounds/BoundNorthGap"]
+position = Vector2(4170, -2971.5)
+shape = SubResource("RectangleShape2D_6")
+
 [node name="EdgeToField" parent="Objects/Doors" instance=ExtResource("17_r")]
 position = Vector2(2830, 75)
 destination_zone_id = "main_gate_exterior"
@@ -510,3 +526,27 @@ place_name = "Academic buildings"
 [node name="Spawn_halls_from_academic" parent="Objects/SpawnMarkers" instance=ExtResource("18_r")]
 position = Vector2(4170, -2780)
 spawn_id = "halls_from_academic"
+
+[node name="DoorSouthHall" parent="Objects/Doors" instance=ExtResource("19_r")]
+position = Vector2(3400, 625)
+destination_zone_id = "hall_corridor"
+destination_spawn_id = "hallcorr_from_outside"
+verb = "Enter"
+place_name = "South Hall"
+show_placeholder = false
+
+[node name="Spawn_outside_south_hall" parent="Objects/SpawnMarkers" instance=ExtResource("18_r")]
+position = Vector2(3400, 672)
+spawn_id = "outside_south_hall"
+
+[node name="DoorNorthHall" parent="Objects/Doors" instance=ExtResource("19_r")]
+position = Vector2(4935, 625)
+destination_zone_id = "hall_common"
+destination_spawn_id = "common_from_outside"
+verb = "Enter"
+place_name = "North Hall"
+show_placeholder = false
+
+[node name="Spawn_outside_north_hall" parent="Objects/SpawnMarkers" instance=ExtResource("18_r")]
+position = Vector2(4935, 672)
+spawn_id = "outside_north_hall"

@@ -28,6 +28,11 @@ const GAIT_NOISE := {&"sneak": 0.35, &"walk": 1.0, &"run": 2.6}
 @export var catch_radius: float = 20.0
 @export var sight_radius: float = 150.0
 @export var close_sense_radius: float = 64.0
+## How strongly the player's light draws him (1 = the Night Guard, phototropic). Sound-hunting hosts (the
+## "students", Chapter 3) use a low value: they come for footsteps, not the lantern.
+@export var light_sensitivity: float = 1.0
+## Multiplies how far footsteps carry to him (the students hear about twice as far as the guard).
+@export var hearing: float = 1.0
 ## Seconds without contact before a chase turns into a search.
 @export var lose_seconds: float = 3.0
 @export var search_seconds: float = 7.0
@@ -137,7 +142,7 @@ func _sense(delta: float) -> void:
 	var los := d < 1100.0 and _line_of_sight(p)
 	if los and vis > 0.0 and d < vis:
 		# Far light makes him curious (he walks over to look); close light is unmistakable.
-		gain = maxf(gain, 1.6 * pow(1.0 - d / vis, 1.5) + 0.12)
+		gain = maxf(gain, (1.6 * pow(1.0 - d / vis, 1.5) + 0.12) * light_sensitivity)
 	if los and d < sight_radius:
 		var to := (p - global_position).normalized()
 		var front := _facing_vector().dot(to) > 0.2
@@ -155,7 +160,7 @@ func _sense(delta: float) -> void:
 func _on_player_footstep(surface: StringName, gait: StringName, at: Vector2) -> void:
 	if not active or _player == null:
 		return
-	var radius: float = float(NOISE.get(surface, 140.0)) * float(GAIT_NOISE.get(gait, 1.0))
+	var radius: float = float(NOISE.get(surface, 140.0)) * float(GAIT_NOISE.get(gait, 1.0)) * hearing
 	var d := global_position.distance_to(at)
 	if d > radius:
 		return

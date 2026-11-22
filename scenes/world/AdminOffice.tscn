@@ -1,0 +1,108 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/world/zone.gd" id="1_r"]
+[ext_resource type="Resource" path="res://data/zones/profiles/admin_office.tres" id="2_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/interiors/AdminOfficeRoom.tscn" id="3_r"]
+[ext_resource type="PackedScene" path="res://scenes/components/Door.tscn" id="4_r"]
+[ext_resource type="PackedScene" path="res://scenes/components/SpawnMarker.tscn" id="5_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/furniture/OfficeDesk.tscn" id="6_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/common/ContactShadow.tscn" id="7_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/furniture/OfficeSafe.tscn" id="8_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/furniture/FileCabinet.tscn" id="9_r"]
+[ext_resource type="PackedScene" path="res://scenes/components/Readable.tscn" id="10_r"]
+[ext_resource type="PackedScene" path="res://scenes/components/Keypad.tscn" id="11_r"]
+[ext_resource type="Texture2D" path="res://data/lighting/light_soft.tres" id="12_r"]
+[ext_resource type="Script" path="res://scripts/lighting/lamp_light.gd" id="13_r"]
+
+[node name="AdminOffice" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_r")
+zone_id = "admin_office"
+profile = ExtResource("2_r")
+
+[node name="Objects" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Props" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="Story" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="Lights" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="Doors" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="SpawnMarkers" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="Glow" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="Room" parent="Objects" instance=ExtResource("3_r")]
+
+[node name="DoorOut" parent="Objects/Doors" instance=ExtResource("4_r")]
+position = Vector2(-118.4, -28.8064)
+destination_zone_id = "admin_lobby"
+destination_spawn_id = "lobby_from_office"
+verb = "Go out"
+place_name = "Lobby"
+show_placeholder = false
+
+[node name="Spawn_office_from_lobby" parent="Objects/SpawnMarkers" instance=ExtResource("5_r")]
+position = Vector2(-92.8, -28.8064)
+spawn_id = "office_from_lobby"
+
+[node name="Desk" parent="Objects/Props" instance=ExtResource("6_r")]
+position = Vector2(25.6, -74.0736)
+
+[node name="ContactShadow" parent="Objects/Props/Desk" instance=ExtResource("7_r")]
+scale = Vector2(0.9, 0.4)
+
+[node name="Safe" parent="Objects/Props" instance=ExtResource("8_r")]
+position = Vector2(102.4, -131.6864)
+
+[node name="ContactShadow" parent="Objects/Props/Safe" instance=ExtResource("7_r")]
+scale = Vector2(0.5, 0.3)
+
+[node name="Cabinet1" parent="Objects/Props" instance=ExtResource("9_r")]
+position = Vector2(-102.4, -135.8016)
+
+[node name="ContactShadow" parent="Objects/Props/Cabinet1" instance=ExtResource("7_r")]
+scale = Vector2(0.35, 0.25)
+
+[node name="Cabinet2" parent="Objects/Props" instance=ExtResource("9_r")]
+position = Vector2(-80, -135.8016)
+
+[node name="ContactShadow" parent="Objects/Props/Cabinet2" instance=ExtResource("7_r")]
+scale = Vector2(0.35, 0.25)
+
+[node name="Memo" parent="Objects/Story" instance=ExtResource("10_r")]
+position = Vector2(25.6, -61.728)
+note_id = "registrar_memo"
+title = "Memo on the desk"
+body = "From the Registrar, to the night guard. CONFIDENTIAL.\n\nSheet 7 of the 1984 master plan (the service tunnels) and the north gate key are in my safe. Nobody goes down there until the faculty decide.\n\nThe safe code is the date of the closed seminar, day then month. You were at the door; you know it."
+requires_light = true
+
+[node name="SafeDial" parent="Objects/Story" instance=ExtResource("11_r")]
+position = Vector2(102.4, -123.456)
+code = "1911"
+title = "REGISTRAR'S SAFE"
+solved_flag = "safe_open"
+solved_message = "The dial clicks round. The safe door swings open: a rolled plan, and a heavy key on a tag: NORTH GATE."
+not_ready_message = ""
+
+[node name="Moon" type="PointLight2D" parent="Objects/Lights"]
+position = Vector2(48, -123.456)
+color = Color(0.55, 0.65, 1.0, 1)
+energy = 0.35
+range_item_cull_mask = 3
+texture = ExtResource("12_r")
+texture_scale = 1.2
+script = ExtResource("13_r")
+mode = 0
+needs_power = false
+base_energy = 0.35
+gameplay = false

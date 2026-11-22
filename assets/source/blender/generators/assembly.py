@@ -18,7 +18,8 @@ Part types (metres; frame: origin on the ground, +X right, +Y away from the came
     {"lathe": [[r, z], ...], "at": [x, y], "sides": 24}
     {"blob": [x, y, z], "size": [sx, sy, sz], "lump": 0.25, "subdiv": 3, "seed": 1}
     {"text": "EXIT", "at": [x, y, z], "size": 0.2, "face": "front"|"up", "depth": 0.004, "align": "CENTER"}
-    {"prism": [[u, v], ...], "span": [a0, a1], "axis": "y"|"x"}  polygon in XZ (axis y) or YZ (axis x), extruded
+    {"prism": [[u, v], ...], "span": [a0, a1], "axis": "y"|"x"|"z"}  polygon in XZ (axis y), YZ (axis x) or XY
+                                                          (axis z: flat inlays, rugs), extruded
     {"repeat": n, "step": [dx, dy, dz], "part": {...}}    n copies, each offset by step
     {"mirror_x": true, "part": {...}}                     the part plus its mirror image across x = 0
 Any part may also carry "xf": [{"rot": [rx, ry, rz], "pivot": [x, y, z]} | {"move": [dx, dy, dz]}, ...], applied in
@@ -369,6 +370,9 @@ class Builder:
             if axis == "y":
                 front = [self.bm.verts.new((u, a0, v)) for u, v in pts]
                 back = [self.bm.verts.new((u, a1, v)) for u, v in pts]
+            elif axis == "z":
+                front = [self.bm.verts.new((u, v, a0)) for u, v in pts]
+                back = [self.bm.verts.new((u, v, a1)) for u, v in pts]
             else:
                 front = [self.bm.verts.new((a0, u, v)) for u, v in pts]
                 back = [self.bm.verts.new((a1, u, v)) for u, v in pts]
@@ -377,7 +381,8 @@ class Builder:
             self.bm.faces.new(list(reversed(back)))
             for i in range(n):
                 self.bm.faces.new((front[i], front[(i + 1) % n], back[(i + 1) % n], back[i]))
-            centre = (sum(u for u, _ in pts) / n, (a0 + a1) / 2, sum(v for _, v in pts) / n)
+            cu, cv = sum(u for u, _ in pts) / n, sum(v for _, v in pts) / n
+            centre = {"y": (cu, (a0 + a1) / 2, cv), "x": ((a0 + a1) / 2, cu, cv), "z": (cu, cv, (a0 + a1) / 2)}[axis]
         elif "text" in part:
             self._text(part)
         else:

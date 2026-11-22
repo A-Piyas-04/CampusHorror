@@ -86,7 +86,23 @@
       }
     },
     "objects": {
-      "Main": {
+      "Plinth": {
+        "parts": [
+          {
+            "box": [
+              -12.1,
+              12.1,
+              -14.5,
+              14.5,
+              0.0,
+              0.04
+            ],
+            "mat": "roof_slab"
+          }
+        ],
+        "bevel": 0.0
+      },
+      "Building": {
         "parts": [
           {
             "box": [
@@ -2086,7 +2102,16 @@
   "model": {
     "objects": [
       {
-        "object": "Main",
+        "object": "Plinth",
+        "evaluated_bounds_m": {
+          "x": 24.2,
+          "y": 29.0,
+          "z": 0.04
+        },
+        "evaluated_faces": 6
+      },
+      {
+        "object": "Building",
         "evaluated_bounds_m": {
           "x": 25.3,
           "y": 30.05,
@@ -2181,7 +2206,7 @@
       1218,
       1496
     ],
-    "render_seconds": 8.8
+    "render_seconds": 16.5
   },
   "projection": {
     "note": "texture px, top-left origin: x = W/2 + (p.right - cx)*ppm, y = H/2 - (p.up - cy)*ppm",
@@ -2231,18 +2256,53 @@
       103.10983254417852,
       1114.999984741211,
       1392.89017271425
+    ],
+    "crop_px": [
+      100,
+      609,
+      1018,
+      796
     ]
   },
   "tiling": null,
-  "layers": null,
+  "layers": [
+    {
+      "name": "Building",
+      "png": "assets/sprites/campus/north_hall_wing__building.png",
+      "objects": [
+        "Building"
+      ],
+      "sort_y_m": -15.0,
+      "z_index": 0,
+      "fade": {
+        "rects_m": {
+          "Behind": [
+            -13.1,
+            13.1,
+            -14.4,
+            35.468
+          ]
+        },
+        "alpha": 0.3,
+        "seconds": 0.3
+      },
+      "render_seconds": 9.6,
+      "crop_px": [
+        79,
+        79,
+        1060,
+        1338
+      ]
+    }
+  ],
   "kind": "sprite",
   "ground_tile": null,
-  "total_seconds": 10.2,
+  "total_seconds": 18.1,
   "blender_run": {
     "exit_code": 0,
-    "seconds": 11.1,
+    "seconds": 19.1,
     "problem_lines": [
-      "00:01.859  cycles           | WARNING HIPEW initialization failed: Error opening HIP dynamic library"
+      "00:01.218  cycles           | WARNING HIPEW initialization failed: Error opening HIP dynamic library"
     ]
   },
   "verification": {
@@ -2250,25 +2310,25 @@
       "bit_depth": 8,
       "png_color_type": 6,
       "interlace": 0,
-      "file_bytes": 2128908,
+      "file_bytes": 400949,
       "size_px": [
-        1218,
-        1496
+        1018,
+        796
       ],
-      "opaque_pixels": 1228939,
-      "partially_transparent_pixels": 9296,
-      "fully_transparent_pixels": 583893,
+      "opaque_pixels": 719565,
+      "partially_transparent_pixels": 7018,
+      "fully_transparent_pixels": 83745,
       "content_bbox_px": [
-        102,
-        102,
-        1115,
-        1393
+        24,
+        23,
+        993,
+        772
       ],
       "margins_px": {
-        "left": 102,
-        "right": 102,
-        "top": 102,
-        "bottom": 102
+        "left": 24,
+        "right": 24,
+        "top": 23,
+        "bottom": 23
       },
       "max_alpha_on_image_border": 0.0
     },
@@ -2280,13 +2340,40 @@
     ],
     "minimum_margin_required_px": 16,
     "tiling": null,
-    "layers": null,
+    "layers": {
+      "Building": {
+        "bit_depth": 8,
+        "png_color_type": 6,
+        "interlace": 0,
+        "file_bytes": 1990552,
+        "size_px": [
+          1060,
+          1338
+        ],
+        "opaque_pixels": 1228935,
+        "partially_transparent_pixels": 9298,
+        "fully_transparent_pixels": 180047,
+        "content_bbox_px": [
+          23,
+          23,
+          1036,
+          1314
+        ],
+        "margins_px": {
+          "left": 23,
+          "right": 23,
+          "top": 23,
+          "bottom": 23
+        },
+        "max_alpha_on_image_border": 0.0
+      }
+    },
     "passed": true
   },
   "godot": {
     "scene": "scenes/props/campus/NorthHallWing.tscn",
     "scene_name": "NorthHallWing",
-    "scene_semantic_sha256": "e445bf4d7786218a92977acd856e58369c7ebfda3be3e81aebcf1ab7186a685c",
+    "scene_semantic_sha256": "e111ac6b98334499db5767cce5d575c03e9040e11810343ffb9a87ae225b25ac",
     "sprite_offset_adjust_px": [
       0.0,
       0.0
@@ -2296,18 +2383,18 @@
       "game_px_per_m": 32.0,
       "sprite_scale": 0.8,
       "sprite_offset_px": [
-        -609.0,
-        -1007.3826434388757
+        -509.0,
+        -398.3826434388757
       ],
       "origin_px": [
         609.0,
         1007.3826434388757
       ],
       "sprite_rect_game_px": [
-        -487.20000000000005,
-        -805.9061147511006,
-        974.4000000000001,
-        1196.8
+        -424.0,
+        -742.7061147511006,
+        848.0,
+        1070.4
       ],
       "footprint_game_px": [
         [
@@ -2328,7 +2415,57 @@
         ]
       ],
       "ground_depth_factor": 0.6427876353263855,
-      "layers": null
+      "layers": [
+        {
+          "name": "Building",
+          "position_game_px": [
+            0.0,
+            308.53806495666504
+          ],
+          "sprite_offset_px": [
+            -530.0,
+            -1314.055224634707
+          ],
+          "z_index": 0,
+          "fade": {
+            "node": "BuildingFade",
+            "alpha": 0.3,
+            "seconds": 0.3,
+            "shapes": [
+              {
+                "node": "ShapeBehind",
+                "resource_id": "RectangleShape2D_BuildingFadeBehind",
+                "center": [
+                  0.0,
+                  -216.67599841690068
+                ],
+                "size": [
+                  838.4,
+                  1025.7450815505981
+                ],
+                "metres": [
+                  -13.1,
+                  13.1,
+                  -14.4,
+                  35.468
+                ]
+              }
+            ]
+          },
+          "crop_px": [
+            79,
+            79,
+            1060,
+            1338
+          ]
+        }
+      ],
+      "crop_px": [
+        100,
+        609,
+        1018,
+        796
+      ]
     },
     "collision": {
       "source": "rects_m",

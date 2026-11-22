@@ -1,0 +1,11 @@
+{
+	"zone_id": "central_cafe",
+	"notes": "Interior concept (Docs/CAMPUS_BUILD.md S9), 24 x 12 m.",
+	"playable_bounds": [
+		-384,
+		-247,
+		768,
+		255
+	],
+	"walks": []
+}

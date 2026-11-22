@@ -17,6 +17,13 @@
 [ext_resource type="Script" path="res://scripts/lighting/lamp_light.gd" id="15_r"]
 [ext_resource type="PackedScene" path="res://scenes/components/ZoneEdge.tscn" id="16_r"]
 [ext_resource type="PackedScene" path="res://scenes/components/SpawnMarker.tscn" id="17_r"]
+[ext_resource type="PackedScene" path="res://scenes/components/Door.tscn" id="18_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/furniture/DieselGenerator.tscn" id="19_r"]
+[ext_resource type="PackedScene" path="res://scenes/components/Examine.tscn" id="20_r"]
+[ext_resource type="PackedScene" path="res://scenes/creatures/NightGuard.tscn" id="21_r"]
+[ext_resource type="Script" path="res://scripts/world/crow_flock.gd" id="22_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/vegetation/HedgeSection2m.tscn" id="23_r"]
+[ext_resource type="PackedScene" path="res://scenes/components/HideSpot.tscn" id="24_r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1"]
 size = Vector2(60, 3220)
@@ -28,25 +35,28 @@ size = Vector2(8100, 60)
 size = Vector2(60, 3220)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4"]
-size = Vector2(2120, 60)
+size = Vector2(2120, 140)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5"]
-size = Vector2(1865, 60)
+size = Vector2(1865, 140)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6"]
-size = Vector2(890, 60)
+size = Vector2(890, 145)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7"]
-size = Vector2(1800, 60)
+size = Vector2(1800, 145)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8"]
-size = Vector2(60, 740)
+size = Vector2(60, 825)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_9"]
-size = Vector2(360, 30)
+size = Vector2(920, 55)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_10"]
-size = Vector2(300, 30)
+size = Vector2(360, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_11"]
+size = Vector2(300, 35)
 
 [node name="AcademicExterior" type="Node2D"]
 y_sort_enabled = true
@@ -208,6 +218,7 @@ script = ExtResource("15_r")
 mode = 0
 needs_power = true
 base_energy = 0.9
+power_flag = "power_academic"
 
 [node name="StreetLamp2" parent="Objects/Props" instance=ExtResource("13_r")]
 position = Vector2(300, -3830)
@@ -244,6 +255,7 @@ script = ExtResource("15_r")
 mode = 0
 needs_power = true
 base_energy = 0.9
+power_flag = "power_academic"
 
 [node name="StreetLamp4" parent="Objects/Props" instance=ExtResource("13_r")]
 position = Vector2(2900, -3830)
@@ -280,6 +292,7 @@ script = ExtResource("15_r")
 mode = 0
 needs_power = true
 base_energy = 0.9
+power_flag = "power_academic"
 
 [node name="BoundWest" type="StaticBody2D" parent="Objects/Bounds"]
 collision_mask = 0
@@ -306,50 +319,57 @@ shape = SubResource("RectangleShape2D_3")
 collision_mask = 0
 
 [node name="Shape" type="CollisionShape2D" parent="Objects/Bounds/BoundSouthW"]
-position = Vector2(-940, -3750)
+position = Vector2(-940, -3710)
 shape = SubResource("RectangleShape2D_4")
 
 [node name="BoundSouthM" type="StaticBody2D" parent="Objects/Bounds"]
 collision_mask = 0
 
 [node name="Shape" type="CollisionShape2D" parent="Objects/Bounds/BoundSouthM"]
-position = Vector2(1367.5, -3750)
+position = Vector2(1367.5, -3710)
 shape = SubResource("RectangleShape2D_5")
 
 [node name="BoundSouthE" type="StaticBody2D" parent="Objects/Bounds"]
 collision_mask = 0
 
 [node name="Shape" type="CollisionShape2D" parent="Objects/Bounds/BoundSouthE"]
-position = Vector2(3595, -3070)
+position = Vector2(3595, -3027.5)
 shape = SubResource("RectangleShape2D_6")
 
 [node name="BoundSouthE2" type="StaticBody2D" parent="Objects/Bounds"]
 collision_mask = 0
 
 [node name="Shape" type="CollisionShape2D" parent="Objects/Bounds/BoundSouthE2"]
-position = Vector2(5200, -3070)
+position = Vector2(5200, -3027.5)
 shape = SubResource("RectangleShape2D_7")
 
 [node name="BoundGarageW" type="StaticBody2D" parent="Objects/Bounds"]
 collision_mask = 0
 
 [node name="Shape" type="CollisionShape2D" parent="Objects/Bounds/BoundGarageW"]
-position = Vector2(2270, -3410)
+position = Vector2(2270, -3367.5)
 shape = SubResource("RectangleShape2D_8")
+
+[node name="BoundGarageS" type="StaticBody2D" parent="Objects/Bounds"]
+collision_mask = 0
+
+[node name="Shape" type="CollisionShape2D" parent="Objects/Bounds/BoundGarageS"]
+position = Vector2(2700, -2982.5)
+shape = SubResource("RectangleShape2D_9")
 
 [node name="BoundPlazaGap" type="StaticBody2D" parent="Objects/Bounds"]
 collision_mask = 0
 
 [node name="Shape" type="CollisionShape2D" parent="Objects/Bounds/BoundPlazaGap"]
-position = Vector2(280, -3655)
-shape = SubResource("RectangleShape2D_9")
+position = Vector2(280, -3660)
+shape = SubResource("RectangleShape2D_10")
 
 [node name="BoundHallsGap" type="StaticBody2D" parent="Objects/Bounds"]
 collision_mask = 0
 
 [node name="Shape" type="CollisionShape2D" parent="Objects/Bounds/BoundHallsGap"]
-position = Vector2(4170, -2970)
-shape = SubResource("RectangleShape2D_10")
+position = Vector2(4170, -2972.5)
+shape = SubResource("RectangleShape2D_11")
 
 [node name="EdgeToPlaza" parent="Objects/Doors" instance=ExtResource("16_r")]
 position = Vector2(277, -3700)
@@ -372,3 +392,124 @@ place_name = "The halls"
 [node name="Spawn_academic_from_halls" parent="Objects/SpawnMarkers" instance=ExtResource("17_r")]
 position = Vector2(4170, -3150)
 spawn_id = "academic_from_halls"
+
+[node name="DoorAcademic1" parent="Objects/Doors" instance=ExtResource("18_r")]
+position = Vector2(1316, -4103.952)
+destination_zone_id = "academic_corridor"
+destination_spawn_id = "corridor_from_outside"
+verb = "Enter"
+place_name = "Academic Building 1"
+show_placeholder = false
+
+[node name="Spawn_outside_academic_1" parent="Objects/SpawnMarkers" instance=ExtResource("17_r")]
+position = Vector2(1316, -4062.8)
+spawn_id = "outside_academic_1"
+
+[node name="DoorAcademic2" parent="Objects/Doors" instance=ExtResource("18_r")]
+position = Vector2(3308, -4383.376)
+destination_zone_id = "academic_lab"
+destination_spawn_id = "lab_from_outside"
+verb = "Enter"
+place_name = "Academic Building 2"
+show_placeholder = false
+
+[node name="Spawn_outside_academic_2" parent="Objects/SpawnMarkers" instance=ExtResource("17_r")]
+position = Vector2(3308, -4342.224)
+spawn_id = "outside_academic_2"
+
+[node name="Chapter3" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+editor_description = "Chapter 3 night layer: workshop shutter, generator, students on the road, crows, hedges."
+
+[node name="Story" type="Node2D" parent="Objects/Chapter3"]
+y_sort_enabled = true
+
+[node name="Creatures" type="Node2D" parent="Objects/Chapter3"]
+y_sort_enabled = true
+
+[node name="HidingPlaces" type="Node2D" parent="Objects/Chapter3"]
+y_sort_enabled = true
+
+[node name="Generator" parent="Objects/Chapter3/Story" instance=ExtResource("19_r")]
+position = Vector2(2720, -3575)
+
+[node name="ContactShadow" parent="Objects/Chapter3/Story/Generator" instance=ExtResource("12_r")]
+scale = Vector2(1.4, 0.5)
+
+[node name="GeneratorPanel" parent="Objects/Chapter3/Story" instance=ExtResource("20_r")]
+position = Vector2(2720, -3552)
+verb = "Start"
+object_name = "Generator"
+requires_flag = "has_generator_key"
+not_ready_message = "The key switch is empty. The key will be with the lab that runs on this set: the EEE lab, in Academic 2."
+sets_flag = "generator_on"
+message = "You turn the key. The generator coughs, catches and roars. Across the academic blocks the lights stutter on, and everything out there turns towards the sound."
+
+[node name="WorkshopShutter" parent="Objects/Chapter3/Story" instance=ExtResource("20_r")]
+position = Vector2(-850, -4166)
+verb = "Look"
+object_name = "Workshop shutter"
+sets_flag = "workshop_seen"
+message = "The roller shutter is down and its motor is dead. A stencil on the box: SUPPLY FROM ACADEMIC STANDBY GENSET (GARAGE)."
+
+[node name="Student1" parent="Objects/Chapter3/Creatures" instance=ExtResource("21_r")]
+position = Vector2(-300, -3945)
+patrol_points = PackedVector2Array(-1200, -3950, 300, -3930, 1300, -3960, 300, -3930)
+active = false
+visible = false
+sight_radius = 70.0
+close_sense_radius = 44.0
+light_sensitivity = 0.2
+hearing = 1.8
+patrol_speed = 30.0
+investigate_speed = 52.0
+chase_speed = 118.0
+modulate = Color(0.72, 0.86, 0.78, 1)
+metadata/role = "patrol"
+
+[node name="Student2" parent="Objects/Chapter3/Creatures" instance=ExtResource("21_r")]
+position = Vector2(3300, -3945)
+patrol_points = PackedVector2Array(1900, -3950, 3300, -3940, 4300, -3950, 3000, -4250)
+active = false
+visible = false
+sight_radius = 70.0
+close_sense_radius = 44.0
+light_sensitivity = 0.2
+hearing = 1.8
+patrol_speed = 30.0
+investigate_speed = 52.0
+chase_speed = 118.0
+modulate = Color(0.72, 0.86, 0.78, 1)
+metadata/role = "patrol"
+
+[node name="Crows1" type="Node2D" parent="Objects/Chapter3/Creatures"]
+position = Vector2(1700, -4070)
+script = ExtResource("22_r")
+
+[node name="Crows2" type="Node2D" parent="Objects/Chapter3/Creatures"]
+position = Vector2(2480, -3820)
+script = ExtResource("22_r")
+
+[node name="Hedge1" parent="Objects/Chapter3/HidingPlaces" instance=ExtResource("23_r")]
+position = Vector2(668, -4062)
+
+[node name="Hedge1b" parent="Objects/Chapter3/HidingPlaces" instance=ExtResource("23_r")]
+position = Vector2(732, -4062)
+
+[node name="Hide1" parent="Objects/Chapter3/HidingPlaces" instance=ExtResource("24_r")]
+position = Vector2(700, -4054)
+verb = "Hide"
+place_name = "In the hedge"
+exit_offset = Vector2(0, 18)
+
+[node name="Hedge2" parent="Objects/Chapter3/HidingPlaces" instance=ExtResource("23_r")]
+position = Vector2(2588, -4062)
+
+[node name="Hedge2b" parent="Objects/Chapter3/HidingPlaces" instance=ExtResource("23_r")]
+position = Vector2(2652, -4062)
+
+[node name="Hide2" parent="Objects/Chapter3/HidingPlaces" instance=ExtResource("24_r")]
+position = Vector2(2620, -4054)
+verb = "Hide"
+place_name = "In the hedge"
+exit_offset = Vector2(0, 18)

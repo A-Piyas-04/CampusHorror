@@ -14,10 +14,11 @@ from pathlib import Path
 
 sys.dont_write_bytecode = True
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from scene_lib import (ASPHALT, C, EDGE, GRASS, ROOT, SPAWN, V, WALKWAY, WATER, ZoneScene, campus, register_zones,  # noqa: E402
+from scene_lib import (ASPHALT, C, EDGE, GRASS, ROOT, S, SPAWN, STUDENT, student_props, V, WALKWAY, WATER, ZoneScene, campus, register_zones,  # noqa: E402
                        veg, write_profile)
 
 MANIFESTS = ROOT / "scenes/tests/zone_validation/manifests"
+DEPTH = 32.0 * 0.643
 PALM = veg("CoconutPalm")
 TREE = veg("BroadleafTree")
 
@@ -26,6 +27,13 @@ def manifest(zone_id, notes, bounds):
     (MANIFESTS / f"{zone_id}.json").write_text(json.dumps(
         {"zone_id": zone_id, "notes": notes, "playable_bounds": bounds, "walks": []}, indent="\t") + "\n",
         encoding="utf-8")
+
+
+def room_door(z, name, bx, by, door_m, spawn_m, dest_zone, dest_spawn, spawn_id, place):
+    """A door into an interior (tools/zones/campus_interiors.py) on a building placed at (bx, by) px; door and the
+    arrival spawn outside given in the building's metres (x east, y north of its footprint centre)."""
+    z.door(name, bx + door_m[0] * 32.0, by - door_m[1] * DEPTH, dest_zone, dest_spawn, "Enter", place)
+    z.spawn(spawn_id, bx + spawn_m[0] * 32.0, by - spawn_m[1] * DEPTH)
 
 
 # --- Central Plaza --------------------------------------------------------------------------------------------
@@ -89,7 +97,7 @@ def central_plaza():
                                   (1150, -2300), (-120, -1800), (300, -1780), (1250, -1780))):
         z.place(f"Lamp{i + 1}", campus("PlazaLamp"), lx, ly, parent="Objects/Props", shadow=(0.4, 0.2))
         z.lamp_light(f"LampLight{i + 1}", lx, ly, color=(1.0, 0.92, 0.8), energy=0.8, scale=2.2,
-                     needs_power=True, mode=1 if i == 3 else 0)
+                     needs_power=True, circuit="power_plaza", mode=1 if i == 3 else 0)
     # Palms along the south bank promenade and the outer banks; broadleaf trees at the corners.
     x = lx0 + 60
     k = 0
@@ -117,23 +125,108 @@ def central_plaza():
     z.wall("BoundEast", 2240, -3800, 2300, -950)
     z.wall("BoundNorthW", -1950, -3820, NORTH_ROAD[0] - 40, -3760)
     z.wall("BoundNorthE", NORTH_ROAD[1] + 40, -3820, 2300, -3760)
+    z.wall("BoundNorthGap", NORTH_ROAD[0] - 45, -3800, NORTH_ROAD[1] + 45, -3762)
     # Edges: back to the field (three segments), north to the academic area, east to the halls.
     for i, (x0, x1) in enumerate(((-1880, -300), (-300, 700), (700, 2240))):
         z.edge(f"EdgeToField{i + 1}", (x0 + x1) / 2, -1300, x1 - x0, 50, "main_gate_exterior", f"field_from_plaza_{i + 1}",
                "The field")
         z.spawn(f"plaza_from_field_{i + 1}", (x0 + x1) / 2 if i != 0 else SOUTH_BRIDGE_X, -1440)
     z.edge("EdgeToAcademic", sum(NORTH_ROAD) / 2, -3740, NORTH_ROAD[1] - NORTH_ROAD[0] + 80, 40, "academic_exterior",
-           "academic_from_plaza", "Academic buildings")
+           "academic_from_plaza", "Academic buildings", required_item="north_gate_key",
+           locked_message="A steel gate across the north road, padlocked. The Admin building keeps the campus keys.")
     z.spawn("plaza_from_academic", sum(NORTH_ROAD) / 2, -3640)
     z.edge("EdgeToHalls", 2200, EAST_BRIDGE_Y, 40, 140, "halls_exterior", "halls_from_plaza", "The halls")
     z.spawn("plaza_from_halls", 2080, EAST_BRIDGE_Y)
     z.spawn("plaza_center", 400, -2450)
+    # Doors into the plaza interiors (concepts, Docs/CAMPUS_BUILD.md S9).
+    room_door(z, "DoorMosque", -650, -2050, (0, -9.8), (0, -12), "mosque_prayer_hall", "mosque_from_plaza",
+              "outside_mosque", "Central Mosque")
+    room_door(z, "DoorAuditorium", 760, -2100, (0, -13.5), (0, -15.5), "auditorium_hall", "auditorium_from_plaza",
+              "outside_auditorium", "Auditorium")
+    room_door(z, "DoorAdmin", -455, -2950, (0, -8.5), (0, -10.5), "admin_lobby", "lobby_from_outside",
+              "outside_admin", "Administrative Building")
+    room_door(z, "DoorCafe", 850, -2950, (-3.75, -5.6), (-3.75, -9.8), "central_cafe", "cafe_from_plaza",
+              "outside_cafe", "Central Cafeteria")
+    chapter2_layer(z)
     z.write()
     write_profile("central_plaza", zoom=2.0, limits=(-2400, -4060, 5160, 3110), surface="paving",
                   ambience="night_field", vol=-5.0, night=(0.19, 0.21, 0.31))
     manifest("central_plaza", "Central Plaza: lake ring around the island plaza (Mosque, minaret, Auditorium, Admin, "
              "Central Cafe), 5 Pillars, three bridges. Campus frame (Docs/CAMPUS_BUILD.md).",
              [-1880, -3760, 4120, 2510])
+
+
+def chapter2_layer(z):
+    """Chapter 2 "The Plaza" night layer (scripts/story/chapter_2.gd): the manhole the tunnel comes up through, the
+    Night Guard's patrol round the island, crows on the lamps (they scatter and call him), hedges to hide in."""
+    s = z.s
+    s.node("Chapter2", "Node2D", "Objects", props={"y_sort_enabled": "true", "editor_description": S(
+        "Chapter 2 night layer: manhole arrival, the Night Guard's island patrol, crows, hiding hedges.")})
+    for g in ("Story", "Creatures", "HidingPlaces"):
+        s.node(g, "Node2D", "Objects/Chapter2", props={"y_sort_enabled": "true"})
+    # The one light on the island: the Mosque's great window (the muezzin's own generator), a beacon and a safe pool.
+    z.lamp_light("MosqueWindowGlow", -650, -1880, color=(1.0, 0.86, 0.62), energy=0.75, scale=3.2, needs_power=False,
+                 parent="Objects/Chapter2/Story")
+    mx, my = -980, -1385
+    z.place("Manhole", "res://scenes/props/furniture/FloorHatchOpen.tscn", mx, my, parent="Objects/Chapter2/Story")
+    s.node("ManholeLook", None, "Objects/Chapter2/Story", instance="res://scenes/components/Examine.tscn", props={
+        "position": V(mx, my + 6), "verb": S("Look"), "object_name": S("Manhole"),
+        "message": S("The manhole you climbed out of. Far below, the warm water moves, though nothing stirs it.")})
+    z.spawn("plaza_from_tunnel", mx + 40, my + 34)
+    patrol = [(-1000, -1800), (-700, -1790), (300, -1790), (1350, -1780), (1350, -2600), (400, -2450),
+              (-300, -2600), (-950, -2450)]
+    s.node("NightGuard", None, "Objects/Chapter2/Creatures", instance="res://scenes/creatures/NightGuard.tscn", props={
+        "position": V(400, -2450), "patrol_points": "PackedVector2Array(" + ", ".join(
+            f"{x}, {y}" for x, y in patrol[5:] + patrol[:5]) + ")",
+        "active": "false", "visible": "false", "metadata/role": S("patrol")})
+    for i, (cx, cy) in enumerate(((-100, -2560), (1000, -2560), (-450, -1640))):
+        s.node(f"Crows{i + 1}", "Node2D", "Objects/Chapter2/Creatures",
+               props={"position": V(cx, cy), "script": s.res("res://scripts/world/crow_flock.gd")})
+    hedge = "res://scenes/props/vegetation/HedgeSection2m.tscn"
+    for i, (hx, hy) in enumerate(((-60, -2100), (1250, -2470), (-950, -2650))):
+        z.place(f"Hedge{i + 1}", hedge, hx - 32, hy, parent="Objects/Chapter2/HidingPlaces")
+        z.place(f"Hedge{i + 1}b", hedge, hx + 32, hy, parent="Objects/Chapter2/HidingPlaces")
+        s.node(f"Hide{i + 1}", None, "Objects/Chapter2/HidingPlaces", instance="res://scenes/components/HideSpot.tscn",
+               props={"position": V(hx, hy + 8), "verb": S("Hide"), "place_name": S("In the hedge"),
+                      "exit_offset": V(0, 18)})
+
+
+def chapter3_layer(z):
+    """Chapter 3 "Lecture Hall" night layer (scripts/story/chapter_3.gd): the dead workshop shutter, the standby
+    generator by the garage, two students on the road, crows, hedges to hide in."""
+    s = z.s
+    s.node("Chapter3", "Node2D", "Objects", props={"y_sort_enabled": "true", "editor_description": S(
+        "Chapter 3 night layer: workshop shutter, generator, students on the road, crows, hedges.")})
+    for g in ("Story", "Creatures", "HidingPlaces"):
+        s.node(g, "Node2D", "Objects/Chapter3", props={"y_sort_enabled": "true"})
+    z.place("Generator", "res://scenes/props/furniture/DieselGenerator.tscn", 2720, -3575,
+            parent="Objects/Chapter3/Story", shadow=(1.4, 0.5))
+    s.node("GeneratorPanel", None, "Objects/Chapter3/Story", instance="res://scenes/components/Examine.tscn", props={
+        "position": V(2720, -3552), "verb": S("Start"), "object_name": S("Generator"),
+        "requires_flag": S("has_generator_key"),
+        "not_ready_message": S("The key switch is empty. The key will be with the lab that runs on this set: "
+                               "the EEE lab, in Academic 2."),
+        "sets_flag": S("generator_on"),
+        "message": S("You turn the key. The generator coughs, catches and roars. Across the academic blocks the "
+                     "lights stutter on, and everything out there turns towards the sound.")})
+    s.node("WorkshopShutter", None, "Objects/Chapter3/Story", instance="res://scenes/components/Examine.tscn", props={
+        "position": V(-850, -4166), "verb": S("Look"), "object_name": S("Workshop shutter"),
+        "sets_flag": S("workshop_seen"),
+        "message": S("The roller shutter is down and its motor is dead. A stencil on the box: SUPPLY FROM ACADEMIC "
+                     "STANDBY GENSET (GARAGE).")})
+    for name, x, y, patrol in (("Student1", -300, -3945, [(-1200, -3950), (300, -3930), (1300, -3960), (300, -3930)]),
+                               ("Student2", 3300, -3945, [(1900, -3950), (3300, -3940), (4300, -3950), (3000, -4250)])):
+        s.node(name, None, "Objects/Chapter3/Creatures", instance=STUDENT, props=student_props(x, y, patrol))
+    for i, (cx, cy) in enumerate(((1700, -4070), (2480, -3820))):
+        s.node(f"Crows{i + 1}", "Node2D", "Objects/Chapter3/Creatures",
+               props={"position": V(cx, cy), "script": s.res("res://scripts/world/crow_flock.gd")})
+    hedge = "res://scenes/props/vegetation/HedgeSection2m.tscn"
+    for i, (hx, hy) in enumerate(((700, -4062), (2620, -4062))):
+        z.place(f"Hedge{i + 1}", hedge, hx - 32, hy, parent="Objects/Chapter3/HidingPlaces")
+        z.place(f"Hedge{i + 1}b", hedge, hx + 32, hy, parent="Objects/Chapter3/HidingPlaces")
+        s.node(f"Hide{i + 1}", None, "Objects/Chapter3/HidingPlaces", instance="res://scenes/components/HideSpot.tscn",
+               props={"position": V(hx, hy + 8), "verb": S("Hide"), "place_name": S("In the hedge"),
+                      "exit_offset": V(0, 18)})
 
 
 # --- Halls ------------------------------------------------------------------------------------------------------
@@ -145,7 +238,7 @@ HALL_SOUTH_FACE = 615  # y of the halls' south faces (a passage runs between the
 
 def halls_exterior():
     z = ZoneScene("HallsExterior", "halls_exterior")
-    z.ground_rect("Grass", 2280, -3260, 6120, 1570, texture=GRASS)
+    z.ground_rect("Grass", 2280, -3260, 6120, 1600, texture=GRASS)
     z.ground_rect("WestRoad", 2860, -2950, 2990, 1300, texture=WALKWAY)
     z.ground_rect("CourtPath", 4105, -2950, 4235, 660, texture=WALKWAY)
     z.ground_rect("Passage", 2860, 640, 5600, 720, texture=WALKWAY)
@@ -168,21 +261,27 @@ def halls_exterior():
     for i, (lx, ly) in enumerate(((2920, -2400), (2920, -1400), (2920, -400), (2920, 600), (4170, -2400),
                                   (4070, -900), (4270, 300))):
         z.place(f"StreetLamp{i + 1}", campus("StreetLampTall"), lx, ly, parent="Objects/Props", shadow=(0.3, 0.15))
-        z.lamp_light(f"StreetLight{i + 1}", lx + 50, ly, energy=0.9, scale=2.6, needs_power=i not in (0, 4),
+        z.lamp_light(f"StreetLight{i + 1}", lx + 50, ly, energy=0.9, scale=2.6, needs_power=i not in (0, 4), circuit="power_halls",
                      mode=1 if i == 2 else 0)
     z.wall("BoundWestEdge", 2760, -3200, 2800, 1560)
     z.wall("BoundEast", 5600, -3200, 5680, 1560)
     z.wall("BoundSouth", 2380, 1300, 6100, 1360)
     z.wall("BoundNorthW", 2380, -3010, 3900, -2950)
     z.wall("BoundNorthE", 4440, -3010, 6100, -2950)
+    z.wall("BoundNorthGap", 3890, -2995, 4450, -2948)
     z.edge("EdgeToField", 2830, 75, 50, 2350, "main_gate_exterior", "field_from_halls", "The field")
     z.spawn("halls_from_field", 2960, -150)
     z.edge("EdgeToPlaza", 2830, -2000, 50, 1700, "central_plaza", "plaza_from_halls", "Central Plaza")
     z.spawn("halls_from_plaza", 2960, -2500)
     z.edge("EdgeToAcademic", 4170, -2925, 540, 40, "academic_exterior", "academic_from_halls", "Academic buildings")
     z.spawn("halls_from_academic", 4170, -2780)
+    # Hall entrances (the slot behind the green sign on each front segment's south face).
+    z.door("DoorSouthHall", 3400, 625, "hall_corridor", "hallcorr_from_outside", "Enter", "South Hall")
+    z.spawn("outside_south_hall", 3400, 672)
+    z.door("DoorNorthHall", 4935, 625, "hall_common", "common_from_outside", "Enter", "North Hall")
+    z.spawn("outside_north_hall", 4935, 672)
     z.write()
-    write_profile("halls_exterior", zoom=2.0, limits=(2300, -3240, 3800, 4800), surface="grass",
+    write_profile("halls_exterior", zoom=2.0, limits=(2300, -3240, 3800, 4830), surface="grass",
                   ambience="night_field", vol=-5.0, night=(0.18, 0.2, 0.3))
     manifest("halls_exterior", "Halls: South Hall and North Hall (four 30 m segments each), the palm courtyard, UB "
              "Hall, the halls' gate. Campus frame.", [2800, -2950, 2800, 4250])
@@ -209,22 +308,28 @@ def academic_exterior():
         z.place(f"Tree{i + 1}", TREE, tx, ty, parent="Objects/Vegetation", shadow=(1.2, 0.6))
     for i, (lx, ly) in enumerate(((-1000, -3830), (300, -3830), (1600, -3830), (2900, -3830), (4200, -3830))):
         z.place(f"StreetLamp{i + 1}", campus("StreetLampTall"), lx, ly, parent="Objects/Props", shadow=(0.3, 0.15))
-        z.lamp_light(f"StreetLight{i + 1}", lx + 50, ly, energy=0.9, scale=2.6, needs_power=i % 2 == 0,
+        z.lamp_light(f"StreetLight{i + 1}", lx + 50, ly, energy=0.9, scale=2.6, needs_power=i % 2 == 0, circuit="power_academic",
                      mode=1 if i == 3 else 0)
     z.wall("BoundWest", -1700, -5900, -1640, -2680)
     z.wall("BoundNorth", -2000, -5700, 6100, -5640)
     z.wall("BoundEast", 5000, -5900, 5060, -2680)
-    z.wall("BoundSouthW", -2000, -3780, 120, -3720)
-    z.wall("BoundSouthM", 435, -3780, 2300, -3720)
-    z.wall("BoundSouthE", 3150, -3100, 4040, -3040)
-    z.wall("BoundSouthE2", 4300, -3100, 6100, -3040)
-    z.wall("BoundGarageW", 2240, -3780, 2300, -3040)
-    z.wall("BoundPlazaGap", 100, -3670, 460, -3640)
-    z.wall("BoundHallsGap", 4020, -2985, 4320, -2955)
+    z.wall("BoundSouthW", -2000, -3780, 120, -3640)
+    z.wall("BoundSouthM", 435, -3780, 2300, -3640)
+    z.wall("BoundSouthE", 3150, -3100, 4040, -2955)
+    z.wall("BoundSouthE2", 4300, -3100, 6100, -2955)
+    z.wall("BoundGarageW", 2240, -3780, 2300, -2955)
+    z.wall("BoundGarageS", 2240, -3010, 3160, -2955)
+    z.wall("BoundPlazaGap", 100, -3680, 460, -3640)
+    z.wall("BoundHallsGap", 4020, -2990, 4320, -2955)
     z.edge("EdgeToPlaza", 277, -3700, 260, 40, "central_plaza", "plaza_from_academic", "Central Plaza")
     z.spawn("academic_from_plaza", 277, -3840)
     z.edge("EdgeToHalls", 4170, -3010, 260, 40, "halls_exterior", "halls_from_academic", "The halls")
     z.spawn("academic_from_halls", 4170, -3150)
+    room_door(z, "DoorAcademic1", 1700, -4320, (-12, -10.5), (-12, -12.5), "academic_corridor",
+              "corridor_from_outside", "outside_academic_1", "Academic Building 1")
+    room_door(z, "DoorAcademic2", 3500, -4620, (-6, -11.5), (-6, -13.5), "academic_lab", "lab_from_outside",
+              "outside_academic_2", "Academic Building 2")
+    chapter3_layer(z)
     z.write()
     write_profile("academic_exterior", zoom=2.0, limits=(-2140, -5920, 7640, 3260), surface="grass",
                   ambience="night_field", vol=-5.0, night=(0.17, 0.19, 0.29))

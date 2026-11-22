@@ -1,0 +1,139 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/world/zone.gd" id="1_r"]
+[ext_resource type="Resource" path="res://data/zones/profiles/auditorium_hall.tres" id="2_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/interiors/AuditoriumHallRoom.tscn" id="3_r"]
+[ext_resource type="PackedScene" path="res://scenes/components/Door.tscn" id="4_r"]
+[ext_resource type="PackedScene" path="res://scenes/components/SpawnMarker.tscn" id="5_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/furniture/StagePlatform.tscn" id="6_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/furniture/SeatRow.tscn" id="7_r"]
+[ext_resource type="Texture2D" path="res://data/lighting/light_soft.tres" id="8_r"]
+[ext_resource type="Script" path="res://scripts/lighting/lamp_light.gd" id="9_r"]
+[ext_resource type="Script" path="res://scripts/world/glow_mark.gd" id="10_r"]
+
+[node name="AuditoriumHall" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_r")
+zone_id = "auditorium_hall"
+profile = ExtResource("2_r")
+
+[node name="Objects" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Props" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="Story" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="Lights" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="Doors" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="SpawnMarkers" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="Glow" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="Room" parent="Objects" instance=ExtResource("3_r")]
+
+[node name="DoorOut" parent="Objects/Doors" instance=ExtResource("4_r")]
+position = Vector2(-128, -7.2016)
+destination_zone_id = "central_plaza"
+destination_spawn_id = "outside_auditorium"
+verb = "Go out"
+place_name = "Central Plaza"
+show_placeholder = false
+
+[node name="Spawn_auditorium_from_plaza" parent="Objects/SpawnMarkers" instance=ExtResource("5_r")]
+position = Vector2(-128, -32.9216)
+spawn_id = "auditorium_from_plaza"
+
+[node name="DoorAv" parent="Objects/Doors" instance=ExtResource("4_r")]
+position = Vector2(-374.4, -82.304)
+destination_zone_id = "av_hall"
+destination_spawn_id = "av_from_auditorium"
+verb = "Enter"
+place_name = "AV hall"
+show_placeholder = false
+
+[node name="Spawn_auditorium_from_av" parent="Objects/SpawnMarkers" instance=ExtResource("5_r")]
+position = Vector2(-345.6, -82.304)
+spawn_id = "auditorium_from_av"
+
+[node name="Stage" parent="Objects/Props" instance=ExtResource("6_r")]
+position = Vector2(0, -366.2528)
+
+[node name="SeatsW0" parent="Objects/Props" instance=ExtResource("7_r")]
+position = Vector2(-160, -82.304)
+
+[node name="SeatsE0" parent="Objects/Props" instance=ExtResource("7_r")]
+position = Vector2(160, -82.304)
+
+[node name="SeatsW1" parent="Objects/Props" instance=ExtResource("7_r")]
+position = Vector2(-160, -119.3408)
+
+[node name="SeatsE1" parent="Objects/Props" instance=ExtResource("7_r")]
+position = Vector2(160, -119.3408)
+
+[node name="SeatsW2" parent="Objects/Props" instance=ExtResource("7_r")]
+position = Vector2(-160, -156.3776)
+
+[node name="SeatsE2" parent="Objects/Props" instance=ExtResource("7_r")]
+position = Vector2(160, -156.3776)
+
+[node name="SeatsW3" parent="Objects/Props" instance=ExtResource("7_r")]
+position = Vector2(-160, -193.4144)
+
+[node name="SeatsE3" parent="Objects/Props" instance=ExtResource("7_r")]
+position = Vector2(160, -193.4144)
+
+[node name="SeatsW4" parent="Objects/Props" instance=ExtResource("7_r")]
+position = Vector2(-160, -230.4512)
+
+[node name="SeatsE4" parent="Objects/Props" instance=ExtResource("7_r")]
+position = Vector2(160, -230.4512)
+
+[node name="SeatsW5" parent="Objects/Props" instance=ExtResource("7_r")]
+position = Vector2(-160, -267.488)
+
+[node name="SeatsE5" parent="Objects/Props" instance=ExtResource("7_r")]
+position = Vector2(160, -267.488)
+
+[node name="StageSpot" type="PointLight2D" parent="Objects/Lights"]
+position = Vector2(0, -349.792)
+color = Color(1.0, 0.9, 0.7, 1)
+energy = 0.6
+range_item_cull_mask = 3
+texture = ExtResource("8_r")
+texture_scale = 2.6
+script = ExtResource("9_r")
+mode = 1
+needs_power = true
+base_energy = 0.6
+gameplay = true
+power_flag = "power_plaza"
+
+[node name="Exit" type="PointLight2D" parent="Objects/Lights"]
+position = Vector2(-128, -20.576)
+color = Color(0.35, 1.0, 0.5, 1)
+energy = 0.45
+range_item_cull_mask = 3
+texture = ExtResource("8_r")
+texture_scale = 0.6
+script = ExtResource("9_r")
+mode = 0
+needs_power = false
+base_energy = 0.45
+gameplay = false
+
+[node name="Curtain" type="Node2D" parent="Objects/Glow"]
+position = Vector2(96, -380.656)
+script = ExtResource("10_r")
+color = Color(0.45, 1, 0.82, 1)
+intensity = 0.8
+pulse_speed = 0.5
+spots = PackedVector3Array(0, -10, 9, 14, -30, 6, -8, -44, 7, 20, -60, 5)

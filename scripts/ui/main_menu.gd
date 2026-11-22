@@ -43,7 +43,7 @@ func _ready() -> void:
 	title.add_theme_color_override("font_shadow_color", Color(0, 0, 0, 0.8))
 	title.add_theme_constant_override("shadow_offset_y", 4)
 	col.add_child(title)
-	col.add_child(UIStyle.label("CHAPTER 1  ·  LIGHTS OUT", 18, UIStyle.ACCENT))
+	col.add_child(UIStyle.label("IUT CAMPUS  ·  AFTER MIDNIGHT", 18, UIStyle.ACCENT))
 	var gap := Control.new()
 	gap.custom_minimum_size = Vector2(0, 70)
 	col.add_child(gap)
@@ -55,6 +55,7 @@ func _ready() -> void:
 	cont.disabled = not has_save
 	cont.visible = has_save
 	_add("New game", _on_new_game)
+	_add("Chapters", _on_chapters)
 	_add("Settings", _toggle_settings)
 	_add("Quit", func() -> void: get_tree().quit())
 
@@ -109,6 +110,44 @@ func _on_new_game() -> void:
 	_confirm.add_child(no)
 	await get_tree().process_frame
 	no.grab_focus()
+
+
+## The built chapters (D32): start any of them fresh, with what the earlier chapters grant.
+const CHAPTER_TITLES := {1: "Lights Out", 2: "The Plaza", 3: "Lecture Hall"}
+
+
+func _on_chapters() -> void:
+	for c in _side.get_children():
+		c.queue_free()
+	_side.visible = true
+	var box := VBoxContainer.new()
+	box.add_theme_constant_override("separation", 12)
+	_side.add_child(box)
+	box.add_child(UIStyle.label("Start a chapter. Your saved progress will be replaced.", 22, UIStyle.TEXT, true))
+	var first: Button = null
+	for n in CHAPTER_TITLES:
+		var b := UIStyle.button("Chapter %d  ·  %s" % [n, CHAPTER_TITLES[n]], 26)
+		b.pressed.connect(_start_chapter.bind(n))
+		box.add_child(b)
+		if first == null:
+			first = b
+	var back := UIStyle.button("Back", 26)
+	back.pressed.connect(func() -> void:
+		_side.visible = false
+		(_menu.get_child(2) as Button).grab_focus())
+	box.add_child(back)
+	await get_tree().process_frame
+	first.grab_focus()
+
+
+func _start_chapter(n: int) -> void:
+	var t := create_tween()
+	t.tween_property(self, "modulate", Color.BLACK, 0.8)
+	await t.finished
+	if n == 1:
+		Game.new_game()
+	else:
+		Game.start_chapter(n)
 
 
 func _start_new() -> void:

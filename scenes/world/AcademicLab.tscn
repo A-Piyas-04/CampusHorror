@@ -1,0 +1,143 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/world/zone.gd" id="1_r"]
+[ext_resource type="Resource" path="res://data/zones/profiles/academic_lab.tres" id="2_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/interiors/AcademicLabRoom.tscn" id="3_r"]
+[ext_resource type="PackedScene" path="res://scenes/components/Door.tscn" id="4_r"]
+[ext_resource type="PackedScene" path="res://scenes/components/SpawnMarker.tscn" id="5_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/furniture/LabBench.tscn" id="6_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/common/ContactShadow.tscn" id="7_r"]
+[ext_resource type="PackedScene" path="res://scenes/components/Readable.tscn" id="8_r"]
+[ext_resource type="PackedScene" path="res://scenes/components/Keypad.tscn" id="9_r"]
+[ext_resource type="Texture2D" path="res://data/lighting/light_soft.tres" id="10_r"]
+[ext_resource type="Script" path="res://scripts/lighting/lamp_light.gd" id="11_r"]
+[ext_resource type="Script" path="res://scripts/world/glow_mark.gd" id="12_r"]
+
+[node name="AcademicLab" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_r")
+zone_id = "academic_lab"
+profile = ExtResource("2_r")
+
+[node name="Objects" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Props" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="Story" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="Lights" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="Doors" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="SpawnMarkers" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="Glow" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="Room" parent="Objects" instance=ExtResource("3_r")]
+
+[node name="DoorOut" parent="Objects/Doors" instance=ExtResource("4_r")]
+position = Vector2(-214.4, -32.9216)
+destination_zone_id = "academic_exterior"
+destination_spawn_id = "outside_academic_2"
+verb = "Go out"
+place_name = "The road"
+show_placeholder = false
+
+[node name="Spawn_lab_from_outside" parent="Objects/SpawnMarkers" instance=ExtResource("5_r")]
+position = Vector2(-185.6, -32.9216)
+spawn_id = "lab_from_outside"
+
+[node name="Bench0" parent="Objects/Props" instance=ExtResource("6_r")]
+position = Vector2(-96, -61.728)
+
+[node name="ContactShadow" parent="Objects/Props/Bench0" instance=ExtResource("7_r")]
+scale = Vector2(1.5, 0.45)
+
+[node name="Bench1" parent="Objects/Props" instance=ExtResource("6_r")]
+position = Vector2(96, -61.728)
+
+[node name="ContactShadow" parent="Objects/Props/Bench1" instance=ExtResource("7_r")]
+scale = Vector2(1.5, 0.45)
+
+[node name="Bench2" parent="Objects/Props" instance=ExtResource("6_r")]
+position = Vector2(-96, -123.456)
+
+[node name="ContactShadow" parent="Objects/Props/Bench2" instance=ExtResource("7_r")]
+scale = Vector2(1.5, 0.45)
+
+[node name="Bench3" parent="Objects/Props" instance=ExtResource("6_r")]
+position = Vector2(96, -123.456)
+
+[node name="ContactShadow" parent="Objects/Props/Bench3" instance=ExtResource("7_r")]
+scale = Vector2(1.5, 0.45)
+
+[node name="Log" parent="Objects/Story" instance=ExtResource("8_r")]
+position = Vector2(-96, -49.3824)
+note_id = "lab_logbook"
+title = "Lab logbook"
+body = "EEE Lab 2, night shift log.\n\n22:40 Phase test on the generator feed from the workshops. The meters read power going DOWN into the ground, not out of it.\n\n23:10 Something is drawing current under the ME workshops. A lot of it.\n\n23:58 The scopes show a heartbeat on the mains. I've locked the genset key in the key box. Code: the course number of my night class, room 304. Nobody runs that generator."
+requires_light = true
+
+[node name="KeyBox" parent="Objects/Story" instance=ExtResource("9_r")]
+position = Vector2(179.2, -195.472)
+code = "4501"
+title = "LAB KEY BOX"
+solved_flag = "keybox_open"
+solved_message = "The key box swings open. One key left, on a red tag: GENSET - GARAGE."
+not_ready_message = ""
+
+[node name="Tube0" type="PointLight2D" parent="Objects/Lights"]
+position = Vector2(-96, -92.592)
+color = Color(0.95, 0.97, 1.0, 1)
+energy = 0.8
+range_item_cull_mask = 3
+texture = ExtResource("10_r")
+texture_scale = 2.2
+script = ExtResource("11_r")
+mode = 0
+needs_power = true
+base_energy = 0.8
+gameplay = true
+power_flag = "power_academic"
+
+[node name="Tube1" type="PointLight2D" parent="Objects/Lights"]
+position = Vector2(96, -92.592)
+color = Color(0.95, 0.97, 1.0, 1)
+energy = 0.8
+range_item_cull_mask = 3
+texture = ExtResource("10_r")
+texture_scale = 2.2
+script = ExtResource("11_r")
+mode = 0
+needs_power = true
+base_energy = 0.8
+gameplay = true
+power_flag = "power_academic"
+
+[node name="ScopeGlow" type="PointLight2D" parent="Objects/Lights"]
+position = Vector2(0, -65.8432)
+color = Color(0.5, 1.0, 0.7, 1)
+energy = 0.4
+range_item_cull_mask = 3
+texture = ExtResource("10_r")
+texture_scale = 0.8
+script = ExtResource("11_r")
+mode = 0
+needs_power = false
+base_energy = 0.4
+gameplay = false
+
+[node name="Growth" type="Node2D" parent="Objects/Glow"]
+position = Vector2(176, -41.152)
+script = ExtResource("12_r")
+color = Color(0.45, 1, 0.82, 1)
+intensity = 0.8
+pulse_speed = 0.5
+spots = PackedVector3Array(0, 0, 8, 12, -6, 5, -10, 4, 6)

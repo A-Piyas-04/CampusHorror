@@ -1,0 +1,11 @@
+{
+	"zone_id": "hall_common",
+	"notes": "Interior concept (Docs/CAMPUS_BUILD.md S9), 12 x 9 m.",
+	"playable_bounds": [
+		-192,
+		-185,
+		384,
+		193
+	],
+	"walks": []
+}

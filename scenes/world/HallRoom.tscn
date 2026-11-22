@@ -1,0 +1,99 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/world/zone.gd" id="1_r"]
+[ext_resource type="Resource" path="res://data/zones/profiles/hall_room.tres" id="2_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/interiors/HallRoomRoom.tscn" id="3_r"]
+[ext_resource type="PackedScene" path="res://scenes/components/Door.tscn" id="4_r"]
+[ext_resource type="PackedScene" path="res://scenes/components/SpawnMarker.tscn" id="5_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/furniture/DormBed.tscn" id="6_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/common/ContactShadow.tscn" id="7_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/furniture/StudyTable.tscn" id="8_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/furniture/SteelAlmirah.tscn" id="9_r"]
+[ext_resource type="PackedScene" path="res://scenes/components/Readable.tscn" id="10_r"]
+[ext_resource type="Texture2D" path="res://data/lighting/light_soft.tres" id="11_r"]
+[ext_resource type="Script" path="res://scripts/lighting/lamp_light.gd" id="12_r"]
+
+[node name="HallRoom" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_r")
+zone_id = "hall_room"
+profile = ExtResource("2_r")
+
+[node name="Objects" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Props" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="Story" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="Lights" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="Doors" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="SpawnMarkers" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="Glow" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="Room" parent="Objects" instance=ExtResource("3_r")]
+
+[node name="DoorOut" parent="Objects/Doors" instance=ExtResource("4_r")]
+position = Vector2(-57.6, -7.2016)
+destination_zone_id = "hall_corridor"
+destination_spawn_id = "hallcorr_from_room"
+verb = "Go out"
+place_name = "Corridor"
+show_placeholder = false
+
+[node name="Spawn_room_from_corridor" parent="Objects/SpawnMarkers" instance=ExtResource("5_r")]
+position = Vector2(-57.6, -26.7488)
+spawn_id = "room_from_corridor"
+
+[node name="BedW" parent="Objects/Props" instance=ExtResource("6_r")]
+position = Vector2(-60.8, -78.1888)
+
+[node name="ContactShadow" parent="Objects/Props/BedW" instance=ExtResource("7_r")]
+scale = Vector2(1, 0.45)
+
+[node name="BedE" parent="Objects/Props" instance=ExtResource("6_r")]
+position = Vector2(60.8, -78.1888)
+
+[node name="ContactShadow" parent="Objects/Props/BedE" instance=ExtResource("7_r")]
+scale = Vector2(1, 0.45)
+
+[node name="Desk" parent="Objects/Props" instance=ExtResource("8_r")]
+position = Vector2(0, -93.6208)
+
+[node name="ContactShadow" parent="Objects/Props/Desk" instance=ExtResource("7_r")]
+scale = Vector2(0.6, 0.3)
+
+[node name="Almirah" parent="Objects/Props" instance=ExtResource("9_r")]
+position = Vector2(73.6, -20.576)
+
+[node name="ContactShadow" parent="Objects/Props/Almirah" instance=ExtResource("7_r")]
+scale = Vector2(0.55, 0.3)
+
+[node name="Diary" parent="Objects/Story" instance=ExtResource("10_r")]
+position = Vector2(0, -85.3904)
+note_id = "dorm_diary"
+title = "A diary open on the desk"
+body = "Nov 20. The dogs behind UB Hall have stopped barking. They just stand at the fence and look at the lights. Rafi says they follow the torch beams.\n\nNov 21. Rafi went out to the courtyard with his phone torch. He hasn't come back."
+requires_light = true
+
+[node name="Moon" type="PointLight2D" parent="Objects/Lights"]
+position = Vector2(0, -90.5344)
+color = Color(0.55, 0.65, 1.0, 1)
+energy = 0.35
+range_item_cull_mask = 3
+texture = ExtResource("11_r")
+texture_scale = 1.2
+script = ExtResource("12_r")
+mode = 0
+needs_power = false
+base_energy = 0.35
+gameplay = false

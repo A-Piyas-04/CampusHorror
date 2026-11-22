@@ -1,0 +1,11 @@
+{
+	"zone_id": "academic_corridor",
+	"notes": "Interior concept (Docs/CAMPUS_BUILD.md S9), 30 x 5 m.",
+	"playable_bounds": [
+		-480,
+		-103,
+		960,
+		111
+	],
+	"walks": []
+}

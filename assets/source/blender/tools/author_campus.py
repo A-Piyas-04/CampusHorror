@@ -43,12 +43,42 @@ MATS.update({
 ASSETS = {}
 
 
+def _height(parts):
+    """Top of the parts (m): boxes, cylinders, tubes, prisms."""
+    top = 0.0
+    for p in parts:
+        if "part" in p:
+            top = max(top, _height([p["part"]]))
+        elif "box" in p:
+            top = max(top, p["box"][5])
+        elif "cyl" in p:
+            top = max(top, p["cyl"]["a"][2], p["cyl"]["b"][2])
+        elif "tube" in p:
+            top = max(top, max(q[2] for q in p["tube"]))
+        elif "prism" in p and p.get("axis", "y") in ("y", "x"):
+            top = max(top, max(v for _, v in p["prism"]))
+    return top
+
+
 def asset(asset_id, scene, desc, objects, footprint, *, px=48.0, collision=None, layers=None, z_index=0,
-          samples=192):
+          samples=192, fade=False):
+    """`fade`: the whole building becomes one `Building` layer, Y-sorted on its south face, that turns translucent
+    while the player stands where it would hide them (behind it, out to its projected height); a thin `Plinth`
+    stays opaque as the base sprite (decision D31)."""
+    if fade:
+        parts = [q for spec in objects.values() for q in spec["parts"]]
+        x0, x1, y0, y1 = footprint
+        h = _height(parts)
+        objects = {"Plinth": {"parts": [box(x0 + 0.5, x1 - 0.5, y0 + 0.5, y1 - 0.5, 0.0, 0.04, "roof_slab")],
+                              "bevel": 0.0},
+                   "Building": {"parts": parts, "bevel": next(iter(objects.values())).get("bevel", 0.01)}}
+        layers = [{"name": "Building", "objects": ["Building"], "sort_y_m": round(y0, 3),
+                   "fade": {"rects_m": {"Behind": [round(x0 - 0.5, 3), round(x1 + 0.5, 3), round(y0 + 0.6, 3),
+                                                   round(y1 + 1.19 * h, 3)]},
+                            "alpha": 0.3, "seconds": 0.3}}]
     params = {"mats": mats_for(objects), "objects": objects, "footprint_m": footprint, "lights": [],
               "ceiling_z": None}
-    col = {"enabled": True, "source": "rects_m", "rects_m": collision, "depth_mode": "projected"} if collision \
-        else {"enabled": False}
+    col = {"enabled": True, "source": "rects_m", "rects_m": collision, "depth_mode": "projected"} if collision         else {"enabled": False}
     ASSETS[asset_id] = dict(scene=scene, desc=desc, params=params, px=px, collision=col, layers=layers,
                             z_index=z_index, samples=samples)
 
@@ -93,7 +123,7 @@ def plaza():
         m.append(cbox(x, y0 - 0.15, 0.25, 0.3, 4.2, 4.5, "white_paint"))
     asset("plaza_mosque", "PlazaMosque", "IUT Central Mosque: brick cube, great half-disc window with stepped glazing "
           "facing the plaza (south, D26), small arched door.", one(m), [-9, 9, -9, 9], px=48.0,
-          collision={"Mass": [-9.3, 9.3, -9.3, 9.3]})
+          collision={"Mass": [-9.3, 9.3, -9.3, 9.3]}, fade=True)
 
     # Minaret ("Pillars"): brick cylinder, square cage top cut by half-discs on every face.
     r = 1.7
@@ -136,7 +166,7 @@ def plaza():
     cf.append(text("CENTRAL CAFETERIA", [0.0, y0 - 0.03, 8.0], 0.55, "white_paint"))
     asset("plaza_central_cafe", "PlazaCentralCafe", "IUT Central Cafeteria: four tall pointed arches over a recessed "
           "arcade on the plaza side (south, D26).", one(cf), [-15, 15, -8, 8], px=48.0,
-          collision={"Mass": [-15, 15, -5, 8], "PierW": [-15, -14.4, -8, -5], "PierE": [14.4, 15, -8, -5]})
+          collision={"Mass": [-15, 15, -5, 8], "PierW": [-15, -14.4, -8, -5], "PierE": [14.4, 15, -8, -5]}, fade=True)
 
     # Admin building: three storeys of deep vertical brick fins, ground-floor pointed arches, AC units.
     W, D, H = 40.0, 16.0, 12.0
@@ -160,7 +190,7 @@ def plaza():
     ad.append(text("ADMINISTRATIVE BUILDING", [0.0, y0 - 0.02, 11.2], 0.45, "white_paint"))
     asset("plaza_admin", "PlazaAdmin", "IUT Administrative Building: deep vertical brick fins, three storeys, "
           "ground-floor pointed arches, AC units (south face, D26).", one(ad), [-20, 20, -8, 8], px=44.0,
-          collision={"Mass": [-20, 20, -6.8, 8], "Fins": [-20.4, 20.4, -8, -6.8]})
+          collision={"Mass": [-20, 20, -6.8, 8], "Fins": [-20.4, 20.4, -8, -6.8]}, fade=True)
 
     # Auditorium: big box with a pointed-arch arcade on the south and stair heads on the roof.
     W, D, H = 34.0, 26.0, 12.0
@@ -181,7 +211,7 @@ def plaza():
     au.append(text("AUDITORIUM", [0.0, y0 - 0.02, 10.8], 0.6, "white_paint"))
     asset("plaza_auditorium", "PlazaAuditorium", "IUT Auditorium: a big brick box with a deep pointed-arch arcade "
           "(south, D26) and stair heads on the roof; the AV hall is inside (D27).", one(au), [-17, 17, -13, 13],
-          px=44.0, collision={"Mass": [-17, 17, -9.5, 13], "Piers": [-17.5, 17.5, -13, -12.4]})
+          px=44.0, collision={"Mass": [-17, 17, -9.5, 13], "Piers": [-17.5, 17.5, -13, -12.4]}, fade=True)
 
     # Five Pillars: five parallel brick walls, a pointed arch through them, stepped edges.
     fp = []
@@ -305,7 +335,7 @@ def hall_segment(asset_id, scene, desc, *, length=30.0, width=20.0, height=16.0,
     for k in range(3):
         p.append(box(-W / 2 + 2 + k * 6, -W / 2 + 3.5 + k * 6, -2, 1, H, H + 1.2, "roof_slab"))
     asset(asset_id, scene, desc, one(p), [-W / 2 - 2.6, W / 2 + 2.6, -L / 2, L / 2], px=40.0,
-          collision={"Mass": [-W / 2 - 2.6, W / 2 + 2.6, -L / 2, L / 2]})
+          collision={"Mass": [-W / 2 - 2.6, W / 2 + 2.6, -L / 2, L / 2]}, fade=True)
 
 
 def halls():
@@ -334,7 +364,7 @@ def halls():
         ub.append(cyl([x, y0 + (0 if abs(x) > 30 else -1.0), 0.0], [x, y0 + (0 if abs(x) > 30 else -1.0), H + 0.6],
                       1.7, "brick_wall", sides=24))
     asset("ub_hall", "UbHall", "UB Hall: the block closing the halls' courtyard, rows of small pointed arches and round "
-          "windows (photos 06, 08).", one(ub), [-36, 36, -9, 9], px=40.0, collision={"Mass": [-36.5, 36.5, -10.5, 9]})
+          "windows (photos 06, 08).", one(ub), [-36, 36, -9, 9], px=40.0, collision={"Mass": [-36.5, 36.5, -10.5, 9]}, fade=True)
     # Halls gate + arcade wall (photo 07): low arcade wall with a central gate arch.
     L = 40.0
     gw = [box(-L / 2, L / 2, -0.4, 0.4, 0.0, 0.5, "brick_wall"), box(-L / 2, L / 2, -0.45, 0.45, 3.0, 3.4, "brick_wall")]
@@ -389,7 +419,7 @@ def grid_block(asset_id, scene, desc, *, W, D, H, floors, bays, cylinders=(), ro
     p.append(box(-3, 3, -2, 2, H, H + 2.5, "roof_slab"))
     cyl_rects = {f"Tower{i}": [x - r, x + r, y - r, y + r] for i, (x, y, r) in enumerate(cylinders)}
     asset(asset_id, scene, desc, one(p), [-W / 2 - 3, W / 2 + 3, -D / 2 - 3, D / 2 + 3], px=px,
-          collision={"Mass": [-W / 2, W / 2, -D / 2, D / 2], **cyl_rects})
+          collision={"Mass": [-W / 2, W / 2, -D / 2, D / 2], **cyl_rects}, fade=True)
 
 
 def academic():
@@ -413,7 +443,7 @@ def academic():
     me.append(text("ME WORKSHOP", [0.0, -D / 2 - 0.08, 4.0], 0.5, "white_paint"))
     asset("me_workshop", "MeWorkshop", "Mechanical engineering workshop: long brick shed, pitched tin roof, steel "
           "doors (photos 03, 12).", one(me), [-25.4, 25.4, -7.5, 7.5], px=40.0,
-          collision={"Mass": [-25, 25, -7, 7]})
+          collision={"Mass": [-25, 25, -7, 7]}, fade=True)
     # Garage canopy.
     gc = [box(-12, 12, -4, 4, 2.8, 2.95, "tin_roof")]
     for x in (-11, -5.5, 0, 5.5, 11):

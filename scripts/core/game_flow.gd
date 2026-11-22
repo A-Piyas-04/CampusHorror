@@ -22,6 +22,13 @@ func new_game() -> void:
 	get_tree().change_scene_to_file(MAIN)
 
 
+## Starts chapter `n` fresh (chapter select): what earlier chapters grant is granted by its director.
+func start_chapter(n: int) -> void:
+	_start_mode = "chapter:%d" % n
+	get_tree().paused = false
+	get_tree().change_scene_to_file(MAIN)
+
+
 func continue_game() -> void:
 	_start_mode = "continue"
 	get_tree().paused = false

@@ -15,6 +15,14 @@ extends Area2D
 		_apply_size()
 ## Shown in the editor and by tests.
 @export var place_name: String = ""
+## Optional story lock (like Door): in story mode the way is shut until the player holds this item / this
+## GameState flag is set. The sandbox (no story director) ignores it.
+@export var required_item: String = ""
+@export var requires_flag: String = ""
+## Toast shown when the locked strip is walked into (at most every few seconds).
+@export var locked_message: String = "The way is blocked."
+
+var _last_locked_toast := -100.0
 
 var _shape: CollisionShape2D
 
@@ -25,6 +33,10 @@ func _ready() -> void:
 	monitoring = true
 	monitorable = false
 	_shape = get_node_or_null("Shape") as CollisionShape2D
+	# The scene's RectangleShape2D is one resource shared by every instance: take a private copy, or every edge
+	# would end up the size of whichever edge ran _ready last.
+	if _shape != null and _shape.shape != null:
+		_shape.shape = _shape.shape.duplicate()
 	_apply_size()
 	body_entered.connect(_on_body_entered)
 
@@ -45,4 +57,18 @@ func _on_body_entered(body: Node) -> void:
 	var main := get_tree().get_first_node_in_group("main") as Main
 	if main == null or main.is_transitioning():
 		return
+	# Locks are story locks: the sandbox (editor runs, tests) walks everywhere.
+	if not is_open() and main.get_director() != null:
+		var now := Time.get_ticks_msec() / 1000.0
+		if now - _last_locked_toast > 4.0:
+			_last_locked_toast = now
+			var hud := get_tree().get_first_node_in_group("hud")
+			if hud != null:
+				hud.call("toast", locked_message)
+		return
 	main.travel(destination_zone_id, destination_spawn_id)
+
+
+func is_open() -> bool:
+	var has_item := required_item == "" or GameState.has_item(required_item)
+	return has_item and (requires_flag == "" or GameState.has_flag(requires_flag))

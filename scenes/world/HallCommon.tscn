@@ -1,0 +1,106 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/world/zone.gd" id="1_r"]
+[ext_resource type="Resource" path="res://data/zones/profiles/hall_common.tres" id="2_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/interiors/HallCommonRoom.tscn" id="3_r"]
+[ext_resource type="PackedScene" path="res://scenes/components/Door.tscn" id="4_r"]
+[ext_resource type="PackedScene" path="res://scenes/components/SpawnMarker.tscn" id="5_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/furniture/TvStand.tscn" id="6_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/common/ContactShadow.tscn" id="7_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/furniture/CarromBoard.tscn" id="8_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/furniture/CanteenTableSetB.tscn" id="9_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/furniture/ChairStack.tscn" id="10_r"]
+[ext_resource type="PackedScene" path="res://scenes/components/Readable.tscn" id="11_r"]
+[ext_resource type="Texture2D" path="res://data/lighting/light_soft.tres" id="12_r"]
+[ext_resource type="Script" path="res://scripts/lighting/lamp_light.gd" id="13_r"]
+
+[node name="HallCommon" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_r")
+zone_id = "hall_common"
+profile = ExtResource("2_r")
+
+[node name="Objects" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Props" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="Story" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="Lights" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="Doors" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="SpawnMarkers" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="Glow" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="Room" parent="Objects" instance=ExtResource("3_r")]
+
+[node name="DoorOut" parent="Objects/Doors" instance=ExtResource("4_r")]
+position = Vector2(-182.4, -32.9216)
+destination_zone_id = "halls_exterior"
+destination_spawn_id = "outside_north_hall"
+verb = "Go out"
+place_name = "North Hall entrance"
+show_placeholder = false
+
+[node name="Spawn_common_from_outside" parent="Objects/SpawnMarkers" instance=ExtResource("5_r")]
+position = Vector2(-153.6, -32.9216)
+spawn_id = "common_from_outside"
+
+[node name="Tv" parent="Objects/Props" instance=ExtResource("6_r")]
+position = Vector2(0, -174.896)
+
+[node name="ContactShadow" parent="Objects/Props/Tv" instance=ExtResource("7_r")]
+scale = Vector2(0.6, 0.3)
+
+[node name="Carrom" parent="Objects/Props" instance=ExtResource("8_r")]
+position = Vector2(80, -82.304)
+
+[node name="ContactShadow" parent="Objects/Props/Carrom" instance=ExtResource("7_r")]
+scale = Vector2(0.5, 0.5)
+
+[node name="Chair0" parent="Objects/Props" instance=ExtResource("9_r")]
+position = Vector2(-64, -113.168)
+
+[node name="ContactShadow" parent="Objects/Props/Chair0" instance=ExtResource("7_r")]
+scale = Vector2(0.9, 0.5)
+
+[node name="Chair1" parent="Objects/Props" instance=ExtResource("9_r")]
+position = Vector2(-112, -72.016)
+
+[node name="ContactShadow" parent="Objects/Props/Chair1" instance=ExtResource("7_r")]
+scale = Vector2(0.9, 0.5)
+
+[node name="Chair2" parent="Objects/Props" instance=ExtResource("10_r")]
+position = Vector2(128, -133.744)
+
+[node name="ContactShadow" parent="Objects/Props/Chair2" instance=ExtResource("7_r")]
+scale = Vector2(0.4, 0.3)
+
+[node name="Radio" parent="Objects/Story" instance=ExtResource("11_r")]
+position = Vector2(0, -162.5504)
+note_id = "common_radio"
+title = "A walkie-talkie on the TV"
+body = "It crackles. A voice, very faint: '...anyone in the halls, the UB roof... we can see the lights from up here... don't come through the courtyard with a light...'"
+requires_light = false
+
+[node name="TvGlow" type="PointLight2D" parent="Objects/Lights"]
+position = Vector2(0, -160.4928)
+color = Color(0.6, 0.8, 1.0, 1)
+energy = 0.5
+range_item_cull_mask = 3
+texture = ExtResource("12_r")
+texture_scale = 1.4
+script = ExtResource("13_r")
+mode = 0
+needs_power = false
+base_energy = 0.5
+gameplay = false

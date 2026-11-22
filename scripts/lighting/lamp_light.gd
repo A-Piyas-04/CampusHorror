@@ -3,8 +3,10 @@ extends PointLight2D
 
 ## A fixed light in the world: a street lamp, a tube light, an emergency lamp (roadmap J1).
 ## - `mode`: STEADY, FLICKER (a failing tube / sodium lamp: long bright spells, sudden stutters) or DEAD (off).
-## - `needs_power`: only lit once GameState flag "power_on" is set (the breaker in the hall; Chapter 1). Emergency
-##   lights don't need it. When the power comes back the lamp stutters on over a second.
+## - `needs_power`: only lit once its circuit's GameState flag (`power_flag`) is set. "power_on" is the CDS block
+##   (the breaker in the hall; Chapter 1); the other areas have their own circuits ("power_plaza",
+##   "power_academic", "power_halls"), so Chapter 1's breaker doesn't light the whole campus. Emergency lights
+##   don't need power. When the power comes back the lamp stutters on over a second.
 ## - While lit it is a gameplay light (group "gameplay_lights"): it reveals notes, hides the organism's glow and draws
 ##   phototropic hosts (LightQuery, NightGuard). A lit lamp is also a safe pool for composure.
 
@@ -12,6 +14,8 @@ enum Mode { STEADY, FLICKER, DEAD }
 
 @export var mode: Mode = Mode.STEADY
 @export var needs_power: bool = false
+## The circuit this lamp is on: the GameState flag that powers it (only used with `needs_power`).
+@export var power_flag: String = "power_on"
 ## Gameplay radius in game px (how far it "illuminates" for LightQuery); 0 = from the texture.
 @export var gameplay_radius: float = 0.0
 @export var base_energy: float = 1.0
@@ -38,11 +42,11 @@ func _ready() -> void:
 func is_on() -> bool:
 	if mode == Mode.DEAD:
 		return false
-	return not needs_power or GameState.has_flag("power_on")
+	return not needs_power or GameState.has_flag(power_flag)
 
 
 func _on_flag(id: String, _v: Variant) -> void:
-	if id == "power_on" and is_on():
+	if id == power_flag and is_on():
 		_powering = 1.2
 	_refresh(false)
 

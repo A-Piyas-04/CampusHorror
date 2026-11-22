@@ -173,10 +173,11 @@ class ZoneScene:
         self.s.node("Shape", "CollisionShape2D", body,
                     props={"position": V((x0 + x1) / 2, (y0 + y1) / 2), "shape": shape})
 
-    def edge(self, name, x, y, w, h, dest_zone, dest_spawn, place_name=""):
-        self.s.node(name, None, "Objects/Doors", instance=EDGE, props={
-            "position": V(x, y), "destination_zone_id": S(dest_zone), "destination_spawn_id": S(dest_spawn),
-            "size": V(w, h), "place_name": S(place_name)})
+    def edge(self, name, x, y, w, h, dest_zone, dest_spawn, place_name="", **kw):
+        props = {"position": V(x, y), "destination_zone_id": S(dest_zone), "destination_spawn_id": S(dest_spawn),
+                 "size": V(w, h), "place_name": S(place_name)}
+        props.update({k: S(v) for k, v in kw.items()})
+        self.s.node(name, None, "Objects/Doors", instance=EDGE, props=props)
 
     def door(self, name, x, y, dest_zone, dest_spawn, verb, place, **kw):
         props = {"position": V(x, y), "destination_zone_id": S(dest_zone), "destination_spawn_id": S(dest_spawn),
@@ -190,12 +191,15 @@ class ZoneScene:
                     props={"position": V(x, y), "spawn_id": S(spawn_id)})
 
     def lamp_light(self, name, x, y, color=(1.0, 0.85, 0.6), energy=0.9, scale=2.4, mode=0, needs_power=True,
-                   parent="Objects/Lights"):
-        self.s.node(name, "PointLight2D", parent, props={
+                   parent="Objects/Lights", circuit="power_on"):
+        props = {
             "position": V(x, y), "color": C(*color), "energy": fnum(energy), "range_item_cull_mask": "3",
             "texture": self.s.res(LIGHT_TEX, "Texture2D"), "texture_scale": fnum(scale),
             "script": self.s.res(LAMP), "mode": str(mode), "needs_power": "true" if needs_power else "false",
-            "base_energy": fnum(energy)})
+            "base_energy": fnum(energy)}
+        if needs_power:
+            props["power_flag"] = S(circuit)
+        self.s.node(name, "PointLight2D", parent, props=props)
 
     def glow(self, name, x, y, spots=(), trail_to=None, intensity=0.8, pulse=0.5):
         props = {"position": V(x, y), "script": self.s.res(GLOW), "color": C(0.45, 1.0, 0.82),
@@ -208,6 +212,18 @@ class ZoneScene:
 
     def write(self):
         self.s.write(f"scenes/world/{''.join(w.capitalize() for w in self.zone_id.split('_'))}.tscn")
+
+
+STUDENT = "res://scenes/creatures/NightGuard.tscn"
+
+
+def student_props(x, y, patrol):
+    """A "student" (Chapter 3's sound-hunting host): the NightGuard brain tuned to hear far, see little, ignore the
+    lantern, move slowly; pale, wet-looking. Dormant until a chapter's _patrol_active() wakes it."""
+    return {"position": V(x, y), "patrol_points": PV2(patrol), "active": "false", "visible": "false",
+            "sight_radius": "70.0", "close_sense_radius": "44.0", "light_sensitivity": "0.2", "hearing": "1.8",
+            "patrol_speed": "30.0", "investigate_speed": "52.0", "chase_speed": "118.0",
+            "modulate": C(0.72, 0.86, 0.78), "metadata/role": S("patrol")}
 
 
 def write_profile(zone_id, *, zoom, limits, surface, ambience, vol=-6.0, room=0.15, damp=0.7, wet=0.05,

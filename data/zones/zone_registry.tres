@@ -5,15 +5,27 @@
 [resource]
 script = ExtResource("1_registry")
 zones = Dictionary[String, String]({
+"academic_classroom": "res://scenes/world/AcademicClassroom.tscn",
+"academic_corridor": "res://scenes/world/AcademicCorridor.tscn",
 "academic_exterior": "res://scenes/world/AcademicExterior.tscn",
+"academic_lab": "res://scenes/world/AcademicLab.tscn",
+"admin_lobby": "res://scenes/world/AdminLobby.tscn",
+"admin_office": "res://scenes/world/AdminOffice.tscn",
+"auditorium_hall": "res://scenes/world/AuditoriumHall.tscn",
+"av_hall": "res://scenes/world/AvHall.tscn",
 "cds_canteen": "res://scenes/world/CdsCanteen.tscn",
 "cds_indoor_basketball": "res://scenes/world/CdsIndoorBasketball.tscn",
 "cds_table_tennis": "res://scenes/world/CdsTableTennis.tscn",
 "cds_veranda": "res://scenes/world/CdsVeranda.tscn",
+"central_cafe": "res://scenes/world/CentralCafe.tscn",
 "central_plaza": "res://scenes/world/CentralPlaza.tscn",
+"hall_common": "res://scenes/world/HallCommon.tscn",
+"hall_corridor": "res://scenes/world/HallCorridor.tscn",
+"hall_room": "res://scenes/world/HallRoom.tscn",
 "halls_exterior": "res://scenes/world/HallsExterior.tscn",
 "main_gate_exterior": "res://scenes/world/MainGateExterior.tscn",
-"main_gate_security": "res://scenes/world/MainGateSecurity.tscn"
+"main_gate_security": "res://scenes/world/MainGateSecurity.tscn",
+"mosque_prayer_hall": "res://scenes/world/MosquePrayerHall.tscn"
 })
 debug_zones = Dictionary[String, String]({
 "test_zone_a": "res://scenes/world/TestZoneA.tscn",

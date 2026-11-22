@@ -50,6 +50,24 @@
         "var": 0.0,
         "part_var": 0.0
       },
+      "roof_slab": {
+        "color": [
+          0.42,
+          0.4,
+          0.37
+        ],
+        "rough": 0.9,
+        "var": 0.25,
+        "var_scale": 1.5,
+        "stains": 0.5,
+        "stain_color": [
+          0.26,
+          0.25,
+          0.23
+        ],
+        "stain_scale": 0.5,
+        "bump": 0.2
+      },
       "steel_grey": {
         "color": [
           0.52,
@@ -90,7 +108,23 @@
       }
     },
     "objects": {
-      "Main": {
+      "Plinth": {
+        "parts": [
+          {
+            "box": [
+              -24.9,
+              24.9,
+              -7.0,
+              7.0,
+              0.0,
+              0.04
+            ],
+            "mat": "roof_slab"
+          }
+        ],
+        "bevel": 0.0
+      },
+      "Building": {
         "parts": [
           {
             "box": [
@@ -265,7 +299,8 @@
     "px_per_m": 40.0,
     "samples": 192,
     "elevation_deg": 40.0,
-    "azimuth_deg": 0.0
+    "azimuth_deg": 0.0,
+    "crop_layers": true
   },
   "godot": {
     "scene_name": "MeWorkshop",
@@ -288,5 +323,26 @@
       ]
     },
     "depth_mode": "projected"
-  }
+  },
+  "layers": [
+    {
+      "name": "Building",
+      "objects": [
+        "Building"
+      ],
+      "sort_y_m": -7.5,
+      "fade": {
+        "rects_m": {
+          "Behind": [
+            -25.9,
+            25.9,
+            -6.9,
+            16.306
+          ]
+        },
+        "alpha": 0.3,
+        "seconds": 0.3
+      }
+    }
+  ]
 }

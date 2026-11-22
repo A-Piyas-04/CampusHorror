@@ -312,7 +312,8 @@
 				"gameplay_radius": "0.0",
 				"mode": "0",
 				"needs_power": "false",
-				"path": "res://scripts/lighting/lamp_light.gd"
+				"path": "res://scripts/lighting/lamp_light.gd",
+				"power_flag": "\"power_on\""
 			},
 			"visible": true,
 			"xform": [
@@ -347,7 +348,8 @@
 				"gameplay_radius": "0.0",
 				"mode": "0",
 				"needs_power": "false",
-				"path": "res://scripts/lighting/lamp_light.gd"
+				"path": "res://scripts/lighting/lamp_light.gd",
+				"power_flag": "\"power_on\""
 			},
 			"visible": true,
 			"xform": [
@@ -382,7 +384,8 @@
 				"gameplay_radius": "0.0",
 				"mode": "0",
 				"needs_power": "false",
-				"path": "res://scripts/lighting/lamp_light.gd"
+				"path": "res://scripts/lighting/lamp_light.gd",
+				"power_flag": "\"power_on\""
 			},
 			"visible": true,
 			"xform": [

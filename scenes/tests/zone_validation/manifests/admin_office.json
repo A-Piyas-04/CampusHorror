@@ -1,0 +1,11 @@
+{
+	"zone_id": "admin_office",
+	"notes": "Interior concept (Docs/CAMPUS_BUILD.md S9), 8 x 7 m.",
+	"playable_bounds": [
+		-128,
+		-144,
+		256,
+		152
+	],
+	"walks": []
+}

@@ -35,6 +35,6 @@ void fragment() {
 	// Thin ripple lines (stretched across, as the camera looks across the water).
 	float r = noise(vec2(p.x * 9.0, p.y * 26.0) + vec2(t * 2.0, 0.0));
 	float line = smoothstep(0.78, 0.86, r) * (1.0 - smoothstep(0.86, 0.95, r));
-	col = mix(col, glint.rgb, line * 0.35);
+	col = mix(col, glint.rgb, line * 0.14);
 	COLOR = vec4(col * COLOR.rgb, 1.0);
 }

@@ -41,7 +41,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		get_viewport().set_input_as_handled()
 
 
-func _director() -> Chapter1:
+func _director() -> StoryDirector:
 	var main := get_parent() as Main
 	return main.get_director() if main != null else null
 

@@ -1,0 +1,88 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/world/zone.gd" id="1_r"]
+[ext_resource type="Resource" path="res://data/zones/profiles/av_hall.tres" id="2_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/interiors/AvHallRoom.tscn" id="3_r"]
+[ext_resource type="PackedScene" path="res://scenes/components/Door.tscn" id="4_r"]
+[ext_resource type="PackedScene" path="res://scenes/components/SpawnMarker.tscn" id="5_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/furniture/ProjectorScreen.tscn" id="6_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/furniture/SeatRow.tscn" id="7_r"]
+[ext_resource type="PackedScene" path="res://scenes/components/Readable.tscn" id="8_r"]
+[ext_resource type="Texture2D" path="res://data/lighting/light_soft.tres" id="9_r"]
+[ext_resource type="Script" path="res://scripts/lighting/lamp_light.gd" id="10_r"]
+
+[node name="AvHall" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_r")
+zone_id = "av_hall"
+profile = ExtResource("2_r")
+
+[node name="Objects" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Props" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="Story" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="Lights" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="Doors" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="SpawnMarkers" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="Glow" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="Room" parent="Objects" instance=ExtResource("3_r")]
+
+[node name="DoorOut" parent="Objects/Doors" instance=ExtResource("4_r")]
+position = Vector2(-214.4, -41.152)
+destination_zone_id = "auditorium_hall"
+destination_spawn_id = "auditorium_from_av"
+verb = "Go out"
+place_name = "Auditorium"
+show_placeholder = false
+
+[node name="Spawn_av_from_auditorium" parent="Objects/SpawnMarkers" instance=ExtResource("5_r")]
+position = Vector2(-185.6, -41.152)
+spawn_id = "av_from_auditorium"
+
+[node name="Screen" parent="Objects/Props" instance=ExtResource("6_r")]
+position = Vector2(0, -226.336)
+
+[node name="Seats0" parent="Objects/Props" instance=ExtResource("7_r")]
+position = Vector2(16, -61.728)
+
+[node name="Seats1" parent="Objects/Props" instance=ExtResource("7_r")]
+position = Vector2(16, -98.7648)
+
+[node name="Seats2" parent="Objects/Props" instance=ExtResource("7_r")]
+position = Vector2(16, -135.8016)
+
+[node name="Seats3" parent="Objects/Props" instance=ExtResource("7_r")]
+position = Vector2(16, -172.8384)
+
+[node name="Projector" parent="Objects/Story" instance=ExtResource("8_r")]
+position = Vector2(0, -20.576)
+note_id = "av_projector"
+title = "The projector's last slide"
+body = "Still burned into the screen: 'ORGANISM 7 - PHOTOTROPIC RESPONSE IN HOST TISSUE. Faculty seminar, 19 November, closed session.' Under it, a photo of the CDS plant room hatch, open, and light coming up from below."
+requires_light = false
+
+[node name="Screen" type="PointLight2D" parent="Objects/Lights"]
+position = Vector2(0, -195.472)
+color = Color(0.7, 0.8, 1.0, 1)
+energy = 0.5
+range_item_cull_mask = 3
+texture = ExtResource("9_r")
+texture_scale = 2.0
+script = ExtResource("10_r")
+mode = 0
+needs_power = false
+base_energy = 0.5
+gameplay = false

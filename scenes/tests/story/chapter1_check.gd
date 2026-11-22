@@ -1,10 +1,10 @@
-extends "res://scenes/tests/feel/feel_check_base.gd"
+extends "res://scenes/tests/story/story_check_base.gd"
 
 ## Chapter 1 playthrough (test-only): starts a NEW story game (Game start mode "new") on the real Main.tscn and
 ## plays the whole chapter through the real systems with real input: intro card, the dark canteen, the lantern,
 ## the notice board, the veranda, the chained gate, the security office (logbook, master key), the guard waking
 ## and catching the player (blackout -> checkpoint reload), the table-tennis room's dark-only code, the locked hall,
-## the breaker keypad, the finale and the hatch, the end card and the return to the title screen.
+## the breaker keypad, the finale and the hatch, the end card and Chapter 2 beginning in the Central Plaza (D32).
 ## Saves go to user://test_chapter1_save.json (removed afterwards); the player's own save is never touched.
 
 const TEST_SAVE := "user://test_chapter1_save.json"
@@ -35,60 +35,6 @@ func _run() -> void:
 	await _hall_and_ending()
 	_remove_test_save()
 	SaveService.save_path = SaveService.SAVE_PATH
-
-
-# --- helpers -------------------------------------------------------------------------------------------------
-
-func zone_node(path: String) -> Node2D:
-	return main.get_current_zone().get_node_or_null(path) as Node2D
-
-
-func use(node: Node2D, offset := Vector2(0, 14)) -> void:
-	await place(node.global_position + offset)
-	await frames(4)
-	await press("interact")
-	await frames(4)
-
-
-func card_open() -> bool:
-	# After the end card the game changes scene to the title, freeing Main.
-	return is_instance_valid(main) and bool(main.get_node("UI/StoryCard").call("is_open"))
-
-
-func skip_card(max_presses := 14) -> void:
-	for i in max_presses:
-		if not card_open():
-			return
-		await press("interact")
-		await seconds(0.3)
-	var start := Time.get_ticks_msec()
-	while card_open() and Time.get_ticks_msec() - start < 8000:
-		await get_tree().process_frame
-
-
-func close_note() -> void:
-	var viewer := main.get_node("UI/NoteViewer")
-	if bool(viewer.call("is_open")):
-		await press("interact")
-		await frames(4)
-
-
-func travel_through(door_path: String) -> void:
-	await use(zone_node(door_path))
-	await frames(2)
-	await await_travel()
-	await frames(6)
-
-
-func lantern() -> Node:
-	return player.get_node("Lantern")
-
-
-func set_lantern(target: int) -> void:
-	for i in 4:
-		if int(lantern().get("state")) == target:
-			return
-		await press("lantern")
 
 
 # --- the chapter ---------------------------------------------------------------------------------------------
@@ -242,11 +188,22 @@ func _hall_and_ending() -> void:
 	check(card_open(), "the end card plays")
 	await skip_card(20)
 	var start := Time.get_ticks_msec()
-	while Time.get_ticks_msec() - start < 8000:
-		var cs := get_tree().current_scene
-		if cs != null and cs.name == "MainMenu":
+	while Time.get_ticks_msec() - start < 10000:
+		if is_instance_valid(main) and main.get_director() is Chapter2 and main.get_current_zone_id() == "central_plaza":
 			break
 		await get_tree().process_frame
-	await frames(5)
-	check(get_tree().current_scene != null and get_tree().current_scene.name == "MainMenu",
-		"after the end card the game returns to the title screen")
+	check(is_instance_valid(main) and main.get_director() is Chapter2 and main.get_current_zone_id() == "central_plaza"
+		and int(GameState.get_flag("chapter", 0)) == 2,
+		"after the end card Chapter 2 begins in the Central Plaza (chapter flag 2)")
+	start = Time.get_ticks_msec()
+	while Time.get_ticks_msec() - start < 20000:
+		if card_open():
+			await press("interact")
+			await seconds(0.3)
+		elif player.input_enabled:
+			break
+		else:
+			await get_tree().process_frame
+	await seconds(0.5)
+	check(player.input_enabled and GameState.has_flag("ch2_surfaced") and SaveService.has_save(),
+		"Chapter 2's intro hands control back on the lake bank and saves there")

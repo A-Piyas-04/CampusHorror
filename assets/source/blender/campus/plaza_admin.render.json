@@ -139,7 +139,23 @@
       }
     },
     "objects": {
-      "Main": {
+      "Plinth": {
+        "parts": [
+          {
+            "box": [
+              -19.5,
+              19.5,
+              -7.5,
+              7.5,
+              0.0,
+              0.04
+            ],
+            "mat": "roof_slab"
+          }
+        ],
+        "bevel": 0.0
+      },
+      "Building": {
         "parts": [
           {
             "box": [
@@ -2054,7 +2070,16 @@
   "model": {
     "objects": [
       {
-        "object": "Main",
+        "object": "Plinth",
+        "evaluated_bounds_m": {
+          "x": 39.0,
+          "y": 15.0,
+          "z": 0.04
+        },
+        "evaluated_faces": 6
+      },
+      {
+        "object": "Building",
         "evaluated_bounds_m": {
           "x": 40.7,
           "y": 16.05,
@@ -2153,7 +2178,7 @@
       2077,
       1174
     ],
-    "render_seconds": 11.1
+    "render_seconds": 17.5
   },
   "projection": {
     "note": "texture px, top-left origin: x = W/2 + (p.right - cx)*ppm, y = H/2 - (p.up - cy)*ppm",
@@ -2203,18 +2228,53 @@
       142.83792075272424,
       1933.900016784668,
       1031.1620714161802
+    ],
+    "crop_px": [
+      156,
+      567,
+      1765,
+      475
     ]
   },
   "tiling": null,
-  "layers": null,
+  "layers": [
+    {
+      "name": "Building",
+      "png": "assets/sprites/campus/plaza_admin__building.png",
+      "objects": [
+        "Building"
+      ],
+      "sort_y_m": -8,
+      "z_index": 0,
+      "fade": {
+        "rects_m": {
+          "Behind": [
+            -20.5,
+            20.5,
+            -7.4,
+            23.529
+          ]
+        },
+        "alpha": 0.3,
+        "seconds": 0.3
+      },
+      "render_seconds": 11.0,
+      "crop_px": [
+        119,
+        118,
+        1839,
+        938
+      ]
+    }
+  ],
   "kind": "sprite",
   "ground_tile": null,
-  "total_seconds": 12.6,
+  "total_seconds": 18.9,
   "blender_run": {
     "exit_code": 0,
-    "seconds": 13.8,
+    "seconds": 19.7,
     "problem_lines": [
-      "00:02.046  cycles           | WARNING HIPEW initialization failed: Error opening HIP dynamic library"
+      "00:01.187  cycles           | WARNING HIPEW initialization failed: Error opening HIP dynamic library"
     ]
   },
   "verification": {
@@ -2222,25 +2282,25 @@
       "bit_depth": 8,
       "png_color_type": 6,
       "interlace": 0,
-      "file_bytes": 2502243,
+      "file_bytes": 245666,
       "size_px": [
-        2077,
-        1174
+        1765,
+        475
       ],
-      "opaque_pixels": 1525176,
-      "partially_transparent_pixels": 13339,
-      "fully_transparent_pixels": 899883,
+      "opaque_pixels": 726209,
+      "partially_transparent_pixels": 8574,
+      "fully_transparent_pixels": 103592,
       "content_bbox_px": [
-        142,
-        141,
-        1934,
-        1032
+        23,
+        23,
+        1741,
+        451
       ],
       "margins_px": {
-        "left": 142,
-        "right": 142,
-        "top": 141,
-        "bottom": 141
+        "left": 23,
+        "right": 23,
+        "top": 23,
+        "bottom": 23
       },
       "max_alpha_on_image_border": 0.0
     },
@@ -2252,13 +2312,40 @@
     ],
     "minimum_margin_required_px": 16,
     "tiling": null,
-    "layers": null,
+    "layers": {
+      "Building": {
+        "bit_depth": 8,
+        "png_color_type": 6,
+        "interlace": 0,
+        "file_bytes": 2277022,
+        "size_px": [
+          1839,
+          938
+        ],
+        "opaque_pixels": 1525193,
+        "partially_transparent_pixels": 13310,
+        "fully_transparent_pixels": 186479,
+        "content_bbox_px": [
+          23,
+          23,
+          1815,
+          914
+        ],
+        "margins_px": {
+          "left": 23,
+          "right": 23,
+          "top": 23,
+          "bottom": 23
+        },
+        "max_alpha_on_image_border": 0.0
+      }
+    },
     "passed": true
   },
   "godot": {
     "scene": "scenes/props/campus/PlazaAdmin.tscn",
     "scene_name": "PlazaAdmin",
-    "scene_semantic_sha256": "df733d1c8e1d2eae3fe1528acdd135b159c97c407e2aebc05d1f453eb759c3b8",
+    "scene_semantic_sha256": "5873393810c26228c8ae838b319ea7add0e65c23f42963b96415451faed77179",
     "sprite_offset_adjust_px": [
       0.0,
       0.0
@@ -2268,18 +2355,18 @@
       "game_px_per_m": 32.0,
       "sprite_scale": 0.7272727272727273,
       "sprite_offset_px": [
-        -1038.5,
-        -804.9090086507204
+        -882.5,
+        -237.90900865072035
       ],
       "origin_px": [
         1038.5,
         804.9090086507204
       ],
       "sprite_rect_game_px": [
-        -755.2727272727273,
-        -585.3883699277966,
-        1510.5454545454545,
-        853.8181818181819
+        -668.7272727272727,
+        -499.57018810961483,
+        1337.4545454545455,
+        682.1818181818182
       ],
       "footprint_game_px": [
         [
@@ -2300,7 +2387,57 @@
         ]
       ],
       "ground_depth_factor": 0.6427876353263855,
-      "layers": null
+      "layers": [
+        {
+          "name": "Building",
+          "position_game_px": [
+            0.0,
+            164.5536346435547
+          ],
+          "sprite_offset_px": [
+            -919.5,
+            -913.170256285608
+          ],
+          "z_index": 0,
+          "fade": {
+            "node": "BuildingFade",
+            "alpha": 0.3,
+            "seconds": 0.3,
+            "shapes": [
+              {
+                "node": "ShapeBehind",
+                "resource_id": "RectangleShape2D_BuildingFadeBehind",
+                "center": [
+                  0.0,
+                  -165.88034832286831
+                ],
+                "size": [
+                  1312.0,
+                  636.184920736313
+                ],
+                "metres": [
+                  -20.5,
+                  20.5,
+                  -7.4,
+                  23.529
+                ]
+              }
+            ]
+          },
+          "crop_px": [
+            119,
+            118,
+            1839,
+            938
+          ]
+        }
+      ],
+      "crop_px": [
+        156,
+        567,
+        1765,
+        475
+      ]
     },
     "collision": {
       "source": "rects_m",

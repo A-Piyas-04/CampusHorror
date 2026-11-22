@@ -1,0 +1,1710 @@
+{
+	"format": 1,
+	"ground_lattice": {},
+	"nodes": {
+		".": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/world/AcademicClassroom.tscn",
+			"script": {
+				"path": "res://scripts/world/zone.gd",
+				"profile": "Resource(\"res://data/zones/profiles/academic_classroom.tres\")",
+				"zone_id": "\"academic_classroom\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"y_sort": true,
+			"z": 0
+		},
+		"./Objects": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"y_sort": true,
+			"z": 0
+		},
+		"./Objects/Doors": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"y_sort": true,
+			"z": 0
+		},
+		"./Objects/Doors/DoorOut": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/components/Door.tscn",
+			"script": {
+				"destination_spawn_id": "\"corridor_from_classroom\"",
+				"destination_zone_id": "\"academic_corridor\"",
+				"hold_seconds": "0.0",
+				"locked_message": "\"Locked.\"",
+				"path": "res://scripts/components/door.gd",
+				"place_name": "\"Corridor\"",
+				"required_item": "\"\"",
+				"requires_flag": "\"\"",
+				"show_placeholder": "false",
+				"unlock_message": "\"\"",
+				"unlocked_flag": "\"door_unlocked_DoorOut\"",
+				"verb": "\"Go out\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-198.39999389648438,
+				-30.86400032043457
+			],
+			"z": 0
+		},
+		"./Objects/Doors/DoorOut/Body": {
+			"class": "Polygon2D",
+			"color": [
+				0.44999998807907104,
+				0.2800000011920929,
+				0.15000000596046448,
+				1.0
+			],
+			"light_mask": 1,
+			"polygon": [
+				[
+					-24.0,
+					-64.0
+				],
+				[
+					24.0,
+					-64.0
+				],
+				[
+					24.0,
+					0.0
+				],
+				[
+					-24.0,
+					0.0
+				]
+			],
+			"visible": false,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-198.39999389648438,
+				-30.86400032043457
+			],
+			"z": 0
+		},
+		"./Objects/Doors/DoorOut/Interactable": {
+			"class": "Area2D",
+			"layer": 4,
+			"light_mask": 1,
+			"mask": 0,
+			"monitorable": true,
+			"monitoring": false,
+			"scene": "res://scenes/components/Interactable.tscn",
+			"script": {
+				"hold_seconds": "0.0",
+				"object_name": "\"Corridor\"",
+				"path": "res://scripts/components/interactable.gd",
+				"prompt_offset": "Vector2(0, -56)",
+				"verb": "\"Go out\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-198.39999389648438,
+				-30.86400032043457
+			],
+			"z": 0
+		},
+		"./Objects/Doors/DoorOut/Interactable/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"circle": 32.0
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-198.39999389648438,
+				-30.86400032043457
+			],
+			"z": 0
+		},
+		"./Objects/Glow": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"y_sort": true,
+			"z": 0
+		},
+		"./Objects/Lights": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"y_sort": true,
+			"z": 0
+		},
+		"./Objects/Lights/MoonE": {
+			"class": "PointLight2D",
+			"light": {
+				"color": [
+					0.550000011920929,
+					0.6499999761581421,
+					1.0,
+					1.0
+				],
+				"enabled": true,
+				"energy": 0.35,
+				"range_mask": 3,
+				"shadow_mask": 1,
+				"shadows": false
+			},
+			"light_mask": 1,
+			"script": {
+				"base_energy": "0.35",
+				"gameplay": "false",
+				"gameplay_radius": "0.0",
+				"mode": "0",
+				"needs_power": "false",
+				"path": "res://scripts/lighting/lamp_light.gd",
+				"power_flag": "\"power_on\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				144.0,
+				-181.0688018798828
+			],
+			"z": 0
+		},
+		"./Objects/Lights/MoonW": {
+			"class": "PointLight2D",
+			"light": {
+				"color": [
+					0.550000011920929,
+					0.6499999761581421,
+					1.0,
+					1.0
+				],
+				"enabled": true,
+				"energy": 0.35,
+				"range_mask": 3,
+				"shadow_mask": 1,
+				"shadows": false
+			},
+			"light_mask": 1,
+			"script": {
+				"base_energy": "0.35",
+				"gameplay": "false",
+				"gameplay_radius": "0.0",
+				"mode": "0",
+				"needs_power": "false",
+				"path": "res://scripts/lighting/lamp_light.gd",
+				"power_flag": "\"power_on\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-144.0,
+				-181.0688018798828
+			],
+			"z": 0
+		},
+		"./Objects/Props": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"y_sort": true,
+			"z": 0
+		},
+		"./Objects/Props/Desk0_-32": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/furniture/BenchDesk.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-102.4000015258789,
+				-41.152000427246094
+			],
+			"z": 0
+		},
+		"./Objects/Props/Desk0_-32/Body": {
+			"class": "StaticBody2D",
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-102.4000015258789,
+				-41.152000427246094
+			],
+			"z": 0
+		},
+		"./Objects/Props/Desk0_-32/Body/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					57.599998474121094,
+					17.89520835876465
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-102.4000015258789,
+				-41.46053695678711
+			],
+			"z": 0
+		},
+		"./Objects/Props/Desk0_-32/ContactShadow": {
+			"centered": true,
+			"class": "Sprite2D",
+			"light_mask": 1,
+			"offset": [
+				0.0,
+				0.0
+			],
+			"scene": "res://scenes/props/common/ContactShadow.tscn",
+			"texture": "embedded:GradientTexture2D",
+			"visible": true,
+			"xform": [
+				0.8999999761581421,
+				0.0,
+				0.0,
+				0.3499999940395355,
+				-102.4000015258789,
+				-41.152000427246094
+			],
+			"z": -9
+		},
+		"./Objects/Props/Desk0_-32/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-156.5,
+				-152.11080932617188
+			],
+			"texture": "res://assets/sprites/furniture/bench_desk.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.21333333849906921,
+				0.0,
+				0.0,
+				0.21333333849906921,
+				-102.4000015258789,
+				-41.152000427246094
+			],
+			"z": 0
+		},
+		"./Objects/Props/Desk0_0": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/furniture/BenchDesk.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				-41.152000427246094
+			],
+			"z": 0
+		},
+		"./Objects/Props/Desk0_0/Body": {
+			"class": "StaticBody2D",
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				-41.152000427246094
+			],
+			"z": 0
+		},
+		"./Objects/Props/Desk0_0/Body/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					57.599998474121094,
+					17.89520835876465
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				-41.46053695678711
+			],
+			"z": 0
+		},
+		"./Objects/Props/Desk0_0/ContactShadow": {
+			"centered": true,
+			"class": "Sprite2D",
+			"light_mask": 1,
+			"offset": [
+				0.0,
+				0.0
+			],
+			"scene": "res://scenes/props/common/ContactShadow.tscn",
+			"texture": "embedded:GradientTexture2D",
+			"visible": true,
+			"xform": [
+				0.8999999761581421,
+				0.0,
+				0.0,
+				0.3499999940395355,
+				0.0,
+				-41.152000427246094
+			],
+			"z": -9
+		},
+		"./Objects/Props/Desk0_0/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-156.5,
+				-152.11080932617188
+			],
+			"texture": "res://assets/sprites/furniture/bench_desk.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.21333333849906921,
+				0.0,
+				0.0,
+				0.21333333849906921,
+				0.0,
+				-41.152000427246094
+			],
+			"z": 0
+		},
+		"./Objects/Props/Desk0_32": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/furniture/BenchDesk.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				102.4000015258789,
+				-41.152000427246094
+			],
+			"z": 0
+		},
+		"./Objects/Props/Desk0_32/Body": {
+			"class": "StaticBody2D",
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				102.4000015258789,
+				-41.152000427246094
+			],
+			"z": 0
+		},
+		"./Objects/Props/Desk0_32/Body/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					57.599998474121094,
+					17.89520835876465
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				102.4000015258789,
+				-41.46053695678711
+			],
+			"z": 0
+		},
+		"./Objects/Props/Desk0_32/ContactShadow": {
+			"centered": true,
+			"class": "Sprite2D",
+			"light_mask": 1,
+			"offset": [
+				0.0,
+				0.0
+			],
+			"scene": "res://scenes/props/common/ContactShadow.tscn",
+			"texture": "embedded:GradientTexture2D",
+			"visible": true,
+			"xform": [
+				0.8999999761581421,
+				0.0,
+				0.0,
+				0.3499999940395355,
+				102.4000015258789,
+				-41.152000427246094
+			],
+			"z": -9
+		},
+		"./Objects/Props/Desk0_32/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-156.5,
+				-152.11080932617188
+			],
+			"texture": "res://assets/sprites/furniture/bench_desk.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.21333333849906921,
+				0.0,
+				0.0,
+				0.21333333849906921,
+				102.4000015258789,
+				-41.152000427246094
+			],
+			"z": 0
+		},
+		"./Objects/Props/Desk1_-32": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/furniture/BenchDesk.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-102.4000015258789,
+				-76.1312026977539
+			],
+			"z": 0
+		},
+		"./Objects/Props/Desk1_-32/Body": {
+			"class": "StaticBody2D",
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-102.4000015258789,
+				-76.1312026977539
+			],
+			"z": 0
+		},
+		"./Objects/Props/Desk1_-32/Body/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					57.599998474121094,
+					17.89520835876465
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-102.4000015258789,
+				-76.43974304199219
+			],
+			"z": 0
+		},
+		"./Objects/Props/Desk1_-32/ContactShadow": {
+			"centered": true,
+			"class": "Sprite2D",
+			"light_mask": 1,
+			"offset": [
+				0.0,
+				0.0
+			],
+			"scene": "res://scenes/props/common/ContactShadow.tscn",
+			"texture": "embedded:GradientTexture2D",
+			"visible": true,
+			"xform": [
+				0.8999999761581421,
+				0.0,
+				0.0,
+				0.3499999940395355,
+				-102.4000015258789,
+				-76.1312026977539
+			],
+			"z": -9
+		},
+		"./Objects/Props/Desk1_-32/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-156.5,
+				-152.11080932617188
+			],
+			"texture": "res://assets/sprites/furniture/bench_desk.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.21333333849906921,
+				0.0,
+				0.0,
+				0.21333333849906921,
+				-102.4000015258789,
+				-76.1312026977539
+			],
+			"z": 0
+		},
+		"./Objects/Props/Desk1_0": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/furniture/BenchDesk.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				-76.1312026977539
+			],
+			"z": 0
+		},
+		"./Objects/Props/Desk1_0/Body": {
+			"class": "StaticBody2D",
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				-76.1312026977539
+			],
+			"z": 0
+		},
+		"./Objects/Props/Desk1_0/Body/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					57.599998474121094,
+					17.89520835876465
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				-76.43974304199219
+			],
+			"z": 0
+		},
+		"./Objects/Props/Desk1_0/ContactShadow": {
+			"centered": true,
+			"class": "Sprite2D",
+			"light_mask": 1,
+			"offset": [
+				0.0,
+				0.0
+			],
+			"scene": "res://scenes/props/common/ContactShadow.tscn",
+			"texture": "embedded:GradientTexture2D",
+			"visible": true,
+			"xform": [
+				0.8999999761581421,
+				0.0,
+				0.0,
+				0.3499999940395355,
+				0.0,
+				-76.1312026977539
+			],
+			"z": -9
+		},
+		"./Objects/Props/Desk1_0/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-156.5,
+				-152.11080932617188
+			],
+			"texture": "res://assets/sprites/furniture/bench_desk.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.21333333849906921,
+				0.0,
+				0.0,
+				0.21333333849906921,
+				0.0,
+				-76.1312026977539
+			],
+			"z": 0
+		},
+		"./Objects/Props/Desk1_32": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/furniture/BenchDesk.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				102.4000015258789,
+				-76.1312026977539
+			],
+			"z": 0
+		},
+		"./Objects/Props/Desk1_32/Body": {
+			"class": "StaticBody2D",
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				102.4000015258789,
+				-76.1312026977539
+			],
+			"z": 0
+		},
+		"./Objects/Props/Desk1_32/Body/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					57.599998474121094,
+					17.89520835876465
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				102.4000015258789,
+				-76.43974304199219
+			],
+			"z": 0
+		},
+		"./Objects/Props/Desk1_32/ContactShadow": {
+			"centered": true,
+			"class": "Sprite2D",
+			"light_mask": 1,
+			"offset": [
+				0.0,
+				0.0
+			],
+			"scene": "res://scenes/props/common/ContactShadow.tscn",
+			"texture": "embedded:GradientTexture2D",
+			"visible": true,
+			"xform": [
+				0.8999999761581421,
+				0.0,
+				0.0,
+				0.3499999940395355,
+				102.4000015258789,
+				-76.1312026977539
+			],
+			"z": -9
+		},
+		"./Objects/Props/Desk1_32/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-156.5,
+				-152.11080932617188
+			],
+			"texture": "res://assets/sprites/furniture/bench_desk.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.21333333849906921,
+				0.0,
+				0.0,
+				0.21333333849906921,
+				102.4000015258789,
+				-76.1312026977539
+			],
+			"z": 0
+		},
+		"./Objects/Props/Desk2_-32": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/furniture/BenchDesk.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-102.4000015258789,
+				-111.11039733886719
+			],
+			"z": 0
+		},
+		"./Objects/Props/Desk2_-32/Body": {
+			"class": "StaticBody2D",
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-102.4000015258789,
+				-111.11039733886719
+			],
+			"z": 0
+		},
+		"./Objects/Props/Desk2_-32/Body/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					57.599998474121094,
+					17.89520835876465
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-102.4000015258789,
+				-111.41893768310547
+			],
+			"z": 0
+		},
+		"./Objects/Props/Desk2_-32/ContactShadow": {
+			"centered": true,
+			"class": "Sprite2D",
+			"light_mask": 1,
+			"offset": [
+				0.0,
+				0.0
+			],
+			"scene": "res://scenes/props/common/ContactShadow.tscn",
+			"texture": "embedded:GradientTexture2D",
+			"visible": true,
+			"xform": [
+				0.8999999761581421,
+				0.0,
+				0.0,
+				0.3499999940395355,
+				-102.4000015258789,
+				-111.11039733886719
+			],
+			"z": -9
+		},
+		"./Objects/Props/Desk2_-32/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-156.5,
+				-152.11080932617188
+			],
+			"texture": "res://assets/sprites/furniture/bench_desk.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.21333333849906921,
+				0.0,
+				0.0,
+				0.21333333849906921,
+				-102.4000015258789,
+				-111.11039733886719
+			],
+			"z": 0
+		},
+		"./Objects/Props/Desk2_0": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/furniture/BenchDesk.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				-111.11039733886719
+			],
+			"z": 0
+		},
+		"./Objects/Props/Desk2_0/Body": {
+			"class": "StaticBody2D",
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				-111.11039733886719
+			],
+			"z": 0
+		},
+		"./Objects/Props/Desk2_0/Body/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					57.599998474121094,
+					17.89520835876465
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				-111.41893768310547
+			],
+			"z": 0
+		},
+		"./Objects/Props/Desk2_0/ContactShadow": {
+			"centered": true,
+			"class": "Sprite2D",
+			"light_mask": 1,
+			"offset": [
+				0.0,
+				0.0
+			],
+			"scene": "res://scenes/props/common/ContactShadow.tscn",
+			"texture": "embedded:GradientTexture2D",
+			"visible": true,
+			"xform": [
+				0.8999999761581421,
+				0.0,
+				0.0,
+				0.3499999940395355,
+				0.0,
+				-111.11039733886719
+			],
+			"z": -9
+		},
+		"./Objects/Props/Desk2_0/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-156.5,
+				-152.11080932617188
+			],
+			"texture": "res://assets/sprites/furniture/bench_desk.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.21333333849906921,
+				0.0,
+				0.0,
+				0.21333333849906921,
+				0.0,
+				-111.11039733886719
+			],
+			"z": 0
+		},
+		"./Objects/Props/Desk3_-32": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/furniture/BenchDesk.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-102.4000015258789,
+				-146.089599609375
+			],
+			"z": 0
+		},
+		"./Objects/Props/Desk3_-32/Body": {
+			"class": "StaticBody2D",
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-102.4000015258789,
+				-146.089599609375
+			],
+			"z": 0
+		},
+		"./Objects/Props/Desk3_-32/Body/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					57.599998474121094,
+					17.89520835876465
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-102.4000015258789,
+				-146.39813232421875
+			],
+			"z": 0
+		},
+		"./Objects/Props/Desk3_-32/ContactShadow": {
+			"centered": true,
+			"class": "Sprite2D",
+			"light_mask": 1,
+			"offset": [
+				0.0,
+				0.0
+			],
+			"scene": "res://scenes/props/common/ContactShadow.tscn",
+			"texture": "embedded:GradientTexture2D",
+			"visible": true,
+			"xform": [
+				0.8999999761581421,
+				0.0,
+				0.0,
+				0.3499999940395355,
+				-102.4000015258789,
+				-146.089599609375
+			],
+			"z": -9
+		},
+		"./Objects/Props/Desk3_-32/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-156.5,
+				-152.11080932617188
+			],
+			"texture": "res://assets/sprites/furniture/bench_desk.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.21333333849906921,
+				0.0,
+				0.0,
+				0.21333333849906921,
+				-102.4000015258789,
+				-146.089599609375
+			],
+			"z": 0
+		},
+		"./Objects/Props/Desk3_0": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/furniture/BenchDesk.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				-146.089599609375
+			],
+			"z": 0
+		},
+		"./Objects/Props/Desk3_0/Body": {
+			"class": "StaticBody2D",
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				-146.089599609375
+			],
+			"z": 0
+		},
+		"./Objects/Props/Desk3_0/Body/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					57.599998474121094,
+					17.89520835876465
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				-146.39813232421875
+			],
+			"z": 0
+		},
+		"./Objects/Props/Desk3_0/ContactShadow": {
+			"centered": true,
+			"class": "Sprite2D",
+			"light_mask": 1,
+			"offset": [
+				0.0,
+				0.0
+			],
+			"scene": "res://scenes/props/common/ContactShadow.tscn",
+			"texture": "embedded:GradientTexture2D",
+			"visible": true,
+			"xform": [
+				0.8999999761581421,
+				0.0,
+				0.0,
+				0.3499999940395355,
+				0.0,
+				-146.089599609375
+			],
+			"z": -9
+		},
+		"./Objects/Props/Desk3_0/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-156.5,
+				-152.11080932617188
+			],
+			"texture": "res://assets/sprites/furniture/bench_desk.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.21333333849906921,
+				0.0,
+				0.0,
+				0.21333333849906921,
+				0.0,
+				-146.089599609375
+			],
+			"z": 0
+		},
+		"./Objects/Props/Desk3_32": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/furniture/BenchDesk.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				102.4000015258789,
+				-146.089599609375
+			],
+			"z": 0
+		},
+		"./Objects/Props/Desk3_32/Body": {
+			"class": "StaticBody2D",
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				102.4000015258789,
+				-146.089599609375
+			],
+			"z": 0
+		},
+		"./Objects/Props/Desk3_32/Body/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					57.599998474121094,
+					17.89520835876465
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				102.4000015258789,
+				-146.39813232421875
+			],
+			"z": 0
+		},
+		"./Objects/Props/Desk3_32/ContactShadow": {
+			"centered": true,
+			"class": "Sprite2D",
+			"light_mask": 1,
+			"offset": [
+				0.0,
+				0.0
+			],
+			"scene": "res://scenes/props/common/ContactShadow.tscn",
+			"texture": "embedded:GradientTexture2D",
+			"visible": true,
+			"xform": [
+				0.8999999761581421,
+				0.0,
+				0.0,
+				0.3499999940395355,
+				102.4000015258789,
+				-146.089599609375
+			],
+			"z": -9
+		},
+		"./Objects/Props/Desk3_32/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-156.5,
+				-152.11080932617188
+			],
+			"texture": "res://assets/sprites/furniture/bench_desk.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.21333333849906921,
+				0.0,
+				0.0,
+				0.21333333849906921,
+				102.4000015258789,
+				-146.089599609375
+			],
+			"z": 0
+		},
+		"./Objects/Props/Papers": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/horror/PapersScattered.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				96.0,
+				-115.22560119628906
+			],
+			"z": -1
+		},
+		"./Objects/Props/Papers/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-138.1426239013672,
+				-66.6351089477539
+			],
+			"texture": "res://assets/sprites/horror/papers_scattered.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.2461538463830948,
+				0.0,
+				0.0,
+				0.2461538463830948,
+				96.0,
+				-115.22560119628906
+			],
+			"z": -1
+		},
+		"./Objects/Props/Whiteboard": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/furniture/Whiteboard.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				-205.75999450683594
+			],
+			"z": 0
+		},
+		"./Objects/Props/Whiteboard/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-417.5,
+				-378.9408874511719
+			],
+			"texture": "res://assets/sprites/furniture/whiteboard.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.1599999964237213,
+				0.0,
+				0.0,
+				0.1599999964237213,
+				0.0,
+				-205.75999450683594
+			],
+			"z": 0
+		},
+		"./Objects/Room": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/interiors/AcademicClassroomRoom.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"y_sort": true,
+			"z": 0
+		},
+		"./Objects/Room/Body": {
+			"class": "StaticBody2D",
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"z": 0
+		},
+		"./Objects/Room/Body/CollisionDoorStopW1": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					16.0,
+					24.68304443359375
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-224.0,
+				-30.853805541992188
+			],
+			"z": 0
+		},
+		"./Objects/Room/Body/CollisionWallE1": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					8.0,
+					215.9766387939453
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				212.0,
+				-102.84602355957031
+			],
+			"z": 0
+		},
+		"./Objects/Room/Body/CollisionWallN": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					432.0,
+					5.142301082611084
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				-208.26319885253906
+			],
+			"z": 0
+		},
+		"./Objects/Room/Body/CollisionWallS1": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					432.0,
+					5.142301082611084
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				2.571150541305542
+			],
+			"z": 0
+		},
+		"./Objects/Room/Body/CollisionWallW1": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					8.0,
+					25.711505889892578
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-212.0,
+				-7.713451385498047
+			],
+			"z": 0
+		},
+		"./Objects/Room/Body/CollisionWallW2": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					8.0,
+					169.69593811035156
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-212.0,
+				-125.98637390136719
+			],
+			"z": 0
+		},
+		"./Objects/Room/SouthWall": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-701.5,
+				-113.94576263427734
+			],
+			"texture": "res://assets/sprites/interiors/academic_classroom_room__south_wall.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.3199999928474426,
+				0.0,
+				0.0,
+				0.3199999928474426,
+				0.0,
+				5.142301082611084
+			],
+			"z": 0
+		},
+		"./Objects/Room/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-704.5,
+				-943.8760986328125
+			],
+			"texture": "res://assets/sprites/interiors/academic_classroom_room.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.3199999928474426,
+				0.0,
+				0.0,
+				0.3199999928474426,
+				0.0,
+				0.0
+			],
+			"z": -10
+		},
+		"./Objects/SpawnMarkers": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"y_sort": true,
+			"z": 0
+		},
+		"./Objects/SpawnMarkers/Spawn_classroom_from_corridor": {
+			"class": "Marker2D",
+			"light_mask": 1,
+			"scene": "res://scenes/components/SpawnMarker.tscn",
+			"script": {
+				"path": "res://scripts/components/spawn_marker.gd",
+				"spawn_id": "\"classroom_from_corridor\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-169.60000610351563,
+				-30.86400032043457
+			],
+			"z": 0
+		},
+		"./Objects/Story": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"y_sort": true,
+			"z": 0
+		},
+		"./Objects/Story/Board": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/components/Readable.tscn",
+			"script": {
+				"body": "\"CSE 4501, Digital Systems.\n\nUnder the lecture, in a different hand, pressed so hard the marker tore:\n\nDO NOT TURN OFF THE LIGHTS\nIT CAN'T SEE YOU IN THE LIGHT\nNO\nIT SEES THE LIGHT\"",
+				"dark_message": "\"Too dark to read. Light the lantern.\"",
+				"note_id": "\"classroom_board\"",
+				"path": "res://scripts/components/readable.gd",
+				"requires_light": "true",
+				"sets_flag": "\"\"",
+				"title": "\"The whiteboard\"",
+				"verb": "\"Read\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				-195.4720001220703
+			],
+			"z": 0
+		},
+		"./Objects/Story/Board/Interactable": {
+			"class": "Area2D",
+			"layer": 4,
+			"light_mask": 1,
+			"mask": 0,
+			"monitorable": true,
+			"monitoring": false,
+			"scene": "res://scenes/components/Interactable.tscn",
+			"script": {
+				"hold_seconds": "0.0",
+				"object_name": "\"The whiteboard\"",
+				"path": "res://scripts/components/interactable.gd",
+				"prompt_offset": "Vector2(0, -56)",
+				"verb": "\"Read\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				-195.4720001220703
+			],
+			"z": 0
+		},
+		"./Objects/Story/Board/Interactable/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"circle": 32.0
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				-195.4720001220703
+			],
+			"z": 0
+		}
+	},
+	"zone_id": "academic_classroom"
+}

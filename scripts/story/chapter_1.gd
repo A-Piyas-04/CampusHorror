@@ -1,5 +1,5 @@
 class_name Chapter1
-extends Node
+extends StoryDirector
 
 ## Chapter 1, "Lights Out" (decision D18): the story director. Main adds it in story mode (new game / continue).
 ## It owns the objectives, the scripted beats, checkpoints, and what happens when the player is caught or faints.
@@ -14,6 +14,7 @@ extends Node
 ## 5. The hall (master key) -> breaker keypad (power_on): the lights stutter on, the floor hatch opens, the guard
 ##    comes through the door. The only way is down the hatch (chapter1_done) -> end card -> title.
 ## Every zone entry and every beat autosaves (SaveService.checkpoint). Caught / fainted -> blackout -> last save.
+## After the end card Chapter 2 begins in the Central Plaza (D32). Shared machinery: StoryDirector.
 
 const START_ZONE := "cds_canteen"
 const START_SPAWN := "canteen_wake"
@@ -30,29 +31,11 @@ const ENDING := [
 	"End of Chapter 1: Lights Out",
 ]
 
-var main: Main
-var player: Player
-var composure: Composure
-var _card: StoryCard
-var _hud: Node
-var _blacking := false
-var _hints_shown := {}
 var _finale_running := false
 
 
-func setup(p_main: Main) -> void:
-	main = p_main
-	player = main.get_node("World/Player") as Player
-	composure = main.get_node("Composure") as Composure
-	_card = main.get_node("UI/StoryCard") as StoryCard
-	_hud = main.get_node("UI/Hud")
-	main.zone_entered.connect(_on_zone_entered)
-	main.transition_finished.connect(_on_transition_finished)
-	GameState.flag_changed.connect(_on_flag_changed)
-	GameState.inventory_changed.connect(_on_inventory_changed)
-	GameState.note_read.connect(_on_note_read)
-	composure.fainted.connect(func() -> void: blackout("Everything goes quiet.\nYou come to on the floor, shaking."))
-	composure.enabled = true
+func chapter_number() -> int:
+	return 1
 
 
 ## New game: intro card, then the player wakes at the table in the dark canteen.
@@ -74,39 +57,13 @@ func begin_new() -> void:
 	_hint("start", "WASD / left stick to move. E to interact. Esc for the journal.")
 
 
-## Continue: the save is already loaded by Main; just fade in.
-func begin_continue() -> void:
-	_card.black()
-	await get_tree().process_frame
-	_on_zone_entered(main.get_current_zone_id())
-	await _card.fade_out(1.5)
-	if not GameState.objective.is_empty():
-		_hud.call("show_objective", GameState.objective)
-
-
 # --- Zone setup ------------------------------------------------------------------------------------------------
 
 func _on_zone_entered(zone_id: String) -> void:
 	var zone := main.get_current_zone()
 	if zone == null:
 		return
-	main.bake_navigation()
-	for g in get_tree().get_nodes_in_group("creatures"):
-		if not zone.is_ancestor_of(g):
-			continue
-		var guard := g as NightGuard
-		if guard == null:
-			continue
-		guard.set_player(player)
-		if not guard.caught.is_connected(_on_caught):
-			guard.caught.connect(_on_caught)
-		var role := String(guard.get_meta("role", "patrol"))
-		if role == "patrol":
-			guard.active = GameState.has_flag("guard_awake") and not GameState.has_flag("chapter1_done")
-			guard.visible = guard.active
-		elif role == "finale":
-			guard.active = false
-			guard.visible = false
+	_wire_creatures(zone)
 	match zone_id:
 		"main_gate_exterior":
 			if not GameState.has_flag("field_seen"):
@@ -120,9 +77,20 @@ func _on_zone_entered(zone_id: String) -> void:
 				_start_finale.call_deferred(true)
 
 
-func _on_transition_finished(_zone_id: String) -> void:
-	if not _blacking and not _finale_running:
-		SaveService.checkpoint()
+func _busy() -> bool:
+	return _finale_running
+
+
+func _patrol_active() -> bool:
+	return GameState.has_flag("guard_awake") and not GameState.has_flag("chapter1_done")
+
+
+func _restart_point() -> Array:
+	return [START_ZONE, START_SPAWN]
+
+
+func _after_blackout() -> void:
+	_finale_running = false
 
 
 # --- Beats -----------------------------------------------------------------------------------------------------
@@ -184,14 +152,6 @@ func _update_objective() -> void:
 		GameState.set_objective("Take the CDS master key from the key cabinet.")
 
 
-func _hint(key: String, text: String) -> void:
-	if _hints_shown.has(key):
-		return
-	_hints_shown[key] = true
-	if _hud != null:
-		_hud.call("toast", text)
-
-
 # --- Finale ----------------------------------------------------------------------------------------------------
 
 func _start_finale(resumed: bool) -> void:
@@ -236,15 +196,8 @@ func _start_finale(resumed: bool) -> void:
 
 
 func _ending() -> void:
-	player.input_enabled = false
-	composure.enabled = false
-	for g in get_tree().get_nodes_in_group("creatures"):
-		(g as Node).set("active", false)
-	AudioDirector.set_tension(0.0)
-	# No checkpoint here: "Continue" afterwards replays the run to the hatch rather than loading a finished chapter.
-	await _card.play(ENDING, 2.8, true)
-	await get_tree().create_timer(1.0, true, false, true).timeout
-	Game.quit_to_title()
+	# No checkpoint here: Chapter 2 saves as soon as it begins in the plaza, so Continue lands there.
+	await _chapter_end(ENDING, 2)
 
 
 # --- Debug helpers (DebugTools only; never reachable in a release build) ----------------------------------------
@@ -279,63 +232,3 @@ func debug_next_beat() -> String:
 		GameState.set_flag("power_on")
 		return "Beat 6: power on, the hatch opens, the guard is coming"
 	return "Chapter 1 is at its last beat: climb down the hatch"
-
-
-## True while the guard is switched off (free exploration).
-var debug_guard_off := false
-
-
-func debug_toggle_guard() -> String:
-	debug_guard_off = not debug_guard_off
-	for g in get_tree().get_nodes_in_group("creatures"):
-		var guard := g as NightGuard
-		if guard == null:
-			continue
-		if debug_guard_off:
-			guard.active = false
-		elif String(guard.get_meta("role", "patrol")) == "patrol":
-			guard.active = GameState.has_flag("guard_awake")
-			guard.visible = guard.active
-			guard.reset_brain()
-	return "The guard ignores you" if debug_guard_off else "The guard is hunting again"
-
-
-func _spawn(zone_id: String, spawn_id: String) -> Vector2:
-	var packed := load(main.zone_registry.get_scene_path(zone_id)) as PackedScene
-	var probe := packed.instantiate() as Zone
-	var marker := probe.find_spawn_marker(spawn_id)
-	var at := marker.position if marker != null else Vector2.ZERO
-	probe.free()
-	return at
-
-
-func _go(zone_id: String, feet: Vector2) -> void:
-	if main.get_current_zone_id() == zone_id:
-		player.teleport(feet)
-	else:
-		main.travel_to_position(zone_id, feet)
-
-
-# --- Failure ---------------------------------------------------------------------------------------------------
-
-func _on_caught() -> void:
-	blackout("Cold hands. The smell of wet earth.\nThen nothing.")
-
-
-func blackout(message: String) -> void:
-	if _blacking:
-		return
-	_blacking = true
-	player.input_enabled = false
-	AudioDirector.play_ui(&"stinger", 0.0)
-	await _card.play([message], 1.6, true)
-	get_tree().paused = false
-	composure.reset(0.75)
-	if not SaveService.load_game():
-		main.change_zone(START_ZONE, START_SPAWN)
-	else:
-		await main.transition_finished
-	_finale_running = false
-	await _card.fade_out(1.2)
-	player.input_enabled = true
-	_blacking = false

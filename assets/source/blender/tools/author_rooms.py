@@ -222,6 +222,8 @@ class Room:
         for side, xa, xb in (("W", -W / 2 - t - 0.5, -W / 2 - t), ("E", W / 2 + t, W / 2 + t + 0.5)):
             for i, o in enumerate(o for o in self.openings[side] if o["kind"] == "door"):
                 col[f"DoorStop{side}{i + 1}"] = [xa, xb, o["at"] - o["w"] / 2 - 0.1, o["at"] + o["w"] / 2 + 0.1]
+        for i, o in enumerate(o for o in self.openings["S"] if o["kind"] == "door"):
+            col[f"DoorStopS{i + 1}"] = [o["at"] - o["w"] / 2 - 0.1, o["at"] + o["w"] / 2 + 0.1, -t - 0.5, -t]
         # Lights: a grid of soft panels just under the ceiling.
         nx, ny = max(1, round(W / 4.5)), max(1, round(D / 4.5))
         # Exposure: about 5.5 W of area light per square metre of floor (the security office was tuned by eye);
@@ -612,12 +614,195 @@ def verandas():
                     27.53, 13.0, False, "INDOOR GAMES", south_end=True, extra=south_extra, seed=780)
 
 
+
+# --- Whole-campus interiors (concepts; Docs/CAMPUS_BUILD.md section 4) --------------------------------------------
+
+MATS.update({
+    "curtain_red": {"color": [0.42, 0.06, 0.07], "rough": 0.9, "var": 0.15, "var_scale": 14, "bump": 0.3,
+                    "bump_scale": 18},
+    "carpet_green": {"color": [0.14, 0.32, 0.22], "rough": 0.95, "var": 0.08,
+                     "pattern": {"type": "stripes", "period": 1.2, "color2": [0.11, 0.27, 0.18], "axis": "y"}},
+    "mihrab_tile": {"color": [0.85, 0.82, 0.72], "rough": 0.4,
+                    "pattern": {"type": "checker", "size": 0.15, "color2": [0.2, 0.42, 0.45]}},
+    "marble_white": {"color": [0.86, 0.85, 0.82], "rough": 0.25, "var": 0.06, "stains": 0.15},
+})
+
+
+def campus_rooms():
+    from author_lib import pointed_arch, prism
+
+    # Academic 1: the ground-floor corridor (the building's entrance), classroom doors along the north wall.
+    r = Room("academic_corridor_room", "AcademicCorridorRoom",
+             "Academic Building 1, ground-floor corridor: terrazzo, blue dado, classroom doors, notice boards, the "
+             "south entrance from the road (concept).", 30.0, 5.0, 3.4, floor="terrazzo", dado="dado_blue",
+             px_per_m=90.0)
+    for x in (-9.0, 0.0, 9.0):
+        r.opening("N", x, 1.0, 0.0, 2.1, "door")
+    r.opening("N", 4.5, 1.1, 0.0, 2.1, "door")
+    r.openings["N"][-1]["closed"] = False
+    r.opening("S", -12.0, 2.0, 0.0, 2.2, "door")
+    r.opening("E", 2.5, 1.6, 0.0, 2.2, "door")
+    D = r.D
+    r.base += wall_text_board(-4.5, D, 1.2, 1.6, 0.9, ["NOTICE", "Mid-semester exams", "postponed"],
+                              board="cork", ink="black_paint", size=0.1)
+    r.base += wall_text_board(12.5, D, 1.3, 1.4, 0.5, ["DEPT. OF CSE"], board="sign_green", ink="sign_white", size=0.13)
+    r.base += tube_light(-12.0, D, 3.1) + tube_light(-3.0, D, 3.1) + tube_light(6.0, D, 3.1)
+    r.base += blood_smear(5.5, 1.0, 4.5, 4.6, 900, w=0.12) + loose_papers(-7.0, 2.0, 901, 6)
+    r.build()
+
+    r = Room("academic_classroom_room", "AcademicClassroomRoom",
+             "Academic Building 1, classroom: terrazzo, blue dado, windows high on the north wall (concept).",
+             13.0, 10.0, 3.4, floor="terrazzo", dado="dado_blue", px_per_m=100.0)
+    r.opening("W", 1.5, 1.0, 0.0, 2.1, "door")
+    for x in (-4.5, 4.5):
+        r.opening("N", x, 2.0, 1.6, 2.8, "window")
+    r.base += tube_light(-2.5, r.D, 3.1) + tube_light(2.5, r.D, 3.1) + wall_clock(0.0, r.D, 2.9, 23, 41)
+    r.build()
+
+    r = Room("academic_lab_room", "AcademicLabRoom",
+             "Academic Building 2, electronics lab: grey tiles, green dado, equipment racks on the north wall "
+             "(concept).", 14.0, 10.0, 3.4, floor="tile_floor", dado="dado_green", px_per_m=100.0)
+    r.opening("W", 1.6, 1.0, 0.0, 2.1, "door")
+    D = r.D
+    for x in (-4.5, -2.5, 2.5, 4.5):
+        r.base += [box(x - 0.9, x + 0.9, D - 0.5, D, 0.0, 2.0, "steel_grey"),
+                   box(x - 0.85, x + 0.85, D - 0.52, D - 0.5, 0.2, 1.9, "metal_dark")]
+        for k in range(5):
+            r.base.append(box(x - 0.7, x + 0.7, D - 0.53, D - 0.52, 0.35 + k * 0.32, 0.5 + k * 0.32,
+                              "screen_glow" if (k + int(x)) % 4 == 0 else "screen_dark"))
+    r.collision["Racks"] = [-5.4, 5.4, D - 0.5, D]
+    r.base += tube_light(0.0, D, 3.1) + wall_text_board(0.0, D, 2.2, 1.6, 0.5, ["EEE LAB 2"], board="sign_white",
+                                                         ink="black_paint", size=0.12)
+    r.base += growth_spill(5.5, 2.0, 0.9, 910)
+    r.build()
+
+    # Admin: the lobby (entered from the plaza) and the registrar's office.
+    r = Room("admin_lobby_room", "AdminLobbyRoom",
+             "Administrative Building lobby: polished white floor, wood panelling, portraits and the university "
+             "seal on the north wall, a corridor door east (concept).", 16.0, 10.0, 3.6, floor="marble_white",
+             dado="wood_dark", dado_h=1.0, px_per_m=95.0)
+    r.opening("S", 0.0, 2.4, 0.0, 2.4, "door")
+    r.opening("E", 7.0, 1.2, 0.0, 2.1, "door")
+    D = r.D
+    for x in (-5.5, -3.5, 3.5, 5.5):
+        r.base += [box(x - 0.45, x + 0.45, D - 0.06, D, 1.6, 2.6, "wood_dark"),
+                   box(x - 0.38, x + 0.38, D - 0.07, D - 0.06, 1.67, 2.53, "paper_old")]
+    r.base += [cyl([0.0, D, 2.3], [0.0, D - 0.06, 2.3], 0.75, "brass", sides=36),
+               cyl([0.0, D - 0.06, 2.3], [0.0, D - 0.07, 2.3], 0.62, "sign_green", sides=36),
+               text("ISLAMIC UNIVERSITY OF TECHNOLOGY", [0.0, D - 0.06, 1.3], 0.14, "brass")]
+    r.base += tube_light(-4.0, D, 3.3) + tube_light(4.0, D, 3.3)
+    r.base += blood_smear(-2.0, 1.0, 6.5, 6.8, 920, w=0.13)
+    r.build()
+
+    r = Room("admin_office_room", "AdminOfficeRoom",
+             "The registrar's office: tiles, green dado, files everywhere, a window north (concept).",
+             8.0, 7.0, 3.2, floor="tile_floor", dado="dado_green", px_per_m=120.0)
+    r.opening("W", 1.4, 1.0, 0.0, 2.1, "door")
+    r.opening("N", 1.5, 1.4, 1.1, 2.3, "window")
+    r.base += wall_clock(-1.5, r.D, 2.5, 0, 12) + tube_light(-1.0, r.D, 2.9) + loose_papers(0.5, 2.0, 930, 8)
+    r.build()
+
+    # Mosque prayer hall: carpet, the mihrab niche in the north (qibla) wall, a high hall.
+    r = Room("mosque_prayer_hall_room", "MosquePrayerHallRoom",
+             "Central Mosque prayer hall: green striped carpet, plain brick walls, the mihrab niche with tilework in "
+             "the qibla (north) wall, a high hall (concept).", 18.0, 16.0, 8.0, floor="carpet_green",
+             wall="brick", dado=None, px_per_m=75.0, south_h=1.2)
+    r.opening("S", 0.0, 1.8, 0.0, 2.6, "door")
+    D = r.D
+    r.base += [box(-1.4, 1.4, D - 0.05, D, 0.0, 4.2, "marble_white"),
+               prism(pointed_arch(0.0, 2.2, 0.0, 2.6, 3.8), [D - 0.07, D - 0.05], "mihrab_tile"),
+               prism(pointed_arch(0.0, 1.6, 0.0, 2.3, 3.3), [D - 0.09, D - 0.07], "metal_dark")]
+    for k in range(6):
+        r.base.append(text(["", "", "", "", "", ""][k], [0, D, 0], 0.1, "brass") if False else
+                      box(-8.5 + k * 3.4, -7.5 + k * 3.4, D - 0.04, D, 5.6, 6.6, "glass"))
+    r.base += [box(-9.0, 9.0, D - 0.06, D, 7.0, 7.15, "marble_white")]
+    r.build()
+
+    # Auditorium hall and the AV hall (decision D27).
+    r = Room("auditorium_hall_room", "AuditoriumHallRoom",
+             "Auditorium: wooden floor, red curtains framing the stage on the north wall, acoustic panels "
+             "(concept).", 24.0, 20.0, 8.0, floor="court_wood", wall="plaster", dado="wood_dark", dado_h=1.2,
+             px_per_m=70.0, south_h=1.2)
+    r.opening("S", -4.0, 2.4, 0.0, 2.6, "door")
+    r.opening("W", 4.0, 1.4, 0.0, 2.2, "door")
+    D = r.D
+    r.base += [box(-7.5, -6.0, D - 0.4, D, 0.0, 6.5, "curtain_red"), box(6.0, 7.5, D - 0.4, D, 0.0, 6.5, "curtain_red"),
+               box(-7.5, 7.5, D - 0.4, D, 6.0, 6.8, "curtain_red"), box(-6.0, 6.0, D - 0.06, D, 1.0, 6.0, "black_paint")]
+    for x in (-10.5, -9.0, 9.0, 10.5):
+        r.base.append(box(x - 0.6, x + 0.6, D - 0.08, D, 1.5, 5.5, "wood"))
+    r.base += [box(-1.5, 1.5, D - 0.07, D - 0.06, 6.85, 7.3, "sign_white"),
+               text("IUT AUDITORIUM", [0.0, D - 0.075, 6.95], 0.22, "black_paint")]
+    r.build()
+
+    r = Room("av_hall_room", "AvHallRoom",
+             "AV hall (audio-visual hall, inside the Auditorium): dark carpet, a big projector screen on the north "
+             "wall, the projection booth window high on the south (concept).", 14.0, 11.0, 4.0, floor="carpet_green",
+             wall="plaster", dado="wood_dark", px_per_m=95.0)
+    r.opening("W", 2.0, 1.2, 0.0, 2.1, "door")
+    r.base += wall_text_board(0.0, r.D, 3.35, 2.0, 0.45, ["AV HALL"], board="black_paint", ink="sign_white",
+                              size=0.16)
+    r.build()
+
+    # Central Cafe interior: the food court.
+    r = Room("central_cafe_room", "CentralCafeRoom",
+             "Central Cafeteria: big tiles, food counters along the north wall, the kitchen hatch (concept).",
+             24.0, 12.0, 4.0, floor="tile_floor", dado="dado_green", px_per_m=85.0)
+    r.opening("S", -6.0, 3.0, 0.0, 2.6, "door")
+    D = r.D
+    for k, (x0, x1) in enumerate(((-10.0, -3.0), (2.0, 9.0))):
+        r.base += [box(x0, x1, D - 0.9, D, 0.0, 1.0, "steel_grey"), box(x0 - 0.05, x1 + 0.05, D - 0.95, D, 1.0, 1.05,
+                                                                          "laminate")]
+        r.collision[f"Counter{k + 1}"] = [x0 - 0.05, x1 + 0.05, D - 0.95, D]
+    r.base += wall_text_board(-6.5, D, 2.0, 3.0, 1.0, ["CENTRAL CAFETERIA", "RICE + CURRY .... 70",
+                                                     "PARATHA ......... 10", "TEA ............. 10"], size=0.12)
+    r.base += tube_light(-6.0, D, 3.6) + tube_light(6.0, D, 3.6) + growth_spill(-0.5, D - 0.6, 1.4, 940)
+    r.build()
+
+    # Halls: South Hall corridor, a dorm room, North Hall common room.
+    r = Room("hall_corridor_room", "HallCorridorRoom",
+             "South Hall, a dorm corridor: red oxide floor, green doors, laundry strung across, a water filter "
+             "(concept).", 26.0, 4.5, 3.2, floor="red_oxide", dado="dado_green", px_per_m=95.0)
+    for k, x in enumerate((-10.0, -5.0, 0.0, 5.0, 10.0)):
+        r.opening("N", x, 0.9, 0.0, 2.0, "door")
+        if k == 2:
+            r.openings["N"][-1]["closed"] = False
+    r.opening("W", 2.2, 1.4, 0.0, 2.2, "door")
+    D = r.D
+    for x0 in (-11.5, -1.5, 7.5):
+        r.base.append(tube([[x0, D - 0.3, 2.4], [x0 + 3.5, D - 0.3, 2.45]], 0.006, "white_paint"))
+        for k in range(4):
+            r.base.append(box(x0 + 0.3 + k * 0.8, x0 + 0.8 + k * 0.8, D - 0.33, D - 0.27, 1.7, 2.4,
+                              ["fabric_red", "fabric_blue", "paper", "fabric_khaki"][k]))
+    for k, x in enumerate((-10.0, -5.0, 0.0, 5.0, 10.0)):
+        r.base.append(text(str(201 + k), [x, D - 0.05, 2.2], 0.14, "sign_white"))
+    r.base += tube_light(-6.0, D, 2.95) + tube_light(6.0, D, 2.95) + blood_smear(0.0, 4.2, -3.0, 1.0, 950, w=0.12)
+    r.build()
+
+    r = Room("hall_room_room", "HallRoomRoom",
+             "A South Hall dorm room for two: beds, desks, a window north (concept).", 6.0, 5.0, 3.2,
+             floor="red_oxide", dado="dado_green", px_per_m=130.0)
+    r.opening("S", -1.8, 0.9, 0.0, 2.0, "door")
+    r.opening("N", 0.0, 1.4, 1.1, 2.3, "window")
+    r.base += tube_light(0.0, r.D, 2.95) + loose_papers(0.8, 1.6, 960, 5)
+    r.build()
+
+    r = Room("hall_common_room", "HallCommonRoom",
+             "North Hall common room: tiles, green dado, notice board, newspapers (concept).", 12.0, 9.0, 3.4,
+             floor="tile_floor", dado="dado_green", px_per_m=100.0)
+    r.opening("W", 1.6, 1.2, 0.0, 2.1, "door")
+    for x in (-3.5, 3.5):
+        r.opening("N", x, 1.8, 1.1, 2.4, "window")
+    r.base += tube_light(0.0, r.D, 3.1) + wall_clock(0.0, r.D, 2.75, 3, 17) + loose_papers(-2.0, 3.0, 970, 6)
+    r.build()
+
+
 def define():
     security_office()
     canteen()
     table_tennis()
     basketball_hall()
     verandas()
+    campus_rooms()
 
 
 def main():

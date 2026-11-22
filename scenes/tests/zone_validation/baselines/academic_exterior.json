@@ -1,0 +1,3748 @@
+{
+	"format": 1,
+	"ground_lattice": {},
+	"nodes": {
+		".": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/world/AcademicExterior.tscn",
+			"script": {
+				"path": "res://scripts/world/zone.gd",
+				"profile": "Resource(\"res://data/zones/profiles/academic_exterior.tres\")",
+				"zone_id": "\"academic_exterior\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"y_sort": true,
+			"z": 0
+		},
+		"./Ground": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"z": -10
+		},
+		"./Ground/GarageApron": {
+			"class": "Polygon2D",
+			"color": [
+				1.0,
+				1.0,
+				1.0,
+				1.0
+			],
+			"light_mask": 1,
+			"polygon": [
+				[
+					2300.0,
+					-3860.0
+				],
+				[
+					3150.0,
+					-3860.0
+				],
+				[
+					3150.0,
+					-3300.0
+				],
+				[
+					2300.0,
+					-3300.0
+				]
+			],
+			"texture": "res://assets/sprites/ground/paved_walkway_tile.png",
+			"texture_offset": [
+				0.0,
+				0.0
+			],
+			"texture_repeat": 2,
+			"texture_scale": [
+				4.0,
+				4.0
+			],
+			"uv": 0,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"z": -10
+		},
+		"./Ground/Grass": {
+			"class": "Polygon2D",
+			"color": [
+				1.0,
+				1.0,
+				1.0,
+				1.0
+			],
+			"light_mask": 1,
+			"polygon": [
+				[
+					-2160.0,
+					-5940.0
+				],
+				[
+					5520.0,
+					-5940.0
+				],
+				[
+					5520.0,
+					-2640.0
+				],
+				[
+					-2160.0,
+					-2640.0
+				]
+			],
+			"texture": "res://assets/sprites/ground/grass_ground_tile.png",
+			"texture_offset": [
+				0.0,
+				0.0
+			],
+			"texture_repeat": 2,
+			"texture_scale": [
+				4.0,
+				4.0
+			],
+			"uv": 0,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"z": -10
+		},
+		"./Ground/HallsRoad": {
+			"class": "Polygon2D",
+			"color": [
+				1.0,
+				1.0,
+				1.0,
+				1.0
+			],
+			"light_mask": 1,
+			"polygon": [
+				[
+					4105.0,
+					-3880.0
+				],
+				[
+					4235.0,
+					-3880.0
+				],
+				[
+					4235.0,
+					-2950.0
+				],
+				[
+					4105.0,
+					-2950.0
+				]
+			],
+			"texture": "res://assets/sprites/ground/paved_walkway_tile.png",
+			"texture_offset": [
+				0.0,
+				0.0
+			],
+			"texture_repeat": 2,
+			"texture_scale": [
+				4.0,
+				4.0
+			],
+			"uv": 0,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"z": -10
+		},
+		"./Ground/MainRoad": {
+			"class": "Polygon2D",
+			"color": [
+				1.0,
+				1.0,
+				1.0,
+				1.0
+			],
+			"light_mask": 1,
+			"polygon": [
+				[
+					-1600.0,
+					-4000.0
+				],
+				[
+					5000.0,
+					-4000.0
+				],
+				[
+					5000.0,
+					-3880.0
+				],
+				[
+					-1600.0,
+					-3880.0
+				]
+			],
+			"texture": "res://assets/sprites/ground/asphalt_road_tile.png",
+			"texture_offset": [
+				0.0,
+				0.0
+			],
+			"texture_repeat": 2,
+			"texture_scale": [
+				4.0,
+				4.0
+			],
+			"uv": 0,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"z": -10
+		},
+		"./Ground/PlazaRoad": {
+			"class": "Polygon2D",
+			"color": [
+				1.0,
+				1.0,
+				1.0,
+				1.0
+			],
+			"light_mask": 1,
+			"polygon": [
+				[
+					185.0,
+					-3880.0
+				],
+				[
+					370.0,
+					-3880.0
+				],
+				[
+					370.0,
+					-3500.0
+				],
+				[
+					185.0,
+					-3500.0
+				]
+			],
+			"texture": "res://assets/sprites/ground/paved_walkway_tile.png",
+			"texture_offset": [
+				0.0,
+				0.0
+			],
+			"texture_repeat": 2,
+			"texture_scale": [
+				4.0,
+				4.0
+			],
+			"uv": 0,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"z": -10
+		},
+		"./Objects": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"y_sort": true,
+			"z": 0
+		},
+		"./Objects/Bounds": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"y_sort": true,
+			"z": 0
+		},
+		"./Objects/Bounds/BoundEast": {
+			"class": "StaticBody2D",
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"z": 0
+		},
+		"./Objects/Bounds/BoundEast/Shape": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					60.0,
+					3220.0
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				5030.0,
+				-4290.0
+			],
+			"z": 0
+		},
+		"./Objects/Bounds/BoundGarageS": {
+			"class": "StaticBody2D",
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"z": 0
+		},
+		"./Objects/Bounds/BoundGarageS/Shape": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					920.0,
+					55.0
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				2700.0,
+				-2982.5
+			],
+			"z": 0
+		},
+		"./Objects/Bounds/BoundGarageW": {
+			"class": "StaticBody2D",
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"z": 0
+		},
+		"./Objects/Bounds/BoundGarageW/Shape": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					60.0,
+					825.0
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				2270.0,
+				-3367.5
+			],
+			"z": 0
+		},
+		"./Objects/Bounds/BoundHallsGap": {
+			"class": "StaticBody2D",
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"z": 0
+		},
+		"./Objects/Bounds/BoundHallsGap/Shape": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					300.0,
+					35.0
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				4170.0,
+				-2972.5
+			],
+			"z": 0
+		},
+		"./Objects/Bounds/BoundNorth": {
+			"class": "StaticBody2D",
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"z": 0
+		},
+		"./Objects/Bounds/BoundNorth/Shape": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					8100.0,
+					60.0
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				2050.0,
+				-5670.0
+			],
+			"z": 0
+		},
+		"./Objects/Bounds/BoundPlazaGap": {
+			"class": "StaticBody2D",
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"z": 0
+		},
+		"./Objects/Bounds/BoundPlazaGap/Shape": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					360.0,
+					40.0
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				280.0,
+				-3660.0
+			],
+			"z": 0
+		},
+		"./Objects/Bounds/BoundSouthE": {
+			"class": "StaticBody2D",
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"z": 0
+		},
+		"./Objects/Bounds/BoundSouthE/Shape": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					890.0,
+					145.0
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				3595.0,
+				-3027.5
+			],
+			"z": 0
+		},
+		"./Objects/Bounds/BoundSouthE2": {
+			"class": "StaticBody2D",
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"z": 0
+		},
+		"./Objects/Bounds/BoundSouthE2/Shape": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					1800.0,
+					145.0
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				5200.0,
+				-3027.5
+			],
+			"z": 0
+		},
+		"./Objects/Bounds/BoundSouthM": {
+			"class": "StaticBody2D",
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"z": 0
+		},
+		"./Objects/Bounds/BoundSouthM/Shape": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					1865.0,
+					140.0
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				1367.5,
+				-3710.0
+			],
+			"z": 0
+		},
+		"./Objects/Bounds/BoundSouthW": {
+			"class": "StaticBody2D",
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"z": 0
+		},
+		"./Objects/Bounds/BoundSouthW/Shape": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					2120.0,
+					140.0
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-940.0,
+				-3710.0
+			],
+			"z": 0
+		},
+		"./Objects/Bounds/BoundWest": {
+			"class": "StaticBody2D",
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"z": 0
+		},
+		"./Objects/Bounds/BoundWest/Shape": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					60.0,
+					3220.0
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1670.0,
+				-4290.0
+			],
+			"z": 0
+		},
+		"./Objects/Buildings": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"y_sort": true,
+			"z": 0
+		},
+		"./Objects/Buildings/Academic1": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/campus/Academic1.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				1700.0,
+				-4320.0
+			],
+			"y_sort": true,
+			"z": 0
+		},
+		"./Objects/Buildings/Academic1/Body": {
+			"class": "StaticBody2D",
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				1700.0,
+				-4320.0
+			],
+			"z": 0
+		},
+		"./Objects/Buildings/Academic1/Body/CollisionMass": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					1600.0,
+					411.38409423828125
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				1700.0,
+				-4320.0
+			],
+			"z": 0
+		},
+		"./Objects/Buildings/Academic1/Body/CollisionTower0": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					166.39999389648438,
+					106.9598617553711
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				820.0,
+				-4361.13818359375
+			],
+			"z": 0
+		},
+		"./Objects/Buildings/Academic1/Body/CollisionTower1": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					166.39999389648438,
+					106.9598617553711
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				2580.0,
+				-4278.86181640625
+			],
+			"z": 0
+		},
+		"./Objects/Buildings/Academic1/Building": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-1110.0,
+				-1189.0020751953125
+			],
+			"texture": "res://assets/sprites/campus/academic_1__building.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.8888888955116272,
+				0.0,
+				0.0,
+				0.8888888955116272,
+				1700.0,
+				-4052.600341796875
+			],
+			"z": 0
+		},
+		"./Objects/Buildings/Academic1/BuildingFade": {
+			"class": "Area2D",
+			"layer": 0,
+			"light_mask": 1,
+			"mask": 2,
+			"monitorable": false,
+			"monitoring": true,
+			"script": {
+				"fade_seconds": "0.3",
+				"faded_alpha": "0.3",
+				"path": "res://scripts/components/overhead_visibility.gd",
+				"target_paths": "Array[NodePath]([NodePath(\"../Building\")])"
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				1700.0,
+				-4320.0
+			],
+			"z": 0
+		},
+		"./Objects/Buildings/Academic1/BuildingFade/ShapeBehind": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					1824.0,
+					1122.1529541015625
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				1700.0,
+				-4626.0185546875
+			],
+			"z": 0
+		},
+		"./Objects/Buildings/Academic1/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-1014.0,
+				-315.177490234375
+			],
+			"texture": "res://assets/sprites/campus/academic_1.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.8888888955116272,
+				0.0,
+				0.0,
+				0.8888888955116272,
+				1700.0,
+				-4320.0
+			],
+			"z": 0
+		},
+		"./Objects/Buildings/Academic2": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/campus/Academic2.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				3500.0,
+				-4620.0
+			],
+			"y_sort": true,
+			"z": 0
+		},
+		"./Objects/Buildings/Academic2/Body": {
+			"class": "StaticBody2D",
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				3500.0,
+				-4620.0
+			],
+			"z": 0
+		},
+		"./Objects/Buildings/Academic2/Body/CollisionMass": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					1280.0,
+					452.5224914550781
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				3500.0,
+				-4620.0
+			],
+			"z": 0
+		},
+		"./Objects/Buildings/Academic2/Body/CollisionTower0": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					217.60000610351563,
+					139.87059020996094
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				2764.0,
+				-4558.29248046875
+			],
+			"z": 0
+		},
+		"./Objects/Buildings/Academic2/Body/CollisionTower1": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					217.60000610351563,
+					139.87059020996094
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				3756.0,
+				-4342.31591796875
+			],
+			"z": 0
+		},
+		"./Objects/Buildings/Academic2/Building": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-870.7000122070313,
+				-1296.3900146484375
+			],
+			"texture": "res://assets/sprites/campus/academic_2__building.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				3500.0,
+				-4332.03125
+			],
+			"z": 0
+		},
+		"./Objects/Buildings/Academic2/BuildingFade": {
+			"class": "Area2D",
+			"layer": 0,
+			"light_mask": 1,
+			"mask": 2,
+			"monitorable": false,
+			"monitoring": true,
+			"script": {
+				"fade_seconds": "0.3",
+				"faded_alpha": "0.3",
+				"path": "res://scripts/components/overhead_visibility.gd",
+				"target_paths": "Array[NodePath]([NodePath(\"../Building\")])"
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				3500.0,
+				-4620.0
+			],
+			"z": 0
+		},
+		"./Objects/Buildings/Academic2/BuildingFade/ShapeBehind": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					1504.0,
+					1359.1102294921875
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				3500.0,
+				-5023.927734375
+			],
+			"z": 0
+		},
+		"./Objects/Buildings/Academic2/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-744.7000122070313,
+				-303.4211120605469
+			],
+			"texture": "res://assets/sprites/campus/academic_2.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				3500.0,
+				-4620.0
+			],
+			"z": 0
+		},
+		"./Objects/Buildings/Academic3": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/campus/Academic3.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				500.0,
+				-5180.0
+			],
+			"y_sort": true,
+			"z": 0
+		},
+		"./Objects/Buildings/Academic3/Body": {
+			"class": "StaticBody2D",
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				500.0,
+				-5180.0
+			],
+			"z": 0
+		},
+		"./Objects/Buildings/Academic3/Body/CollisionMass": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					2240.0,
+					287.9688720703125
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				500.0,
+				-5180.0
+			],
+			"z": 0
+		},
+		"./Objects/Buildings/Academic3/Building": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-1293.0,
+				-663.537841796875
+			],
+			"texture": "res://assets/sprites/campus/academic_3__building.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.8888888955116272,
+				0.0,
+				0.0,
+				0.8888888955116272,
+				500.0,
+				-4974.30810546875
+			],
+			"z": 0
+		},
+		"./Objects/Buildings/Academic3/BuildingFade": {
+			"class": "Area2D",
+			"layer": 0,
+			"light_mask": 1,
+			"mask": 2,
+			"monitorable": false,
+			"monitoring": true,
+			"script": {
+				"fade_seconds": "0.3",
+				"faded_alpha": "0.3",
+				"path": "res://scripts/components/overhead_visibility.gd",
+				"target_paths": "Array[NodePath]([NodePath(\"../Building\")])"
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				500.0,
+				-5180.0
+			],
+			"z": 0
+		},
+		"./Objects/Buildings/Academic3/BuildingFade/ShapeBehind": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					2464.0,
+					656.0547485351563
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				500.0,
+				-5314.6767578125
+			],
+			"z": 0
+		},
+		"./Objects/Buildings/Academic3/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-1374.0,
+				-245.13426208496094
+			],
+			"texture": "res://assets/sprites/campus/academic_3.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.8888888955116272,
+				0.0,
+				0.0,
+				0.8888888955116272,
+				500.0,
+				-5180.0
+			],
+			"z": 0
+		},
+		"./Objects/Buildings/GarageCanopyA": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/campus/GarageCanopy.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				2720.0,
+				-3720.0
+			],
+			"z": 0
+		},
+		"./Objects/Buildings/GarageCanopyA/Body": {
+			"class": "StaticBody2D",
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				2720.0,
+				-3720.0
+			],
+			"z": 0
+		},
+		"./Objects/Buildings/GarageCanopyA/Body/CollisionPost0": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					9.600000381469727,
+					150.1551971435547
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				2368.0,
+				-3720.0
+			],
+			"z": 0
+		},
+		"./Objects/Buildings/GarageCanopyA/Body/CollisionPost1": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					9.600000381469727,
+					150.1551971435547
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				2544.0,
+				-3720.0
+			],
+			"z": 0
+		},
+		"./Objects/Buildings/GarageCanopyA/Body/CollisionPost2": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					9.600000381469727,
+					150.1551971435547
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				2720.0,
+				-3720.0
+			],
+			"z": 0
+		},
+		"./Objects/Buildings/GarageCanopyA/Body/CollisionPost3": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					9.600000381469727,
+					150.1551971435547
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				2896.0,
+				-3720.0
+			],
+			"z": 0
+		},
+		"./Objects/Buildings/GarageCanopyA/Body/CollisionPost4": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					9.600000381469727,
+					150.1551971435547
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				3072.0,
+				-3720.0
+			],
+			"z": 0
+		},
+		"./Objects/Buildings/GarageCanopyA/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-668.0,
+				-323.7175598144531
+			],
+			"texture": "res://assets/sprites/campus/garage_canopy.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.6666666865348816,
+				0.0,
+				0.0,
+				0.6666666865348816,
+				2720.0,
+				-3720.0
+			],
+			"z": 0
+		},
+		"./Objects/Buildings/GarageCanopyB": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/campus/GarageCanopy.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				2720.0,
+				-3430.0
+			],
+			"z": 0
+		},
+		"./Objects/Buildings/GarageCanopyB/Body": {
+			"class": "StaticBody2D",
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				2720.0,
+				-3430.0
+			],
+			"z": 0
+		},
+		"./Objects/Buildings/GarageCanopyB/Body/CollisionPost0": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					9.600000381469727,
+					150.1551971435547
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				2368.0,
+				-3430.0
+			],
+			"z": 0
+		},
+		"./Objects/Buildings/GarageCanopyB/Body/CollisionPost1": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					9.600000381469727,
+					150.1551971435547
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				2544.0,
+				-3430.0
+			],
+			"z": 0
+		},
+		"./Objects/Buildings/GarageCanopyB/Body/CollisionPost2": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					9.600000381469727,
+					150.1551971435547
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				2720.0,
+				-3430.0
+			],
+			"z": 0
+		},
+		"./Objects/Buildings/GarageCanopyB/Body/CollisionPost3": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					9.600000381469727,
+					150.1551971435547
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				2896.0,
+				-3430.0
+			],
+			"z": 0
+		},
+		"./Objects/Buildings/GarageCanopyB/Body/CollisionPost4": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					9.600000381469727,
+					150.1551971435547
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				3072.0,
+				-3430.0
+			],
+			"z": 0
+		},
+		"./Objects/Buildings/GarageCanopyB/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-668.0,
+				-323.7175598144531
+			],
+			"texture": "res://assets/sprites/campus/garage_canopy.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.6666666865348816,
+				0.0,
+				0.0,
+				0.6666666865348816,
+				2720.0,
+				-3430.0
+			],
+			"z": 0
+		},
+		"./Objects/Buildings/MeWorkshopA": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/campus/MeWorkshop.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-850.0,
+				-4320.0
+			],
+			"y_sort": true,
+			"z": 0
+		},
+		"./Objects/Buildings/MeWorkshopA/Body": {
+			"class": "StaticBody2D",
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-850.0,
+				-4320.0
+			],
+			"z": 0
+		},
+		"./Objects/Buildings/MeWorkshopA/Body/CollisionMass": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					1600.0,
+					287.9688720703125
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-850.0,
+				-4320.0
+			],
+			"z": 0
+		},
+		"./Objects/Buildings/MeWorkshopA/Building": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-1040.5,
+				-563.2269287109375
+			],
+			"texture": "res://assets/sprites/campus/me_workshop__building.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.800000011920929,
+				0.0,
+				0.0,
+				0.800000011920929,
+				-850.0,
+				-4165.73095703125
+			],
+			"z": 0
+		},
+		"./Objects/Buildings/MeWorkshopA/BuildingFade": {
+			"class": "Area2D",
+			"layer": 0,
+			"light_mask": 1,
+			"mask": 2,
+			"monitorable": false,
+			"monitoring": true,
+			"script": {
+				"fade_seconds": "0.3",
+				"faded_alpha": "0.3",
+				"path": "res://scripts/components/overhead_visibility.gd",
+				"target_paths": "Array[NodePath]([NodePath(\"../Building\")])"
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-850.0,
+				-4320.0
+			],
+			"z": 0
+		},
+		"./Objects/Buildings/MeWorkshopA/BuildingFade/ShapeBehind": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					1657.5999755859375,
+					477.3289489746094
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-850.0,
+				-4416.73681640625
+			],
+			"z": 0
+		},
+		"./Objects/Buildings/MeWorkshopA/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-1020.5,
+				-205.39065551757813
+			],
+			"texture": "res://assets/sprites/campus/me_workshop.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.800000011920929,
+				0.0,
+				0.0,
+				0.800000011920929,
+				-850.0,
+				-4320.0
+			],
+			"z": 0
+		},
+		"./Objects/Buildings/MeWorkshopB": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/campus/MeWorkshop.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-850.0,
+				-4800.0
+			],
+			"y_sort": true,
+			"z": 0
+		},
+		"./Objects/Buildings/MeWorkshopB/Body": {
+			"class": "StaticBody2D",
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-850.0,
+				-4800.0
+			],
+			"z": 0
+		},
+		"./Objects/Buildings/MeWorkshopB/Body/CollisionMass": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					1600.0,
+					287.9688720703125
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-850.0,
+				-4800.0
+			],
+			"z": 0
+		},
+		"./Objects/Buildings/MeWorkshopB/Building": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-1040.5,
+				-563.2269287109375
+			],
+			"texture": "res://assets/sprites/campus/me_workshop__building.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.800000011920929,
+				0.0,
+				0.0,
+				0.800000011920929,
+				-850.0,
+				-4645.73095703125
+			],
+			"z": 0
+		},
+		"./Objects/Buildings/MeWorkshopB/BuildingFade": {
+			"class": "Area2D",
+			"layer": 0,
+			"light_mask": 1,
+			"mask": 2,
+			"monitorable": false,
+			"monitoring": true,
+			"script": {
+				"fade_seconds": "0.3",
+				"faded_alpha": "0.3",
+				"path": "res://scripts/components/overhead_visibility.gd",
+				"target_paths": "Array[NodePath]([NodePath(\"../Building\")])"
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-850.0,
+				-4800.0
+			],
+			"z": 0
+		},
+		"./Objects/Buildings/MeWorkshopB/BuildingFade/ShapeBehind": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					1657.5999755859375,
+					477.3289489746094
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-850.0,
+				-4896.73681640625
+			],
+			"z": 0
+		},
+		"./Objects/Buildings/MeWorkshopB/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-1020.5,
+				-205.39065551757813
+			],
+			"texture": "res://assets/sprites/campus/me_workshop.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.800000011920929,
+				0.0,
+				0.0,
+				0.800000011920929,
+				-850.0,
+				-4800.0
+			],
+			"z": 0
+		},
+		"./Objects/Doors": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"y_sort": true,
+			"z": 0
+		},
+		"./Objects/Doors/DoorAcademic1": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/components/Door.tscn",
+			"script": {
+				"destination_spawn_id": "\"corridor_from_outside\"",
+				"destination_zone_id": "\"academic_corridor\"",
+				"hold_seconds": "0.0",
+				"locked_message": "\"Locked.\"",
+				"path": "res://scripts/components/door.gd",
+				"place_name": "\"Academic Building 1\"",
+				"required_item": "\"\"",
+				"requires_flag": "\"\"",
+				"show_placeholder": "false",
+				"unlock_message": "\"\"",
+				"unlocked_flag": "\"door_unlocked_DoorAcademic1\"",
+				"verb": "\"Enter\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				1316.0,
+				-4103.9521484375
+			],
+			"z": 0
+		},
+		"./Objects/Doors/DoorAcademic1/Body": {
+			"class": "Polygon2D",
+			"color": [
+				0.44999998807907104,
+				0.2800000011920929,
+				0.15000000596046448,
+				1.0
+			],
+			"light_mask": 1,
+			"polygon": [
+				[
+					-24.0,
+					-64.0
+				],
+				[
+					24.0,
+					-64.0
+				],
+				[
+					24.0,
+					0.0
+				],
+				[
+					-24.0,
+					0.0
+				]
+			],
+			"visible": false,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				1316.0,
+				-4103.9521484375
+			],
+			"z": 0
+		},
+		"./Objects/Doors/DoorAcademic1/Interactable": {
+			"class": "Area2D",
+			"layer": 4,
+			"light_mask": 1,
+			"mask": 0,
+			"monitorable": true,
+			"monitoring": false,
+			"scene": "res://scenes/components/Interactable.tscn",
+			"script": {
+				"hold_seconds": "0.0",
+				"object_name": "\"Academic Building 1\"",
+				"path": "res://scripts/components/interactable.gd",
+				"prompt_offset": "Vector2(0, -56)",
+				"verb": "\"Enter\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				1316.0,
+				-4103.9521484375
+			],
+			"z": 0
+		},
+		"./Objects/Doors/DoorAcademic1/Interactable/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"circle": 32.0
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				1316.0,
+				-4103.9521484375
+			],
+			"z": 0
+		},
+		"./Objects/Doors/DoorAcademic2": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/components/Door.tscn",
+			"script": {
+				"destination_spawn_id": "\"lab_from_outside\"",
+				"destination_zone_id": "\"academic_lab\"",
+				"hold_seconds": "0.0",
+				"locked_message": "\"Locked.\"",
+				"path": "res://scripts/components/door.gd",
+				"place_name": "\"Academic Building 2\"",
+				"required_item": "\"\"",
+				"requires_flag": "\"\"",
+				"show_placeholder": "false",
+				"unlock_message": "\"\"",
+				"unlocked_flag": "\"door_unlocked_DoorAcademic2\"",
+				"verb": "\"Enter\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				3308.0,
+				-4383.3759765625
+			],
+			"z": 0
+		},
+		"./Objects/Doors/DoorAcademic2/Body": {
+			"class": "Polygon2D",
+			"color": [
+				0.44999998807907104,
+				0.2800000011920929,
+				0.15000000596046448,
+				1.0
+			],
+			"light_mask": 1,
+			"polygon": [
+				[
+					-24.0,
+					-64.0
+				],
+				[
+					24.0,
+					-64.0
+				],
+				[
+					24.0,
+					0.0
+				],
+				[
+					-24.0,
+					0.0
+				]
+			],
+			"visible": false,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				3308.0,
+				-4383.3759765625
+			],
+			"z": 0
+		},
+		"./Objects/Doors/DoorAcademic2/Interactable": {
+			"class": "Area2D",
+			"layer": 4,
+			"light_mask": 1,
+			"mask": 0,
+			"monitorable": true,
+			"monitoring": false,
+			"scene": "res://scenes/components/Interactable.tscn",
+			"script": {
+				"hold_seconds": "0.0",
+				"object_name": "\"Academic Building 2\"",
+				"path": "res://scripts/components/interactable.gd",
+				"prompt_offset": "Vector2(0, -56)",
+				"verb": "\"Enter\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				3308.0,
+				-4383.3759765625
+			],
+			"z": 0
+		},
+		"./Objects/Doors/DoorAcademic2/Interactable/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"circle": 32.0
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				3308.0,
+				-4383.3759765625
+			],
+			"z": 0
+		},
+		"./Objects/Doors/EdgeToHalls": {
+			"class": "Area2D",
+			"layer": 16,
+			"light_mask": 1,
+			"mask": 2,
+			"monitorable": false,
+			"monitoring": true,
+			"scene": "res://scenes/components/ZoneEdge.tscn",
+			"script": {
+				"destination_spawn_id": "\"halls_from_academic\"",
+				"destination_zone_id": "\"halls_exterior\"",
+				"locked_message": "\"The way is blocked.\"",
+				"path": "res://scripts/components/zone_edge.gd",
+				"place_name": "\"The halls\"",
+				"required_item": "\"\"",
+				"requires_flag": "\"\"",
+				"size": "Vector2(260, 40)"
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				4170.0,
+				-3010.0
+			],
+			"z": 0
+		},
+		"./Objects/Doors/EdgeToHalls/Shape": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					260.0,
+					40.0
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				4170.0,
+				-3010.0
+			],
+			"z": 0
+		},
+		"./Objects/Doors/EdgeToPlaza": {
+			"class": "Area2D",
+			"layer": 16,
+			"light_mask": 1,
+			"mask": 2,
+			"monitorable": false,
+			"monitoring": true,
+			"scene": "res://scenes/components/ZoneEdge.tscn",
+			"script": {
+				"destination_spawn_id": "\"plaza_from_academic\"",
+				"destination_zone_id": "\"central_plaza\"",
+				"locked_message": "\"The way is blocked.\"",
+				"path": "res://scripts/components/zone_edge.gd",
+				"place_name": "\"Central Plaza\"",
+				"required_item": "\"\"",
+				"requires_flag": "\"\"",
+				"size": "Vector2(260, 40)"
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				277.0,
+				-3700.0
+			],
+			"z": 0
+		},
+		"./Objects/Doors/EdgeToPlaza/Shape": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					260.0,
+					40.0
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				277.0,
+				-3700.0
+			],
+			"z": 0
+		},
+		"./Objects/Glow": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"y_sort": true,
+			"z": 0
+		},
+		"./Objects/Lights": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"y_sort": true,
+			"z": 0
+		},
+		"./Objects/Lights/StreetLight1": {
+			"class": "PointLight2D",
+			"light": {
+				"color": [
+					1.0,
+					0.8500000238418579,
+					0.6000000238418579,
+					1.0
+				],
+				"enabled": false,
+				"energy": 0.9,
+				"range_mask": 3,
+				"shadow_mask": 1,
+				"shadows": false
+			},
+			"light_mask": 1,
+			"script": {
+				"base_energy": "0.9",
+				"gameplay": "true",
+				"gameplay_radius": "0.0",
+				"mode": "0",
+				"needs_power": "true",
+				"path": "res://scripts/lighting/lamp_light.gd",
+				"power_flag": "\"power_academic\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-950.0,
+				-3830.0
+			],
+			"z": 0
+		},
+		"./Objects/Lights/StreetLight2": {
+			"class": "PointLight2D",
+			"groups": [
+				"gameplay_lights"
+			],
+			"light": {
+				"color": [
+					1.0,
+					0.8500000238418579,
+					0.6000000238418579,
+					1.0
+				],
+				"enabled": true,
+				"energy": 0.9,
+				"range_mask": 3,
+				"shadow_mask": 1,
+				"shadows": false
+			},
+			"light_mask": 1,
+			"script": {
+				"base_energy": "0.9",
+				"gameplay": "true",
+				"gameplay_radius": "0.0",
+				"mode": "0",
+				"needs_power": "false",
+				"path": "res://scripts/lighting/lamp_light.gd",
+				"power_flag": "\"power_on\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				350.0,
+				-3830.0
+			],
+			"z": 0
+		},
+		"./Objects/Lights/StreetLight3": {
+			"class": "PointLight2D",
+			"light": {
+				"color": [
+					1.0,
+					0.8500000238418579,
+					0.6000000238418579,
+					1.0
+				],
+				"enabled": false,
+				"energy": 0.9,
+				"range_mask": 3,
+				"shadow_mask": 1,
+				"shadows": false
+			},
+			"light_mask": 1,
+			"script": {
+				"base_energy": "0.9",
+				"gameplay": "true",
+				"gameplay_radius": "0.0",
+				"mode": "0",
+				"needs_power": "true",
+				"path": "res://scripts/lighting/lamp_light.gd",
+				"power_flag": "\"power_academic\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				1650.0,
+				-3830.0
+			],
+			"z": 0
+		},
+		"./Objects/Lights/StreetLight4": {
+			"class": "PointLight2D",
+			"groups": [
+				"gameplay_lights"
+			],
+			"light": {
+				"color": [
+					1.0,
+					0.8500000238418579,
+					0.6000000238418579,
+					1.0
+				],
+				"enabled": true,
+				"energy": 0.9,
+				"range_mask": 3,
+				"shadow_mask": 1,
+				"shadows": false
+			},
+			"light_mask": 1,
+			"script": {
+				"base_energy": "0.9",
+				"gameplay": "true",
+				"gameplay_radius": "0.0",
+				"mode": "1",
+				"needs_power": "false",
+				"path": "res://scripts/lighting/lamp_light.gd",
+				"power_flag": "\"power_on\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				2950.0,
+				-3830.0
+			],
+			"z": 0
+		},
+		"./Objects/Lights/StreetLight5": {
+			"class": "PointLight2D",
+			"light": {
+				"color": [
+					1.0,
+					0.8500000238418579,
+					0.6000000238418579,
+					1.0
+				],
+				"enabled": false,
+				"energy": 0.9,
+				"range_mask": 3,
+				"shadow_mask": 1,
+				"shadows": false
+			},
+			"light_mask": 1,
+			"script": {
+				"base_energy": "0.9",
+				"gameplay": "true",
+				"gameplay_radius": "0.0",
+				"mode": "0",
+				"needs_power": "true",
+				"path": "res://scripts/lighting/lamp_light.gd",
+				"power_flag": "\"power_academic\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				4250.0,
+				-3830.0
+			],
+			"z": 0
+		},
+		"./Objects/Props": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"y_sort": true,
+			"z": 0
+		},
+		"./Objects/Props/StreetLamp1": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/campus/StreetLampTall.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1000.0,
+				-3830.0
+			],
+			"z": 0
+		},
+		"./Objects/Props/StreetLamp1/Body": {
+			"class": "StaticBody2D",
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1000.0,
+				-3830.0
+			],
+			"z": 0
+		},
+		"./Objects/Props/StreetLamp1/Body/CollisionPole": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					9.600000381469727,
+					6.1707611083984375
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1000.0,
+				-3830.0
+			],
+			"z": 0
+		},
+		"./Objects/Props/StreetLamp1/ContactShadow": {
+			"centered": true,
+			"class": "Sprite2D",
+			"light_mask": 1,
+			"offset": [
+				0.0,
+				0.0
+			],
+			"scene": "res://scenes/props/common/ContactShadow.tscn",
+			"texture": "embedded:GradientTexture2D",
+			"visible": true,
+			"xform": [
+				0.30000001192092896,
+				0.0,
+				0.0,
+				0.15000000596046448,
+				-1000.0,
+				-3830.0
+			],
+			"z": -9
+		},
+		"./Objects/Props/StreetLamp1/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-56.40856170654297,
+				-645.0169677734375
+			],
+			"texture": "res://assets/sprites/campus/street_lamp_tall.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.3333333432674408,
+				0.0,
+				0.0,
+				0.3333333432674408,
+				-1000.0,
+				-3830.0
+			],
+			"z": 0
+		},
+		"./Objects/Props/StreetLamp2": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/campus/StreetLampTall.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				300.0,
+				-3830.0
+			],
+			"z": 0
+		},
+		"./Objects/Props/StreetLamp2/Body": {
+			"class": "StaticBody2D",
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				300.0,
+				-3830.0
+			],
+			"z": 0
+		},
+		"./Objects/Props/StreetLamp2/Body/CollisionPole": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					9.600000381469727,
+					6.1707611083984375
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				300.0,
+				-3830.0
+			],
+			"z": 0
+		},
+		"./Objects/Props/StreetLamp2/ContactShadow": {
+			"centered": true,
+			"class": "Sprite2D",
+			"light_mask": 1,
+			"offset": [
+				0.0,
+				0.0
+			],
+			"scene": "res://scenes/props/common/ContactShadow.tscn",
+			"texture": "embedded:GradientTexture2D",
+			"visible": true,
+			"xform": [
+				0.30000001192092896,
+				0.0,
+				0.0,
+				0.15000000596046448,
+				300.0,
+				-3830.0
+			],
+			"z": -9
+		},
+		"./Objects/Props/StreetLamp2/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-56.40856170654297,
+				-645.0169677734375
+			],
+			"texture": "res://assets/sprites/campus/street_lamp_tall.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.3333333432674408,
+				0.0,
+				0.0,
+				0.3333333432674408,
+				300.0,
+				-3830.0
+			],
+			"z": 0
+		},
+		"./Objects/Props/StreetLamp3": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/campus/StreetLampTall.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				1600.0,
+				-3830.0
+			],
+			"z": 0
+		},
+		"./Objects/Props/StreetLamp3/Body": {
+			"class": "StaticBody2D",
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				1600.0,
+				-3830.0
+			],
+			"z": 0
+		},
+		"./Objects/Props/StreetLamp3/Body/CollisionPole": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					9.600000381469727,
+					6.1707611083984375
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				1600.0,
+				-3830.0
+			],
+			"z": 0
+		},
+		"./Objects/Props/StreetLamp3/ContactShadow": {
+			"centered": true,
+			"class": "Sprite2D",
+			"light_mask": 1,
+			"offset": [
+				0.0,
+				0.0
+			],
+			"scene": "res://scenes/props/common/ContactShadow.tscn",
+			"texture": "embedded:GradientTexture2D",
+			"visible": true,
+			"xform": [
+				0.30000001192092896,
+				0.0,
+				0.0,
+				0.15000000596046448,
+				1600.0,
+				-3830.0
+			],
+			"z": -9
+		},
+		"./Objects/Props/StreetLamp3/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-56.40856170654297,
+				-645.0169677734375
+			],
+			"texture": "res://assets/sprites/campus/street_lamp_tall.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.3333333432674408,
+				0.0,
+				0.0,
+				0.3333333432674408,
+				1600.0,
+				-3830.0
+			],
+			"z": 0
+		},
+		"./Objects/Props/StreetLamp4": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/campus/StreetLampTall.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				2900.0,
+				-3830.0
+			],
+			"z": 0
+		},
+		"./Objects/Props/StreetLamp4/Body": {
+			"class": "StaticBody2D",
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				2900.0,
+				-3830.0
+			],
+			"z": 0
+		},
+		"./Objects/Props/StreetLamp4/Body/CollisionPole": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					9.600000381469727,
+					6.1707611083984375
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				2900.0,
+				-3830.0
+			],
+			"z": 0
+		},
+		"./Objects/Props/StreetLamp4/ContactShadow": {
+			"centered": true,
+			"class": "Sprite2D",
+			"light_mask": 1,
+			"offset": [
+				0.0,
+				0.0
+			],
+			"scene": "res://scenes/props/common/ContactShadow.tscn",
+			"texture": "embedded:GradientTexture2D",
+			"visible": true,
+			"xform": [
+				0.30000001192092896,
+				0.0,
+				0.0,
+				0.15000000596046448,
+				2900.0,
+				-3830.0
+			],
+			"z": -9
+		},
+		"./Objects/Props/StreetLamp4/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-56.40856170654297,
+				-645.0169677734375
+			],
+			"texture": "res://assets/sprites/campus/street_lamp_tall.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.3333333432674408,
+				0.0,
+				0.0,
+				0.3333333432674408,
+				2900.0,
+				-3830.0
+			],
+			"z": 0
+		},
+		"./Objects/Props/StreetLamp5": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/campus/StreetLampTall.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				4200.0,
+				-3830.0
+			],
+			"z": 0
+		},
+		"./Objects/Props/StreetLamp5/Body": {
+			"class": "StaticBody2D",
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				4200.0,
+				-3830.0
+			],
+			"z": 0
+		},
+		"./Objects/Props/StreetLamp5/Body/CollisionPole": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					9.600000381469727,
+					6.1707611083984375
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				4200.0,
+				-3830.0
+			],
+			"z": 0
+		},
+		"./Objects/Props/StreetLamp5/ContactShadow": {
+			"centered": true,
+			"class": "Sprite2D",
+			"light_mask": 1,
+			"offset": [
+				0.0,
+				0.0
+			],
+			"scene": "res://scenes/props/common/ContactShadow.tscn",
+			"texture": "embedded:GradientTexture2D",
+			"visible": true,
+			"xform": [
+				0.30000001192092896,
+				0.0,
+				0.0,
+				0.15000000596046448,
+				4200.0,
+				-3830.0
+			],
+			"z": -9
+		},
+		"./Objects/Props/StreetLamp5/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-56.40856170654297,
+				-645.0169677734375
+			],
+			"texture": "res://assets/sprites/campus/street_lamp_tall.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.3333333432674408,
+				0.0,
+				0.0,
+				0.3333333432674408,
+				4200.0,
+				-3830.0
+			],
+			"z": 0
+		},
+		"./Objects/SpawnMarkers": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"y_sort": true,
+			"z": 0
+		},
+		"./Objects/SpawnMarkers/Spawn_academic_from_halls": {
+			"class": "Marker2D",
+			"light_mask": 1,
+			"scene": "res://scenes/components/SpawnMarker.tscn",
+			"script": {
+				"path": "res://scripts/components/spawn_marker.gd",
+				"spawn_id": "\"academic_from_halls\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				4170.0,
+				-3150.0
+			],
+			"z": 0
+		},
+		"./Objects/SpawnMarkers/Spawn_academic_from_plaza": {
+			"class": "Marker2D",
+			"light_mask": 1,
+			"scene": "res://scenes/components/SpawnMarker.tscn",
+			"script": {
+				"path": "res://scripts/components/spawn_marker.gd",
+				"spawn_id": "\"academic_from_plaza\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				277.0,
+				-3840.0
+			],
+			"z": 0
+		},
+		"./Objects/SpawnMarkers/Spawn_outside_academic_1": {
+			"class": "Marker2D",
+			"light_mask": 1,
+			"scene": "res://scenes/components/SpawnMarker.tscn",
+			"script": {
+				"path": "res://scripts/components/spawn_marker.gd",
+				"spawn_id": "\"outside_academic_1\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				1316.0,
+				-4062.800048828125
+			],
+			"z": 0
+		},
+		"./Objects/SpawnMarkers/Spawn_outside_academic_2": {
+			"class": "Marker2D",
+			"light_mask": 1,
+			"scene": "res://scenes/components/SpawnMarker.tscn",
+			"script": {
+				"path": "res://scripts/components/spawn_marker.gd",
+				"spawn_id": "\"outside_academic_2\""
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				3308.0,
+				-4342.22412109375
+			],
+			"z": 0
+		},
+		"./Objects/Story": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"y_sort": true,
+			"z": 0
+		},
+		"./Objects/Vegetation": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			"y_sort": true,
+			"z": 0
+		},
+		"./Objects/Vegetation/Tree1": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/vegetation/BroadleafTree.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1500.0,
+				-5500.0
+			],
+			"z": 0
+		},
+		"./Objects/Vegetation/Tree1/Body": {
+			"class": "StaticBody2D",
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1500.0,
+				-5500.0
+			],
+			"z": 0
+		},
+		"./Objects/Vegetation/Tree1/Body/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					16.0,
+					10.284602165222168
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1500.0,
+				-5500.0
+			],
+			"z": 0
+		},
+		"./Objects/Vegetation/Tree1/ContactShadow": {
+			"centered": true,
+			"class": "Sprite2D",
+			"light_mask": 1,
+			"offset": [
+				0.0,
+				0.0
+			],
+			"scene": "res://scenes/props/common/ContactShadow.tscn",
+			"texture": "embedded:GradientTexture2D",
+			"visible": true,
+			"xform": [
+				1.2000000476837158,
+				0.0,
+				0.0,
+				0.6000000238418579,
+				-1500.0,
+				-5500.0
+			],
+			"z": -9
+		},
+		"./Objects/Vegetation/Tree1/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-610.1336059570313,
+				-1223.967529296875
+			],
+			"texture": "res://assets/sprites/vegetation/broadleaf_tree.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.14499999582767487,
+				0.0,
+				0.0,
+				0.14499999582767487,
+				-1500.0,
+				-5500.0
+			],
+			"z": 0
+		},
+		"./Objects/Vegetation/Tree2": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/vegetation/BroadleafTree.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1600.0,
+				-3700.0
+			],
+			"z": 0
+		},
+		"./Objects/Vegetation/Tree2/Body": {
+			"class": "StaticBody2D",
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1600.0,
+				-3700.0
+			],
+			"z": 0
+		},
+		"./Objects/Vegetation/Tree2/Body/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					16.0,
+					10.284602165222168
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-1600.0,
+				-3700.0
+			],
+			"z": 0
+		},
+		"./Objects/Vegetation/Tree2/ContactShadow": {
+			"centered": true,
+			"class": "Sprite2D",
+			"light_mask": 1,
+			"offset": [
+				0.0,
+				0.0
+			],
+			"scene": "res://scenes/props/common/ContactShadow.tscn",
+			"texture": "embedded:GradientTexture2D",
+			"visible": true,
+			"xform": [
+				1.2000000476837158,
+				0.0,
+				0.0,
+				0.6000000238418579,
+				-1600.0,
+				-3700.0
+			],
+			"z": -9
+		},
+		"./Objects/Vegetation/Tree2/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-610.1336059570313,
+				-1223.967529296875
+			],
+			"texture": "res://assets/sprites/vegetation/broadleaf_tree.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.14499999582767487,
+				0.0,
+				0.0,
+				0.14499999582767487,
+				-1600.0,
+				-3700.0
+			],
+			"z": 0
+		},
+		"./Objects/Vegetation/Tree3": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/vegetation/BroadleafTree.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				2600.0,
+				-5300.0
+			],
+			"z": 0
+		},
+		"./Objects/Vegetation/Tree3/Body": {
+			"class": "StaticBody2D",
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				2600.0,
+				-5300.0
+			],
+			"z": 0
+		},
+		"./Objects/Vegetation/Tree3/Body/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					16.0,
+					10.284602165222168
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				2600.0,
+				-5300.0
+			],
+			"z": 0
+		},
+		"./Objects/Vegetation/Tree3/ContactShadow": {
+			"centered": true,
+			"class": "Sprite2D",
+			"light_mask": 1,
+			"offset": [
+				0.0,
+				0.0
+			],
+			"scene": "res://scenes/props/common/ContactShadow.tscn",
+			"texture": "embedded:GradientTexture2D",
+			"visible": true,
+			"xform": [
+				1.2000000476837158,
+				0.0,
+				0.0,
+				0.6000000238418579,
+				2600.0,
+				-5300.0
+			],
+			"z": -9
+		},
+		"./Objects/Vegetation/Tree3/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-610.1336059570313,
+				-1223.967529296875
+			],
+			"texture": "res://assets/sprites/vegetation/broadleaf_tree.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.14499999582767487,
+				0.0,
+				0.0,
+				0.14499999582767487,
+				2600.0,
+				-5300.0
+			],
+			"z": 0
+		},
+		"./Objects/Vegetation/Tree4": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/vegetation/BroadleafTree.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				4600.0,
+				-5200.0
+			],
+			"z": 0
+		},
+		"./Objects/Vegetation/Tree4/Body": {
+			"class": "StaticBody2D",
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				4600.0,
+				-5200.0
+			],
+			"z": 0
+		},
+		"./Objects/Vegetation/Tree4/Body/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					16.0,
+					10.284602165222168
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				4600.0,
+				-5200.0
+			],
+			"z": 0
+		},
+		"./Objects/Vegetation/Tree4/ContactShadow": {
+			"centered": true,
+			"class": "Sprite2D",
+			"light_mask": 1,
+			"offset": [
+				0.0,
+				0.0
+			],
+			"scene": "res://scenes/props/common/ContactShadow.tscn",
+			"texture": "embedded:GradientTexture2D",
+			"visible": true,
+			"xform": [
+				1.2000000476837158,
+				0.0,
+				0.0,
+				0.6000000238418579,
+				4600.0,
+				-5200.0
+			],
+			"z": -9
+		},
+		"./Objects/Vegetation/Tree4/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-610.1336059570313,
+				-1223.967529296875
+			],
+			"texture": "res://assets/sprites/vegetation/broadleaf_tree.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.14499999582767487,
+				0.0,
+				0.0,
+				0.14499999582767487,
+				4600.0,
+				-5200.0
+			],
+			"z": 0
+		},
+		"./Objects/Vegetation/Tree5": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/vegetation/BroadleafTree.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				4700.0,
+				-4000.0
+			],
+			"z": 0
+		},
+		"./Objects/Vegetation/Tree5/Body": {
+			"class": "StaticBody2D",
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				4700.0,
+				-4000.0
+			],
+			"z": 0
+		},
+		"./Objects/Vegetation/Tree5/Body/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					16.0,
+					10.284602165222168
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				4700.0,
+				-4000.0
+			],
+			"z": 0
+		},
+		"./Objects/Vegetation/Tree5/ContactShadow": {
+			"centered": true,
+			"class": "Sprite2D",
+			"light_mask": 1,
+			"offset": [
+				0.0,
+				0.0
+			],
+			"scene": "res://scenes/props/common/ContactShadow.tscn",
+			"texture": "embedded:GradientTexture2D",
+			"visible": true,
+			"xform": [
+				1.2000000476837158,
+				0.0,
+				0.0,
+				0.6000000238418579,
+				4700.0,
+				-4000.0
+			],
+			"z": -9
+		},
+		"./Objects/Vegetation/Tree5/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-610.1336059570313,
+				-1223.967529296875
+			],
+			"texture": "res://assets/sprites/vegetation/broadleaf_tree.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.14499999582767487,
+				0.0,
+				0.0,
+				0.14499999582767487,
+				4700.0,
+				-4000.0
+			],
+			"z": 0
+		},
+		"./Objects/Vegetation/Tree6": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/vegetation/BroadleafTree.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				1200.0,
+				-3650.0
+			],
+			"z": 0
+		},
+		"./Objects/Vegetation/Tree6/Body": {
+			"class": "StaticBody2D",
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				1200.0,
+				-3650.0
+			],
+			"z": 0
+		},
+		"./Objects/Vegetation/Tree6/Body/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					16.0,
+					10.284602165222168
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				1200.0,
+				-3650.0
+			],
+			"z": 0
+		},
+		"./Objects/Vegetation/Tree6/ContactShadow": {
+			"centered": true,
+			"class": "Sprite2D",
+			"light_mask": 1,
+			"offset": [
+				0.0,
+				0.0
+			],
+			"scene": "res://scenes/props/common/ContactShadow.tscn",
+			"texture": "embedded:GradientTexture2D",
+			"visible": true,
+			"xform": [
+				1.2000000476837158,
+				0.0,
+				0.0,
+				0.6000000238418579,
+				1200.0,
+				-3650.0
+			],
+			"z": -9
+		},
+		"./Objects/Vegetation/Tree6/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-610.1336059570313,
+				-1223.967529296875
+			],
+			"texture": "res://assets/sprites/vegetation/broadleaf_tree.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.14499999582767487,
+				0.0,
+				0.0,
+				0.14499999582767487,
+				1200.0,
+				-3650.0
+			],
+			"z": 0
+		},
+		"./Objects/Vegetation/Tree7": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/vegetation/BroadleafTree.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-200.0,
+				-3650.0
+			],
+			"z": 0
+		},
+		"./Objects/Vegetation/Tree7/Body": {
+			"class": "StaticBody2D",
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-200.0,
+				-3650.0
+			],
+			"z": 0
+		},
+		"./Objects/Vegetation/Tree7/Body/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					16.0,
+					10.284602165222168
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				-200.0,
+				-3650.0
+			],
+			"z": 0
+		},
+		"./Objects/Vegetation/Tree7/ContactShadow": {
+			"centered": true,
+			"class": "Sprite2D",
+			"light_mask": 1,
+			"offset": [
+				0.0,
+				0.0
+			],
+			"scene": "res://scenes/props/common/ContactShadow.tscn",
+			"texture": "embedded:GradientTexture2D",
+			"visible": true,
+			"xform": [
+				1.2000000476837158,
+				0.0,
+				0.0,
+				0.6000000238418579,
+				-200.0,
+				-3650.0
+			],
+			"z": -9
+		},
+		"./Objects/Vegetation/Tree7/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-610.1336059570313,
+				-1223.967529296875
+			],
+			"texture": "res://assets/sprites/vegetation/broadleaf_tree.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.14499999582767487,
+				0.0,
+				0.0,
+				0.14499999582767487,
+				-200.0,
+				-3650.0
+			],
+			"z": 0
+		},
+		"./Objects/Vegetation/Tree8": {
+			"class": "Node2D",
+			"light_mask": 1,
+			"scene": "res://scenes/props/vegetation/BroadleafTree.tscn",
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				3300.0,
+				-3200.0
+			],
+			"z": 0
+		},
+		"./Objects/Vegetation/Tree8/Body": {
+			"class": "StaticBody2D",
+			"layer": 1,
+			"light_mask": 1,
+			"mask": 0,
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				3300.0,
+				-3200.0
+			],
+			"z": 0
+		},
+		"./Objects/Vegetation/Tree8/Body/Collision": {
+			"class": "CollisionShape2D",
+			"disabled": false,
+			"light_mask": 1,
+			"shape": {
+				"rect": [
+					16.0,
+					10.284602165222168
+				]
+			},
+			"visible": true,
+			"xform": [
+				1.0,
+				0.0,
+				0.0,
+				1.0,
+				3300.0,
+				-3200.0
+			],
+			"z": 0
+		},
+		"./Objects/Vegetation/Tree8/ContactShadow": {
+			"centered": true,
+			"class": "Sprite2D",
+			"light_mask": 1,
+			"offset": [
+				0.0,
+				0.0
+			],
+			"scene": "res://scenes/props/common/ContactShadow.tscn",
+			"texture": "embedded:GradientTexture2D",
+			"visible": true,
+			"xform": [
+				1.2000000476837158,
+				0.0,
+				0.0,
+				0.6000000238418579,
+				3300.0,
+				-3200.0
+			],
+			"z": -9
+		},
+		"./Objects/Vegetation/Tree8/Sprite": {
+			"centered": false,
+			"class": "Sprite2D",
+			"light_mask": 2,
+			"offset": [
+				-610.1336059570313,
+				-1223.967529296875
+			],
+			"texture": "res://assets/sprites/vegetation/broadleaf_tree.png",
+			"texture_filter": 4,
+			"visible": true,
+			"xform": [
+				0.14499999582767487,
+				0.0,
+				0.0,
+				0.14499999582767487,
+				3300.0,
+				-3200.0
+			],
+			"z": 0
+		}
+	},
+	"zone_id": "academic_exterior"
+}

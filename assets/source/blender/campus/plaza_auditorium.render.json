@@ -111,7 +111,23 @@
       }
     },
     "objects": {
-      "Main": {
+      "Plinth": {
+        "parts": [
+          {
+            "box": [
+              -16.5,
+              16.5,
+              -12.5,
+              12.5,
+              0.0,
+              0.04
+            ],
+            "mat": "roof_slab"
+          }
+        ],
+        "bevel": 0.0
+      },
+      "Building": {
         "parts": [
           {
             "box": [
@@ -982,7 +998,16 @@
   "model": {
     "objects": [
       {
-        "object": "Main",
+        "object": "Plinth",
+        "evaluated_bounds_m": {
+          "x": 33.0,
+          "y": 25.0,
+          "z": 0.04
+        },
+        "evaluated_faces": 6
+      },
+      {
+        "object": "Building",
         "evaluated_bounds_m": {
           "x": 35.1,
           "y": 26.05,
@@ -1079,7 +1104,7 @@
       1792,
       1418
     ],
-    "render_seconds": 11.9
+    "render_seconds": 31.2
   },
   "projection": {
     "note": "texture px, top-left origin: x = W/2 + (p.right - cx)*ppm, y = H/2 - (p.up - cy)*ppm",
@@ -1129,18 +1154,53 @@
       123.14452125720914,
       1668.199966430664,
       1294.8554865007004
+    ],
+    "crop_px": [
+      146,
+      547,
+      1500,
+      758
     ]
   },
   "tiling": null,
-  "layers": null,
+  "layers": [
+    {
+      "name": "Building",
+      "png": "assets/sprites/campus/plaza_auditorium__building.png",
+      "objects": [
+        "Building"
+      ],
+      "sort_y_m": -13,
+      "z_index": 0,
+      "fade": {
+        "rects_m": {
+          "Behind": [
+            -17.5,
+            17.5,
+            -12.4,
+            31.588
+          ]
+        },
+        "alpha": 0.3,
+        "seconds": 0.3
+      },
+      "render_seconds": 12.4,
+      "crop_px": [
+        99,
+        99,
+        1594,
+        1220
+      ]
+    }
+  ],
   "kind": "sprite",
   "ground_tile": null,
-  "total_seconds": 13.3,
+  "total_seconds": 33.5,
   "blender_run": {
     "exit_code": 0,
-    "seconds": 14.3,
+    "seconds": 34.9,
     "problem_lines": [
-      "00:01.860  cycles           | WARNING HIPEW initialization failed: Error opening HIP dynamic library"
+      "00:01.953  cycles           | WARNING HIPEW initialization failed: Error opening HIP dynamic library"
     ]
   },
   "verification": {
@@ -1148,25 +1208,25 @@
       "bit_depth": 8,
       "png_color_type": 6,
       "interlace": 0,
-      "file_bytes": 2814050,
+      "file_bytes": 373540,
       "size_px": [
-        1792,
-        1418
+        1500,
+        758
       ],
-      "opaque_pixels": 1763839,
-      "partially_transparent_pixels": 11196,
-      "fully_transparent_pixels": 766021,
+      "opaque_pixels": 1023700,
+      "partially_transparent_pixels": 8807,
+      "fully_transparent_pixels": 104493,
       "content_bbox_px": [
-        122,
-        122,
-        1669,
-        1295
+        23,
+        23,
+        1476,
+        734
       ],
       "margins_px": {
-        "left": 122,
-        "right": 122,
-        "top": 122,
-        "bottom": 122
+        "left": 23,
+        "right": 23,
+        "top": 23,
+        "bottom": 23
       },
       "max_alpha_on_image_border": 0.0
     },
@@ -1178,13 +1238,40 @@
     ],
     "minimum_margin_required_px": 16,
     "tiling": null,
-    "layers": null,
+    "layers": {
+      "Building": {
+        "bit_depth": 8,
+        "png_color_type": 6,
+        "interlace": 0,
+        "file_bytes": 2604913,
+        "size_px": [
+          1594,
+          1220
+        ],
+        "opaque_pixels": 1763842,
+        "partially_transparent_pixels": 11193,
+        "fully_transparent_pixels": 169645,
+        "content_bbox_px": [
+          23,
+          23,
+          1570,
+          1196
+        ],
+        "margins_px": {
+          "left": 23,
+          "right": 23,
+          "top": 23,
+          "bottom": 23
+        },
+        "max_alpha_on_image_border": 0.0
+      }
+    },
     "passed": true
   },
   "godot": {
     "scene": "scenes/props/campus/PlazaAuditorium.tscn",
     "scene_name": "PlazaAuditorium",
-    "scene_semantic_sha256": "fa51950cbfa9f81b80f85cd493f76adb17a13d7891cfdd8d0253c98a52aef902",
+    "scene_semantic_sha256": "60ab78b2dc9bc8110d531eb0fa8fe9a01fb37877eb7a586856ff4068fbec32c3",
     "sprite_offset_adjust_px": [
       0.0,
       0.0
@@ -1194,18 +1281,18 @@
       "game_px_per_m": 32.0,
       "sprite_scale": 0.7272727272727273,
       "sprite_offset_px": [
-        -896.0,
-        -926.6262151781993
+        -750.0,
+        -379.62621517819935
       ],
       "origin_px": [
         896.0,
         926.6262151781993
       ],
       "sprite_rect_game_px": [
-        -651.6363636363636,
-        -673.9099746750541,
-        1303.2727272727273,
-        1031.2727272727273
+        -579.6363636363636,
+        -601.9099746750541,
+        1159.2727272727273,
+        887.2727272727273
       ],
       "footprint_game_px": [
         [
@@ -1226,7 +1313,57 @@
         ]
       ],
       "ground_depth_factor": 0.6427876353263855,
-      "layers": null
+      "layers": [
+        {
+          "name": "Building",
+          "position_game_px": [
+            0.0,
+            267.39965629577637
+          ],
+          "sprite_offset_px": [
+            -797.0,
+            -1195.3007425848919
+          ],
+          "z_index": 0,
+          "fade": {
+            "node": "BuildingFade",
+            "alpha": 0.3,
+            "seconds": 0.3,
+            "shapes": [
+              {
+                "node": "ShapeBehind",
+                "resource_id": "RectangleShape2D_BuildingFadeBehind",
+                "center": [
+                  0.0,
+                  -197.34094634628298
+                ],
+                "size": [
+                  1120.0,
+                  904.7981600875854
+                ],
+                "metres": [
+                  -17.5,
+                  17.5,
+                  -12.4,
+                  31.588
+                ]
+              }
+            ]
+          },
+          "crop_px": [
+            99,
+            99,
+            1594,
+            1220
+          ]
+        }
+      ],
+      "crop_px": [
+        146,
+        547,
+        1500,
+        758
+      ]
     },
     "collision": {
       "source": "rects_m",

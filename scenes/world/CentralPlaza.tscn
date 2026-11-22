@@ -21,6 +21,13 @@
 [ext_resource type="PackedScene" path="res://scenes/props/vegetation/BroadleafTree.tscn" id="19_r"]
 [ext_resource type="PackedScene" path="res://scenes/components/ZoneEdge.tscn" id="20_r"]
 [ext_resource type="PackedScene" path="res://scenes/components/SpawnMarker.tscn" id="21_r"]
+[ext_resource type="PackedScene" path="res://scenes/components/Door.tscn" id="22_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/furniture/FloorHatchOpen.tscn" id="23_r"]
+[ext_resource type="PackedScene" path="res://scenes/components/Examine.tscn" id="24_r"]
+[ext_resource type="PackedScene" path="res://scenes/creatures/NightGuard.tscn" id="25_r"]
+[ext_resource type="Script" path="res://scripts/world/crow_flock.gd" id="26_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/vegetation/HedgeSection2m.tscn" id="27_r"]
+[ext_resource type="PackedScene" path="res://scenes/components/HideSpot.tscn" id="28_r"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1"]
 shader = ExtResource("5_r")
@@ -60,6 +67,9 @@ size = Vector2(2095, 60)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_13"]
 size = Vector2(1890, 60)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_14"]
+size = Vector2(275, 38)
 
 [node name="CentralPlaza" type="Node2D"]
 y_sort_enabled = true
@@ -340,6 +350,7 @@ script = ExtResource("17_r")
 mode = 0
 needs_power = true
 base_energy = 0.8
+power_flag = "power_plaza"
 
 [node name="Lamp2" parent="Objects/Props" instance=ExtResource("14_r")]
 position = Vector2(220, -2600)
@@ -358,6 +369,7 @@ script = ExtResource("17_r")
 mode = 0
 needs_power = true
 base_energy = 0.8
+power_flag = "power_plaza"
 
 [node name="Lamp3" parent="Objects/Props" instance=ExtResource("14_r")]
 position = Vector2(600, -2600)
@@ -376,6 +388,7 @@ script = ExtResource("17_r")
 mode = 0
 needs_power = true
 base_energy = 0.8
+power_flag = "power_plaza"
 
 [node name="Lamp4" parent="Objects/Props" instance=ExtResource("14_r")]
 position = Vector2(1000, -2600)
@@ -394,6 +407,7 @@ script = ExtResource("17_r")
 mode = 1
 needs_power = true
 base_energy = 0.8
+power_flag = "power_plaza"
 
 [node name="Lamp5" parent="Objects/Props" instance=ExtResource("14_r")]
 position = Vector2(-160, -2300)
@@ -412,6 +426,7 @@ script = ExtResource("17_r")
 mode = 0
 needs_power = true
 base_energy = 0.8
+power_flag = "power_plaza"
 
 [node name="Lamp6" parent="Objects/Props" instance=ExtResource("14_r")]
 position = Vector2(1150, -2300)
@@ -430,6 +445,7 @@ script = ExtResource("17_r")
 mode = 0
 needs_power = true
 base_energy = 0.8
+power_flag = "power_plaza"
 
 [node name="Lamp7" parent="Objects/Props" instance=ExtResource("14_r")]
 position = Vector2(-120, -1800)
@@ -448,6 +464,7 @@ script = ExtResource("17_r")
 mode = 0
 needs_power = true
 base_energy = 0.8
+power_flag = "power_plaza"
 
 [node name="Lamp8" parent="Objects/Props" instance=ExtResource("14_r")]
 position = Vector2(300, -1780)
@@ -466,6 +483,7 @@ script = ExtResource("17_r")
 mode = 0
 needs_power = true
 base_energy = 0.8
+power_flag = "power_plaza"
 
 [node name="Lamp9" parent="Objects/Props" instance=ExtResource("14_r")]
 position = Vector2(1250, -1780)
@@ -484,6 +502,7 @@ script = ExtResource("17_r")
 mode = 0
 needs_power = true
 base_energy = 0.8
+power_flag = "power_plaza"
 
 [node name="PalmS0" parent="Objects/Vegetation" instance=ExtResource("18_r")]
 position = Vector2(-1360, -1420)
@@ -671,6 +690,13 @@ collision_mask = 0
 position = Vector2(1355, -3790)
 shape = SubResource("RectangleShape2D_13")
 
+[node name="BoundNorthGap" type="StaticBody2D" parent="Objects/Bounds"]
+collision_mask = 0
+
+[node name="Shape" type="CollisionShape2D" parent="Objects/Bounds/BoundNorthGap"]
+position = Vector2(277.5, -3781)
+shape = SubResource("RectangleShape2D_14")
+
 [node name="EdgeToField1" parent="Objects/Doors" instance=ExtResource("20_r")]
 position = Vector2(-1090, -1300)
 destination_zone_id = "main_gate_exterior"
@@ -710,6 +736,8 @@ destination_zone_id = "academic_exterior"
 destination_spawn_id = "academic_from_plaza"
 size = Vector2(265, 40)
 place_name = "Academic buildings"
+required_item = "north_gate_key"
+locked_message = "A steel gate across the north road, padlocked. The Admin building keeps the campus keys."
 
 [node name="Spawn_plaza_from_academic" parent="Objects/SpawnMarkers" instance=ExtResource("21_r")]
 position = Vector2(277.5, -3640)
@@ -729,3 +757,144 @@ spawn_id = "plaza_from_halls"
 [node name="Spawn_plaza_center" parent="Objects/SpawnMarkers" instance=ExtResource("21_r")]
 position = Vector2(400, -2450)
 spawn_id = "plaza_center"
+
+[node name="DoorMosque" parent="Objects/Doors" instance=ExtResource("22_r")]
+position = Vector2(-650, -1848.3552)
+destination_zone_id = "mosque_prayer_hall"
+destination_spawn_id = "mosque_from_plaza"
+verb = "Enter"
+place_name = "Central Mosque"
+show_placeholder = false
+
+[node name="Spawn_outside_mosque" parent="Objects/SpawnMarkers" instance=ExtResource("21_r")]
+position = Vector2(-650, -1803.088)
+spawn_id = "outside_mosque"
+
+[node name="DoorAuditorium" parent="Objects/Doors" instance=ExtResource("22_r")]
+position = Vector2(760, -1822.224)
+destination_zone_id = "auditorium_hall"
+destination_spawn_id = "auditorium_from_plaza"
+verb = "Enter"
+place_name = "Auditorium"
+show_placeholder = false
+
+[node name="Spawn_outside_auditorium" parent="Objects/SpawnMarkers" instance=ExtResource("21_r")]
+position = Vector2(760, -1781.072)
+spawn_id = "outside_auditorium"
+
+[node name="DoorAdmin" parent="Objects/Doors" instance=ExtResource("22_r")]
+position = Vector2(-455, -2775.104)
+destination_zone_id = "admin_lobby"
+destination_spawn_id = "lobby_from_outside"
+verb = "Enter"
+place_name = "Administrative Building"
+show_placeholder = false
+
+[node name="Spawn_outside_admin" parent="Objects/SpawnMarkers" instance=ExtResource("21_r")]
+position = Vector2(-455, -2733.952)
+spawn_id = "outside_admin"
+
+[node name="DoorCafe" parent="Objects/Doors" instance=ExtResource("22_r")]
+position = Vector2(730, -2834.7744)
+destination_zone_id = "central_cafe"
+destination_spawn_id = "cafe_from_plaza"
+verb = "Enter"
+place_name = "Central Cafeteria"
+show_placeholder = false
+
+[node name="Spawn_outside_cafe" parent="Objects/SpawnMarkers" instance=ExtResource("21_r")]
+position = Vector2(730, -2748.3552)
+spawn_id = "outside_cafe"
+
+[node name="Chapter2" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+editor_description = "Chapter 2 night layer: manhole arrival, the Night Guard's island patrol, crows, hiding hedges."
+
+[node name="Story" type="Node2D" parent="Objects/Chapter2"]
+y_sort_enabled = true
+
+[node name="Creatures" type="Node2D" parent="Objects/Chapter2"]
+y_sort_enabled = true
+
+[node name="HidingPlaces" type="Node2D" parent="Objects/Chapter2"]
+y_sort_enabled = true
+
+[node name="MosqueWindowGlow" type="PointLight2D" parent="Objects/Chapter2/Story"]
+position = Vector2(-650, -1880)
+color = Color(1, 0.86, 0.62, 1)
+energy = 0.75
+range_item_cull_mask = 3
+texture = ExtResource("16_r")
+texture_scale = 3.2
+script = ExtResource("17_r")
+mode = 0
+needs_power = false
+base_energy = 0.75
+
+[node name="Manhole" parent="Objects/Chapter2/Story" instance=ExtResource("23_r")]
+position = Vector2(-980, -1385)
+
+[node name="ManholeLook" parent="Objects/Chapter2/Story" instance=ExtResource("24_r")]
+position = Vector2(-980, -1379)
+verb = "Look"
+object_name = "Manhole"
+message = "The manhole you climbed out of. Far below, the warm water moves, though nothing stirs it."
+
+[node name="Spawn_plaza_from_tunnel" parent="Objects/SpawnMarkers" instance=ExtResource("21_r")]
+position = Vector2(-940, -1351)
+spawn_id = "plaza_from_tunnel"
+
+[node name="NightGuard" parent="Objects/Chapter2/Creatures" instance=ExtResource("25_r")]
+position = Vector2(400, -2450)
+patrol_points = PackedVector2Array(400, -2450, -300, -2600, -950, -2450, -1000, -1800, -700, -1790, 300, -1790, 1350, -1780, 1350, -2600)
+active = false
+visible = false
+metadata/role = "patrol"
+
+[node name="Crows1" type="Node2D" parent="Objects/Chapter2/Creatures"]
+position = Vector2(-100, -2560)
+script = ExtResource("26_r")
+
+[node name="Crows2" type="Node2D" parent="Objects/Chapter2/Creatures"]
+position = Vector2(1000, -2560)
+script = ExtResource("26_r")
+
+[node name="Crows3" type="Node2D" parent="Objects/Chapter2/Creatures"]
+position = Vector2(-450, -1640)
+script = ExtResource("26_r")
+
+[node name="Hedge1" parent="Objects/Chapter2/HidingPlaces" instance=ExtResource("27_r")]
+position = Vector2(-92, -2100)
+
+[node name="Hedge1b" parent="Objects/Chapter2/HidingPlaces" instance=ExtResource("27_r")]
+position = Vector2(-28, -2100)
+
+[node name="Hide1" parent="Objects/Chapter2/HidingPlaces" instance=ExtResource("28_r")]
+position = Vector2(-60, -2092)
+verb = "Hide"
+place_name = "In the hedge"
+exit_offset = Vector2(0, 18)
+
+[node name="Hedge2" parent="Objects/Chapter2/HidingPlaces" instance=ExtResource("27_r")]
+position = Vector2(1218, -2470)
+
+[node name="Hedge2b" parent="Objects/Chapter2/HidingPlaces" instance=ExtResource("27_r")]
+position = Vector2(1282, -2470)
+
+[node name="Hide2" parent="Objects/Chapter2/HidingPlaces" instance=ExtResource("28_r")]
+position = Vector2(1250, -2462)
+verb = "Hide"
+place_name = "In the hedge"
+exit_offset = Vector2(0, 18)
+
+[node name="Hedge3" parent="Objects/Chapter2/HidingPlaces" instance=ExtResource("27_r")]
+position = Vector2(-982, -2650)
+
+[node name="Hedge3b" parent="Objects/Chapter2/HidingPlaces" instance=ExtResource("27_r")]
+position = Vector2(-918, -2650)
+
+[node name="Hide3" parent="Objects/Chapter2/HidingPlaces" instance=ExtResource("28_r")]
+position = Vector2(-950, -2642)
+verb = "Hide"
+place_name = "In the hedge"
+exit_offset = Vector2(0, 18)
