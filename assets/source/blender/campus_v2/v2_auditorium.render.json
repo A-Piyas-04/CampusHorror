@@ -2859,7 +2859,7 @@
   "godot": {
     "scene": "scenes/props/campus_v2/V2Auditorium.tscn",
     "scene_name": "V2Auditorium",
-    "scene_semantic_sha256": "9a38cccf9bdf05b6b35600e29724d041b49f106912a3f98c44494ed5599a0986",
+    "scene_semantic_sha256": "7a24fd347bd1b5bef56f8b9ba6ce457bc57602d44f1c8b54fc2a55ab5a6822ba",
     "sprite_offset_adjust_px": [
       0.0,
       0.0

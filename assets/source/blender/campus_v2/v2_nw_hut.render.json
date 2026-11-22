@@ -635,7 +635,7 @@
   "godot": {
     "scene": "scenes/props/campus_v2/V2NwHut.tscn",
     "scene_name": "V2NwHut",
-    "scene_semantic_sha256": "67b104a6b0dfba89346cedcfb997d0755db6d4ef75a94b79651239e9d7e2dc3b",
+    "scene_semantic_sha256": "c41eb8c73e7879443b9a7eb2dbcdf2b95c4e0a56684cd3f216e9636a2947d214",
     "sprite_offset_adjust_px": [
       0.0,
       0.0
@@ -729,8 +729,7 @@
         74
       ]
     },
-    "collision": null,
-    "preview_scene": null
+    "collision": null
   },
   "godot_import": {
     "exit_code": 0,

@@ -2572,7 +2572,8 @@
       0.0,
       0.0
     ],
-    "preview_scene": false
+    "preview_scene": false,
+    "base_visible": false
   },
   "collision": {
     "enabled": false

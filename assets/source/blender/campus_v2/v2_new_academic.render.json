@@ -1689,7 +1689,7 @@
   "godot": {
     "scene": "scenes/props/campus_v2/V2NewAcademic.tscn",
     "scene_name": "V2NewAcademic",
-    "scene_semantic_sha256": "bac4c9ae5adf91c6aa9fa0b69eeb2af50f208fe9eff6e84f6db17dc93bb6352a",
+    "scene_semantic_sha256": "ae22710135593e8903a5f8aab49bcc5950fc908186e2291ed7d932dc52cf7fd2",
     "sprite_offset_adjust_px": [
       0.0,
       0.0
@@ -1783,8 +1783,7 @@
         74
       ]
     },
-    "collision": null,
-    "preview_scene": null
+    "collision": null
   },
   "godot_import": {
     "exit_code": 0,

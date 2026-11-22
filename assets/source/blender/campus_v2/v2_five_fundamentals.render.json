@@ -3668,7 +3668,7 @@
   "godot": {
     "scene": "scenes/props/campus_v2/V2FiveFundamentals.tscn",
     "scene_name": "V2FiveFundamentals",
-    "scene_semantic_sha256": "e8ca45c7676ba69f482696d739883ad991f649ffd9ab55c3f74b029d29209f7b",
+    "scene_semantic_sha256": "f3578555cb4e5403c711c830bcb5048c3da9512a88c5a1faa001e7ff799d8698",
     "sprite_offset_adjust_px": [
       0.0,
       0.0
@@ -3738,8 +3738,7 @@
         74
       ]
     },
-    "collision": null,
-    "preview_scene": null
+    "collision": null
   },
   "godot_import": {
     "exit_code": 0,

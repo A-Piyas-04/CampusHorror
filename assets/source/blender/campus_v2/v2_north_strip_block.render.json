@@ -572,7 +572,7 @@
   "godot": {
     "scene": "scenes/props/campus_v2/V2NorthStripBlock.tscn",
     "scene_name": "V2NorthStripBlock",
-    "scene_semantic_sha256": "5b451cf29b58b8a03a48420b0725aff171d4adfb57622a2f2035a9c49cd9ba3b",
+    "scene_semantic_sha256": "ab51e9d382051c384ed6fcb5ffdde07c0959c573a0e5c5dd7e8820265970d39a",
     "sprite_offset_adjust_px": [
       0.0,
       0.0
@@ -666,8 +666,7 @@
         74
       ]
     },
-    "collision": null,
-    "preview_scene": null
+    "collision": null
   },
   "godot_import": {
     "exit_code": 0,

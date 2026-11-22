@@ -7021,7 +7021,7 @@
   "godot": {
     "scene": "scenes/props/campus_v2/V2MiddleWorkshop.tscn",
     "scene_name": "V2MiddleWorkshop",
-    "scene_semantic_sha256": "3835bd4d127439ad7a42accd5dd5c689a05084c815cc8baffa17f0892858ae6c",
+    "scene_semantic_sha256": "0bcbc41b3452ee6baae8a23a5a085dc10d28bde02da47ca8946eb34c6aa2ac7e",
     "sprite_offset_adjust_px": [
       0.0,
       0.0
@@ -7201,8 +7201,7 @@
         74
       ]
     },
-    "collision": null,
-    "preview_scene": null
+    "collision": null
   },
   "godot_import": {
     "exit_code": 0,

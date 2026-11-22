@@ -7291,7 +7291,7 @@
   "godot": {
     "scene": "scenes/props/campus_v2/V2NorthernWorkshop.tscn",
     "scene_name": "V2NorthernWorkshop",
-    "scene_semantic_sha256": "a6a6f59e1d80db4137222b23de6a71338720c4a466d8b0ba704b545a9a258a15",
+    "scene_semantic_sha256": "8325dc4c8d00cc1fe291b70160338e66e67ad4e11eb7ccf64cd27e12947edfd2",
     "sprite_offset_adjust_px": [
       0.0,
       0.0
@@ -7471,8 +7471,7 @@
         74
       ]
     },
-    "collision": null,
-    "preview_scene": null
+    "collision": null
   },
   "godot_import": {
     "exit_code": 0,

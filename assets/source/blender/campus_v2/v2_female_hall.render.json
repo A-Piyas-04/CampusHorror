@@ -16116,7 +16116,7 @@
   "godot": {
     "scene": "scenes/props/campus_v2/V2FemaleHall.tscn",
     "scene_name": "V2FemaleHall",
-    "scene_semantic_sha256": "fa020ed8f8f7527fb3f49df5be182f187f08faa93ad4ea5f81edd2e83e347d62",
+    "scene_semantic_sha256": "e555d45b39045b30a4599d7b79a50a8e5eed7be738b9de9cb7929a478e9c6f5f",
     "sprite_offset_adjust_px": [
       0.0,
       0.0
@@ -16425,8 +16425,7 @@
         74
       ]
     },
-    "collision": null,
-    "preview_scene": null
+    "collision": null
   },
   "godot_import": {
     "exit_code": 0,

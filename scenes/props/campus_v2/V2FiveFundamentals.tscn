@@ -10,6 +10,7 @@ metadata/asset_id = "v2_five_fundamentals"
 metadata/generated_by = "campus_asset_pipeline"
 
 [node name="Sprite" type="Sprite2D" parent="."]
+visible = false
 light_mask = 2
 texture_filter = 4
 scale = Vector2(0.5, 0.5)

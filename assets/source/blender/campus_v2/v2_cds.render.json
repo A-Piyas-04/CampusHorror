@@ -6298,7 +6298,7 @@
   "godot": {
     "scene": "scenes/props/campus_v2/V2Cds.tscn",
     "scene_name": "V2Cds",
-    "scene_semantic_sha256": "da482f272cf398eac715dc0c455c294cb121fba59b559fe7f23bebfe4407cedf",
+    "scene_semantic_sha256": "85ebb3abca53a43ef84eee2e406ccdd637a957a251095c3ead3a011628c74393",
     "sprite_offset_adjust_px": [
       0.0,
       0.0
@@ -6478,8 +6478,7 @@
         74
       ]
     },
-    "collision": null,
-    "preview_scene": null
+    "collision": null
   },
   "godot_import": {
     "exit_code": 0,

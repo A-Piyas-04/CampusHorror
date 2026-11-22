@@ -4271,7 +4271,7 @@
   "godot": {
     "scene": "scenes/props/campus_v2/V2Mosque.tscn",
     "scene_name": "V2Mosque",
-    "scene_semantic_sha256": "70f8f73e707b17764aca189847267bc04de0f00010cabb13b84c0fd70dff19a4",
+    "scene_semantic_sha256": "edb41fdca4c9b00d6ab461954c051cd3911dd9f6b8fe43e0dc33a0bff63a51a9",
     "sprite_offset_adjust_px": [
       0.0,
       0.0
@@ -4494,8 +4494,7 @@
         74
       ]
     },
-    "collision": null,
-    "preview_scene": null
+    "collision": null
   },
   "godot_import": {
     "exit_code": 0,

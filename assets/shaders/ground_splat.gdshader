@@ -269,12 +269,14 @@ void fragment() {
 	vec2 aa = fwidth(q) * 1.2;
 	if (plaza_rect.z > plaza_rect.x && world_m.x > plaza_rect.x && world_m.x < plaza_rect.z
 			&& world_m.y > plaza_rect.y && world_m.y < plaza_rect.w) {
+		// f = 0.5 on a grid line; a pixel is on the grid if it is on EITHER family of lines (the old min/max mix-up
+		// drew only the crossings, as a scatter of pale dots)
 		vec2 f = abs(fract(q) - 0.5);
-		float line_w = 0.06 / plaza_grid_m;
-		float line = max(1.0 - smoothstep(0.5 - line_w - aa.x, 0.5 - line_w + aa.x, f.x),
-			1.0 - smoothstep(0.5 - line_w - aa.y, 0.5 - line_w + aa.y, f.y));
-		line = 1.0 - line;  // 1 on the lines
-		col = mix(col, vec3(0.86, 0.84, 0.80), line * smoothstep(0.85, 1.0, w[3]) * 0.75);
+		float line_w = 0.06 / plaza_grid_m;      // half-width: the bands are 12 cm of pale stone
+		float line = max(smoothstep(0.5 - line_w - aa.x, 0.5 - line_w + aa.x, f.x),
+			smoothstep(0.5 - line_w - aa.y, 0.5 - line_w + aa.y, f.y));
+		vec3 stone = vec3(0.74, 0.70, 0.62) * (0.9 + 0.2 * texture(noise_tex, world_m / 1.1).r);
+		col = mix(col, stone, line * smoothstep(0.85, 1.0, w[3]) * 0.85);
 	}
 
 	// kerbs as stones, not lines (baked edge field, tools/zones/ground_mask.py): where paving meets soft ground a

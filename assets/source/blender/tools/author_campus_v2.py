@@ -1127,7 +1127,8 @@ def main():
                   "ceiling_z": None}
         changed += write_config(a["asset_id"], CATEGORY, a["scene"], a["desc"], params, px_per_m=PX, samples=SAMPLES,
                                 layers=a["layers"], collision={"enabled": False},
-                                render_extra={"window_mask": True})   # lit windows at night (tools/campus/night_windows.py)
+                                render_extra={"window_mask": True},   # lit windows at night (tools/campus/night_windows.py)
+                                godot_extra={"base_visible": False})  # the base is only the required placeholder pad
     MANIFEST.write_text(json.dumps({
         "note": "Which rendered building stands where (Map v2). Written by assets/source/blender/tools/author_campus_v2.py; "
                 "read by tools/zones/campus_world.py, which places a site's asset once its scene exists.",

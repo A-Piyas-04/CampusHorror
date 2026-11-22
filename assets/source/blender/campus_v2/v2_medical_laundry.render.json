@@ -3468,7 +3468,7 @@
   "godot": {
     "scene": "scenes/props/campus_v2/V2MedicalLaundry.tscn",
     "scene_name": "V2MedicalLaundry",
-    "scene_semantic_sha256": "673595a83a5609a2cabc796fb2cdab9d7d452a2661e27f3b49dab2fe0467e30f",
+    "scene_semantic_sha256": "edcf6924b5105bca7622d28a77ba638ed176133cafb91dcc47dc9dc959db51e5",
     "sprite_offset_adjust_px": [
       0.0,
       0.0
@@ -3605,8 +3605,7 @@
         74
       ]
     },
-    "collision": null,
-    "preview_scene": null
+    "collision": null
   },
   "godot_import": {
     "exit_code": 0,

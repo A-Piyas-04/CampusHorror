@@ -806,7 +806,7 @@
   "godot": {
     "scene": "scenes/props/campus_v2/V2CourtsShelter.tscn",
     "scene_name": "V2CourtsShelter",
-    "scene_semantic_sha256": "21de5a76c8b922ef700636350e53d98736f6f85810dc3fcbfecce540fd5c2439",
+    "scene_semantic_sha256": "960451ab89ae92541b3c20160d0c2eb9f6fda4bf9815b0b4fbe7041c7d7f6c9a",
     "sprite_offset_adjust_px": [
       0.0,
       0.0
@@ -900,8 +900,7 @@
         74
       ]
     },
-    "collision": null,
-    "preview_scene": null
+    "collision": null
   },
   "godot_import": {
     "exit_code": 0,

@@ -1990,7 +1990,7 @@
   "godot": {
     "scene": "scenes/props/campus_v2/V2Substation.tscn",
     "scene_name": "V2Substation",
-    "scene_semantic_sha256": "ad29fefdb11010b6a0bf8555e942cbfab0d5bf35d8d4139692a5e8a84d0db741",
+    "scene_semantic_sha256": "41b6d0250e35313295611da38a93b7dd24d249150bca5af4d3033d944796ecb7",
     "sprite_offset_adjust_px": [
       0.0,
       0.0
@@ -2170,8 +2170,7 @@
         74
       ]
     },
-    "collision": null,
-    "preview_scene": null
+    "collision": null
   },
   "godot_import": {
     "exit_code": 0,

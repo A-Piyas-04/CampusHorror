@@ -7978,7 +7978,7 @@
   "godot": {
     "scene": "scenes/props/campus_v2/V2CarParking.tscn",
     "scene_name": "V2CarParking",
-    "scene_semantic_sha256": "449085f30d064dc29278bd8962f39dd80f1181230c57442d360482612dc15b6f",
+    "scene_semantic_sha256": "3d587e0e46458ec28748fac7d9a4a54081868b6a18a856f61069151190e99a6c",
     "sprite_offset_adjust_px": [
       0.0,
       0.0

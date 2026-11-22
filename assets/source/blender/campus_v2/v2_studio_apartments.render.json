@@ -1799,7 +1799,7 @@
   "godot": {
     "scene": "scenes/props/campus_v2/V2StudioApartments.tscn",
     "scene_name": "V2StudioApartments",
-    "scene_semantic_sha256": "5f27e556d58f8fc430ebea41bfe587c9b0174ec1e91334880c6dbc6f0c7e7249",
+    "scene_semantic_sha256": "cff2b33008e582eb87512a4431566858e6db9d21f3951dad588ed3e4e47459e6",
     "sprite_offset_adjust_px": [
       0.0,
       0.0
@@ -1893,8 +1893,7 @@
         74
       ]
     },
-    "collision": null,
-    "preview_scene": null
+    "collision": null
   },
   "godot_import": {
     "exit_code": 0,

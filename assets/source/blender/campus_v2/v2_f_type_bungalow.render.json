@@ -1419,7 +1419,7 @@
   "godot": {
     "scene": "scenes/props/campus_v2/V2FTypeBungalow.tscn",
     "scene_name": "V2FTypeBungalow",
-    "scene_semantic_sha256": "98c8617e1fccfbc57d71f47e0d8117fff47b4fc141e8d58d0aa95449334b3f21",
+    "scene_semantic_sha256": "2281ae46f4809bde8295938ea40cc0799e1a73f47bd459fe21dcef93d8249b02",
     "sprite_offset_adjust_px": [
       0.0,
       0.0
@@ -1556,8 +1556,7 @@
         74
       ]
     },
-    "collision": null,
-    "preview_scene": null
+    "collision": null
   },
   "godot_import": {
     "exit_code": 0,

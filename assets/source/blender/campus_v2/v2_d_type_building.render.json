@@ -3106,7 +3106,7 @@
   "godot": {
     "scene": "scenes/props/campus_v2/V2DTypeBuilding.tscn",
     "scene_name": "V2DTypeBuilding",
-    "scene_semantic_sha256": "38662ce9f26a040d04b659188823af32ace959b82329bc73f38847d8ce35aa62",
+    "scene_semantic_sha256": "b5faeb516d02d9c69add42f7dbe4ad9e57620f9522a395fea77650a0fc4065ca",
     "sprite_offset_adjust_px": [
       0.0,
       0.0
@@ -3200,8 +3200,7 @@
         75
       ]
     },
-    "collision": null,
-    "preview_scene": null
+    "collision": null
   },
   "godot_import": {
     "exit_code": 0,

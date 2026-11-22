@@ -237,7 +237,7 @@ def rotated(parts, rot, pivot=(0.0, 0.0, 0.0)):
 
 def write_config(asset_id, category, scene_name, description, params, *, px_per_m=150.0, samples=192,
                  layers=None, collision=None, z_index=0, sprite_z_index=0, seed=20261121, crop_layers=None,
-                 max_texture_px=None, width_px=None, render_extra=None):
+                 max_texture_px=None, width_px=None, render_extra=None, godot_extra=None):
     cfg = {
         "asset_id": asset_id,
         "category": category,
@@ -260,6 +260,8 @@ def write_config(asset_id, category, scene_name, description, params, *, px_per_
         cfg["render"]["max_texture_px"] = max_texture_px
     if render_extra:
         cfg["render"].update(render_extra)
+    if godot_extra:
+        cfg["godot"].update(godot_extra)
     path = CONFIG_DIR / f"{asset_id}.json"
     text_out = json.dumps(cfg, indent=2) + "\n"
     if not path.exists() or path.read_text(encoding="utf-8") != text_out:

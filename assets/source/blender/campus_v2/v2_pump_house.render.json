@@ -495,7 +495,7 @@
   "godot": {
     "scene": "scenes/props/campus_v2/V2PumpHouse.tscn",
     "scene_name": "V2PumpHouse",
-    "scene_semantic_sha256": "b299a18875cde46f57bd0e87111206a15f76272a0e2829f51afc0aeae0a7120d",
+    "scene_semantic_sha256": "0f101db0a8a40f8020d0522f85c6973269b9b617fcb0c35c13d7d39210fec6de",
     "sprite_offset_adjust_px": [
       0.0,
       0.0
@@ -589,8 +589,7 @@
         74
       ]
     },
-    "collision": null,
-    "preview_scene": null
+    "collision": null
   },
   "godot_import": {
     "exit_code": 0,

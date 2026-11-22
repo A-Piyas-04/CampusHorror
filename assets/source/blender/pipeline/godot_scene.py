@@ -300,6 +300,8 @@ def build_prop_scene(cfg, record, existing_text=None):
     parts.append(_node(scene, "Node2D", None, ids, root_props))
 
     sprite_props = []
+    if not g.get("base_visible", True):
+        sprite_props.append(("visible", "false"))
     if g.get("sprite_z_index", 0):
         sprite_props.append(("z_index", str(g["sprite_z_index"])))
     if g["light_mask"] != 1:

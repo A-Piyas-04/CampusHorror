@@ -5747,7 +5747,7 @@
   "godot": {
     "scene": "scenes/props/campus_v2/V2UbHall.tscn",
     "scene_name": "V2UbHall",
-    "scene_semantic_sha256": "e04658dec916c46b6b8fb0648c8381fb7f14894d893c6cf7d86c7da115e2356c",
+    "scene_semantic_sha256": "b895adcc8fbbd23b9c7fcf6407c6935798f89e080068e084a6632280e824b21b",
     "sprite_offset_adjust_px": [
       0.0,
       0.0
@@ -5927,8 +5927,7 @@
         74
       ]
     },
-    "collision": null,
-    "preview_scene": null
+    "collision": null
   },
   "godot_import": {
     "exit_code": 0,

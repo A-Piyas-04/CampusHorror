@@ -8939,7 +8939,7 @@
   "godot": {
     "scene": "scenes/props/campus_v2/V2CafeteriaLibrary.tscn",
     "scene_name": "V2CafeteriaLibrary",
-    "scene_semantic_sha256": "49c93b98a7ad67700222426f2e1c77c637bdd8eaa4417909749eede04e174b50",
+    "scene_semantic_sha256": "f887f806ee968f60e403dcb139cb3b84817e4e142efb459ba0f15e3712720e9a",
     "sprite_offset_adjust_px": [
       0.0,
       0.0
@@ -9033,8 +9033,7 @@
         74
       ]
     },
-    "collision": null,
-    "preview_scene": null
+    "collision": null
   },
   "godot_import": {
     "exit_code": 0,

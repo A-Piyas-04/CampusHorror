@@ -6853,7 +6853,7 @@
   "godot": {
     "scene": "scenes/props/campus_v2/V2NewMaleHall.tscn",
     "scene_name": "V2NewMaleHall",
-    "scene_semantic_sha256": "04b8096a8bed4c244758486ef3b8459787f402ba554bd5e49fe0d8023124982a",
+    "scene_semantic_sha256": "ea9b45f153ccbb68d5635995d3da7860371f3ac1c45033c734b1ca4928887370",
     "sprite_offset_adjust_px": [
       0.0,
       0.0
@@ -7076,8 +7076,7 @@
         74
       ]
     },
-    "collision": null,
-    "preview_scene": null
+    "collision": null
   },
   "godot_import": {
     "exit_code": 0,

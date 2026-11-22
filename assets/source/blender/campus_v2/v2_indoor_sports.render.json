@@ -3126,7 +3126,7 @@
   "godot": {
     "scene": "scenes/props/campus_v2/V2IndoorSports.tscn",
     "scene_name": "V2IndoorSports",
-    "scene_semantic_sha256": "da4e5ae8f55023c3a20dfc0f346a334a1d8983c1cf110f5610951ca321cbbfec",
+    "scene_semantic_sha256": "333cac716edec821e31bce0a046411ed193fac1c678eb60568daead623132945",
     "sprite_offset_adjust_px": [
       0.0,
       0.0

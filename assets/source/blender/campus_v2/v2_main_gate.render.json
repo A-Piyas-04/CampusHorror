@@ -1569,7 +1569,7 @@
   "godot": {
     "scene": "scenes/props/campus_v2/V2MainGate.tscn",
     "scene_name": "V2MainGate",
-    "scene_semantic_sha256": "2340331d1db453be05deb87297265dc85ac2077744e82f414965d7f4a07a2aa8",
+    "scene_semantic_sha256": "19b498eaa07ea6efc75be19b9b05a63aa996b406e94e865402a5a561433e8be7",
     "sprite_offset_adjust_px": [
       0.0,
       0.0
@@ -1706,8 +1706,7 @@
         74
       ]
     },
-    "collision": null,
-    "preview_scene": null
+    "collision": null
   },
   "godot_import": {
     "exit_code": 0,

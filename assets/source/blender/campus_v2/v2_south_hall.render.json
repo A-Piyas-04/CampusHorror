@@ -25774,7 +25774,7 @@
   "godot": {
     "scene": "scenes/props/campus_v2/V2SouthHall.tscn",
     "scene_name": "V2SouthHall",
-    "scene_semantic_sha256": "9d9f0f07920c1dde84559fb410a6bff7099f416fa5a76697945493e95a9184ff",
+    "scene_semantic_sha256": "518db72e207a110abe38799c4dd12d13c97c057139c3f2bb2ecbc21c562584b5",
     "sprite_offset_adjust_px": [
       0.0,
       0.0
@@ -26212,8 +26212,7 @@
         74
       ]
     },
-    "collision": null,
-    "preview_scene": null
+    "collision": null
   },
   "godot_import": {
     "exit_code": 0,

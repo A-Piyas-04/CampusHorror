@@ -7482,7 +7482,7 @@
   "godot": {
     "scene": "scenes/props/campus_v2/V2Admin.tscn",
     "scene_name": "V2Admin",
-    "scene_semantic_sha256": "512d908477ea080e28f526cc67025982fb283b728fef6c9695d40c42ad1edb70",
+    "scene_semantic_sha256": "5e2ae36adc9c16a2cb32097172b4997a5be7e9eb416932a86d473f1482edd5ba",
     "sprite_offset_adjust_px": [
       0.0,
       0.0
@@ -7619,8 +7619,7 @@
         74
       ]
     },
-    "collision": null,
-    "preview_scene": null
+    "collision": null
   },
   "godot_import": {
     "exit_code": 0,

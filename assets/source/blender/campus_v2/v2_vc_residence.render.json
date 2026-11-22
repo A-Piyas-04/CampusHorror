@@ -2640,7 +2640,7 @@
   "godot": {
     "scene": "scenes/props/campus_v2/V2VcResidence.tscn",
     "scene_name": "V2VcResidence",
-    "scene_semantic_sha256": "73842633037b3a334ca643c6632e9d253b79fbfefc64ee453ac9447a87a66f76",
+    "scene_semantic_sha256": "108f79a66fa7ab0b4e1cbf32694a8705d06c13e6faa5db816d42a7042d2b8af2",
     "sprite_offset_adjust_px": [
       0.0,
       0.0
@@ -2820,8 +2820,7 @@
         74
       ]
     },
-    "collision": null,
-    "preview_scene": null
+    "collision": null
   },
   "godot_import": {
     "exit_code": 0,

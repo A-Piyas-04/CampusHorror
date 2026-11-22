@@ -26121,7 +26121,7 @@
   "godot": {
     "scene": "scenes/props/campus_v2/V2NorthHall.tscn",
     "scene_name": "V2NorthHall",
-    "scene_semantic_sha256": "2e332da62084675bb2737281f20ae5b7cc45e12485a531e1c5547209a0d22eee",
+    "scene_semantic_sha256": "9e4b2fc6918edd978e142ec18a3431410b45cff205e2825ccd09bada77cb75a1",
     "sprite_offset_adjust_px": [
       0.0,
       0.0
@@ -26559,8 +26559,7 @@
         75
       ]
     },
-    "collision": null,
-    "preview_scene": null
+    "collision": null
   },
   "godot_import": {
     "exit_code": 0,

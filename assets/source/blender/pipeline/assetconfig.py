@@ -97,6 +97,9 @@ def load(asset_id_or_path):
     godot.setdefault("sprite_offset_adjust_px", [0.0, 0.0])
     godot.setdefault("preview_scene", True)
     godot.setdefault("preview_tile_x", False)
+    # False hides the base Sprite: a layered asset whose base is only the pipeline's required placeholder (the
+    # campus buildings' 0.6 m pad, buried in a part and so rendered unlit black) keeps the node but never draws it
+    godot.setdefault("base_visible", True)
 
     col = cfg.setdefault("collision", {})
     col.setdefault("enabled", False)

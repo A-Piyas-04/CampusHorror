@@ -627,7 +627,7 @@
   "godot": {
     "scene": "scenes/props/campus_v2/V2SouthServiceGate.tscn",
     "scene_name": "V2SouthServiceGate",
-    "scene_semantic_sha256": "50871ea500ad39e3007ea5738012361fb55f487fa76d95657ba830ee4fbc3138",
+    "scene_semantic_sha256": "aad006a7aa055cd6c24660688aa130fc13784a4066d1239211cf97f768d0add9",
     "sprite_offset_adjust_px": [
       0.0,
       0.0
@@ -721,8 +721,7 @@
         75
       ]
     },
-    "collision": null,
-    "preview_scene": null
+    "collision": null
   },
   "godot_import": {
     "exit_code": 0,

@@ -635,7 +635,7 @@
   "godot": {
     "scene": "scenes/props/campus_v2/V2NorthStripRoomE.tscn",
     "scene_name": "V2NorthStripRoomE",
-    "scene_semantic_sha256": "cefb163590b9293fe6d954ec1682b4ecc318600e73329d6f8fac6f06dc95f843",
+    "scene_semantic_sha256": "aa980c149eccfb750889b40b3d693c6ed2e1d305b45fdfa1cad8e90237a6d956",
     "sprite_offset_adjust_px": [
       0.0,
       0.0
@@ -729,8 +729,7 @@
         74
       ]
     },
-    "collision": null,
-    "preview_scene": null
+    "collision": null
   },
   "godot_import": {
     "exit_code": 0,
