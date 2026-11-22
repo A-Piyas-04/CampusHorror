@@ -1,0 +1,512 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/world/zone.gd" id="1_r"]
+[ext_resource type="Resource" path="res://data/zones/profiles/halls_exterior.tres" id="2_r"]
+[ext_resource type="Texture2D" path="res://assets/sprites/ground/grass_ground_tile.png" id="3_r"]
+[ext_resource type="Texture2D" path="res://assets/sprites/ground/paved_walkway_tile.png" id="4_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/campus/SouthHallFront.tscn" id="5_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/campus/SouthHallWing.tscn" id="6_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/campus/NorthHallFront.tscn" id="7_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/campus/NorthHallWing.tscn" id="8_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/campus/UbHall.tscn" id="9_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/campus/HallsGateWall.tscn" id="10_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/vegetation/CoconutPalm.tscn" id="11_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/common/ContactShadow.tscn" id="12_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/vegetation/BroadleafTree.tscn" id="13_r"]
+[ext_resource type="PackedScene" path="res://scenes/props/campus/StreetLampTall.tscn" id="14_r"]
+[ext_resource type="Texture2D" path="res://data/lighting/light_soft.tres" id="15_r"]
+[ext_resource type="Script" path="res://scripts/lighting/lamp_light.gd" id="16_r"]
+[ext_resource type="PackedScene" path="res://scenes/components/ZoneEdge.tscn" id="17_r"]
+[ext_resource type="PackedScene" path="res://scenes/components/SpawnMarker.tscn" id="18_r"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1"]
+size = Vector2(40, 4760)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2"]
+size = Vector2(80, 4760)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3"]
+size = Vector2(3720, 60)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4"]
+size = Vector2(1520, 60)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5"]
+size = Vector2(1660, 60)
+
+[node name="HallsExterior" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_r")
+zone_id = "halls_exterior"
+profile = ExtResource("2_r")
+
+[node name="Ground" type="Node2D" parent="."]
+z_index = -10
+
+[node name="Objects" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Buildings" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="Props" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="Vegetation" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="Lights" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="Doors" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="SpawnMarkers" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="Story" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="Glow" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="Bounds" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+
+[node name="Grass" type="Polygon2D" parent="Ground"]
+polygon = PackedVector2Array(2280, -3260, 6120, -3260, 6120, 1570, 2280, 1570)
+texture = ExtResource("3_r")
+texture_repeat = 2
+texture_scale = Vector2(4, 4)
+light_mask = 1
+
+[node name="WestRoad" type="Polygon2D" parent="Ground"]
+polygon = PackedVector2Array(2860, -2950, 2990, -2950, 2990, 1300, 2860, 1300)
+texture = ExtResource("4_r")
+texture_repeat = 2
+texture_scale = Vector2(4, 4)
+light_mask = 1
+
+[node name="CourtPath" type="Polygon2D" parent="Ground"]
+polygon = PackedVector2Array(4105, -2950, 4235, -2950, 4235, 660, 4105, 660)
+texture = ExtResource("4_r")
+texture_repeat = 2
+texture_scale = Vector2(4, 4)
+light_mask = 1
+
+[node name="Passage" type="Polygon2D" parent="Ground"]
+polygon = PackedVector2Array(2860, 640, 5600, 640, 5600, 720, 2860, 720)
+texture = ExtResource("4_r")
+texture_repeat = 2
+texture_scale = Vector2(4, 4)
+light_mask = 1
+
+[node name="SouthHall1" parent="Objects/Buildings" instance=ExtResource("5_r")]
+position = Vector2(3400, 306.35)
+
+[node name="SouthHall2" parent="Objects/Buildings" instance=ExtResource("6_r")]
+position = Vector2(3400, -310.95)
+
+[node name="SouthHall3" parent="Objects/Buildings" instance=ExtResource("6_r")]
+position = Vector2(3400, -928.25)
+
+[node name="SouthHall4" parent="Objects/Buildings" instance=ExtResource("6_r")]
+position = Vector2(3400, -1545.55)
+
+[node name="NorthHall1" parent="Objects/Buildings" instance=ExtResource("7_r")]
+position = Vector2(4935, 306.35)
+
+[node name="NorthHall2" parent="Objects/Buildings" instance=ExtResource("8_r")]
+position = Vector2(4935, -310.95)
+
+[node name="NorthHall3" parent="Objects/Buildings" instance=ExtResource("8_r")]
+position = Vector2(4935, -928.25)
+
+[node name="NorthHall4" parent="Objects/Buildings" instance=ExtResource("8_r")]
+position = Vector2(4935, -1545.55)
+
+[node name="UbHall" parent="Objects/Buildings" instance=ExtResource("9_r")]
+position = Vector2(4170, 900)
+
+[node name="HallsGate" parent="Objects/Buildings" instance=ExtResource("10_r")]
+position = Vector2(4170, -1964.2)
+
+[node name="Palm0" parent="Objects/Vegetation" instance=ExtResource("11_r")]
+position = Vector2(3990, -1800)
+
+[node name="ContactShadow" parent="Objects/Vegetation/Palm0" instance=ExtResource("12_r")]
+scale = Vector2(0.6, 0.3)
+
+[node name="Palm1" parent="Objects/Vegetation" instance=ExtResource("11_r")]
+position = Vector2(4350, -1800)
+
+[node name="ContactShadow" parent="Objects/Vegetation/Palm1" instance=ExtResource("12_r")]
+scale = Vector2(0.6, 0.3)
+
+[node name="Palm2" parent="Objects/Vegetation" instance=ExtResource("11_r")]
+position = Vector2(3990, -1590)
+
+[node name="ContactShadow" parent="Objects/Vegetation/Palm2" instance=ExtResource("12_r")]
+scale = Vector2(0.6, 0.3)
+
+[node name="Palm3" parent="Objects/Vegetation" instance=ExtResource("11_r")]
+position = Vector2(4350, -1590)
+
+[node name="ContactShadow" parent="Objects/Vegetation/Palm3" instance=ExtResource("12_r")]
+scale = Vector2(0.6, 0.3)
+
+[node name="Palm4" parent="Objects/Vegetation" instance=ExtResource("11_r")]
+position = Vector2(3990, -1380)
+
+[node name="ContactShadow" parent="Objects/Vegetation/Palm4" instance=ExtResource("12_r")]
+scale = Vector2(0.6, 0.3)
+
+[node name="Palm5" parent="Objects/Vegetation" instance=ExtResource("11_r")]
+position = Vector2(4350, -1380)
+
+[node name="ContactShadow" parent="Objects/Vegetation/Palm5" instance=ExtResource("12_r")]
+scale = Vector2(0.6, 0.3)
+
+[node name="Palm6" parent="Objects/Vegetation" instance=ExtResource("11_r")]
+position = Vector2(3990, -1170)
+
+[node name="ContactShadow" parent="Objects/Vegetation/Palm6" instance=ExtResource("12_r")]
+scale = Vector2(0.6, 0.3)
+
+[node name="Palm7" parent="Objects/Vegetation" instance=ExtResource("11_r")]
+position = Vector2(4350, -1170)
+
+[node name="ContactShadow" parent="Objects/Vegetation/Palm7" instance=ExtResource("12_r")]
+scale = Vector2(0.6, 0.3)
+
+[node name="Palm8" parent="Objects/Vegetation" instance=ExtResource("11_r")]
+position = Vector2(3990, -960)
+
+[node name="ContactShadow" parent="Objects/Vegetation/Palm8" instance=ExtResource("12_r")]
+scale = Vector2(0.6, 0.3)
+
+[node name="Palm9" parent="Objects/Vegetation" instance=ExtResource("11_r")]
+position = Vector2(4350, -960)
+
+[node name="ContactShadow" parent="Objects/Vegetation/Palm9" instance=ExtResource("12_r")]
+scale = Vector2(0.6, 0.3)
+
+[node name="Palm10" parent="Objects/Vegetation" instance=ExtResource("11_r")]
+position = Vector2(3990, -750)
+
+[node name="ContactShadow" parent="Objects/Vegetation/Palm10" instance=ExtResource("12_r")]
+scale = Vector2(0.6, 0.3)
+
+[node name="Palm11" parent="Objects/Vegetation" instance=ExtResource("11_r")]
+position = Vector2(4350, -750)
+
+[node name="ContactShadow" parent="Objects/Vegetation/Palm11" instance=ExtResource("12_r")]
+scale = Vector2(0.6, 0.3)
+
+[node name="Palm12" parent="Objects/Vegetation" instance=ExtResource("11_r")]
+position = Vector2(3990, -540)
+
+[node name="ContactShadow" parent="Objects/Vegetation/Palm12" instance=ExtResource("12_r")]
+scale = Vector2(0.6, 0.3)
+
+[node name="Palm13" parent="Objects/Vegetation" instance=ExtResource("11_r")]
+position = Vector2(4350, -540)
+
+[node name="ContactShadow" parent="Objects/Vegetation/Palm13" instance=ExtResource("12_r")]
+scale = Vector2(0.6, 0.3)
+
+[node name="Palm14" parent="Objects/Vegetation" instance=ExtResource("11_r")]
+position = Vector2(3990, -330)
+
+[node name="ContactShadow" parent="Objects/Vegetation/Palm14" instance=ExtResource("12_r")]
+scale = Vector2(0.6, 0.3)
+
+[node name="Palm15" parent="Objects/Vegetation" instance=ExtResource("11_r")]
+position = Vector2(4350, -330)
+
+[node name="ContactShadow" parent="Objects/Vegetation/Palm15" instance=ExtResource("12_r")]
+scale = Vector2(0.6, 0.3)
+
+[node name="Palm16" parent="Objects/Vegetation" instance=ExtResource("11_r")]
+position = Vector2(3990, -120)
+
+[node name="ContactShadow" parent="Objects/Vegetation/Palm16" instance=ExtResource("12_r")]
+scale = Vector2(0.6, 0.3)
+
+[node name="Palm17" parent="Objects/Vegetation" instance=ExtResource("11_r")]
+position = Vector2(4350, -120)
+
+[node name="ContactShadow" parent="Objects/Vegetation/Palm17" instance=ExtResource("12_r")]
+scale = Vector2(0.6, 0.3)
+
+[node name="Palm18" parent="Objects/Vegetation" instance=ExtResource("11_r")]
+position = Vector2(3990, 90)
+
+[node name="ContactShadow" parent="Objects/Vegetation/Palm18" instance=ExtResource("12_r")]
+scale = Vector2(0.6, 0.3)
+
+[node name="Palm19" parent="Objects/Vegetation" instance=ExtResource("11_r")]
+position = Vector2(4350, 90)
+
+[node name="ContactShadow" parent="Objects/Vegetation/Palm19" instance=ExtResource("12_r")]
+scale = Vector2(0.6, 0.3)
+
+[node name="Palm20" parent="Objects/Vegetation" instance=ExtResource("11_r")]
+position = Vector2(3990, 300)
+
+[node name="ContactShadow" parent="Objects/Vegetation/Palm20" instance=ExtResource("12_r")]
+scale = Vector2(0.6, 0.3)
+
+[node name="Palm21" parent="Objects/Vegetation" instance=ExtResource("11_r")]
+position = Vector2(4350, 300)
+
+[node name="ContactShadow" parent="Objects/Vegetation/Palm21" instance=ExtResource("12_r")]
+scale = Vector2(0.6, 0.3)
+
+[node name="Palm22" parent="Objects/Vegetation" instance=ExtResource("11_r")]
+position = Vector2(3990, 510)
+
+[node name="ContactShadow" parent="Objects/Vegetation/Palm22" instance=ExtResource("12_r")]
+scale = Vector2(0.6, 0.3)
+
+[node name="Palm23" parent="Objects/Vegetation" instance=ExtResource("11_r")]
+position = Vector2(4350, 510)
+
+[node name="ContactShadow" parent="Objects/Vegetation/Palm23" instance=ExtResource("12_r")]
+scale = Vector2(0.6, 0.3)
+
+[node name="Tree1" parent="Objects/Vegetation" instance=ExtResource("13_r")]
+position = Vector2(3920, -1300)
+
+[node name="ContactShadow" parent="Objects/Vegetation/Tree1" instance=ExtResource("12_r")]
+scale = Vector2(1.2, 0.6)
+
+[node name="Tree2" parent="Objects/Vegetation" instance=ExtResource("13_r")]
+position = Vector2(4420, -600)
+
+[node name="ContactShadow" parent="Objects/Vegetation/Tree2" instance=ExtResource("12_r")]
+scale = Vector2(1.2, 0.6)
+
+[node name="Tree3" parent="Objects/Vegetation" instance=ExtResource("13_r")]
+position = Vector2(3930, 200)
+
+[node name="ContactShadow" parent="Objects/Vegetation/Tree3" instance=ExtResource("12_r")]
+scale = Vector2(1.2, 0.6)
+
+[node name="Tree4" parent="Objects/Vegetation" instance=ExtResource("13_r")]
+position = Vector2(2700, -2600)
+
+[node name="ContactShadow" parent="Objects/Vegetation/Tree4" instance=ExtResource("12_r")]
+scale = Vector2(1.2, 0.6)
+
+[node name="Tree5" parent="Objects/Vegetation" instance=ExtResource("13_r")]
+position = Vector2(5400, -2500)
+
+[node name="ContactShadow" parent="Objects/Vegetation/Tree5" instance=ExtResource("12_r")]
+scale = Vector2(1.2, 0.6)
+
+[node name="Tree6" parent="Objects/Vegetation" instance=ExtResource("13_r")]
+position = Vector2(2650, 1200)
+
+[node name="ContactShadow" parent="Objects/Vegetation/Tree6" instance=ExtResource("12_r")]
+scale = Vector2(1.2, 0.6)
+
+[node name="Tree7" parent="Objects/Vegetation" instance=ExtResource("13_r")]
+position = Vector2(5450, 1250)
+
+[node name="ContactShadow" parent="Objects/Vegetation/Tree7" instance=ExtResource("12_r")]
+scale = Vector2(1.2, 0.6)
+
+[node name="StreetLamp1" parent="Objects/Props" instance=ExtResource("14_r")]
+position = Vector2(2920, -2400)
+
+[node name="ContactShadow" parent="Objects/Props/StreetLamp1" instance=ExtResource("12_r")]
+scale = Vector2(0.3, 0.15)
+
+[node name="StreetLight1" type="PointLight2D" parent="Objects/Lights"]
+position = Vector2(2970, -2400)
+color = Color(1, 0.85, 0.6, 1)
+energy = 0.9
+range_item_cull_mask = 3
+texture = ExtResource("15_r")
+texture_scale = 2.6
+script = ExtResource("16_r")
+mode = 0
+needs_power = false
+base_energy = 0.9
+
+[node name="StreetLamp2" parent="Objects/Props" instance=ExtResource("14_r")]
+position = Vector2(2920, -1400)
+
+[node name="ContactShadow" parent="Objects/Props/StreetLamp2" instance=ExtResource("12_r")]
+scale = Vector2(0.3, 0.15)
+
+[node name="StreetLight2" type="PointLight2D" parent="Objects/Lights"]
+position = Vector2(2970, -1400)
+color = Color(1, 0.85, 0.6, 1)
+energy = 0.9
+range_item_cull_mask = 3
+texture = ExtResource("15_r")
+texture_scale = 2.6
+script = ExtResource("16_r")
+mode = 0
+needs_power = true
+base_energy = 0.9
+
+[node name="StreetLamp3" parent="Objects/Props" instance=ExtResource("14_r")]
+position = Vector2(2920, -400)
+
+[node name="ContactShadow" parent="Objects/Props/StreetLamp3" instance=ExtResource("12_r")]
+scale = Vector2(0.3, 0.15)
+
+[node name="StreetLight3" type="PointLight2D" parent="Objects/Lights"]
+position = Vector2(2970, -400)
+color = Color(1, 0.85, 0.6, 1)
+energy = 0.9
+range_item_cull_mask = 3
+texture = ExtResource("15_r")
+texture_scale = 2.6
+script = ExtResource("16_r")
+mode = 1
+needs_power = true
+base_energy = 0.9
+
+[node name="StreetLamp4" parent="Objects/Props" instance=ExtResource("14_r")]
+position = Vector2(2920, 600)
+
+[node name="ContactShadow" parent="Objects/Props/StreetLamp4" instance=ExtResource("12_r")]
+scale = Vector2(0.3, 0.15)
+
+[node name="StreetLight4" type="PointLight2D" parent="Objects/Lights"]
+position = Vector2(2970, 600)
+color = Color(1, 0.85, 0.6, 1)
+energy = 0.9
+range_item_cull_mask = 3
+texture = ExtResource("15_r")
+texture_scale = 2.6
+script = ExtResource("16_r")
+mode = 0
+needs_power = true
+base_energy = 0.9
+
+[node name="StreetLamp5" parent="Objects/Props" instance=ExtResource("14_r")]
+position = Vector2(4170, -2400)
+
+[node name="ContactShadow" parent="Objects/Props/StreetLamp5" instance=ExtResource("12_r")]
+scale = Vector2(0.3, 0.15)
+
+[node name="StreetLight5" type="PointLight2D" parent="Objects/Lights"]
+position = Vector2(4220, -2400)
+color = Color(1, 0.85, 0.6, 1)
+energy = 0.9
+range_item_cull_mask = 3
+texture = ExtResource("15_r")
+texture_scale = 2.6
+script = ExtResource("16_r")
+mode = 0
+needs_power = false
+base_energy = 0.9
+
+[node name="StreetLamp6" parent="Objects/Props" instance=ExtResource("14_r")]
+position = Vector2(4070, -900)
+
+[node name="ContactShadow" parent="Objects/Props/StreetLamp6" instance=ExtResource("12_r")]
+scale = Vector2(0.3, 0.15)
+
+[node name="StreetLight6" type="PointLight2D" parent="Objects/Lights"]
+position = Vector2(4120, -900)
+color = Color(1, 0.85, 0.6, 1)
+energy = 0.9
+range_item_cull_mask = 3
+texture = ExtResource("15_r")
+texture_scale = 2.6
+script = ExtResource("16_r")
+mode = 0
+needs_power = true
+base_energy = 0.9
+
+[node name="StreetLamp7" parent="Objects/Props" instance=ExtResource("14_r")]
+position = Vector2(4270, 300)
+
+[node name="ContactShadow" parent="Objects/Props/StreetLamp7" instance=ExtResource("12_r")]
+scale = Vector2(0.3, 0.15)
+
+[node name="StreetLight7" type="PointLight2D" parent="Objects/Lights"]
+position = Vector2(4320, 300)
+color = Color(1, 0.85, 0.6, 1)
+energy = 0.9
+range_item_cull_mask = 3
+texture = ExtResource("15_r")
+texture_scale = 2.6
+script = ExtResource("16_r")
+mode = 0
+needs_power = true
+base_energy = 0.9
+
+[node name="BoundWestEdge" type="StaticBody2D" parent="Objects/Bounds"]
+collision_mask = 0
+
+[node name="Shape" type="CollisionShape2D" parent="Objects/Bounds/BoundWestEdge"]
+position = Vector2(2780, -820)
+shape = SubResource("RectangleShape2D_1")
+
+[node name="BoundEast" type="StaticBody2D" parent="Objects/Bounds"]
+collision_mask = 0
+
+[node name="Shape" type="CollisionShape2D" parent="Objects/Bounds/BoundEast"]
+position = Vector2(5640, -820)
+shape = SubResource("RectangleShape2D_2")
+
+[node name="BoundSouth" type="StaticBody2D" parent="Objects/Bounds"]
+collision_mask = 0
+
+[node name="Shape" type="CollisionShape2D" parent="Objects/Bounds/BoundSouth"]
+position = Vector2(4240, 1330)
+shape = SubResource("RectangleShape2D_3")
+
+[node name="BoundNorthW" type="StaticBody2D" parent="Objects/Bounds"]
+collision_mask = 0
+
+[node name="Shape" type="CollisionShape2D" parent="Objects/Bounds/BoundNorthW"]
+position = Vector2(3140, -2980)
+shape = SubResource("RectangleShape2D_4")
+
+[node name="BoundNorthE" type="StaticBody2D" parent="Objects/Bounds"]
+collision_mask = 0
+
+[node name="Shape" type="CollisionShape2D" parent="Objects/Bounds/BoundNorthE"]
+position = Vector2(5270, -2980)
+shape = SubResource("RectangleShape2D_5")
+
+[node name="EdgeToField" parent="Objects/Doors" instance=ExtResource("17_r")]
+position = Vector2(2830, 75)
+destination_zone_id = "main_gate_exterior"
+destination_spawn_id = "field_from_halls"
+size = Vector2(50, 2350)
+place_name = "The field"
+
+[node name="Spawn_halls_from_field" parent="Objects/SpawnMarkers" instance=ExtResource("18_r")]
+position = Vector2(2960, -150)
+spawn_id = "halls_from_field"
+
+[node name="EdgeToPlaza" parent="Objects/Doors" instance=ExtResource("17_r")]
+position = Vector2(2830, -2000)
+destination_zone_id = "central_plaza"
+destination_spawn_id = "plaza_from_halls"
+size = Vector2(50, 1700)
+place_name = "Central Plaza"
+
+[node name="Spawn_halls_from_plaza" parent="Objects/SpawnMarkers" instance=ExtResource("18_r")]
+position = Vector2(2960, -2500)
+spawn_id = "halls_from_plaza"
+
+[node name="EdgeToAcademic" parent="Objects/Doors" instance=ExtResource("17_r")]
+position = Vector2(4170, -2925)
+destination_zone_id = "academic_exterior"
+destination_spawn_id = "academic_from_halls"
+size = Vector2(540, 40)
+place_name = "Academic buildings"
+
+[node name="Spawn_halls_from_academic" parent="Objects/SpawnMarkers" instance=ExtResource("18_r")]
+position = Vector2(4170, -2780)
+spawn_id = "halls_from_academic"

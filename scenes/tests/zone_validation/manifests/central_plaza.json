@@ -1,0 +1,11 @@
+{
+	"zone_id": "central_plaza",
+	"notes": "Central Plaza: lake ring around the island plaza (Mosque, minaret, Auditorium, Admin, Central Cafe), 5 Pillars, three bridges. Campus frame (Docs/CAMPUS_BUILD.md).",
+	"playable_bounds": [
+		-1880,
+		-3760,
+		4120,
+		2510
+	],
+	"walks": []
+}

@@ -1,0 +1,11 @@
+{
+	"zone_id": "halls_exterior",
+	"notes": "Halls: South Hall and North Hall (four 30 m segments each), the palm courtyard, UB Hall, the halls' gate. Campus frame.",
+	"playable_bounds": [
+		2800,
+		-2950,
+		2800,
+		4250
+	],
+	"walks": []
+}

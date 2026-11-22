@@ -1,0 +1,11 @@
+{
+	"zone_id": "academic_exterior",
+	"notes": "Academic area: Academic 1, 2, 3, ME workshops A/B, the garage, the main road. Campus frame.",
+	"playable_bounds": [
+		-1640,
+		-5640,
+		6640,
+		2690
+	],
+	"walks": []
+}

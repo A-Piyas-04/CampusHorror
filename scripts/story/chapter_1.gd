@@ -247,6 +247,75 @@ func _ending() -> void:
 	Game.quit_to_title()
 
 
+# --- Debug helpers (DebugTools only; never reachable in a release build) ----------------------------------------
+
+## Jumps to the start of the next beat, granting whatever that beat assumes: for testing the chapter without
+## replaying it. Returns a line describing what it did.
+func debug_next_beat() -> String:
+	if not GameState.has_flag("got_lantern"):
+		GameState.set_flag("got_lantern")
+		GameState.mark_collected("canteen_hurricane_lantern")
+		return "Beat 1: lantern granted (canteen)"
+	if not GameState.has_flag("gate_seen"):
+		GameState.set_flag("gate_seen")
+		_go("main_gate_exterior", Vector2(-1390, 1240))
+		return "Beat 2: at the chained Main Gate"
+	if not GameState.has_item("cds_master_key"):
+		GameState.set_flag("logbook_read")
+		GameState.mark_note_read("security_logbook", "Security logbook, Main Gate", "(skipped with the debug key)")
+		GameState.add_item("cds_master_key")
+		GameState.mark_collected("security_master_key")
+		_go("main_gate_exterior", Vector2(-1632, 1226))
+		return "Beat 3: logbook read, master key taken, the guard is awake"
+	if not GameState.has_flag("code_seen"):
+		GameState.set_flag("code_seen")
+		GameState.mark_note_read("tt_wall_code", "Numbers on the wall", "2 7 0 4")
+		_go("cds_table_tennis", _spawn("cds_table_tennis", "tt_from_veranda"))
+		return "Beat 4: the code (2704) is read, in the table-tennis room"
+	if not GameState.has_flag("power_on"):
+		if main.get_current_zone_id() != "cds_indoor_basketball":
+			_go("cds_indoor_basketball", _spawn("cds_indoor_basketball", "hall_from_veranda"))
+			return "Beat 5: in the indoor games hall (press again for the finale)"
+		GameState.set_flag("power_on")
+		return "Beat 6: power on, the hatch opens, the guard is coming"
+	return "Chapter 1 is at its last beat: climb down the hatch"
+
+
+## True while the guard is switched off (free exploration).
+var debug_guard_off := false
+
+
+func debug_toggle_guard() -> String:
+	debug_guard_off = not debug_guard_off
+	for g in get_tree().get_nodes_in_group("creatures"):
+		var guard := g as NightGuard
+		if guard == null:
+			continue
+		if debug_guard_off:
+			guard.active = false
+		elif String(guard.get_meta("role", "patrol")) == "patrol":
+			guard.active = GameState.has_flag("guard_awake")
+			guard.visible = guard.active
+			guard.reset_brain()
+	return "The guard ignores you" if debug_guard_off else "The guard is hunting again"
+
+
+func _spawn(zone_id: String, spawn_id: String) -> Vector2:
+	var packed := load(main.zone_registry.get_scene_path(zone_id)) as PackedScene
+	var probe := packed.instantiate() as Zone
+	var marker := probe.find_spawn_marker(spawn_id)
+	var at := marker.position if marker != null else Vector2.ZERO
+	probe.free()
+	return at
+
+
+func _go(zone_id: String, feet: Vector2) -> void:
+	if main.get_current_zone_id() == zone_id:
+		player.teleport(feet)
+	else:
+		main.travel_to_position(zone_id, feet)
+
+
 # --- Failure ---------------------------------------------------------------------------------------------------
 
 func _on_caught() -> void:

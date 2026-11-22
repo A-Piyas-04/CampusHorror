@@ -18,6 +18,20 @@ which is what the tests use.
 | Lantern: Full, Low, Off | F | X / Square |
 | Pause, journal, settings | Esc | Start |
 
+### Testing it quickly (debug build only)
+
+These keys exist so a late beat can be tested without replaying the chapter. They live in `DebugTools`, which
+frees itself in an exported release build.
+
+| Key | Does |
+|---|---|
+| **F3** | Jump to the next beat, granting what it assumes (lantern, the gate, the logbook and master key, the code, the hall, the power). A toast says what it did. |
+| **F4** | Switch the Night Guard off / on, to explore without being hunted. |
+| **F7** | Fill the lantern with oil. |
+| **F2** | Flip the night tint. **F6** / **F9** | Save / load, until there is a save screen. |
+
+To see the finale: start a new game and press F3 six times. To wander the night campus safely: F3 twice, then F4.
+
 ## The chapter, beat by beat (spoilers)
 
 | # | Where | What happens | Flag / item |

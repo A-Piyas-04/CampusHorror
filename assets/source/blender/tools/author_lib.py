@@ -150,6 +150,42 @@ def blob(x, y, z, sx, sy, sz, mat, lump=0.25, seed=1, subdiv=3, floor=0.0, **kw)
     return d
 
 
+def prism(points, span, mat, axis="y", **kw):
+    d = {"prism": [[round(u, 4), round(v, 4)] for u, v in points], "span": [round(span[0], 4), round(span[1], 4)],
+         "axis": axis, "mat": mat}
+    d.update(kw)
+    return d
+
+
+def pointed_arch(cx, width, z0, spring, peak, steps=8):
+    """Outline (XZ, counter-clockwise) of a pointed (two-centred) arch opening: sides from z0 to `spring`, then two
+    arcs meeting at `peak`."""
+    hw = width / 2.0
+    rise = peak - spring
+    # Two-centred arch: each arc centred on the opposite springing line, radius r with r^2 = (r - hw)^2 + rise^2.
+    r = (hw * hw + rise * rise) / (2.0 * hw) if hw > 0 else rise
+    pts = [(cx - hw, z0), (cx + hw, z0), (cx + hw, spring)]
+    for k in range(1, steps + 1):          # right arc, centre at (cx + hw - r, spring)
+        a = math.asin(min(1.0, rise * k / steps / r))
+        pts.append((cx + hw - r + r * math.cos(a), spring + r * math.sin(a)))
+    pts[-1] = (cx, peak)
+    for k in range(steps - 1, 0, -1):      # left arc, mirror
+        a = math.asin(min(1.0, rise * k / steps / r))
+        pts.append((cx - hw + r - r * math.cos(a), spring + r * math.sin(a)))
+    pts.append((cx - hw, spring))
+    return pts
+
+
+def half_disc(cx, z_top, radius, steps=24):
+    """Lower half of a disc (XZ), flat side on top at z_top: the Mosque's great window."""
+    pts = [(cx + radius, z_top)]
+    for k in range(1, steps):
+        a = math.pi * k / steps
+        pts.append((cx + radius * math.cos(a), z_top - radius * math.sin(a)))
+    pts.append((cx - radius, z_top))
+    return pts
+
+
 def text(s, at, size, mat, face="front", depth=0.004, align="CENTER"):
     return {"text": s, "at": list(at), "size": size, "mat": mat, "face": face, "depth": depth, "align": align}
 

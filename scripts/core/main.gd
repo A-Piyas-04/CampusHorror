@@ -128,6 +128,11 @@ func get_current_zone_id() -> String:
 	return _current_zone.zone_id if _current_zone != null else ""
 
 
+## The story director in story mode, or null in the sandbox (debug tools and tests ask for it).
+func get_director() -> Chapter1:
+	return _director
+
+
 func get_current_zone() -> Zone:
 	return _current_zone
 

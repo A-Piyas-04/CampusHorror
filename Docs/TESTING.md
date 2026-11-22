@@ -12,8 +12,14 @@ replace the 9 per-batch Main Gate check scenes and their 6 versioned baselines (
 
 ## 1. The suites
 
-Run all of them before every commit that touches `scenes/`, `scripts/`, `data/` or `project.godot`.
-Godot path: `F:\App Installers\Godot_v4.7.2-stable_win64.exe\Godot_v4.7.2-stable_win64_console.exe`.
+Run all of them before every commit that touches `scenes/`, `scripts/`, `data/` or `project.godot`:
+
+    tools/run_checks.sh                        # every suite, one summary line each
+    CHECKS="Chapter1 Validator" tools/run_checks.sh
+    VARGS=--dump-baseline CHECKS=Validator tools/run_checks.sh   # refresh baselines (review the diff first)
+
+Logs land in `tools/.check-logs/<label>/` (git-ignored). Override the executable with `GODOT=...`; the default
+is `F:\App Installers\Godot_v4.7.2-stable_win64.exe\Godot_v4.7.2-stable_win64_console.exe`.
 
 | Suite | Command (headless; exit 0 = pass) | What it proves |
 |---|---|---|
@@ -27,6 +33,7 @@ Godot path: `F:\App Installers\Godot_v4.7.2-stable_win64.exe\Godot_v4.7.2-stable
 | **Occlusion** (Phase I) | `… res://scenes/tests/feel/OcclusionCheck.tscn -- --quit-after-checks` (add `--pixels` and drop `--headless` for the rendering proof) | Occluder index = independent count; the right items carry ghosts (dead band, tree, wall) and none in front; ghost state, clip modes restored, pool stable, zone changes, cost per tick; windowed: ghost pixels drawn at the dead band, 0 difference in front of an overlapping tree |
 | **Interaction** (Phase I) | `… res://scenes/tests/feel/InteractionCheck.tscn -- --quit-after-checks` | The prompt (verb, name, glyph, exact position, fades), gamepad / keyboard glyph switching, live rebinding, hold-to-interact, the prompt hidden during travel, every interactable has a verb |
 | **Chapter 1** (story) | `… res://scenes/tests/story/Chapter1Check.tscn -- --quit-after-checks` | A NEW story game played end to end with real input: intro card, the dark canteen, the lantern, notes in the light, every door of the chapter, the chained gate, logbook and master key, the guard waking, patrolling, seeing the lantern, chasing and catching (blackout, checkpoint reload), the dark-only wall code, the locker, the hall's keypad, the finale, the hatch, the end card and the title screen. Saves to its own file. |
+| **Debug keys** | `… res://scenes/tests/story/DebugKeysCheck.tscn -- --quit-after-checks` | The developer keys that drive Chapter 1: F3 steps through every beat (granting what each assumes), F4 switches the guard off and on, F7 fills the lantern |
 | **Scripts** | `… res://scenes/tests/scripts/ScriptCompileCheck.tscn` | Every script under `res://scripts` compiles with the autoloads present (a parse error otherwise hangs only the scene that loads it) |
 | **Feel probe** (windowed only) | `<godot> --path . res://scenes/tests/feel/FeelProbe.tscn -- --quit-after-checks` (no `--headless`) | Real GPU and vsync: scripted play plus 2 door trips; median / p99 / worst frame; no frame over 2x the median while the world is visible |
 
@@ -37,7 +44,7 @@ parse error makes a scene hang, not fail.**
 Expected output after the Chapter 1 slice (21 November 2026): scripts **53/53**, validator **89/89**
 (8 zones), session **15/15**, character **13/13**, movement **24/24**, audio **19/19**, camera **9/9**,
 transition **13/13**, occlusion **14/14** (update 0.105 ms per tick over 204 occluders, grid-indexed),
-interaction **12/12**, chapter 1 **48/48**, pipeline validate **71/71 assets**. The chapter 1 check ends with
+interaction **12/12**, chapter 1 **48/48**, debug keys **12/12**, pipeline validate **71/71 assets**. The chapter 1 check ends with
 one `WARNING: 2 ObjectDB instances were leaked at exit` (suspended coroutine states left when the test changes
 scene to the title and quits; test-only).
 

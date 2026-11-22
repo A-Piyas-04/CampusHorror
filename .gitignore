@@ -6,3 +6,4 @@ addons/godot_mcp/cache/
 # Python bytecode (Blender and the asset pipeline create these)
 __pycache__/
 *.pyc
+tools/.check-logs/

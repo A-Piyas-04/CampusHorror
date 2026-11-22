@@ -18,6 +18,7 @@ Part types (metres; frame: origin on the ground, +X right, +Y away from the came
     {"lathe": [[r, z], ...], "at": [x, y], "sides": 24}
     {"blob": [x, y, z], "size": [sx, sy, sz], "lump": 0.25, "subdiv": 3, "seed": 1}
     {"text": "EXIT", "at": [x, y, z], "size": 0.2, "face": "front"|"up", "depth": 0.004, "align": "CENTER"}
+    {"prism": [[u, v], ...], "span": [a0, a1], "axis": "y"|"x"}  polygon in XZ (axis y) or YZ (axis x), extruded
     {"repeat": n, "step": [dx, dy, dz], "part": {...}}    n copies, each offset by step
     {"mirror_x": true, "part": {...}}                     the part plus its mirror image across x = 0
 Any part may also carry "xf": [{"rot": [rx, ry, rz], "pivot": [x, y, z]} | {"move": [dx, dy, dz]}, ...], applied in
@@ -82,6 +83,41 @@ def mix_color(nt, fac_socket, a_socket, b_socket):
 
 # --- Materials ---------------------------------------------------------------------------------------------------
 
+def planar_coords(nt, coords):
+    """2D texture coordinates that work on every face of a box: top / bottom faces use (x, y), faces looking
+    north or south use (x, z), faces looking east or west use (y, z). Blender's brick and checker textures are
+    2D (they ignore the vector's third component), so on vertical faces plain object coordinates freeze one axis
+    (a south wall at constant y lands on one brick row, or on a mortar line, and renders flat)."""
+    geo = nt.nodes.new("ShaderNodeNewGeometry")
+    n = nt.nodes.new("ShaderNodeSeparateXYZ")
+    nt.links.new(geo.outputs["Normal"], n.inputs["Vector"])
+    p = nt.nodes.new("ShaderNodeSeparateXYZ")
+    nt.links.new(coords, p.inputs["Vector"])
+
+    def math(op, a, b=None):
+        m = nt.nodes.new("ShaderNodeMath")
+        m.operation = op
+        for i, v in enumerate((a, b)):
+            if v is None:
+                continue
+            if isinstance(v, (int, float)):
+                m.inputs[i].default_value = v
+            else:
+                nt.links.new(v, m.inputs[i])
+        return m.outputs["Value"]
+    ax, ay, az = math("ABSOLUTE", n.outputs["X"]), math("ABSOLUTE", n.outputs["Y"]), math("ABSOLUTE", n.outputs["Z"])
+    top = math("GREATER_THAN", az, 0.5)
+    not_top = math("SUBTRACT", 1.0, top)
+    front = math("MULTIPLY", not_top, math("GREATER_THAN", ay, ax))
+    side = math("MULTIPLY", not_top, math("SUBTRACT", 1.0, math("GREATER_THAN", ay, ax)))
+    u = math("ADD", math("MULTIPLY", math("ADD", top, front), p.outputs["X"]), math("MULTIPLY", side, p.outputs["Y"]))
+    v = math("ADD", math("MULTIPLY", top, p.outputs["Y"]), math("MULTIPLY", math("ADD", front, side), p.outputs["Z"]))
+    comb = nt.nodes.new("ShaderNodeCombineXYZ")
+    nt.links.new(u, comb.inputs["X"])
+    nt.links.new(v, comb.inputs["Y"])
+    return comb.outputs["Vector"]
+
+
 def _pattern(nt, coords, spec, base):
     """Returns (colour socket, height socket or None) for a pattern over the base colour socket."""
     kind = spec.get("type")
@@ -89,11 +125,11 @@ def _pattern(nt, coords, spec, base):
     if kind in ("tiles", "planks"):
         brick = nt.nodes.new("ShaderNodeTexBrick")
         mapping = nt.nodes.new("ShaderNodeMapping")
-        nt.links.new(coords, mapping.inputs["Vector"])
+        nt.links.new(planar_coords(nt, coords), mapping.inputs["Vector"])
         if kind == "tiles":
             size = spec.get("size", 0.3)
             brick.offset = spec.get("offset", 0.0)
-            brick.inputs["Brick Width"].default_value = 1.0
+            brick.inputs["Brick Width"].default_value = spec.get("bw", 1.0)
             brick.inputs["Row Height"].default_value = 1.0
             mapping.inputs["Scale"].default_value = (1.0 / size, 1.0 / size, 1.0 / size)
         else:
@@ -150,7 +186,7 @@ def _pattern(nt, coords, spec, base):
     if kind == "checker":
         chk = nt.nodes.new("ShaderNodeTexChecker")
         chk.inputs["Scale"].default_value = 1.0 / spec.get("size", 0.3)
-        nt.links.new(coords, chk.inputs["Vector"])
+        nt.links.new(planar_coords(nt, coords), chk.inputs["Vector"])
         nt.links.new(base, chk.inputs["Color1"])
         nt.links.new(c2, chk.inputs["Color2"])
         return chk.outputs["Color"], None
@@ -324,6 +360,24 @@ class Builder:
                     z = max(z, part.get("floor", 0.0))
                 vert.co = Vector((cx + p.x * k * sx, cy + p.y * k * sy, z))
             smooth = True
+        elif "prism" in part:
+            # A polygon (concave allowed) extruded: axis "y" = polygon in XZ (a front-facing shape such as a
+            # pointed arch), extruded from y0 to y1; axis "x" = polygon in YZ, extruded from x0 to x1.
+            pts = part["prism"]
+            a0, a1 = part.get("span", [0.0, 0.1])
+            axis = part.get("axis", "y")
+            if axis == "y":
+                front = [self.bm.verts.new((u, a0, v)) for u, v in pts]
+                back = [self.bm.verts.new((u, a1, v)) for u, v in pts]
+            else:
+                front = [self.bm.verts.new((a0, u, v)) for u, v in pts]
+                back = [self.bm.verts.new((a1, u, v)) for u, v in pts]
+            n = len(pts)
+            self.bm.faces.new(front)
+            self.bm.faces.new(list(reversed(back)))
+            for i in range(n):
+                self.bm.faces.new((front[i], front[(i + 1) % n], back[(i + 1) % n], back[i]))
+            centre = (sum(u for u, _ in pts) / n, (a0 + a1) / 2, sum(v for _, v in pts) / n)
         elif "text" in part:
             self._text(part)
         else:

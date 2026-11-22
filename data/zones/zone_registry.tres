@@ -5,10 +5,13 @@
 [resource]
 script = ExtResource("1_registry")
 zones = Dictionary[String, String]({
+"academic_exterior": "res://scenes/world/AcademicExterior.tscn",
 "cds_canteen": "res://scenes/world/CdsCanteen.tscn",
 "cds_indoor_basketball": "res://scenes/world/CdsIndoorBasketball.tscn",
 "cds_table_tennis": "res://scenes/world/CdsTableTennis.tscn",
 "cds_veranda": "res://scenes/world/CdsVeranda.tscn",
+"central_plaza": "res://scenes/world/CentralPlaza.tscn",
+"halls_exterior": "res://scenes/world/HallsExterior.tscn",
 "main_gate_exterior": "res://scenes/world/MainGateExterior.tscn",
 "main_gate_security": "res://scenes/world/MainGateSecurity.tscn"
 })

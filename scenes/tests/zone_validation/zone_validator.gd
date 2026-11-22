@@ -309,6 +309,12 @@ func _rule_conventions(zone_id: String, zone: Zone, manifest: Dictionary) -> Arr
 				var verb: String = owner_node.get("verb") if (owner_node is Door or owner_node is Pickup) else (n as Interactable).verb
 				if verb.strip_edges().is_empty():
 					f.append("%s: Interactable has no verb for its prompt" % p)
+			elif n is ZoneEdge:
+				var e := n as ZoneEdge
+				if e.collision_layer != 16 or e.collision_mask != LAYER_PLAYER:
+					f.append("%s: ZoneEdge must be layer 5 trigger / mask 2 player (layer %d, mask %d)" % [p, e.collision_layer, e.collision_mask])
+				if not _registry.has_zone(e.destination_zone_id):
+					f.append("%s: ZoneEdge leads to unknown zone '%s'" % [p, e.destination_zone_id])
 			elif n is OverheadVisibility:
 				if a.collision_layer != 0 or a.collision_mask != LAYER_PLAYER:
 					f.append("%s: OverheadVisibility must be layer none / mask 2 player (layer %d, mask %d)" % [p, a.collision_layer, a.collision_mask])
